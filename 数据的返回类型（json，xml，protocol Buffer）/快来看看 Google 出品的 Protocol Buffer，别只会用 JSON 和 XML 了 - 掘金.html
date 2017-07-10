@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://juejin.im/post/595eefcb5188250da205efbe -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta name="msapplication-TileColor" content="#007fff"><meta name="msapplication-TileImage" content="//gold-cdn.xitu.io/favicons/mstile-144x144.png"><meta name="msapplication-config" content="//gold-cdn.xitu.io/favicons/browserconfig.xml"><meta name="theme-color" content="#007fff"><meta name="google-site-verification" content="cCHsgG9ktuCTgWgYfqCJql8AeR4gAne4DTZqztPoirE"><meta name="apple-itunes-app" content="app-id=987739104"><meta name="baidu-site-verification" content="qiK2a1kcFc"><meta name="360-site-verification" content="4c3c7d57d59f0e1a308462fbc7fd7e51"><meta name="sogou_site_verification" content="c49WUDZczQ"><title data-vue-meta="true">快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金</title><link rel="preload" href="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/manifest.d8b6480c540083976466.js.下载" as="script"><link rel="preload" href="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/vendor.f830fb5580f6c8e50300.js.下载" as="script"><link rel="preload" href="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/app.9dc74b0ffe5c03d5c501.js.下载" as="script"><link rel="preload" href="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/app.184dca250ccb89bfb9be32320ef22a55.css" as="style"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/0.891096212825d79917bb.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/1.2a571bf5c3298aedfd74.js" as="script"><link rel="prefetch" href="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/2.6ec98e9d834f601e8927.js.下载" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/3.07d55b7cfc743b1bc1bc.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/4.1ea49fdeb2e54a348f21.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/5.3fb2adc9dcf9e53203a3.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/6.908a0d0e662fa2162d8a.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/7.53de519f3883ad6cf313.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/8.dbf470984662321715e0.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/9.65ad910d1b0fb7908e08.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/10.bc045de0bb957393368d.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/11.032864554da9b218487a.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/12.bc783199120106ef7d3b.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/13.abcd24071d3ef7d0c098.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/14.35c54fcd148db4b5af72.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/15.48ae54cc87e2ee6a6c00.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/16.01f0df3881e9ed9757a4.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/17.af5d8673271397081b01.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/18.9a1eda7debf3333a9aac.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/19.4131a6cc9a8182d725ab.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/20.aadc7a8d42bee695ca17.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/21.aaf2913aef6aebfae615.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/22.03c6abecf6c490b2a162.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/23.1dcc859d80c401bdc416.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/24.bed7f0f721569c91972f.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/25.32cd75f5dbe8db7d5548.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/26.5d51da1c0a4194078259.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/27.8c18f1d264bfd5ed9666.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/28.22abd2e9bc369c4d3a68.js" as="script"><link rel="prefetch" href="https://gold-cdn.xitu.io/v3/static/js/29.025ae85e3bfb8a022001.js" as="script"><link rel="apple-touch-icon" sizes="57x57" href="https://gold-cdn.xitu.io/favicons/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="https://gold-cdn.xitu.io/favicons/apple-touch-panfish-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="https://gold-cdn.xitu.io/favicons/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="https://gold-cdn.xitu.io/favicons/apple-touch-panfish-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="https://gold-cdn.xitu.io/favicons/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="https://gold-cdn.xitu.io/favicons/apple-touch-panfish-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="https://gold-cdn.xitu.io/favicons/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="https://gold-cdn.xitu.io/favicons/apple-touch-panfish-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="https://gold-cdn.xitu.io/favicons/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" href="https://gold-cdn.xitu.io/favicons/favicon-32x32.png" sizes="32x32"><link rel="icon" type="image/png" href="https://gold-cdn.xitu.io/favicons/android-chrome-192x192.png" sizes="192x192"><link rel="icon" type="image/png" href="https://gold-cdn.xitu.io/favicons/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/png" href="https://gold-cdn.xitu.io/favicons/favicon-16x16.png" sizes="16x16"><link rel="manifest" href="https://gold-cdn.xitu.io/favicons/manifest.json"><link rel="mask-icon" href="https://gold-cdn.xitu.io/favicons/safari-pinned-tab.svg" color="#007fff"><link rel="shortcut icon" href="https://gold-cdn.xitu.io/favicons/favicon.ico"><link rel="search" title="掘金" href="https://gold-cdn.xitu.io/conf/search.xml" type="application/opensearchdescription+xml"><link rel="stylesheet" href="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/ionicons.min.css"><link rel="stylesheet" href="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/iconfont.css"><link href="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/app.184dca250ccb89bfb9be32320ef22a55.css" rel="stylesheet"><script async="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/analytics.js.下载"></script><script async="" charset="UTF-8" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/meiqia.js.下载"></script><script src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/hm.js.下载"></script><script type="text/javascript" charset="utf-8" async="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/2.6ec98e9d834f601e8927.js.下载"></script><meta vmid="keywords" name="keywords" content="Android,JSON" data-vue-meta="true"><meta vmid="description" name="description" content="前言 习惯用 Json、XML 数据存储格式的你们，相信大多都没听过Protocol Buffer Protocol Buffer 其实 是 Google出品的一种轻量 &amp;amp; 高效的结构化数据存储格式，性能比 Json、XML 真的强！太！多！ 由于 " data-vue-meta="true"><style type="text/css" id="MEIQIA-ICON-STYLE">.MEIQIA-ICON { background-size: 40px auto !important; background-repeat: no-repeat !important; background-image: url("https://static.meiqia.com/dist/images/icon-mq.png?v=5bxejfkw3gyl23xr") !important; } @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2) { .MEIQIA-ICON { background-image: url("https://static.meiqia.com/dist/images/icon-mq@2x.png?v=5bxejfkw3gyl23xr") !important; } } .MEIQIA-ICON-CHAT1 { background-position: 0 0 !important; } .MEIQIA-ICON-CHAT2 { background-position: 0 -20px !important; } .MEIQIA-ICON-CHAT3 { background-position: 0 -40px !important; } .MEIQIA-ICON-CHAT4 { background-position: 0 -60px !important; } .MEIQIA-ICON-CHAT5 { background-position: 0 -80px !important; } .MEIQIA-ICON-CHAT6 { background-position: 0 -100px !important; } .MEIQIA-ICON-CHAT7 { background-position: 0 -120px !important; } .MEIQIA-ICON-CHAT8 { background-position: 0 -140px !important; } .MEIQIA-ICON-CHAT9 { background-position: 0 -160px !important; } .MEIQIA-ICON-CHAT10 { background-position: 0 -180px !important; } .MEIQIA-ICON-CHAT11 { background-position: 0 -200px !important; } .MEIQIA-ICON-CHAT12 { background-position: 0 -220px !important; } .MEIQIA-ICON-TICKET1 { background-position: -20px 0 !important; } .MEIQIA-ICON-TICKET2 { background-position: -20px -20px !important; } .MEIQIA-ICON-TICKET3 { background-position: -20px -40px !important; } .MEIQIA-ICON-TICKET4 { background-position: -20px -60px !important; } .MEIQIA-ICON-TICKET5 { background-position: -20px -80px !important; } .MEIQIA-ICON-TICKET6 { background-position: -20px -100px !important; } .MEIQIA-ICON-TICKET7 { background-position: -20px -120px !important; } .MEIQIA-ICON-TICKET8 { background-position: -20px -140px !important; } .MEIQIA-ICON-TICKET9 { background-position: -20px -160px !important; } .MEIQIA-ICON-TICKET10 { background-position: -20px -180px !important; } .MEIQIA-ICON-TICKET11 { background-position: -20px -200px !important; } .MEIQIA-ICON-TICKET12 { background-position: -20px -220px !important; } </style><style type="text/css" id="MEIQIA-PANEL-STYLE">#MEIQIA-PANEL-HOLDER { position: fixed; bottom: 0;  right: 80px;  z-index: -1; width: 320px; height: 480px; padding: 0; margin: 0; overflow: hidden; visibility: hidden; background-color: transparent; box-shadow: 0 0 20px 0 rgba(0, 0, 0, .15); border: 1px solid #eee\0; *border: 1px solid #eee; } #MEIQIA-IFRAME { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: none; width: 100% !important; height: 100% !important; border: 0; padding: 0; margin: 0; float: none; background: none; } </style><style type="text/css" id="MEIQIA-INVITE-STYLE">#MEIQIA-INVITE, #MEIQIA-INVITE div, #MEIQIA-INVITE span { float: none; width: auto; height: auto; padding: 0; margin: 0; border: 0; background: none; } #MEIQIA-INVITE { position: fixed; z-index: 2147483647; display: none; width: 340px; height: 130px; margin-bottom: 64px; border: 1px solid #f7f7f7; border-radius: 4px; box-shadow: 0 0 14px 0 rgba(0, 0, 0, .16); text-align: left; cursor: pointer; color: #000; line-height: 1.428571429; background-color: #fff; } #MEIQIA-INVITE #MEIQIA-INVITE-ARROW1, #MEIQIA-INVITE #MEIQIA-INVITE-ARROW2 { position: absolute; font-size: 0; line-height: 0; } #MEIQIA-INVITE #MEIQIA-INVITE-ARROW1 { z-index: 2; } #MEIQIA-INVITE #MEIQIA-INVITE-ARROW2 { z-index: 1; }   #MEIQIA-INVITE { bottom: 0; left: 60px; } #MEIQIA-INVITE #MEIQIA-INVITE-ARROW1 { left: 12px; bottom: -8px; border-top: 8px solid #fff; border-right: 7px solid transparent; border-left: 7px solid transparent; } #MEIQIA-INVITE #MEIQIA-INVITE-ARROW2 { left: 11px; bottom: -10px; border-top: 9px solid #f7f7f7; border-right: 8px solid transparent; border-left: 8px solid transparent; }     #MEIQIA-INVITE #MEIQIA-INVITE-CLOSE { position: absolute; right: -20px; top: -20px; width: 40px; height: 40px; cursor: pointer;  background-position: 0 -260px;  } #MEIQIA-INVITE #MEIQIA-INVITE-CLOSE:hover {  background-position: 0 -300px;  } #MEIQIA-INVITE #MEIQIA-INVITE-INSIDE { width: 300px; height: 44px; margin: 46px 20px 0; text-align: left; font-size: 14px; line-height: 22px; overflow: hidden; color: #000; /*word-break: break-all;*/ } </style></head><body><div id="juejin" data-v-6ede48a3=""><div class="global-component-box" data-v-6ede48a3=""><div data-v-2840e9c3="" data-v-6ede48a3="" class="alert-list alert-list"></div><div data-v-6ddb54c6="" data-v-6ede48a3="" class="suspension-panel suspension-panel"><button data-v-6ddb54c6="" title="回到顶部" class="btn to-top-btn" style="display: none;"><i data-v-6ddb54c6="" class="ion-android-arrow-dropup"></i></button><button data-v-6ddb54c6="" title="联系客服" class="btn meiqia-btn"><i data-v-6ddb54c6="" class="ion-chatbubble-working"></i></button></div><!----><!----></div><!----><div data-v-3f216172="" data-v-13f76525="" data-v-6ede48a3="" class="view-container"><div data-v-3f216172="" class="main-header-box"><header data-v-5ce25e66="" data-v-3f216172="" class="main-header main-header visible"><div data-v-5ce25e66="" class="container"><a data-v-5ce25e66="" href="https://juejin.im/" class="logo"><img data-v-5ce25e66="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/logo.a7995ad.svg" alt="掘金" class="logo-img"></a><nav data-v-5ce25e66="" role="navigation" class="main-nav"><ul data-v-5ce25e66="" class="nav-list"><div data-v-5ce25e66="" class="main-nav-list"><div data-v-5ce25e66="" class="phone-show-menu"><span data-v-5ce25e66="">首页</span><div data-v-5ce25e66="" class="icon ion-arrow-down-b"></div></div><div data-v-5ce25e66="" class="phone-hide"><li data-v-5ce25e66="" class="nav-item link-item route-active"><a data-v-5ce25e66="" href="https://juejin.im/">首页</a></li><li data-v-5ce25e66="" class="nav-item link-item"><a data-v-5ce25e66="" href="https://juejin.im/zhuanlan/all">专栏</a></li><li data-v-5ce25e66="" class="nav-item link-item"><a data-v-5ce25e66="" href="https://juejin.im/collections/recommended">收藏集</a></li><li data-v-5ce25e66="" class="nav-item link-item"><a data-v-5ce25e66="" href="https://juejin.im/explore/all">发现</a></li><!----></div></div><li data-v-5ce25e66="" class="nav-item search"><form data-v-5ce25e66="" role="search" class="search-form"><input data-v-5ce25e66="" maxlength="32" placeholder="搜索掘金" class="search-input"><img data-v-5ce25e66="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/juejin-search-icon.26cafaa.svg" alt="搜索" class="search-icon"></form></li><li data-v-5ce25e66="" class="nav-item add"><i data-v-5ce25e66="" class="icon ion-android-add"></i><!----></li><li data-v-5ce25e66="" class="nav-item notification"><i data-v-5ce25e66="" class="icon ion-android-notifications"></i><!----></li><li data-v-5ce25e66="" class="nav-item menu"><div data-v-1b9df826="" data-v-5ce25e66="" class="avatar avatar" style="background-image: url(&quot;https://avatars2.githubusercontent.com/u/21152132?v=3&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/21152132" class="hidden"></div><ul data-v-5ce25e66="" class="nav-menu user-dropdown-list" style="display: none;"><!----><div data-v-5ce25e66="" class="nav-menu-item-group"><li data-v-5ce25e66="" class="nav-menu-item"><a data-v-5ce25e66="" href="https://juejin.im/user/590e2ce9da2f600053511f40"><i data-v-5ce25e66="" class="fengwei fw-person"></i>我的主页</a></li><li data-v-5ce25e66="" class="nav-menu-item"><a data-v-5ce25e66="" href="https://juejin.im/user/590e2ce9da2f600053511f40/like"><i data-v-5ce25e66="" class="fengwei fw-like"></i>我喜欢的</a></li><li data-v-5ce25e66="" class="nav-menu-item"><a data-v-5ce25e66="" href="https://juejin.im/user/590e2ce9da2f600053511f40/collection"><i data-v-5ce25e66="" class="fengwei fw-collection"></i>我的收藏集</a></li><!----><li data-v-5ce25e66="" class="nav-menu-item"><a data-v-5ce25e66="" href="https://juejin.im/subscribe"><i data-v-5ce25e66="" class="fengwei fw-tag"></i>标签管理</a></li></div><div data-v-5ce25e66="" class="nav-menu-item-group"><li data-v-5ce25e66="" class="nav-menu-item"><a data-v-5ce25e66="" href="https://juejin.im/user/settings"><i data-v-5ce25e66="" class="fengwei fw-setting"></i>设置</a></li><li data-v-5ce25e66="" class="nav-menu-item more"><a data-v-5ce25e66=""><i data-v-5ce25e66="" class="fengwei fw-info"></i>关于<i data-v-5ce25e66="" class="ion-chevron-right more-icon"></i></a><ul data-v-5ce25e66="" class="nav-menu more-dropdown-list"><div data-v-5ce25e66="" class="nav-menu-item-group"><li data-v-5ce25e66="" class="nav-menu-item"><a data-v-5ce25e66="" href="https://juejin.im/app" target="_blank">下载应用</a></li><li data-v-5ce25e66="" class="nav-menu-item"><a data-v-5ce25e66="" href="https://juejin.im/about" target="_blank">关于</a></li><li data-v-5ce25e66="" class="nav-menu-item"><a data-v-5ce25e66="" href="https://xitu.io/jobs" target="_blank">加入我们</a></li><li data-v-5ce25e66="" class="nav-menu-item"><a data-v-5ce25e66="" href="https://github.com/xitu/gold-miner" rel="nofollow noopener noreferrer" target="_blank">翻译计划</a></li><li data-v-5ce25e66="" class="nav-menu-item"><a data-v-5ce25e66="" href="https://bd.juejin.im/?utm_campaign=bd&amp;utm_source=web&amp;utm_medium=nav" target="_blank">合作伙伴</a></li></div></ul></li></div><div data-v-5ce25e66="" class="nav-menu-item-group"><li data-v-5ce25e66="" class="nav-menu-item"><a data-v-5ce25e66=""><i data-v-5ce25e66="" class="fengwei fw-logout"></i>登出</a></li></div></ul></li><!----><!----></ul></nav></div></header></div><main data-v-3f216172="" class="container main-container"><div data-v-13f76525="" data-v-3f216172="" class="root-view-bg"></div><div data-v-13f76525="" data-v-3f216172="" class="view column-view"><div data-v-13f76525="" data-v-3f216172="" class="columen-view-main"><div data-v-13f76525="" data-v-3f216172="" class="container entry-view"><!----><a data-v-13f76525="" href="https://juejin.im/user/58d4d9781b69e6006ba65edc" target="_blank" class="post-author clearfix" data-v-3f216172=""><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" style="background-image: url(&quot;https://avatars3.githubusercontent.com/u/18041645?v=3&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/18041645" class="hidden"></div><div data-v-13f76525="" class="author-info float-left"><div data-v-13f76525="" class="author-name text-pointer">Carson_Ho</div><div data-v-13f76525="" class="author-meta">2017 年 07 月 07 日<!----></div></div></a></div><!----><!----><div data-v-13f76525="" data-v-3f216172="" class="container entry-view"><h1 data-v-13f76525="" data-v-3f216172="" class="post-title">快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了</h1><div data-v-13f76525="" data-v-3f216172="" class="post-info-mobile"><div data-v-13f76525="" data-v-3f216172="" class="action create-at-action">2017 年 07 月 07 日</div><a data-v-13f76525="" href="https://juejin.im/user/58d4d9781b69e6006ba65edc" target="_blank" class="action text-a" data-v-3f216172="">Carson_Ho</a></div><div data-v-13f76525="" data-v-3f216172="" class="post-content-container"><div data-v-13f76525="" data-v-3f216172="" class="entry-content post-content"><h1 id="-">前言</h1>
+<ul>
+<li>习惯用 <code>Json、XML</code> 数据存储格式的你们，相信大多都没听过<code>Protocol Buffer</code></li>
+<li><code>Protocol Buffer</code> 其实 是 <code>Google</code>出品的一种轻量 &amp; 高效的结构化数据存储格式，性能比 <code>Json、XML</code> 真的强！太！多！<blockquote>
+<p>由于 <code>Google</code>出品，我相信<code>Protocol Buffer</code>已经具备足够的吸引力</p>
+</blockquote>
+</li>
+<li>今天，我将献上一份 <code>Protocol Buffer</code>的介绍 &amp; 使用攻略，希望你们会喜欢。</li>
+</ul>
+<hr>
+<h1 id="-">目录</h1>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/377c7b8ea553fb990935385ebe7979be" alt="目录" class="medium-zoom-image"><figcaption>目录</figcaption></figure><p></p>
+<hr>
+<h1 id="1-">1. 定义</h1>
+<p>一种 结构化数据 的数据存储格式（类似于 <code>XML、Json</code> ）</p>
+<blockquote>
+<ol>
+<li><code>Google</code> 出品 （开源）</li>
+<li><code>Protocol Buffer</code> 目前有两个版本：<code>proto2</code> 和 <code>proto3</code></li>
+<li>因为<code>proto3</code> 还是beta 版，所以本次讲解是 <code>proto2</code></li>
+</ol>
+</blockquote>
+<hr>
+<h1 id="2-">2. 作用</h1>
+<p>通过将 结构化的数据 进行 串行化（<strong>序列化</strong>），从而实现 <strong>数据存储 / RPC 数据交换</strong>的功能</p>
+<blockquote>
+<ol>
+<li>序列化： 将 数据结构或对象 转换成 二进制串 的过程</li>
+<li>反序列化：将在序列化过程中所生成的二进制串 转换成 数据结构或者对象 的过程</li>
+</ol>
+</blockquote>
+<hr>
+<h1 id="3-">3. 特点</h1>
+<ul>
+<li>对比于 常见的  <code>XML、Json</code> 数据存储格式，<code>Protocol Buffer</code>有如下特点：</li>
+</ul>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/4d04573d675537231086768bc87deb76" alt="Protocol Buffer 特点" class="medium-zoom-image"><figcaption>Protocol Buffer 特点</figcaption></figure><p></p>
+<hr>
+<h1 id="4-">4. 应用场景</h1>
+<p>传输数据量大 &amp; 网络环境不稳定 的<strong>数据存储、RPC 数据交换</strong> 的需求场景</p>
+<blockquote>
+<p>如 即时IM （QQ、微信）的需求场景</p>
+</blockquote>
+<hr>
+<h1 id="-">总结</h1>
+<p>在 <strong>传输数据量较大</strong>的需求场景下，<code>Protocol Buffer</code>比<code>XML、Json</code> 更小、更快、使用 &amp; 维护更简单！</p>
+<hr>
+<h1 id="5-">5. 使用流程</h1>
+<p>使用 <code>Protocol Buffer</code> 的流程如下：</p>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/007fba5316bf49a528c6f7542592af5f" alt="Protocol Buffer使用流程" class="medium-zoom-image"><figcaption>Protocol Buffer使用流程</figcaption></figure><p></p>
+<h3 id="5-1-">5.1 环境配置</h3>
+<ul>
+<li><p>要使用<code>Protocol Buffer</code> ，需要先在电脑上安装<code>Protocol Buffer</code></p>
+</li>
+<li><p>整个 安装过程 只需要按照以下步骤进行即可：</p>
+<blockquote>
+<p>整个安装过程请 自备梯子 以保证 网络畅通</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="-1-protocol-buffer-">步骤1：下载 <code>Protocol Buffer</code> 安装包</h3>
+<ul>
+<li>下载方式1：<a href="https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fgoogle%2Fprotobuf%2Freleases%2Ftag%2Fv2.6.1" target="_blank" rel="nofollow noopener noreferrer">官网下载（需要翻墙）</a></li>
+<li>下载方式2：<strong>贴心的我</strong> 已经给你们准备好了，请移步<a href="https://link.juejin.im/?target=https%3A%2F%2Fpan.baidu.com%2Fs%2F1qYAVIuo" target="_blank" rel="nofollow noopener noreferrer">百度网盘，密码：paju</a><blockquote>
+<p>此处选择 较稳定的版本 <code>protobuf-2.6.1.tar.gz</code> 进行演示</p>
+</blockquote>
+</li>
+</ul>
+<p>下载成功后，对文件进行解压，如下图：</p>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/4ff357bc31548978e10b3c93aa308fe0" alt="安装包 &amp; 解压后文件" class="medium-zoom-image"><figcaption>安装包 &amp; 解压后文件</figcaption></figure><p></p>
+<h3 id="-2-homebrew-">步骤2：安装 <code>HOMEBREW</code>（已安装的可以跳过）</h3>
+<pre><code class="hljs undefined">// 打开 终端 输入以下指令
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</code></pre><h3 id="-3-protocol-buffer-">步骤3：安装 <code>Protocol Buffer</code></h3>
+<p>打开 <strong>您的终端</strong> 依次输入 下列指令 即可：</p>
+<pre><code class="hljs undefined">brew install autoconf automake libtool curl
+// Step1：安装 Protocol Buffer 依赖
+// 注：Protocol Buffer 依赖于  autoconf、automake、libtool、curl
+
+cd Desktop/protobuf-2.6.1
+// Step2：进入 Protocol Buffer安装包 解压后的文件夹（我的解压文件放在桌面）
+
+./autogen.sh
+// Step3：运行 autogen.sh 脚本
+
+ ./configure
+// Step4：运行 configure.sh 脚本
+
+ make
+// Step5：编译未编译的依赖包
+
+ make check
+// Step6：检查依赖包是否完整
+
+make install
+// Step7：开始安装Protocol Buffer</code></pre><h3 id="-4-protocol-buffer-">步骤4：检查 <code>Protocol Buffer</code> 是否安装成功</h3>
+<pre><code class="hljs undefined">// 在 终端 下输入
+protoc - - version</code></pre><p>出现 <code>libprotoc 2.6.1</code> 提示即表示 安装成功，如下图</p>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/48748b9c50563918a16610f82cfa32ee" alt="安装成功提示" class="medium-zoom-image"><figcaption>安装成功提示</figcaption></figure><p></p>
+<p><strong>特别注意：</strong></p>
+<ul>
+<li><code>protoc</code> =  <code>Protocol Buffer</code>的编译器</li>
+<li>作用：将 <code>.proto文件</code> 编译成对应平台的 <strong>头文件和源代码文件</strong> </li>
+<li>在下面会详细介绍</li>
+</ul>
+<p>至此， <code>Protocol Buffer</code>已经安装完成。下面将讲解如何具体使用<code>Protocol Buffer</code></p>
+<hr>
+<h1 id="5-2-protocol-buffer-">5.2 构建 <code>Protocol Buffer</code> 消息对象模型</h1>
+<h3 id="5-2-1-">5.2.1 构建步骤</h3>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/1966bcdcb1ece06c59a932b87169b832" alt="构建步骤" class="medium-zoom-image"><figcaption>构建步骤</figcaption></figure><p></p>
+<p>下面将通过一个实例（<code>Android（Java）</code> 平台为例）详细介绍每个步骤。</p>
+<h3 id="5-2-2-">5.2.2 详细介绍</h3>
+<ul>
+<li>实例说明：构建一个<code>Person类</code>的数据结构，包含成员变量<code>name、id、email</code>等等</li>
+</ul>
+<pre><code class="hljs undefined">// Java类
+
+public class Person
+{
+    private String name;
+    private Int id;
+    private String email;
+...
+}</code></pre><ul>
+<li>平台使用：以 <code>Android（Java）</code> 平台为例来进行演示</li>
+</ul>
+<h4 id="-1-protocol-buffer-">步骤1：通过 <code>Protocol Buffer</code> 语法 描述 需要存储的数据结构</h4>
+<ul>
+<li>新建一个文件，命名规则为：文件名 = 类名，后缀为 <code>.proto</code><blockquote>
+<p>此处叫<code>Demo.proto</code></p>
+</blockquote>
+</li>
+</ul>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/422ab60d4bb52f16aae31a418acf37c8" alt="Demo.proto" class="medium-zoom-image"><figcaption>Demo.proto</figcaption></figure><p></p>
+<ul>
+<li>根据上述数据结构的需求，在<code>Demo.proto</code>里 通过 <code>Protocol Buffer</code> 语法写入对应 <code>.proto</code>对象模型的代码，如下：</li>
+</ul>
+<pre><code class="hljs undefined">package protocobuff_Demo;
+// 关注1：包名
+
+option java_package = "com.carson.proto";
+option java_outer_classname = "Demo";
+// 关注2：option选项
+
+// 关注3：消息模型
+// 下面详细说明
+// 生成 Person 消息对象（包含多个字段，下面详细说明）
+message Person {
+  required string name = 1;
+  required int32 id = 2;
+  optional string email = 3;
+
+  enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+  }
+
+  message PhoneNumber {
+    required string number = 1;
+    optional PhoneType type = 2 [default = HOME];
+  }
+
+  repeated PhoneNumber phone = 4;
+}
+
+message AddressBook {
+  repeated Person person = 1;
+}</code></pre><ul>
+<li>下面将结合 上述例子 对 <code>Protocol Buffer</code> 语法 进行详细介绍</li>
+</ul>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/47c7ba718a4f76e4a572bcbaf57b30ef" alt="Protocol Buffer语法" class="medium-zoom-image"><figcaption>Protocol Buffer语法</figcaption></figure><p></p>
+<h3 id="-1-">关注1：包名</h3>
+<pre><code class="hljs undefined">package protocobuff_Demo;
+// 关注1：包名</code></pre><ul>
+<li>作用：防止不同 <code>.proto</code> 项目间命名 发生冲突</li>
+<li><code>Protocol buffer</code>包的解析过程如下：<ol>
+<li><code>Protocol buffer</code> 的类型名称解析与 <code>C++</code> 一致：从 最内部 开始查找，依次 向外 进行<blockquote>
+<p>每个包会被看作是其父类包的内部类</p>
+</blockquote>
+</li>
+<li><code>Protocol buffer</code> 编译器会解析 <code>.proto</code>文件中定义的所有类型名</li>
+<li>生成器会根据 不同语言 生成 对应语言 的代码文件<blockquote>
+<p>a. 即对 不同语言 使用了 不同的规则 进行处理<br>b. <code>Protoco Buffer</code>提供 <code>C++、Java、Python</code> 三种语言的 API</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="-2-option-">关注2：Option选项</h3>
+<pre><code class="hljs undefined">option java_package = "com.carson.proto";
+option java_outer_classname = "Demo";
+// 关注2：option选项</code></pre><ul>
+<li><p>作用：影响 特定环境下 的处理方式</p>
+<blockquote>
+<p>但不改变整个文件声明的含义</p>
+</blockquote>
+</li>
+<li><p>常用Option选项如下：</p>
+</li>
+</ul>
+<pre><code class="hljs undefined">option java_package = "com.carson.proto";
+// 定义：Java包名
+// 作用：指定生成的类应该放在什么Java包名下
+// 注：如不显式指定，默认包名为：按照应用名称倒序方式进行排序
+
+option java_outer_classname = "Demo";
+// 定义：类名
+// 作用：生成对应.java 文件的类名（不能跟下面message的类名相同）
+// 注：如不显式指定，则默认为把.proto文件名转换为首字母大写来生成
+// 如.proto文件名="my_proto.proto"，默认情况下，将使用 "MyProto" 做为类名
+
+option optimize_for = ***;
+// 作用：影响 C++  &amp; java 代码的生成
+// ***参数如下：
+// 1. SPEED (默认):：protocol buffer编译器将通过在消息类型上执行序列化、语法分析及其他通用的操作。（最优方式）
+// 2. CODE_SIZE:：编译器将会产生最少量的类，通过共享或基于反射的代码来实现序列化、语法分析及各种其它操作。
+  // 特点：采用该方式产生的代码将比SPEED要少很多， 但是效率较低；
+  // 使用场景：常用在 包含大量.proto文件 但 不追求效率 的应用中。
+//3.  LITE_RUNTIME:：编译器依赖于运行时 核心类库 来生成代码（即采用libprotobuf-lite 替代libprotobuf）。
+  // 特点：这种核心类库要比全类库小得多（忽略了 一些描述符及反射 ）；编译器采用该模式产生的方法实现与SPEED模式不相上下，产生的类通过实现 MessageLite接口，但它仅仅是Messager接口的一个子集。
+  // 应用场景：移动手机平台应用
+
+option cc_generic_services = false;
+option java_generic_services = false;
+option py_generic_services = false;
+// 作用：定义在C++、java、python中，protocol buffer编译器是否应该 基于服务定义 产生 抽象服务代码（2.3.0版本前该值默认 = true）
+// 自2.3.0版本以来，官方认为通过提供 代码生成器插件 来对 RPC实现 更可取，而不是依赖于“抽象”服务
+
+optional repeated int32 samples = 4 [packed=true];
+// 如果该选项在一个整型基本类型上被设置为真，则采用更紧凑的编码方式（不会对数值造成损失）
+// 在2.3.0版本前，解析器将会忽略 非期望的包装值。因此，它不可能在 不破坏现有框架的兼容性上 而 改变压缩格式。
+// 在2.3.0之后，这种改变将是安全的，解析器能够接受上述两种格式。
+
+optional int32 old_field = 6 [deprecated=true];
+// 作用：判断该字段是否已经被弃用
+// 作用同 在java中的注解@Deprecated</code></pre><ul>
+<li>在 <code>ProtocolBuffers</code> 中允许 自定义选项 并 使用</li>
+<li>该功能属于高级特性，使用频率很低，此处不过多描述。<a href="https://link.juejin.im/?target=https%3A%2F%2Fdevelopers.google.com%2Fprotocol-buffers%2Fdocs%2Fproto" target="_blank" rel="nofollow noopener noreferrer">有兴趣可查看官方文档</a></li>
+</ul>
+<h3 id="-3-">关注3：消息模型</h3>
+<ul>
+<li>作用：真正用于描述 数据结构 </li>
+</ul>
+<pre><code class="hljs undefined">// 消息对象用message修饰
+message Person {
+
+  required string name = 1;
+  required int32 id = 2;
+  optional string email = 3;
+
+  enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+  }
+
+  message PhoneNumber {
+    optional PhoneType type = 2 [default = HOME];
+  }
+
+  repeated PhoneNumber phone = 4;
+}
+
+message AddressBook {
+  repeated Person person = 1;
+}</code></pre><ul>
+<li>组成：在 <code>ProtocolBuffers</code> 中：<ol>
+<li>一个 <code>.proto</code> 消息模型 = 一个 <code>.proto</code>文件 = 消息对象 + 字段 </li>
+<li>一个消息对象（<code>Message</code>） =  一个 结构化数据 </li>
+<li>消息对象（<code>Message</code>）里的 字段 = 结构化数据 里的成员变量 </li>
+</ol>
+</li>
+</ul>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/80ff759c10779cb30e63e57d9ed0b375" alt="结构化数据 &amp; 消息对象 对比" class="medium-zoom-image"><figcaption>结构化数据 &amp; 消息对象 对比</figcaption></figure><p></p>
+<p>下面会详细介绍  <code>.proto</code> 消息模型里的 消息对象 &amp; 字段</p>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/bd82f2cb93b793b517662786cc94dbe7" alt="消息模型" class="medium-zoom-image"><figcaption>消息模型</figcaption></figure><p></p>
+<h3 id="1-">1. 消息对象</h3>
+<p>在 <code>ProtocolBuffers</code> 中：</p>
+<ul>
+<li>一个消息对象（<code>Message</code>） =  一个 结构化数据 </li>
+<li>消息对象用 修饰符 <code>message</code> 修饰</li>
+<li>消息对象 含有 字段：消息对象（<code>Message</code>）里的 字段 = 结构化数据 里的成员变量 </li>
+</ul>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/80ff759c10779cb30e63e57d9ed0b375" alt="结构化数据 &amp; 消息对象 对比" class="medium-zoom-image"><figcaption>结构化数据 &amp; 消息对象 对比</figcaption></figure><p></p>
+<p>特别注意：</p>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/d0a0af8120f459c9ce56f32de9eec986" alt="特别注意" class="medium-zoom-image"><figcaption>特别注意</figcaption></figure><p></p>
+<h3 id="a-proto-">a. 添加：在一个 .proto文件 中可定义多个 消息对象</h3>
+<ul>
+<li>应用场景：尽可能将与 某一消息类型 对应的响应消息格式 定义到相同的 <code>.proto</code>文件 中 </li>
+<li>实例：</li>
+</ul>
+<pre><code class="hljs undefined">message SearchRequest {
+
+  required string query = 1;
+  optional int32 page_number = 2;
+  optional int32 result_per_page = 3;
+
+}
+
+// 与SearchRequest消息类型 对应的 响应消息类型SearchResponse
+message SearchResponse {
+ …
+}</code></pre><h3 id="b-">b. 一个消息对象 里 可以定义 另外一个消息对象（即嵌套）</h3>
+<pre><code class="hljs undefined">message Person {
+  required string name = 1;
+  required int32 id = 2;
+  optional string email = 3;
+
+// 该消息类型 定义在 Person消息类型的内部
+// 即Person消息类型 是 PhoneNumber消息类型的父消息类型
+  message PhoneNumber {
+    required string number = 1;
+  }
+}
+
+&lt;-- 多重嵌套="" --=""&gt;
+message Outer {   // Level 0
+  message MiddleAA {  // Level 1
+    message Inner {   // Level 2
+      required int64 ival = 1;
+      optional bool  booly = 2;
+    }
+  }
+}<!------></code></pre><h3 id="2-">2. 字段</h3>
+<ul>
+<li>消息对象的字段 组成主要是：<strong>字段 = 字段修饰符 + 字段类型 +字段名 +标识号</strong></li>
+</ul>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/d3eafbf44ad84e23f12d94e41c84a582" alt="字段组成" class="medium-zoom-image"><figcaption>字段组成</figcaption></figure><p></p>
+<ul>
+<li>下面将对每一项详细介绍</li>
+</ul>
+<p><strong>a. 字段修饰符</strong></p>
+<ul>
+<li>作用：设置该字段解析时的规则</li>
+<li>具体类型如下：</li>
+</ul>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/22422371619a010f1231bbe660db4100" alt="示意图" class="medium-zoom-image"><figcaption>示意图</figcaption></figure><p></p>
+<p><strong>b. 字段类型</strong><br>字段类型主要有 三 类：</p>
+<ul>
+<li>基本数据 类型 </li>
+<li>枚举 类型  </li>
+<li>消息对象 类型 </li>
+</ul>
+<pre><code class="hljs undefined">message Person {
+
+  // 基本数据类型 字段
+  required string name = 1;
+  required int32 id = 2;
+  optional string email = 3;
+
+  enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+  }
+
+  message PhoneNumber {
+    optional PhoneType type = 2 [default = HOME];
+    // 枚举类型 字段
+  }
+
+  repeated PhoneNumber phone = 4;
+  // 消息类型 字段
+}</code></pre><h4 id="1-">1. 基本数据类型</h4>
+<p><code>.proto</code>基本数据类型 对应于 各平台的基本数据类型如下：<br></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/59a7983cf299b1bbd85c4a41735849ea" alt="基本数据类型对应表" class="medium-zoom-image"><figcaption>基本数据类型对应表</figcaption></figure><p></p>
+<h4 id="2-">2. 枚举类型</h4>
+<ul>
+<li>作用：为字段指定一个 可能取值的字段集合<blockquote>
+<p>该字段只能从 该指定的字段集合里 取值</p>
+</blockquote>
+</li>
+<li>说明：如下面例子，电话号码 可能是手机号、家庭电话号或工作电话号的其中一个，那么就将<code>PhoneType</code>定义为枚举类型，并将加入电话的集合（ <code>MOBILE</code>、 <code>HOME</code>、<code>WORK</code>）</li>
+</ul>
+<pre><code class="hljs undefined">// 枚举类型需要先定义才能进行使用
+
+// 枚举类型 定义
+ enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+// 电话类型字段 只能从 这个集合里 取值
+  }
+
+// 特别注意：
+// 1. 枚举类型的定义可在一个消息对象的内部或外部
+// 2. 都可以在 同一.proto文件 中的任何消息对象里使用
+// 3. 当枚举类型是在一消息内部定义，希望在 另一个消息中 使用时，需要采用MessageType.EnumType的语法格式
+
+  message PhoneNumber {
+    required string number = 1;
+    optional PhoneType type = 2 [default = HOME];
+    // 使用枚举类型的字段（设置了默认值）
+  }
+
+// 特别注意：
+// 1.  枚举常量必须在32位整型值的范围内
+// 2. 不推荐在enum中使用负数：因为enum值是使用可变编码方式的，对负数不够高</code></pre><p><strong>额外说明</strong><br>当对一个 使用了枚举类型的<code>.proto</code>文件 使用 <code>Protocol Buffer</code>编译器编译时，生成的代码文件中：</p>
+<ul>
+<li>对 <code>Java 或 C++</code>来说，将有一个对应的 <code>enum</code> 文件</li>
+<li>对 <code>Python</code> 来说，有一个特殊的<code>EnumDescriptor</code> 类<blockquote>
+<p>被用来在运行时生成的类中创建一系列的整型值符号常量（symbolic constants）</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="3-">3. 消息对象 类型</h4>
+<p>一个消息对象 可以将 其他消息对象类型 用作字段类型，情况如下：</p>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/67e0ad9ad006d88e9b8a32ab0e0e097a" alt="消息对象 类型情况" class="medium-zoom-image"><figcaption>消息对象 类型情况</figcaption></figure><p></p>
+<h4 id="3-1-proto-">3.1 使用同一个   .proto 文件里的消息类型</h4>
+<p><strong>a. 使用 内部消息类型</strong></p>
+<ul>
+<li>目的：先在 消息类型 中定义 其他消息类型 ，然后再使用<blockquote>
+<p>即嵌套，需要 用作字段类型的 消息类型 定义在 该消息类型里</p>
+</blockquote>
+</li>
+<li>实例：</li>
+</ul>
+<pre><code class="hljs undefined">message Person {
+  required string name = 1;
+  required int32 id = 2;
+  optional string email = 3;
+
+// 该消息类型 定义在 Person消息类型的内部
+// 即Person消息类型 是 PhoneNumber消息类型的父消息类型
+  message PhoneNumber {
+    required string number = 1;
+  }
+
+  repeated PhoneNumber phone = 4;
+  // 直接使用内部消息类型
+}</code></pre><p><strong>b. 使用 外部消息类型</strong></p>
+<blockquote>
+<p>即外部重用，需要 用作字段类型的消息类型 定义在 该消息类型外部</p>
+</blockquote>
+<pre><code class="hljs undefined">message Person {
+  required string name = 1;
+  required int32 id = 2;
+  optional string email = 3;
+}
+
+message AddressBook {
+  repeated Person person = 1;
+  // 直接使用了 Person消息类型作为消息字段
+}</code></pre><p><strong>c. 使用 外部消息的内部消息类型</strong></p>
+<pre><code class="hljs undefined">message Person {
+  required string name = 1;
+  required int32 id = 2;
+  optional string email = 3;
+
+// PhoneNumber消息类型 是 Person消息类型的内部消息类型
+  message PhoneNumber {
+    required string number = 1;
+    optional PhoneType type = 2 [default = HOME];
+  }
+}
+
+// 若父消息类型外部的消息类型需要重用该内部消息类型
+// 需要以 Parent.Type 的形式去使用
+// Parent = 需要使用消息类型的父消息类型，Type = 需要使用的消息类型
+
+// PhoneNumber父消息类型Person 的外部 OtherMessage消息类型 需要使用 PhoneNumber消息类型
+message OtherMessage {
+  optional Person.PhoneNumber phonenumber = 1;
+// 以 Parent.Type = Person.PhoneNumber  的形式去使用
+
+}</code></pre><h4 id="3-2-proto-">3.2 使用不同   .proto 文件里的消息类型</h4>
+<ul>
+<li>目的：需要在 <code>A.proto</code>文件 使用 <code>B.proto</code>文件里的消息类型</li>
+<li>解决方案：在 <code>A.proto</code>文件 通过导入（ <code>import</code>）  <code>B.proto</code>文件中来使用 <code>B.proto</code>文件 里的消息类型</li>
+</ul>
+<pre><code class="hljs undefined">import "myproject/other_protos.proto"
+// 在A.proto 文件中添加 B.proto文件路径的导入声明
+// ProtocolBuffer编译器 会在 该目录中 查找需要被导入的 .proto文件
+// 如果不提供参数，编译器就在 其调用的目录下 查找</code></pre><p>当然，在使用 不同  <code>.proto</code> 文件里的消息类型 时 也会存在想 使用同一个 <code>.proto</code> 文件消息类型的情况，但使用都是一样，此处不作过多描述。</p>
+<h4 id="3-3-rpc-">3.3 将 消息对象类型 用在 RPC（远程方法调用）系统</h4>
+<ul>
+<li>解决方案：在 <code>.proto</code> 文件中定义一个 <code>RPC</code> 服务接口，<code>Protocol Buffer</code>编译器会根据所选择的不同语言平台 生成服务接口代码</li>
+<li>由于使用得不多，此处不作过多描述，<a href="https://link.juejin.im/?target=http%3A%2F%2Fwww.cnblogs.com%2Fdkblog%2Farchive%2F2012%2F03%2F27%2F2419010.html" target="_blank" rel="nofollow noopener noreferrer">具体请看该文档</a></li>
+</ul>
+<hr>
+<h4 id="c-">c. 字段名</h4>
+<p>该字段的名称，此处不作过多描述。</p>
+<hr>
+<h4 id="d-">d. 标识号</h4>
+<ul>
+<li><p>作用：通过二进制格式唯一标识每个字段</p>
+<blockquote>
+<ol>
+<li>一旦开始使用就不能够再改变</li>
+<li>标识号使用范围：[1,2的29次方 - 1]</li>
+<li>不可使用 [19000－19999] 标识号， 因为 <code>Protobuf</code> 协议实现中对这些标识号进行了预留。假若使用，则会报错</li>
+</ol>
+</blockquote>
+</li>
+<li><p>编码占有内存规则：<br>每个字段在进行编码时都会占用内存，而 占用内存大小 取决于 标识号：</p>
+<ol>
+<li>范围  [1,15]  标识号的字段 在编码时占用1个字节；</li>
+<li>范围  [16,2047]  标识号的字段 在编码时占用2个字节</li>
+</ol>
+</li>
+<li><p>使用建议</p>
+<ol>
+<li>为频繁出现的 消息字段 保留 [1,15] 的标识号</li>
+<li>为将来有可能添加的、频繁出现的 消息字段预留 [1,15] 标识号</li>
+</ol>
+</li>
+</ul>
+<h3 id="-">关于 字段 的高级用法</h3>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/654f78bc1c8917772070db33ebcdd122" alt="高级用法" class="medium-zoom-image"><figcaption>高级用法</figcaption></figure><p></p>
+<h4 id="1-">1. 更新消息对象 的字段</h4>
+<ul>
+<li>目的：为了满足新需求，需要更新 消息类型 而不破坏已有消息类型代码<blockquote>
+<p>即新、老版本需要兼容</p>
+</blockquote>
+</li>
+<li>更新字段时，需要符合下列规则：</li>
+</ul>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/59da5af33499ba8987ba4f764fa20425" alt="更新规则" class="medium-zoom-image"><figcaption>更新规则</figcaption></figure><p></p>
+<h4 id="2-">2. 扩展消息对象 的字段</h4>
+<ul>
+<li>作用：使得其他人可以在自己的 <code>.proto</code> 文件中为 该消息对象 声明新的字段而不必去编辑原始文件<blockquote>
+<ol>
+<li>注：扩展 可以是消息类型也可以是字段类型</li>
+<li>以下以 扩展 消息类型 为例</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<p><em>A.proto</em></p>
+<pre><code class="hljs undefined">
+message Request {
+…
+  extensions 100 to 199;
+  // 将一个范围内的标识号 声明为 可被第三方扩展所用
+  // 在消息Request中，范围 [100,199] 的标识号被保留为扩展用
+
+  // 如果标识号需要很大的数量时，可以将可扩展标符号的范围扩大至max
+  // 其中max是2的29次方 - 1（536,870,911）。
+  message Request {
+    extensions 1000 to max;
+
+  // 注：请避开[19000－19999] 的标识号，因为已被Protocol Buffers实现中预留
+}</code></pre><p>现在，其他人 就可以在自己的 <code>.proto</code>文件中 添加新字段到<code>Request</code>里。如下：</p>
+<p><em>B.proto</em></p>
+<pre><code class="hljs undefined">extend Request {
+
+  optional int32 bar = 126;
+  // 添加字段的 标识号必须要在指定的范围内
+  // 消息Request 现在有一个名为 bar 的 optional int32 字段
+  // 当Request消息被编码时，数据的传输格式与在Request里定义新字段的效果是完全一样的
+  //  注：在同一个消息类型中一定要确保不会扩展新增相同的标识号，否则会导致数据不一致；可以通过为新项目定义一个可扩展标识号规则来防止该情况的发生
+}</code></pre><ul>
+<li>要访问 扩展字段 的方法与 访问普通的字段 不同：使用专门的扩展访问函数</li>
+<li>实例：</li>
+</ul>
+<pre><code class="hljs undefined">// 如何在C++中设置 bar 值
+Request request;
+request.SetExtension(bar, 15);
+// 类似的模板函数 HasExtension()，ClearExtension()，GetExtension()，MutableExtension()，以及 AddExtension()
+// 与对应的普通字段的访问函数相符</code></pre><h3 id="-">嵌套的扩展</h3>
+<p>可以在另一个 消息对象里 声明扩展，如：</p>
+<pre><code class="hljs undefined">message Carson {
+
+  extend Request {
+
+    optional int32 bar = 126;
+
+  }
+  …
+}
+
+// 访问此扩展的C++代码：
+Request request;
+request.SetExtension(Baz::bar, 15);</code></pre><ul>
+<li>对于嵌套的使用，一般的做法是：<strong>在扩展的字段类型的范围内定义该扩展</strong></li>
+<li>实例：一个 Request 消息对象需要扩展（扩展的字段类型是Car 消息类型），那么，该扩展就定义在 Car消息类型 里：</li>
+</ul>
+<pre><code class="hljs undefined">
+message Car {
+
+  extend Request {
+    optional Car request_ext = 127;
+// 注：二者并没有子类、父类的关系
+  }
+}</code></pre><ul>
+<li>至此，<code>Protoco Buffer</code>的语法已经讲解完毕</li>
+<li>关于如何根据需求 通过<code>Protoco Buffer</code>语法 去构建 数据结构 相信大家已经非常熟悉了。</li>
+<li>在将 <code>.proto</code>文件保存后，进入下一个步骤</li>
+</ul>
+<hr>
+<h1 id="-2-protocol-buffer-proto-">步骤2：通过 <code>Protocol Buffer</code> 编译器 编译 .proto 文件</h1>
+<ul>
+<li>作用：将 <code>.proto</code> 文件 转换成 对应平台的代码文件<blockquote>
+<p><code>Protoco Buffer</code>提供 <code>C++、Java、Python</code> 三种开发语言的 API</p>
+</blockquote>
+</li>
+<li>具体生成文件与平台有关：</li>
+</ul>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/1fb09b04f247a3a6dea7f1d0bb300d59" alt="对应平台生成文件" class="medium-zoom-image"><figcaption>对应平台生成文件</figcaption></figure><p></p>
+<ul>
+<li>编译指令说明</li>
+</ul>
+<pre><code class="hljs undefined">// 在 终端 输入下列命令进行编译
+protoc -I=$SRC_DIR --xxx_out=$DST_DIR   $SRC_DIR/addressbook.proto
+
+// 参数说明
+// 1. $SRC_DIR：指定需要编译的.proto文件目录 (如没有提供则使用当前目录)
+// 2. --xxx_out：xxx根据需要生成代码的类型进行设置
+// 对于 Java ，xxx =  java ，即 -- java_out
+// 对于 C++ ，xxx =  cpp ，即 --cpp_out
+// 对于 Python，xxx =  python，即 --python_out
+
+// 3. $DST_DIR ：编译后代码生成的目录 (通常设置与$SRC_DIR相同)
+// 4. 最后的路径参数：需要编译的.proto 文件的具体路径
+
+// 编译通过后，Protoco Buffer会根据不同平台生成对应的代码文件</code></pre><ul>
+<li>具体实例</li>
+</ul>
+<pre><code class="hljs undefined">// 编译说明
+// 1. 生成Java代码
+// 2. 需要编译的.proto文件在桌面，希望编译后生成的代码也放在桌面
+protoc -I=/Users/Carson_Ho/Desktop --java_out=/Users/Carson_Ho/Desktop /Users/Carson_Ho/Desktop/Demo.proto
+
+// 编译通过后，Protoco Buffer会按照标准Java风格，生成Java类及目录结构</code></pre><p>在指定的目录能看到一个Demo的包文件（含 <code>java类</code>文件）</p>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/baaad91778cb2d4211a8349ada4dbf60" alt="生成的文件" class="medium-zoom-image"><figcaption>生成的文件</figcaption></figure><p></p>
+<h3 id="-">编译功能的拓展</h3>
+<h3 id="a-android-studio-">a. 使用<code>Android Studio</code>插件进行编译</h3>
+<ul>
+<li>需求场景：每次手动执行 <code>Protocol Buffer</code> 编译器将 <code>.proto</code> 文件转换为 <code>Java</code> 文件 操作不方便</li>
+<li>解决方案：使用 <code>Android Studio</code>的 <code>gradle</code> 插件 <code>protobuf-gradle-plugin</code>，以便于在项目编译时 自动执行 <code>Protocol Buffers 编译器</code></li>
+</ul>
+<p>关于<code>protobuf-gradle-plugin</code>插件有兴趣的读者可自行了解，但个人还是建议使用 <strong>命令行</strong>，毕竟太过折腾插件没必要</p>
+<h3 id="b-">b. 动态编译</h3>
+<ul>
+<li>需求场景：某些情况下，人们无法预先知道 .proto 文件，他们需要动态处理一些未知的 .proto 文件<blockquote>
+<p>如一个通用的消息转发中间件，它无法预先知道需要处理什么类型的数据结构消息</p>
+</blockquote>
+</li>
+<li>解决方案：动态编译<code>.proto</code>文件</li>
+</ul>
+<p>由于使用得不多，此处不作过多描述，<a href="https://link.juejin.im/?target=https%3A%2F%2Fdevelopers.google.com%2Fprotocol-buffers%2Fdocs%2Fproto" target="_blank" rel="nofollow noopener noreferrer">具体请看官方文档</a></p>
+<h3 id="c-proto-">c. 编写新的 <code>.proto</code> 编译器</h3>
+<ul>
+<li>需求场景： <code>Protocol Buffer</code> 仅支持 <code>C++、java 和 Python</code> 三种开发语言，一旦超出该三种开发语言，<code>Protocol Buffer</code>将无法使用</li>
+<li>解决方案：使用  <code>Protocol Buffer</code>  的 <code>Compiler</code> 包 开发出支持其他语言的新的<code>.proto</code>编译器</li>
+</ul>
+<p>由于使用得不多，此处不作过多描述，<a href="https://link.juejin.im/?target=https%3A%2F%2Fdevelopers.google.com%2Fprotocol-buffers%2Fdocs%2Fproto" target="_blank" rel="nofollow noopener noreferrer">具体请看官方文档</a></p>
+<hr>
+<h2 id="5-3-android-">5.3 应用到具体平台（<code>Android</code>平台）</h2>
+<ul>
+<li>终于到了应用到具体平台项目中的步骤了。<blockquote>
+<p>此处以 <code>Android</code>平台 为例</p>
+</blockquote>
+</li>
+<li>具体步骤如下：</li>
+</ul>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/a31ed1c36429af4304d9aa3d144afa7a" alt="具体步骤" class="medium-zoom-image"><figcaption>具体步骤</figcaption></figure><p></p>
+<h4 id="-1-">步骤1：将生成的 代码文件 放入到项目中</h4>
+<ul>
+<li>对于<code>Android（Java）平台</code>，即将编译<code>.proto</code>文件生成的<code>Java</code>包文件 整个复制到 <code>Android</code> 项目中</li>
+<li>放置路径： <code>app/src/main/java的</code> 文件夹里</li>
+</ul>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/a196068e9d497f04517795183f86e364" alt="项目结构示意图" class="medium-zoom-image"><figcaption>项目结构示意图</figcaption></figure><p></p>
+<h4 id="-2-gradle-protocol-buffer-">步骤2：在 <code>Gradle</code> 添加 <code>Protocol Buffer</code> 版本依赖</h4>
+<pre><code class="hljs undefined">compile 'com.google.protobuf:protobuf-java:2.6.1'
+// 注：protobuf-java的版本 一定要和 安装protocobuffer的版本 一致</code></pre><h4 id="-3-android-">步骤3：具体在Android项目中使用</h4>
+<h4 id="3-1-">3.1 消息对象类介绍</h4>
+<p>通过<code>.proto文件</code> 转换的 <code>Java</code>源代码 = <code>Protocol Buffer</code> 类 + 消息对象类（含<code>Builder</code>内部类）</p>
+<blockquote>
+<p>消息对象类 是 <code>Protocol Buffer</code> 类的内部类</p>
+</blockquote>
+<p>由于最常用的都是 消息对象类 和其内部类<code>Builder</code>类 的方法&amp;成员变量，所以此处主要讲解这两者。</p>
+<h5 id="3-1-1-message-">3.1.1 消息对象类（<code>Message</code>类）</h5>
+<ul>
+<li>消息对象类 类通过 <strong>二进制数组</strong> 写 和 读 消息类型</li>
+<li>使用方法包括：</li>
+</ul>
+<pre><code class="hljs undefined">&lt;-- 方式1：直接序列化和反序列化="" 消息="" --=""&gt;
+protocolBuffer.toByteArray()；
+// 序列化消息 并 返回一个包含它的原始字节的字节数组
+protocolBuffer.parseFrom(byte[] data)；
+// 从一个字节数组 反序列化（解析） 消息
+
+&lt;-- 方式2：通过输入="" 输出流（如网络输出流）="" 序列化和反序列化消息="" --=""&gt;
+protocolBuffer.writeTo(OutputStream output)；
+output.toByteArray();
+// 将消息写入 输出流 ，然后再 序列化消息 
+
+protocolBuffer.parseFrom(InputStream input)；
+// 从一个 输入流 读取并 反序列化（解析）消息
+
+
+// 只含包含字段的getters方法
+// required string name = 1;
+public boolean hasName();// 如果字段被设置，则返回true
+public java.lang.String getName();
+
+// required int32 id = 2;
+public boolean hasId();
+public int getId();
+
+// optional string email = 3;
+public boolean hasEmail();
+public String getEmail();
+
+// repeated .tutorial.Person.PhoneNumber phone = 4;
+// 重复（repeated）字段有一些额外方法
+public List<phonenumber> getPhoneList();
+public int getPhoneCount();
+// 列表大小的速记
+// 作用：通过索引获取和设置列表的特定元素的getters和setters</phonenumber><!------><!------></code></pre><p>常用的如上，更多请看<a href="https://link.juejin.im/?target=https%3A%2F%2Fdevelopers.google.com%2Fprotocol-buffers%2Fdocs%2Freference%2Fcpp%2Fgoogle.protobuf.message.html%23Message" target="_blank" rel="nofollow noopener noreferrer">官方文档</a></p>
+<h5 id="3-1-2-builder-">3.1.2 <code>Builder</code>类</h5>
+<p>作用：创建 消息构造器  &amp; 设置/ 获取消息对象的字段值 &amp; 创建 消息类 实例</p>
+<blockquote>
+<p>属于 消息对象类 的内部类</p>
+</blockquote>
+<p>a. 创建 消息构造器</p>
+<pre><code class="hljs undefined">Demo.Person.Builder person = Person.newBuilder();</code></pre><p>b.  设置/ 获取 消息对象的字段值 具体方法如下：</p>
+<pre><code class="hljs undefined">// 标准的JavaBeans风格：含getters和setters
+// required string name = 1;
+public boolean hasName();// 如果字段被设置，则返回true
+public java.lang.String getName();
+public Builder setName(String value);
+public Builder clearName(); // 将字段设置回它的空状态
+
+// required int32 id = 2;
+public boolean hasId();
+public int getId();
+public Builder setId(int value);
+public Builder clearId();
+
+// optional string email = 3;
+public boolean hasEmail();
+public String getEmail();
+public Builder setEmail(String value);
+public Builder clearEmail();
+
+// repeated .tutorial.Person.PhoneNumber phone = 4;
+// 重复（repeated）字段有一些额外方法
+public List<phonenumber> getPhoneList();
+public int getPhoneCount();
+// 列表大小的速记
+// 作用：通过索引获取和设置列表的特定元素的getters和setters
+
+public PhoneNumber getPhone(int index);
+public Builder setPhone(int index, PhoneNumber value);
+
+public Builder addPhone(PhoneNumber value);
+// 将新元素添加到列表的末尾
+
+public Builder addAllPhone(Iterable<phonenumber> value);
+// 将一个装满元素的整个容器添加到列表中
+public Builder clearPhone();
+
+public Builder isInitialized() 
+// 检查所有 required 字段 是否都已经被设置
+
+public Builder toString() :
+// 返回一个人类可读的消息表示（用于调试）
+
+public Builder mergeFrom(Message other)
+// 将 其他内容 合并到这个消息中，覆写单数的字段，附接重复的。
+
+public Builder clear()
+// 清空所有的元素为空状态。</phonenumber></phonenumber></code></pre><h4 id="3-2-">3.2 具体使用</h4>
+<ul>
+<li><p>使用步骤如下：<br><strong>步骤1：</strong>通过 消息类的内部类<code>Builder</code>类 构造 消息构造器<br><strong>步骤2：</strong>通过 消息构造器 设置 消息字段的值<br><strong>步骤3：</strong>通过 消息构造器 创建 消息类 对象<br><strong>步骤4：</strong>序列化 / 反序列化 消息</p>
+</li>
+<li><p>具体使用如下：（注释非常清晰）</p>
+</li>
+</ul>
+<pre><code class="hljs undefined">public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // 步骤1:通过 消息类的内部类Builder类 构造 消息类的消息构造器
+        Demo.Person.Builder personBuilder =  Demo.Person.newBuilder();
+
+        // 步骤2:设置你想要设置的字段为你选择的值
+        personBuilder.setName("Carson");// 在定义.proto文件时,该字段的字段修饰符是required,所以必须赋值
+        personBuilder.setId(123);// 在定义.proto文件时,该字段的字段修饰符是required,所以必须赋值
+        personBuilder.setEmail("carson.ho@foxmail.com"); // 在定义.proto文件时,该字段的字段修饰符是optional,所以可赋值 / 不赋值(不赋值时将使用默认值)
+
+        Demo.Person.PhoneNumber.Builder phoneNumber =  Demo.Person.PhoneNumber.newBuilder();
+        phoneNumber.setType( Demo.Person.PhoneType.HOME);// 直接采用枚举类型里的值进行赋值
+        phoneNumber.setNumber("0157-23443276");
+        // PhoneNumber消息是嵌套在Person消息里,可以理解为内部类
+        // 所以创建对象时要通过外部类来创建
+
+        // 步骤3:通过 消息构造器 创建 消息类 对象
+        Demo.Person person = personBuilder.build();
+
+        // 步骤4:序列化和反序列化消息(两种方式)
+
+        /*方式1：直接 序列化 和 反序列化 消息 */
+        // a.序列化
+        byte[] byteArray1 = person.toByteArray();
+        // 把 person消息类对象 序列化为 byte[]字节数组
+        System.out.println(Arrays.toString(byteArray1));
+        // 查看序列化后的字节流
+
+        // b.反序列化
+        try {
+
+            Demo.Person person_Request = Demo.Person.parseFrom(byteArray1);
+            // 当接收到字节数组byte[] 反序列化为 person消息类对象
+
+            System.out.println(person_Request.getName());
+            System.out.println(person_Request.getId());
+            System.out.println(person_Request.getEmail());
+            // 输出反序列化后的消息
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        /*方式2：通过输入/ 输出流（如网络输出流） 序列化和反序列化消息 */
+        // a.序列化
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+         try {
+
+            person.writeTo(output);
+            // 将消息序列化 并写入 输出流(此处用 ByteArrayOutputStream 代替)
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        byte[] byteArray = output.toByteArray();
+        // 通过 输出流 转化成二进制字节流
+
+        // b. 反序列化
+        ByteArrayInputStream input = new ByteArrayInputStream(byteArray);
+        // 通过 输入流 接收消息流(此处用 ByteArrayInputStream 代替)
+
+        try {
+
+            Demo.Person person_Request = Demo.Person.parseFrom(input);
+            // 通过输入流 反序列化 消息
+
+            System.out.println(person_Request.getName());
+            System.out.println(person_Request.getId());
+            System.out.println(person_Request.getEmail());
+            // 输出消息
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+}</code></pre><h4 id="demo-">Demo 地址</h4>
+<p>Carson_Ho的Github ：<a href="https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2FCarson-Ho%2FProtocolBuffer" target="_blank" rel="nofollow noopener noreferrer">https://github.com/Carson-Ho/ProtocolBuffer</a></p>
+<h4 id="-">高级功能</h4>
+<ul>
+<li><p>贴心的Google还提供将<code>Protocol Buff</code> 编码方式 转化为 其他编码方式，如 <code>Json</code>、<code>XML</code>等等</p>
+<blockquote>
+<p>即将 <code>Protocol Buff</code> 对象 转化为其他编码方式的数据存储对象</p>
+</blockquote>
+</li>
+<li><p>下面展示的是 将 <code>Protocol Buff</code> 对象 转化为 <code>Json</code>对象</p>
+</li>
+</ul>
+<pre><code class="hljs undefined">// 步骤1：在Gradle加入依赖
+compile 'com.googlecode.protobuf-java-format:protobuf-java-format:1.4'
+
+// 步骤2：将`Protocol Buff` 对象 序列化 为 `Json`对象
+JsonFormat jsonFormat = new JsonFormat();  
+String person2json = jsonFormat.printToString(mProtoBuffer);</code></pre><h1 id="6-">6. 总结</h1>
+<ul>
+<li>在 <strong>传输数据量较大</strong>的需求场景下，<code>Protocol Buffer</code>比<code>XML、Json</code> 更小、更快、使用 &amp; 维护更简单！</li>
+<li>下面用 一张图 总结在 Android平台中使用 <code>Protocol Buffer</code> 的整个步骤流程：</li>
+</ul>
+<p></p><figure><img src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/236074690606093838ef33d5a0220248" alt="总结" class="medium-zoom-image"><figcaption>总结</figcaption></figure><p></p>
+<ul>
+<li>关于<code>Protocol Buffer</code>的系列文章请看：<ol>
+<li><a href="https://link.juejin.im/?target=http%3A%2F%2Fwww.jianshu.com%2Fp%2F92dbe1ef0054" target="_blank" rel="nofollow noopener noreferrer">手把手教你如何安装Protocol Buffer</a></li>
+<li><a href="https://link.juejin.im/?target=http%3A%2F%2Fwww.jianshu.com%2Fp%2Fe06ba6249edc" target="_blank" rel="nofollow noopener noreferrer">这是一份很有诚意的 Protocol Buffer 语法详解</a></li>
+<li><a href="https://link.juejin.im/?target=http%3A%2F%2Fwww.jianshu.com%2Fp%2F1538bf85dad1" target="_blank" rel="nofollow noopener noreferrer">快来看看Google出品的Protocol Buffer，别只会用Json和XML了</a></li>
+<li><a href="https://link.juejin.im/?target=http%3A%2F%2Fwww.jianshu.com%2Fp%2F30ef9b3780d9" target="_blank" rel="nofollow noopener noreferrer">Protocol Buffer 序列化原理大揭秘 - 为什么Protocol Buffer性能这么好？</a></li>
+<li><a href="https://link.juejin.im/?target=http%3A%2F%2Fwww.jianshu.com%2Fp%2F2a5aa5ac6cf6" target="_blank" rel="nofollow noopener noreferrer">Android：手把手带你分析 Protocol Buffer使用 源码</a></li>
+</ol>
+</li>
+<li>下一篇文章我将继续对<code>Protocol Buffer</code> 进行<strong>分析</strong>，有兴趣可以继续关注<a href="https://link.juejin.im/?target=https%3A%2F%2Fjuejin.im%2Fuser%2F58d4d9781b69e6006ba65edc%2Fshare" target="_blank" rel="nofollow noopener noreferrer">Carson_Ho的安卓开发笔记</a></li>
+</ul>
+<hr>
+<h1 id="-">请点赞！因为你的鼓励是我写作的最大动力！</h1>
+</div></div><!----><!----></div><div data-v-13f76525="" data-v-3f216172="" class="post-tags tags cloud"><div data-v-13f76525="" data-v-3f216172="" class="tag"><a data-v-13f76525="" href="https://juejin.im/tag/Android" target="_blank" class="tag-link" data-v-3f216172="">Android</a></div><div data-v-13f76525="" data-v-3f216172="" class="tag"><a data-v-13f76525="" href="https://juejin.im/tag/JSON" target="_blank" class="tag-link" data-v-3f216172="">JSON</a></div></div><div data-v-13f76525="" data-v-3f216172="" class="post-meta"><div data-v-13f76525="" data-v-3f216172="" class="actions"><div data-v-13f76525="" data-v-3f216172="" class="action"><img data-v-13f76525="" data-v-3f216172="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/collection.svg" class="inline square inline-icon"><span data-v-13f76525="" data-v-3f216172="" class="like-count">275</span></div></div><div data-v-13f76525="" data-v-3f216172="" class="actions secondary sparse"><div data-v-13f76525="" data-v-3f216172="" title="收藏" class="action collection"><img data-v-13f76525="" data-v-3f216172="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/collect.4ab2670.svg" class="inline square inline-icon collect"><!----><!----></div><div data-v-13f76525="" data-v-3f216172="" title="评论" class="action"><img data-v-13f76525="" data-v-3f216172="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/comment.19fd3e9.svg" class="inline square inline-icon"></div><div data-v-13f76525="" data-v-3f216172="" title="分享" class="action dropdown share-dropdown"><img data-v-13f76525="" data-v-3f216172="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/share.79cb260.svg" class="inline square inline-icon dropdown-active"><ul data-v-13f76525="" data-v-3f216172="" title="" class="dropdown-list"><div data-v-13f76525="" data-v-3f216172="" class="dropdown-hint">分享到...</div><li data-v-13f76525="" data-v-3f216172=""><a data-v-13f76525="" data-v-3f216172="" class="share-link"><img data-v-13f76525="" data-v-3f216172="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/weibo.svg" class="inline square"><span data-v-13f76525="" data-v-3f216172="">新浪微博</span></a></li><li data-v-13f76525="" data-v-3f216172="" class="dropdown-wechat-share share-link"><a data-v-13f76525="" data-v-3f216172="" class="share-link"><img data-v-13f76525="" data-v-3f216172="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/weixin.svg" class="inline square"><span data-v-13f76525="" data-v-3f216172="">微信</span><div data-v-13f76525="" data-v-3f216172="" class="wechat-qr-box"><div data-v-13f76525="" data-v-3f216172="" class="qr-box-title text-muted text-center">微信扫一扫</div><img data-v-13f76525="" data-v-3f216172="" src="data:image/gif;base64,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" class="entry-qr"></div></a></li><li data-v-13f76525="" data-v-3f216172=""><a data-v-13f76525="" data-v-3f216172="" href="http://getpocket.com/edit?url=https%3A%2F%2Fjuejin.im%2Fpost%2F595eefcb5188250da205efbe" target="_blank" class="share-link"><img data-v-13f76525="" data-v-3f216172="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/pocket.svg" class="inline square"><span data-v-13f76525="" data-v-3f216172="">Pocket</span></a></li><li data-v-13f76525="" data-v-3f216172=""><a data-v-13f76525="" data-v-3f216172="" href="http://www.addtoany.com/add_to/evernote?linkurl=https%3A%2F%2Fjuejin.im%2Fpost%2F595eefcb5188250da205efbe&amp;linkname=%E5%BF%AB%E6%9D%A5%E7%9C%8B%E7%9C%8B%20Google%20%E5%87%BA%E5%93%81%E7%9A%84%20Protocol%20Buffer%EF%BC%8C%E5%88%AB%E5%8F%AA%E4%BC%9A%E7%94%A8%20JSON%20%E5%92%8C%20XML%20%E4%BA%86" target="_blank" class="share-link"><img data-v-13f76525="" data-v-3f216172="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/evernote.svg" class="inline square"><span data-v-13f76525="" data-v-3f216172="">Evernote</span></a></li></ul></div></div><!----></div><div data-v-13f76525="" data-v-3f216172="" class="post-like-users"><ul data-v-13f76525="" data-v-3f216172="" class="users-list"><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><a data-v-13f76525="" href="https://juejin.im/user/59599803f265da6c204174f4" target="_blank" data-v-3f216172=""><div data-v-311d2efa="" data-v-13f76525="" class="user-popover-box" user="[object Object]"><!----><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" data-v-311d2efa="" style="background-image: url(&quot;//gold-cdn.xitu.io/v3/static/img/default-avatar.e30559a.svg&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/default-avatar.e30559a.svg" class="hidden"></div></div></a></li><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><a data-v-13f76525="" href="https://juejin.im/user/578d8299c4c971005efb7b4c" target="_blank" data-v-3f216172=""><div data-v-311d2efa="" data-v-13f76525="" class="user-popover-box" user="[object Object]"><!----><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" data-v-311d2efa="" style="background-image: url(&quot;https://user-gold-cdn.xitu.io/2016/11/29/7d0a9d6f153add26d303e992ce5e98ef?imageView2/1/w/100/h/100/q/85/interlace/1&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/7d0a9d6f153add26d303e992ce5e98ef" class="hidden"></div></div></a></li><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><a data-v-13f76525="" href="https://juejin.im/user/593f23b75c497d006b9fd958" target="_blank" data-v-3f216172=""><div data-v-311d2efa="" data-v-13f76525="" class="user-popover-box" user="[object Object]"><!----><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" data-v-311d2efa="" style="background-image: url(&quot;https://user-gold-cdn.xitu.io/2017/7/10/480ebce32b9f6cb4e73119aae7e537b2?imageView2/1/w/100/h/100/q/85/interlace/1&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/480ebce32b9f6cb4e73119aae7e537b2" class="hidden"></div></div></a></li><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><a data-v-13f76525="" href="https://juejin.im/user/57cd09e07db2a200789dd4b3" target="_blank" data-v-3f216172=""><div data-v-311d2efa="" data-v-13f76525="" class="user-popover-box" user="[object Object]"><!----><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" data-v-311d2efa="" style="background-image: url(&quot;https://user-gold-cdn.xitu.io/2016/11/29/a9457f5326bde4f109efa45b6dbdfb64?imageView2/1/w/100/h/100/q/85/interlace/1&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/a9457f5326bde4f109efa45b6dbdfb64" class="hidden"></div></div></a></li><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><a data-v-13f76525="" href="https://juejin.im/user/57b49d178ac24700643f1252" target="_blank" data-v-3f216172=""><div data-v-311d2efa="" data-v-13f76525="" class="user-popover-box" user="[object Object]"><!----><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" data-v-311d2efa="" style="background-image: url(&quot;https://avatars.githubusercontent.com/u/16471777?v=3&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/16471777" class="hidden"></div></div></a></li><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><a data-v-13f76525="" href="https://juejin.im/user/563305c860b204d507f1656d" target="_blank" data-v-3f216172=""><div data-v-311d2efa="" data-v-13f76525="" class="user-popover-box" user="[object Object]"><!----><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" data-v-311d2efa="" style="background-image: url(&quot;https://user-gold-cdn.xitu.io/2016/11/29/ba240cd06eb9ddf7c9e3274d8f205109?imageView2/1/w/100/h/100/q/85/interlace/1&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/ba240cd06eb9ddf7c9e3274d8f205109" class="hidden"></div></div></a></li><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><a data-v-13f76525="" href="https://juejin.im/user/576fd0e66be3ff0063916561" target="_blank" data-v-3f216172=""><div data-v-311d2efa="" data-v-13f76525="" class="user-popover-box" user="[object Object]"><!----><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" data-v-311d2efa="" style="background-image: url(&quot;https://avatars.githubusercontent.com/u/3397111?v=3&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/3397111" class="hidden"></div></div></a></li><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><a data-v-13f76525="" href="https://juejin.im/user/57ba95805bbb500063fbf2e6" target="_blank" data-v-3f216172=""><div data-v-311d2efa="" data-v-13f76525="" class="user-popover-box" user="[object Object]"><!----><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" data-v-311d2efa="" style="background-image: url(&quot;https://dn-mhke0kuv.qbox.me/ee9xfXCX3ouvywtRfDoJuygEPh9zUZteygBSoDdd?imageView2/1/w/100/h/100/q/85/interlace/1&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/ee9xfXCX3ouvywtRfDoJuygEPh9zUZteygBSoDdd" class="hidden"></div></div></a></li><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><a data-v-13f76525="" href="https://juejin.im/user/57e20442c4c97100613f4316" target="_blank" data-v-3f216172=""><div data-v-311d2efa="" data-v-13f76525="" class="user-popover-box" user="[object Object]"><!----><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" data-v-311d2efa="" style="background-image: url(&quot;//gold-cdn.xitu.io/v3/static/img/default-avatar.e30559a.svg&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/default-avatar.e30559a.svg" class="hidden"></div></div></a></li><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><a data-v-13f76525="" href="https://juejin.im/user/593e1d0e5c497d006b94b087" target="_blank" data-v-3f216172=""><div data-v-311d2efa="" data-v-13f76525="" class="user-popover-box" user="[object Object]"><!----><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" data-v-311d2efa="" style="background-image: url(&quot;//gold-cdn.xitu.io/v3/static/img/default-avatar.e30559a.svg&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/default-avatar.e30559a.svg" class="hidden"></div></div></a></li><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><a data-v-13f76525="" href="https://juejin.im/user/57c387df6be3ff00583dd336" target="_blank" data-v-3f216172=""><div data-v-311d2efa="" data-v-13f76525="" class="user-popover-box" user="[object Object]"><!----><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" data-v-311d2efa="" style="background-image: url(&quot;https://user-gold-cdn.xitu.io/2016/11/29/cf9aadbe7d46600fe7469b7d1916895c?imageView2/1/w/100/h/100/q/85/interlace/1&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/cf9aadbe7d46600fe7469b7d1916895c" class="hidden"></div></div></a></li><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><a data-v-13f76525="" href="https://juejin.im/user/57619468a341310064ba823b" target="_blank" data-v-3f216172=""><div data-v-311d2efa="" data-v-13f76525="" class="user-popover-box" user="[object Object]"><!----><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" data-v-311d2efa="" style="background-image: url(&quot;https://avatars.githubusercontent.com/u/9312114?v=3&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/9312114" class="hidden"></div></div></a></li><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><a data-v-13f76525="" href="https://juejin.im/user/57c4523ddf0eea0066845d34" target="_blank" data-v-3f216172=""><div data-v-311d2efa="" data-v-13f76525="" class="user-popover-box" user="[object Object]"><!----><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" data-v-311d2efa="" style="background-image: url(&quot;https://user-gold-cdn.xitu.io/2016/11/29/2874189e548ba859bdbcdc423e0b70c3?imageView2/1/w/100/h/100/q/85/interlace/1&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/2874189e548ba859bdbcdc423e0b70c3" class="hidden"></div></div></a></li><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><a data-v-13f76525="" href="https://juejin.im/user/5842323979bc440065b01c1b" target="_blank" data-v-3f216172=""><div data-v-311d2efa="" data-v-13f76525="" class="user-popover-box" user="[object Object]"><!----><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" data-v-311d2efa="" style="background-image: url(&quot;//gold-cdn.xitu.io/v3/static/img/default-avatar.e30559a.svg&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/default-avatar.e30559a.svg" class="hidden"></div></div></a></li><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><a data-v-13f76525="" href="https://juejin.im/user/57b422fa128fe1005646563b" target="_blank" data-v-3f216172=""><div data-v-311d2efa="" data-v-13f76525="" class="user-popover-box" user="[object Object]"><!----><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" data-v-311d2efa="" style="background-image: url(&quot;https://user-gold-cdn.xitu.io/2016/11/29/8593ba001f47c315b2e2d069528193ac.jpg?imageView2/1/w/100/h/100/q/85/interlace/1&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/8593ba001f47c315b2e2d069528193ac.jpg" class="hidden"></div></div></a></li><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><a data-v-13f76525="" href="https://juejin.im/user/58ef331ca22b9d006cdccada" target="_blank" data-v-3f216172=""><div data-v-311d2efa="" data-v-13f76525="" class="user-popover-box" user="[object Object]"><!----><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" data-v-311d2efa="" style="background-image: url(&quot;https://avatars1.githubusercontent.com/u/27178422?v=3&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/27178422" class="hidden"></div></div></a></li><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><a data-v-13f76525="" href="https://juejin.im/user/590b529144d904006923d5f6" target="_blank" data-v-3f216172=""><div data-v-311d2efa="" data-v-13f76525="" class="user-popover-box" user="[object Object]"><!----><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" data-v-311d2efa="" style="background-image: url(&quot;https://user-gold-cdn.xitu.io/2017/5/15/3a3c1fb6bb88ad8e6d0b752ee6c134b3?imageView2/1/w/100/h/100/q/85/interlace/1&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/3a3c1fb6bb88ad8e6d0b752ee6c134b3" class="hidden"></div></div></a></li><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><a data-v-13f76525="" href="https://juejin.im/user/580f762ebf22ec00583d0585" target="_blank" data-v-3f216172=""><div data-v-311d2efa="" data-v-13f76525="" class="user-popover-box" user="[object Object]"><!----><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" data-v-311d2efa="" style="background-image: url(&quot;https://dn-mhke0kuv.qbox.me/OzTkMmK3WF56mHrnndnyKC1dgDRe92NaxS8AP2vM?imageView2/1/w/100/h/100/q/85/interlace/1&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/OzTkMmK3WF56mHrnndnyKC1dgDRe92NaxS8AP2vM" class="hidden"></div></div></a></li><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><a data-v-13f76525="" href="https://juejin.im/user/58a973e0570c350069a97889" target="_blank" data-v-3f216172=""><div data-v-311d2efa="" data-v-13f76525="" class="user-popover-box" user="[object Object]"><!----><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" data-v-311d2efa="" style="background-image: url(&quot;//gold-cdn.xitu.io/v3/static/img/default-avatar.e30559a.svg&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/default-avatar.e30559a.svg" class="hidden"></div></div></a></li><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><a data-v-13f76525="" href="https://juejin.im/user/5943f65bac502e5490c2ac9e" target="_blank" data-v-3f216172=""><div data-v-311d2efa="" data-v-13f76525="" class="user-popover-box" user="[object Object]"><!----><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar" data-v-311d2efa="" style="background-image: url(&quot;//gold-cdn.xitu.io/v3/static/img/default-avatar.e30559a.svg&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/default-avatar.e30559a.svg" class="hidden"></div></div></a></li><li data-v-13f76525="" data-v-3f216172="" class="users-list-item"><div data-v-13f76525="" data-v-3f216172="" class="more-users"><i data-v-13f76525="" data-v-3f216172="" class="ion-more"></i></div></li></ul></div><div data-v-13f76525="" data-v-3f216172="" class="container bottom-container"><section data-v-13f76525="" data-v-3f216172="" class="post-author-box"><a data-v-13f76525="" href="https://juejin.im/user/58d4d9781b69e6006ba65edc" target="_blank" class="float-left text-pointer" data-v-3f216172=""><div data-v-1b9df826="" data-v-13f76525="" class="avatar avatar author-avatar" style="background-image: url(&quot;https://avatars3.githubusercontent.com/u/18041645?v=3&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/18041645" class="hidden"></div></a><a data-v-13f76525="" href="https://juejin.im/user/58d4d9781b69e6006ba65edc" target="_blank" class="author-info float-left text-pointer" data-v-3f216172=""><div data-v-13f76525="" class="author-name">Carson_Ho</div><div data-v-13f76525="" class="author-meta"><span data-v-13f76525="">走在产品路上的Android研究生</span><span data-v-13f76525="">&nbsp;@&nbsp;</span><span data-v-13f76525="">华南理工大学</span></div></a><div data-v-13f76525="" data-v-3f216172="" class="subscribe-button float-right"></div><!----></section><section data-v-13f76525="" data-v-3f216172="" class="wallet-section"><a data-v-13f76525="" data-v-3f216172="" class="text-blue title-text" href="https://juejin.im/post/58d8e99261ff4b006cd6874d" target="_blank">参加掘金征文赢取千元奖金</a><div data-v-13f76525="" data-v-3f216172="" class="sub-text">本期的征文主题是：聊聊你的最佳实践，程序员在开发过程中，随着经验的积累，往往会形成对某类难题的最佳解决方式，这种方式通常比其他解决方式都更有效，甚至成为了某种问题的标准解决方案。所以本期主题，我们希望大家来分享一下自己的最佳实践。</div></section><section data-v-13f76525="" data-v-3f216172="" class="about-section"><div data-v-13f76525="" data-v-3f216172="" class="box-title">相关文章</div><ul data-v-13f76525="" data-v-3f216172="" class="recommend-entries-box"><li data-v-13f76525="" data-v-3f216172="" class="item"><div data-v-9db545a6="" data-v-13f76525="" class="related-entry related-entry" data-v-3f216172=""><a data-v-9db545a6="" href="https://juejin.im/post/5924dbf58d6d810058fdde43" target="_blank" class="entry-link"><div data-v-009ea7bb="" data-v-9db545a6="" class="thumb thumb" style="background-image: url(&quot;//gold-cdn.xitu.io/v3/static/img/default-thumb.4810307.png&quot;); background-size: cover;"><img data-v-009ea7bb="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/default-thumb.4810307.png" class="hidden"></div><div data-v-9db545a6="" class="info"><div data-v-9db545a6="" class="row title-row"><span data-v-9db545a6="" class="title">Android：这是一份全面&amp;详细的Webview使用攻略</span></div><div data-v-9db545a6="" class="row meta-row"><ul data-v-9db545a6="" class="meta-list"><li data-v-9db545a6="" class="meta user"><div data-v-9db545a6="" class="username">Carson_Ho</div></li><li data-v-9db545a6="" class="meta like"><div data-v-9db545a6="" class="icon icon-likes iconfont icon-xlcollection"></div><div data-v-9db545a6="" class="count">806</div></li><li data-v-9db545a6="" class="meta comment"><div data-v-9db545a6="" class="icon icon-comments iconfont icon-xlchatbox"></div><div data-v-9db545a6="" class="count">19</div></li></ul></div></div></a></div></li><li data-v-13f76525="" data-v-3f216172="" class="item"><div data-v-9db545a6="" data-v-13f76525="" class="related-entry related-entry" data-v-3f216172=""><a data-v-9db545a6="" href="https://juejin.im/post/5919804844d904006c6fbf60" target="_blank" class="entry-link"><div data-v-009ea7bb="" data-v-9db545a6="" class="thumb thumb" style="background-image: url(&quot;//gold-cdn.xitu.io/v3/static/img/default-thumb.4810307.png&quot;); background-size: cover;"><img data-v-009ea7bb="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/default-thumb.4810307.png" class="hidden"></div><div data-v-9db545a6="" class="info"><div data-v-9db545a6="" class="row title-row"><span data-v-9db545a6="" class="title">史上最全解析Android消息推送解决方案</span></div><div data-v-9db545a6="" class="row meta-row"><ul data-v-9db545a6="" class="meta-list"><li data-v-9db545a6="" class="meta user"><div data-v-9db545a6="" class="username">Carson_Ho</div></li><li data-v-9db545a6="" class="meta like"><div data-v-9db545a6="" class="icon icon-likes iconfont icon-xlcollection"></div><div data-v-9db545a6="" class="count">404</div></li><li data-v-9db545a6="" class="meta comment"><div data-v-9db545a6="" class="icon icon-comments iconfont icon-xlchatbox"></div><div data-v-9db545a6="" class="count">4</div></li></ul></div></div></a></div></li><li data-v-13f76525="" data-v-3f216172="" class="item"><div data-v-9db545a6="" data-v-13f76525="" class="related-entry related-entry" data-v-3f216172=""><a data-v-9db545a6="" href="https://juejin.im/post/59366700b123db0064396c1f" target="_blank" class="entry-link"><div data-v-009ea7bb="" data-v-9db545a6="" class="thumb thumb" style="background-image: url(&quot;//gold-cdn.xitu.io/v3/static/img/default-thumb.4810307.png&quot;); background-size: cover;"><img data-v-009ea7bb="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/default-thumb.4810307.png" class="hidden"></div><div data-v-9db545a6="" class="info"><div data-v-9db545a6="" class="row title-row"><span data-v-9db545a6="" class="title">Android：手把手教你构建 WebView 的缓存机制 &amp; 资源预加载方案</span></div><div data-v-9db545a6="" class="row meta-row"><ul data-v-9db545a6="" class="meta-list"><li data-v-9db545a6="" class="meta user"><div data-v-9db545a6="" class="username">Carson_Ho</div></li><li data-v-9db545a6="" class="meta like"><div data-v-9db545a6="" class="icon icon-likes iconfont icon-xlcollection"></div><div data-v-9db545a6="" class="count">385</div></li><li data-v-9db545a6="" class="meta comment"><div data-v-9db545a6="" class="icon icon-comments iconfont icon-xlchatbox"></div><div data-v-9db545a6="" class="count">4</div></li></ul></div></div></a></div></li><li data-v-13f76525="" data-v-3f216172="" class="item"><div data-v-9db545a6="" data-v-13f76525="" class="related-entry related-entry" data-v-3f216172=""><a data-v-9db545a6="" href="https://juejin.im/post/593b59cffe88c2006a0d79e4" target="_blank" class="entry-link"><div data-v-009ea7bb="" data-v-9db545a6="" class="thumb thumb" style="background-image: url(&quot;//gold-cdn.xitu.io/v3/static/img/default-thumb.4810307.png&quot;); background-size: cover;"><img data-v-009ea7bb="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/default-thumb.4810307.png" class="hidden"></div><div data-v-9db545a6="" class="info"><div data-v-9db545a6="" class="row title-row"><span data-v-9db545a6="" class="title">Android 自定义View实战系列 ：时间轴</span></div><div data-v-9db545a6="" class="row meta-row"><ul data-v-9db545a6="" class="meta-list"><li data-v-9db545a6="" class="meta user"><div data-v-9db545a6="" class="username">Carson_Ho</div></li><li data-v-9db545a6="" class="meta like"><div data-v-9db545a6="" class="icon icon-likes iconfont icon-xlcollection"></div><div data-v-9db545a6="" class="count">240</div></li><li data-v-9db545a6="" class="meta comment"><div data-v-9db545a6="" class="icon icon-comments iconfont icon-xlchatbox"></div><div data-v-9db545a6="" class="count">8</div></li></ul></div></div></a></div></li><li data-v-13f76525="" data-v-3f216172="" class="item"><div data-v-9db545a6="" data-v-13f76525="" class="related-entry related-entry" data-v-3f216172=""><a data-v-9db545a6="" href="https://juejin.im/post/592e15742f301e00570eb954" target="_blank" class="entry-link"><div data-v-009ea7bb="" data-v-9db545a6="" class="thumb thumb" style="background-image: url(&quot;//gold-cdn.xitu.io/v3/static/img/default-thumb.4810307.png&quot;); background-size: cover;"><img data-v-009ea7bb="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/default-thumb.4810307.png" class="hidden"></div><div data-v-9db545a6="" class="info"><div data-v-9db545a6="" class="row title-row"><span data-v-9db545a6="" class="title">最全面总结 Android WebView与 JS 的交互方式（含实例Demo）</span></div><div data-v-9db545a6="" class="row meta-row"><ul data-v-9db545a6="" class="meta-list"><li data-v-9db545a6="" class="meta user"><div data-v-9db545a6="" class="username">Carson_Ho</div></li><li data-v-9db545a6="" class="meta like"><div data-v-9db545a6="" class="icon icon-likes iconfont icon-xlcollection"></div><div data-v-9db545a6="" class="count">132</div></li><li data-v-9db545a6="" class="meta comment"><div data-v-9db545a6="" class="icon icon-comments iconfont icon-xlchatbox"></div><div data-v-9db545a6="" class="count">5</div></li></ul></div></div></a></div></li></ul></section><section data-v-13f76525="" data-v-3f216172="" class="comments-block"><div data-v-13f76525="" data-v-3f216172="" class="box-title">评论</div><div data-v-13f76525="" data-v-3f216172="" class="comment-box"><div data-v-efcd2e56="" data-v-13f76525="" class="comment-form comment-form" id="comment" data-v-3f216172=""><div data-v-1b9df826="" data-v-efcd2e56="" class="avatar avatar" style="background-image: url(&quot;https://avatars2.githubusercontent.com/u/21152132?v=3&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/21152132" class="hidden"></div><textarea data-v-efcd2e56="" placeholder="说说你的看法" class="content-input" style="overflow: hidden; word-wrap: break-word; height: 60px;"></textarea><div data-v-efcd2e56="" class="action-box" style="display: none;"><div data-v-54e3f196="" data-v-efcd2e56="" class="image-uploader image-uploader" style="display: none;"><input data-v-54e3f196="" type="file" class="input"><button data-v-54e3f196="" class="upload-btn"><i data-v-54e3f196="" class="icon ion-image"></i><span data-v-54e3f196="">上传图片</span></button></div><div data-v-efcd2e56="" class="submit-box"><span data-v-efcd2e56="" class="submit-text">Ctrl or ⌘ + Enter</span><button data-v-efcd2e56="" class="submit-btn">评论</button></div></div><!----></div></div><ul data-v-51163f89="" data-v-13f76525="" class="comment-list comment-list" data-v-3f216172=""><li data-v-51163f89="" class="item"><div data-v-7f6a837b="" data-v-51163f89="" class="comment"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/595cca0cf265da6c22119194" target="_blank" data-v-311d2efa=""><div data-v-1b9df826="" data-v-7f6a837b="" class="avatar avatar" style="background-image: url(&quot;http://wx.qlogo.cn/mmopen/YrKd3JnuorMCKmOIM0Uyco6DbYiaCDOf4nJQicfsmQCjwia9HUDOUQ2icZibCT9jWJrxz9Vq8yWnzveDkQh2BQEHgzicjzjUKfNf1c/0&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/0" class="hidden"></div></a></div><div data-v-7f6a837b="" class="content-box"><div data-v-7f6a837b="" class="header"><div data-v-7f6a837b="" class="user-info"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/595cca0cf265da6c22119194" target="_blank" class="username" data-v-311d2efa="">小猪撩蹄ಡωಡ</a></div><div data-v-7f6a837b="" class="position"></div></div></div><div data-v-7f6a837b="" class="content"><!----><span data-v-7f6a837b="" class="content-html">说得好，我选择json</span></div><div data-v-7f6a837b="" class="footer"><button data-v-7f6a837b="" class="like-btn"><i data-v-7f6a837b="" class="collection-arrow-ion ion-arrow-up-b"></i><span data-v-7f6a837b="">1</span></button><span data-v-7f6a837b="" class="sub-comment-btn text-pointer"><img data-v-7f6a837b="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/oval-sub-comment.3675eb0.svg" class="icon"><span data-v-7f6a837b="" class="title">评论</span><div data-v-7f6a837b="" class="sub-comment--arrow" style="display: none;"></div></span><span data-v-7f6a837b="" class="date">16小时前</span></div><!----></div></div></li><li data-v-51163f89="" class="item"><div data-v-7f6a837b="" data-v-51163f89="" class="comment"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/554b1d19e4b0f6e9815c27f9" target="_blank" data-v-311d2efa=""><div data-v-1b9df826="" data-v-7f6a837b="" class="avatar avatar" style="background-image: url(&quot;https://dn-mhke0kuv.qbox.me/v6wBMCCBMeqILN2KccWzJ4D?imageView2/1/w/100/h/100/q/85/interlace/1&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/v6wBMCCBMeqILN2KccWzJ4D" class="hidden"></div></a></div><div data-v-7f6a837b="" class="content-box"><div data-v-7f6a837b="" class="header"><div data-v-7f6a837b="" class="user-info"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/554b1d19e4b0f6e9815c27f9" target="_blank" class="username" data-v-311d2efa="">夏目的猫咪</a></div><div data-v-7f6a837b="" class="position">Android开发攻城狮</div></div></div><div data-v-7f6a837b="" class="content"><!----><span data-v-7f6a837b="" class="content-html">貌似 proto3 是正式版了吧，版本都到 v3.3.0 了，<a href="https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fgoogle%2Fprotobuf%2Freleases%2Ftag%2Fv3.3.0" target="_blank" rel="nofollow noopener noreferrer">https://github.com/google/protobuf/releases/tag/v3.3.0</a>；另外 Android 开发，好像建议使用protobuf-lite，而不是 nano 版本</span></div><div data-v-7f6a837b="" class="footer"><button data-v-7f6a837b="" class="like-btn"><i data-v-7f6a837b="" class="collection-arrow-ion ion-arrow-up-b"></i><span data-v-7f6a837b="">1</span></button><span data-v-7f6a837b="" class="sub-comment-btn text-pointer"><img data-v-7f6a837b="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/oval-sub-comment.3675eb0.svg" class="icon"><span data-v-7f6a837b="" class="title">评论</span><div data-v-7f6a837b="" class="sub-comment--arrow" style="display: none;"></div></span><span data-v-7f6a837b="" class="date">17小时前</span></div><!----></div></div></li><li data-v-51163f89="" class="item"><div data-v-7f6a837b="" data-v-51163f89="" class="comment"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/58748572b123db4a2eccd3e0" target="_blank" data-v-311d2efa=""><div data-v-1b9df826="" data-v-7f6a837b="" class="avatar avatar" style="background-image: url(&quot;https://dn-mhke0kuv.qbox.me/e82f7f8543a4e75a8781.jpg?imageView2/1/w/100/h/100/q/85/interlace/1&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/e82f7f8543a4e75a8781.jpg" class="hidden"></div></a></div><div data-v-7f6a837b="" class="content-box"><div data-v-7f6a837b="" class="header"><div data-v-7f6a837b="" class="user-info"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/58748572b123db4a2eccd3e0" target="_blank" class="username" data-v-311d2efa="">赵安家</a></div><div data-v-7f6a837b="" class="position">软件开发工程师 @ 山东顺能网络科技有限公司</div></div></div><div data-v-7f6a837b="" class="content"><!----><span data-v-7f6a837b="" class="content-html">内网grpc传输快，外网json通用性好</span></div><div data-v-7f6a837b="" class="footer"><button data-v-7f6a837b="" class="like-btn"><i data-v-7f6a837b="" class="collection-arrow-ion ion-arrow-up-b"></i><span data-v-7f6a837b="">0</span></button><span data-v-7f6a837b="" class="sub-comment-btn text-pointer"><img data-v-7f6a837b="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/oval-sub-comment.3675eb0.svg" class="icon"><span data-v-7f6a837b="" class="title">评论</span><div data-v-7f6a837b="" class="sub-comment--arrow" style="display: none;"></div></span><span data-v-7f6a837b="" class="date">1天前</span></div><!----></div></div></li><li data-v-51163f89="" class="item"><div data-v-7f6a837b="" data-v-51163f89="" class="comment"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/58d0cb60ac502e0058aa9fb5" target="_blank" data-v-311d2efa=""><div data-v-1b9df826="" data-v-7f6a837b="" class="avatar avatar" style="background-image: url(&quot;//gold-cdn.xitu.io/v3/static/img/default-avatar.e30559a.svg&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/default-avatar.e30559a.svg" class="hidden"></div></a></div><div data-v-7f6a837b="" class="content-box"><div data-v-7f6a837b="" class="header"><div data-v-7f6a837b="" class="user-info"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/58d0cb60ac502e0058aa9fb5" target="_blank" class="username" data-v-311d2efa="">水中沚</a></div><div data-v-7f6a837b="" class="position"></div></div></div><div data-v-7f6a837b="" class="content"><!----><span data-v-7f6a837b="" class="content-html">我们应用的推送功能用的就是这个数据序列化与反序列化</span></div><div data-v-7f6a837b="" class="footer"><button data-v-7f6a837b="" class="like-btn"><i data-v-7f6a837b="" class="collection-arrow-ion ion-arrow-up-b"></i><span data-v-7f6a837b="">1</span></button><span data-v-7f6a837b="" class="sub-comment-btn text-pointer"><img data-v-7f6a837b="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/oval-sub-comment.3675eb0.svg" class="icon"><span data-v-7f6a837b="" class="title">评论</span><div data-v-7f6a837b="" class="sub-comment--arrow" style="display: none;"></div></span><span data-v-7f6a837b="" class="date">1天前</span></div><!----></div></div></li><li data-v-51163f89="" class="item"><div data-v-7f6a837b="" data-v-51163f89="" class="comment"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/5619577260b2521f49f2a9fe" target="_blank" data-v-311d2efa=""><div data-v-1b9df826="" data-v-7f6a837b="" class="avatar avatar" style="background-image: url(&quot;https://dn-mhke0kuv.qbox.me/fC5CTXMgxxzXEPL4igMcSkC?imageView2/1/w/100/h/100/q/85/interlace/1&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/fC5CTXMgxxzXEPL4igMcSkC" class="hidden"></div></a></div><div data-v-7f6a837b="" class="content-box"><div data-v-7f6a837b="" class="header"><div data-v-7f6a837b="" class="user-info"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/5619577260b2521f49f2a9fe" target="_blank" class="username" data-v-311d2efa="">Jiar</a></div><div data-v-7f6a837b="" class="position">iOS dev @ freshin.com</div></div></div><div data-v-7f6a837b="" class="content"><!----><span data-v-7f6a837b="" class="content-html">很早就出来了，在早期的项目中实践过，但是觉得对于大部分面向业务的项目来说，json更合适。</span></div><div data-v-7f6a837b="" class="footer"><button data-v-7f6a837b="" class="like-btn"><i data-v-7f6a837b="" class="collection-arrow-ion ion-arrow-up-b"></i><span data-v-7f6a837b="">0</span></button><span data-v-7f6a837b="" class="sub-comment-btn text-pointer"><img data-v-7f6a837b="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/oval-sub-comment.3675eb0.svg" class="icon"><span data-v-7f6a837b="" class="title">评论</span><div data-v-7f6a837b="" class="sub-comment--arrow" style="display: none;"></div></span><span data-v-7f6a837b="" class="date">1天前</span></div><!----></div></div></li><li data-v-51163f89="" class="item"><div data-v-7f6a837b="" data-v-51163f89="" class="comment"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/58b2ed282f301e006c0e3644" target="_blank" data-v-311d2efa=""><div data-v-1b9df826="" data-v-7f6a837b="" class="avatar avatar" style="background-image: url(&quot;//gold-cdn.xitu.io/v3/static/img/default-avatar.e30559a.svg&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/default-avatar.e30559a.svg" class="hidden"></div></a></div><div data-v-7f6a837b="" class="content-box"><div data-v-7f6a837b="" class="header"><div data-v-7f6a837b="" class="user-info"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/58b2ed282f301e006c0e3644" target="_blank" class="username" data-v-311d2efa="">冯泽远爱学习</a></div><div data-v-7f6a837b="" class="position"></div></div></div><div data-v-7f6a837b="" class="content"><!----><span data-v-7f6a837b="" class="content-html">广告行业用的多点</span></div><div data-v-7f6a837b="" class="footer"><button data-v-7f6a837b="" class="like-btn"><i data-v-7f6a837b="" class="collection-arrow-ion ion-arrow-up-b"></i><span data-v-7f6a837b="">0</span></button><span data-v-7f6a837b="" class="sub-comment-btn text-pointer"><img data-v-7f6a837b="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/oval-sub-comment.3675eb0.svg" class="icon"><span data-v-7f6a837b="" class="title">评论</span><div data-v-7f6a837b="" class="sub-comment--arrow" style="display: none;"></div></span><span data-v-7f6a837b="" class="date">1天前</span></div><!----></div></div></li><li data-v-51163f89="" class="item"><div data-v-7f6a837b="" data-v-51163f89="" class="comment"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/5699faaf60b219d101745b7b" target="_blank" data-v-311d2efa=""><div data-v-1b9df826="" data-v-7f6a837b="" class="avatar avatar" style="background-image: url(&quot;https://dn-mhke0kuv.qbox.me/4fd3cf3bb6a0746ee67c.png?imageView2/1/w/100/h/100/q/85/interlace/1&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/4fd3cf3bb6a0746ee67c.png" class="hidden"></div></a></div><div data-v-7f6a837b="" class="content-box"><div data-v-7f6a837b="" class="header"><div data-v-7f6a837b="" class="user-info"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/5699faaf60b219d101745b7b" target="_blank" class="username" data-v-311d2efa="">丁一</a></div><div data-v-7f6a837b="" class="position">前端</div></div></div><div data-v-7f6a837b="" class="content"><!----><span data-v-7f6a837b="" class="content-html">很强势</span></div><div data-v-7f6a837b="" class="footer"><button data-v-7f6a837b="" class="like-btn"><i data-v-7f6a837b="" class="collection-arrow-ion ion-arrow-up-b"></i><span data-v-7f6a837b="">0</span></button><span data-v-7f6a837b="" class="sub-comment-btn text-pointer"><img data-v-7f6a837b="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/oval-sub-comment.3675eb0.svg" class="icon"><span data-v-7f6a837b="" class="title">评论</span><div data-v-7f6a837b="" class="sub-comment--arrow" style="display: none;"></div></span><span data-v-7f6a837b="" class="date">2天前</span></div><!----></div></div></li><li data-v-51163f89="" class="item"><div data-v-7f6a837b="" data-v-51163f89="" class="comment"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/58bfb81661ff4b005d7820c8" target="_blank" data-v-311d2efa=""><div data-v-1b9df826="" data-v-7f6a837b="" class="avatar avatar" style="background-image: url(&quot;//gold-cdn.xitu.io/v3/static/img/default-avatar.e30559a.svg&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/default-avatar.e30559a.svg" class="hidden"></div></a></div><div data-v-7f6a837b="" class="content-box"><div data-v-7f6a837b="" class="header"><div data-v-7f6a837b="" class="user-info"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/58bfb81661ff4b005d7820c8" target="_blank" class="username" data-v-311d2efa="">扣子兮兮</a></div><div data-v-7f6a837b="" class="position"></div></div></div><div data-v-7f6a837b="" class="content"><!----><span data-v-7f6a837b="" class="content-html">其实，android 应该用nano版</span></div><div data-v-7f6a837b="" class="footer"><button data-v-7f6a837b="" class="like-btn"><i data-v-7f6a837b="" class="collection-arrow-ion ion-arrow-up-b"></i><span data-v-7f6a837b="">0</span></button><span data-v-7f6a837b="" class="sub-comment-btn text-pointer"><img data-v-7f6a837b="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/oval-sub-comment.3675eb0.svg" class="icon"><span data-v-7f6a837b="" class="title">1条评论</span><div data-v-7f6a837b="" class="sub-comment--arrow" style="display: none;"></div></span><span data-v-7f6a837b="" class="date">2天前</span></div><!----></div></div></li><li data-v-51163f89="" class="item"><div data-v-7f6a837b="" data-v-51163f89="" class="comment"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/58737f552f301e00574d2d0a" target="_blank" data-v-311d2efa=""><div data-v-1b9df826="" data-v-7f6a837b="" class="avatar avatar" style="background-image: url(&quot;//gold-cdn.xitu.io/v3/static/img/default-avatar.e30559a.svg&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/default-avatar.e30559a.svg" class="hidden"></div></a></div><div data-v-7f6a837b="" class="content-box"><div data-v-7f6a837b="" class="header"><div data-v-7f6a837b="" class="user-info"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/58737f552f301e00574d2d0a" target="_blank" class="username" data-v-311d2efa="">Woodyhang</a></div><div data-v-7f6a837b="" class="position"></div></div></div><div data-v-7f6a837b="" class="content"><!----><span data-v-7f6a837b="" class="content-html">公司也是一直在用，原来折腾了好长一段时间</span></div><div data-v-7f6a837b="" class="footer"><button data-v-7f6a837b="" class="like-btn"><i data-v-7f6a837b="" class="collection-arrow-ion ion-arrow-up-b"></i><span data-v-7f6a837b="">0</span></button><span data-v-7f6a837b="" class="sub-comment-btn text-pointer"><img data-v-7f6a837b="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/oval-sub-comment.3675eb0.svg" class="icon"><span data-v-7f6a837b="" class="title">评论</span><div data-v-7f6a837b="" class="sub-comment--arrow" style="display: none;"></div></span><span data-v-7f6a837b="" class="date">2天前</span></div><!----></div></div></li><li data-v-51163f89="" class="item"><div data-v-7f6a837b="" data-v-51163f89="" class="comment"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/57fb0a3f816dfa0056c0ce86" target="_blank" data-v-311d2efa=""><div data-v-1b9df826="" data-v-7f6a837b="" class="avatar avatar" style="background-image: url(&quot;https://avatars.githubusercontent.com/u/9511542?v=3&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/9511542" class="hidden"></div></a></div><div data-v-7f6a837b="" class="content-box"><div data-v-7f6a837b="" class="header"><div data-v-7f6a837b="" class="user-info"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/57fb0a3f816dfa0056c0ce86" target="_blank" class="username" data-v-311d2efa="">Yang1476069951000</a></div><div data-v-7f6a837b="" class="position"></div></div></div><div data-v-7f6a837b="" class="content"><!----><span data-v-7f6a837b="" class="content-html">项目一直在用</span></div><div data-v-7f6a837b="" class="footer"><button data-v-7f6a837b="" class="like-btn"><i data-v-7f6a837b="" class="collection-arrow-ion ion-arrow-up-b"></i><span data-v-7f6a837b="">0</span></button><span data-v-7f6a837b="" class="sub-comment-btn text-pointer"><img data-v-7f6a837b="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/oval-sub-comment.3675eb0.svg" class="icon"><span data-v-7f6a837b="" class="title">评论</span><div data-v-7f6a837b="" class="sub-comment--arrow" style="display: none;"></div></span><span data-v-7f6a837b="" class="date">2天前</span></div><!----></div></div></li><li data-v-51163f89="" class="item"><div data-v-7f6a837b="" data-v-51163f89="" class="comment"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/581bc88a570c350060942921" target="_blank" data-v-311d2efa=""><div data-v-1b9df826="" data-v-7f6a837b="" class="avatar avatar" style="background-image: url(&quot;https://avatars.githubusercontent.com/u/17568641?v=3&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/17568641" class="hidden"></div></a></div><div data-v-7f6a837b="" class="content-box"><div data-v-7f6a837b="" class="header"><div data-v-7f6a837b="" class="user-info"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/581bc88a570c350060942921" target="_blank" class="username" data-v-311d2efa="">fuhao</a></div><div data-v-7f6a837b="" class="position"></div></div></div><div data-v-7f6a837b="" class="content"><!----><span data-v-7f6a837b="" class="content-html">做硬件连接，对性能要求很高，传输数据用的比较多</span></div><div data-v-7f6a837b="" class="footer"><button data-v-7f6a837b="" class="like-btn"><i data-v-7f6a837b="" class="collection-arrow-ion ion-arrow-up-b"></i><span data-v-7f6a837b="">0</span></button><span data-v-7f6a837b="" class="sub-comment-btn text-pointer"><img data-v-7f6a837b="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/oval-sub-comment.3675eb0.svg" class="icon"><span data-v-7f6a837b="" class="title">评论</span><div data-v-7f6a837b="" class="sub-comment--arrow" style="display: none;"></div></span><span data-v-7f6a837b="" class="date">2天前</span></div><!----></div></div></li><li data-v-51163f89="" class="item"><div data-v-7f6a837b="" data-v-51163f89="" class="comment"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/578da9860a2b580068562920" target="_blank" data-v-311d2efa=""><div data-v-1b9df826="" data-v-7f6a837b="" class="avatar avatar" style="background-image: url(&quot;//gold-cdn.xitu.io/v3/static/img/default-avatar.e30559a.svg&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/default-avatar.e30559a.svg" class="hidden"></div></a></div><div data-v-7f6a837b="" class="content-box"><div data-v-7f6a837b="" class="header"><div data-v-7f6a837b="" class="user-info"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/578da9860a2b580068562920" target="_blank" class="username" data-v-311d2efa="">dminter</a></div><div data-v-7f6a837b="" class="position"></div></div></div><div data-v-7f6a837b="" class="content"><!----><span data-v-7f6a837b="" class="content-html">想知道图是用什么工具画的</span></div><div data-v-7f6a837b="" class="footer"><button data-v-7f6a837b="" class="like-btn"><i data-v-7f6a837b="" class="collection-arrow-ion ion-arrow-up-b"></i><span data-v-7f6a837b="">0</span></button><span data-v-7f6a837b="" class="sub-comment-btn text-pointer"><img data-v-7f6a837b="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/oval-sub-comment.3675eb0.svg" class="icon"><span data-v-7f6a837b="" class="title">评论</span><div data-v-7f6a837b="" class="sub-comment--arrow" style="display: none;"></div></span><span data-v-7f6a837b="" class="date">2天前</span></div><!----></div></div></li><li data-v-51163f89="" class="item"><div data-v-7f6a837b="" data-v-51163f89="" class="comment"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/572220dd2e958a00653b60ef" target="_blank" data-v-311d2efa=""><div data-v-1b9df826="" data-v-7f6a837b="" class="avatar avatar" style="background-image: url(&quot;https://user-gold-cdn.xitu.io/2016/11/29/5fa94ab8c2d880c1c0eb18c70d38c45f?imageView2/1/w/100/h/100/q/85/interlace/1&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/5fa94ab8c2d880c1c0eb18c70d38c45f" class="hidden"></div></a></div><div data-v-7f6a837b="" class="content-box"><div data-v-7f6a837b="" class="header"><div data-v-7f6a837b="" class="user-info"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/572220dd2e958a00653b60ef" target="_blank" class="username" data-v-311d2efa="">樱花哥</a></div><div data-v-7f6a837b="" class="position">安卓工程师 @ 和勤联创</div></div></div><div data-v-7f6a837b="" class="content"><!----><span data-v-7f6a837b="" class="content-html">哈哈哈。看完这个教程，我还是用json吧</span></div><div data-v-7f6a837b="" class="footer"><button data-v-7f6a837b="" class="like-btn"><i data-v-7f6a837b="" class="collection-arrow-ion ion-arrow-up-b"></i><span data-v-7f6a837b="">4</span></button><span data-v-7f6a837b="" class="sub-comment-btn text-pointer"><img data-v-7f6a837b="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/oval-sub-comment.3675eb0.svg" class="icon"><span data-v-7f6a837b="" class="title">评论</span><div data-v-7f6a837b="" class="sub-comment--arrow" style="display: none;"></div></span><span data-v-7f6a837b="" class="date">2天前</span></div><!----></div></div></li><li data-v-51163f89="" class="item"><div data-v-7f6a837b="" data-v-51163f89="" class="comment"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/595df5f451882568cb6b36cf" target="_blank" data-v-311d2efa=""><div data-v-1b9df826="" data-v-7f6a837b="" class="avatar avatar" style="background-image: url(&quot;//gold-cdn.xitu.io/v3/static/img/default-avatar.e30559a.svg&quot;);"><img data-v-1b9df826="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/default-avatar.e30559a.svg" class="hidden"></div></a></div><div data-v-7f6a837b="" class="content-box"><div data-v-7f6a837b="" class="header"><div data-v-7f6a837b="" class="user-info"><div data-v-311d2efa="" data-v-7f6a837b="" class="user-popover-box"><!----><a data-v-7f6a837b="" href="https://juejin.im/user/595df5f451882568cb6b36cf" target="_blank" class="username" data-v-311d2efa="">baoyiwei</a></div><div data-v-7f6a837b="" class="position"></div></div></div><div data-v-7f6a837b="" class="content"><!----><span data-v-7f6a837b="" class="content-html">以前公司用了一段时间 后来又改Json了</span></div><div data-v-7f6a837b="" class="footer"><button data-v-7f6a837b="" class="like-btn"><i data-v-7f6a837b="" class="collection-arrow-ion ion-arrow-up-b"></i><span data-v-7f6a837b="">0</span></button><span data-v-7f6a837b="" class="sub-comment-btn text-pointer"><img data-v-7f6a837b="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/oval-sub-comment.3675eb0.svg" class="icon"><span data-v-7f6a837b="" class="title">评论</span><div data-v-7f6a837b="" class="sub-comment--arrow" style="display: none;"></div></span><span data-v-7f6a837b="" class="date">2天前</span></div><!----></div></div></li></ul></section></div><div data-v-13f76525="" data-v-3f216172="" class="weixin-bottom"><img data-v-13f76525="" data-v-3f216172="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/logo-white-background.svg" class="logo"><div data-v-13f76525="" data-v-3f216172="" class="weixin-bottom-title">高质量的技术分享社区</div><div data-v-13f76525="" data-v-3f216172="" class="weixin-bottom-subtitle">开发者 · 设计师 · 产品经理</div><a data-v-13f76525="" data-v-3f216172="" href="javascript:void(0);"><button data-v-13f76525="" data-v-3f216172="" class="weixin-bottom-download-button">立即下载</button></a></div></div><div data-v-13f76525="" data-v-3f216172="" class="columen-view-aside"><section data-v-13f76525="" data-v-3f216172="" class="section download-section shadow"><div data-v-151dc5e1="" data-v-13f76525="" class="app-download" data-v-3f216172=""><div data-v-151dc5e1="" class="qr-box"><img data-v-151dc5e1="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/post.7cb7332.png" class="qr-img"></div><div data-v-151dc5e1="" class="app-info"><span data-v-151dc5e1="" class="headline">下载掘金客户端</span><span data-v-151dc5e1="" class="desc">只有高手分享的技术社区</span></div></div></section><section data-v-13f76525="" data-v-3f216172="" class="sticky-section shadow"><div data-v-151dc5e1="" data-v-13f76525="" class="app-download section" data-v-3f216172=""><div data-v-151dc5e1="" class="qr-box"><img data-v-151dc5e1="" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/post.7cb7332.png" class="qr-img"></div><div data-v-151dc5e1="" class="app-info"><span data-v-151dc5e1="" class="headline">下载掘金客户端</span><span data-v-151dc5e1="" class="desc">只有高手分享的技术社区</span></div></div></section><section data-v-13f76525="" data-v-3f216172="" class="section aside-top-section shadow"><header data-v-13f76525="" data-v-3f216172="" class="aside-header">相关文章</header><ul data-v-13f76525="" data-v-3f216172="" class="aside-list"><li data-v-13f76525="" data-v-3f216172="" class="item"><div data-v-2b5b4e9e="" data-v-13f76525="" class="related-entry-aside related-entry-aside" data-v-3f216172=""><a data-v-2b5b4e9e="" href="https://juejin.im/post/5924dbf58d6d810058fdde43" target="_blank" class="title">Android：这是一份全面&amp;详细的Webview使用攻略</a><ul data-v-2b5b4e9e="" class="meta-list"><li data-v-2b5b4e9e="" class="meta like"><div data-v-2b5b4e9e="" class="icon ion-heart"></div><span data-v-2b5b4e9e="" class="count">806</span></li><li data-v-2b5b4e9e="" class="meta comment"><div data-v-2b5b4e9e="" class="icon ion-chatbox"></div><span data-v-2b5b4e9e="" class="count">19</span></li></ul></div></li><li data-v-13f76525="" data-v-3f216172="" class="item"><div data-v-2b5b4e9e="" data-v-13f76525="" class="related-entry-aside related-entry-aside" data-v-3f216172=""><a data-v-2b5b4e9e="" href="https://juejin.im/post/5919804844d904006c6fbf60" target="_blank" class="title">史上最全解析Android消息推送解决方案</a><ul data-v-2b5b4e9e="" class="meta-list"><li data-v-2b5b4e9e="" class="meta like"><div data-v-2b5b4e9e="" class="icon ion-heart"></div><span data-v-2b5b4e9e="" class="count">404</span></li><li data-v-2b5b4e9e="" class="meta comment"><div data-v-2b5b4e9e="" class="icon ion-chatbox"></div><span data-v-2b5b4e9e="" class="count">4</span></li></ul></div></li><li data-v-13f76525="" data-v-3f216172="" class="item"><div data-v-2b5b4e9e="" data-v-13f76525="" class="related-entry-aside related-entry-aside" data-v-3f216172=""><a data-v-2b5b4e9e="" href="https://juejin.im/post/59366700b123db0064396c1f" target="_blank" class="title">Android：手把手教你构建 WebView 的缓存机制 &amp; 资源预加载方案</a><ul data-v-2b5b4e9e="" class="meta-list"><li data-v-2b5b4e9e="" class="meta like"><div data-v-2b5b4e9e="" class="icon ion-heart"></div><span data-v-2b5b4e9e="" class="count">385</span></li><li data-v-2b5b4e9e="" class="meta comment"><div data-v-2b5b4e9e="" class="icon ion-chatbox"></div><span data-v-2b5b4e9e="" class="count">4</span></li></ul></div></li><li data-v-13f76525="" data-v-3f216172="" class="item"><div data-v-2b5b4e9e="" data-v-13f76525="" class="related-entry-aside related-entry-aside" data-v-3f216172=""><a data-v-2b5b4e9e="" href="https://juejin.im/post/593b59cffe88c2006a0d79e4" target="_blank" class="title">Android 自定义View实战系列 ：时间轴</a><ul data-v-2b5b4e9e="" class="meta-list"><li data-v-2b5b4e9e="" class="meta like"><div data-v-2b5b4e9e="" class="icon ion-heart"></div><span data-v-2b5b4e9e="" class="count">240</span></li><li data-v-2b5b4e9e="" class="meta comment"><div data-v-2b5b4e9e="" class="icon ion-chatbox"></div><span data-v-2b5b4e9e="" class="count">8</span></li></ul></div></li><li data-v-13f76525="" data-v-3f216172="" class="item"><div data-v-2b5b4e9e="" data-v-13f76525="" class="related-entry-aside related-entry-aside" data-v-3f216172=""><a data-v-2b5b4e9e="" href="https://juejin.im/post/592e15742f301e00570eb954" target="_blank" class="title">最全面总结 Android WebView与 JS 的交互方式（含实例Demo）</a><ul data-v-2b5b4e9e="" class="meta-list"><li data-v-2b5b4e9e="" class="meta like"><div data-v-2b5b4e9e="" class="icon ion-heart"></div><span data-v-2b5b4e9e="" class="count">132</span></li><li data-v-2b5b4e9e="" class="meta comment"><div data-v-2b5b4e9e="" class="icon ion-chatbox"></div><span data-v-2b5b4e9e="" class="count">5</span></li></ul></div></li></ul></section></div><div data-v-13f76525="" data-v-3f216172="" class="columen-view-fixed"><ul data-v-1407612e="" data-v-13f76525="" class="articles-actions-fixed" data-v-3f216172=""><li data-v-1407612e=""><div data-v-1407612e="" class="action shadow action-like"></div><div data-v-1407612e="" class="like-count align-center">275</div></li><li data-v-1407612e=""><a data-v-1407612e="" href="https://juejin.im/post/595eefcb5188250da205efbe#comment" class="action shadow action-comment"></a></li><li data-v-1407612e=""><a data-v-1407612e="" class="action shadow action-weibo"></a></li><li data-v-1407612e=""><div data-v-1407612e="" class="action shadow action-weixin"></div><div data-v-1407612e="" class="wx-qr-img"><img data-v-1407612e="" src="data:image/gif;base64,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"></div></li></ul></div></div></main></div></div>
+      
+      <script type="text/javascript" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/manifest.d8b6480c540083976466.js.下载"></script><script type="text/javascript" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/vendor.f830fb5580f6c8e50300.js.下载"></script><script type="text/javascript" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/app.9dc74b0ffe5c03d5c501.js.下载"></script>
+    <div id="MEIQIA-PANEL-HOLDER"><iframe id="MEIQIA-IFRAME" src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/desktop-fiesta.html" frameborder="0" scrolling="no" allowtransparency="true"></iframe> </div><div id="MEIQIA-INVITE"><span id="MEIQIA-INVITE-CLOSE" class="MEIQIA-ICON"></span> <div id="MEIQIA-INVITE-INSIDE">您好，当前有专业客服人员在线，让我们来帮助您吧。</div> <span id="MEIQIA-INVITE-ARROW1"></span> <span id="MEIQIA-INVITE-ARROW2"></span></div><script src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/clue-api.min.js.下载" type="text/javascript"></script><script src="./快来看看 Google 出品的 Protocol Buffer，别只会用 JSON 和 XML 了 - 掘金_files/getbid"></script></body></html>

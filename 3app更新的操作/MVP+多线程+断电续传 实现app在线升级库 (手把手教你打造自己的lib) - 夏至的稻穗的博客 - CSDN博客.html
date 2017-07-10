@@ -1,0 +1,1704 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0056)http://blog.csdn.net/u011418943/article/details/70562580 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+
+            <link rel="canonical" href="http://blog.csdn.net/u011418943/article/details/70562580"> 
+ <meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://blog.csdn.net/u011418943/article/details/70562580#">
+
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848"> 
+       
+    <title>MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客
+        - CSDN博客</title>
+    
+    <meta name="description" content="作者： 夏至 欢迎转载，也请保留这份申明，谢谢。1、需求分析App 在线升级是比较传统的修复bug的一种方式，一般添加新功能或者说修改一下比较严重的bug的时候，我们都是会升级apk来实现我们的目的；当然，其实一些紧急的bug的其实是用 热修复 的方法，毕竟有时候只是一行代码出了问题，而你却要升级一整个apk，下载安装等等，除了代价有点高，也会影响口碑的。     等等，你都说成这样，还学习这个干">
+
+    <meta name="keywords" content="mvp,多线程,在线升级">
+
+   
+    <script src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/hm.js.下载"></script><script src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/blog_static_head.min.js.下载" type="text/javascript"></script>
+
+    
+        <!--new top-->
+       
+       
+        <!--new top-->
+    
+      <!-- ad begin -->
+         
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/style.css">
+
+    
+
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/u011418943/rss/list">
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/default.css">
+ 
+
+
+
+    <link href="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/csdn_public_blog_detail.min.css" type="text/css" rel="stylesheet">
+     
+         <link rel="stylesheet" href="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/csdn_blog_detail.min.css">
+
+  
+
+
+    <!-- 请置于所有广告位代码之前 --> 
+            <script src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/ds.js.下载"></script>
+
+<script src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/share.js.下载"></script><link href="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/bdsstyle.css" rel="stylesheet" type="text/css"><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><link rel="stylesheet" type="text/css" href="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/style(1).css"><link rel="stylesheet" type="text/css" href="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/style(2).css"><script src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/logger.js.下载"></script><link rel="stylesheet" href="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/share_style0_16.css"></head>
+
+
+<body><div id="MathJax_Message" style="display: none;"></div><iframe frameborder="0" style="display: none;" src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/saved_resource.html"></iframe><div class="csdn-toolbar csdn-toolbar-skin-black ">        <div class="container row center-block ">          <div class="col-md-3 pull-left logo clearfix"><a href="http://www.csdn.net/?ref=toolbar" title="CSDN首页" target="_blank" class="icon"></a><a title="频道首页" href="http://blog.csdn.net/?ref=toolbar_logo" class="img blog-icon"></a></div>          <div class="pull-right login-wrap ">            <ul class="btns">              <li class="loginlink"><a href="https://passport.csdn.net/account/login?ref=toolbar" target="_top">登录&nbsp;</a>|<a target="_top" href="http://passport.csdn.net/account/mobileregister?ref=toolbar&amp;action=mobileRegister">&nbsp;注册</a></li>              <li class="search">                <div class="icon on-search-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <form action="http://so.csdn.net/search" id="toolbar_search" method="get" target="_blank">                      <input type="hidden" value="toolbar" name="ref" accesskey="2">                      <div class="border">                        <input placeholder="搜索" type="text" value="" name="q" accesskey="2"><span class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li class="favor">                <div class="icon on-favor-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div style="display:none;" class="favor-success"><span class="msg">收藏成功</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <div style="display:none;" class="favor-failed"><span class="icon-danger-lg"></span><span class="msg">收藏失败，请重新收藏</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <form role="form" class="form-horizontal favor-form">                      <div class="form-group">                        <div class="clearfix">                          <label for="input-title" class="col-sm-2 control-label"><span class="red_txt">*</span>标题</label>                          <div class="col-sm-10">                            <input id="inputTitle" type="text" placeholder="" class="title form-control">                          </div>                        </div>                        <div class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div class="form-group" style="display:none;">                        <label for="input-url" class="col-sm-2 control-label">网址</label>                        <div class="col-sm-10">                          <input id="input-url" type="text" placeholder="" class="url form-control">                        </div>                      </div>                      <div class="form-group">                        <label for="input-tag" class="col-sm-2 tag control-label">标签</label>                        <div class="col-sm-10">                          <input id="input-tag" type="text" class="form-control tag">                        </div>                      </div>                      <div class="form-group">                        <label for="input-description" class="description col-sm-2 control-label">位置</label>                        <div class="col-sm-10">                          <div class="my_lib_box">                            个人主页&nbsp;-&nbsp;<a href="http://my.csdn.net/" target="_blank">我的知识</a>                          </div>                          <div class="checkbox">                            <div class="pull-left">                              <label>                                <input type="checkbox" name="share" class="save_lib_map" checked="checked">同时保存至：                              </label>                            </div>                            <div class="pull-left">                              <div class="dropdown">                                <button id="toolbar_sele_map" type="button">                                  选择知识图谱                                  <i class="fa fa-chevron-down"></i>                                </button>                                <div class="top_arr"></div>                                <div class="outside">                                  <ul class="dropdown-menu" id="toolbar_Design_knowledge"><li>选择知识图谱</li></ul>                                </div>                              </div>                            </div>                            <div class="pull-left new_txt">                              <a href="http://lib.csdn.net/my/create/structure" target="_blank">新建？</a>                            </div>                          </div>                        </div>                      </div>                      <div class="form-group">                        <div class="col-sm-offset-2 col-sm-10 ft">                          <div class="col-sm-4 pull-left" style="display:none">                            <div class="checkbox">                              <label>                                <input type="checkbox" name="share" checked="checked" class="share">公开                              </label>                            </div>                          </div>                          <div class="col-sm-8 pull-right favor-btns">                            <button type="button" class="cancel btn btn-default">取消</button>                            <button type="submit" class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li class="notify">                <div style="display:none" class="number"></div>                <div style="display:none" class="icon-hasnotes-sm"></div>                <div id="header_notice_num"><div class="icon-hasnotes" style="display:none"></div></div>                <div class="icon on-notify-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div id="note1" class="csdn_note" style="display: none;">                      <div class="box"><div class="notifications notice_list_con curr">  <div class="menu_title">    <span class="title"><a href="http://msg.csdn.net/letters" target="_blank" class="read_all">查看所有私信</a><a href="http://msg.csdn.net/" target="_blank" class="go_all">查看所有通知</a></span>  </div>  <div class="loading"></div>  <div class="empty">暂没有新通知</div>  <div class="notice_content" style="overflow-y: auto; max-height: 270px;"></div></div><div class="notifications detail_con" style="display: none">  <div class="menu_title">    <span class="title">      <a class="go_back" href="javascript:void 0;">返回通知列表</a>      <a class="notifications_page_none nextnote" href="javascript:void 0;">下一条</a>      <a class="notifications_page prvnote" href="javascript:void 0;">上一条</a>    </span>  </div>  <div class="notice_content" style="overflow-y: scroll; height: 250px;"></div></div><div class="error"></div></div>                    <iframe src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/saved_resource(1).html" frameborder="0" allowtransparency="true" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li class="ugc">                <div class="icon on-ugc-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <dl>                      <dt><a href="http://geek.csdn.net/news/expert?ref=toolbar" target="_blank" class="p-news clearfix" style="display:none;"><em class="icon"></em><span>分享资讯</span></a></dt>                      <dt style="border: none;"><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-doc clearfix"><em class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a href="http://bbs.csdn.net/topics/new?ref=toolbar" target="_blank" class="p-ask clearfix"><em class="icon"></em><span>提问题</span></a></dt>                      <dt><a href="http://write.blog.csdn.net/postedit?ref=toolbar" target="_blank" class="p-blog clearfix"><em class="icon"></em><span>写博客</span></a></dt>                      <dt><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-src clearfix"><em class="icon"></em><span>传资源</span></a></dt>                      <dt><a href="https://code.csdn.net/projects/new?ref=toolbar" target="_blank" class="c-obj clearfix"><em class="icon"></em><span>创建项目</span></a></dt>                      <dt><a href="https://code.csdn.net/snippets/new?ref=toolbar" target="_blank" class="c-code clearfix"><em class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li class="profile">                <div class="icon on-profile-icon"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/2_qq_38284915.jpg" class="curr-icon-img">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div class="bd">                      <dl class="clearfix">                        <dt class="pull-left img"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="avatar"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/2_qq_38284915.jpg"></a></dt>                        <dd class="info" style="border: none;"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="nickname">qq_38284915</a><span class="dec">android开发技术成熟</span></dd>                      </dl>                    </div>                    <div class="ft clearfix"><a target="_blank" href="http://my.csdn.net/my/account/changepwd?ref=toolbar" class="pull-left"><span class="icon-cog"></span>帐号设置</a><a href="https://passport.csdn.net/account/logout?ref=toolbar" target="_top" class="pull-left" style="margin-left:132px; width:18px; height:27px; white-space:nowrap; overflow:hidden;"><span class="icon-signout"></span><span class="out">退出</span></a></div>                  </div>                </div>              </li>              <li class="apps">                <div id="chasnew123" class="hasnew" style="display: none;"></div>                <div id="cappsarea123" class="icon on-apps-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a href="http://blog.csdn.net/?ref=toolbar" target="_blank">博客</a></dd>                      <dd> <a href="http://bbs.csdn.net/?ref=toolbar" target="_blank">论坛</a></dd>                      <dd> <a href="http://download.csdn.net/?ref=toolbar" target="_blank">下载</a></dd>                      <dd> <a href="http://lib.csdn.net/?ref=toolbar" target="_blank">知识库</a></dd>                      <dd><a href="http://ask.csdn.net/?ref=toolbar" target="_blank">技术问答</a></dd>                      <dd><a href="http://geek.csdn.net/?ref=toolbar" target="_blank">极客头条</a></dd>                      <dd style="display:none"> <a href="http://hero.csdn.net/?ref=toolbar" target="_blank">英雄会</a></dd>                    </dl>                  </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd style="display:none"> <a href="http://job.csdn.net/?ref=toolbar" target="_blank">JOB<img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="http://edu.csdn.net/?ref=toolbar" target="_blank">学院<img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="https://code.csdn.net/?ref=toolbar" target="_blank">CODE</a></dd>                      <dd> <a href="http://huiyi.csdn.net/?ref=toolbar" target="_blank">活动</a></dd>                      <dd> <a href="http://www.csto.com/?ref=toolbar" target="_blank">CSTO</a></dd>                      <dd> <a href="http://mall.csdn.net/?ref=toolbar" target="_blank">C币兑换<img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                    </dl>                  </div>                  <div class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a href="http://cto.csdn.net/?ref=toolbar" target="_blank">CTO俱乐部</a></dd>                      <dd> <a href="http://student.csdn.net/?ref=toolbar" target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+     
+        <div class="tracking-ad" data-view="true" data-mod="ad_popu_72" data-mtp="62" data-order="40" data-con="ad_content_2072">
+                     <script id="popuLayer_js_q" src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/popuLayer.js.下载" defer="defer" type="text/javascript"></script>
+                <div id="layerd" style="position: fixed; bottom: 0px; right: 0px; line-height: 0px; z-index: 1000; width: 300px; height: 278px;">
+    	                <div class="J_close layer_close" style="display:;background-color:#efefef;padding:0px;color:#333;font:12px/24px Helvetica,Tahoma,Arial,sans-serif;text-align:right;">关闭</div><!-- 广告占位容器 --><div id="cpro_u2895327">undefined</div></div>
+                <script>  document.getElementById("popuLayer_js_q").onload = function () { var styObjd = styObj = { width: "300px", "height": parseInt(250) + 28 }; window.CSDN.Layer.PopuLayer("#layerd", { storageName: "layerd", styleObj: styObjd, total: 50, expoire: 1000 * 60 }); }</script><!-- 投放代码 --><script type="text/javascript">                    /*服务器频道首页置顶Banner960*90，创建于2014-7-3*/    (window.cproArray = window.cproArray || []).push({ id: "u2895327" });  </script>  <script src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/c.js.下载" type="text/javascript"></script>
+     
+        </div>
+
+    <!-- 广告位开始 -->
+        
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/html.js.下载" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/u011418943">夏至的稻穗的博客</a></h2>
+            <h3></h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+     
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/u011418943?viewmode=contents"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_mulu&#39;])">
+                    <img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/u011418943?viewmode=list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_zhaiyao&#39;])">
+                    <img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/u011418943/rss/list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_RSS&#39;])">
+                    <img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "u011418943";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/u011418943";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "qq_38284915";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod="popu_3"> 
+
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/74779828" target="_blank">
+<font color="red"><strong>CSDN日报20170707——《稀缺：百分之二的选择》</strong></font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/74550215" target="_blank">
+<font color="blue"><strong>征文 | 你会为 AI 转型么？</strong></font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="http://blog.csdn.net/broadview2006/article/details/74431515" target="_blank">
+<font color="red"><strong>每周荐书 | Android、Keras、ES6（评论送书）</strong></font></a>
+
+
+</div>                        </div>
+
+                        
+
+
+
+  
+
+
+
+
+
+
+<script type="text/javascript" src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/category.js.下载"></script>
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+      var isBole = false; 
+      var fasrc="http://my.csdn.net/my/favorite/miniadd?t=MVP%2b%e5%a4%9a%e7%ba%bf%e7%a8%8b%2b%e6%96%ad%e7%94%b5%e7%bb%ad%e4%bc%a0+%e5%ae%9e%e7%8e%b0app%e5%9c%a8%e7%ba%bf%e5%8d%87%e7%ba%a7%e5%ba%93+(%e6%89%8b%e6%8a%8a%e6%89%8b%e6%95%99%e4%bd%a0%e6%89%93%e9%80%a0%e8%87%aa%e5%b7%b1%e7%9a%84lib)&u=http://blog.csdn.net/u011418943/article/details/70562580"
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+    <h1>
+        <span class="link_title"><a href="http://blog.csdn.net/u011418943/article/details/70562580">
+        MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib)        
+           
+        </a>
+        </span>
+
+         
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_l">
+            <span class="link_categories">
+            标签：
+              <a href="http://www.csdn.net/tag/mvp" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">mvp</a><a href="http://www.csdn.net/tag/%e5%a4%9a%e7%ba%bf%e7%a8%8b" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">多线程</a><a href="http://www.csdn.net/tag/%e5%9c%a8%e7%ba%bf%e5%8d%87%e7%ba%a7" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">在线升级</a><a href="http://www.csdn.net/tag/%e6%96%ad%e7%82%b9%e7%bb%ad%e4%bc%a0" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">断点续传</a>
+            </span>
+        </div>
+        <div class="article_r">
+            <span class="link_postdate">2017-04-24 00:34</span>
+            <span class="link_view" title="阅读次数">1609人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="http://blog.csdn.net/u011418943/article/details/70562580#comments" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_pinglun&#39;])">评论</a>(0)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;MVP%2b%e5%a4%9a%e7%ba%bf%e7%a8%8b%2b%e6%96%ad%e7%94%b5%e7%bb%ad%e4%bc%a0+%e5%ae%9e%e7%8e%b0app%e5%9c%a8%e7%ba%bf%e5%8d%87%e7%ba%a7%e5%ba%93+(%e6%89%8b%e6%8a%8a%e6%89%8b%e6%95%99%e4%bd%a0%e6%89%93%e9%80%a0%e8%87%aa%e5%b7%b1%e7%9a%84lib)&#39;,&#39;70562580&#39;);return false;" title="收藏" target="_blank">收藏</a></span>
+             <span class="link_report"> <a href="http://blog.csdn.net/u011418943/article/details/70562580#report" onclick="javascript:report(70562580,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label onclick="GetCategoryArticles(&#39;6849512&#39;,&#39;u011418943&#39;,&#39;top&#39;,&#39;70562580&#39;);">
+                        <span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_fenlei&#39;]);">android-设计模式<em>（4）</em></span>
+                      <img class="arrow-down" src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a href="http://blog.csdn.net/u011418943/article/category/6849512" target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_6849512">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+        <div class="bog_copyright">         
+            <p class="copyright_p">版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+        </div>
+
+  
+
+  
+  
+     
+
+
+<div style="clear:both"></div><div style="border:solid 1px #ccc; background:#eee; float:left; min-width:200px;padding:4px 10px;"><p style="text-align:right;margin:0;"><span style="float:left;">目录<a href="http://blog.csdn.net/u011418943/article/details/70562580#" title="系统根据文章中H1到H6标签自动生成文章目录">(?)</a></span><a href="http://blog.csdn.net/u011418943/article/details/70562580#" onclick="javascript:return openct(this);" title="展开">[+]</a></p><ol style="display:none;margin-left:14px;padding-left:14px;line-height:160%;"><li><a href="http://blog.csdn.net/u011418943/article/details/70562580#t0">需求分析</a></li><ol><li><a href="http://blog.csdn.net/u011418943/article/details/70562580#t1">MVP 设计模式实战理解MVP</a></li></ol><li><a href="http://blog.csdn.net/u011418943/article/details/70562580#t2">怎么实现</a></li><li><a href="http://blog.csdn.net/u011418943/article/details/70562580#t3">使用MVP 模式封装下载库</a></li><ol><li><a href="http://blog.csdn.net/u011418943/article/details/70562580#t4">model</a></li><li><a href="http://blog.csdn.net/u011418943/article/details/70562580#t5">1 多线程下载原理</a></li><li><a href="http://blog.csdn.net/u011418943/article/details/70562580#t6">View </a></li></ol><li><a href="http://blog.csdn.net/u011418943/article/details/70562580#t7">presenter</a></li><ol><li><a href="http://blog.csdn.net/u011418943/article/details/70562580#t8">2 datadata 目录安装失败的问题</a></li></ol></ol></div><div style="clear:both"></div><div id="article_content" class="article_content tracking-ad" data-mod="popu_307" data-dsm="post">
+        <div class="markdown_views"><p>作者： 夏至 欢迎转载，也请保留这份申明，谢谢。</p>
+
+<blockquote>
+  <p><a href="http://blog.csdn.net/u011418943/article/details/70562580" target="_blank">http://blog.csdn.net/u011418943/article/details/70562580</a></p>
+</blockquote>
+
+<h2 id="1需求分析"><a name="t0" target="_blank"></a>1、需求分析</h2>
+
+<p>App 在线升级是比较传统的修复bug的一种方式，一般添加新功能或者说修改一下比较严重的bug的时候，我们都是会升级apk来实现我们的目的；当然，其实一些紧急的bug的其实是用 热修复 的方法，毕竟有时候只是一行代码出了问题，而你却要升级一整个apk，下载安装等等，除了代价有点高，也会影响口碑的。 <br>
+    等等，你都说成这样，还学习这个干吗？你根本不是老司机。。。。</p>
+
+<p>别急，假如你不是修复一行代码或者少数改动，也是添加了很多东西，诸如动画或者说重构等等，那么这个时候，在线升级就显得非常有必要了。 <br>
+    demo地址： <a href="https://github.com/LillteZheng/AppUpdateDemo" target="_blank">https://github.com/LillteZheng/AppUpdateDemo</a></p>
+
+<p>首先先上效果图： <br>
+<img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/20170424001645811" alt="这里写图片描述" title=""></p>
+
+<p>所以，这里，我讲用 MVP 设计模式带你实现 App 在线升级lib 的代码编写。首先，先上思维导图： <br>
+<img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/20170424001806484" alt="这里写图片描述" title=""></p>
+
+<p>可以看到，我们正式下载的时候才用到MVP的设计模式，也是官网说的，我们不要为了MVP而去MVP；</p>
+
+<p>接在我们再看一下，我们lib的目录结构： <br>
+<img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/20170424001930735" alt="这里写图片描述" title=""></p>
+
+<p>可以看到，我们的lib MVP模式还是比较清晰的，而我们的module 也只有一个 activity 就实现我们了我们的在线更新。 <br>
+当然，如果你对 MVP 模式不熟悉，欢迎查看我的上一篇文章：</p>
+
+
+
+<h4 id="mvp-设计模式实战理解mvp"><a name="t1" target="_blank"></a><a href="http://blog.csdn.net/u011418943/article/details/69840880" target="_blank">MVP 设计模式，实战理解MVP</a></h4>
+
+<p>由于我们使用了<a href="http://lib.csdn.net/base/mysql" class="replace_word" title="MySQL知识库" target="_blank" style="color:#df3434; font-weight:bold;">数据库</a>去保存数据，即断点续传功能，我们需要在application中添加：</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs avrasm has-numbering"><span class="hljs-label">android:</span>name=<span class="hljs-string">"com.rachel.updatelib.UpdateLibAppLication"</span></code><ul class="pre-numbering" style="opacity: 0;"><li>1</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li></ul></pre>
+
+<p>或者让你的 application 继承 UpdateLibAppLication:</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApplication</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">UpdateLibAppLication</span></span></code><ul class="pre-numbering" style="opacity: 0;"><li>1</li></ul><div class="save_code tracking-ad" data-mod="popu_249" style="display: none;"><a href="javascript:;" target="_blank"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/save_snippets_01.png"></a></div><ul class="pre-numbering"><li>1</li></ul></pre>
+
+
+
+<h2 id="2怎么实现"><a name="t2" target="_blank"></a>2、怎么实现</h2>
+
+<p>ok，进入正题，首先第一步就是检测版本，androidmanifest.xml ，没有则添加添加:</p>
+
+<p><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/20170424002418975" alt="这里写图片描述" title=""></p>
+
+<p>我们可以使用 packagemanager 来获取我们本地的版本</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering"><span class="hljs-javadoc">/**
+     * 获取本地版本
+     *<span class="hljs-javadoctag"> @param</span> context
+     *<span class="hljs-javadoctag"> @return</span>
+     */</span>
+    <span class="hljs-keyword">public</span> LocalInfo <span class="hljs-title">getLocalInfo</span>(Context context){
+        PackageInfo packageInfo = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">try</span> {
+            packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(),
+                    PackageManager.GET_CONFIGURATIONS);
+            LocalInfo localInfo = <span class="hljs-keyword">new</span> LocalInfo();
+            localInfo.setVersioncode(packageInfo.versionCode);
+            localInfo.setVersionname(packageInfo.versionName);
+            <span class="hljs-keyword">return</span> localInfo;
+        } <span class="hljs-keyword">catch</span> (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        <span class="hljs-keyword">return</span> nul</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li></ul><div class="save_code tracking-ad" data-mod="popu_249" style="display: none;"><a href="javascript:;" target="_blank"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li></ul></pre>
+
+<p>我们在升级的时候，最常用的就是 versioncode 和versionname，所以，LocalInfo 封装了它们两个:</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs cs has-numbering"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> LocalInfo {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> versioncode;
+    <span class="hljs-keyword">private</span> String versionname;
+...</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li></ul></pre>
+
+<p>接着就是检测服务器的json文件了，这里很多人都跟我一样，不会搭服务器啊！！！！不过没关系，我们先看一下南方周末的json文件 <br>
+整理之后格式如下： <br>
+<img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/20170424002525236" alt="这里写图片描述" title=""></p>
+
+<p>可以看到，我们需要的就拿几个参数，所以，我们完成自己写吗，至于apk的url，就随便找一个apk就可以了，我用的是简书的，如果对简书造成困扰，请告诉我，我马上删掉；(心虚。。。)</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs cs has-numbering">    <span class="hljs-keyword">private</span> String filename;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> versioncode;
+    <span class="hljs-keyword">private</span> String versionname;
+    <span class="hljs-keyword">private</span> String versionmsg;
+    <span class="hljs-keyword">private</span> String fileurl;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">long</span> filesize;
+    <span class="hljs-keyword">private</span> File FileDir;
+...</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li></ul></pre>
+
+<p>我们把解析出来的 versioncode 大于本地的，就可以更新，然后把上面的数据放到view去；比如我的：</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering">FileInfo fileInfo = <span class="hljs-keyword">new</span> FileInfo.Builder()
+                .setFileName(<span class="hljs-string">"小白点"</span>)
+                .setVersionCode(<span class="hljs-number">2</span>)
+                .setVersionName(<span class="hljs-string">"1.1"</span>)
+                .setVersionMsg(<span class="hljs-string">"1、添加builder模式\n2、添加任务删除方法"</span>)
+                .setFileUrl(<span class="hljs-string">"http://downloads.jianshu.io/apps/haruki/jianShu-release-2.1.3-JianShu.apk"</span>)
+                .builder();
+        VersionManager.getInstance(<span class="hljs-keyword">this</span>).checkUpdateUseFileInfo(fileInfo, <span class="hljs-keyword">new</span> VersionCallback() {
+            <span class="hljs-annotation">@Override</span>
+            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">success</span>(FileInfo fileInfo, LocalInfo localInfo) {
+                log.d(<span class="hljs-string">"success"</span>);
+                showPopupWindow(MainActivity.<span class="hljs-keyword">this</span>,rootview,fileInfo);
+            }
+            <span class="hljs-annotation">@Override</span>
+            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">lastest</span>() {
+            }
+        });</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li></ul><div class="save_code tracking-ad" data-mod="popu_249" style="display: none;"><a href="javascript:;" target="_blank"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li></ul></pre>
+
+<p>模仿某app的更新界面之后，如下： <br>
+<img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/20170424002831808" alt="这里写图片描述" title=""></p>
+
+<p>但，这并不是我想讲的；我想讲的是，如何用 MVP 的方式去封装我们的lib、</p>
+
+
+
+<h2 id="3使用mvp-模式封装下载库"><a name="t3" target="_blank"></a>3、使用MVP 模式封装下载库；</h2>
+
+
+
+<h3 id="model"><a name="t4" target="_blank"></a><strong>model：</strong></h3>
+
+<p>我们先来看一下model的机构图： <br>
+<img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/20170424003004559" alt="这里写图片描述" title=""></p>
+
+<p>首先，思考一下，我们按了确定键之后，就是开始下载的，在下载的工程中，我们还实现了暂停，继续和删除的功能，所以，接口函数如下：</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs cs has-numbering"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IUpdateModel {
+    <span class="hljs-keyword">void</span> download(FileInfo fileInfo);
+    <span class="hljs-keyword">void</span> onDestroy();
+    <span class="hljs-keyword">void</span> pause();
+    <span class="hljs-keyword">void</span> restart();
+    <span class="hljs-keyword">void</span> delete();
+}</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li></ul></pre>
+
+<p>至于download则是实现下载的方法，而一般下载我们是通过线程去下载，所以我们通过一个服务去实现我们的下载任务：</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering"><span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">download</span>(FileInfo fileInfo) {
+        Intent intent = <span class="hljs-keyword">new</span> Intent(mContext,DownloadService.class);
+        intent.putExtra(<span class="hljs-string">"fileinfo"</span>,fileInfo);
+        mContext.bindService(intent,conn,Context.BIND_AUTO_CREATE);
+        Timer timer = <span class="hljs-keyword">new</span> Timer(); <span class="hljs-comment">//绑定需要时间，隔500ms后再连接</span>
+        timer.schedule(<span class="hljs-keyword">new</span> TimerTask() {
+            <span class="hljs-annotation">@Override</span>
+            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span>() {
+                mBinder.startDownload(mIUpdatePresenter);
+            }
+        },<span class="hljs-number">500</span>);
+    }</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li></ul><div class="save_code tracking-ad" data-mod="popu_249" style="display: none;"><a href="javascript:;" target="_blank"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li></ul></pre>
+
+
+
+<h3 id="31-多线程下载原理"><a name="t5" target="_blank"></a>3.1 多线程下载原理</h3>
+
+<p>文件在下载中，我们常用的是用单线程下载，这样的好处在于好控制，能够监控这个文件的下载进度等等。缺点在于，没有完全利用cpu的利用率，而且如果是大文件，下载的速度较慢。所以，我们可以通过多线程的方式，去下载文件。 <br>
+    实现原理是什么呢？就是把一个文件给切分几块来下载。比如一个11M的文件，我们把它分成5个部分来下载；那么它的计算公司就为</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs perl has-numbering"> blocksize = <span class="hljs-number">11</span><span class="hljs-variable">%5</span> == <span class="hljs-number">0</span>？ <span class="hljs-number">11</span>/<span class="hljs-number">5</span>:<span class="hljs-number">11</span><span class="hljs-variable">%5</span>+<span class="hljs-number">1</span>；</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li></ul></pre>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs mel has-numbering"><span class="hljs-comment">//每一个线程要下载的大小</span>
+ blocksize = filesize<span class="hljs-variable">%threadcount</span> == <span class="hljs-number">0</span>? filesize/threadcount : filesize/threadcount+<span class="hljs-number">1</span></code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li></ul></pre>
+
+<p><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/20170424003119483" alt="这里写图片描述" title=""></p>
+
+<p>需要注意的一下是，我们<strong>最后一个一般是除不尽的，所以，我们用文件大小来代替</strong>，我们我们多线程的代码为：</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs cs has-numbering"> <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">startDownload</span>(FileInfo fileInfo, IUpdatePresenter callback) {
+        mFileInfo = fileInfo;
+        mIUpdatePresenter = callback;
+        <span class="hljs-comment">// 通过url 来判断数据库是否已经存在线程信息了</span>
+        List&lt;ThreadInfo&gt; threadInfos = DataSupport.<span class="hljs-keyword">where</span>(<span class="hljs-string">"url = ?"</span>,fileInfo.getFileurl()).find(ThreadInfo.class);
+        <span class="hljs-keyword">if</span> (threadInfos.size() == <span class="hljs-number">0</span>){ <span class="hljs-comment">//此时数据库中并没有存在任何信息</span>
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; THREADCOUNT; i++) {
+                <span class="hljs-keyword">int</span> blocksize = (<span class="hljs-keyword">int</span>)fileInfo.getFilesize()/THREADCOUNT;<span class="hljs-comment">//每个线程分配的大小</span>
+                ThreadInfo threadInfo = <span class="hljs-keyword">new</span> ThreadInfo(i,fileInfo.getFileurl(),<span class="hljs-number">0</span>,blocksize*i,blocksize*(i+<span class="hljs-number">1</span>)-<span class="hljs-number">1</span>);
+                <span class="hljs-keyword">if</span> (i == THREADCOUNT -<span class="hljs-number">1</span>){ <span class="hljs-comment">//最后一个除不尽，则用文件的总大小填进去</span>
+                    threadInfo.setEndpos((<span class="hljs-keyword">int</span>)fileInfo.getFilesize());
+                }
+                threadInfo.save();<span class="hljs-comment">//保存到数据库中</span>
+                threadInfos.add(threadInfo);
+            }
+        }
+        mDownloadTaskThreadList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        <span class="hljs-keyword">for</span> (ThreadInfo threadInfo : threadInfos){
+            DownloadTaskThread downloadTaskThread = <span class="hljs-keyword">new</span> DownloadTaskThread(threadInfo);
+            mExecutorService.execute(downloadTaskThread);
+            log.d(<span class="hljs-string">"thread: "</span>+(threadInfo.getStartpos()+threadInfo.getThreadfinished())+<span class="hljs-string">" "</span>+threadInfo.getEndpos());
+            mDownloadTaskThreadList.add(downloadTaskThread); <span class="hljs-comment">//管理起来，方便判断下载完成或者暂停等等</span>
+        }
+    }</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li></ul><div class="save_code tracking-ad" data-mod="popu_249" style="display: none;"><a href="javascript:;" target="_blank"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li></ul></pre>
+
+<p>如果对多线程不熟悉，可以看以前的文章，并练练手：<a href="http://blog.csdn.net/u011418943/article/details/56675652" target="_blank">http://blog.csdn.net/u011418943/article/details/56675652</a></p>
+
+<p>然后，我们用到了线程池去管理我们的线程，这样可以减少线程启动和销毁的时间。 <br>
+至于数据库的保存，我还是使用郭霖大神的 litepal，毕竟确实很方便，当然也可以自己写，只是麻烦了点。</p>
+
+
+
+<h3 id="view"><a name="t6" target="_blank"></a><strong>View ：</strong></h3>
+
+<p>既然逻辑部分我们已经搞定了，那么接下里就是 View 的实现了，想一下，我们要更新的东西有什么？一个下载任务进度的显示，首先是进度，然后是下载的大小，就足够了，考虑到时app升级，这里我们没提示下载速度了，其实也简单，就是进度/时间就可以了，注意这个时间是1s，别搞错了，当然，还有成功和失败的接口。所以，我们view 的接口就很清晰了：</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs cs has-numbering"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IDownloadView {
+    <span class="hljs-comment">//提供给view更新UI的接口</span>
+    <span class="hljs-keyword">void</span> setDownloadProgress(<span class="hljs-keyword">int</span> progress); <span class="hljs-comment">//更新进度</span>
+    <span class="hljs-keyword">void</span> setDownloadSize(String downloadSize); <span class="hljs-comment">//更新下载的大小</span>
+    <span class="hljs-keyword">void</span> setFileSize(String fileSize); <span class="hljs-comment">//文件总大小</span>
+    <span class="hljs-keyword">void</span> downloadSuccess(); <span class="hljs-comment">//文件下载成功</span>
+    <span class="hljs-keyword">void</span> downloadFail(String errorMsg); <span class="hljs-comment">//文件下载失败</span>
+}</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li></ul><div class="save_code tracking-ad" data-mod="popu_249" style="display: none;"><a href="javascript:;" target="_blank"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li></ul></pre>
+
+<p>让你的view继承它，然后更新方法即可：</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering"><span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setDownloadSize</span>(String downloadSize) {
+        mDownloadSize.setText(downloadSize);
+    }
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setFileSize</span>(String fileSize) {
+        mFileSize.setText(fileSize);
+    }
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">downloadSuccess</span>() {
+        <span class="hljs-keyword">if</span> (mPopupWindow != <span class="hljs-keyword">null</span>){
+            mPopupWindow.dismiss();
+        }
+    }
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">downloadFail</span>(String errorMsg) {
+        <span class="hljs-keyword">if</span> (mPopupWindow != <span class="hljs-keyword">null</span>){
+          <span class="hljs-comment">//  mPopupWindow.dismiss();</span>
+            Toast.makeText(<span class="hljs-keyword">this</span>, <span class="hljs-string">"下载失败"</span>, Toast.LENGTH_SHORT).show();
+        }
+    }</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li></ul></pre>
+
+
+
+<h2 id="presenter"><a name="t7" target="_blank"></a>presenter：</h2>
+
+<p>这个是我们 view 与model 的纽带，所以，这里我们还是要考虑好的，首先，view 的更新上，progress，下载大小和文件大小，我们可以用实体类封装起来，然后就是开始下载，暂停，删除等等，view 和model有的接口，它都得有，所以，我们的接口如下：</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs cs has-numbering"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IUpdatePresenter {
+    <span class="hljs-keyword">void</span> getDownloadInfo(DownloadInfo downloadInfo); <span class="hljs-comment">//下载进度更新</span>
+    <span class="hljs-keyword">void</span> errorToast(String errorMsg); <span class="hljs-comment">//失败</span>
+    <span class="hljs-keyword">void</span> success(String path); <span class="hljs-comment">//成功</span>
+    <span class="hljs-keyword">void</span> onDestroy();
+    <span class="hljs-keyword">void</span> pause();
+    <span class="hljs-keyword">void</span> restart();
+    <span class="hljs-keyword">void</span> delete();
+}</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li></ul></pre>
+
+<p>实现方法如下：</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UpdatePresenter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IUpdatePresenter</span>{</span>
+    <span class="hljs-keyword">private</span> Context mContext = UpdateLibAppLication.getContext();
+    <span class="hljs-keyword">private</span> IUpdateModel mUpdateModel;
+    <span class="hljs-keyword">private</span> IDownloadView mIDownloadView;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String mApkPath = <span class="hljs-keyword">null</span>;
+    <span class="hljs-keyword">private</span> Handler mHandler = <span class="hljs-keyword">new</span> Handler(Looper.getMainLooper());
+    <span class="hljs-keyword">private</span> <span class="hljs-title">UpdatePresenter</span>(IDownloadView iDownloadView){
+        mIDownloadView = iDownloadView;
+        mUpdateModel = <span class="hljs-keyword">new</span> UpdateModel(<span class="hljs-keyword">this</span>);
+    };
+    <span class="hljs-comment">//单例模式</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">static</span> UpdatePresenter sUpdatePresenter;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> UpdatePresenter <span class="hljs-title">getInstance</span>(IDownloadView iDownloadView){
+        <span class="hljs-keyword">if</span> (sUpdatePresenter == <span class="hljs-keyword">null</span>){
+            <span class="hljs-keyword">synchronized</span> (UpdatePresenter.class){
+                <span class="hljs-keyword">if</span> (sUpdatePresenter == <span class="hljs-keyword">null</span>){
+                    sUpdatePresenter = <span class="hljs-keyword">new</span> UpdatePresenter(iDownloadView);
+                }
+            }
+        }
+        <span class="hljs-keyword">return</span> sUpdatePresenter;
+    }
+    <span class="hljs-javadoc">/**
+     * 开始下载
+     *<span class="hljs-javadoctag"> @param</span> fileInfo
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">startDownload</span>(FileInfo fileInfo){
+        mUpdateModel.download(fileInfo);
+    }
+    <span class="hljs-javadoc">/**
+     * 更新UI
+     *<span class="hljs-javadoctag"> @param</span> downloadInfo
+     */</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getDownloadInfo</span>(<span class="hljs-keyword">final</span> DownloadInfo downloadInfo) {
+        <span class="hljs-comment">//log.d("downloadInfo: "+downloadInfo);</span>
+        mHandler.post(<span class="hljs-keyword">new</span> Runnable() { <span class="hljs-comment">//由于数据是在线程返回，这里更新到UI，需要用主线程更新</span>
+            <span class="hljs-annotation">@Override</span>
+            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span>() {
+                log.d(<span class="hljs-string">"presenter: "</span>+downloadInfo.getDwonloadSize());
+                mIDownloadView.setDownloadProgress(downloadInfo.getProgress());
+                mIDownloadView.setDownloadSize(downloadInfo.getDwonloadSize());
+                mIDownloadView.setFileSize(downloadInfo.getFileSize());
+            }
+        });
+    }
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">errorToast</span>(<span class="hljs-keyword">final</span> String errorMsg) {
+        log.d(<span class="hljs-string">"errorMsg: "</span>+errorMsg);
+        mHandler.post(<span class="hljs-keyword">new</span> Runnable() {
+            <span class="hljs-annotation">@Override</span>
+            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span>() {
+                mIDownloadView.downloadFail(errorMsg);
+            }
+        });
+    }
+    <span class="hljs-javadoc">/**
+     * 下载完成自动安装
+     *<span class="hljs-javadoctag"> @param</span> path
+     */</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">success</span>(String path) {
+        mHandler.post(<span class="hljs-keyword">new</span> Runnable() {
+            <span class="hljs-annotation">@Override</span>
+            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span>() {
+                mIDownloadView.downloadSuccess();
+            }
+        });
+        mApkPath = path;
+        File file = <span class="hljs-keyword">new</span> File(path);
+        <span class="hljs-keyword">if</span> (!file.exists()){
+            <span class="hljs-keyword">return</span> ;
+        }
+        mUpdateModel.onDestroy(); <span class="hljs-comment">//当下载完成就取消绑定service，防止出错</span>
+      <span class="hljs-comment">//  log.d("path: "+path);</span>
+        chmod(path); <span class="hljs-comment">//需要修改权限，不然packageinstallactivity无法解析其他包下的apk</span>
+        Intent intent = <span class="hljs-keyword">new</span> Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, <span class="hljs-keyword">true</span>); <span class="hljs-comment">//表明不是未知来源</span>
+        intent.setDataAndType(Uri.fromFile(file),<span class="hljs-string">"application/vnd.android.package-archive"</span>);
+        UpdateLibAppLication.getContext().startActivity(intent);
+    }
+    <span class="hljs-javadoc">/**
+     * 添加权限
+     *<span class="hljs-javadoctag"> @param</span> path
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">chmod</span>(String path){
+        <span class="hljs-keyword">if</span> (path.contains(<span class="hljs-string">"/data"</span>)){  <span class="hljs-comment">//data下才需要改权限</span>
+            String[] paths = path.split(<span class="hljs-string">"/"</span>);
+            String splitpath = <span class="hljs-string">"/"</span>;
+            <span class="hljs-keyword">for</span> (String p : paths){
+                <span class="hljs-keyword">if</span> (!p.equals(<span class="hljs-string">""</span>)){
+                    splitpath += p +<span class="hljs-string">"/"</span>;
+                    String commond = <span class="hljs-string">"chmod 777 "</span>+splitpath;
+                    <span class="hljs-keyword">try</span> {
+                        Runtime.getRuntime().exec(commond);
+                    } <span class="hljs-keyword">catch</span> (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            String commond = <span class="hljs-string">"chmod 777 "</span>+path;
+            <span class="hljs-keyword">try</span> {
+                Runtime.getRuntime().exec(commond);
+            } <span class="hljs-keyword">catch</span> (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDestroy</span>(){
+        <span class="hljs-keyword">if</span> (mUpdateModel != <span class="hljs-keyword">null</span>){
+            mUpdateModel.onDestroy();
+        }
+    }
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">pause</span>() {
+        mUpdateModel.pause();
+    }
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">restart</span>() {
+        mUpdateModel.restart();
+    }
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">delete</span>() {
+        mUpdateModel.delete();
+    }
+}</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li><li>32</li><li>33</li><li>34</li><li>35</li><li>36</li><li>37</li><li>38</li><li>39</li><li>40</li><li>41</li><li>42</li><li>43</li><li>44</li><li>45</li><li>46</li><li>47</li><li>48</li><li>49</li><li>50</li><li>51</li><li>52</li><li>53</li><li>54</li><li>55</li><li>56</li><li>57</li><li>58</li><li>59</li><li>60</li><li>61</li><li>62</li><li>63</li><li>64</li><li>65</li><li>66</li><li>67</li><li>68</li><li>69</li><li>70</li><li>71</li><li>72</li><li>73</li><li>74</li><li>75</li><li>76</li><li>77</li><li>78</li><li>79</li><li>80</li><li>81</li><li>82</li><li>83</li><li>84</li><li>85</li><li>86</li><li>87</li><li>88</li><li>89</li><li>90</li><li>91</li><li>92</li><li>93</li><li>94</li><li>95</li><li>96</li><li>97</li><li>98</li><li>99</li><li>100</li><li>101</li><li>102</li><li>103</li><li>104</li><li>105</li><li>106</li><li>107</li><li>108</li><li>109</li><li>110</li><li>111</li><li>112</li><li>113</li><li>114</li><li>115</li><li>116</li><li>117</li><li>118</li><li>119</li><li>120</li><li>121</li><li>122</li><li>123</li><li>124</li><li>125</li><li>126</li><li>127</li><li>128</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li><li>32</li><li>33</li><li>34</li><li>35</li><li>36</li><li>37</li><li>38</li><li>39</li><li>40</li><li>41</li><li>42</li><li>43</li><li>44</li><li>45</li><li>46</li><li>47</li><li>48</li><li>49</li><li>50</li><li>51</li><li>52</li><li>53</li><li>54</li><li>55</li><li>56</li><li>57</li><li>58</li><li>59</li><li>60</li><li>61</li><li>62</li><li>63</li><li>64</li><li>65</li><li>66</li><li>67</li><li>68</li><li>69</li><li>70</li><li>71</li><li>72</li><li>73</li><li>74</li><li>75</li><li>76</li><li>77</li><li>78</li><li>79</li><li>80</li><li>81</li><li>82</li><li>83</li><li>84</li><li>85</li><li>86</li><li>87</li><li>88</li><li>89</li><li>90</li><li>91</li><li>92</li><li>93</li><li>94</li><li>95</li><li>96</li><li>97</li><li>98</li><li>99</li><li>100</li><li>101</li><li>102</li><li>103</li><li>104</li><li>105</li><li>106</li><li>107</li><li>108</li><li>109</li><li>110</li><li>111</li><li>112</li><li>113</li><li>114</li><li>115</li><li>116</li><li>117</li><li>118</li><li>119</li><li>120</li><li>121</li><li>122</li><li>123</li><li>124</li><li>125</li><li>126</li><li>127</li><li>128</li></ul></pre>
+
+
+
+<h3 id="32-datadata-目录安装失败的问题"><a name="t8" target="_blank"></a>3.2 /data/data 目录安装失败的问题</h3>
+
+<p>上面中，当软件下载完成，我们就直接安装，如果你手机又内存卡还好，如果没有，我们是安装在 /data/data 目录下，但是这样一来，packageinstallactivity 是没有权限去解析其他包名下的软件的；如果没有权限，则用：</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs avrasm has-numbering">Intent intent = new Intent()<span class="hljs-comment">;</span>
+        intent<span class="hljs-preprocessor">.setAction</span>(Intent<span class="hljs-preprocessor">.ACTION</span>_VIEW)<span class="hljs-comment">;</span>
+        intent<span class="hljs-preprocessor">.addFlags</span>(Intent<span class="hljs-preprocessor">.FLAG</span>_ACTIVITY_NEW_TASK)<span class="hljs-comment">;</span>
+        intent<span class="hljs-preprocessor">.putExtra</span>(Intent<span class="hljs-preprocessor">.EXTRA</span>_NOT_UNKNOWN_SOURCE, true)<span class="hljs-comment">; //表明不是未知来源</span>
+        intent<span class="hljs-preprocessor">.setDataAndType</span>(Uri<span class="hljs-preprocessor">.fromFile</span>(file),<span class="hljs-string">"application/vnd.android.package-archive"</span>)<span class="hljs-comment">;</span>
+        UpdateLibAppLication<span class="hljs-preprocessor">.getContext</span>()<span class="hljs-preprocessor">.startActivity</span>(intent)<span class="hljs-comment">;</span></code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li></ul></pre>
+
+<p><strong>会提示解析失败，安装不了的。</strong> <br>
+   所以，我们需要把所有路径下的权限都改一下，我们可以使用 runntime 方法：</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering"> <span class="hljs-javadoc">/**
+     * 添加权限
+     *<span class="hljs-javadoctag"> @param</span> path
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">chmod</span>(String path){
+        <span class="hljs-keyword">if</span> (path.contains(<span class="hljs-string">"/data"</span>)){  <span class="hljs-comment">//data下才需要改权限</span>
+            String[] paths = path.split(<span class="hljs-string">"/"</span>);
+            String splitpath = <span class="hljs-string">"/"</span>;
+            <span class="hljs-keyword">for</span> (String p : paths){  <span class="hljs-comment">//改变所有路径下的权限</span>
+                <span class="hljs-keyword">if</span> (!p.equals(<span class="hljs-string">""</span>)){
+                    splitpath += p +<span class="hljs-string">"/"</span>;
+                    String commond = <span class="hljs-string">"chmod 777 "</span>+splitpath;
+                    <span class="hljs-keyword">try</span> {
+                        Runtime.getRuntime().exec(commond);
+                    } <span class="hljs-keyword">catch</span> (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            String commond = <span class="hljs-string">"chmod 777 "</span>+path;
+            <span class="hljs-keyword">try</span> {
+                Runtime.getRuntime().exec(commond); <span class="hljs-comment">//最后改apk的权限</span>
+            } <span class="hljs-keyword">catch</span> (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li></ul></pre>
+
+<p>这样，我们比较核心的内容就讲完了，我们可以随便定制我们的UI，直接使用我们自己的lib，是不是感觉不错呢？当然，我这里封装的，肯定不是很全面的，很多东西没<a href="http://lib.csdn.net/base/softwaretest" class="replace_word" title="软件测试知识库" target="_blank" style="color:#df3434; font-weight:bold;">测试</a>过了，主要是帮助大家，用MVP+多线程+数据库断点续传 的方式去编写我们自己的库；希望能帮到大家。</p></div>
+        <script type="text/javascript">
+            $(function () {
+                $('pre.prettyprint code').each(function () {
+                    var lines = $(this).text().split('\n').length;
+                    var $numbering = $('<ul></ul>').addClass('pre-numbering').hide();
+                    $(this).addClass('has-numbering').parent().append($numbering);
+                    for (i = 1; i <= lines; i++) {
+                        $numbering.append($('<li></li>').text(i));
+                    };
+                    $numbering.fadeIn(1700);
+                });
+            });
+        </script>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad bdshare-button-style0-16" style="float: right;" data-mod="popu_172" data-bd-bind="1499648120422">
+<a href="http://blog.csdn.net/u011418943/article/details/70562580#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important" target="_blank"></a>
+<a href="http://blog.csdn.net/u011418943/article/details/70562580#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" style="background-position:0 -52px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/u011418943/article/details/70562580#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" style="background-position:0 -104px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/u011418943/article/details/70562580#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博" style="background-position:0 -260px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/u011418943/article/details/70562580#" class="bds_renren" data-cmd="renren" title="分享到人人网" style="background-position:0 -208px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/u011418943/article/details/70562580#" class="bds_weixin" data-cmd="weixin" title="分享到微信" style="background-position:0 -1612px !important" target="_blank"></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   
+
+<!--172.16.140.14-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/bds_s_v2.js.下载"></script>
+
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+
+
+ 
+
+
+        <div id="digg" articleid="70562580">
+            <dl id="btnDigg" class="digg digg_enable" onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>0</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_enable" onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" target="_blank">&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" target="_blank">&nbsp;</a></div>
+    <script type="text/javascript">
+                function btndigga() {
+                    $(".tracking-ad[data-mod='popu_222'] a").click();
+                }
+                function btnburya() {
+                    $(".tracking-ad[data-mod='popu_223'] a").click();
+                }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;]);location.href=&#39;http://blog.csdn.net/u011418943/article/details/70157776&#39;;">上一篇</span><a href="http://blog.csdn.net/u011418943/article/details/70157776" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;])">我为什么推荐你使用 Android Studio 的 Git 工具去管理你的代码</a></li>
+                <li class="next_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;]);location.href=&#39;http://blog.csdn.net/u011418943/article/details/71190840&#39;;">下一篇</span><a href="http://blog.csdn.net/u011418943/article/details/71190840" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;])">5分钟带你搞定开机引导界面</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+            <div class="similar_article">
+                    <h4></h4>
+                    <div class="similar_c" style="margin:20px 0px 0px 0px">
+                        <div class="similar_c_t">
+                          &nbsp;&nbsp;相关文章推荐
+                        </div>
+                   
+                        <div class="similar_wrap tracking-ad" data-mod="popu_36">                       
+                            <ul class="similar_list fl">    
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/cniao5/article/details/74179421" title="MVP 在项目中的最佳实战(封装篇)" strategy="BlogCommendFromCsdn" target="_blank">MVP 在项目中的最佳实战(封装篇)</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/qq_24531461/article/details/73198125" title="MVP+多线程+断点续传 实现app在线升级库 (手把手教你打造自己的lib)" strategy="BlogCommendFromCsdn" target="_blank">MVP+多线程+断点续传 实现app在线升级库 (手把手教你打造自己的lib)</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://nvercongming.iteye.com/blog/1312780" title="vc++ 实现多线程断点续传" strategy="BlogCommendFromCsdn" target="_blank">vc++ 实现多线程断点续传</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://ye-good-job.iteye.com/blog/1667890" title="Android下使用Http协议实现多线程断点续传下载 " strategy="BlogCommendFromCsdn" target="_blank">Android下使用Http协议实现多线程断点续传下载 </a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/qq_16660859/article/details/53994240" title="Android学习博客和文章存档" strategy="BlogCommendFromCsdn" target="_blank">Android学习博客和文章存档</a>
+                                   </li>
+                            </ul>
+                              <ul class="similar_list fr">      
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://yidongkaifa.iteye.com/blog/1789647" title="c++实现文件传输之三：断点续传与多线程传输转" strategy="BlogCommendFromCsdn" target="_blank">c++实现文件传输之三：断点续传与多线程传输转</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/xiayefanxing/article/details/8147592" title="网络下载编程的单文件多线程下载和断电续传" strategy="BlogCommendFromCsdn" target="_blank">网络下载编程的单文件多线程下载和断电续传</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://weiyinchao88.iteye.com/blog/1412824" title="多线程断点续传的实现" strategy="BlogCommendFromCsdn" target="_blank">多线程断点续传的实现</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/yaokang522/article/details/7210709" title="利用iphone的多线程实现“售票系统”(手把手教你iphone开发 - 基础篇)" strategy="BlogCommendFromCsdn" target="_blank">利用iphone的多线程实现“售票系统”(手把手教你iphone开发 - 基础篇)</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://daimajishu.iteye.com/blog/1077712" title="点对点多线程断点续传的实现" strategy="BlogCommendFromCsdn" target="_blank">点对点多线程断点续传的实现</a>
+                                   </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>   
+      
+</div>
+
+     <div>
+           
+
+       
+                           
+            <!-- 广告位：PC端-博客内容页-banner1-960*90 --> 
+            <script> 
+                (function() { 
+                    var s = "_" + Math.random().toString(36).slice(2); 
+                    document.write('<div id="' + s + '"></div>'); 
+                    (window.slotbydup=window.slotbydup || []).push({ 
+                        id: '4228013', 
+                        container: s, 
+                        size: '0,0', 
+                        display: 'inlay-fix' 
+                    }); 
+                })(); 
+            </script><div id="_0f1nteqyhbwa"></div><script charset="utf-8" src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/ictm"></script>
+    </div>
+
+<div id="suggest">
+
+</div>
+         <script language="javascript" type="text/javascript">     
+             $(function(){
+                 $.get("/u011418943/svc/GetSuggestContent/70562580",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+        <dl class="blog-ass-articl tracking-ad" id="res-relatived" data-mod="popu_84"> 
+             <dt><span>猜你在找</span></dt>    
+           
+    
+           
+
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/46" title="机器学习之概率与统计推断" strategy="undefined" target="_blank">机器学习之概率与统计推断</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/49" title="机器学习之数学基础" strategy="undefined" target="_blank">机器学习之数学基础</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/48" title="机器学习之凸优化" strategy="undefined" target="_blank">机器学习之凸优化</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/47" title="机器学习之矩阵" strategy="undefined" target="_blank">机器学习之矩阵</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/detail/421" title="响应式布局全新探索" strategy="undefined" target="_blank">响应式布局全新探索</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/detail/426" title="探究Linux的总线、设备、驱动模型" strategy="undefined" target="_blank">探究Linux的总线、设备、驱动模型</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/detail/422" title="深度学习基础与TensorFlow实践" strategy="undefined" target="_blank">深度学习基础与TensorFlow实践</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/45" title="深度学习之神经网络原理与实战技巧" strategy="undefined" target="_blank">深度学习之神经网络原理与实战技巧</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/43" title="前端开发在线峰会" strategy="undefined" target="_blank">前端开发在线峰会</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/44" title="TensorFlow实战进阶：手把手教你做图像识别应用" strategy="undefined" target="_blank">TensorFlow实战进阶：手把手教你做图像识别应用</a>
+                        </dd>
+        </dl>
+
+
+
+
+            
+                                    
+            
+                                    
+
+        <!-- 广告位开始 -->
+        <!-- 广告位结束 -->
+
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list"><br>&nbsp;&nbsp;暂无评论<br><br><div class="clear"></div></div>
+    <div id="comment_bar">
+    </div>
+    <div id="comment_form"><a name="commentbox"></a><a name="reply"></a><a name="quote"></a><form action="http://blog.csdn.net/u011418943/comment/submit?id=70562580" method="post" onsubmit="return subform(this);"><div class="commentform"><div class="panel_head">发表评论</div><ul><li class="left">用 户 名：</li><li class="right">qq_38284915</li></ul><ul><li class="left">评论内容：</li><li class="right" style="position:relative;"><div id="ubbtools"><a href="http://blog.csdn.net/u011418943/article/details/70562580#insertcode" code="code"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/code.gif" border="0" alt="插入代码" title="插入代码"></a></div><div id="lang_list" style="position: absolute; top: 28px; left: 0px; display: none;"><a class="long_name" href="http://blog.csdn.net/u011418943/article/details/70562580#html">HTML/XML</a><a class="long_name" href="http://blog.csdn.net/u011418943/article/details/70562580#objc">objective-c</a><a class="zhong_name" href="http://blog.csdn.net/u011418943/article/details/70562580#delphi">Delphi</a><a class="zhong_name" href="http://blog.csdn.net/u011418943/article/details/70562580#ruby">Ruby</a><a href="http://blog.csdn.net/u011418943/article/details/70562580#php">PHP</a><a class="duan_name" href="http://blog.csdn.net/u011418943/article/details/70562580#csharp">C#</a><a style=" border-right: none;" class="duan_name" href="http://blog.csdn.net/u011418943/article/details/70562580#cpp">C++</a><a style=" border-bottom:none;" class="long_name" href="http://blog.csdn.net/u011418943/article/details/70562580#javascript">JavaScript</a><a style=" border-bottom:none;" class="long_name" href="http://blog.csdn.net/u011418943/article/details/70562580#vb">Visual Basic</a><a style=" border-bottom:none;" class="zhong_name" href="http://blog.csdn.net/u011418943/article/details/70562580#python">Python</a><a style=" border-bottom:none;" class="zhong_name" href="http://blog.csdn.net/u011418943/article/details/70562580#java">Java</a><a style="border-bottom:none;" class="duan_name" href="http://blog.csdn.net/u011418943/article/details/70562580#css">CSS</a><a style="border-bottom:none;" class="duan_name" href="http://blog.csdn.net/u011418943/article/details/70562580#sql">SQL</a><a style="border:none;" class="duan_name" href="http://blog.csdn.net/u011418943/article/details/70562580#plain">其它</a></div><textarea class="comment_content" name="comment_content" id="comment_content" style="width: 400px; height: 200px;"></textarea></li></ul><ul><input type="hidden" id="comment_replyId" name="comment_replyId"><input type="hidden" id="comment_userId" name="comment_userId" value="521203"><input type="hidden" id="commentId" name="commentId" value=""><input type="submit" class="comment_btn" value="提交">&nbsp;&nbsp;<span id="tip_comment" style="color: Red; display: none;"></span></ul></div></form></div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '70562580';
+    var commentscount = 0;
+    var islock = false
+</script>
+
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top" style="bottom:60px;">
+
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/blog-icon-reply.png" alt="快速回复">
+        </a>    
+    <a id="d-top-a" class="btn btn-top backtop" style="display: none;" title="返回顶部" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_huidaodingbu&#39;])">         
+         <img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){        
+        
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+    var articletitle='MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib)';
+
+</script>
+
+
+
+
+
+
+
+
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+               
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/u011418943" target="_blank">
+    <img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/1_u011418943.jpg" title="访问我的空间" style="max-width:90%">
+    </a>
+    <br>
+    <span><a href="http://my.csdn.net/u011418943" class="user_name" target="_blank">夏至的稻穗</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter" title="[发私信]" onclick="window.open(&#39;http://msg.csdn.net/letters/model?receiver=u011418943&#39;,&#39;_blank&#39;,&#39;height=350,width=700&#39;);_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_sixin&#39;])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+                                            <a target="_blank">
+                                                    <img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/zhuanlandaren.png" onmouseover="m_over_m(this,2)" onmouseout="m_out_m()" alt="1">
+                                            </a>
+                                            <a target="_blank">
+                                                    <img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/chizhiyiheng.png" onmouseover="m_over_m(this,4)" onmouseout="m_out_m()" alt="2">
+                                            </a>
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>19967次</span></li>
+    <li>积分：<span>519</span> </li>    
+    <li>等级： <span style="position:relative;display:inline-block;z-index:1">
+            <img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/blog3.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：519 </div>
+        </span>  </li>
+    <li>排名：<span>千里之外</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>40篇</span></li>
+    <li>转载：<span>0篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>20条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search csdn-tracking-statistics" target="_blank" data-mod="popu_306">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+   
+    $(function () {
+        $("#btnSubmit").unbind("click");
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {           
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            if ($("#inputSearch").val() == "") {               
+                alert("请录入搜索关键词！");                         
+                return false;
+            }
+            //var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";           
+            var url = "https://www.baidu.com/s?wd=" + encodeURIComponent($("#inputSearch").val()) + "%20site%3Ablog.csdn.net"
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+    <ul class="panel_head"><span>博客专栏</span></ul>
+    <ul class="panel_body" id="sp_column">
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/16123.html" target="_blank"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/20170625112133922" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/16123.html" target="_blank">Android常用设计模式</a>
+    <p>文章：5篇</p>
+    <span>阅读：3214</span>
+    </td>
+    </tr></tbody></table>
+    </ul>
+</div><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="http://blog.csdn.net/u011418943/article/category/6101536" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android</a><span>(11)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/u011418943/article/category/6150667" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">无语之举</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/u011418943/article/category/6202259" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android-进阶</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/u011418943/article/category/6341506" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android-动画</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/u011418943/article/category/6498893" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android-图片</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/u011418943/article/category/6602952" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android-系统</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/u011418943/article/category/6732758" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android-杂记</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/u011418943/article/category/6743249" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android-网络</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/u011418943/article/category/6763368" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android-技巧</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/u011418943/article/category/6805917" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android-tv</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/u011418943/article/category/6849512" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android-设计模式</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/u011418943/article/category/6849588" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Androi数据存储</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/u011418943/article/category/6859502" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android-studio</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/u011418943/article/category/6901296" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android-实例</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/u011418943/article/category/6984556" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android-封装</a><span>(2)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list"><li><a href="http://blog.csdn.net/u011418943/article/month/2017/06">2017年06月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/u011418943/article/month/2017/05">2017年05月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/u011418943/article/month/2017/04">2017年04月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/u011418943/article/month/2017/03">2017年03月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/u011418943/article/month/2017/02">2017年02月</a><span>(3)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/u011418943/article/month/2016/12">2016年12月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/u011418943/article/month/2016/11">2016年11月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/u011418943/article/month/2016/08">2016年08月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/u011418943/article/month/2016/07">2016年07月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/u011418943/article/month/2016/04">2016年04月</a><span>(11)</span></li><li><a href="http://blog.csdn.net/u011418943/article/month/2016/03">2016年03月</a><span>(3)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+</ul>
+</div>
+<div id="hotarticls" class="panel">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/u011418943/article/details/51871482" title="TextSwticher 与 TextView 实现上下滚动和跑马灯效果">TextSwticher 与 TextView 实现上下滚动和跑马灯效果</a><span>(3499)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/u011418943/article/details/51247828" title="进阶之 -- 屏幕自适应">进阶之 -- 屏幕自适应</a><span>(3100)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/u011418943/article/details/70562580" title="MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib)">MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib)</a><span>(1607)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/u011418943/article/details/69840880" title="MVP 设计模式理解，实战理解MVP">MVP 设计模式理解，实战理解MVP</a><span>(982)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/u011418943/article/details/52083783" title="动画基础（一） 四种基本动画(xml和java编写)">动画基础（一） 四种基本动画(xml和java编写)</a><span>(867)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/u011418943/article/details/51059413" title="Android 学习笔记（7）——ScrollView（竖直滚动条）/HorizontalScrollView(水平滚动条)">Android 学习笔记（7）——ScrollView（竖直滚动条）/HorizontalScrollView(水平滚动条)</a><span>(680)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/u011418943/article/details/51029976" title="Android 学习笔记（10）—— Intent 基本运用">Android 学习笔记（10）—— Intent 基本运用</a><span>(552)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/u011418943/article/details/51889962" title="TextSwitcher 跑马灯算法完善">TextSwitcher 跑马灯算法完善</a><span>(506)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/u011418943/article/details/51059366" title="Android 学习笔记（6）—— SeekBar（进度条）/RatingBar(星级评分条)">Android 学习笔记（6）—— SeekBar（进度条）/RatingBar(星级评分条)</a><span>(471)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/u011418943/article/details/60140099" title="模仿常用框架Builder初始化数据，如何优雅地装逼">模仿常用框架Builder初始化数据，如何优雅地装逼</a><span>(454)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/u011418943/article/details/51247828" title="进阶之 -- 屏幕自适应">进阶之 -- 屏幕自适应</a><span>(6)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/u011418943/article/details/51871482" title="TextSwticher 与 TextView 实现上下滚动和跑马灯效果">TextSwticher 与 TextView 实现上下滚动和跑马灯效果</a><span>(5)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/u011418943/article/details/53013130" title="使用 AsyncTask 下载图片，并用LurCache 实现图片缓存（超详细）">使用 AsyncTask 下载图片，并用LurCache 实现图片缓存（超详细）</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/u011418943/article/details/52083783" title="动画基础（一） 四种基本动画(xml和java编写)">动画基础（一） 四种基本动画(xml和java编写)</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/u011418943/article/details/69840880" title="MVP 设计模式理解，实战理解MVP">MVP 设计模式理解，实战理解MVP</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/u011418943/article/details/64905565" title="Android tv 获取第三方icon的颜色，并填充该背景">Android tv 获取第三方icon的颜色，并填充该背景</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/u011418943/article/details/51889962" title="TextSwitcher 跑马灯算法完善">TextSwitcher 跑马灯算法完善</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/u011418943/article/details/64907449" title="TV 游标动画浅析">TV 游标动画浅析</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/u011418943/article/details/51059287" title="Android 学习笔记（5）—— ProgressBar">Android 学习笔记（5）—— ProgressBar</a><span>(0)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/u011418943/article/details/73731023" title="MVP 在项目中的最佳实战(封装篇)">MVP 在项目中的最佳实战(封装篇)</a><span>(0)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/blogdevteam/article/details/74779821" target="_blank">* CSDN日报20170706——《屌丝程序员的逆袭之旅》</a></li>
+<li><a href="http://blog.csdn.net/phodal/article/details/74516182" target="_blank">* 探讨后端选型中不同语言及对应的Web框架</a></li>
+<li><a href="http://blog.csdn.net/briblue/article/details/74616922" target="_blank">* 细说反射，Java 和 Android 开发者必须跨越的坎</a></li>
+<li><a href="http://blog.csdn.net/xiaopihaierletian/article/details/74688643" target="_blank">* 深度学习 | 反向传播与它的直观理解</a></li>
+<li><a href="http://blog.csdn.net/liyuanxiang1984/article/details/74611136" target="_blank">* ArcGIS 水文分析实战教程——雨量计算与流量统计</a></li>
+<li><a href="http://blog.csdn.net/broadview2006/article/details/74431515" target="_blank">* 每周荐书：Android、Keras、ES6（评论送书）</a></li>
+
+</ul></ul>
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="http://blog.csdn.net/u011418943/article/details/69840880#comments">MVP 设计模式理解，实战理解MVP</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u011418943" class="user_name">夏至的稻穗</a>:
+@liuzhushaonian:P 与 view 的绑定就在oncreate()里面的，activi...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/u011418943/article/details/69840880#comments">MVP 设计模式理解，实战理解MVP</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/liuzhushaonian" class="user_name">liuzhushaonian</a>:
+博主能否将P与view的绑定以及解绑也给说明一下，毕竟activity这种有生命周期的玩意儿，一旦挂...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/u011418943/article/details/64907449#comments">TV 游标动画浅析</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_31248593" class="user_name">qq_31248593</a>:
+6666
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/u011418943/article/details/64905565#comments">Android tv 获取第三方icon的颜色，并填充该背景</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_31248593" class="user_name">qq_31248593</a>:
+大神加油贴代码链接
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/u011418943/article/details/51871482#comments">TextSwticher 与 TextView 实现上下滚动和跑马灯效果</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u011418943" class="user_name">夏至的稻穗</a>:
+@qq_35852127:你这个用这则表达式就可以了，检测换行符，再累加，如果大于3，则再翻滚，反之...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/u011418943/article/details/51871482#comments">TextSwticher 与 TextView 实现上下滚动和跑马灯效果</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_35852127" class="user_name">10Crimes</a>:
+上下滚动  超过3行就不滚动   有4条数据就滚动一行 这样的 该怎么做 楼主有时间吗
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/u011418943/article/details/51889962#comments">TextSwitcher 跑马灯算法完善</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/he962303330" class="user_name">he962303330</a>:
+有没有源码发一个
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/u011418943/article/details/53013130#comments">使用 AsyncTask 下载图片，并用LurCache 实现图片缓存（超详细）</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u011418943" class="user_name">夏至的稻穗</a>:
+@leaf_130:大神，带我飞可好
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/u011418943/article/details/53013130#comments">使用 AsyncTask 下载图片，并用LurCache 实现图片缓存（超详细）</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/leaf_130" class="user_name">吴威龙</a>:
+小伙子，这个demo我也玩过
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/u011418943/article/details/53013130#comments">TextSwticher 与 TextView 实现上下滚动和跑马灯效果</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u011418943" class="user_name">夏至的稻穗</a>:
+@yuge741456:公司内部的，发不了哦
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+
+                 <!-- 广告位开始 --> 
+                <!-- 广告位结束 -->
+                   <div class="tracking-ad" data-view="true" data-mod="ad_popu_189" data-mtp="63" data-order="40" data-con="ad_content_1259" style="width: 250px; height: 500px;">
+                        <div id="nav_show_top_stop" style="width: 250px; height: 500px; z-index: 1000; position: fixed; top: 0px;"><div id="cpro_u3026763">undefined</div></div>
+                   </div>
+                    <script>
+
+                        setTimeout(function () {
+                            var naviga_offsetTop = 0; function naviga_stay_top() {
+                                var scrollTop = jQuery(document).scrollTop();
+                                if (scrollTop > naviga_offsetTop) {
+                                    jQuery("#nav_show_top_stop").css({ "position": "fixed" });
+                                    jQuery("#nav_show_top_stop").css({ "top": "0px" });
+                                } else { jQuery("#nav_show_top_stop").css({ "position": "fixed" }); jQuery("#nav_show_top_stop").css({ "top": naviga_offsetTop - scrollTop + "px" }); }
+                            }
+                            function onload_function() {
+                                naviga_offsetTop = jQuery("#nav_show_top_stop").position().top;
+                                jQuery(window).bind("scroll", naviga_stay_top); jQuery(window).bind("mousewheel", naviga_stay_top);
+                                jQuery(document).bind("scroll", naviga_stay_top); jQuery(document).bind("mousewheel", naviga_stay_top);
+                            } jQuery(document).ready(onload_function);
+                        }, 200);
+
+                    </script>
+                    <script type="text/javascript">    (window.cproArray = window.cproArray || []).push({ id: "u3026763" });  </script>
+                   <script src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/c.js.下载" type="text/javascript"></script>
+
+           </div>   
+
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div>
+      <!--new top-->
+    
+
+     
+
+   
+   
+     <!--new top-->
+   
+   
+
+    
+    
+    
+   
+
+   
+
+
+       <script type="text/javascript" src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/MathJax.js.下载"></script>
+          <script type="text/javascript">
+              //$(function () {
+              //    setTimeout(function () {
+              //        var searchtitletags = articletitle + ',' + $("#tags").html();
+              //        searchService({
+              //            index: 'blog',
+              //            query: searchtitletags,
+              //            from: 5,
+              //            size: 5,
+              //            appendTo: '#res',
+              //            url: 'recommend',
+              //            his: 2,
+              //            client: "blog_cf_enhance",
+              //            tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+              //        });
+              //    }, 1000);
+              //});
+
+         </script>
+    
+    <script src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/csdn_blog_detail.min.js.下载" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/pub_footer_2014.css"><div class="pub_fo"><div id="pub_footerall" class="pub_footer_new"><dl><dt></dt> <dd class="foot_sub_menu"><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a><span>|</span><a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a><span>|</span><a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a><span>|</span><a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a><span>|</span><a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a><span>|</span><a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a><span>|</span><a href="mailto:webmaster@csdn.net">问题报告</a><span>|</span><a target="_blank" href="http://www.csdn.net/friendlink.html">合作伙伴</a><span>|</span><a href="http://bbs.csdn.net/forums/Service" target="_blank">论坛反馈</a></dd><dd class="foot_contact"><a href="javascript:void(0);" target="_blank" class="qq">网站客服</a><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2251809102&amp;site=qq&amp;menu=yes" target="_blank" class="qq">杂志客服</a><a href="http://e.weibo.com/csdnsupport/profile" target="_blank" class="weibo">微博客服</a><a href="mailto:webmaster@csdn.net" class="email" title="联系邮箱">webmaster@csdn.net</a><span class="phone" title="服务热线">400-660-0108</span><span class="interval">|</span><span>北京创新乐知信息技术有限公司 版权所有</span><span class="interval">|</span><span>江苏知之为计算机有限公司</span><span class="interval">|</span><span>江苏乐知网络技术有限公司</span></dd><dd class="foot_copyright"><span>京&nbsp;ICP&nbsp;证&nbsp;09002463&nbsp;号</span><span class="interval">|</span><span>Copyright © 1999-2017, CSDN.NET, All Rights Reserved&nbsp;</span><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div></div><div id="note1" class="csdn_note" style="display:none; position:absolute; z-index:9999; width:440px">  <span class="notice_top_arrow"><span class="inner"></span></span>  <div class="box"></div></div><div class="csdn_notice_tip" style="display:none; position:absolute; z-index:9990; width:170px">  <iframe src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/saved_resource(2).html" frameborder="0" scrolling="no" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div class="tip_text">您有<strong>0</strong>条新通知</div>  <a href="javascript:void 0" class="close2"></a></div><script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/notify.js.下载"></script><input type="hidden" id="aa_g_data_ids">
+        
+    <script type="text/javascript" src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/csdn_public_blog_detail.min.js.下载"></script>
+
+    <script type="text/javascript" src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/showblogmedal.ashx"></script>
+
+     
+    
+
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334" src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/52b5334.js.下载"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+
+    
+    
+        
+     
+
+    
+          
+    <div class="pop_CA_cover" style="display:none"></div>
+    <div class="pop pop_CA" style="display:none">
+          <div class="CA_header">
+            收藏助手
+            <span class="cancel_icon" id="fapancle" onclick="$(&#39;.pop_CA&#39;).hide();$(&#39;.pop_CA_cover&#39;).hide();"></span>
+          </div>
+          <iframe src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/saved_resource(3).html" id="fa" frameborder="0" width="100%" height="360" scrolling="no"></iframe>
+    </div>
+
+
+        <script type="text/javascript">
+
+            $(function () {
+                var fromjs = $("#fromjs");
+                if (fromjs.length > 0) {
+                    $("#fromjs .markdown_views pre").addClass("prettyprint");
+                    prettyPrint();
+
+                    $('pre.prettyprint code').each(function () {
+                        var lines = $(this).text().split('\n').length;
+                        var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                        $(this).addClass('has-numbering').parent().append($numbering);
+                        for (i = 1; i <= lines; i++) {
+                            $numbering.append($('<li/>').text(i));
+                        };
+                        $numbering.fadeIn(1700);
+                    });
+
+                    $('.pre-numbering li').css("color", "#999");
+                }
+            });
+
+            $(".markdown_views a[target!='_blank']").attr("target", "_blank");
+
+            //$(".toc a[target='_blank']").attr("target", "");
+
+            setTimeout(function () {
+                $(".toc a[target='_blank']").attr("target", "");
+            }, 500);
+
+        </script>
+
+
+   
+<div id="tag-suggest-pop">
+  <div class="relative">
+    <div class="close"></div>
+    <div class="content"></div>
+  </div>
+</div><div id="mask_code"></div><div class="gist_edit"><div class="save_snippets clearfix"><div class="tit"><h3>保存代码片</h3><span>整理和分享保存的代码片，请访问<a href="https://code.csdn.net/snippets_manage" target="_blank">代码笔记</a></span></div><div class="con_form"><ul class="gist_edit_list clearfix"><li><span class="red">*</span><span class="txt">标题</span><input id="form_title" class="form-input" placeholder="MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib)" type="text"></li><li><span class="red">*</span><span class="txt">描述</span><textarea id="form-textarea" class="form-textarea" placeholder="MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib)： http://blog.csdn.net/u011418943/article/details/70562580"></textarea></li><li><span class="red">&nbsp;</span><span class="txt">标签</span><div id="divSearchTags"><span class="label blog_tag"><span>mvp</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>多线程</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>在线升级</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>断点续传</span><a title="Removing tag" href="javascript:;">x</a></span><input id="insertTag" class="insertTag" placeholder="请输入标签，按Enter生成(最多5项)" type="text" value="" name="insertTag" maxlength="21" style="color: rgb(51, 51, 51);"><input id="OrganTag" class="OrganTag" type="hidden" name="OrganTag" value="mvp,多线程,在线升级,断点续传,"><input id="OldOrganTag" class="OldOrganTag" type="hidden" name="OldOrganTag" value=""><input type="hidden" name="txtSearchTags"></div></li></ul></div><div class="bottom-bar"><a href="javascript:;" class="btn-submit btn-cancel">取消</a><span class="tracking-ad" data-mod="popu_250"><a class="btn-submit btn-confirm" href="javascript:;" target="_blank">确定</a></span></div></div></div><link rel="stylesheet" type="text/css" media="screen" href="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/ask_float_fonts_css-6b30a53970eb5c3a2a045e3df585b475.css"><div data-mod="popu_64" class="csdn-tracking-statistics" chg-blk="0"><a id="com-quick-QRcode" class="QRcodebg1" title="扫描二维码" style="top:200px"><span class="closeQR"></span></a><a id="com-quick-reply" title="快速回复" style="top:334px"></a><a id="com-quick-collect" title="我要收藏" style="top:372px"></a><a id="com-d-top-a" style="top: 410px; display: inline;" title="返回顶部" onclick=""></a></div><div class="pop_edit ask_second comm_ask_second"><h3>提问</h3><span class="ask_float_span">您的问题将会被发布在“<a class="ask_float_channel" href="http://ask.csdn.net/" target="_blank" style="cursor:pointer">技术问答</a>”频道</span><a href="http://blog.csdn.net/u011418943/article/details/70562580#" nodetype="close" class="close">×</a><div class="context"><div class="err_div"><span class="err_ico"></span><span class="err_txt">该问题已存在，请勿重复提问</span></div><div class="input_div"><input id="askInputSecond" type="text" style="font-size:14px;" placeholder="问题标题"></div><div class="cm_box"><div class="cm_dialog"></div> <div class="pop_cm cm_add_link"><input type="text" placeholder="链接内容" id="af_cm_link_txt"><input type="text" placeholder="链接地址" id="af_cm_link_url"><input type="text" placeholder="链接提示" id="af_cm_link_tit"><div class="text-right"><span class="btn btn-default btn-sm" id="add_link_btn">插入链接</span> </div> </div><div class="pop_cm cm_add_img"><div class="nav-tabs"><a class="img_tab active" href="http://blog.csdn.net/u011418943/article/details/70562580#tab_upload">本地上传</a><a class="img_tab" href="http://blog.csdn.net/u011418943/article/details/70562580#tab_weburl">网络图片</a></div><div class="tab_panel active" id="tab_upload"><div class="set_img"><iframe src="./MVP+多线程+断电续传 实现app在线升级库 (手把手教你打造自己的lib) - 夏至的稻穗的博客 - CSDN博客_files/upload.html"></iframe></div></div><div class="tab_panel" id="tab_weburl"><input type="text" placeholder="图片地址" id="af_cm_img_url"><input type="text" placeholder="图片说明" id="af_cm_img_alt"><div class="text-right"><span class="btn btn-default btn-sm" id="add_img_btn">插入图片</span> </div></div> </div></div> <textarea id="editor_all" rows="8" style="display: none;"></textarea><div class="editor-toolbar"><i class="separator">|</i><a class="icon-headline" title="标题一（Ctrl+Alt+1）"></a><a class="icon-heading" title="标题二（Ctrl+Alt+2）"></a><a class="icon-bold" title="粗体（Ctrl+B）"></a><a class="icon-italic" title="斜体（Ctrl+I）"></a><i class="separator">|</i><a class="icon-quote-left" title="引用（Ctrl+’）"></a><a class="icon-code" title="插入代码片（Ctrl+,）"></a><a class="icon-list-ul" title="无序列表（Ctrl+L）"></a><a class="icon-list-ol" title="有序列表（Ctrl+Alt+L）"></a><i class="separator">|</i><a class="icon-link" title="添加链接（Ctrl+K）"></a><a class="icon-picture" title="添加图片（Ctrl+Alt+I）"></a><i class="separator">|</i><a class="icon-reply" title="撤退（Ctrl+Z）"></a><a class="icon-share-alt" title="前进（Ctrl+Shift+Z）"></a><i class="separator">|</i><a class="icon-info" href="http://ask.csdn.net/pages/markdown" target="_blank" title="markdown语法参考"></a><a class="icon-preview" title="预览"></a><i class="separator">|</i></div><div class="CodeMirror cm-s-paper CodeMirror-focused"><div style="overflow: hidden; position: relative; width: 3px; height: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none; font-size: 4px;" tabindex="0"></textarea></div><div class="CodeMirror-hscrollbar"><div style="height: 1px;"></div></div><div class="CodeMirror-vscrollbar"><div style="width: 1px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="min-width: 33px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>&nbsp;<span style="display: inline-block; width: 1px; margin-right: -1px;">&nbsp;</span></pre></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code"></div><div class="CodeMirror-cursor" style="visibility: hidden;">&nbsp;</div><div class="CodeMirror-cursor CodeMirror-secondarycursor" style="visibility: hidden;">&nbsp;</div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px;"></div><div class="CodeMirror-gutters" style="display: none;"></div></div></div><div class="editor-statusbar"><span class="lines">0</span><span class="words">0</span><span class="cursor">0:0</span></div><div class="div_tags clearfix"><div id="divSearchTags" class="tags_con"><input type="text"></div><input type="hidden" name="txtSearchTags"></div><div id="ask2_tagRecomm_div" class="drt_tagRecomm tracking-ad" data-mod="popu_73"><span class="drt_tit">推荐标签：</span></div></div><div class="success"><div class="left_area"><input id="chk_cb" type="checkbox"><span class="wyxs">我要悬赏</span><input id="cb_num" class="cb_num" readonly="true"><span class="phib_rii"><span> 币</span></span></div><a href="http://blog.csdn.net/u011418943/article/details/70562580#" nodetype="cancel" class="cancel">取消</a><a href="http://blog.csdn.net/u011418943/article/details/70562580#" nodetype="ok" class="ok">发布</a></div></div><div id="common_ask_div_sc" class="searchContainer"><div class="sTitle">可能存在类似的问题：</div><div class="sFooter"><a class="sFirstNewAsk">我想提一个新问题</a></div></div><div style="position:fixed; top:0; left:0; overflow:hidden;"><input style="position:absolute; left:-300px;" type="text" value="" id="focus_retriever" readonly="true"></div></body></html>
