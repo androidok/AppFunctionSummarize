@@ -1,0 +1,16 @@
+document.writeln("<script>");
+document.writeln("var mediav_ad_pub = \'H7shur_1243731\';");
+document.writeln("var mediav_ad_width = \'250\';");
+document.writeln("var mediav_ad_height = \'250\';");
+document.writeln("</script>");
+document.writeln("");
+document.writeln("<script type=\'text/javascript\' language=\'javascript\' charset=\'utf-8\'  src=\'http://static.mediav.com/js/mvf_g2.js\'></script>");
+
+document.body.oncopy = function () { 
+	setTimeout( function () { 
+		var text = clipboardData.getData("text");
+		if (text) { 
+			text = text + "\r\n\r\n文章转载自网管之家："+location.href; clipboardData.setData("text", text);
+		} 
+				}, 100 ) 
+}

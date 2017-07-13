@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.jianshu.com/p/30cb540b4a18 -->
+<html><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+
+  <!-- Start of Baidu Transcode -->
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="MobileOptimized" content="width">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="mobile-agent" content="format=html5;url=http://www.jianshu.com/p/30cb540b4a18">
+  <!-- End of Baidu Transcode -->
+
+    <meta name="description" content="1. SwipeRefreshLayout 注意：该控件属于support-v4包，早期版本就已经存在。 使用方法：包裹一个可以上下滚动的View(比如ScrollView、ListView、RecyclerView)，即可实现下拉刷新。 主要方法：setRefreshListener -- 添加下拉刷新监听setRefreshing（boolean） -- 设置圆圈显示与隐藏isRefre...">
+
+  <meta name="360-site-verification" content="604a14b53c6b871206001285921e81d8">
+  <meta property="wb:webmaster" content="294ec9de89e7fadb">
+  <meta property="qc:admins" content="104102651453316562112116375">
+  <meta property="qc:admins" content="11635613706305617">
+  <meta property="qc:admins" content="1163561616621163056375">
+  <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4">
+  <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI">
+  <meta http-equiv="mobile-agent" content="format=html5; url=http://www.jianshu.com/p/30cb540b4a18">
+
+  <!-- Apple -->
+  <meta name="apple-mobile-web-app-title" content="简书">
+
+    <!--  Meta for Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=888237539, app-argument=jianshu://notes/7358696">
+  <!-- End -->
+
+  <!--  Meta for Twitter Card -->
+  <meta content="summary" property="twitter:card">
+  <meta content="@jianshucom" property="twitter:site">
+  <meta content="UI：Android 5.0&amp;6.0 控件" property="twitter:title">
+  <meta content="1. SwipeRefreshLayout 注意：该控件属于support-v4包，早期版本就已经存在。 使用方法：包裹一个可以上下滚动的View(比如ScrollView、ListView、RecyclerView)，即可实现下拉刷新。 主要方法：setRefreshListener -- 添加下拉刷新监听setRefreshing（boolean） -- 设置圆圈显示与隐藏isRefreshing -- 判断当前是否正在刷新setColorSchemeResource -- 设置转圈的多种颜色变化(color的资源id)setColorSchemeColors -- 设置转圈的多种颜..." property="twitter:description">
+  <meta content="http://www.jianshu.com/p/30cb540b4a18" property="twitter:url">
+  <!-- End -->
+
+  <!--  Meta for OpenGraph -->
+  <meta property="fb:app_id" content="865829053512461">
+  <meta property="og:site_name" content="简书">
+  <meta property="og:title" content="UI：Android 5.0&amp;6.0 控件">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://www.jianshu.com/p/30cb540b4a18">
+  <meta property="og:description" content="1. SwipeRefreshLayout 注意：该控件属于support-v4包，早期版本就已经存在。 使用方法：包裹一个可以上下滚动的View(比如ScrollView、ListView、R...">
+  <!-- End -->
+
+  <!--  Meta for Facebook Applinks -->
+  <meta property="al:ios:url" content="jianshu://notes/7358696">
+  <meta property="al:ios:app_store_id" content="888237539">
+  <meta property="al:ios:app_name" content="简书">
+
+  <meta property="al:android:url" content="jianshu://notes/7358696">
+  <meta property="al:android:package" content="com.jianshu.haruki">
+  <meta property="al:android:app_name" content="简书">
+  <!-- End -->
+
+
+    <title>UI：Android 5.0&amp;6.0 控件 - 简书</title>
+
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="9yb3bvBgxQGP3vrA2HPry9g57TjzP7P6aFvaPQA8DHhkVoXiOiD411LTOMUL9pSUYxvOpMVspMhY7yG6k8U/Rw==">
+
+  <link rel="stylesheet" media="all" href="./UI：Android 5.0&amp;6.0 控件 - 简书_files/web-3656af7c1cf4ba3fce86.css">
+  
+  <link rel="stylesheet" media="all" href="./UI：Android 5.0&amp;6.0 控件 - 简书_files/entry-3656af7c1cf4ba3fce86.css">
+
+  <link href="http://cdn2.jianshu.io/assets/favicons/favicon-783beb88ed621ceab614de960376ac0c.ico" rel="icon">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/57-47624b2e2161e8eb144462c85db0a5ff.png" sizes="57x57">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/72-c00cde7cf98fc49e50cbb3ee1dcd5804.png" sizes="72x72">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/76-e8af0bdeaf1ba31e303b1fde8b5e66c4.png" sizes="76x76">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/114-f4c78569bbf1977e8382a5fd90c9237a.png" sizes="114x114">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/120-cf10c3711dba269522743729efe66bbc.png" sizes="120x120">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/152-7bd60457b5f3ecbf1343f0e6241be4f8.png" sizes="152x152">
+<link rel="stylesheet" href="blob:http://www.jianshu.com/23584bf1-d2a2-4e56-b047-afa9257565c7"><link rel="stylesheet" href="blob:http://www.jianshu.com/3a62ce17-78d7-43ec-94f1-86008eedff45"></head>
+
+  <body lang="zh-CN" class="reader-black-font">
+    <!-- 全局顶部导航栏 -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="width-limit">
+    <!-- 左上方 Logo -->
+    <a class="logo" href="http://www.jianshu.com/"><img src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo"></a>
+
+    <!-- 右上角 -->
+      <!-- 未登录显示登录/注册/写文章 -->
+      <a class="btn write-btn" target="_blank" href="http://www.jianshu.com/writer#/">
+        <i class="iconfont ic-write"></i>写文章
+</a>      <a class="btn sign-up" href="http://www.jianshu.com/sign_up">注册</a>
+      <a class="btn log-in" href="http://www.jianshu.com/sign_in">登录</a>
+
+    <!-- 如果用户登录，显示下拉菜单 -->
+
+    <div class="style-mode"><a class="style-mode-btn"><i class="iconfont ic-navigation-mode"></i></a> <div class="popover-modal" style="left: 0px; display: none;"><div class="meta"><i class="iconfont ic-navigation-night"></i><span>夜间模式</span></div> <div class="switch day-night-group"><a class="switch-btn">开</a> <a class="switch-btn active">关</a></div> <hr> <div class="switch font-family-group"><a class="switch-btn font-song">宋体</a> <a class="switch-btn font-hei active">黑体</a></div> <div class="switch"><a class="switch-btn active">简</a> <a class="switch-btn">繁</a></div></div></div>
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="nav navbar-nav">
+            <li class="">
+              <a href="http://www.jianshu.com/">
+                <span class="menu-text">首页</span><i class="iconfont ic-navigation-discover menu-icon"></i>
+</a>            </li>
+            <li class="">
+              <a class="app-download-btn" href="http://www.jianshu.com/apps"><span class="menu-text">下载App</span><i class="iconfont ic-navigation-download menu-icon"></i></a>
+            </li>
+          <li class="search">
+            <form target="_blank" action="http://www.jianshu.com/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+              <input type="text" name="q" id="q" value="" placeholder="搜索" class="search-input">
+              <a class="search-btn" href="javascript:void(null)"><i class="iconfont ic-search"></i></a>
+              <!-- <div id="navbar-trending-search"></div> -->
+</form>          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+    
+<div class="note">
+  <div class="post">
+    <div class="article">
+        <h1 class="title">UI：Android 5.0&amp;6.0 控件</h1>
+
+        <!-- 作者区域 -->
+        <div class="author">
+          <a class="avatar" href="http://www.jianshu.com/u/88dcc26575a1">
+            <img src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/dba5dd16f717.jpg" alt="144">
+</a>          <div class="info">
+            <span class="tag">作者</span>
+            <span class="name"><a href="http://www.jianshu.com/u/88dcc26575a1">暴雨梨花落星辰丶</a></span>
+            <!-- 关注用户按钮 -->
+            <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+            <!-- 文章数据信息 -->
+            <div class="meta">
+              <!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
+                <span class="publish-time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="最后编辑于 2017.03.07 15:20">2016.12.03 10:55*</span>
+              <span class="wordage">字数 1443</span>
+            <span class="views-count">阅读 32</span><span class="comments-count">评论 1</span><span class="likes-count">喜欢 2</span></div>
+          </div>
+          <!-- 如果是当前作者，加入编辑按钮 -->
+        </div>
+        <!-- -->
+
+        <!-- 文章内容 -->
+        <div class="show-content">
+          <h3>1. SwipeRefreshLayout</h3>
+<ul>
+<li>
+<strong>注意：</strong>该控件属于support-v4包，早期版本就已经存在。</li>
+<li>
+<strong>使用方法：</strong><br>包裹一个可以上下滚动的View(比如ScrollView、ListView、RecyclerView)，即可实现下拉刷新。</li>
+<li>
+<strong>主要方法：</strong><ul>
+<li>setRefreshListener -- 添加下拉刷新监听</li>
+<li>setRefreshing（boolean） -- 设置圆圈显示与隐藏</li>
+<li>isRefreshing -- 判断当前是否正在刷新</li>
+<li>setColorSchemeResource -- 设置转圈的多种颜色变化(color的资源id)</li>
+<li>setColorSchemeColors -- 设置转圈的多种颜色变化（color颜色值）</li>
+<li>setProgressBackgroundColor -- 设置圆圈的背景色</li>
+</ul>
+</li>
+</ul>
+<h3>2. CardView</h3>
+<ul>
+<li>
+<strong>使用方法：</strong><br>自带阴影（z轴海拔）的控件，该View继承自FrameLayout，直接作为父布局包裹子控件。</li>
+<li>
+<strong>注意：</strong>如果父控件和CardView之间没有空隙，阴影可能无法显示,原因见<em>Material Design</em>相关文章</li>
+</ul>
+<div class="image-package">
+<img src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/3597719-925864f3cb8e7325.png" data-original-src="http://upload-images.jianshu.io/upload_images/3597719-925864f3cb8e7325.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">SwipeRefreshLayout和CardView</div>
+</div>
+<h3>3. RecyclerView</h3>
+<ul>
+<li>
+<strong>介绍：</strong><br>可以实现列表、多列列表、瀑布流的效果，用来替代ListView、GridView，并且实现了NestedScrollingChild接口，其事件可以被CoordinatorLayout捕获。</li>
+<li>
+<strong>使用方法：</strong><pre class="hljs haxe"><code class="haxe">LinearLayoutManager layoutManager = <span class="hljs-keyword">new</span> <span class="hljs-type">LinearLayoutManager</span>(<span class="hljs-built_in">this</span>);
+<span class="hljs-comment">//GridLayoutManager layoutManager = new GridLayoutManager(this,3);</span>
+<span class="hljs-comment">//StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);</span>
+layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+recyclerView.setLayoutManager(layoutManager);
+recyclerView.setAdapter(<span class="hljs-keyword">new</span> <span class="hljs-type">MyAdapter</span>(<span class="hljs-built_in">this</span>));</code></pre>
+MyAdapter需要继承RecyclerView.Adapter&lt;自定义的ListHolder继承RecyclerView.ViewHolder&gt;，如果需要Item点击事件，需要自己添加并提供回调接口。</li>
+</ul>
+<h3>4. ToolBar</h3>
+<ul>
+<li>
+<strong>介绍：</strong><br>利用support-v7的方式向下兼容，用来替代传统的ActionBar，相比传统的ActionBar，ToolBar的自由度更高，他是ViewGroup的子类，可以作为一个控件，放在界面的任何位置。</li>
+<li>
+<strong>使用方法：</strong><ul>
+<li>将界面原有的ActionBar去掉：<ol>
+<li>通过配置NoTitle的主题</li>
+<li>supportRequestWindowFeature(Window.FEATURE_NO_TITLE),需在setContentView之前。</li>
+</ol>
+</li>
+<li>设置ToolBar：setSupportActionBar(toolbar)</li>
+</ul>
+</li>
+<li>
+<strong>主要方法：</strong><pre class="hljs less"><code class="less"><span class="hljs-comment">// 设置LOGO</span>
+<span class="hljs-selector-tag">mToolBar</span><span class="hljs-selector-class">.setLogo</span>(R.drawable.ic_launcher);
+<span class="hljs-comment">// 设置导航按钮图片</span>
+<span class="hljs-selector-tag">mToolBar</span><span class="hljs-selector-class">.setNavigationIcon</span>(R.drawable.head_1);
+<span class="hljs-comment">// 设置主标题（不设置就显示APP的名称）</span>
+<span class="hljs-selector-tag">mToolBar</span><span class="hljs-selector-class">.setTitle</span>(<span class="hljs-string">"主标题"</span>);
+<span class="hljs-comment">// 设置次级标题</span>
+<span class="hljs-selector-tag">mToolBar</span><span class="hljs-selector-class">.setSubtitle</span>(<span class="hljs-string">"副标题"</span>);
+<span class="hljs-comment">// 设置主标题的颜色</span>
+<span class="hljs-selector-tag">mToolBar</span><span class="hljs-selector-class">.setTitleTextColor</span>(Color.RED);
+<span class="hljs-comment">// 设置次级标题的颜色</span>
+<span class="hljs-selector-tag">mToolBar</span><span class="hljs-selector-class">.setSubtitleTextColor</span>(Color.GREEN);</code></pre>
+</li>
+</ul>
+<h3>5. DrawerLayout</h3>
+<div class="image-package">
+<img src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/3597719-4b6ced34a7df86a9.png" data-original-src="http://upload-images.jianshu.io/upload_images/3597719-4b6ced34a7df86a9.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">DrawerLayout</div>
+</div>
+<h3>6. DrawerLayout 与 home toggle的联动</h3>
+<ul>
+<li>
+<p><strong>使用ActionBar：</strong></p>
+<div class="image-package">
+<img src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/3597719-6fa93a2064827e3f.png" data-original-src="http://upload-images.jianshu.io/upload_images/3597719-6fa93a2064827e3f.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">DrawerLayout 绑定 ActionBar</div>
+</div>
+</li>
+<li>
+<p><strong>使用ToolBar：</strong></p>
+<div class="image-package">
+<img src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/3597719-2e20a57472bc5495.png" data-original-src="http://upload-images.jianshu.io/upload_images/3597719-2e20a57472bc5495.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">DrawerLayout 绑定ToolBar</div>
+</div>
+</li>
+<li>
+<p><strong>注意：</strong>如果和ToolBar结合使用，如果不修改home toggle的点击事件，默认会控制左侧边栏的滑动事件。</p>
+</li>
+</ul>
+<h3>7. 自定义文本选择(TextSelection)菜单</h3>
+<ul>
+<li>
+<p><strong>实现方法：</strong></p>
+<ul>
+<li>让TextView可被选中<br><code>android:textIsSelectable="true"</code>
+</li>
+<li>给TextView添加callback<br><code>tv.setCustomSelectionActionModeCallback(callback)</code>
+</li>
+<li>实现callback</li>
+</ul>
+<div class="image-package">
+<img src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/3597719-e533007719b48307.png" data-original-src="http://upload-images.jianshu.io/upload_images/3597719-e533007719b48307.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">callback</div>
+</div>
+</li>
+</ul>
+<h3>8. TextInputLayout</h3>
+<div class="image-package">
+<img src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/3597719-794f6185bacb734d.png" data-original-src="http://upload-images.jianshu.io/upload_images/3597719-794f6185bacb734d.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">TextInputLayout</div>
+</div>
+<ul>
+<li>
+<p><strong>实现方法：</strong></p>
+<div class="image-package">
+<img src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/3597719-ca3a4b4f53650700.png" data-original-src="http://upload-images.jianshu.io/upload_images/3597719-ca3a4b4f53650700.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">TextInputLayout</div>
+</div>
+</li>
+</ul>
+<ul>
+<li>
+<p><strong>添加错误提醒：</strong></p>
+<div class="image-package">
+<img src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/3597719-5bbb68d081feab76.png" data-original-src="http://upload-images.jianshu.io/upload_images/3597719-5bbb68d081feab76.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">TextInputLayout</div>
+</div>
+</li>
+</ul>
+<h3>9. FloatingActionButton(FAB)</h3>
+<ul>
+<li>
+<strong>使用方法：</strong><br>与ImageView类似<pre class="hljs stylus"><code class="stylus">&lt;android<span class="hljs-selector-class">.support</span><span class="hljs-selector-class">.design</span><span class="hljs-selector-class">.widget</span><span class="hljs-selector-class">.FloatingActionButton</span> 
+    android:layout_width=<span class="hljs-string">"wrap_content"</span> 
+    android:layout_height=<span class="hljs-string">"wrap_content"</span> 
+    android:layout_gravity=<span class="hljs-string">"end|bottom"</span>
+    <span class="hljs-comment">//解决5.X阴影不正常显示</span>
+    app:borderWidth=<span class="hljs-string">"0dp"</span> 
+    android:layout_margin=<span class="hljs-string">"@dimen/margin"</span> 
+    android:src=<span class="hljs-string">"@drawable/ic"</span> /&gt;</code></pre>
+</li>
+</ul>
+<h3>10. SnackBar</h3>
+<ul>
+<li>
+<p><strong>使用方法：</strong><br>用法和Toast差不多，当用在CoordinatorLayout中时，与FAB一起使用，能实现同上同下的效果，FAB不会被覆盖</p>
+<div class="image-package">
+<img src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/3597719-fcd91f7a2dee0253.png" data-original-src="http://upload-images.jianshu.io/upload_images/3597719-fcd91f7a2dee0253.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">SnackBar</div>
+</div>
+</li>
+</ul>
+<h3>11. TabLayout</h3>
+<ul>
+<li>
+<p><strong>使用方法：</strong><br>TabLayout结合ViewPager一起使用，起到指示器的作用，跟三方的ViewPagerIndicator作用一样</p>
+<div class="image-package">
+<img src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/3597719-68fc69ff4f64afd7.png" data-original-src="http://upload-images.jianshu.io/upload_images/3597719-68fc69ff4f64afd7.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption"></div>
+</div>
+<div class="image-package">
+<img src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/3597719-3410f0de8140b84a.png" data-original-src="http://upload-images.jianshu.io/upload_images/3597719-3410f0de8140b84a.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">TabLayout</div>
+</div>
+</li>
+</ul>
+<h3>12. NavigationView</h3>
+<ul>
+<li>
+<p><strong>使用方法：</strong><br>放在DrawerLayout中，作为菜单的部分</p>
+<div class="image-package">
+<img src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/3597719-c71b570ce09bde78.png" data-original-src="http://upload-images.jianshu.io/upload_images/3597719-c71b570ce09bde78.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption"></div>
+</div>
+<div class="image-package">
+<img src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/3597719-fc45cbb8075a73d8.png" data-original-src="http://upload-images.jianshu.io/upload_images/3597719-fc45cbb8075a73d8.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">NavigationView</div>
+</div>
+</li>
+<li>
+<p><strong>注意：</strong><br>fitsSystemWindows = “true”这个属性，在做沉浸式状态栏时，必须配置，非常重要，沉浸式状态栏的要点：</p>
+<ol>
+<li>状态栏设置为背景透明 （只在4.4以上的系统设备生效）</li>
+<li>fitsSystemWindows = “true”的意义在于让配置该属性的控件侵入状态栏的同时，设置跟状态栏等高度的padding值，从而不让控件中的内容发生偏移</li>
+</ol>
+</li>
+</ul>
+<h3>13. AppBarLayout</h3>
+<ul>
+<li>
+<p><strong>介绍：</strong><br>继承自LinearLayout，内部可以包含子控件，并且会自动给子控件添加与ActionBar同背景颜色的背景色（primaryColor配置的颜色） ，可以作为一个整体替换ActionBar所在的区域，制造更多样的ActionBar</p>
+<div class="image-package">
+<img src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/3597719-b35364fb842bb4b0.png" data-original-src="http://upload-images.jianshu.io/upload_images/3597719-b35364fb842bb4b0.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">AppBarLayout</div>
+</div>
+</li>
+</ul>
+<h3>14. CoordinatorLayout</h3>
+<ul>
+<li>
+<strong>介绍</strong><br>协调内部子控件间的滚动事件，通常作为最外层的布局使用，通过配置CoordinatorLayout.Behavior这个行为属性，可以控制其内部子控件间的联动效果，AppBarLayout和FloatingActionButton具有默认的Behavior实现</li>
+<li>
+<strong>注意：</strong><ul>
+<li>CoordinatorLayout只可以捕获到实现了NestedScrollingChild接口的子view的滚动事件，然后分发给其他内部子view<ul>
+<li>RecyclerView</li>
+<li>NestedScrollView -- 和ScrollView一样效果，可以被捕获事件</li>
+<li>SwipeRefreshLayout</li>
+</ul>
+</li>
+<li>AppBarLayout中的子view是否响应滚动事件，通过给子view配置app:layout_scrollFlags属性来指定不同的滚动事件响应<ul>
+<li>scroll（常用） 响应滚动事件，必须配置这个属性</li>
+<li>enterAlways（常用） 滚动事件向下，配置该属性的子view就会向下滚动进入，AppBarLayout中的子view需要滚动的，必须放在最顶部，否则滚不动</li>
+<li>enterAlwaysCollapsed 滚动事件向下，子view也配置了最小高度，那么向下滚动时，子view会以最小高度进入，只有当被监听的view滚动到顶端时，子view才会以最大高度展开</li>
+<li>snap 该属性会判断子view底部能看到多少，如果只能看到25%，那么缩回去，如果能看到75%，那么完全显示</li>
+<li>exitUntilCollapsed 子view滚出屏幕时，待其完全折叠之后才滚动，常用在CollapsingToolbarLayout中</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>15. NestedScrollView</h3>
+<ul>
+<li>
+<strong>介绍：</strong><br>实现了NestedScrollingChild接口，所以他的滚动事件可以被CoordinatorLayout协调，用来代替ScrollView。</li>
+</ul>
+<h3>16. CollapsingToolbarLayout</h3>
+<ul>
+<li>
+<strong>介绍：</strong><br>折叠视图效果，注意，其并没有完全折叠，所以配置exitUntilCollapsed属性后，其不会完全滚出屏幕，而会在屏幕中保留一个ActionBar的高度。继承自FrameLayout，内部子控件可以配置layout_collapseMode属性，展示不同的效果<ul>
+<li>none</li>
+<li>parallax 视差模式</li>
+<li>pin 固定不动</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <!--  -->
+
+        <div class="show-foot">
+          <a class="notebook" href="http://www.jianshu.com/nb/7453759">
+            <i class="iconfont ic-search-notebook"></i> <span>随笔</span>
+</a>          <div class="copyright" data-toggle="tooltip" data-html="true" data-original-title="转载请联系作者获得授权，并标注“简书作者”。">
+            © 著作权归作者所有
+          </div>
+          <div class="modal-wrap" data-report-note="">
+            <a id="report-modal">举报文章</a>
+          </div>
+        </div>
+    </div>
+
+    <!-- 文章底部作者信息 -->
+      <div class="follow-detail">
+        <div class="info">
+          <a class="avatar" href="http://www.jianshu.com/u/88dcc26575a1">
+            <img src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/dba5dd16f717.jpg" alt="144">
+</a>          <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+          <a class="title" href="http://www.jianshu.com/u/88dcc26575a1">暴雨梨花落星辰丶</a>
+        <p>写了 5259 字，被 4 人关注，获得了 10 个喜欢</p></div>
+          <div class="signature">你来人间一趟，你要看看太阳</div>
+      </div>
+
+      <div class="support-author"><p>如果觉得我的文章对您有用，请随意赞赏。您的支持将鼓励我继续创作！</p> <div class="btn btn-pay">赞赏支持</div> <!----> <!----> <!----></div>
+
+    <div class="meta-bottom">
+      <div class="like"><div class="btn like-group"><div class="btn-like"><a href="http://www.jianshu.com/sign_in"><i class="iconfont ic-like"></i>喜欢</a></div> <div class="modal-wrap"><a>2</a></div></div> <!----></div>
+      <div class="share-group">
+        <a class="share-circle" data-action="weixin-share" data-toggle="tooltip" data-original-title="分享到微信">
+          <i class="iconfont ic-wechat"></i>
+        </a>
+        <a class="share-circle" data-toggle="tooltip" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/7358696/weibo/image_92c1533c9665.jpg&#39;, &#39;推荐 暴雨梨花落星辰丶 的文章《UI：Android 5.0&amp;amp;6.0 控件》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/30cb540b4a18?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));" data-original-title="分享到微博">
+          <i class="iconfont ic-weibo"></i>
+        </a>
+          <a class="share-circle" data-toggle="tooltip" href="http://cwb.assets.jianshu.io/notes/images/7358696/weibo/image_92c1533c9665.jpg" target="_blank" data-original-title="下载长微博图片">
+            <i class="iconfont ic-picture"></i>
+          </a>
+        <a class="share-circle more-share" tabindex="0" data-toggle="popover" data-placement="top" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="
+          &lt;ul class=&quot;share-list&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/30cb540b4a18?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 暴雨梨花落星辰丶 的文章《UI：Android 5.0&amp;amp;6.0 控件》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-zone&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/30cb540b4a18?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 暴雨梨花落星辰丶 的文章《UI：Android 5.0&amp;amp;6.0 控件》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-twitter&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/30cb540b4a18?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-facebook&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/30cb540b4a18?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-google&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/30cb540b4a18?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;UI：Android 5.0&amp;amp;6.0 控件&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-douban&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        " data-original-title="" title="">更多分享</a>
+      </div>
+    </div>
+    <div><div id="comment-list" class="comment-list"><div><form class="new-comment"><a class="avatar"><img src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/avatar_default-78d4d1f68984cd6d4379508dd94b4210.png"></a> <div class="sign-container"><a href="http://www.jianshu.com/sign_in" class="btn btn-sign">登录</a> <span>后发表评论</span></div></form></div> <div id="normal-comment-list" class="normal-comment-list"><div><div><div class="top"><span>1条评论</span> <a class="author-only">只看作者</a> <a class="close-btn" style="display: none;">关闭评论</a> <div class="pull-right"><a class="active">按喜欢排序</a><a class="">按时间正序</a><a class="">按时间倒序</a></div></div></div> <!----> <!----> <div class="comments-placeholder" style="display: none;"><div class="author"><div class="avatar"></div> <div class="info"><div class="name"></div> <div class="meta"></div></div></div> <div class="text"></div> <div class="text animation-delay"></div> <div class="tool-group"><i class="iconfont ic-zan-active"></i><div class="zan"></div> <i class="iconfont ic-list-comments"></i><div class="zan"></div></div></div> <div id="comment-8072535" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/bd1c8d3acf56" target="_blank" class="avatar"><img src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/6-fd30f34c8641f6f32f5494df5d6b8f3c.jpg"></a> <div class="info"><a href="http://www.jianshu.com/u/bd1c8d3acf56" target="_blank" class="name">宋先生1228</a> <!----> <div class="meta"><span>2楼 · 2017.02.17 01:14</span></div></div></div> <div class="comment-wrap"><p>get</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list hide"><!----> <!----></div></div></div></div> <!----> <div><!----></div></div></div>
+  </div>
+
+  <div class="side-tool"><ul><li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="回到顶部" style="display: none;"><a class="function-button"><i class="iconfont ic-backtop"></i></a></li> <!----> <!----> <li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="分享文章"><a tabindex="0" role="button" data-toggle="popover" data-placement="left" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="&lt;ul class=&#39;share-list&#39;&gt;
+                &lt;li&gt;&lt;a class=&quot;weixin-share&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-weixin&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到微信&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/7358696/weibo/image_92c1533c9665.jpg&#39;, &#39;推荐 暴雨梨花落星辰丶 的文章《UI：Android 5.0&amp;amp;6.0 控件》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/30cb540b4a18?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-weibo&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到微博&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;http://cwb.assets.jianshu.io/notes/images/7358696/weibo/image_92c1533c9665.jpg&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-picture&quot;&gt;&lt;/i&gt;&lt;span&gt;下载长微博图片&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/30cb540b4a18?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 暴雨梨花落星辰丶 的文章《UI：Android 5.0&amp;amp;6.0 控件》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-zone&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/30cb540b4a18?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 暴雨梨花落星辰丶 的文章《UI：Android 5.0&amp;amp;6.0 控件》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-twitter&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/30cb540b4a18?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-facebook&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/30cb540b4a18?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-google&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/30cb540b4a18?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;UI：Android 5.0&amp;amp;6.0 控件&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-douban&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;" data-original-title="" title="" class="function-button"><i class="iconfont ic-share"></i></a> <!----></li></ul></div>
+</div>
+<div class="note-bottom">
+  <!---->
+  <div class="recommend-note"><div class="meta"><div class="title">更多精彩内容</div> <div class="roll"></div></div> <div class="list"><div class="note"><!----> <a target="_blank" href="http://www.jianshu.com/p/43511071d0b4?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="title">Android分层</a> <p class="description">Android HAL 架构规划 参考：Android HAL(硬件抽象层)介绍以及调用Android硬件抽象层（HAL）概要介绍和学习计划 Android 的 HAL（Hardware Abstraction Layer硬件抽象层）是Google因应厂商「希望不公开源码」的要求下，所推出的新观念，从这张架构图我们知道，HAL 的目的是为了把 Android framework 与 Linux kernel 完整「隔开」。让 Android 不至过度依赖 Linux kernel，有点像是「kernel independent」的意思，让 Android framework 的开发能在不...</p> <a target="_blank" href="http://www.jianshu.com/u/88dcc26575a1?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="author"><div class="avatar" style="background-image: url(&quot;http://upload.jianshu.io/users/upload_avatars/3597719/dba5dd16f717.jpg&quot;);"></div> <span class="name">暴雨梨花落星辰丶</span></a></div><div class="note"><!----> <a target="_blank" href="http://www.jianshu.com/p/66760ca2a78f?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="title">viewpager懒加载</a> <p class="description">虽然ViewPager中提供的有setOffscreenPageLimit()来控制其预加载的数目，但是当设置为0后我们发现其根本没效果，这个的最小值就是1，也就是你只能最少前后各预加载一页。 方法一在Fragment可见时请求数据。此方案仍预加载了前后的页面，但是没有请求数据，只有进入到当前Framgent时才请求数据。优点：实现了数据的懒加载缺点：一次仍是三个Framgment对象，不是完全意义的懒加载 方法二直接修改ViewPager源码。通过查看ViewPager源码可知，控制其预加载的是一个常量DEFAULT_OFFSCREEN_PAGES，其默认值为1，表示当前页面前后各预加...</p> <a target="_blank" href="http://www.jianshu.com/u/88dcc26575a1?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="author"><div class="avatar" style="background-image: url(&quot;http://upload.jianshu.io/users/upload_avatars/3597719/dba5dd16f717.jpg&quot;);"></div> <span class="name">暴雨梨花落星辰丶</span></a></div><div class="note"><a target="_blank" href="http://www.jianshu.com/p/0b60dd03e163?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="cover" style="background-image: url(&quot;//upload-images.jianshu.io/upload_images/2542851-45486013d09bed50.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240&quot;);"></a> <a target="_blank" href="http://www.jianshu.com/p/0b60dd03e163?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="title">大圣，此去欲何? 踏南天，碎凌霄！</a> <p class="description">文/怀左同学 01 后人解读《西游记》时，说孙悟空死在了“真假美猴王”那一节，原因是后来的孙悟空，再没有反抗过。 是这样吗？也许，是吧。 偶尔也会想到，真正的美猴王，是不是在大闹天宫之后，就已经不在了？ 是的，那之后，世间少了一个桀骜不驯的美猴王，多了一个斩妖除魔的孙行者。但我分明记得，他以前是万妖之王，曾率群魔，对抗天庭。 我分明记得。 那一年他擎起金箍棒，起落之间，天地改色。 “大圣，此去欲何?” “踏南天，碎凌霄。” “若一去不回……” “便一去不回” 没想到“一去不回”四个字，就这样应验了，那一战之后，他被压在了五行山下，五百年后西游，斗，战，胜，佛。从此，江湖，只留下了他的传说...</p> <a target="_blank" href="http://www.jianshu.com/u/62478ec15b74?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="author"><div class="avatar" style="background-image: url(&quot;http://upload.jianshu.io/users/upload_avatars/2542851/0dca220dd6bb.jpeg&quot;);"></div> <span class="name">怀左同学</span></a></div><div class="note"><a target="_blank" href="http://www.jianshu.com/p/82dcea20d16d?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="cover" style="background-image: url(&quot;//upload-images.jianshu.io/upload_images/2184130-5f4f5c4f1b228d6b.jpeg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240&quot;);"></a> <a target="_blank" href="http://www.jianshu.com/p/82dcea20d16d?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="title">神奇毕业照，一张照片两个你！手机三分钟搞定！</a> <p class="description">你想好好给自己拍照，大概会有两次。 一次是毕业照，一次是婚纱照。 你总会在网上找很多自己期望的创意照，可是却不知道怎么做出来的。这不，今天这篇教程的来源是这样的。 ﻿ 这个可以用双重曝光拍出来，也可以用后期修图修出来，由于小伙伴提供的是两张已经拍好的照片，所以只能用后期修图了。 接下来直接上教程，以snapseed为例。 ﻿01，打开一张照片，点击右下角的铅笔 02，选择双重曝光功能 ﻿ 03，点击下方的加号，添加第二张照片 ﻿ 04，图片添加进来后呈半透明状，点击右下角的水滴 ﻿ 05，把水滴这个参数（透明度）调到最右方（我这里小小失误，没到头） ﻿ 06，注意，你期待的蒙版功能要来了...</p> <a target="_blank" href="http://www.jianshu.com/u/1d59a1dd4bd4?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="author"><div class="avatar" style="background-image: url(&quot;http://upload.jianshu.io/users/upload_avatars/2184130/cf6c9f3d30eb&quot;);"></div> <span class="name">朱子先生</span></a></div><div class="note"><a target="_blank" href="http://www.jianshu.com/p/4ccf95f5c4d3?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="cover" style="background-image: url(&quot;//upload-images.jianshu.io/upload_images/6486956-1ce7c76170f7b916.png?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240&quot;);"></a> <a target="_blank" href="http://www.jianshu.com/p/4ccf95f5c4d3?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="title">我们该感谢王者荣耀耗尽了80%的人上升的空间</a> <p class="description">                      这是智先生的第3篇原创文章 眼看着它火起来 眼看着它打败柯洁 眼看着它把我工作抢了 在当下，以《王者荣耀》、《阴阳师》为首的一批手游正逐渐霸占人们的手机屏幕，以此而衍生的电竞、直播以及代练行业风光无限，潜力巨大。 最近，为保障未成年人健康成长，腾讯经过将近一个月的调试和内测后，将于7月4日以《王者荣耀》为试点，率先推出健康游戏防沉迷系统的“三板斧”，对未成年人的游戏时间作出限制：12岁以下每天限玩一小时。（小学生听了绝不会流泪，并笑着拿出奶奶的身份证。） 当前国内还没有移动游戏防沉迷的明确规定，《王者荣耀》在顶着“亡者毒药”的社会舆论中做出了实...</p> <a target="_blank" href="http://www.jianshu.com/u/98a3b5fc6851?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="author"><div class="avatar" style="background-image: url(&quot;http://upload.jianshu.io/users/upload_avatars/6486956/3e1084b9-b5e4-4329-9762-d385983e5f49.jpg&quot;);"></div> <span class="name">智先生_Sleepyhead</span></a></div></div></div>
+</div>
+
+    <script src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/push.js.下载"></script><script src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/hm.js.下载"></script><script async="" src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/analytics.js.下载"></script><script type="application/json" data-name="page-data">{"user_signed_in":false,"locale":"zh-CN","os":"windows","read_mode":"day","read_font":"font2","note_show":{"is_author":false,"is_following_author":false,"is_liked_note":false,"uuid":"12a0bde0-db04-4956-92dc-bf55214e9c29"},"note":{"id":7358696,"slug":"30cb540b4a18","user_id":3597719,"notebook_id":7453759,"commentable":true,"likes_count":2,"views_count":32,"public_wordage":1443,"comments_count":1,"total_rewards_count":0,"author":{"total_wordage":5259,"followers_count":4,"total_likes_count":10}}}</script>
+    
+    <script src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/babel-polyfill-568d5d8a2a8b6235bb0c.js.下载"></script>
+    <script src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/web-base-3656af7c1cf4ba3fce86.js.下载"></script>
+<script src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/web-ce1662eb9976c43b6451.js.下载"></script>
+    
+    <script src="./UI：Android 5.0&amp;6.0 控件 - 简书_files/entry-4259dfa4a088ae6489f4.js.下载"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35169517-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?0c0e9d9b1e7d617b3e6842e85b9fb068";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+  
+
+<!----><!----></body></html>

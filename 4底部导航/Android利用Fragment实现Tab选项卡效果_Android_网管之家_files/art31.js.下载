@@ -1,0 +1,18 @@
+//document.writeln("<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script>");
+//document.writeln("<!-- 300x250, www 07-12-27 -->");
+//document.writeln("<ins class=\"adsbygoogle\"");
+//document.writeln("     style=\"display:inline-block;width:300px;height:250px\"");
+//document.writeln("     data-ad-client=\"ca-pub-9969174943212288\"");
+//document.writeln("     data-ad-slot=\"1613516496\"></ins>");
+//document.writeln("<script>");
+//document.writeln("(adsbygoogle = window.adsbygoogle || []).push({});");
+//document.writeln("</script>");
+document.writeln("<script async src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"></script>");
+document.writeln("<!-- 336x280, ´´½¨ÓÚ 10-3-4 -->");
+document.writeln("<ins class=\"adsbygoogle\"");
+document.writeln("     style=\"display:inline-block;width:336px;height:280px\"");
+document.writeln("     data-ad-client=\"ca-pub-9969174943212288\"");
+document.writeln("     data-ad-slot=\"0552880532\"></ins>");
+document.writeln("<script>");
+document.writeln("(adsbygoogle = window.adsbygoogle || []).push({});");
+document.writeln("</script>");

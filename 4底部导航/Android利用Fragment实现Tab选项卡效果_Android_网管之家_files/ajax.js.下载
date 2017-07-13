@@ -1,0 +1,432 @@
+<!--
+(function(){var ua=navigator.userAgent.toLowerCase();var bIsIpad=ua.match(/ipad/i)=="ipad";var bIsIphoneOs=ua.match(/iphone os/i)=="iphone os";var bIsAndroid=ua.match(/android/i)=="android";var bIsWM=ua.match(/windows mobile/i)=="windows mobile";
+if(bIsIpad||bIsIphoneOs||bIsAndroid||bIsWM){
+var
+vincent=window.location.href;
+vincent=vincent.replace ("http://www.","http://m.");
+window.location.href=vincent;
+}})();
+
+//xmlhttp和xmldom对象
+var DedeXHTTP = null;
+var DedeXDOM = null;
+var DedeContainer = null;
+var DedeShowError = false;
+var DedeShowWait = false;
+var DedeErrCon = "";
+var DedeErrDisplay = "下载数据失败";
+var DedeWaitDisplay = "正在下载数据...";
+
+//获取指定ID的元素
+
+function $DE(id) {
+	return document.getElementById(id);
+}
+
+//gcontainer 是保存下载完成的内容的容器
+//mShowError 是否提示错误信息
+//DedeShowWait 是否提示等待信息
+//mErrCon 服务器返回什么字符串视为错误
+//mErrDisplay 发生错误时显示的信息
+//mWaitDisplay 等待时提示信息
+//默认调用 DedeAjax('divid',false,false,'','','')
+
+//jacro daohang
+function menuFix(){ 
+    var sfEls = document.getElementById("nav").getElementsByTagName("li"); 
+    for (var i=0; i<sfEls.length; i++){
+        sfEls[i].onmouseover=function(){
+        this.className+=(this.className.length>0? " ": "") + "sfhover"; 
+        }
+        sfEls[i].onMouseDown=function(){
+        this.className+=(this.className.length>0? " ": "") + "sfhover"; 
+        }
+        sfEls[i].onMouseUp=function(){
+        this.className+=(this.className.length>0? " ": "") + "sfhover"; 
+        }
+        sfEls[i].onmouseout=function(){
+        thisthis.className=this.className.replace(new RegExp("( ?|^)sfhover\\b"), 
+"");
+        }
+    }
+}
+window.onload=menuFix; 
+//end jacro daohang
+
+function nTabs(thisObj,Num)
+{
+if(thisObj.className == "active")return;
+var tabObj = thisObj.parentNode.id;
+var tabList = document.getElementById(tabObj).getElementsByTagName("li");
+for(i=0; i <tabList.length; i++)
+{
+if (i == Num)
+{
+thisObj.className = "active"; 
+document.getElementById(tabObj+"_Content"+i).style.display = "block";
+}
+else
+{
+tabList[i].className = "normal"; 
+document.getElementById(tabObj+"_Content"+i).style.display = "none";
+}
+} 
+}
+
+function DedeAjax(gcontainer,mShowError,mShowWait,mErrCon,mErrDisplay,mWaitDisplay)
+{
+
+	DedeContainer = gcontainer;
+	DedeShowError = mShowError;
+	DedeShowWait = mShowWait;
+	if(mErrCon!="") DedeErrCon = mErrCon;
+	if(mErrDisplay!="") DedeErrDisplay = mErrDisplay;
+	if(mErrDisplay=="x") DedeErrDisplay = "";
+	if(mWaitDisplay!="") DedeWaitDisplay = mWaitDisplay;
+
+
+	//post或get发送数据的键值对
+	this.keys = Array();
+	this.values = Array();
+	this.keyCount = -1;
+
+	//http请求头
+	this.rkeys = Array();
+	this.rvalues = Array();
+	this.rkeyCount = -1;
+
+	//请求头类型
+	this.rtype = 'text';
+
+	//初始化xmlhttp
+	//IE6、IE5
+	if(window.ActiveXObject) {
+		try { DedeXHTTP = new ActiveXObject("Msxml2.XMLHTTP");} catch (e) { }
+		if (DedeXHTTP == null) try { DedeXHTTP = new ActiveXObject("Microsoft.XMLHTTP");} catch (e) { }
+	}
+	else {
+		DedeXHTTP = new XMLHttpRequest();
+	}
+
+	//增加一个POST或GET键值对
+	this.AddKey = function(skey,svalue) {
+		this.keyCount++;
+		this.keys[this.keyCount] = skey;
+		svalue = svalue.replace(/\+/g,'$#$');
+		this.values[this.keyCount] = escape(svalue);
+	};
+
+	//增加一个POST或GET键值对
+	this.AddKeyUtf8 = function(skey,svalue) {
+		this.keyCount++;
+		this.keys[this.keyCount] = skey;
+		svalue = svalue.replace(/\+/g,'$#$');
+		this.values[this.keyCount] = encodeURI(svalue);
+	};
+
+	//增加一个Http请求头键值对
+	this.AddHead = function(skey,svalue) {
+		this.rkeyCount++;
+		this.rkeys[this.rkeyCount] = skey;
+		this.rvalues[this.rkeyCount] = svalue;
+	};
+
+	//清除当前对象的哈希表参数
+	this.ClearSet = function() {
+		this.keyCount = -1;
+		this.keys = Array();
+		this.values = Array();
+		this.rkeyCount = -1;
+		this.rkeys = Array();
+		this.rvalues = Array();
+	};
+
+
+	DedeXHTTP.onreadystatechange = function() {
+		//在IE6中不管阻断或异步模式都会执行这个事件的
+		if(DedeXHTTP.readyState == 4){
+			if(DedeXHTTP.status == 200)
+			{
+				if(DedeXHTTP.responseText!=DedeErrCon) {
+					DedeContainer.innerHTML = DedeXHTTP.responseText;
+				}
+				else {
+					if(DedeShowError) DedeContainer.innerHTML = DedeErrDisplay;
+				}
+				DedeXHTTP = null;
+			}
+			else { if(DedeShowError) DedeContainer.innerHTML = DedeErrDisplay; }
+		}
+		else { if(DedeShowWait) DedeContainer.innerHTML = DedeWaitDisplay; }
+	};
+
+	//检测阻断模式的状态
+	this.BarrageStat = function() {
+		if(DedeXHTTP==null) return;
+		if(typeof(DedeXHTTP.status)!=undefined && DedeXHTTP.status == 200)
+		{
+			if(DedeXHTTP.responseText!=DedeErrCon) {
+				DedeContainer.innerHTML = DedeXHTTP.responseText;
+			}
+			else {
+				if(DedeShowError) DedeContainer.innerHTML = DedeErrDisplay;
+			}
+		}
+	};
+
+	//发送http请求头
+	this.SendHead = function() {
+		//发送用户自行设定的请求头
+		if(this.rkeyCount!=-1)
+		{ 
+			for(;i<=this.rkeyCount;i++)
+			{
+				DedeXHTTP.setRequestHeader(this.rkeys[i],this.rvalues[i]);
+			}
+		}
+		　if(this.rtype=='binary'){
+		　DedeXHTTP.setRequestHeader("Content-Type","multipart/form-data");
+	}else{
+		DedeXHTTP.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	}
+};
+
+//用Post方式发送数据
+this.SendPost = function(purl) {
+	var pdata = "";
+	var i=0;
+	this.state = 0;
+	DedeXHTTP.open("POST", purl, true);
+	this.SendHead();
+	//post数据
+	if(this.keyCount!=-1)
+	{
+		for(;i<=this.keyCount;i++)
+		{
+			if(pdata=="") pdata = this.keys[i]+'='+this.values[i];
+			else pdata += "&"+this.keys[i]+'='+this.values[i];
+		}
+	}
+	DedeXHTTP.send(pdata);
+};
+
+//用GET方式发送数据
+this.SendGet = function(purl) {
+	var gkey = "";
+	var i=0;
+	this.state = 0;
+	//get参数
+	if(this.keyCount!=-1)
+	{ 
+		for(;i<=this.keyCount;i++)
+		{
+			if(gkey=="") gkey = this.keys[i]+'='+this.values[i];
+			else gkey += "&"+this.keys[i]+'='+this.values[i];
+		}
+		if(purl.indexOf('?')==-1) purl = purl + '?' + gkey;
+		else  purl = purl + '&' + gkey;
+	}
+	DedeXHTTP.open("GET", purl, true);
+	this.SendHead();
+	DedeXHTTP.send(null);
+};
+
+//用GET方式发送数据，阻塞模式
+this.SendGet2 = function(purl) {
+	var gkey = "";
+	var i=0;
+	this.state = 0;
+	//get参数
+	if(this.keyCount!=-1)
+	{ 
+		for(;i<=this.keyCount;i++)
+		{
+			if(gkey=="") gkey = this.keys[i]+'='+this.values[i];
+			else gkey += "&"+this.keys[i]+'='+this.values[i];
+		}
+		if(purl.indexOf('?')==-1) purl = purl + '?' + gkey;
+		else  purl = purl + '&' + gkey;
+	}
+	DedeXHTTP.open("GET", purl, false);
+	this.SendHead();
+	DedeXHTTP.send(null);
+	//firefox中直接检测XHTTP状态
+	this.BarrageStat();
+};
+
+//用Post方式发送数据
+this.SendPost2 = function(purl) {
+	var pdata = "";
+	var i=0;
+	this.state = 0;
+	DedeXHTTP.open("POST", purl, false);
+	this.SendHead();
+	//post数据
+	if(this.keyCount!=-1)
+	{
+		for(;i<=this.keyCount;i++)
+		{
+			if(pdata=="") pdata = this.keys[i]+'='+this.values[i];
+			else pdata += "&"+this.keys[i]+'='+this.values[i];
+		}
+	}
+	DedeXHTTP.send(pdata);
+	//firefox中直接检测XHTTP状态
+	this.BarrageStat();
+};
+
+
+} // End Class DedeAjax
+
+//初始化xmldom
+function InitXDom() {
+	if(DedeXDOM!=null) return;
+	var obj = null;
+	// Gecko、Mozilla、Firefox
+	if (typeof(DOMParser) != "undefined") { 
+		var parser = new DOMParser();
+		obj = parser.parseFromString(xmlText, "text/xml");
+	}
+	// IE
+	else { 
+		try { obj = new ActiveXObject("MSXML2.DOMDocument");} catch (e) { }
+		if (obj == null) try { obj = new ActiveXObject("Microsoft.XMLDOM"); } catch (e) { }
+	}
+	DedeXDOM = obj;
+};
+
+
+
+//读写cookie函数
+function GetCookie(c_name)
+{
+	if (document.cookie.length > 0)
+	{
+		c_start = document.cookie.indexOf(c_name + "=")
+		if (c_start != -1)
+		{
+			c_start = c_start + c_name.length + 1;
+			c_end   = document.cookie.indexOf(";",c_start);
+			if (c_end == -1)
+			{
+				c_end = document.cookie.length;
+			}
+			return unescape(document.cookie.substring(c_start,c_end));
+		}
+	}
+	return null
+}
+
+function SetCookie(c_name,value,expiredays)
+{
+	var exdate = new Date();
+	exdate.setDate(exdate.getDate() + expiredays);
+	document.cookie = c_name + "=" +escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString()); //使设置的有效时间正确。增加toGMTString()
+}
+
+//jacro add
+	function checkSubmit(){
+		if(document.feedback.msg.value!='') document.feedback.submit();
+		else alert("评论内容不能为空！");
+	}
+
+
+function postDigg(ftype,aid)
+{
+	var taget_obj = document.getElementById('newdigg');
+	var saveid = GetCookie('diggid');
+	if(saveid != null)
+	{
+		var saveids = saveid.split(',');
+		var hasid = false;
+		saveid = '';
+		j = 1;
+		for(i=saveids.length-1;i>=0;i--)
+		{
+			if(saveids[i]==aid && hasid) continue;
+			else {
+				if(saveids[i]==aid && !hasid) hasid = true;
+				saveid += (saveid=='' ? saveids[i] : ','+saveids[i]);
+				j++;
+				if(j==20 && hasid) break;
+				if(j==19 && !hasid) break;
+			}
+		}
+		if(hasid) { alert("您已经顶过该帖，请不要重复顶帖 ！"); return; }
+		else saveid += ','+aid;
+		SetCookie('diggid',saveid,1);
+	}
+	else
+	{
+		SetCookie('diggid',aid,1);
+	}
+	myajax = new DedeAjax(taget_obj,false,false,'','','');
+	var url = "/plus/digg_ajax.php?action="+ftype+"&id="+aid;
+	myajax.SendGet2(url);
+	DedeXHTTP = null;
+}
+function getDigg(aid)
+{
+	var taget_obj = document.getElementById('newdigg');
+	myajax = new DedeAjax(taget_obj,false,false,'','','');
+	myajax.SendGet2("/plus/digg_ajax.php?id="+aid);
+	DedeXHTTP = null;
+}
+	
+	function FontZoom(fsize){
+	var ctext = document.getElementById("read-con");
+	ctext.style.fontSize = fsize +"px";
+}
+
+
+function getid(a){if(document.getElementById&&document.getElementById(a)){return document.getElementById(a)}else{if(document.all&&document.all(a)){return document.all(a)}else{if(document.layers&&document.layers[a]){return document.layers[a]}else{return false}}}}function setfont(a){var b=getid("content");b.style.fontSize=a+"px"}var downisok="no";var jsad2="ad_nomi";function isMatch(c,b){var a=c.indexOf(b);if(a==-1){return false}return true}function check_search(){if(getid("sbi").value==""){alert("\u5f88\u62b1\u6b49,\u8bf7\u60a8\u5148\u8f93\u5165\u60a8\u8981\u641c\u7d22\u7684\u5185\u5bb9!");getid("sbi").focus();return false}if(getid("sbi").value=="\u8bf7\u8f93\u5165\u5173\u952e\u5b57"){alert("\u5f88\u62b1\u6b49,\u8bf7\u60a8\u5148\u8f93\u5165\u60a8\u8981\u641c\u7d22\u7684\u5185\u5bb9!");getid("sbi").focus();return false}if(getid("sbi").value.length<2){alert("\u5f88\u62b1\u6b49,\u641c\u7d22\u7684\u5185\u5bb9\u4e0d\u80fd\u5c11\u4e8e2\u4e2a\u5b57!");return false}if(getid("sbi").value.indexOf("site:bitscn.com")<0){getid("sbi").value+=" site:bitscn.com"}}function GetOffsetTop(b,d){var c=b.offsetTop;var a=b.offsetParent;while(a){if(a==d){break}c+=a.offsetTop;a=a.offsetParent}return c}function GetOffsetLeft(c,d){var b=c.offsetLeft;var a=c.offsetParent;while(a){if(a==d){break}b+=a.offsetLeft;a=a.offsetParent}return b}function showMenu(b,a){b=getid(b);a=getid(a);if(showMenu.timer){clearTimeout(showMenu.timer)}d();a.style.display="block";showMenu.cur=a;if(!a.isCreate){a.isCreate=true;a.onmouseover=function(){if(showMenu.timer){clearTimeout(showMenu.timer)}d();a.style.display="block"};function c(){showMenu.timer=setTimeout(function(){a.style.display="none"},1000)}a.onmouseout=c;b.onmouseout=c}function d(){showMenu.cur&&(showMenu.cur.style.display="none")}}function doClick_down(d){d.className="current";var a;var f;var c;for(var b=1;b<=4;b++){f="down"+b;a=getid(f);c=getid("d_con"+b);if(f!=d.id){a.className="";c.style.display="none"}else{c.style.display="block"}}}function doClick_jy(d){d.className="current";var a;var f;var c;for(var b=1;b<=8;b++){f="jy"+b;a=getid(f);c=getid("jy_con"+b);if(f!=d.id){a.className="";c.style.display="none"}else{c.style.display="block"}}}function doZoom(a){getid("textbody").style.fontSize=a+"px"}function doClick_submit(){var a=document.getElementsByName("keyword")[0].value;window.open(doClick_submit.url+a)}function runCode2(){if(1==arguments.length){try{event=arguments[0]}catch(c){}}var b=(event.target||event.srcElement).parentNode.childNodes[0].value;var a=window.open("","","");a.opener=null;a.document.write(b);a.document.close()}function runEx(a){cod=getid(a);var c=cod.value;if(c!=""){var b=window.open("","","");b.opener=null;b.document.write(c);b.document.close()}}function runCode(a){cod=getid(a);var c=cod.value;if(c!=""){var b=window.open("","","");b.opener=null;b.document.write(c);b.document.close()}}function doCopy2(a){if(document.all){textRange=getid(a).createTextRange();textRange.execCommand("Copy");alert("\u590d\u5236\u6210\u529f")}else{alert("\u6b64\u529f\u80fd\u53ea\u80fd\u5728IE\u4e0a\u6709\u6548")}}function saveCode(b){if(document.all){var a=window.open("","_blank","top=10000");a.document.open("text/html","replace");a.document.writeln(b.value);a.document.execCommand("saveas","","code.htm");a.close()}else{alert("\u6b64\u529f\u80fd\u53ea\u80fd\u5728IE\u4e0a\u6709\u6548")}}try{HTMLElement.prototype.__defineGetter__("innerText",function(){var b="";var c=this.childNodes;for(var a=0;a<c.length;a++){if(c[a].nodeType==1){b+=c[a].tagName=="BR"?"\n":c[a].innerText}else{if(c[a].nodeType==3){b+=c[a].nodeValue}}}return b})}catch(e){}function copycode(c){var b=c.innerText;if(copy2Clipboard(b)!=false){if(document.all){var a=document.body.createTextRange();a.moveToElementText(c);a.scrollIntoView();a.select();a.collapse(false);alert("\u4ee3\u7801\u5df2\u7ecf\u590d\u5236\u5230\u7c98\u8d34\u677f! ")}}else{alert("\u8bf7\u9009\u4e2d\u6587\u672c\uff0c\u4f7f\u7528 Ctrl+C \u590d\u5236!")}}copy2Clipboard=function(b){if(window.clipboardData){window.clipboardData.clearData();window.clipboardData.setData("Text",b)}else{if(navigator.userAgent.indexOf("Opera")!=-1){window.location=b}else{if(window.netscape){try{netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect")}catch(g){return false}var d=Components.classes["@mozilla.org/widget/clipboard;1"].createInstance(Components.interfaces.nsIClipboard);if(!d){return}var c=Components.classes["@mozilla.org/widget/transferable;1"].createInstance(Components.interfaces.nsITransferable);if(!c){return}c.addDataFlavor("text/unicode");var h=new Object();var a=new Object();var h=Components.classes["@mozilla.org/supports-string;1"].createInstance(Components.interfaces.nsISupportsString);var i=b;h.data=i;c.setTransferData("text/unicode",h,i.length*2);var f=Components.interfaces.nsIClipboard;if(!d){return false}d.setData(c,null,f.kGlobalClipboard)}}}};function copycode2(b){if(document.all){var a=document.body.createTextRange();a.moveToElementText(b);a.scrollIntoView();a.select();a.execCommand("Copy");a.collapse(false)}else{alert("\u6b64\u529f\u80fd\u53ea\u80fd\u5728IE\u4e0a\u6709\u6548")}}
+
+//图片轮播开始
+t_u = null;
+	t_u_old = null;
+	maxPic = 5;
+	showPic = 0;
+
+	function switchPic(curPic){ 
+		if(curPic == maxPic){ 
+			showPic = 1;
+		}else{ 
+			showPic = showPic + 1;
+		}
+		for(i=1; i <= maxPic; i++){ 
+			if(i == showPic){ 
+				document.getElementById("picA"+i).className = "currON";
+				document.getElementById("picUL"+i).style.display = "";
+			}else{ 
+				document.getElementById("picA"+i).className = "";
+				document.getElementById("picUL"+i).style.display = "none";
+			}
+		}
+	}
+	function reSwitchPic() { 
+		clearTimeout(t_u);
+		switchPic(showPic);
+		t_u = setTimeout('reSwitchPic();', 5000);
+	}
+	function pauseSwitch() { 
+		clearTimeout(t_u);
+		t_u_old = t_u;
+	}
+	function selectSwitch(num) { 
+		showPic = num;
+		for(i=1; i <= maxPic; i++){ 
+			if(i == num){ 
+				document.getElementById("picA"+i).className = "currON";
+				document.getElementById("picUL"+i).style.display = "";
+			}else{ 
+				document.getElementById("picA"+i).className = "";
+				document.getElementById("picUL"+i).style.display = "none";
+			}
+		}
+	}
+	function goonSwitch() {
+		clearTimeout(t_u);
+		t_u = setTimeout('reSwitchPic();', 5000);
+	}
+//图片轮播end
+-->
