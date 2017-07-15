@@ -1,0 +1,35 @@
+$(function(){
+    $(window).manhuatoTop({
+        showHeight : 100,//设置滚动高度时显示
+        speed : 500 //返回顶部的速度以毫秒为单位
+    });
+    $.get('/api/add_viewcount/?action=article&id='+articleID,function(data){
+        console.log(data);
+    });
+});
+function resize_img(){
+    $("#contentbody img").bind("load",function(){
+        resize_single_img(this);
+    }).each(function(){
+        resize_single_img(this);
+    });
+}
+function resize_single_img(obj){
+    var max_width=640;
+    var self=$(obj);
+    var parent=$(self.parent());
+    var parent_w=parent.width();
+    if(parent_w>300&&parent_w<max_width){
+        max_width=parent_w;
+    }
+    if(self.hasClass("auto_resize")) return;
+    var self_w=self.width();
+    var self_h=self.height();
+    if(!self_w||!self_h||self_w<=max_width){
+        return;
+    }
+    var new_h=parseInt((self_h/self_w)*max_width);
+    self.width(max_width).height(new_h);
+    self.addClass("auto_resize");
+}
+resize_img();

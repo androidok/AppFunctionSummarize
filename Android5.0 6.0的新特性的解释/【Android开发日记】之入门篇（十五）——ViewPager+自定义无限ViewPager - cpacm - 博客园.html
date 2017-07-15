@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://www.cnblogs.com/cpacm/p/5555221.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>【Android开发日记】之入门篇（十五）——ViewPager+自定义无限ViewPager - cpacm - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./【Android开发日记】之入门篇（十五）——ViewPager+自定义无限ViewPager - cpacm - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./【Android开发日记】之入门篇（十五）——ViewPager+自定义无限ViewPager - cpacm - 博客园_files/bundle-CodingLife.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./【Android开发日记】之入门篇（十五）——ViewPager+自定义无限ViewPager - cpacm - 博客园_files/bundle-CodingLife-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/cpacm/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/cpacm/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/cpacm/wlwmanifest.xml">
+<script async="" src="./【Android开发日记】之入门篇（十五）——ViewPager+自定义无限ViewPager - cpacm - 博客园_files/analytics.js.下载"></script><script src="./【Android开发日记】之入门篇（十五）——ViewPager+自定义无限ViewPager - cpacm - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'cpacm', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./【Android开发日记】之入门篇（十五）——ViewPager+自定义无限ViewPager - cpacm - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/cpacm/"><img id="blogLogo" src="./【Android开发日记】之入门篇（十五）——ViewPager+自定义无限ViewPager - cpacm - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/cpacm/">cpacm</a></h1>
+<h2>我是一只懒散的猫，我想要的只是自由的生活~</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/cpacm/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/cpacm">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/cpacm/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/cpacm/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 35&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 53</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/cpacm/p/5555221.html">【Android开发日记】之入门篇（十五）——ViewPager+自定义无限ViewPager</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="cnblogs-markdown"><h2 id="viewpager">ViewPager</h2>
+<p>在 Android 控件中，ViewPager 一直算是使用率比较高的控件，包括首页的banner,tab页的切换都能见到ViewPager的身影。<br>
+<code>viewpager</code> 来源自 v4 支持包 (<code>android.support.v4.view.ViewPager</code>),用于左右切换界面实现tab的效果。其使用方法与 <code>ListView</code> 类似都是搭配一个adapter进行数据适配。</p>
+<h3 id="在布局文件中添加">在布局文件中添加</h3>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml hljs">    <span class="kw"><span class="hljs-tag">&lt;<span class="hljs-name">android.support.v4.view.ViewPager</span></span></span><span class="hljs-tag">
+</span><span class="ot"><span class="hljs-tag">            <span class="hljs-attr">android:id</span>=</span></span><span class="st"><span class="hljs-tag"><span class="hljs-string">"@+id/viewpager"</span></span></span><span class="hljs-tag">  
+</span><span class="ot"><span class="hljs-tag">            <span class="hljs-attr">android:layout_width</span>=</span></span><span class="st"><span class="hljs-tag"><span class="hljs-string">"match_parent"</span></span></span><span class="hljs-tag">  
+</span><span class="ot"><span class="hljs-tag">            <span class="hljs-attr">android:layout_height</span>=</span></span><span class="st"><span class="hljs-tag"><span class="hljs-string">"140dp"</span></span></span><span class="hljs-tag">  </span><span class="kw"><span class="hljs-tag">/&gt;</span></span>  </code></pre></div>
+<p>通常Viewpager直接往布局文件里面添加就可以了，虽然ViewPager是一个容器类，继承自 ViewGroup,但不建议往里面添加子view。<br>
+之后可以在代码中像调用普通控件一样通过 <code>findViewById(R.id.viewpager)</code> 通过id获取viewpager控件。</p>
+<h3 id="设置-pageradapter">设置 PagerAdapter</h3>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java hljs">PagerAdapter pagerAdapter = <span class="kw"><span class="hljs-keyword">new</span></span> <span class="fu">PagerAdapter</span>() {  
+  
+    <span class="co"><span class="hljs-comment">//</span></span>
+    <span class="fu"><span class="hljs-meta">@Override</span></span>  
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">boolean</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">isViewFromObject</span></span></span><span class="hljs-function"><span class="hljs-params">(View arg0, Object arg1)</span> </span>{  
+
+        <span class="kw"><span class="hljs-keyword">return</span></span> arg0 == arg1;  
+    }  
+
+    <span class="co"><span class="hljs-comment">//返回要滑动的VIew的个数</span></span>
+    <span class="fu"><span class="hljs-meta">@Override</span></span>  
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">int</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">getCount</span></span></span><span class="hljs-function"><span class="hljs-params">()</span> </span>{  
+
+        <span class="kw"><span class="hljs-keyword">return</span></span> viewList.<span class="fu">size</span>();  
+    }  
+
+    <span class="co"><span class="hljs-comment">//从当前container中删除指定位置（position）的View;</span></span>
+    <span class="fu"><span class="hljs-meta">@Override</span></span>  
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">destroyItem</span></span></span><span class="hljs-function"><span class="hljs-params">(ViewGroup container, </span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> position,  
+            Object object)</span> </span>{  
+        container.<span class="fu">removeView</span>(viewList.<span class="fu">get</span>(position));  
+
+    }  
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>  
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">int</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">getItemPosition</span></span></span><span class="hljs-function"><span class="hljs-params">(Object object)</span> </span>{  
+
+        <span class="kw"><span class="hljs-keyword">return</span></span> <span class="kw"><span class="hljs-keyword">super</span></span>.<span class="fu">getItemPosition</span>(object);  
+    }  
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>  
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> CharSequence </span><span class="fu"><span class="hljs-function"><span class="hljs-title">getPageTitle</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> position)</span> </span>{  
+
+        <span class="kw"><span class="hljs-keyword">return</span></span> titleList.<span class="fu">get</span>(position);  
+    }  
+
+    <span class="co"><span class="hljs-comment">//做了两件事，第一：将当前视图添加到container中，第二：返回当前View</span></span>
+    <span class="fu"><span class="hljs-meta">@Override</span></span>  
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> Object </span><span class="fu"><span class="hljs-function"><span class="hljs-title">instantiateItem</span></span></span><span class="hljs-function"><span class="hljs-params">(ViewGroup container, </span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> position)</span> </span>{  
+        container.<span class="fu">addView</span>(viewList.<span class="fu">get</span>(position));  
+        <span class="kw"><span class="hljs-keyword">return</span></span> viewList.<span class="fu">get</span>(position);  
+    }  
+
+};</code></pre></div>
+<p>PagerAdapter 支持数据集合的改变，可以调用<code>notifyDataSetChanged</code>方法来进行更新。和<code>BaseAdapter</code>非常相似。</p>
+<h3 id="设置-viewpager">设置 ViewPager</h3>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java hljs">viewPager = (ViewPager) <span class="fu">findViewById</span>(R.<span class="fu">id</span>.<span class="fu">viewpager</span>);  
+LayoutInflater inflater=<span class="fu">getLayoutInflater</span>();  
+view1 = inflater.<span class="fu">inflate</span>(R.<span class="fu">layout</span>.<span class="fu">layout1</span>, <span class="kw"><span class="hljs-keyword">null</span></span>);  
+view2 = inflater.<span class="fu">inflate</span>(R.<span class="fu">layout</span>.<span class="fu">layout2</span>,<span class="kw"><span class="hljs-keyword">null</span></span>);  
+view3 = inflater.<span class="fu">inflate</span>(R.<span class="fu">layout</span>.<span class="fu">layout3</span>, <span class="kw"><span class="hljs-keyword">null</span></span>);  
+  
+viewList = <span class="kw"><span class="hljs-keyword">new</span></span> ArrayList&lt;View&gt;();<span class="co"><span class="hljs-comment">// 将要分页显示的View装入数组中  </span></span>
+viewList.<span class="fu">add</span>(view1);  
+viewList.<span class="fu">add</span>(view2);  
+viewList.<span class="fu">add</span>(view3); 
+
+<span class="co"><span class="hljs-comment">//初始化 pagerAdapter </span></span>
+PagerAdapter pagerAdapter = <span class="kw"><span class="hljs-keyword">new</span></span> <span class="fu">PagerAdapter</span>() {...}
+viewPager.<span class="fu">setAdapter</span>(pagerAdapter);</code></pre></div>
+<p>此时PagerAdapter包含了viewList数据，此时就能显示到Viewpager中。</p>
+<h2 id="viewpager扩展">ViewPager扩展</h2>
+<h3 id="pagertitlestrip-和-pagertabstrip">PagerTitleStrip 和 PagerTabStrip</h3>
+<p>这两个类都属于v4 support包中的类，两个都是是ViewPager的一个关于当前页面、上一个页面和下一个页面的指示器。<br>
+其作为ViewPager控件的一个子控件被被添加在XML布局文件中，每个页面的标题是通过适配器的<code>getPageTitle(int)</code>函数提供给ViewPager的。<br>
+但两者又有不同：<br>
+1、 PagerTabStrip 是可交互的，点哪滚到哪；<br>
+2、 PagerTabStrip 在当前页面下，会有一个下划线条来提示当前页面的Tab是哪个。<br>
+这里以 PagerTabStrip 为例</p>
+<h3 id="使用">使用</h3>
+<p>添加布局</p>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml hljs"><span class="kw"><span class="hljs-tag">&lt;<span class="hljs-name">android.support.v4.view.ViewPager</span></span></span><span class="hljs-tag">  
+</span><span class="ot"><span class="hljs-tag">    <span class="hljs-attr">android:id</span>=</span></span><span class="st"><span class="hljs-tag"><span class="hljs-string">"@+id/viewpager"</span></span></span><span class="hljs-tag">  
+</span><span class="ot"><span class="hljs-tag">    <span class="hljs-attr">android:layout_width</span>=</span></span><span class="st"><span class="hljs-tag"><span class="hljs-string">"match_parent"</span></span></span><span class="hljs-tag">  
+</span><span class="ot"><span class="hljs-tag">    <span class="hljs-attr">android:layout_height</span>=</span></span><span class="st"><span class="hljs-tag"><span class="hljs-string">"140dp"</span></span></span><span class="hljs-tag">  
+</span><span class="ot"><span class="hljs-tag">    <span class="hljs-attr">android:layout_gravity</span>=</span></span><span class="st"><span class="hljs-tag"><span class="hljs-string">"center"</span></span></span><span class="kw"><span class="hljs-tag">&gt;</span></span>  
+      
+        <span class="kw"><span class="hljs-tag">&lt;<span class="hljs-name">android.support.v4.view.PagerTabStrip</span></span></span><span class="hljs-tag">  
+</span><span class="ot"><span class="hljs-tag">        <span class="hljs-attr">android:id</span>=</span></span><span class="st"><span class="hljs-tag"><span class="hljs-string">"@+id/pagertab"</span></span></span><span class="hljs-tag">  
+</span><span class="ot"><span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=</span></span><span class="st"><span class="hljs-tag"><span class="hljs-string">"match_parent"</span></span></span><span class="hljs-tag">  
+</span><span class="ot"><span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=</span></span><span class="st"><span class="hljs-tag"><span class="hljs-string">"wrap_content"</span></span></span><span class="hljs-tag">   
+</span><span class="ot"><span class="hljs-tag">        <span class="hljs-attr">android:layout_gravity</span>=</span></span><span class="st"><span class="hljs-tag"><span class="hljs-string">"top"</span></span></span><span class="kw"><span class="hljs-tag">/&gt;</span></span>  
+          
+<span class="kw"><span class="hljs-tag">&lt;/<span class="hljs-name">android.support.v4.view.ViewPager</span>&gt;</span></span></code></pre></div>
+<p>添加代码</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java hljs">    titleList = <span class="kw"><span class="hljs-keyword">new</span></span> ArrayList&lt;String&gt;();<span class="co"><span class="hljs-comment">// 每个页面的Title数据  </span></span>
+    titleList.<span class="fu">add</span>(<span class="st"><span class="hljs-string">"1111"</span></span>);  
+    titleList.<span class="fu">add</span>(<span class="st"><span class="hljs-string">"2222"</span></span>);  
+    titleList.<span class="fu">add</span>(<span class="st"><span class="hljs-string">"3333"</span></span>);</code></pre></div>
+<p>通过PagerAdaper的<code>getPageTitle(int position)</code>来设置标题</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java hljs"><span class="fu"><span class="hljs-meta">@Override</span></span>  
+<span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> CharSequence </span><span class="fu"><span class="hljs-function"><span class="hljs-title">getPageTitle</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> position)</span> </span>{  
+    <span class="kw"><span class="hljs-keyword">return</span></span> titleList.<span class="fu">get</span>(position);  
+}</code></pre></div>
+<h3 id="缺陷">缺陷</h3>
+<p>但由于 PagerTabStrip 的局限性，大家一般都会自定义一个指示器，通过<code>ViewPager.OnPageChangeListener</code>绑定。<br>
+同时安利一下 google design 包里面的 <code>TabLayout</code> 和 最新推出的<code>Bottom navigation</code>。</p>
+<h2 id="开源项目无限-viewpager一款可以高度自定义的-slider">开源项目：无限 viewpager——一款可以高度自定义的 slider</h2>
+<p>这是一款我刚写的开源库，起初写这个是因为我想要一个可以高度自定义化的轮播器，它包括了一下几个特点：</p>
+<blockquote>
+<p>使用自己项目中的ImageLoader,而不是被迫使用库中的图片加载器；<br>
+库中内置几款常用的指示器，也可以创建自己想要的指示器；<br>
+丰富多彩的转场动画，亦可以发挥你的创意创造新的特效；<br>
+可以为每一页建立动画效果。</p>
+</blockquote>
+<p><a href="https://github.com/cpacm/SimpleSlider">Github地址</a></p>
+<h3 id="关于无限轮播">关于无限轮播</h3>
+<p>一般的ViewPager播放到最后一个位置时，若要返回到第一个位置则必须从右向左，作为Banner时这是不自然的过渡效果。<br>
+我们知道ViewPager显示的个数是由PagerAdaper的<code>getCount()</code>方法决定的，既然如此那我们可以给它赋予一个极大的值使ViewPager不断向右轮播，这也是整个无限轮播的核心思想。</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java hljs"><span class="kw"><span class="hljs-keyword">public</span></span> <span class="kw"><span class="hljs-class"><span class="hljs-keyword">class</span></span></span><span class="hljs-class"> <span class="hljs-title">InfinitePagerAdapter</span> </span><span class="kw"><span class="hljs-class"><span class="hljs-keyword">extends</span></span></span><span class="hljs-class"> <span class="hljs-title">PagerAdapter</span> </span>{
+
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">static</span></span> <span class="dt"><span class="hljs-keyword">final</span></span> String TAG = <span class="st"><span class="hljs-string">"InfinitePagerAdapter"</span></span>;
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">static</span></span> <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">boolean</span></span> DEBUG = <span class="kw"><span class="hljs-keyword">false</span></span>;
+
+    <span class="kw"><span class="hljs-keyword">private</span></span> BaseSliderAdapter adapter;
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">InfinitePagerAdapter</span></span></span><span class="hljs-function"><span class="hljs-params">(BaseSliderAdapter adapter)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">this</span></span>.<span class="fu">adapter</span> = adapter;
+        adapter.<span class="fu">registerDataSetObserver</span>(<span class="kw"><span class="hljs-keyword">new</span></span> <span class="fu">DataSetObserver</span>() {
+            <span class="fu"><span class="hljs-meta">@Override</span></span>
+            <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onChanged</span></span></span><span class="hljs-function"><span class="hljs-params">()</span> </span>{
+                <span class="fu">notifyDataSetChanged</span>();
+                <span class="kw"><span class="hljs-keyword">super</span></span>.<span class="fu">onChanged</span>();
+            }
+        });
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> BaseSliderAdapter </span><span class="fu"><span class="hljs-function"><span class="hljs-title">getRealAdapter</span></span></span><span class="hljs-function"><span class="hljs-params">()</span> </span>{
+        <span class="kw"><span class="hljs-keyword">return</span></span> <span class="kw"><span class="hljs-keyword">this</span></span>.<span class="fu">adapter</span>;
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> CharSequence </span><span class="fu"><span class="hljs-function"><span class="hljs-title">getPageTitle</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> position)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">return</span></span> adapter.<span class="fu">getPageTitle</span>(position % <span class="fu">getRealCount</span>());
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">int</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">getCount</span></span></span><span class="hljs-function"><span class="hljs-params">()</span> </span>{
+        <span class="co"><span class="hljs-comment">// warning: scrolling to very high values (1,000,000+) results in</span></span>
+        <span class="co"><span class="hljs-comment">// strange drawing behaviour</span></span>
+        <span class="kw"><span class="hljs-keyword">if</span></span> (<span class="fu">getRealCount</span>() == <span class="dv"><span class="hljs-number">0</span></span>) <span class="kw"><span class="hljs-keyword">return</span></span> <span class="dv"><span class="hljs-number">0</span></span>;
+        <span class="kw"><span class="hljs-keyword">if</span></span> (<span class="fu">getRealCount</span>() == <span class="dv"><span class="hljs-number">1</span></span>) <span class="kw"><span class="hljs-keyword">return</span></span> <span class="dv"><span class="hljs-number">1</span></span>;
+        <span class="kw"><span class="hljs-keyword">return</span></span> Integer.<span class="fu">MAX_VALUE</span>;
+    }
+
+    <span class="co"><span class="hljs-comment">/**</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment">     * </span></span><span class="kw"><span class="hljs-comment"><span class="hljs-doctag">@return</span> </span></span><span class="co"><span class="hljs-comment">the </span></span><span class="kw"><span class="hljs-comment">{<span class="hljs-doctag">@link</span> #getCount()}</span></span><span class="co"><span class="hljs-comment"> result of the wrapped adapter</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment">     */</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">int</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">getRealCount</span></span></span><span class="hljs-function"><span class="hljs-params">()</span> </span>{
+        <span class="kw"><span class="hljs-keyword">return</span></span> adapter.<span class="fu">getCount</span>();
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> BaseSliderView </span><span class="fu"><span class="hljs-function"><span class="hljs-title">getSliderView</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> position)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">return</span></span> adapter.<span class="fu">getSliderView</span>(position % <span class="fu">getRealCount</span>());
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> Object </span><span class="fu"><span class="hljs-function"><span class="hljs-title">instantiateItem</span></span></span><span class="hljs-function"><span class="hljs-params">(ViewGroup container, </span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> position)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">if</span></span> (<span class="fu">getRealCount</span>() == <span class="dv"><span class="hljs-number">0</span></span>) {
+            <span class="kw"><span class="hljs-keyword">return</span></span> <span class="kw"><span class="hljs-keyword">null</span></span>;
+        }
+        <span class="dt"><span class="hljs-keyword">int</span></span> virtualPosition = position % <span class="fu">getRealCount</span>();
+        <span class="fu">debug</span>(<span class="st"><span class="hljs-string">"instantiateItem: real position: "</span></span> + position);
+        <span class="fu">debug</span>(<span class="st"><span class="hljs-string">"instantiateItem: virtual position: "</span></span> + virtualPosition);
+
+        <span class="co"><span class="hljs-comment">// only expose virtual position to the inner adapter</span></span>
+        <span class="kw"><span class="hljs-keyword">return</span></span> adapter.<span class="fu">instantiateItem</span>(container, virtualPosition);
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">destroyItem</span></span></span><span class="hljs-function"><span class="hljs-params">(ViewGroup container, </span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> position, Object object)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">if</span></span> (<span class="fu">getRealCount</span>() == <span class="dv"><span class="hljs-number">0</span></span>) {
+            <span class="kw"><span class="hljs-keyword">return</span></span>;
+        }
+        <span class="dt"><span class="hljs-keyword">int</span></span> virtualPosition = position % <span class="fu">getRealCount</span>();
+        <span class="fu">debug</span>(<span class="st"><span class="hljs-string">"destroyItem: real position: "</span></span> + position);
+        <span class="fu">debug</span>(<span class="st"><span class="hljs-string">"destroyItem: virtual position: "</span></span> + virtualPosition);
+
+        <span class="co"><span class="hljs-comment">// only expose virtual position to the inner adapter</span></span>
+        adapter.<span class="fu">destroyItem</span>(container, virtualPosition, object);
+    }
+
+    <span class="co"><span class="hljs-comment">/*</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment">     * Delegate rest of methods directly to the inner adapter.</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment">     */</span></span>
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">finishUpdate</span></span></span><span class="hljs-function"><span class="hljs-params">(ViewGroup container)</span> </span>{
+        adapter.<span class="fu">finishUpdate</span>(container);
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">boolean</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">isViewFromObject</span></span></span><span class="hljs-function"><span class="hljs-params">(View view, Object object)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">return</span></span> adapter.<span class="fu">isViewFromObject</span>(view, object);
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">restoreState</span></span></span><span class="hljs-function"><span class="hljs-params">(Parcelable bundle, ClassLoader classLoader)</span> </span>{
+        adapter.<span class="fu">restoreState</span>(bundle, classLoader);
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> Parcelable </span><span class="fu"><span class="hljs-function"><span class="hljs-title">saveState</span></span></span><span class="hljs-function"><span class="hljs-params">()</span> </span>{
+        <span class="kw"><span class="hljs-keyword">return</span></span> adapter.<span class="fu">saveState</span>();
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">startUpdate</span></span></span><span class="hljs-function"><span class="hljs-params">(ViewGroup container)</span> </span>{
+        adapter.<span class="fu">startUpdate</span>(container);
+    }
+
+    <span class="co"><span class="hljs-comment">/*</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment">     * End delegation</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment">     */</span></span>
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">private</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">debug</span></span></span><span class="hljs-function"><span class="hljs-params">(String message)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">if</span></span> (DEBUG) {
+            Log.<span class="fu">d</span>(TAG, message);
+        }
+    }
+}</code></pre></div>
+<p>可以看到在代码中还存在着 <code>BaseSliderAdapter</code> 另一个 PagerAdapter ，这是一个正常的PagerAdapter，它既是数据的真正载体同时也起着维护viewpager真正个数的作用。</p>
+<p>但用这个方法实现的无限轮播存在着一个很大的缺陷，在 page 页少于3个的情况下会出现问题，这是由于ViewPager本身的机制导致的。<br>
+简单来说，ViewPager在显示的时候会同时存在3个page页，当前显示页，当前显示的前一页，当前显示的后一页。当我们轮播到下一页时，原来的前一页会被回收，原来的当前页变成前一页，原来的后一页变成当前页，同时会加载出新的一页作为后一页。<br>
+而在无限轮播小于等于3页时，由于前一页可能没有被回收就被当做新的一页加载到后一页中，这就导致了view重复被ViewGroup添加，而在Android中View只能被允许拥有一个ParentView,这里就出现了问题。<br>
+所以在page页少于等于3页的时候还是要使用基础的 PagerAdapter。</p>
+<h3 id="关于指示器">关于指示器</h3>
+<p>指示器可以通过继承 <code>ViewPager.OnPageChangeListener</code>与ViewPager保持联动，其监听器包括以下方法：</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java hljs"><span class="fu"><span class="hljs-meta">@Override</span></span>
+<span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onPageScrolled</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> position, </span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">float</span></span></span></span><span class="hljs-function"><span class="hljs-params"> positionOffset, </span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> positionOffsetPixels)</span> </span>{
+    <span class="co"><span class="hljs-comment">// 滑动时的参数变化</span></span>
+}
+
+<span class="fu"><span class="hljs-meta">@Override</span></span>
+<span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onPageSelected</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> position)</span> </span>{
+    <span class="co"><span class="hljs-comment">// 滑动到第几页</span></span>
+}
+
+<span class="fu"><span class="hljs-meta">@Override</span></span>
+<span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onPageScrollStateChanged</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> state)</span> </span>{
+   <span class="co"><span class="hljs-comment">// 滑动时的状态变化</span></span>
+}</code></pre></div>
+<p>剩下的就是看你怎么定义指示器的界面，附上指示器演示图和一个自定义的指示器代码<br>
+<iframe id="iframe_0.47680244779128067" src="./【Android开发日记】之入门篇（十五）——ViewPager+自定义无限ViewPager - cpacm - 博客园_files/saved_resource.html" style="border: none; width: 848px;" frameborder="0" scrolling="no"></iframe></p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java hljs"><span class="kw"><span class="hljs-keyword">public</span></span> <span class="kw"><span class="hljs-class"><span class="hljs-keyword">class</span></span></span><span class="hljs-class"> <span class="hljs-title">CirclePageIndicator</span> </span><span class="kw"><span class="hljs-class"><span class="hljs-keyword">extends</span></span></span><span class="hljs-class"> <span class="hljs-title">View</span> </span><span class="kw"><span class="hljs-class"><span class="hljs-keyword">implements</span></span></span><span class="hljs-class"> <span class="hljs-title">PageIndicator</span> </span>{
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">static</span></span> <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">int</span></span> INVALID_POINTER = -<span class="dv"><span class="hljs-number">1</span></span>;
+
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">float</span></span> mRadius;
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">final</span></span> Paint mPaintPageFill = <span class="kw"><span class="hljs-keyword">new</span></span> Paint(ANTI_ALIAS_FLAG);
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">final</span></span> Paint mPaintStroke = <span class="kw"><span class="hljs-keyword">new</span></span> Paint(ANTI_ALIAS_FLAG);
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">final</span></span> Paint mPaintFill = <span class="kw"><span class="hljs-keyword">new</span></span> Paint(ANTI_ALIAS_FLAG);
+    <span class="kw"><span class="hljs-keyword">private</span></span> ViewPager mViewPager;
+    <span class="kw"><span class="hljs-keyword">private</span></span> ViewPager.<span class="fu">OnPageChangeListener</span> mListener;
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">int</span></span> mCurrentPage;
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">int</span></span> mSnapPage;
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">float</span></span> mPageOffset;
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">int</span></span> mScrollState;
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">int</span></span> mOrientation;
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">boolean</span></span> mCentered;
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">boolean</span></span> mSnap;
+
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">int</span></span> mTouchSlop;
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">float</span></span> mLastMotionX = -<span class="dv"><span class="hljs-number">1</span></span>;
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">int</span></span> mActivePointerId = INVALID_POINTER;
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">boolean</span></span> mIsDragging;
+
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">CirclePageIndicator</span></span></span><span class="hljs-function"><span class="hljs-params">(Context context)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">this</span></span>(context, <span class="kw"><span class="hljs-keyword">null</span></span>);
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">CirclePageIndicator</span></span></span><span class="hljs-function"><span class="hljs-params">(Context context, AttributeSet attrs)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">this</span></span>(context, attrs, R.<span class="fu">attr</span>.<span class="fu">vpiCirclePageIndicatorStyle</span>);
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">CirclePageIndicator</span></span></span><span class="hljs-function"><span class="hljs-params">(Context context, AttributeSet attrs, </span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> defStyle)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">super</span></span>(context, attrs, defStyle);
+        <span class="kw"><span class="hljs-keyword">if</span></span> (<span class="fu">isInEditMode</span>()) <span class="kw"><span class="hljs-keyword">return</span></span>;
+
+        <span class="co"><span class="hljs-comment">//Load defaults from resources</span></span>
+        <span class="dt"><span class="hljs-keyword">final</span></span> Resources res = <span class="fu">getResources</span>();
+        <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">int</span></span> defaultPageColor = res.<span class="fu">getColor</span>(R.<span class="fu">color</span>.<span class="fu">default_circle_indicator_page_color</span>);
+        <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">int</span></span> defaultFillColor = res.<span class="fu">getColor</span>(R.<span class="fu">color</span>.<span class="fu">default_circle_indicator_fill_color</span>);
+        <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">int</span></span> defaultOrientation = res.<span class="fu">getInteger</span>(R.<span class="fu">integer</span>.<span class="fu">default_circle_indicator_orientation</span>);
+        <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">int</span></span> defaultStrokeColor = res.<span class="fu">getColor</span>(R.<span class="fu">color</span>.<span class="fu">default_circle_indicator_stroke_color</span>);
+        <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">float</span></span> defaultStrokeWidth = res.<span class="fu">getDimension</span>(R.<span class="fu">dimen</span>.<span class="fu">default_circle_indicator_stroke_width</span>);
+        <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">float</span></span> defaultRadius = res.<span class="fu">getDimension</span>(R.<span class="fu">dimen</span>.<span class="fu">default_circle_indicator_radius</span>);
+        <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">boolean</span></span> defaultCentered = res.<span class="fu">getBoolean</span>(R.<span class="fu">bool</span>.<span class="fu">default_circle_indicator_centered</span>);
+        <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">boolean</span></span> defaultSnap = res.<span class="fu">getBoolean</span>(R.<span class="fu">bool</span>.<span class="fu">default_circle_indicator_snap</span>);
+
+        <span class="co"><span class="hljs-comment">//Retrieve styles attributes</span></span>
+        TypedArray a = context.<span class="fu">obtainStyledAttributes</span>(attrs, R.<span class="fu">styleable</span>.<span class="fu">CirclePageIndicator</span>, defStyle, <span class="dv"><span class="hljs-number">0</span></span>);
+
+        mCentered = a.<span class="fu">getBoolean</span>(R.<span class="fu">styleable</span>.<span class="fu">CirclePageIndicator_centered</span>, defaultCentered);
+        mOrientation = a.<span class="fu">getInt</span>(R.<span class="fu">styleable</span>.<span class="fu">CirclePageIndicator_android_orientation</span>, defaultOrientation);
+        mPaintPageFill.<span class="fu">setStyle</span>(Style.<span class="fu">FILL</span>);
+        mPaintPageFill.<span class="fu">setColor</span>(a.<span class="fu">getColor</span>(R.<span class="fu">styleable</span>.<span class="fu">CirclePageIndicator_pageColor</span>, defaultPageColor));
+        mPaintStroke.<span class="fu">setStyle</span>(Style.<span class="fu">STROKE</span>);
+        mPaintStroke.<span class="fu">setColor</span>(a.<span class="fu">getColor</span>(R.<span class="fu">styleable</span>.<span class="fu">CirclePageIndicator_strokeColor</span>, defaultStrokeColor));
+        mPaintStroke.<span class="fu">setStrokeWidth</span>(a.<span class="fu">getDimension</span>(R.<span class="fu">styleable</span>.<span class="fu">CirclePageIndicator_strokeWidth</span>, defaultStrokeWidth));
+        mPaintFill.<span class="fu">setStyle</span>(Style.<span class="fu">FILL</span>);
+        mPaintFill.<span class="fu">setColor</span>(a.<span class="fu">getColor</span>(R.<span class="fu">styleable</span>.<span class="fu">CirclePageIndicator_fillColor</span>, defaultFillColor));
+        mRadius = a.<span class="fu">getDimension</span>(R.<span class="fu">styleable</span>.<span class="fu">CirclePageIndicator_radius</span>, defaultRadius);
+        mSnap = a.<span class="fu">getBoolean</span>(R.<span class="fu">styleable</span>.<span class="fu">CirclePageIndicator_snap</span>, defaultSnap);
+
+        Drawable background = a.<span class="fu">getDrawable</span>(R.<span class="fu">styleable</span>.<span class="fu">CirclePageIndicator_android_background</span>);
+        <span class="kw"><span class="hljs-keyword">if</span></span> (background != <span class="kw"><span class="hljs-keyword">null</span></span>) {
+            <span class="fu">setBackgroundDrawable</span>(background);
+        }
+
+        a.<span class="fu">recycle</span>();
+
+        <span class="dt"><span class="hljs-keyword">final</span></span> ViewConfiguration configuration = ViewConfiguration.<span class="fu">get</span>(context);
+        mTouchSlop = ViewConfigurationCompat.<span class="fu">getScaledPagingTouchSlop</span>(configuration);
+    }
+
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">setCentered</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">boolean</span></span></span></span><span class="hljs-function"><span class="hljs-params"> centered)</span> </span>{
+        mCentered = centered;
+        <span class="fu">invalidate</span>();
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">boolean</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">isCentered</span></span></span><span class="hljs-function"><span class="hljs-params">()</span> </span>{
+        <span class="kw"><span class="hljs-keyword">return</span></span> mCentered;
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">setPageColor</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> pageColor)</span> </span>{
+        mPaintPageFill.<span class="fu">setColor</span>(pageColor);
+        <span class="fu">invalidate</span>();
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">int</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">getPageColor</span></span></span><span class="hljs-function"><span class="hljs-params">()</span> </span>{
+        <span class="kw"><span class="hljs-keyword">return</span></span> mPaintPageFill.<span class="fu">getColor</span>();
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">setFillColor</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> fillColor)</span> </span>{
+        mPaintFill.<span class="fu">setColor</span>(fillColor);
+        <span class="fu">invalidate</span>();
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">int</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">getFillColor</span></span></span><span class="hljs-function"><span class="hljs-params">()</span> </span>{
+        <span class="kw"><span class="hljs-keyword">return</span></span> mPaintFill.<span class="fu">getColor</span>();
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">setOrientation</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> orientation)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">switch</span></span> (orientation) {
+            <span class="kw"><span class="hljs-keyword">case</span></span> HORIZONTAL:
+            <span class="kw"><span class="hljs-keyword">case</span></span> VERTICAL:
+                mOrientation = orientation;
+                <span class="fu">requestLayout</span>();
+                <span class="kw"><span class="hljs-keyword">break</span></span>;
+
+            <span class="kw"><span class="hljs-keyword">default</span></span>:
+                <span class="kw"><span class="hljs-keyword">throw</span></span> <span class="kw"><span class="hljs-keyword">new</span></span> IllegalArgumentException(<span class="st"><span class="hljs-string">"Orientation must be either HORIZONTAL or VERTICAL."</span></span>);
+        }
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">int</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">getOrientation</span></span></span><span class="hljs-function"><span class="hljs-params">()</span> </span>{
+        <span class="kw"><span class="hljs-keyword">return</span></span> mOrientation;
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">setStrokeColor</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> strokeColor)</span> </span>{
+        mPaintStroke.<span class="fu">setColor</span>(strokeColor);
+        <span class="fu">invalidate</span>();
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">int</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">getStrokeColor</span></span></span><span class="hljs-function"><span class="hljs-params">()</span> </span>{
+        <span class="kw"><span class="hljs-keyword">return</span></span> mPaintStroke.<span class="fu">getColor</span>();
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">setStrokeWidth</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">float</span></span></span></span><span class="hljs-function"><span class="hljs-params"> strokeWidth)</span> </span>{
+        mPaintStroke.<span class="fu">setStrokeWidth</span>(strokeWidth);
+        <span class="fu">invalidate</span>();
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">float</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">getStrokeWidth</span></span></span><span class="hljs-function"><span class="hljs-params">()</span> </span>{
+        <span class="kw"><span class="hljs-keyword">return</span></span> mPaintStroke.<span class="fu">getStrokeWidth</span>();
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">setRadius</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">float</span></span></span></span><span class="hljs-function"><span class="hljs-params"> radius)</span> </span>{
+        mRadius = radius;
+        <span class="fu">invalidate</span>();
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">float</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">getRadius</span></span></span><span class="hljs-function"><span class="hljs-params">()</span> </span>{
+        <span class="kw"><span class="hljs-keyword">return</span></span> mRadius;
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">setSnap</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">boolean</span></span></span></span><span class="hljs-function"><span class="hljs-params"> snap)</span> </span>{
+        mSnap = snap;
+        <span class="fu">invalidate</span>();
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">boolean</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">isSnap</span></span></span><span class="hljs-function"><span class="hljs-params">()</span> </span>{
+        <span class="kw"><span class="hljs-keyword">return</span></span> mSnap;
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">protected</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onDraw</span></span></span><span class="hljs-function"><span class="hljs-params">(Canvas canvas)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">super</span></span>.<span class="fu">onDraw</span>(canvas);
+
+        <span class="kw"><span class="hljs-keyword">if</span></span> (mViewPager == <span class="kw"><span class="hljs-keyword">null</span></span>) {
+            <span class="kw"><span class="hljs-keyword">return</span></span>;
+        }
+        <span class="dt"><span class="hljs-keyword">int</span></span> count = mViewPager.<span class="fu">getAdapter</span>().<span class="fu">getCount</span>();
+        <span class="kw"><span class="hljs-keyword">if</span></span> (mViewPager.<span class="fu">getAdapter</span>() <span class="kw"><span class="hljs-keyword">instanceof</span></span> InfinitePagerAdapter) {
+            count = ((InfinitePagerAdapter) mViewPager.<span class="fu">getAdapter</span>()).<span class="fu">getRealCount</span>();
+            mCurrentPage = mCurrentPage % count;
+        }
+        <span class="kw"><span class="hljs-keyword">if</span></span> (count == <span class="dv"><span class="hljs-number">0</span></span>) {
+            <span class="kw"><span class="hljs-keyword">return</span></span>;
+        }
+
+        <span class="kw"><span class="hljs-keyword">if</span></span> (mCurrentPage &gt;= count) {
+            <span class="fu">setCurrentItem</span>(count - <span class="dv"><span class="hljs-number">1</span></span>);
+            <span class="kw"><span class="hljs-keyword">return</span></span>;
+        }
+
+        <span class="dt"><span class="hljs-keyword">int</span></span> longSize;
+        <span class="dt"><span class="hljs-keyword">int</span></span> longPaddingBefore;
+        <span class="dt"><span class="hljs-keyword">int</span></span> longPaddingAfter;
+        <span class="dt"><span class="hljs-keyword">int</span></span> shortPaddingBefore;
+        <span class="kw"><span class="hljs-keyword">if</span></span> (mOrientation == HORIZONTAL) {
+            longSize = <span class="fu">getWidth</span>();
+            longPaddingBefore = <span class="fu">getPaddingLeft</span>();
+            longPaddingAfter = <span class="fu">getPaddingRight</span>();
+            shortPaddingBefore = <span class="fu">getPaddingTop</span>();
+        } <span class="kw"><span class="hljs-keyword">else</span></span> {
+            longSize = <span class="fu">getHeight</span>();
+            longPaddingBefore = <span class="fu">getPaddingTop</span>();
+            longPaddingAfter = <span class="fu">getPaddingBottom</span>();
+            shortPaddingBefore = <span class="fu">getPaddingLeft</span>();
+        }
+
+        <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">float</span></span> threeRadius = mRadius * <span class="dv"><span class="hljs-number">3</span></span>;
+        <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">float</span></span> shortOffset = shortPaddingBefore + mRadius;
+        <span class="dt"><span class="hljs-keyword">float</span></span> longOffset = longPaddingBefore + mRadius;
+        <span class="kw"><span class="hljs-keyword">if</span></span> (mCentered) {
+            longOffset += ((longSize - longPaddingBefore - longPaddingAfter) / <span class="fl"><span class="hljs-number">2.</span></span><span class="hljs-number">0f</span>) - ((count * threeRadius-mRadius) / <span class="fl"><span class="hljs-number">2.</span></span><span class="hljs-number">0f</span>);
+        }
+
+        <span class="dt"><span class="hljs-keyword">float</span></span> dX;
+        <span class="dt"><span class="hljs-keyword">float</span></span> dY;
+
+        <span class="dt"><span class="hljs-keyword">float</span></span> pageFillRadius = mRadius;
+        <span class="kw"><span class="hljs-keyword">if</span></span> (mPaintStroke.<span class="fu">getStrokeWidth</span>() &gt; <span class="dv"><span class="hljs-number">0</span></span>) {
+            pageFillRadius -= mPaintStroke.<span class="fu">getStrokeWidth</span>() / <span class="fl"><span class="hljs-number">2.</span></span><span class="hljs-number">0f</span>;
+        }
+
+        <span class="co"><span class="hljs-comment">//Draw stroked circles</span></span>
+        <span class="kw"><span class="hljs-keyword">for</span></span> (<span class="dt"><span class="hljs-keyword">int</span></span> iLoop = <span class="dv"><span class="hljs-number">0</span></span>; iLoop &lt; count; iLoop++) {
+            <span class="dt"><span class="hljs-keyword">float</span></span> drawLong = longOffset + (iLoop * threeRadius);
+            <span class="kw"><span class="hljs-keyword">if</span></span> (mOrientation == HORIZONTAL) {
+                dX = drawLong;
+                dY = shortOffset;
+            } <span class="kw"><span class="hljs-keyword">else</span></span> {
+                dX = shortOffset;
+                dY = drawLong;
+            }
+            <span class="co"><span class="hljs-comment">// Only paint fill if not completely transparent</span></span>
+            <span class="kw"><span class="hljs-keyword">if</span></span> (mPaintPageFill.<span class="fu">getAlpha</span>() &gt; <span class="dv"><span class="hljs-number">0</span></span>) {
+                canvas.<span class="fu">drawCircle</span>(dX, dY, pageFillRadius, mPaintPageFill);
+            }
+
+            <span class="co"><span class="hljs-comment">// Only paint stroke if a stroke width was non-zero</span></span>
+            <span class="kw"><span class="hljs-keyword">if</span></span> (pageFillRadius != mRadius) {
+                canvas.<span class="fu">drawCircle</span>(dX, dY, mRadius, mPaintStroke);
+            }
+        }
+
+        <span class="co"><span class="hljs-comment">//Draw the filled circle according to the current scroll</span></span>
+        <span class="dt"><span class="hljs-keyword">float</span></span> cx = (mSnap ? mSnapPage : mCurrentPage) * threeRadius;
+        <span class="kw"><span class="hljs-keyword">if</span></span> (!mSnap &amp;&amp; mCurrentPage &lt; count - <span class="dv"><span class="hljs-number">1</span></span>) {
+            cx += mPageOffset * threeRadius;
+        }
+        <span class="kw"><span class="hljs-keyword">if</span></span> (mOrientation == HORIZONTAL) {
+            dX = longOffset + cx;
+            dY = shortOffset;
+        } <span class="kw"><span class="hljs-keyword">else</span></span> {
+            dX = shortOffset;
+            dY = longOffset + cx;
+        }
+        canvas.<span class="fu">drawCircle</span>(dX, dY, mRadius, mPaintFill);
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">boolean</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onTouchEvent</span></span></span><span class="hljs-function"><span class="hljs-params">(MotionEvent ev)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">if</span></span> (<span class="kw"><span class="hljs-keyword">super</span></span>.<span class="fu">onTouchEvent</span>(ev)) {
+            <span class="kw"><span class="hljs-keyword">return</span></span> <span class="kw"><span class="hljs-keyword">true</span></span>;
+        }
+        <span class="kw"><span class="hljs-keyword">if</span></span> ((mViewPager == <span class="kw"><span class="hljs-keyword">null</span></span>) || (mViewPager.<span class="fu">getAdapter</span>().<span class="fu">getCount</span>() == <span class="dv"><span class="hljs-number">0</span></span>)) {
+            <span class="kw"><span class="hljs-keyword">return</span></span> <span class="kw"><span class="hljs-keyword">false</span></span>;
+        }
+
+        <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">int</span></span> action = ev.<span class="fu">getAction</span>() &amp; MotionEventCompat.<span class="fu">ACTION_MASK</span>;
+        <span class="kw"><span class="hljs-keyword">switch</span></span> (action) {
+            <span class="kw"><span class="hljs-keyword">case</span></span> MotionEvent.<span class="fu">ACTION_DOWN</span>:
+                mActivePointerId = MotionEventCompat.<span class="fu">getPointerId</span>(ev, <span class="dv"><span class="hljs-number">0</span></span>);
+                mLastMotionX = ev.<span class="fu">getX</span>();
+                <span class="kw"><span class="hljs-keyword">break</span></span>;
+            <span class="kw"><span class="hljs-keyword">case</span></span> MotionEvent.<span class="fu">ACTION_MOVE</span>: {
+                <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">int</span></span> activePointerIndex = MotionEventCompat.<span class="fu">findPointerIndex</span>(ev, mActivePointerId);
+                <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">float</span></span> x = MotionEventCompat.<span class="fu">getX</span>(ev, activePointerIndex);
+                <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">float</span></span> deltaX = x - mLastMotionX;
+
+                <span class="kw"><span class="hljs-keyword">if</span></span> (!mIsDragging) {
+                    <span class="kw"><span class="hljs-keyword">if</span></span> (Math.<span class="fu">abs</span>(deltaX) &gt; mTouchSlop) {
+                        mIsDragging = <span class="kw"><span class="hljs-keyword">true</span></span>;
+                    }
+                }
+
+                <span class="kw"><span class="hljs-keyword">if</span></span> (mIsDragging) {
+                    mLastMotionX = x;
+                    <span class="kw"><span class="hljs-keyword">if</span></span> (mViewPager.<span class="fu">isFakeDragging</span>() || mViewPager.<span class="fu">beginFakeDrag</span>()) {
+                        mViewPager.<span class="fu">fakeDragBy</span>(deltaX);
+                    }
+                }
+                <span class="kw"><span class="hljs-keyword">break</span></span>;
+            }
+            <span class="kw"><span class="hljs-keyword">case</span></span> MotionEvent.<span class="fu">ACTION_CANCEL</span>:
+            <span class="kw"><span class="hljs-keyword">case</span></span> MotionEvent.<span class="fu">ACTION_UP</span>:
+                <span class="kw"><span class="hljs-keyword">if</span></span> (!mIsDragging) {
+                    <span class="dt"><span class="hljs-keyword">int</span></span> count = mViewPager.<span class="fu">getAdapter</span>().<span class="fu">getCount</span>();
+                    <span class="kw"><span class="hljs-keyword">if</span></span> (mViewPager.<span class="fu">getAdapter</span>() <span class="kw"><span class="hljs-keyword">instanceof</span></span> InfinitePagerAdapter) {
+                        count = ((InfinitePagerAdapter) mViewPager.<span class="fu">getAdapter</span>()).<span class="fu">getRealCount</span>();
+                    }
+                    <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">int</span></span> width = <span class="fu">getWidth</span>();
+                    <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">float</span></span> halfWidth = width / <span class="hljs-number">2f</span>;
+                    <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">float</span></span> sixthWidth = width / <span class="hljs-number">6f</span>;
+
+                    <span class="kw"><span class="hljs-keyword">if</span></span> ((mCurrentPage &gt; <span class="dv"><span class="hljs-number">0</span></span>) &amp;&amp; (ev.<span class="fu">getX</span>() &lt; halfWidth - sixthWidth)) {
+                        <span class="kw"><span class="hljs-keyword">if</span></span> (action != MotionEvent.<span class="fu">ACTION_CANCEL</span>) {
+                            mViewPager.<span class="fu">setCurrentItem</span>(mCurrentPage - <span class="dv"><span class="hljs-number">1</span></span>);
+                        }
+                        <span class="kw"><span class="hljs-keyword">return</span></span> <span class="kw"><span class="hljs-keyword">true</span></span>;
+                    } <span class="kw"><span class="hljs-keyword">else</span></span> <span class="kw"><span class="hljs-keyword">if</span></span> ((mCurrentPage &lt; count - <span class="dv"><span class="hljs-number">1</span></span>) &amp;&amp; (ev.<span class="fu">getX</span>() &gt; halfWidth + sixthWidth)) {
+                        <span class="kw"><span class="hljs-keyword">if</span></span> (action != MotionEvent.<span class="fu">ACTION_CANCEL</span>) {
+                            mViewPager.<span class="fu">setCurrentItem</span>(mCurrentPage + <span class="dv"><span class="hljs-number">1</span></span>);
+                        }
+                        <span class="kw"><span class="hljs-keyword">return</span></span> <span class="kw"><span class="hljs-keyword">true</span></span>;
+                    }
+                }
+                mIsDragging = <span class="kw"><span class="hljs-keyword">false</span></span>;
+                mActivePointerId = INVALID_POINTER;
+                <span class="kw"><span class="hljs-keyword">if</span></span> (mViewPager.<span class="fu">isFakeDragging</span>()) mViewPager.<span class="fu">endFakeDrag</span>();
+                <span class="kw"><span class="hljs-keyword">break</span></span>;
+            <span class="kw"><span class="hljs-keyword">case</span></span> MotionEventCompat.<span class="fu">ACTION_POINTER_DOWN</span>: {
+                <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">int</span></span> index = MotionEventCompat.<span class="fu">getActionIndex</span>(ev);
+                mLastMotionX = MotionEventCompat.<span class="fu">getX</span>(ev, index);
+                mActivePointerId = MotionEventCompat.<span class="fu">getPointerId</span>(ev, index);
+                <span class="kw"><span class="hljs-keyword">break</span></span>;
+            }
+            <span class="kw"><span class="hljs-keyword">case</span></span> MotionEventCompat.<span class="fu">ACTION_POINTER_UP</span>:
+                <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">int</span></span> pointerIndex = MotionEventCompat.<span class="fu">getActionIndex</span>(ev);
+                <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">int</span></span> pointerId = MotionEventCompat.<span class="fu">getPointerId</span>(ev, pointerIndex);
+                <span class="kw"><span class="hljs-keyword">if</span></span> (pointerId == mActivePointerId) {
+                    <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">int</span></span> newPointerIndex = pointerIndex == <span class="dv"><span class="hljs-number">0</span></span> ? <span class="dv"><span class="hljs-number">1</span></span> : <span class="dv"><span class="hljs-number">0</span></span>;
+                    mActivePointerId = MotionEventCompat.<span class="fu">getPointerId</span>(ev, newPointerIndex);
+                }
+                mLastMotionX = MotionEventCompat.<span class="fu">getX</span>(ev, MotionEventCompat.<span class="fu">findPointerIndex</span>(ev, mActivePointerId));
+                <span class="kw"><span class="hljs-keyword">break</span></span>;
+        }
+        <span class="kw"><span class="hljs-keyword">return</span></span> <span class="kw"><span class="hljs-keyword">true</span></span>;
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">setViewPager</span></span></span><span class="hljs-function"><span class="hljs-params">(ViewPager view)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">if</span></span> (mViewPager == view) {
+            <span class="kw"><span class="hljs-keyword">return</span></span>;
+        }
+        <span class="kw"><span class="hljs-keyword">if</span></span> (view.<span class="fu">getAdapter</span>() == <span class="kw"><span class="hljs-keyword">null</span></span>) {
+            <span class="kw"><span class="hljs-keyword">throw</span></span> <span class="kw"><span class="hljs-keyword">new</span></span> IllegalStateException(<span class="st"><span class="hljs-string">"ViewPager does not have adapter instance."</span></span>);
+        }
+        mViewPager = view;
+        mViewPager.<span class="fu">addOnPageChangeListener</span>(<span class="kw"><span class="hljs-keyword">this</span></span>);
+        <span class="fu">invalidate</span>();
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">setViewPager</span></span></span><span class="hljs-function"><span class="hljs-params">(ViewPager view, </span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> initialPosition)</span> </span>{
+        <span class="fu">setViewPager</span>(view);
+        <span class="fu">setCurrentItem</span>(initialPosition);
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">setCurrentItem</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> item)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">if</span></span> (mViewPager == <span class="kw"><span class="hljs-keyword">null</span></span>) {
+            <span class="kw"><span class="hljs-keyword">throw</span></span> <span class="kw"><span class="hljs-keyword">new</span></span> IllegalStateException(<span class="st"><span class="hljs-string">"ViewPager has not been bound."</span></span>);
+        }
+        mViewPager.<span class="fu">setCurrentItem</span>(item);
+        mCurrentPage = item;
+        <span class="fu">invalidate</span>();
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">notifyDataSetChanged</span></span></span><span class="hljs-function"><span class="hljs-params">()</span> </span>{
+        <span class="fu">invalidate</span>();
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onPageScrollStateChanged</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> state)</span> </span>{
+        mScrollState = state;
+
+        <span class="kw"><span class="hljs-keyword">if</span></span> (mListener != <span class="kw"><span class="hljs-keyword">null</span></span>) {
+            mListener.<span class="fu">onPageScrollStateChanged</span>(state);
+        }
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onPageScrolled</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> position, </span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">float</span></span></span></span><span class="hljs-function"><span class="hljs-params"> positionOffset, </span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> positionOffsetPixels)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">if</span></span> (mViewPager.<span class="fu">getAdapter</span>() <span class="kw"><span class="hljs-keyword">instanceof</span></span> InfinitePagerAdapter) {
+            position = position % ((InfinitePagerAdapter) mViewPager.<span class="fu">getAdapter</span>()).<span class="fu">getRealCount</span>();
+        }
+        mCurrentPage = position;
+        mPageOffset = positionOffset;
+        <span class="fu">invalidate</span>();
+
+        <span class="kw"><span class="hljs-keyword">if</span></span> (mListener != <span class="kw"><span class="hljs-keyword">null</span></span>) {
+            mListener.<span class="fu">onPageScrolled</span>(position, positionOffset, positionOffsetPixels);
+        }
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onPageSelected</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> position)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">if</span></span> (mViewPager.<span class="fu">getAdapter</span>() <span class="kw"><span class="hljs-keyword">instanceof</span></span> InfinitePagerAdapter) {
+            position = position % ((InfinitePagerAdapter) mViewPager.<span class="fu">getAdapter</span>()).<span class="fu">getRealCount</span>();
+        }
+        <span class="kw"><span class="hljs-keyword">if</span></span> (mSnap || mScrollState == ViewPager.<span class="fu">SCROLL_STATE_IDLE</span>) {
+            mCurrentPage = position;
+            mSnapPage = position;
+            <span class="fu">invalidate</span>();
+        }
+
+        <span class="kw"><span class="hljs-keyword">if</span></span> (mListener != <span class="kw"><span class="hljs-keyword">null</span></span>) {
+            mListener.<span class="fu">onPageSelected</span>(position);
+        }
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">addOnPageChangeListener</span></span></span><span class="hljs-function"><span class="hljs-params">(ViewPager.</span></span><span class="fu"><span class="hljs-function"><span class="hljs-params">OnPageChangeListener</span></span></span><span class="hljs-function"><span class="hljs-params"> listener)</span> </span>{
+        mListener = listener;
+    }
+
+    <span class="co"><span class="hljs-comment">/*</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment">     * (non-Javadoc)</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment">     *</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment">     * @see android.view.View#onMeasure(int, int)</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment">     */</span></span>
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">protected</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onMeasure</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> widthMeasureSpec, </span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> heightMeasureSpec)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">if</span></span> (mOrientation == HORIZONTAL) {
+            <span class="fu">setMeasuredDimension</span>(<span class="fu">measureLong</span>(widthMeasureSpec), <span class="fu">measureShort</span>(heightMeasureSpec));
+        } <span class="kw"><span class="hljs-keyword">else</span></span> {
+            <span class="fu">setMeasuredDimension</span>(<span class="fu">measureShort</span>(widthMeasureSpec), <span class="fu">measureLong</span>(heightMeasureSpec));
+        }
+    }
+
+    <span class="co"><span class="hljs-comment">/**</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment">     * Determines the width of this view</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment">     *</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment">     * </span></span><span class="kw"><span class="hljs-comment"><span class="hljs-doctag">@param</span> measureSpec </span></span><span class="co"><span class="hljs-comment">A measureSpec packed into an int</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment">     * </span></span><span class="kw"><span class="hljs-comment"><span class="hljs-doctag">@return</span> </span></span><span class="co"><span class="hljs-comment">The width of the view, honoring constraints from measureSpec</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment">     */</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">private</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">int</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">measureLong</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> measureSpec)</span> </span>{
+        <span class="dt"><span class="hljs-keyword">int</span></span> result;
+        <span class="dt"><span class="hljs-keyword">int</span></span> specMode = MeasureSpec.<span class="fu">getMode</span>(measureSpec);
+        <span class="dt"><span class="hljs-keyword">int</span></span> specSize = MeasureSpec.<span class="fu">getSize</span>(measureSpec);
+
+        <span class="kw"><span class="hljs-keyword">if</span></span> ((specMode == MeasureSpec.<span class="fu">EXACTLY</span>) || (mViewPager == <span class="kw"><span class="hljs-keyword">null</span></span>)) {
+            <span class="co"><span class="hljs-comment">//We were told how big to be</span></span>
+            result = specSize;
+        } <span class="kw"><span class="hljs-keyword">else</span></span> {
+            <span class="co"><span class="hljs-comment">//Calculate the width according the views count</span></span>
+            <span class="dt"><span class="hljs-keyword">int</span></span> count = mViewPager.<span class="fu">getAdapter</span>().<span class="fu">getCount</span>();
+            <span class="kw"><span class="hljs-keyword">if</span></span> (mViewPager.<span class="fu">getAdapter</span>() <span class="kw"><span class="hljs-keyword">instanceof</span></span> InfinitePagerAdapter) {
+                count = ((InfinitePagerAdapter) mViewPager.<span class="fu">getAdapter</span>()).<span class="fu">getRealCount</span>();
+            }
+            result = (<span class="dt"><span class="hljs-keyword">int</span></span>) (<span class="fu">getPaddingLeft</span>() + <span class="fu">getPaddingRight</span>()
+                    + (count * <span class="dv"><span class="hljs-number">2</span></span> * mRadius) + (count - <span class="dv"><span class="hljs-number">1</span></span>) * mRadius + <span class="dv"><span class="hljs-number">1</span></span>);
+            <span class="co"><span class="hljs-comment">//Respect AT_MOST value if that was what is called for by measureSpec</span></span>
+            <span class="kw"><span class="hljs-keyword">if</span></span> (specMode == MeasureSpec.<span class="fu">AT_MOST</span>) {
+                result = Math.<span class="fu">min</span>(result, specSize);
+            }
+        }
+        <span class="kw"><span class="hljs-keyword">return</span></span> result;
+    }
+
+    <span class="co"><span class="hljs-comment">/**</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment">     * Determines the height of this view</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment">     *</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment">     * </span></span><span class="kw"><span class="hljs-comment"><span class="hljs-doctag">@param</span> measureSpec </span></span><span class="co"><span class="hljs-comment">A measureSpec packed into an int</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment">     * </span></span><span class="kw"><span class="hljs-comment"><span class="hljs-doctag">@return</span> </span></span><span class="co"><span class="hljs-comment">The height of the view, honoring constraints from measureSpec</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment">     */</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">private</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">int</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">measureShort</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> measureSpec)</span> </span>{
+        <span class="dt"><span class="hljs-keyword">int</span></span> result;
+        <span class="dt"><span class="hljs-keyword">int</span></span> specMode = MeasureSpec.<span class="fu">getMode</span>(measureSpec);
+        <span class="dt"><span class="hljs-keyword">int</span></span> specSize = MeasureSpec.<span class="fu">getSize</span>(measureSpec);
+
+        <span class="kw"><span class="hljs-keyword">if</span></span> (specMode == MeasureSpec.<span class="fu">EXACTLY</span>) {
+            <span class="co"><span class="hljs-comment">//We were told how big to be</span></span>
+            result = specSize;
+        } <span class="kw"><span class="hljs-keyword">else</span></span> {
+            <span class="co"><span class="hljs-comment">//Measure the height</span></span>
+            result = (<span class="dt"><span class="hljs-keyword">int</span></span>) (<span class="dv"><span class="hljs-number">2</span></span> * mRadius + <span class="fu">getPaddingTop</span>() + <span class="fu">getPaddingBottom</span>() + <span class="dv"><span class="hljs-number">1</span></span>);
+            <span class="co"><span class="hljs-comment">//Respect AT_MOST value if that was what is called for by measureSpec</span></span>
+            <span class="kw"><span class="hljs-keyword">if</span></span> (specMode == MeasureSpec.<span class="fu">AT_MOST</span>) {
+                result = Math.<span class="fu">min</span>(result, specSize);
+            }
+        }
+        <span class="kw"><span class="hljs-keyword">return</span></span> result;
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onRestoreInstanceState</span></span></span><span class="hljs-function"><span class="hljs-params">(Parcelable state)</span> </span>{
+        SavedState savedState = (SavedState) state;
+        <span class="kw"><span class="hljs-keyword">super</span></span>.<span class="fu">onRestoreInstanceState</span>(savedState.<span class="fu">getSuperState</span>());
+        mCurrentPage = savedState.<span class="fu">currentPage</span>;
+        mSnapPage = savedState.<span class="fu">currentPage</span>;
+        <span class="fu">requestLayout</span>();
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> Parcelable </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onSaveInstanceState</span></span></span><span class="hljs-function"><span class="hljs-params">()</span> </span>{
+        Parcelable superState = <span class="kw"><span class="hljs-keyword">super</span></span>.<span class="fu">onSaveInstanceState</span>();
+        SavedState savedState = <span class="kw"><span class="hljs-keyword">new</span></span> <span class="fu">SavedState</span>(superState);
+        savedState.<span class="fu">currentPage</span> = mCurrentPage;
+        <span class="kw"><span class="hljs-keyword">return</span></span> savedState;
+    }
+
+    <span class="dt"><span class="hljs-keyword">static</span></span> <span class="kw"><span class="hljs-class"><span class="hljs-keyword">class</span></span></span><span class="hljs-class"> <span class="hljs-title">SavedState</span> </span><span class="kw"><span class="hljs-class"><span class="hljs-keyword">extends</span></span></span><span class="hljs-class"> <span class="hljs-title">BaseSavedState</span> </span>{
+        <span class="dt"><span class="hljs-keyword">int</span></span> currentPage;
+
+        <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">SavedState</span></span></span><span class="hljs-function"><span class="hljs-params">(Parcelable superState)</span> </span>{
+            <span class="kw"><span class="hljs-keyword">super</span></span>(superState);
+        }
+
+        <span class="kw"><span class="hljs-function"><span class="hljs-keyword">private</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">SavedState</span></span></span><span class="hljs-function"><span class="hljs-params">(Parcel in)</span> </span>{
+            <span class="kw"><span class="hljs-keyword">super</span></span>(in);
+            currentPage = in.<span class="fu">readInt</span>();
+        }
+
+        <span class="fu"><span class="hljs-meta">@Override</span></span>
+        <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">writeToParcel</span></span></span><span class="hljs-function"><span class="hljs-params">(Parcel dest, </span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> flags)</span> </span>{
+            <span class="kw"><span class="hljs-keyword">super</span></span>.<span class="fu">writeToParcel</span>(dest, flags);
+            dest.<span class="fu">writeInt</span>(currentPage);
+        }
+
+        <span class="fu"><span class="hljs-meta">@SuppressWarnings</span></span>(<span class="st"><span class="hljs-string">"UnusedDeclaration"</span></span>)
+        <span class="kw"><span class="hljs-keyword">public</span></span> <span class="dt"><span class="hljs-keyword">static</span></span> <span class="dt"><span class="hljs-keyword">final</span></span> Creator&lt;SavedState&gt; CREATOR = <span class="kw"><span class="hljs-keyword">new</span></span> Creator&lt;SavedState&gt;() {
+            <span class="fu"><span class="hljs-meta">@Override</span></span>
+            <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> SavedState </span><span class="fu"><span class="hljs-function"><span class="hljs-title">createFromParcel</span></span></span><span class="hljs-function"><span class="hljs-params">(Parcel in)</span> </span>{
+                <span class="kw"><span class="hljs-keyword">return</span></span> <span class="kw"><span class="hljs-keyword">new</span></span> <span class="fu">SavedState</span>(in);
+            }
+
+            <span class="fu"><span class="hljs-meta">@Override</span></span>
+            <span class="kw"><span class="hljs-keyword">public</span></span> SavedState[] <span class="fu">newArray</span>(<span class="dt"><span class="hljs-keyword">int</span></span> size) {
+                <span class="kw"><span class="hljs-keyword">return</span></span> <span class="kw"><span class="hljs-keyword">new</span></span> SavedState[size];
+            }
+        };
+    }
+}</code></pre></div>
+<h3 id="关于转场动画">关于转场动画</h3>
+<p>ViewPager有个方法叫做<code>setPageTransformer(boolean reverseDrawingOrder, PageTransformer transformer)</code>用于设置ViewPager切换时的动画效果<br>
+但注意这只能在3.0及其以后使用。因为View的动画使用的是属性动画，而属性动画是3.0才推出。当然这个问题可以克服，首先先使用<code>nineoldandroids</code>让动画在3.0之前也能跑起来，然后再去修改ViewPager的源码</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java hljs">    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">setPageTransformer</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">boolean</span></span></span></span><span class="hljs-function"><span class="hljs-params"> reverseDrawingOrder, PageTransformer transformer)</span> </span>{  
+       <span class="kw"><span class="hljs-keyword">if</span></span> (Build.<span class="fu">VERSION</span>.<span class="fu">SDK_INT</span> &gt;= <span class="dv"><span class="hljs-number">11</span></span>) {  
+           <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">boolean</span></span> hasTransformer = transformer != <span class="kw"><span class="hljs-keyword">null</span></span>;  
+           <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">boolean</span></span> needsPopulate = hasTransformer != (mPageTransformer != <span class="kw"><span class="hljs-keyword">null</span></span>);  
+           mPageTransformer = transformer;  
+           <span class="fu">setChildrenDrawingOrderEnabledCompat</span>(hasTransformer);  
+           <span class="kw"><span class="hljs-keyword">if</span></span> (hasTransformer) {  
+               mDrawingOrder = reverseDrawingOrder ? DRAW_ORDER_REVERSE : DRAW_ORDER_FORWARD;  
+           } <span class="kw"><span class="hljs-keyword">else</span></span> {  
+               mDrawingOrder = DRAW_ORDER_DEFAULT;  
+           }  
+           <span class="kw"><span class="hljs-keyword">if</span></span> (needsPopulate) <span class="fu">populate</span>();  
+       }  
+   } </code></pre></div>
+<p>去除<code>if (Build.VERSION.SDK_INT &gt;= 11)</code>这个if判断就行了。<br>
+所有的PageTransformer都要继承<code>ViewPager.PageTransformer</code>接口，其中包含的方法只有一个</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java hljs">    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">transformPage</span></span></span><span class="hljs-function"><span class="hljs-params">(View view, </span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">float</span></span></span></span><span class="hljs-function"><span class="hljs-params"> position)</span> </span>{
+
+    }</code></pre></div>
+<p>其中position反映的是view的位置变化。<br>
+假设现在ViewPager在A页现在滑出B页，则:<br>
+A页的position变化就是( 0, -1]<br>
+B页的position变化就是[ 1 , 0 ]<br>
+根据这个position就可以做出多样的转场变化了。<br>
+<iframe id="iframe_0.5530428299482226" src="./【Android开发日记】之入门篇（十五）——ViewPager+自定义无限ViewPager - cpacm - 博客园_files/saved_resource(1).html" style="border: none; width: 848px;" frameborder="0" scrolling="no"></iframe></p>
+<h3 id="关于pager动画">关于pager动画</h3>
+<p>同样要利用 <code>ViewPager.OnPageChangeListener</code> 监听ViewPager的变化以实现每个界面的变化。<br>
+Animation接口</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java hljs"><span class="kw"><span class="hljs-keyword">public</span></span> <span class="kw"><span class="hljs-class"><span class="hljs-keyword">interface</span></span></span><span class="hljs-class"> <span class="hljs-title">OnAnimationListener</span> </span>{
+    <span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onNextAnimationStart</span></span></span><span class="hljs-function"><span class="hljs-params">(BaseSliderView slider)</span></span>;
+
+    <span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onNextAnimationEnd</span></span></span><span class="hljs-function"><span class="hljs-params">(BaseSliderView slider)</span></span>;
+
+    <span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onPreAnimationStart</span></span></span><span class="hljs-function"><span class="hljs-params">(BaseSliderView slider)</span></span>;
+
+    <span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onPreAnimationEnd</span></span></span><span class="hljs-function"><span class="hljs-params">(BaseSliderView slider)</span></span>;
+}</code></pre></div>
+<p>监听变化</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java hljs"><span class="co"><span class="hljs-comment">/**</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment"> * A </span></span><span class="kw"><span class="hljs-comment">{<span class="hljs-doctag">@link</span> ViewPager}</span></span><span class="co"><span class="hljs-comment"> that allows define custom animation</span></span><span class="hljs-comment">
+</span><span class="co"><span class="hljs-comment"> */</span></span>
+<span class="kw"><span class="hljs-keyword">public</span></span> <span class="kw"><span class="hljs-class"><span class="hljs-keyword">class</span></span></span><span class="hljs-class"> <span class="hljs-title">AnimationViewPager</span> </span><span class="kw"><span class="hljs-class"><span class="hljs-keyword">extends</span></span></span><span class="hljs-class"> <span class="hljs-title">ViewPager</span> </span>{
+
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">int</span></span> position = <span class="dv"><span class="hljs-number">0</span></span>, prePositon = <span class="dv"><span class="hljs-number">0</span></span>;
+    <span class="kw"><span class="hljs-keyword">private</span></span> OnAnimationListener animationListener;
+    <span class="kw"><span class="hljs-keyword">private</span></span> BaseSliderView slider, preSlider;
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">boolean</span></span> animating = <span class="kw"><span class="hljs-keyword">false</span></span>;
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">AnimationViewPager</span></span></span><span class="hljs-function"><span class="hljs-params">(Context context)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">super</span></span>(context);
+        <span class="fu">initViewPager</span>();
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">AnimationViewPager</span></span></span><span class="hljs-function"><span class="hljs-params">(Context context, AttributeSet attrs)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">super</span></span>(context, attrs);
+        <span class="fu">initViewPager</span>();
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">private</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">initViewPager</span></span></span><span class="hljs-function"><span class="hljs-params">()</span> </span>{
+        <span class="fu">addOnPageChangeListener</span>(<span class="kw"><span class="hljs-keyword">new</span></span> <span class="fu">OnPageChangeListener</span>() {
+            <span class="fu"><span class="hljs-meta">@Override</span></span>
+            <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onPageScrolled</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> position, </span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">float</span></span></span></span><span class="hljs-function"><span class="hljs-params"> positionOffset, </span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> positionOffsetPixels)</span> </span>{
+                <span class="kw"><span class="hljs-keyword">if</span></span> (position == <span class="dv"><span class="hljs-number">0</span></span> &amp;&amp; positionOffset == <span class="dv"><span class="hljs-number">0</span></span>) {
+                    <span class="fu">animateSliderEnd</span>(position);
+                    <span class="kw"><span class="hljs-keyword">if</span></span> (slider != <span class="kw"><span class="hljs-keyword">null</span></span>)
+                        animationListener.<span class="fu">onNextAnimationEnd</span>(slider);
+                }
+            }
+
+            <span class="fu"><span class="hljs-meta">@Override</span></span>
+            <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onPageSelected</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> position)</span> </span>{
+                prePositon = AnimationViewPager.<span class="fu"><span class="hljs-keyword">this</span></span>.<span class="fu">position</span>;
+                AnimationViewPager.<span class="fu"><span class="hljs-keyword">this</span></span>.<span class="fu">position</span> = position;
+                <span class="kw"><span class="hljs-keyword">if</span></span> (prePositon &gt; position)
+                    <span class="fu">animateSliderStart</span>(position, position + <span class="dv"><span class="hljs-number">1</span></span>);
+                <span class="kw"><span class="hljs-keyword">if</span></span> (prePositon &lt; position)
+                    <span class="fu">animateSliderStart</span>(position, position - <span class="dv"><span class="hljs-number">1</span></span>);
+            }
+
+            <span class="fu"><span class="hljs-meta">@Override</span></span>
+            <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onPageScrollStateChanged</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> state)</span> </span>{
+                <span class="kw"><span class="hljs-keyword">if</span></span> (state == SCROLL_STATE_IDLE) {
+                    <span class="fu">animateSliderEnd</span>(position);
+                }
+            }
+        });
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">private</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">animateSliderStart</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> position, </span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> prePositon)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">if</span></span> (animationListener == <span class="kw"><span class="hljs-keyword">null</span></span>) <span class="kw"><span class="hljs-keyword">return</span></span>;
+        BaseSliderView slider = <span class="kw"><span class="hljs-keyword">null</span></span>, preSlider = <span class="kw"><span class="hljs-keyword">null</span></span>;
+        <span class="kw"><span class="hljs-keyword">if</span></span> (<span class="fu">getAdapter</span>() <span class="kw"><span class="hljs-keyword">instanceof</span></span> InfinitePagerAdapter) {
+            InfinitePagerAdapter pagerAdapter = (InfinitePagerAdapter) <span class="fu">getAdapter</span>();
+            slider = pagerAdapter.<span class="fu">getSliderView</span>(position);
+            preSlider = pagerAdapter.<span class="fu">getSliderView</span>(prePositon);
+        } <span class="kw"><span class="hljs-keyword">else</span></span> <span class="kw"><span class="hljs-keyword">if</span></span> (<span class="fu">getAdapter</span>() <span class="kw"><span class="hljs-keyword">instanceof</span></span> BaseSliderAdapter) {
+            BaseSliderAdapter sliderAdapter = (BaseSliderAdapter) <span class="fu">getAdapter</span>();
+            slider = sliderAdapter.<span class="fu">getSliderView</span>(position);
+            preSlider = sliderAdapter.<span class="fu">getSliderView</span>(prePositon);
+        }
+        <span class="kw"><span class="hljs-keyword">if</span></span> (slider != <span class="kw"><span class="hljs-keyword">null</span></span>)
+            animationListener.<span class="fu">onNextAnimationStart</span>(slider);
+        <span class="kw"><span class="hljs-keyword">if</span></span> (preSlider != <span class="kw"><span class="hljs-keyword">null</span></span>)
+            animationListener.<span class="fu">onPreAnimationStart</span>(preSlider);
+
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">private</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">animateSliderEnd</span></span></span><span class="hljs-function"><span class="hljs-params">(</span></span><span class="dt"><span class="hljs-function"><span class="hljs-params"><span class="hljs-keyword">int</span></span></span></span><span class="hljs-function"><span class="hljs-params"> position)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">if</span></span> (animationListener == <span class="kw"><span class="hljs-keyword">null</span></span>) <span class="kw"><span class="hljs-keyword">return</span></span>;
+        <span class="kw"><span class="hljs-keyword">if</span></span> (<span class="fu">getAdapter</span>() <span class="kw"><span class="hljs-keyword">instanceof</span></span> InfinitePagerAdapter) {
+            InfinitePagerAdapter pagerAdapter = (InfinitePagerAdapter) <span class="fu">getAdapter</span>();
+            <span class="kw"><span class="hljs-keyword">if</span></span> (slider == <span class="kw"><span class="hljs-keyword">null</span></span>) slider = pagerAdapter.<span class="fu">getSliderView</span>(position);
+            <span class="kw"><span class="hljs-keyword">else</span></span> <span class="kw"><span class="hljs-keyword">if</span></span> (slider != pagerAdapter.<span class="fu">getSliderView</span>(position)) {
+                preSlider = slider;
+                slider = pagerAdapter.<span class="fu">getSliderView</span>(position);
+            }
+        } <span class="kw"><span class="hljs-keyword">else</span></span> <span class="kw"><span class="hljs-keyword">if</span></span> (<span class="fu">getAdapter</span>() <span class="kw"><span class="hljs-keyword">instanceof</span></span> BaseSliderAdapter) {
+            BaseSliderAdapter sliderAdapter = (BaseSliderAdapter) <span class="fu">getAdapter</span>();
+            <span class="kw"><span class="hljs-keyword">if</span></span> (slider == <span class="kw"><span class="hljs-keyword">null</span></span>) slider = sliderAdapter.<span class="fu">getSliderView</span>(position);
+            <span class="kw"><span class="hljs-keyword">else</span></span> <span class="kw"><span class="hljs-keyword">if</span></span> (slider != sliderAdapter.<span class="fu">getSliderView</span>(position)) {
+                preSlider = slider;
+                slider = sliderAdapter.<span class="fu">getSliderView</span>(position);
+            }
+        }
+        <span class="kw"><span class="hljs-keyword">if</span></span> (slider != <span class="kw"><span class="hljs-keyword">null</span></span>)
+            animationListener.<span class="fu">onNextAnimationEnd</span>(slider);
+        <span class="kw"><span class="hljs-keyword">if</span></span> (preSlider != <span class="kw"><span class="hljs-keyword">null</span></span>)
+            animationListener.<span class="fu">onPreAnimationEnd</span>(preSlider);
+        animating = <span class="kw"><span class="hljs-keyword">false</span></span>;
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> OnAnimationListener </span><span class="fu"><span class="hljs-function"><span class="hljs-title">getAnimationListener</span></span></span><span class="hljs-function"><span class="hljs-params">()</span> </span>{
+        <span class="kw"><span class="hljs-keyword">return</span></span> animationListener;
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">setAnimationListener</span></span></span><span class="hljs-function"><span class="hljs-params">(OnAnimationListener animationListener)</span> </span>{
+        <span class="kw"><span class="hljs-keyword">this</span></span>.<span class="fu">animationListener</span> = animationListener;
+    }
+}</code></pre></div>
+<p>继承OnAnimationListener接口实现后的例子</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java hljs"><span class="kw"><span class="hljs-keyword">public</span></span> <span class="kw"><span class="hljs-class"><span class="hljs-keyword">class</span></span></span><span class="hljs-class"> <span class="hljs-title">DefaultDescriptionAnimation</span> </span><span class="kw"><span class="hljs-class"><span class="hljs-keyword">implements</span></span></span><span class="hljs-class"> <span class="hljs-title">OnAnimationListener</span> </span>{
+
+    <span class="kw"><span class="hljs-keyword">private</span></span> <span class="dt"><span class="hljs-keyword">final</span></span> <span class="dt"><span class="hljs-keyword">long</span></span> DURATION = <span class="dv"><span class="hljs-number">300</span></span>;
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onNextAnimationStart</span></span></span><span class="hljs-function"><span class="hljs-params">(BaseSliderView slider)</span> </span>{
+        Log.<span class="fu">d</span>(<span class="st"><span class="hljs-string">"simpleSlider"</span></span>, <span class="st"><span class="hljs-string">"onNextAnimationStart:"</span></span> + slider.<span class="fu">getPageTitle</span>());
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onNextAnimationEnd</span></span></span><span class="hljs-function"><span class="hljs-params">(BaseSliderView slider)</span> </span>{
+        Log.<span class="fu">d</span>(<span class="st"><span class="hljs-string">"simpleSlider"</span></span>, <span class="st"><span class="hljs-string">"onNextAnimationEnd:"</span></span> + slider.<span class="fu">getPageTitle</span>());
+        DescriptionSliderView sliderView = (DescriptionSliderView) slider;
+        <span class="kw"><span class="hljs-keyword">if</span></span> (sliderView.<span class="fu">getTitleLayout</span>().<span class="fu">getVisibility</span>() != View.<span class="fu">VISIBLE</span>)
+            <span class="fu">translateShowAnimate</span>(sliderView.<span class="fu">getTitleLayout</span>());
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onPreAnimationStart</span></span></span><span class="hljs-function"><span class="hljs-params">(BaseSliderView slider)</span> </span>{
+        Log.<span class="fu">d</span>(<span class="st"><span class="hljs-string">"simpleSlider"</span></span>, <span class="st"><span class="hljs-string">"onPreAnimationStart:"</span></span> + slider.<span class="fu">getPageTitle</span>());
+    }
+
+    <span class="fu"><span class="hljs-meta">@Override</span></span>
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">onPreAnimationEnd</span></span></span><span class="hljs-function"><span class="hljs-params">(BaseSliderView slider)</span> </span>{
+        Log.<span class="fu">d</span>(<span class="st"><span class="hljs-string">"simpleSlider"</span></span>, <span class="st"><span class="hljs-string">"onPreAnimationEnd:"</span></span> + slider.<span class="fu">getPageTitle</span>());
+        DescriptionSliderView sliderView = (DescriptionSliderView) slider;
+        <span class="fu">alphaHideAnimate</span>(sliderView.<span class="fu">getTitleLayout</span>());
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">alphaHideAnimate</span></span></span><span class="hljs-function"><span class="hljs-params">(View v)</span> </span>{
+        v.<span class="fu">clearAnimation</span>();
+        v.<span class="fu">setVisibility</span>(View.<span class="fu">INVISIBLE</span>);
+        AlphaAnimation aa = <span class="kw"><span class="hljs-keyword">new</span></span> <span class="fu">AlphaAnimation</span>(<span class="dv"><span class="hljs-number">1</span></span>, <span class="dv"><span class="hljs-number">0</span></span>);
+        aa.<span class="fu">setDuration</span>(DURATION);
+        v.<span class="fu">startAnimation</span>(aa);
+    }
+
+    <span class="kw"><span class="hljs-function"><span class="hljs-keyword">public</span></span></span><span class="hljs-function"> </span><span class="dt"><span class="hljs-function"><span class="hljs-keyword">void</span></span></span><span class="hljs-function"> </span><span class="fu"><span class="hljs-function"><span class="hljs-title">translateShowAnimate</span></span></span><span class="hljs-function"><span class="hljs-params">(View v)</span> </span>{
+        v.<span class="fu">setVisibility</span>(View.<span class="fu">VISIBLE</span>);
+        v.<span class="fu">clearAnimation</span>();
+        TranslateAnimation ta = <span class="kw"><span class="hljs-keyword">new</span></span> <span class="fu">TranslateAnimation</span>(<span class="dv"><span class="hljs-number">0</span></span>, <span class="dv"><span class="hljs-number">0</span></span>, v.<span class="fu">getHeight</span>(), <span class="dv"><span class="hljs-number">0</span></span>);
+        ta.<span class="fu">setDuration</span>(DURATION);
+        v.<span class="fu">startAnimation</span>(ta);
+    }
+}</code></pre></div>
+<p><iframe id="iframe_0.0006959257014489406" src="./【Android开发日记】之入门篇（十五）——ViewPager+自定义无限ViewPager - cpacm - 博客园_files/saved_resource(2).html" style="border: none; width: 475px; height: 775px;" frameborder="0" scrolling="no"></iframe></p>
+<h2 id="结束语">结束语</h2>
+<p>今天的ViewPager的介绍就到这了，若大家有问题或者想要在Android上交流可以大胆的联系我！</p>
+<hr>
+<p><a href="https://www.github.com/cpacm">Github,欢迎follow或star</a><br>
+<a href="http://www.cpacm.net/">blog，个人小窝</a></p>
+</div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/cpacm/category/601309.html" target="_blank">Android</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/cpacm/tag/Android/">Android</a>, <a href="http://www.cnblogs.com/cpacm/tag/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/">自定义控件</a>, <a href="http://www.cnblogs.com/cpacm/tag/Slider/">Slider</a>, <a href="http://www.cnblogs.com/cpacm/tag/ViewPager/">ViewPager</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5555221,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;c7f0aac5-7812-e411-8d02-90b11c0b17d6&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./【Android开发日记】之入门篇（十五）——ViewPager+自定义无限ViewPager - cpacm - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./【Android开发日记】之入门篇（十五）——ViewPager+自定义无限ViewPager - cpacm - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/cpacm/" target="_blank"><img src="./【Android开发日记】之入门篇（十五）——ViewPager+自定义无限ViewPager - cpacm - 博客园_files/20150203131712.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/cpacm/">cpacm</a><br>
+            <a href="http://home.cnblogs.com/u/cpacm/followees">关注 - 9</a><br>
+            <a href="http://home.cnblogs.com/u/cpacm/followers">粉丝 - 126</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;c7f0aac5-7812-e411-8d02-90b11c0b17d6&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5555221,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">4</span>
+    </div>
+    <div class="buryit" onclick="votePost(5555221,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/cpacm/p/5548241.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/cpacm/p/5548241.html" title="发布于2016-06-01 01:12">将你的代码上传 Bintray 仓库</a><br><a href="http://www.cnblogs.com/cpacm/p/5568405.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/cpacm/p/5568405.html" title="发布于2016-06-07 21:49">《Java编程思想》阅读笔记一</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-06-03 09:51</span> <a href="http://www.cnblogs.com/cpacm/">cpacm</a> 阅读(<span id="post_view_count">2470</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5555221" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/cpacm/p/5555221.html#" onclick="AddToWz(5555221);return false;">收藏</a></div>
+	</div>
+	<script src="./【Android开发日记】之入门篇（十五）——ViewPager+自定义无限ViewPager - cpacm - 博客园_files/highlight.min.js.下载"></script><script>markdown_highlight();</script><script type="text/javascript">var allowComments=true,cb_blogId=192485,cb_entryId=5555221,cb_blogApp=currentBlogApp,cb_blogUserGuid='c7f0aac5-7812-e411-8d02-90b11c0b17d6',cb_entryCreatedDate='2016/6/3 9:51:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/cpacm/p/5555221.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/cpacm/p/5555221.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/573805/" target="_blank">乐视前员工：工资、报销和补偿被拖欠，但还是希望乐视好</a><br> ·  <a href="http://news.cnblogs.com/n/573804/" target="_blank">即使有孙正义、马云、郭台铭站台，这款机器人还是陷入了泥潭</a><br> ·  <a href="http://news.cnblogs.com/n/573803/" target="_blank">Uber CEO吃力不讨好？但觊觎该职位的人可真不少</a><br> ·  <a href="http://news.cnblogs.com/n/573802/" target="_blank">看苹果新总部如何影响所在城市经济：房价先行</a><br> ·  <a href="http://news.cnblogs.com/n/573801/" target="_blank">拜拜投影仪！三星在电影院安装首款LED屏幕</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/570194/" target="_blank">小printf的故事：什么是真正的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/569992/" target="_blank">程序员的工作、学习与绩效</a><br> ·  <a href="http://kb.cnblogs.com/page/569056/" target="_blank">软件开发为什么很难</a><br> ·  <a href="http://kb.cnblogs.com/page/565901/" target="_blank">唱吧DevOps的落地，微服务CI/CD的范本技术解读</a><br> ·  <a href="http://kb.cnblogs.com/page/566523/" target="_blank">程序员，如何从平庸走向理想？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/cpacm/">cpacm</a><br>园龄：<a href="http://home.cnblogs.com/u/cpacm/" title="入园时间：2014-07-23">2年11个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/cpacm/followers/">126</a><br>关注：<a href="http://home.cnblogs.com/u/cpacm/followees/">9</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;c7f0aac5-7812-e411-8d02-90b11c0b17d6&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/06/01&#39;);return false;">&lt;</a></td><td align="center">2017年7月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/08/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalWeekendDay" align="center">1</td></tr><tr><td class="CalWeekendDay" align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td class="CalWeekendDay" align="center">8</td></tr><tr><td class="CalWeekendDay" align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td class="CalTodayDay" align="center">14</td><td class="CalWeekendDay" align="center">15</td></tr><tr><td class="CalWeekendDay" align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td class="CalWeekendDay" align="center">22</td></tr><tr><td class="CalWeekendDay" align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalWeekendDay" align="center">29</td></tr><tr><td class="CalWeekendDay" align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block"></div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/cpacm/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/cpacm/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/cpacm/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/cpacm/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/cpacm/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/cpacm/tag/Android/">Android</a>(24)</li><li><a href="http://www.cnblogs.com/cpacm/tag/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/">自定义控件</a>(2)</li><li><a href="http://www.cnblogs.com/cpacm/tag/ssh/">ssh</a>(2)</li><li><a href="http://www.cnblogs.com/cpacm/tag/Intent/">Intent</a>(2)</li><li><a href="http://www.cnblogs.com/cpacm/tag/java/">java</a>(2)</li><li><a href="http://www.cnblogs.com/cpacm/tag/java%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/">java编程思想</a>(2)</li><li><a href="http://www.cnblogs.com/cpacm/tag/volley/">volley</a>(2)</li><li><a href="http://www.cnblogs.com/cpacm/tag/web%E5%BC%80%E5%8F%91/">web开发</a>(2)</li><li><a href="http://www.cnblogs.com/cpacm/tag/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>(1)</li><li><a href="http://www.cnblogs.com/cpacm/tag/%E6%8E%A7%E4%BB%B6/">控件</a>(1)</li><li><a href="http://www.cnblogs.com/cpacm/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/cpacm/category/601309.html">Android(29)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/cpacm/category/601311.html">C</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/cpacm/category/601310.html">Java(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/cpacm/category/601312.html">框架开发(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/cpacm/category/607773.html">其他(3)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/cpacm/archive/2016/11.html">2016年11月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/cpacm/archive/2016/06.html">2016年6月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/cpacm/archive/2015/01.html">2015年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/cpacm/archive/2014/11.html">2014年11月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/cpacm/archive/2014/10.html">2014年10月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/cpacm/archive/2014/09.html">2014年9月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/cpacm/archive/2014/08.html">2014年8月 (13)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	41902
+	</li>
+	<li class="liRank">
+		排名 -	7260
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/cpacm/p/6023940.html#3546554">1. Re:Android 6.0权限管理</a></li>
+        <li class="recent_comment_body">:)</li>
+        <li class="recent_comment_author">--noblog</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/cpacm/p/6023940.html#3546553">2. Re:Android 6.0权限管理</a></li>
+        <li class="recent_comment_body">好的，谢谢</li>
+        <li class="recent_comment_author">--.Hello.World</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/cpacm/p/6023940.html#3546551">3. Re:Android 6.0权限管理</a></li>
+        <li class="recent_comment_body">@.Hello.World可以啊...</li>
+        <li class="recent_comment_author">--cpacm</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/cpacm/p/6023940.html#3546550">4. Re:Android 6.0权限管理</a></li>
+        <li class="recent_comment_body">今刚好碰到这个问题，楼主我能分享下吗</li>
+        <li class="recent_comment_author">--.Hello.World</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/cpacm/p/3919352.html#3460033">5. Re:【Android开发日记】之入门篇（七）——Android数据存储（上）</a></li>
+        <li class="recent_comment_body">总结的很到位，多谢楼主！！</li>
+        <li class="recent_comment_author">--梦幻世界wjl</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/cpacm/p/3915302.html">1. Mina框架的学习笔记——Android客户端的实现(5562)</a></li><li><a href="http://www.cnblogs.com/cpacm/p/4193011.html">2. Volley框架的使用(3118)</a></li><li><a href="http://www.cnblogs.com/cpacm/p/5555221.html">3. 【Android开发日记】之入门篇（十五）——ViewPager+自定义无限ViewPager(2470)</a></li><li><a href="http://www.cnblogs.com/cpacm/p/4087690.html">4. 使用WindowManager添加View——悬浮窗口的基本原理(2315)</a></li><li><a href="http://www.cnblogs.com/cpacm/p/4067283.html">5. 【Android开发日记】之基础篇（二）——Android的动画效果(1943)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/cpacm/p/3916367.html">1. 【Android开发日记】之入门篇（六）——Android四大组件之Broadcast Receiver(6)</a></li><li><a href="http://www.cnblogs.com/cpacm/p/4003893.html">2. SSH的简单入门体验（Struts2.1+Spring3.1+Hibernate4.1）- 查询系统（上）(6)</a></li><li><a href="http://www.cnblogs.com/cpacm/p/3915302.html">3. Mina框架的学习笔记——Android客户端的实现(4)</a></li><li><a href="http://www.cnblogs.com/cpacm/p/3939008.html">4. Git的简单使用(4)</a></li><li><a href="http://www.cnblogs.com/cpacm/p/6023940.html">5. Android 6.0权限管理(4)</a></li></ul></div>
+</div>
+</div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 cpacm
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

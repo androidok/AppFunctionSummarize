@@ -1,0 +1,1527 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0055)http://blog.csdn.net/czhpxl007/article/details/51277319 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+
+            <link rel="canonical" href="http://blog.csdn.net/czhpxl007/article/details/51277319"> 
+ <meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://blog.csdn.net/czhpxl007/article/details/51277319#">
+
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848"> 
+       
+    <title>Fragment的setUserVisibleHint详解 - 一座小楼的专栏
+        - CSDN博客</title>
+    
+    <meta name="description" content="Android应用开发过程中，ViewPager同时加载多个fragment，以实现多tab页面快速切换, 但是fragment初始化时若加载的内容较多，就可能导致整个应用启动速度缓慢，影响用户体验。 为了提高用户体验，我们会使用”懒加载”方案，实现分批加载。那么，setUserVisibleHint什么时候调用呢">
+
+    <meta name="keywords" content="viewpager,fragment">
+
+   
+    <script src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/hm.js.下载"></script><script src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/blog_static_head.min.js.下载" type="text/javascript"></script>
+
+    
+        <!--new top-->
+       
+       
+        <!--new top-->
+    
+      <!-- ad begin -->
+         
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/style.css">
+
+    
+
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/czhpxl007/rss/list">
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/default.css">
+ 
+
+
+
+    <link href="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/csdn_public_blog_detail.min.css" type="text/css" rel="stylesheet">
+     
+         <link rel="stylesheet" href="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/csdn_blog_detail.min.css">
+
+  
+
+
+    <!-- 请置于所有广告位代码之前 --> 
+            <script src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/ds.js.下载"></script>
+
+<script src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/share.js.下载"></script><script src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/wxLogin.js.下载"></script><link href="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/bdsstyle.css" rel="stylesheet" type="text/css"><link rel="stylesheet" type="text/css" href="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/style(1).css"><link type="text/css" rel="stylesheet" href="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/style(2).css"><script src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/logger.js.下载"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><link rel="stylesheet" href="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/share_style0_16.css"></head>
+
+
+<body><div id="MathJax_Message" style="display: none;"></div><iframe frameborder="0" style="display: none;" src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/saved_resource.html"></iframe><div class="csdn-toolbar csdn-toolbar-skin-black ">        <div class="container row center-block ">          <div class="col-md-3 pull-left logo clearfix"><a href="http://www.csdn.net/?ref=toolbar" title="CSDN首页" target="_blank" class="icon"></a><a title="频道首页" href="http://blog.csdn.net/?ref=toolbar_logo" class="img blog-icon"></a></div>          <div class="pull-right login-wrap unlogin">            <ul class="btns">              <li class="loginlink"><a href="https://passport.csdn.net/account/login?ref=toolbar" target="_top">登录&nbsp;</a>|<a target="_top" href="http://passport.csdn.net/account/mobileregister?ref=toolbar&amp;action=mobileRegister">&nbsp;注册</a></li>              <li class="search">                <div class="icon on-search-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <form action="http://so.csdn.net/search" id="toolbar_search" method="get" target="_blank">                      <input type="hidden" value="toolbar" name="ref" accesskey="2">                      <div class="border">                        <input placeholder="搜索" type="text" value="" name="q" accesskey="2"><span class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li class="favor">                <div class="icon on-favor-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div style="display:none;" class="favor-success"><span class="msg">收藏成功</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <div style="display:none;" class="favor-failed"><span class="icon-danger-lg"></span><span class="msg">收藏失败，请重新收藏</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <form role="form" class="form-horizontal favor-form">                      <div class="form-group">                        <div class="clearfix">                          <label for="input-title" class="col-sm-2 control-label"><span class="red_txt">*</span>标题</label>                          <div class="col-sm-10">                            <input id="inputTitle" type="text" placeholder="" class="title form-control">                          </div>                        </div>                        <div class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div class="form-group" style="display:none;">                        <label for="input-url" class="col-sm-2 control-label">网址</label>                        <div class="col-sm-10">                          <input id="input-url" type="text" placeholder="" class="url form-control">                        </div>                      </div>                      <div class="form-group">                        <label for="input-tag" class="col-sm-2 tag control-label">标签</label>                        <div class="col-sm-10">                          <input id="input-tag" type="text" class="form-control tag">                        </div>                      </div>                      <div class="form-group">                        <label for="input-description" class="description col-sm-2 control-label">位置</label>                        <div class="col-sm-10">                          <div class="my_lib_box">                            个人主页&nbsp;-&nbsp;<a href="http://my.csdn.net/" target="_blank">我的知识</a>                          </div>                          <div class="checkbox">                            <div class="pull-left">                              <label>                                <input type="checkbox" name="share" class="save_lib_map" checked="checked">同时保存至：                              </label>                            </div>                            <div class="pull-left">                              <div class="dropdown">                                <button id="toolbar_sele_map" type="button">                                  选择知识图谱                                  <i class="fa fa-chevron-down"></i>                                </button>                                <div class="top_arr"></div>                                <div class="outside">                                  <ul class="dropdown-menu" id="toolbar_Design_knowledge"><li>选择知识图谱</li></ul>                                </div>                              </div>                            </div>                            <div class="pull-left new_txt">                              <a href="http://lib.csdn.net/my/create/structure" target="_blank">新建？</a>                            </div>                          </div>                        </div>                      </div>                      <div class="form-group">                        <div class="col-sm-offset-2 col-sm-10 ft">                          <div class="col-sm-4 pull-left" style="display:none">                            <div class="checkbox">                              <label>                                <input type="checkbox" name="share" checked="checked" class="share">公开                              </label>                            </div>                          </div>                          <div class="col-sm-8 pull-right favor-btns">                            <button type="button" class="cancel btn btn-default">取消</button>                            <button type="submit" class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li class="notify">                <div style="display:none" class="number"></div>                <div style="display:none" class="icon-hasnotes-sm"></div>                <div id="header_notice_num"></div>                <div class="icon on-notify-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div id="note1" class="csdn_note">                      <div class="box"></div>                    <iframe src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/saved_resource(1).html" frameborder="0" allowtransparency="true" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li class="ugc">                <div class="icon on-ugc-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <dl>                      <dt><a href="http://geek.csdn.net/news/expert?ref=toolbar" target="_blank" class="p-news clearfix" style="display:none;"><em class="icon"></em><span>分享资讯</span></a></dt>                      <dt style="border: none;"><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-doc clearfix"><em class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a href="http://bbs.csdn.net/topics/new?ref=toolbar" target="_blank" class="p-ask clearfix"><em class="icon"></em><span>提问题</span></a></dt>                      <dt><a href="http://write.blog.csdn.net/postedit?ref=toolbar" target="_blank" class="p-blog clearfix"><em class="icon"></em><span>写博客</span></a></dt>                      <dt><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-src clearfix"><em class="icon"></em><span>传资源</span></a></dt>                      <dt><a href="https://code.csdn.net/projects/new?ref=toolbar" target="_blank" class="c-obj clearfix"><em class="icon"></em><span>创建项目</span></a></dt>                      <dt><a href="https://code.csdn.net/snippets/new?ref=toolbar" target="_blank" class="c-code clearfix"><em class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li class="profile">                <div class="icon on-profile-icon"><img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/100x100.jpg" class="curr-icon-img">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div class="bd">                      <dl class="clearfix">                        <dt class="pull-left img"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="avatar"><img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/100x100.jpg"></a></dt>                        <dd class="info" style="border: none;"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="nickname"></a><a class="set-nick" href="https://passport.csdn.net/account/profile">设置昵称<span class="write-icon"></span></a><span class="dec"><a class="fill-dec" href="http://my.csdn.net/" target="_blank">编辑自我介绍，让更多人了解你<span class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div class="ft clearfix"><a target="_blank" href="http://my.csdn.net/my/account/changepwd?ref=toolbar" class="pull-left"><span class="icon-cog"></span>帐号设置</a><a href="https://passport.csdn.net/account/logout?ref=toolbar" target="_top" class="pull-left" style="margin-left:132px; width:18px; height:27px; white-space:nowrap; overflow:hidden;"><span class="icon-signout"></span><span class="out">退出</span></a></div>                  </div>                </div>              </li>              <li class="apps">                <div id="chasnew123" class="hasnew" style="display: none;"></div>                <div id="cappsarea123" class="icon on-apps-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a href="http://blog.csdn.net/?ref=toolbar" target="_blank">博客</a></dd>                      <dd> <a href="http://bbs.csdn.net/?ref=toolbar" target="_blank">论坛</a></dd>                      <dd> <a href="http://download.csdn.net/?ref=toolbar" target="_blank">下载</a></dd>                      <dd> <a href="http://lib.csdn.net/?ref=toolbar" target="_blank">知识库</a></dd>                      <dd><a href="http://ask.csdn.net/?ref=toolbar" target="_blank">技术问答</a></dd>                      <dd><a href="http://geek.csdn.net/?ref=toolbar" target="_blank">极客头条</a></dd>                      <dd style="display:none"> <a href="http://hero.csdn.net/?ref=toolbar" target="_blank">英雄会</a></dd>                    </dl>                  </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd style="display:none"> <a href="http://job.csdn.net/?ref=toolbar" target="_blank">JOB<img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="http://edu.csdn.net/?ref=toolbar" target="_blank">学院<img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="https://code.csdn.net/?ref=toolbar" target="_blank">CODE</a></dd>                      <dd> <a href="http://huiyi.csdn.net/?ref=toolbar" target="_blank">活动</a></dd>                      <dd> <a href="http://www.csto.com/?ref=toolbar" target="_blank">CSTO</a></dd>                      <dd> <a href="http://mall.csdn.net/?ref=toolbar" target="_blank">C币兑换<img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                    </dl>                  </div>                  <div class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a href="http://cto.csdn.net/?ref=toolbar" target="_blank">CTO俱乐部</a></dd>                      <dd> <a href="http://student.csdn.net/?ref=toolbar" target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+     
+        <div class="tracking-ad" data-view="true" data-mod="ad_popu_72" data-mtp="62" data-order="40" data-con="ad_content_2072">
+                     <script id="popuLayer_js_q" src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/popuLayer.js.下载" defer="defer" type="text/javascript"></script>
+                <div id="layerd" style="position: fixed; bottom: 0px; right: 0px; line-height: 0px; z-index: 1000; width: 300px; height: 278px;">
+    	                <div class="J_close layer_close" style="display:;background-color:#efefef;padding:0px;color:#333;font:12px/24px Helvetica,Tahoma,Arial,sans-serif;text-align:right;">关闭</div><!-- 广告占位容器 --><div id="cpro_u2895327">undefined</div></div>
+                <script>  document.getElementById("popuLayer_js_q").onload = function () { var styObjd = styObj = { width: "300px", "height": parseInt(250) + 28 }; window.CSDN.Layer.PopuLayer("#layerd", { storageName: "layerd", styleObj: styObjd, total: 50, expoire: 1000 * 60 }); }</script><!-- 投放代码 --><script type="text/javascript">                    /*服务器频道首页置顶Banner960*90，创建于2014-7-3*/    (window.cproArray = window.cproArray || []).push({ id: "u2895327" });  </script>  <script src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/c.js.下载" type="text/javascript"></script>
+     
+        </div>
+
+    <!-- 广告位开始 -->
+        
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/html.js.下载" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/czhpxl007">一座小楼的专栏</a></h2>
+            <h3></h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+     
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/czhpxl007?viewmode=contents"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_mulu&#39;])">
+                    <img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/czhpxl007?viewmode=list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_zhaiyao&#39;])">
+                    <img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/czhpxl007/rss/list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_RSS&#39;])">
+                    <img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "czhpxl007";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/czhpxl007";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod="popu_3"> 
+
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/75028508" target="_blank">
+<font color="red"><strong>CSDN日报20170712——《AI 大行其道，你准备好了吗？》</strong></font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/74550215" target="_blank">
+<font color="blue"><strong>征文 | 你会为 AI 转型么？</strong></font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="http://ask.csdn.net/subjects/31" target="_blank">
+<font color="red"><strong>专家问答 | 资深Java工程师带你解读MyBatis</strong></font></a>
+
+
+</div>                        </div>
+
+                        
+
+
+
+  
+
+
+
+
+
+
+<script type="text/javascript" src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/category.js.下载"></script>
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+      var isBole = false; 
+      var fasrc="http://my.csdn.net/my/favorite/miniadd?t=Fragment%e7%9a%84setUserVisibleHint%e8%af%a6%e8%a7%a3&u=http://blog.csdn.net/czhpxl007/article/details/51277319"
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+    <h1>
+        <span class="link_title"><a href="http://blog.csdn.net/czhpxl007/article/details/51277319">
+        Fragment的setUserVisibleHint详解        
+           
+        </a>
+        </span>
+
+         
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_l">
+            <span class="link_categories">
+            标签：
+              <a href="http://www.csdn.net/tag/viewpager" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">viewpager</a><a href="http://www.csdn.net/tag/fragment" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">fragment</a>
+            </span>
+        </div>
+        <div class="article_r">
+            <span class="link_postdate">2016-04-28 20:25</span>
+            <span class="link_view" title="阅读次数">6777人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="http://blog.csdn.net/czhpxl007/article/details/51277319#comments" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_pinglun&#39;])">评论</a>(0)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;Fragment%e7%9a%84setUserVisibleHint%e8%af%a6%e8%a7%a3&#39;,&#39;51277319&#39;);return false;" title="收藏" target="_blank">收藏</a></span>
+             <span class="link_report"> <a href="http://blog.csdn.net/czhpxl007/article/details/51277319#report" onclick="javascript:report(51277319,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label onclick="GetCategoryArticles(&#39;5997991&#39;,&#39;czhpxl007&#39;,&#39;top&#39;,&#39;51277319&#39;);">
+                        <span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_fenlei&#39;]);">Android<em>（19）</em></span>
+                      <img class="arrow-down" src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a href="http://blog.csdn.net/czhpxl007/article/category/5997991" target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_5997991">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+        <div class="bog_copyright">         
+            <p class="copyright_p">版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+        </div>
+
+  
+
+  
+  
+     
+
+
+<div style="clear:both"></div><div style="border:solid 1px #ccc; background:#eee; float:left; min-width:200px;padding:4px 10px;"><p style="text-align:right;margin:0;"><span style="float:left;">目录<a href="http://blog.csdn.net/czhpxl007/article/details/51277319#" title="系统根据文章中H1到H6标签自动生成文章目录">(?)</a></span><a href="http://blog.csdn.net/czhpxl007/article/details/51277319#" onclick="javascript:return openct(this);" title="展开">[+]</a></p><ol style="display:none;margin-left:14px;padding-left:14px;line-height:160%;"><li><a href="http://blog.csdn.net/czhpxl007/article/details/51277319#t0">Theme 1  我们的应用场景</a></li><li><a href="http://blog.csdn.net/czhpxl007/article/details/51277319#t1">Theme 2 ViewPager FragmentPagerAdapter</a></li><li><a href="http://blog.csdn.net/czhpxl007/article/details/51277319#t2">Theme 3 Activity   FragmentManager</a></li></ol></div><div style="clear:both"></div><div id="article_content" class="article_content tracking-ad" data-mod="popu_307" data-dsm="post">
+        <div class="markdown_views"><p><a href="http://lib.csdn.net/base/android" class="replace_word" title="Android知识库" target="_blank" style="color:#df3434; font-weight:bold;">Android</a>应用开发过程中，ViewPager同时加载多个fragment，以实现多tab页面快速切换, 但是fragment初始化时若加载的内容较多，就可能导致整个应用启动速度缓慢，影响用户体验。 <br>
+为了提高用户体验，我们会使用一些懒加载方案，实现加载延迟。这时我们会用到getUserVisibleHint()与setUserVisibleHint()这两个方法。</p>
+
+<hr>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering"><span class="hljs-javadoc">/**
+*
+*<span class="hljs-javadoctag"> @param</span> isVisibleToUser true if this fragment's UI is currently visible to the user (default),
+*                        false if it is not.
+*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setUserVisibleHint</span>(<span class="hljs-keyword">boolean</span> isVisibleToUser) {
+   <span class="hljs-keyword">if</span> (!mUserVisibleHint &amp;&amp; isVisibleToUser &amp;&amp; mState &lt; STARTED) {
+       mFragmentManager.performPendingDeferredStart(<span class="hljs-keyword">this</span>);
+   }
+   mUserVisibleHint = isVisibleToUser;
+   mDeferStart = !isVisibleToUser;
+}
+
+<span class="hljs-javadoc">/**
+ *<span class="hljs-javadoctag"> @return</span> The current value of the user-visible hint on this fragment.
+ *<span class="hljs-javadoctag"> @see</span> #setUserVisibleHint(boolean)
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">getUserVisibleHint</span>() {
+    <span class="hljs-keyword">return</span> mUserVisibleHint;
+}
+</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li></ul></pre>
+
+<p>从上述源码注释我们可以看出，当fragment被用户可见时，setUserVisibleHint()会调用且传入true值，当fragment不被用户可见时，setUserVisibleHint()则得到false值。而在传统的fragment生命周期里也看不到这个函数。</p>
+
+<p><img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/20160428203327414" alt="这里写图片描述" title=""></p>
+
+<p>那么，问题来了，</p>
+
+<blockquote>
+  <ol>
+  <li>fragment是如何知道自己时候用户可见？</li>
+  <li>setUserVisibleHint() 在上图所示fragment的生命周期的什么位置?</li>
+  </ol>
+</blockquote>
+
+<p>先说结论,</p>
+
+<blockquote>
+  <ol>
+  <li>viewpager监听切换tab事件，tab切换一次，执行一次setUserVisibleHint()方法</li>
+  <li>setUserVisibleHint() 在 上图所示fragment所有生命周期之前，无论viewpager是在activity哪个生命周期里初始化。</li>
+  <li>activity生命周期 和 fragment生命周期 时序并不是按序来的，也就是说fragment的oncreate方法时序并不一定在activity的oncreate方法之后。</li>
+  </ol>
+</blockquote>
+
+<p>具体原因，我们从应用场景开始一点一点的分析。</p>
+
+
+
+<h3 id="theme-1-我们的应用场景"><a name="t0" target="_blank"></a>Theme 1.  我们的应用场景</h3>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> {</span>
+
+    <span class="hljs-keyword">private</span> ViewPager viewPager;
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        vpOrder.setAdapter(<span class="hljs-keyword">new</span> MainFragmentPagerAdapter(getSupportFragmentManager()));
+        vpOrder.setOffscreenPageLimit(<span class="hljs-number">5</span>);
+        vpOrder.setCurrentItem(<span class="hljs-number">0</span>);
+
+    }
+｝
+</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li></ul></pre>
+
+
+
+<h3 id="theme-2-viewpager-fragmentpageradapter"><a name="t1" target="_blank"></a>Theme 2. ViewPager ,FragmentPagerAdapter</h3>
+
+<ul>
+<li>/frameworks/base/core/java/com/android/internal/widget/ViewPager.java</li>
+</ul>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs axapta has-numbering"><span class="hljs-comment">//每次切换ViewPager的Tab时调用的方法</span>
+<span class="hljs-keyword">void</span> populate(<span class="hljs-keyword">int</span> newCurrentItem) {
+
+        mAdapter.startUpdate(<span class="hljs-keyword">this</span>);
+
+        <span class="hljs-comment">//......</span>
+        addNewItem(mCurItem, curIndex);
+        <span class="hljs-comment">// mCurItem 为当前可见Fragment</span>
+        <span class="hljs-comment">// 调用setUserVisibleHint(true)</span>
+        mAdapter.setPrimaryItem(<span class="hljs-keyword">this</span>, mCurItem, curItem != <span class="hljs-keyword">null</span> ? curItem.object : <span class="hljs-keyword">null</span>); 
+
+        mAdapter.finishUpdate(<span class="hljs-keyword">this</span>);
+
+        <span class="hljs-comment">//.....</span>
+
+ }
+
+
+ItemInfo addNewItem(<span class="hljs-keyword">int</span> position, <span class="hljs-keyword">int</span> <span class="hljs-keyword">index</span>) {
+        ItemInfo ii = <span class="hljs-keyword">new</span> ItemInfo();
+        ii.position = position;
+        <span class="hljs-comment">//初始化fragment, 调用setUserVisibleHint(false)</span>
+        ii.object = mAdapter.instantiateItem(<span class="hljs-keyword">this</span>, position);
+        ii.widthFactor = mAdapter.getPageWidth(position);
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">index</span> &lt; <span class="hljs-number">0</span> || <span class="hljs-keyword">index</span> &gt;= mItems.size()) {
+            mItems.add(ii);
+        } <span class="hljs-keyword">else</span> {
+            mItems.add(<span class="hljs-keyword">index</span>, ii);
+        }
+        <span class="hljs-keyword">return</span> ii;
+}
+</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li><li>32</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li><li>32</li></ul></pre>
+
+<ul>
+<li>/frameworks/support/v4/java/android/support/v4/app/FragmentPagerAdapter.java</li>
+</ul>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering">    <span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">public</span> Object <span class="hljs-title">instantiateItem</span>(ViewGroup container, <span class="hljs-keyword">int</span> position) {
+    <span class="hljs-keyword">if</span> (mCurTransaction == <span class="hljs-keyword">null</span>) {
+        mCurTransaction = mFragmentManager.beginTransaction();
+    }
+
+    <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> itemId = getItemId(position);
+
+    <span class="hljs-comment">// Do we already have this fragment?</span>
+    String name = makeFragmentName(container.getId(), itemId);
+    Fragment fragment = mFragmentManager.findFragmentByTag(name);
+    <span class="hljs-keyword">if</span> (fragment != <span class="hljs-keyword">null</span>) {
+        <span class="hljs-keyword">if</span> (DEBUG) Log.v(TAG, <span class="hljs-string">"Attaching item #"</span> + itemId + <span class="hljs-string">": f="</span> + fragment);
+        mCurTransaction.attach(fragment);
+    } <span class="hljs-keyword">else</span> {
+        fragment = getItem(position);
+        <span class="hljs-keyword">if</span> (DEBUG) Log.v(TAG, <span class="hljs-string">"Adding item #"</span> + itemId + <span class="hljs-string">": f="</span> + fragment);
+        <span class="hljs-comment">//将fragment添加到FragmentManager里面</span>
+        mCurTransaction.add(container.getId(), fragment,
+                makeFragmentName(container.getId(), itemId));
+    }
+    <span class="hljs-keyword">if</span> (fragment != mCurrentPrimaryItem) {
+        fragment.setMenuVisibility(<span class="hljs-keyword">false</span>);
+        <span class="hljs-comment">//我们要找的方法在这里</span>
+        fragment.setUserVisibleHint(<span class="hljs-keyword">false</span>); 
+    }
+
+    <span class="hljs-keyword">return</span> fragment;
+}
+
+<span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPrimaryItem</span>(ViewGroup container, <span class="hljs-keyword">int</span> position, Object object) {
+    Fragment fragment = (Fragment)object;
+    <span class="hljs-keyword">if</span> (fragment != mCurrentPrimaryItem) {
+        <span class="hljs-keyword">if</span> (mCurrentPrimaryItem != <span class="hljs-keyword">null</span>) {
+            mCurrentPrimaryItem.setMenuVisibility(<span class="hljs-keyword">false</span>);
+            mCurrentPrimaryItem.setUserVisibleHint(<span class="hljs-keyword">false</span>);
+        }
+        <span class="hljs-keyword">if</span> (fragment != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-comment">//我们要找的方法在这里</span>
+            fragment.setMenuVisibility(<span class="hljs-keyword">true</span>);
+            fragment.setUserVisibleHint(<span class="hljs-keyword">true</span>);
+        }
+        mCurrentPrimaryItem = fragment;
+    }
+}
+
+
+</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li><li>32</li><li>33</li><li>34</li><li>35</li><li>36</li><li>37</li><li>38</li><li>39</li><li>40</li><li>41</li><li>42</li><li>43</li><li>44</li><li>45</li><li>46</li><li>47</li><li>48</li><li>49</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li><li>32</li><li>33</li><li>34</li><li>35</li><li>36</li><li>37</li><li>38</li><li>39</li><li>40</li><li>41</li><li>42</li><li>43</li><li>44</li><li>45</li><li>46</li><li>47</li><li>48</li><li>49</li></ul></pre>
+
+
+
+<h3 id="theme-3-activity-fragmentmanager"><a name="t2" target="_blank"></a>Theme 3. Activity  , FragmentManager</h3>
+
+<ul>
+<li>/frameworks/base/core/java/android/app/Activity.java</li>
+</ul>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs cs has-numbering"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(@Nullable Bundle savedInstanceState) {
+    <span class="hljs-keyword">if</span> (DEBUG_LIFECYCLE) Slog.v(TAG, <span class="hljs-string">"onCreate "</span> + <span class="hljs-keyword">this</span> + <span class="hljs-string">": "</span> + savedInstanceState);
+    <span class="hljs-keyword">if</span> (mLastNonConfigurationInstances != <span class="hljs-keyword">null</span>) {
+        mFragments.restoreLoaderNonConfig(mLastNonConfigurationInstances.loaders);
+    }
+    <span class="hljs-keyword">if</span> (mActivityInfo.parentActivityName != <span class="hljs-keyword">null</span>) {
+        <span class="hljs-keyword">if</span> (mActionBar == <span class="hljs-keyword">null</span>) {
+            mEnableDefaultActionBarUp = <span class="hljs-keyword">true</span>;
+        } <span class="hljs-keyword">else</span> {
+            mActionBar.setDefaultDisplayHomeAsUpEnabled(<span class="hljs-keyword">true</span>);
+        }
+    }
+    <span class="hljs-keyword">if</span> (savedInstanceState != <span class="hljs-keyword">null</span>) {
+        Parcelable p = savedInstanceState.getParcelable(FRAGMENTS_TAG);
+        mFragments.restoreAllState(p, mLastNonConfigurationInstances != <span class="hljs-keyword">null</span>
+                ? mLastNonConfigurationInstances.fragments : <span class="hljs-keyword">null</span>);
+    }
+    <span class="hljs-comment">//分发fragment的onCreate()事件</span>
+    mFragments.dispatchCreate(); 
+    getApplication().dispatchActivityCreated(<span class="hljs-keyword">this</span>, savedInstanceState);
+    <span class="hljs-keyword">if</span> (mVoiceInteractor != <span class="hljs-keyword">null</span>) {
+        mVoiceInteractor.attachActivity(<span class="hljs-keyword">this</span>);
+    }
+    mCalled = <span class="hljs-keyword">true</span>;
+}
+</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li></ul></pre>
+
+<ul>
+<li>/frameworks/support/v4/java/android/support/v4/app/FragmentManager.java</li>
+</ul>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering">
+<span class="hljs-comment">//分发onCreate事件函数</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">dispatchCreate</span>() {
+    mStateSaved = <span class="hljs-keyword">false</span>;
+    moveToState(Fragment.CREATED, <span class="hljs-keyword">false</span>);
+}
+
+<span class="hljs-comment">//moveToState 重载 1</span>
+<span class="hljs-keyword">void</span> moveToState(<span class="hljs-keyword">int</span> newState, <span class="hljs-keyword">boolean</span> always) {
+    moveToState(newState, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, always);
+}
+
+<span class="hljs-comment">//moveToState 重载 2</span>
+<span class="hljs-keyword">void</span> moveToState(<span class="hljs-keyword">int</span> newState, <span class="hljs-keyword">int</span> transit, <span class="hljs-keyword">int</span> transitStyle, <span class="hljs-keyword">boolean</span> always) {
+    <span class="hljs-keyword">if</span> (mHost == <span class="hljs-keyword">null</span> &amp;&amp; newState != Fragment.INITIALIZING) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalStateException(<span class="hljs-string">"No host"</span>);
+    }
+
+    <span class="hljs-keyword">if</span> (!always &amp;&amp; mCurState == newState) {
+        <span class="hljs-keyword">return</span>;
+    }
+
+    mCurState = newState;
+
+
+    <span class="hljs-comment">//若mActive为null,就算Activtiy里面调用了dispatchOnCreate()也不会执行Fragment</span>
+    <span class="hljs-comment">//的OnAttach和onCreate等方法。</span>
+
+    <span class="hljs-comment">//只有mActive非null,即addFragment()执行后，才会真正进入到生命周期。</span>
+    <span class="hljs-comment">//而根据FragmentPagerAdapter可知，只有当viewpager调用setAdapter方法，才会添加fragment到FramentManager。</span>
+
+    <span class="hljs-comment">//执行setAdapter的时候，会调用setUserVisibleHint()方法，并且，只有当setAdapter方法执行完之后，才会进入到Fragment到生命周期，因此setUserVisibleHint()方法在所有生命周期之前被调用。</span>
+
+
+    <span class="hljs-keyword">if</span> (mActive != <span class="hljs-keyword">null</span>) {
+        <span class="hljs-keyword">boolean</span> loadersRunning = <span class="hljs-keyword">false</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;mActive.size(); i++) {
+            Fragment f = mActive.get(i);
+            <span class="hljs-keyword">if</span> (f != <span class="hljs-keyword">null</span>) {
+                moveToState(f, newState, transit, transitStyle, <span class="hljs-keyword">false</span>);
+                <span class="hljs-keyword">if</span> (f.mLoaderManager != <span class="hljs-keyword">null</span>) {
+                    loadersRunning |= f.mLoaderManager.hasRunningLoaders();
+                }
+            }
+        }
+
+        <span class="hljs-keyword">if</span> (!loadersRunning) {
+            startPendingDeferredFragments();
+        }
+
+        <span class="hljs-keyword">if</span> (mNeedMenuInvalidate &amp;&amp; mHost != <span class="hljs-keyword">null</span> &amp;&amp; mCurState == Fragment.RESUMED) {
+            mHost.onSupportInvalidateOptionsMenu();
+            mNeedMenuInvalidate = <span class="hljs-keyword">false</span>;
+        }
+    }
+}
+
+<span class="hljs-comment">//moveToState 重载 3</span>
+<span class="hljs-keyword">void</span> moveToState(Fragment f, <span class="hljs-keyword">int</span> newState, <span class="hljs-keyword">int</span> transit, <span class="hljs-keyword">int</span> transitionStyle,
+
+         <span class="hljs-comment">//...</span>
+
+         f.onAttach();
+
+         <span class="hljs-comment">//...</span>
+
+         f.performOnCreate();
+
+         <span class="hljs-comment">//其他生命周期</span>
+ }
+
+
+<span class="hljs-comment">//添加fragment到FragmentManager</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addFragment</span>(Fragment fragment, <span class="hljs-keyword">boolean</span> moveToStateNow) {
+    <span class="hljs-keyword">if</span> (mAdded == <span class="hljs-keyword">null</span>) {
+        mAdded = <span class="hljs-keyword">new</span> ArrayList&lt;Fragment&gt;();
+    }
+    <span class="hljs-keyword">if</span> (DEBUG) Log.v(TAG, <span class="hljs-string">"add: "</span> + fragment);
+
+    <span class="hljs-comment">//激活fragment</span>
+    makeActive(fragment);
+
+    <span class="hljs-keyword">if</span> (!fragment.mDetached) {
+        <span class="hljs-keyword">if</span> (mAdded.contains(fragment)) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalStateException(<span class="hljs-string">"Fragment already added: "</span> + fragment);
+        }
+        mAdded.add(fragment);
+        fragment.mAdded = <span class="hljs-keyword">true</span>;
+        fragment.mRemoving = <span class="hljs-keyword">false</span>;
+        <span class="hljs-keyword">if</span> (fragment.mHasMenu &amp;&amp; fragment.mMenuVisible) {
+            mNeedMenuInvalidate = <span class="hljs-keyword">true</span>;
+        }
+        <span class="hljs-keyword">if</span> (moveToStateNow) {
+            moveToState(fragment);
+        }
+    }
+}
+
+
+<span class="hljs-keyword">void</span> makeActive(Fragment f) {
+    <span class="hljs-keyword">if</span> (f.mIndex &gt;= <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">return</span>;
+    }
+
+    <span class="hljs-keyword">if</span> (mAvailIndices == <span class="hljs-keyword">null</span> || mAvailIndices.size() &lt;= <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">if</span> (mActive == <span class="hljs-keyword">null</span>) {
+            <span class="hljs-comment">//激活Fragment</span>
+            mActive = <span class="hljs-keyword">new</span> ArrayList&lt;Fragment&gt;();    
+        }
+        f.setIndex(mActive.size(), mParent);
+        mActive.add(f);
+
+    } <span class="hljs-keyword">else</span> {
+        f.setIndex(mAvailIndices.remove(mAvailIndices.size()-<span class="hljs-number">1</span>), mParent);
+        mActive.set(f.mIndex, f);
+    }
+    <span class="hljs-keyword">if</span> (DEBUG) Log.v(TAG, <span class="hljs-string">"Allocated fragment index "</span> + f);
+}
+</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li><li>32</li><li>33</li><li>34</li><li>35</li><li>36</li><li>37</li><li>38</li><li>39</li><li>40</li><li>41</li><li>42</li><li>43</li><li>44</li><li>45</li><li>46</li><li>47</li><li>48</li><li>49</li><li>50</li><li>51</li><li>52</li><li>53</li><li>54</li><li>55</li><li>56</li><li>57</li><li>58</li><li>59</li><li>60</li><li>61</li><li>62</li><li>63</li><li>64</li><li>65</li><li>66</li><li>67</li><li>68</li><li>69</li><li>70</li><li>71</li><li>72</li><li>73</li><li>74</li><li>75</li><li>76</li><li>77</li><li>78</li><li>79</li><li>80</li><li>81</li><li>82</li><li>83</li><li>84</li><li>85</li><li>86</li><li>87</li><li>88</li><li>89</li><li>90</li><li>91</li><li>92</li><li>93</li><li>94</li><li>95</li><li>96</li><li>97</li><li>98</li><li>99</li><li>100</li><li>101</li><li>102</li><li>103</li><li>104</li><li>105</li><li>106</li><li>107</li><li>108</li><li>109</li><li>110</li><li>111</li><li>112</li><li>113</li><li>114</li><li>115</li><li>116</li><li>117</li><li>118</li><li>119</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li><li>32</li><li>33</li><li>34</li><li>35</li><li>36</li><li>37</li><li>38</li><li>39</li><li>40</li><li>41</li><li>42</li><li>43</li><li>44</li><li>45</li><li>46</li><li>47</li><li>48</li><li>49</li><li>50</li><li>51</li><li>52</li><li>53</li><li>54</li><li>55</li><li>56</li><li>57</li><li>58</li><li>59</li><li>60</li><li>61</li><li>62</li><li>63</li><li>64</li><li>65</li><li>66</li><li>67</li><li>68</li><li>69</li><li>70</li><li>71</li><li>72</li><li>73</li><li>74</li><li>75</li><li>76</li><li>77</li><li>78</li><li>79</li><li>80</li><li>81</li><li>82</li><li>83</li><li>84</li><li>85</li><li>86</li><li>87</li><li>88</li><li>89</li><li>90</li><li>91</li><li>92</li><li>93</li><li>94</li><li>95</li><li>96</li><li>97</li><li>98</li><li>99</li><li>100</li><li>101</li><li>102</li><li>103</li><li>104</li><li>105</li><li>106</li><li>107</li><li>108</li><li>109</li><li>110</li><li>111</li><li>112</li><li>113</li><li>114</li><li>115</li><li>116</li><li>117</li><li>118</li><li>119</li></ul></pre></div>
+        <script type="text/javascript">
+            $(function () {
+                $('pre.prettyprint code').each(function () {
+                    var lines = $(this).text().split('\n').length;
+                    var $numbering = $('<ul></ul>').addClass('pre-numbering').hide();
+                    $(this).addClass('has-numbering').parent().append($numbering);
+                    for (i = 1; i <= lines; i++) {
+                        $numbering.append($('<li></li>').text(i));
+                    };
+                    $numbering.fadeIn(1700);
+                });
+            });
+        </script>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad bdshare-button-style0-16" style="float: right;" data-mod="popu_172" data-bd-bind="1499935368750">
+<a href="http://blog.csdn.net/czhpxl007/article/details/51277319#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important" target="_blank"></a>
+<a href="http://blog.csdn.net/czhpxl007/article/details/51277319#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" style="background-position:0 -52px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/czhpxl007/article/details/51277319#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" style="background-position:0 -104px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/czhpxl007/article/details/51277319#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博" style="background-position:0 -260px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/czhpxl007/article/details/51277319#" class="bds_renren" data-cmd="renren" title="分享到人人网" style="background-position:0 -208px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/czhpxl007/article/details/51277319#" class="bds_weixin" data-cmd="weixin" title="分享到微信" style="background-position:0 -1612px !important" target="_blank"></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   
+
+<!--172.16.140.14-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/bds_s_v2.js.下载"></script>
+
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+
+
+ 
+
+
+        <div id="digg" articleid="51277319">
+            <dl id="btnDigg" class="digg digg_disable" onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>4</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable" onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" target="_blank">&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" target="_blank">&nbsp;</a></div>
+    <script type="text/javascript">
+                function btndigga() {
+                    $(".tracking-ad[data-mod='popu_222'] a").click();
+                }
+                function btnburya() {
+                    $(".tracking-ad[data-mod='popu_223'] a").click();
+                }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;]);location.href=&#39;http://blog.csdn.net/czhpxl007/article/details/51264973&#39;;">上一篇</span><a href="http://blog.csdn.net/czhpxl007/article/details/51264973" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;])">Android网络框架 - Retrofit基本使用</a></li>
+                <li class="next_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;]);location.href=&#39;http://blog.csdn.net/czhpxl007/article/details/51383613&#39;;">下一篇</span><a href="http://blog.csdn.net/czhpxl007/article/details/51383613" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;])">为Android Studio 项目手动下载gradle</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+            <div class="similar_article">
+                    <h4></h4>
+                    <div class="similar_c" style="margin:20px 0px 0px 0px">
+                        <div class="similar_c_t">
+                          &nbsp;&nbsp;相关文章推荐
+                        </div>
+                   
+                        <div class="similar_wrap tracking-ad" data-mod="popu_36">                       
+                            <ul class="similar_list fl">    
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/luohaowang320/article/details/38556383" title="Android 实时动态刷新更改菜单" strategy="BlogCommendFromBaidu" target="_blank">Android 实时动态刷新更改菜单</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/YY007H/article/details/50455660" title="Android Fragment使用Toolbar" strategy="BlogCommendFromBaidu" target="_blank">Android Fragment使用Toolbar</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/yuanzeyao2008/article/details/52822315" title="Fragment运行机制源码分析(一)" strategy="BlogCommendFromBaidu" target="_blank">Fragment运行机制源码分析(一)</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/xujinyang1234/article/details/9191081" title="如何动态改变Actionbar上的item图标" strategy="BlogCommendFromBaidu" target="_blank">如何动态改变Actionbar上的item图标</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/xude1985/article/details/50831288" title="Fragment之底层关键操作函数moveToState" strategy="BlogCommendFromBaidu" target="_blank">Fragment之底层关键操作函数moveToState</a>
+                                   </li>
+                            </ul>
+                              <ul class="similar_list fr">      
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/sweetvvck/article/details/38645297" title="Android学习路线（二十四）ActionBar Fragment运用最佳实践" strategy="BlogCommendFromBaidu" target="_blank">Android学习路线（二十四）ActionBar Fragment运用最佳实践</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/aishang5wpj/article/details/52182972" title="Android源码阅读笔记(1)----Fragment" strategy="BlogCommendFromBaidu" target="_blank">Android源码阅读笔记(1)----Fragment</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/evan_man/article/details/51329320" title="Fragment深入学习" strategy="BlogCommendFromBaidu" target="_blank">Fragment深入学习</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://shangxun.iteye.com/blog/2122378" title="Android中的Fragment详解" strategy="BlogCommendFromCsdn" target="_blank">Android中的Fragment详解</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://f059074251.iteye.com/blog/2200923" title="【Android 应用开发】 Fragment 详解" strategy="BlogCommendFromCsdn" target="_blank">【Android 应用开发】 Fragment 详解</a>
+                                   </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>   
+      
+</div>
+
+    <div>
+        
+
+        <script type="text/javascript">
+            /*博客内容页下方Banner1-728*90，创建于2016-12-13*/
+            var cpro_id = "u2843949";
+        </script>
+        <script type="text/javascript" src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/c.js.下载"></script><div id="BAIDU_SSP__wrapper_u2843949_0">undefined</div>
+
+     </div>
+
+<div id="suggest">
+
+</div>
+         <script language="javascript" type="text/javascript">     
+             $(function(){
+                 $.get("/czhpxl007/svc/GetSuggestContent/51277319",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+        <dl class="blog-ass-articl tracking-ad" id="res-relatived" data-mod="popu_84"> 
+             <dt><span>猜你在找</span></dt>    
+           
+    
+           
+
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/46" title="机器学习之概率与统计推断" strategy="undefined" target="_blank">机器学习之概率与统计推断</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/49" title="机器学习之数学基础" strategy="undefined" target="_blank">机器学习之数学基础</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/48" title="机器学习之凸优化" strategy="undefined" target="_blank">机器学习之凸优化</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/47" title="机器学习之矩阵" strategy="undefined" target="_blank">机器学习之矩阵</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/detail/421" title="响应式布局全新探索" strategy="undefined" target="_blank">响应式布局全新探索</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/detail/426" title="探究Linux的总线、设备、驱动模型" strategy="undefined" target="_blank">探究Linux的总线、设备、驱动模型</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/detail/422" title="深度学习基础与TensorFlow实践" strategy="undefined" target="_blank">深度学习基础与TensorFlow实践</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/45" title="深度学习之神经网络原理与实战技巧" strategy="undefined" target="_blank">深度学习之神经网络原理与实战技巧</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/43" title="前端开发在线峰会" strategy="undefined" target="_blank">前端开发在线峰会</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/44" title="TensorFlow实战进阶：手把手教你做图像识别应用" strategy="undefined" target="_blank">TensorFlow实战进阶：手把手教你做图像识别应用</a>
+                        </dd>
+        </dl>
+
+
+
+
+            
+                                    
+            
+                                    
+
+        <!-- 广告位开始 -->
+        <!-- 广告位结束 -->
+
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list"><br>&nbsp;&nbsp;暂无评论<br><br><div class="clear"></div></div>
+    <div id="comment_bar">
+    </div>
+    <div id="comment_form"><div class="guest_link">您还没有登录,请<a href="javascript:void(0);" onclick="javascript:loginbox();">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Fczhpxl007%2Farticle%2Fdetails%2F51277319">[注册]</a></div></div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '51277319';
+    var commentscount = 0;
+    var islock = false
+</script>
+
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top" style="bottom:60px;">
+
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/blog-icon-reply.png" alt="快速回复">
+        </a>    
+    <a id="d-top-a" class="btn btn-top backtop" style="display: none;" title="返回顶部" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_huidaodingbu&#39;])">         
+         <img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){        
+        
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+    var articletitle='Fragment的setUserVisibleHint详解';
+
+</script>
+
+
+
+
+
+
+
+
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+               
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/czhpxl007" target="_blank">
+    <img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/1_czhpxl007.jpg" title="访问我的空间" style="max-width:90%">
+    </a>
+    <br>
+    <span><a href="http://my.csdn.net/czhpxl007" class="user_name" target="_blank">一座小楼</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter" title="[发私信]" onclick="window.open(&#39;http://msg.csdn.net/letters/model?receiver=czhpxl007&#39;,&#39;_blank&#39;,&#39;height=350,width=700&#39;);_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_sixin&#39;])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>55410次</span></li>
+    <li>积分：<span>850</span> </li>    
+    <li>等级： <span style="position:relative;display:inline-block;z-index:1">
+            <img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/blog3.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：850 </div>
+        </span>  </li>
+    <li>排名：<span>千里之外</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>26篇</span></li>
+    <li>转载：<span>7篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>11条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search csdn-tracking-statistics" target="_blank" data-mod="popu_306">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+   
+    $(function () {
+        $("#btnSubmit").unbind("click");
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {           
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            if ($("#inputSearch").val() == "") {               
+                alert("请录入搜索关键词！");                         
+                return false;
+            }
+            //var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";           
+            var url = "https://www.baidu.com/s?wd=" + encodeURIComponent($("#inputSearch").val()) + "%20site%3Ablog.csdn.net"
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="http://blog.csdn.net/czhpxl007/article/category/5997991" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android</a><span>(20)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/czhpxl007/article/category/6077771" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Java</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/czhpxl007/article/category/6007467" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">设计模式</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/czhpxl007/article/category/5740639" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">其他</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/czhpxl007/article/category/6114561" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">算法</a><span>(0)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/czhpxl007/article/category/6114562" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android UI</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/czhpxl007/article/category/6114573" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">网络通信</a><span>(0)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/czhpxl007/article/category/6146406" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Studio</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/czhpxl007/article/category/6192470" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Git</a><span>(3)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list"><li><a href="http://blog.csdn.net/czhpxl007/article/month/2016/12">2016年12月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/czhpxl007/article/month/2016/08">2016年08月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/czhpxl007/article/month/2016/05">2016年05月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/czhpxl007/article/month/2016/04">2016年04月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/czhpxl007/article/month/2016/03">2016年03月</a><span>(5)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/czhpxl007/article/month/2016/02">2016年02月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/czhpxl007/article/month/2016/01">2016年01月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/czhpxl007/article/month/2015/12">2015年12月</a><span>(9)</span></li><li><a href="http://blog.csdn.net/czhpxl007/article/month/2015/10">2015年10月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/czhpxl007/article/month/2015/09">2015年09月</a><span>(1)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+</ul>
+</div>
+<div id="hotarticls" class="panel">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/czhpxl007/article/details/50363766" title="Android设备获取扫码枪扫描内容">Android设备获取扫码枪扫描内容</a><span>(8489)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/czhpxl007/article/details/51277319" title="Fragment的setUserVisibleHint详解">Fragment的setUserVisibleHint详解</a><span>(6733)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/czhpxl007/article/details/50419974" title="Android 解决65535的限制（官网推荐方法）">Android 解决65535的限制（官网推荐方法）</a><span>(6348)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/czhpxl007/article/details/53781464" title="如何在Android7.0系统下通过Intent安装apk">如何在Android7.0系统下通过Intent安装apk</a><span>(3529)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/czhpxl007/article/details/52171551" title="Android Studio提高开发效率必备神器 - JRebel for Android">Android Studio提高开发效率必备神器 - JRebel for Android</a><span>(3092)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/czhpxl007/article/details/50133507" title="Mac系统如何卸载云梯VPN">Mac系统如何卸载云梯VPN</a><span>(2874)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/czhpxl007/article/details/50952543" title="解决lint task执行失败问题">解决lint task执行失败问题</a><span>(2722)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/czhpxl007/article/details/50420079" title="Android Studio资源自动清理工具 - Lint Cleaner Plugin">Android Studio资源自动清理工具 - Lint Cleaner Plugin</a><span>(2535)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/czhpxl007/article/details/50555853" title="git submodule 使用命令简介">git submodule 使用命令简介</a><span>(2165)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/czhpxl007/article/details/48574013" title="Android不同分辨率图片实际显示大小的计算">Android不同分辨率图片实际显示大小的计算</a><span>(2071)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/czhpxl007/article/details/50363766" title="Android设备获取扫码枪扫描内容">Android设备获取扫码枪扫描内容</a><span>(3)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/czhpxl007/article/details/50952543" title="解决lint task执行失败问题">解决lint task执行失败问题</a><span>(3)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/czhpxl007/article/details/50466087" title="单个电脑上进行多ssh-key配置">单个电脑上进行多ssh-key配置</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/czhpxl007/article/details/52171551" title="Android Studio提高开发效率必备神器 - JRebel for Android">Android Studio提高开发效率必备神器 - JRebel for Android</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/czhpxl007/article/details/50419974" title="Android 解决65535的限制（官网推荐方法）">Android 解决65535的限制（官网推荐方法）</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/czhpxl007/article/details/53781464" title="如何在Android7.0系统下通过Intent安装apk">如何在Android7.0系统下通过Intent安装apk</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/czhpxl007/article/details/50519056" title="Android自定义Dialog的Match_parent无效问题解决">Android自定义Dialog的Match_parent无效问题解决</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/czhpxl007/article/details/50266315" title="浅谈 MVP in Android">浅谈 MVP in Android</a><span>(0)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/czhpxl007/article/details/49509523" title="Android如何重新签名APK">Android如何重新签名APK</a><span>(0)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/czhpxl007/article/details/50380618" title="android studio gradlew编译时proguardRelease报错">android studio gradlew编译时proguardRelease报错</a><span>(0)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/blogdevteam/article/details/74779821" target="_blank">* CSDN日报20170706——《屌丝程序员的逆袭之旅》</a></li>
+<li><a href="http://blog.csdn.net/phodal/article/details/74516182" target="_blank">* 探讨后端选型中不同语言及对应的Web框架</a></li>
+<li><a href="http://blog.csdn.net/briblue/article/details/74616922" target="_blank">* 细说反射，Java 和 Android 开发者必须跨越的坎</a></li>
+<li><a href="http://blog.csdn.net/xiaopihaierletian/article/details/74688643" target="_blank">* 深度学习 | 反向传播与它的直观理解</a></li>
+<li><a href="http://blog.csdn.net/liyuanxiang1984/article/details/74611136" target="_blank">* ArcGIS 水文分析实战教程——雨量计算与流量统计</a></li>
+<li><a href="http://blog.csdn.net/broadview2006/article/details/74431515" target="_blank">* 每周荐书：Android、Keras、ES6（评论送书）</a></li>
+
+</ul></ul>
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="http://blog.csdn.net/czhpxl007/article/details/50952543#comments">解决lint task执行失败问题</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/magic0908" class="user_name">magic0908</a>:
+为什么是代码不规范呢？博主能举例一下吗？
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/czhpxl007/article/details/50419974#comments">Android 解决65535的限制（官网推荐方法）</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/xyzsyy0102" class="user_name">xyzsyy0102</a>:
+楼主,请问下,在6.0以上使用就运行不了呢,是什么原因,我在4.4上市没有问题的,解决了65535,...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/czhpxl007/article/details/53781464#comments">如何在Android7.0系统下通过Intent安装apk</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/zhangyuhao110" class="user_name">十二哥灬</a>:
+非常感谢，写的很好。问题已解决。如果能提供file_paths.xml的具体内容就更好了。
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/czhpxl007/article/details/50466087#comments">单个电脑上进行多ssh-key配置</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u012352249" class="user_name">勤奋的小芳芳</a>:
+id_rsa_new.pub  如果配置这个ssk key公钥 会提示输入用户名密码才可以？这个怎么...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/czhpxl007/article/details/50466087#comments">解决lint task执行失败问题</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/czhpxl007" class="user_name">一座小楼</a>:
+@jinzengh6:你确定你添加的位置正确吗
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/czhpxl007/article/details/50466087#comments">解决lint task执行失败问题</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/jinzengh6" class="user_name">未眠的Captain</a>:
+按照这种方法解决不了啊
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/czhpxl007/article/details/50363766#comments">Android设备获取扫码枪扫描内容</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/weiweixiaoaa" class="user_name">weiweixiaoaa</a>:
+思路很好，解决了切换英文输入法的问题。
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/czhpxl007/article/details/50519056#comments">Android自定义Dialog的Match_parent无效问题解决</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/coder_e" class="user_name">coder_e</a>:
+正好解决了我的问题，赞一个！
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/czhpxl007/article/details/52171551#comments">Android Studio提高开发效率必备神器 - JRebel for Android</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/q450287475" class="user_name">q450287475</a>:
+我安装了插件,一编译就出现Error:Execution failed for task ':tra...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/czhpxl007/article/details/52171551#comments">Android设备获取扫码枪扫描内容</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/unique_Even" class="user_name">android学习小分队员</a>:
+很好的一篇分享
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+
+                   <!-- 广告位开始 -->                    <!-- 广告位结束 -->
+                   <div class="tracking-ad" data-view="true" data-mtp="63" data-order="40" data-con="ad_content_1260" style="width: 200px; height: 500px;">
+                         <div id="nav_show_top_stop" style="width: 200px;height: 500px;z-index:1000"><div id="cpro_u2734128">undefined</div>
+                             <div id="cpro_u3031287">undefined</div></div>
+                   </div>
+    <script type="text/javascript">
+        setTimeout(function () {
+            var naviga_offsetTop = 0;
+            function naviga_stay_top() { var scrollTop = jQuery(document).scrollTop(); if (scrollTop > naviga_offsetTop) { jQuery("#nav_show_top_stop").css({ "position": "fixed" }); jQuery("#nav_show_top_stop").css({ "top": "0px" }); } else { jQuery("#nav_show_top_stop").css({ "position": "fixed" }); jQuery("#nav_show_top_stop").css({ "top": naviga_offsetTop - scrollTop + "px" }); } }
+            function onload_function() { naviga_offsetTop = jQuery("#nav_show_top_stop").position().top; jQuery(window).bind("scroll", naviga_stay_top); jQuery(window).bind("mousewheel", naviga_stay_top); jQuery(document).bind("scroll", naviga_stay_top); jQuery(document).bind("mousewheel", naviga_stay_top); } jQuery(document).ready(onload_function);
+
+        }, 200);
+    </script>
+<script type="text/javascript">(window.cproArray = window.cproArray || []).push({ id: "u2734128" });  </script> 
+                    <script src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/c.js.下载" type="text/javascript"></script> 
+                   <script type="text/javascript">
+                       /*PC端-博客内容页左侧Button2-200*200-2017/7/10*/
+                       (window.cproArray = window.cproArray || []).push({ id: "u3031287" });
+</script>
+<script type="text/javascript" src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/c.js.下载"></script>
+
+           </div>   
+
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/login.js.下载"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div>
+      <!--new top-->
+    
+
+     
+
+   
+   
+     <!--new top-->
+   
+   
+
+    
+    
+    
+   
+
+   
+
+
+       <script type="text/javascript" src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/MathJax.js.下载"></script>
+          <script type="text/javascript">
+              //$(function () {
+              //    setTimeout(function () {
+              //        var searchtitletags = articletitle + ',' + $("#tags").html();
+              //        searchService({
+              //            index: 'blog',
+              //            query: searchtitletags,
+              //            from: 5,
+              //            size: 5,
+              //            appendTo: '#res',
+              //            url: 'recommend',
+              //            his: 2,
+              //            client: "blog_cf_enhance",
+              //            tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+              //        });
+              //    }, 1000);
+              //});
+
+         </script>
+    
+    <script src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/csdn_blog_detail.min.js.下载" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/pub_footer_2014.css"><div class="pub_fo"><div id="pub_footerall" class="pub_footer_new"><dl><dt></dt> <dd class="foot_sub_menu"><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a><span>|</span><a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a><span>|</span><a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a><span>|</span><a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a><span>|</span><a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a><span>|</span><a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a><span>|</span><a href="mailto:webmaster@csdn.net">问题报告</a><span>|</span><a target="_blank" href="http://www.csdn.net/friendlink.html">合作伙伴</a><span>|</span><a href="http://bbs.csdn.net/forums/Service" target="_blank">论坛反馈</a></dd><dd class="foot_contact"><a href="javascript:void(0);" target="_blank" class="qq">网站客服</a><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2251809102&amp;site=qq&amp;menu=yes" target="_blank" class="qq">杂志客服</a><a href="http://e.weibo.com/csdnsupport/profile" target="_blank" class="weibo">微博客服</a><a href="mailto:webmaster@csdn.net" class="email" title="联系邮箱">webmaster@csdn.net</a><span class="phone" title="服务热线">400-660-0108</span><span class="interval">|</span><span>北京创新乐知信息技术有限公司 版权所有</span><span class="interval">|</span><span>江苏知之为计算机有限公司</span><span class="interval">|</span><span>江苏乐知网络技术有限公司</span></dd><dd class="foot_copyright"><span>京&nbsp;ICP&nbsp;证&nbsp;09002463&nbsp;号</span><span class="interval">|</span><span>Copyright © 1999-2017, CSDN.NET, All Rights Reserved&nbsp;</span><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div></div><div id="note1" class="csdn_note" style="display:none; position:absolute; z-index:9999; width:440px">  <span class="notice_top_arrow"><span class="inner"></span></span>  <div class="box"></div></div><div class="csdn_notice_tip" style="display:none; position:absolute; z-index:9990; width:170px">  <iframe src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/saved_resource(2).html" frameborder="0" scrolling="no" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div class="tip_text">您有<strong>0</strong>条新通知</div>  <a href="javascript:void 0" class="close2"></a></div><script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/notify.js.下载"></script><input type="hidden" id="aa_g_data_ids">
+        
+    <script type="text/javascript" src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/csdn_public_blog_detail.min.js.下载"></script>
+
+    <script type="text/javascript" src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/showblogmedal.ashx"></script>
+
+     
+    
+
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334" src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/52b5334.js.下载"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+
+    
+    
+        
+     
+
+    
+          
+    <div class="pop_CA_cover" style="display:none"></div>
+    <div class="pop pop_CA" style="display:none">
+          <div class="CA_header">
+            收藏助手
+            <span class="cancel_icon" id="fapancle" onclick="$(&#39;.pop_CA&#39;).hide();$(&#39;.pop_CA_cover&#39;).hide();"></span>
+          </div>
+          <iframe src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/saved_resource(3).html" id="fa" frameborder="0" width="100%" height="360" scrolling="no"></iframe>
+    </div>
+
+
+        <script type="text/javascript">
+
+            $(function () {
+                var fromjs = $("#fromjs");
+                if (fromjs.length > 0) {
+                    $("#fromjs .markdown_views pre").addClass("prettyprint");
+                    prettyPrint();
+
+                    $('pre.prettyprint code').each(function () {
+                        var lines = $(this).text().split('\n').length;
+                        var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                        $(this).addClass('has-numbering').parent().append($numbering);
+                        for (i = 1; i <= lines; i++) {
+                            $numbering.append($('<li/>').text(i));
+                        };
+                        $numbering.fadeIn(1700);
+                    });
+
+                    $('.pre-numbering li').css("color", "#999");
+                }
+            });
+
+            $(".markdown_views a[target!='_blank']").attr("target", "_blank");
+
+            //$(".toc a[target='_blank']").attr("target", "");
+
+            setTimeout(function () {
+                $(".toc a[target='_blank']").attr("target", "");
+            }, 500);
+
+        </script>
+
+
+   
+<div id="tag-suggest-pop">
+  <div class="relative">
+    <div class="close"></div>
+    <div class="content"></div>
+  </div>
+</div><div id="mask_code"></div><div class="gist_edit"><div class="save_snippets clearfix"><div class="tit"><h3>保存代码片</h3><span>整理和分享保存的代码片，请访问<a href="https://code.csdn.net/snippets_manage" target="_blank">代码笔记</a></span></div><div class="con_form"><ul class="gist_edit_list clearfix"><li><span class="red">*</span><span class="txt">标题</span><input id="form_title" class="form-input" placeholder="Fragment的setUserVisibleHint详解" type="text"></li><li><span class="red">*</span><span class="txt">描述</span><textarea id="form-textarea" class="form-textarea" placeholder="Fragment的setUserVisibleHint详解： http://blog.csdn.net/czhpxl007/article/details/51277319"></textarea></li><li><span class="red">&nbsp;</span><span class="txt">标签</span><div id="divSearchTags"><span class="label blog_tag"><span>viewpager</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>fragment</span><a title="Removing tag" href="javascript:;">x</a></span><input id="insertTag" class="insertTag" placeholder="请输入标签，按Enter生成(最多5项)" type="text" value="" name="insertTag" maxlength="21" style="color: rgb(51, 51, 51);"><input id="OrganTag" class="OrganTag" type="hidden" name="OrganTag" value="viewpager,fragment,"><input id="OldOrganTag" class="OldOrganTag" type="hidden" name="OldOrganTag" value=""><input type="hidden" name="txtSearchTags"></div></li></ul></div><div class="bottom-bar"><a href="javascript:;" class="btn-submit btn-cancel">取消</a><span class="tracking-ad" data-mod="popu_250"><a class="btn-submit btn-confirm" href="javascript:;" target="_blank">确定</a></span></div></div></div><link rel="stylesheet" type="text/css" media="screen" href="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/ask_float_fonts_css-6b30a53970eb5c3a2a045e3df585b475.css"><div data-mod="popu_64" class="csdn-tracking-statistics" chg-blk="0"><a id="com-quick-QRcode" class="QRcodebg1" title="扫描二维码" style="top:227px"><span class="closeQR"></span></a><a id="com-quick-reply" title="快速回复" style="top:361px"></a><a id="com-quick-collect" title="我要收藏" style="top:399px"></a><a id="com-d-top-a" style="top:437px" title="返回顶部" onclick=""></a></div><div class="pop_edit ask_second comm_ask_second"><h3>提问</h3><span class="ask_float_span">您的问题将会被发布在“<a class="ask_float_channel" href="http://ask.csdn.net/" target="_blank" style="cursor:pointer">技术问答</a>”频道</span><a href="http://blog.csdn.net/czhpxl007/article/details/51277319#" nodetype="close" class="close">×</a><div class="context"><div class="err_div"><span class="err_ico"></span><span class="err_txt">该问题已存在，请勿重复提问</span></div><div class="input_div"><input id="askInputSecond" type="text" style="font-size:14px;" placeholder="问题标题"></div><div class="cm_box"><div class="cm_dialog"></div> <div class="pop_cm cm_add_link"><input type="text" placeholder="链接内容" id="af_cm_link_txt"><input type="text" placeholder="链接地址" id="af_cm_link_url"><input type="text" placeholder="链接提示" id="af_cm_link_tit"><div class="text-right"><span class="btn btn-default btn-sm" id="add_link_btn">插入链接</span> </div> </div><div class="pop_cm cm_add_img"><div class="nav-tabs"><a class="img_tab active" href="http://blog.csdn.net/czhpxl007/article/details/51277319#tab_upload">本地上传</a><a class="img_tab" href="http://blog.csdn.net/czhpxl007/article/details/51277319#tab_weburl">网络图片</a></div><div class="tab_panel active" id="tab_upload"><div class="set_img"><iframe src="./Fragment的setUserVisibleHint详解 - 一座小楼的专栏 - CSDN博客_files/upload.html"></iframe></div></div><div class="tab_panel" id="tab_weburl"><input type="text" placeholder="图片地址" id="af_cm_img_url"><input type="text" placeholder="图片说明" id="af_cm_img_alt"><div class="text-right"><span class="btn btn-default btn-sm" id="add_img_btn">插入图片</span> </div></div> </div></div> <textarea id="editor_all" rows="8" style="display: none;"></textarea><div class="editor-toolbar"><i class="separator">|</i><a class="icon-headline" title="标题一（Ctrl+Alt+1）"></a><a class="icon-heading" title="标题二（Ctrl+Alt+2）"></a><a class="icon-bold" title="粗体（Ctrl+B）"></a><a class="icon-italic" title="斜体（Ctrl+I）"></a><i class="separator">|</i><a class="icon-quote-left" title="引用（Ctrl+’）"></a><a class="icon-code" title="插入代码片（Ctrl+,）"></a><a class="icon-list-ul" title="无序列表（Ctrl+L）"></a><a class="icon-list-ol" title="有序列表（Ctrl+Alt+L）"></a><i class="separator">|</i><a class="icon-link" title="添加链接（Ctrl+K）"></a><a class="icon-picture" title="添加图片（Ctrl+Alt+I）"></a><i class="separator">|</i><a class="icon-reply" title="撤退（Ctrl+Z）"></a><a class="icon-share-alt" title="前进（Ctrl+Shift+Z）"></a><i class="separator">|</i><a class="icon-info" href="http://ask.csdn.net/pages/markdown" target="_blank" title="markdown语法参考"></a><a class="icon-preview" title="预览"></a><i class="separator">|</i></div><div class="CodeMirror cm-s-paper CodeMirror-focused"><div style="overflow: hidden; position: relative; width: 3px; height: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none; font-size: 4px;" tabindex="0"></textarea></div><div class="CodeMirror-hscrollbar"><div style="height: 1px;"></div></div><div class="CodeMirror-vscrollbar"><div style="width: 1px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="min-width: 33px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>&nbsp;<span style="display: inline-block; width: 1px; margin-right: -1px;">&nbsp;</span></pre></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code"></div><div class="CodeMirror-cursor">&nbsp;</div><div class="CodeMirror-cursor CodeMirror-secondarycursor">&nbsp;</div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px;"></div><div class="CodeMirror-gutters" style="display: none;"></div></div></div><div class="editor-statusbar"><span class="lines">0</span><span class="words">0</span><span class="cursor">0:0</span></div><div class="div_tags clearfix"><div id="divSearchTags" class="tags_con"><input type="text"></div><input type="hidden" name="txtSearchTags"></div><div id="ask2_tagRecomm_div" class="drt_tagRecomm tracking-ad" data-mod="popu_73"><span class="drt_tit">推荐标签：</span></div></div><div class="success"><div class="left_area"><input id="chk_cb" type="checkbox"><span class="wyxs">我要悬赏</span><input id="cb_num" class="cb_num" readonly="true"><span class="phib_rii"><span> 币</span></span></div><a href="http://blog.csdn.net/czhpxl007/article/details/51277319#" nodetype="cancel" class="cancel">取消</a><a href="http://blog.csdn.net/czhpxl007/article/details/51277319#" nodetype="ok" class="ok">发布</a></div></div><div id="common_ask_div_sc" class="searchContainer"><div class="sTitle">可能存在类似的问题：</div><div class="sFooter"><a class="sFirstNewAsk">我想提一个新问题</a></div></div><div style="position:fixed; top:0; left:0; overflow:hidden;"><input style="position:absolute; left:-300px;" type="text" value="" id="focus_retriever" readonly="true"></div></body></html>
