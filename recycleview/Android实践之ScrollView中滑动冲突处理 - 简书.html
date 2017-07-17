@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.jianshu.com/p/87a41b8c0dd0 -->
+<html><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+
+  <!-- Start of Baidu Transcode -->
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="MobileOptimized" content="width">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="mobile-agent" content="format=html5;url=http://www.jianshu.com/p/87a41b8c0dd0">
+  <!-- End of Baidu Transcode -->
+
+    <meta name="description" content="前言在Android开发中，如果是一些简单的布局，都很容易搞定，但是一旦涉及到复杂的页面，特别是为了兼容小屏手机而使用了ScrollView以后，就会出现很多点击事件的冲突，最经典的就是ScrollView中嵌套了ListView。我想大部分刚开始接触Android的同学们都踩到过这个坑，这一篇文章就从最近做的一个项目讲起，然后在过程中提供一些解决冲突的思路。项目起始项目有一个页面，涉及到了...">
+
+  <meta name="360-site-verification" content="604a14b53c6b871206001285921e81d8">
+  <meta property="wb:webmaster" content="294ec9de89e7fadb">
+  <meta property="qc:admins" content="104102651453316562112116375">
+  <meta property="qc:admins" content="11635613706305617">
+  <meta property="qc:admins" content="1163561616621163056375">
+  <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4">
+  <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI">
+  <meta http-equiv="mobile-agent" content="format=html5; url=http://www.jianshu.com/p/87a41b8c0dd0">
+
+  <!-- Apple -->
+  <meta name="apple-mobile-web-app-title" content="简书">
+
+    <!--  Meta for Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=888237539, app-argument=jianshu://notes/4515514">
+  <!-- End -->
+
+  <!--  Meta for Twitter Card -->
+  <meta content="summary" property="twitter:card">
+  <meta content="@jianshucom" property="twitter:site">
+  <meta content="Android实践之ScrollView中滑动冲突处理" property="twitter:title">
+  <meta content="前言在Android开发中，如果是一些简单的布局，都很容易搞定，但是一旦涉及到复杂的页面，特别是为了兼容小屏手机而使用了ScrollView以后，就会出现很多点击事件的冲突，最经典的就是ScrollView中嵌套了ListView。我想大部分刚开始接触Android的同学们都踩到过这个坑，这一篇文章就从最近做的一个项目讲起，然后在过程中提供一些解决冲突的思路。项目起始项目有一个页面，涉及到了ViewPager，MapView，ListView，也就是说在一个页面中，会有这三个View，很明显，屏幕无法完全显示，需要ScrollView来做一下支援，就引入了ScrollV..." property="twitter:description">
+  <meta content="http://www.jianshu.com/p/87a41b8c0dd0" property="twitter:url">
+  <!-- End -->
+
+  <!--  Meta for OpenGraph -->
+  <meta property="fb:app_id" content="865829053512461">
+  <meta property="og:site_name" content="简书">
+  <meta property="og:title" content="Android实践之ScrollView中滑动冲突处理">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://www.jianshu.com/p/87a41b8c0dd0">
+  <meta property="og:description" content="前言在Android开发中，如果是一些简单的布局，都很容易搞定，但是一旦涉及到复杂的页面，特别是为了兼容小屏手机而使用了ScrollView以后，就会出现很多点击事件的冲突，最经典的就是Scro...">
+  <!-- End -->
+
+  <!--  Meta for Facebook Applinks -->
+  <meta property="al:ios:url" content="jianshu://notes/4515514">
+  <meta property="al:ios:app_store_id" content="888237539">
+  <meta property="al:ios:app_name" content="简书">
+
+  <meta property="al:android:url" content="jianshu://notes/4515514">
+  <meta property="al:android:package" content="com.jianshu.haruki">
+  <meta property="al:android:app_name" content="简书">
+  <!-- End -->
+
+
+    <title>Android实践之ScrollView中滑动冲突处理 - 简书</title>
+
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="nJesgkDdhKysPvY7JEBCHECpL6xePV8D0GegY1HweLiNQC0CscniZBuyY7I1xENY/4EQRMv0yC9I4wSS7qSaXA==">
+
+  <link rel="stylesheet" media="all" href="./Android实践之ScrollView中滑动冲突处理 - 简书_files/web-2b7f0d2277e406d2f0c4.css">
+  
+  <link rel="stylesheet" media="all" href="./Android实践之ScrollView中滑动冲突处理 - 简书_files/entry-2b7f0d2277e406d2f0c4.css">
+
+  <link href="http://cdn2.jianshu.io/assets/favicons/favicon-783beb88ed621ceab614de960376ac0c.ico" rel="icon">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/57-47624b2e2161e8eb144462c85db0a5ff.png" sizes="57x57">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/72-c00cde7cf98fc49e50cbb3ee1dcd5804.png" sizes="72x72">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/76-e8af0bdeaf1ba31e303b1fde8b5e66c4.png" sizes="76x76">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/114-f4c78569bbf1977e8382a5fd90c9237a.png" sizes="114x114">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/120-cf10c3711dba269522743729efe66bbc.png" sizes="120x120">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/152-7bd60457b5f3ecbf1343f0e6241be4f8.png" sizes="152x152">
+<link rel="stylesheet" href="blob:http://www.jianshu.com/83292977-0276-4fc6-99bc-9c3480fcecef"><link rel="stylesheet" href="blob:http://www.jianshu.com/9803a5c6-c3f3-49e5-b652-54e92e978a15"></head>
+
+  <body lang="zh-CN" class="reader-black-font">
+    <!-- 全局顶部导航栏 -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="width-limit">
+    <!-- 左上方 Logo -->
+    <a class="logo" href="http://www.jianshu.com/"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo"></a>
+
+    <!-- 右上角 -->
+      <!-- 未登录显示登录/注册/写文章 -->
+      <a class="btn write-btn" target="_blank" href="http://www.jianshu.com/writer#/">
+        <i class="iconfont ic-write"></i>写文章
+</a>      <a class="btn sign-up" href="http://www.jianshu.com/sign_up">注册</a>
+      <a class="btn log-in" href="http://www.jianshu.com/sign_in">登录</a>
+
+    <!-- 如果用户登录，显示下拉菜单 -->
+
+    <div class="style-mode"><a class="style-mode-btn"><i class="iconfont ic-navigation-mode"></i></a> <div class="popover-modal" style="left: 0px; display: none;"><div class="meta"><i class="iconfont ic-navigation-night"></i><span>夜间模式</span></div> <div class="switch day-night-group"><a class="switch-btn">开</a> <a class="switch-btn active">关</a></div> <hr> <div class="switch font-family-group"><a class="switch-btn font-song">宋体</a> <a class="switch-btn font-hei active">黑体</a></div> <div class="switch"><a class="switch-btn active">简</a> <a class="switch-btn">繁</a></div></div></div>
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="nav navbar-nav">
+            <li class="">
+              <a href="http://www.jianshu.com/">
+                <span class="menu-text">首页</span><i class="iconfont ic-navigation-discover menu-icon"></i>
+</a>            </li>
+            <li class="">
+              <a class="app-download-btn" href="http://www.jianshu.com/apps"><span class="menu-text">下载App</span><i class="iconfont ic-navigation-download menu-icon"></i></a>
+            </li>
+          <li class="search">
+            <form target="_blank" action="http://www.jianshu.com/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+              <input type="text" name="q" id="q" value="" placeholder="搜索" class="search-input">
+              <a class="search-btn" href="javascript:void(null)"><i class="iconfont ic-search"></i></a>
+              <!-- <div id="navbar-trending-search"></div> -->
+</form>          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+    
+<div class="note">
+  <div class="post">
+    <div class="article">
+        <h1 class="title">Android实践之ScrollView中滑动冲突处理</h1>
+
+        <!-- 作者区域 -->
+        <div class="author">
+          <a class="avatar" href="http://www.jianshu.com/u/cfb0b6ae0bae">
+            <img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/baddbd6a4bb3.jpg" alt="144">
+</a>          <div class="info">
+            <span class="tag">作者</span>
+            <span class="name"><a href="http://www.jianshu.com/u/cfb0b6ae0bae">王三的猫阿德</a></span>
+            <!-- 关注用户按钮 -->
+            <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+            <!-- 文章数据信息 -->
+            <div class="meta">
+              <!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
+                <span class="publish-time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="最后编辑于 2016.08.05 17:15">2016.06.23 14:10*</span>
+              <span class="wordage">字数 2889</span>
+            <span class="views-count">阅读 6537</span><span class="comments-count">评论 43</span><span class="likes-count">喜欢 41</span><span class="rewards-count ">赞赏 1</span></div>
+          </div>
+          <!-- 如果是当前作者，加入编辑按钮 -->
+        </div>
+        <!-- -->
+
+        <!-- 文章内容 -->
+        <div data-note-content="" class="show-content">
+          <h4>前言</h4>
+<p>在Android开发中，如果是一些简单的布局，都很容易搞定，但是一旦涉及到复杂的页面，特别是为了兼容小屏手机而使用了ScrollView以后，就会出现很多点击事件的冲突，最经典的就是ScrollView中嵌套了ListView。我想大部分刚开始接触Android的同学们都踩到过这个坑，这一篇文章就从最近做的一个项目讲起，然后在过程中提供一些解决冲突的思路。</p>
+<h4>项目起始</h4>
+<p>项目有一个页面，涉及到了ViewPager，MapView，ListView，也就是说在一个页面中，会有这三个View，很明显，屏幕无法完全显示，需要ScrollView来做一下支援，就引入了ScrollView作为外层的容器。但是由于这个页面的数据展示需要做到用户手动下拉刷新，于是又引入了官方的SwipeRefreshLayout。</p>
+<p>于是这个页面的布局就成了这样子。如下图（细节布局忽略）。<br></p><div class="image-package">
+<img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/354846-6ad6114b84e2a53e.png" data-original-src="http://upload-images.jianshu.io/upload_images/354846-6ad6114b84e2a53e.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">布局图.png</div>
+</div><p><br>加入了ScrollView和SwipeRefreshLayout之后引入了新的问题，就是各个控件之间的事件冲突，嵌套在ScrollView中的ViewPager、MapView、ListView都需要能够正确的处理点击事件，特别是ListView，需求要求它在ScrollView中可以滑动，两种滑动混淆在一起，不是特别好处理。</p>
+<p>问题提出来了，下面直接看解决思路。</p>
+<h4>解决滑动冲突的思路</h4>
+<p>在ViewGroup中有个方法叫<code>requestDisallowInterceptTouchEvent(boolean disallowIntercept)</code>，这个方法可以用来控制该ViewGroup是否截断点击事件。我们解决滑动冲突的时候，其实就是在某个时机去调用这个方法，让父布局不截断点击事件，将点击事件传递到子View，让相关的子View去处理。</p>
+<p>下面就是关于在项目中处理各种点击事件冲突的一些例子和思考。处理的方法只是提供一种思路，可能并不是最优的方法，肯定存在其他思路的解决方案。</p>
+<p>以下处理滑动冲突的方案都是在子View的OnTouchListener里面进行处理，并没有去复写控件的点击事件处理过程，在使用中还是比较方便的。</p>
+<h5>MapView地图页面滑动冲突</h5>
+<p>MapView与ScrollView的冲突主要在于，当用户点击到MapView地图并且滑动的时候，希望由地图Map去处理点击事件，并包括后续的滑动事件、双手指缩放地图等等。</p>
+<p>在ScrollView中，是会默认截断点击事件的，导致用户点击到地图后，地图基本是没有反应，更别谈双手指缩放地图了。</p>
+<p>用户手指点击到地图，并且滑动的时候，很难确定用户是要ScrollView上下滑动还是操控地图内容滑动，所以我简单的认为，只要用户手指点击到地图，就是要对地图进行操作；当用户手指抬起，就认为用户不需要操作地图了。</p>
+<p>解决思路也很简单，就是在用户点击到地图或者滑动地图时候，让ScrollView不截断点击事件，并传递给子View处理，也就是地图去处理点击事件；当用户手指抬起的时候，将ScrollView的状态恢复至之前的状态，也就是ScrollView可以截断点击事件。</p>
+<p>我使用的是百度地图，直接上代码，更容易理解。</p>
+<pre class="hljs java"><code class="java">mMapView.getChildAt(<span class="hljs-number">0</span>).setOnTouchListener(<span class="hljs-keyword">new</span> View.OnTouchListener() {
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onTouch</span><span class="hljs-params">(View v, MotionEvent event)</span> </span>{
+                <span class="hljs-keyword">if</span>(event.getAction() == MotionEvent.ACTION_UP){
+                    <span class="hljs-comment">//允许ScrollView截断点击事件，ScrollView可滑动</span>
+                    mScrollView.requestDisallowInterceptTouchEvent(<span class="hljs-keyword">false</span>);
+                }<span class="hljs-keyword">else</span>{
+                    <span class="hljs-comment">//不允许ScrollView截断点击事件，点击事件由子View处理</span>
+                    mScrollView.requestDisallowInterceptTouchEvent(<span class="hljs-keyword">true</span>);
+                }
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+            }
+        });</code></pre>
+<h5>ViewPager滑动冲突解决</h5>
+<p>在这个项目中，ViewPager在页面最顶层，如果只是ScrollView里面嵌套了ViewPager，因为这两个控件是不同方向的滑动事件，所以基本不会出现冲突。 </p>
+<p>但是由于引入了SwipeRefreshLayout，我发现在滑动ViewPager的时候，很容易就触发了SwipeRefreshLayout的下来刷新，进而有可能阻断了ViewPager的左右滑动效果，体验很不好。而且在滑动ViewPager的过程中，用户滑动肯定不是一直水平的，会有一定程度向上向下的滑动。</p>
+<p>ViewPager处理冲突和地图处理冲突有些不同，因为当用户点击到ViewPager，在滑动过程中，基本就可以猜测到用户是想左右滑动ViewPager还是上下滑动ScrollView（或者下拉刷新），这就不能像地图一样，在点击到ViewPager就禁止ScrollView截断点击事件（或者SwipeRefreshLayout下拉刷新功能），需要在滑动过程中做出判断。</p>
+<p>解决思路就是，设定一个阈值，一旦用户在X轴也就是横向滑动距离超过这个阈值，我就认为用户是要左右滑动ViewPager，就禁止ScrollView截断点击事件同时设置SwipeRefreshLayout不能下拉刷新。当用户抬起手指，就认为用户对ViewPager的操作已经完毕，将ScrollView和SwipeRefreshLayout状态恢复。</p>
+<pre class="hljs java"><code class="java">mViewPager.setOnTouchListener(<span class="hljs-keyword">new</span> View.OnTouchListener() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onTouch</span><span class="hljs-params">(View v, MotionEvent event)</span> </span>{
+        <span class="hljs-keyword">int</span> action = event.getAction();
+
+        <span class="hljs-keyword">if</span>(action == MotionEvent.ACTION_DOWN) {
+            <span class="hljs-comment">// 记录点击到ViewPager时候，手指的X坐标</span>
+            mLastX = event.getX();
+        }
+        <span class="hljs-keyword">if</span>(action == MotionEvent.ACTION_MOVE) {
+            <span class="hljs-comment">// 超过阈值</span>
+            <span class="hljs-keyword">if</span>(Math.abs(event.getX() - mLastX) &gt; <span class="hljs-number">60f</span>) {
+                mRefreshLayout.setEnabled(<span class="hljs-keyword">false</span>);
+                mScrollView.requestDisallowInterceptTouchEvent(<span class="hljs-keyword">true</span>);
+            }
+        }
+        <span class="hljs-keyword">if</span>(action == MotionEvent.ACTION_UP) {
+            <span class="hljs-comment">// 用户抬起手指，恢复父布局状态</span>
+            mScrollView.requestDisallowInterceptTouchEvent(<span class="hljs-keyword">false</span>);
+            mRefreshLayout.setEnabled(<span class="hljs-keyword">true</span>);
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    }
+});</code></pre>
+<p>用户点击到ViewPager时候，记录下点击位置的X坐标，当用户滑动过程中，如果在X轴上面的滑动超过阈值（我写的是60f，这个可以在实际使用中自行设置最佳的阈值），就禁止ScrollView截断点击事件，同时设置不可下拉刷新。当用户手指离开屏幕，将ScrollView和SwipeRefreshLayout的状态恢复。</p>
+<h4>ListView滑动冲突解决</h4>
+<p>在ScrollView中嵌套ListView，会出现各种各样奇怪的问题。比如说ListView显示有问题，可能才一两个Item那么高，并没有完全的展开。网上流传解决这种问题的方法会有两种。</p>
+<ul>
+<li>根据展示数据的个数乘以每一个Item的高度，计算出ListView的总体高度，然后动态的设置ListView的高度</li>
+<li>复写ListView的<code>onMeasure(int widthMeasureSpec, int heightMeasureSpec)</code>方法，让ListView完全展开</li>
+</ul>
+<p>这两种方法都可以解决ListView展示不完全的问题，而且也可以滑动（其实是使用ScrollView的滑动效果），但是有一个最大的遗憾，就是ListView里面的View不能复用了。因为这两种方法都是算出了ListView的全部高度，然后将ListView控件的高度设置成这个高度，这样的话，ListView就相当于一个LinearLayout的布局了，失去了复用View的优势，而且在某些场景可能还没有LinearLayout好用，更甚的是，如果有大量图片的话，很容易就OOM了，这是在研发过程中最不希望看见的。</p>
+<p>可以参考一下美团，美团的首页，就是一个ScrollView，下滑的时候会发现，并不能无限向下滑动，到了底部会提醒跳转到一个二级页面去查看全部的团购信息。这是处理ScrollView里面嵌套类似ListView列表布局的时候的一种解决方案。</p>
+<p>但是在我遇见的这个项目里面，并不能这样处理。</p>
+<p>上面的提到的两种解决思路很明确，如果想要ListView正常展示就需要确定ListView的高度，这个很重要。</p>
+<p>所以首先，我需要在布局文件中设置ListView的高度，是一个明确的数值。设置高度之后，如果ListView中的数据的Item总高度超过ListView所设置的高度，就可以复用View了。但是这只是解决了ListView的显示问题，ListView与ScrollView的滑动冲突，并没有解决。</p>
+<p>要解决滑动的冲突，最主要的是确定禁止ScrollView截断点击事件的时机，然后来分析有哪些时机。</p>
+<ul>
+<li>ScrollView在未滑动到底部时候，如果点击并滑动ListView时候，ListView是不能滑动的，不禁止。</li>
+<li>如果ScrollView滑动到底部，且ListView已经到顶部，继续下拉ListView，其实会拉动ScrollView，不禁止。</li>
+<li>如果ScrollView滑动到底部，用户向上滑，ListView滑动，禁止ScrollView截断点击事件能力</li>
+</ul>
+<p>很明显，在判断禁止ScrollView截断点击事件时机的时候，需要知道ScrollView是否滑动到了底部。于是，重写了ScrollView的<code>ScrollChanged()</code>方法，来判断ScrollView是否滑动到底部(SDK API 23版本中ScrollView可以设置setOnScrollChangeListener()来监听滑动的变化，但是之前版本不支持，为了兼容，自己需要重写)。</p>
+<pre class="hljs java"><code class="java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onScrollChanged</span><span class="hljs-params">(<span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> t, <span class="hljs-keyword">int</span> oldl, <span class="hljs-keyword">int</span> oldt)</span></span>{
+    <span class="hljs-keyword">super</span>.onScrollChanged(l,t,oldl,oldt);
+    <span class="hljs-comment">// 滑动的距离加上本身的高度与子View的高度对比</span>
+    <span class="hljs-keyword">if</span>(t + getHeight() &gt;=  getChildAt(<span class="hljs-number">0</span>).getMeasuredHeight()){
+        <span class="hljs-comment">// ScrollView滑动到底部</span>
+        <span class="hljs-keyword">if</span>(mOnScrollToBottomListener != <span class="hljs-keyword">null</span>) {
+            mOnScrollToBottomListener.onScrollToBottom();
+        }
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">if</span>(mOnScrollToBottomListener != <span class="hljs-keyword">null</span>) {
+            mOnScrollToBottomListener.onNotScrollToBottom();
+        }
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setScrollToBottomListener</span><span class="hljs-params">(OnScrollToBottomListener listener)</span> </span>{
+    <span class="hljs-keyword">this</span>.mOnScrollToBottomListener = listener;
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">OnScrollToBottomListener</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onScrollToBottom</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onNotScrollToBottom</span><span class="hljs-params">()</span></span>;
+}</code></pre>
+<p>有了思路，而且ScrollView滑动到底部的标识也可以拿到，下面就可以直接来解决滑动冲突了，直接看代码。</p>
+<pre class="hljs java"><code class="java">mScrollView.setScrollToBottomListener(<span class="hljs-keyword">new</span> BottomScrollView.OnScrollToBottomListener() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onScrollToBottom</span><span class="hljs-params">()</span> </span>{
+        isSvToBottom = <span class="hljs-keyword">true</span>;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onNotScrollToBottom</span><span class="hljs-params">()</span> </span>{
+        isSvToBottom = <span class="hljs-keyword">false</span>;
+    }
+});
+
+mListView.setOnTouchListener(<span class="hljs-keyword">new</span> View.OnTouchListener() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onTouch</span><span class="hljs-params">(View v, MotionEvent event)</span> </span>{
+        <span class="hljs-keyword">int</span> action = event.getAction();
+
+        <span class="hljs-keyword">if</span>(action == MotionEvent.ACTION_DOWN) {
+            mLastY = event.getY();
+        }
+        <span class="hljs-keyword">if</span>(action == MotionEvent.ACTION_MOVE) {
+            <span class="hljs-keyword">int</span> top = mListView.getChildAt(<span class="hljs-number">0</span>).getTop();
+            <span class="hljs-keyword">float</span> nowY = event.getY();
+            <span class="hljs-keyword">if</span>(!isSvToBottom) {
+                <span class="hljs-comment">// 允许scrollview拦截点击事件, scrollView滑动</span>
+                mScrollView.requestDisallowInterceptTouchEvent(<span class="hljs-keyword">false</span>);
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(top == <span class="hljs-number">0</span> &amp;&amp; nowY - mLastY &gt; THRESHOLD_Y_LIST_VIEW) {
+                <span class="hljs-comment">// 允许scrollview拦截点击事件, scrollView滑动</span>
+                mScrollView.requestDisallowInterceptTouchEvent(<span class="hljs-keyword">false</span>);
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-comment">// 不允许scrollview拦截点击事件， listView滑动</span>
+                mScrollView.requestDisallowInterceptTouchEvent(<span class="hljs-keyword">true</span>);
+            }
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    }
+});</code></pre>
+<p>相对于其他的控件来说，ListView和ScrollView之间的滑动冲突更难解决，但其实在实际使用中并不推荐ScrollView里面嵌套ListView，一旦业务复杂，很容易出现各种UI和业务逻辑冲突的错误。</p>
+<h4>运行效果</h4>
+<p>由于地图加入比较麻烦，所以在Demo中并没有引入地图。看一下运行效果。<br></p><div class="image-package">
+<img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/354846-a5f9c9fe5694269b.gif" data-original-src="http://upload-images.jianshu.io/upload_images/354846-a5f9c9fe5694269b.gif?imageMogr2/auto-orient/%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">运行效果</div>
+</div>
+<h4>总结</h4>
+<p>本篇文章只是提供一种解决方法的思路，在具体的场景下，交互往往是贴合具体业务需求的。但是不管怎么样，找出点击事件截断和处理的时机是最重要的，围绕这个关键点，总能找出相应的解决方法。</p>
+<p>附上Demo工程地址：<a href="https://github.com/Kyogirante/SvSlideDemo/tree/master" target="_blank">Demo工程地址链接</a></p>
+
+        </div>
+        <!--  -->
+
+        <div class="show-foot">
+          <a class="notebook" href="http://www.jianshu.com/nb/4353654">
+            <i class="iconfont ic-search-notebook"></i> <span>Android实践</span>
+</a>          <div class="copyright" data-toggle="tooltip" data-html="true" data-original-title="转载请联系作者获得授权，并标注“简书作者”。">
+            © 著作权归作者所有
+          </div>
+          <div class="modal-wrap" data-report-note="">
+            <a id="report-modal">举报文章</a>
+          </div>
+        </div>
+    </div>
+
+    <!-- 文章底部作者信息 -->
+      <div class="follow-detail">
+        <div class="info">
+          <a class="avatar" href="http://www.jianshu.com/u/cfb0b6ae0bae">
+            <img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/baddbd6a4bb3.jpg" alt="144">
+</a>          <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+          <a class="title" href="http://www.jianshu.com/u/cfb0b6ae0bae">王三的猫阿德</a>
+        <p>写了 65395 字，被 58 人关注，获得了 127 个喜欢</p></div>
+          <div class="signature">此号不再更新技术博客，关注技术博客的请移步：http://blog.csdn.net/xiaohanluo。</div>
+      </div>
+
+      <div class="support-author"><p>如果觉得我的文章对您有用，请随意赞赏。您的支持将鼓励我继续创作！</p> <div class="btn btn-pay">赞赏支持</div> <div class="supporter"><ul class="support-list"><li><a target="_blank" href="http://www.jianshu.com/u/fc18a990849e" class="avatar"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/6-fd30f34c8641f6f32f5494df5d6b8f3c.jpg"></a></li></ul> <!----></div> <!----> <!----></div>
+
+    <div class="meta-bottom">
+      <div class="like"><div class="btn like-group"><div class="btn-like"><a href="http://www.jianshu.com/sign_in"><i class="iconfont ic-like"></i>喜欢</a></div> <div class="modal-wrap"><a>41</a></div></div> <!----></div>
+      <div class="share-group">
+        <a class="share-circle" data-action="weixin-share" data-toggle="tooltip" data-original-title="分享到微信">
+          <i class="iconfont ic-wechat"></i>
+        </a>
+        <a class="share-circle" data-toggle="tooltip" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/4515514/weibo/image_113c22f0101b.jpg&#39;, &#39;推荐 王三的猫阿德 的文章《Android实践之ScrollView中滑动冲突处理》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/87a41b8c0dd0?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));" data-original-title="分享到微博">
+          <i class="iconfont ic-weibo"></i>
+        </a>
+          <a class="share-circle" data-toggle="tooltip" href="http://cwb.assets.jianshu.io/notes/images/4515514/weibo/image_113c22f0101b.jpg" target="_blank" data-original-title="下载长微博图片">
+            <i class="iconfont ic-picture"></i>
+          </a>
+        <a class="share-circle more-share" tabindex="0" data-toggle="popover" data-placement="top" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="
+          &lt;ul class=&quot;share-list&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/87a41b8c0dd0?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 王三的猫阿德 的文章《Android实践之ScrollView中滑动冲突处理》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-zone&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/87a41b8c0dd0?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 王三的猫阿德 的文章《Android实践之ScrollView中滑动冲突处理》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-twitter&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/87a41b8c0dd0?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-facebook&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/87a41b8c0dd0?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-google&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/87a41b8c0dd0?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;Android实践之ScrollView中滑动冲突处理&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-douban&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        " data-original-title="" title="">更多分享</a>
+      </div>
+    </div>
+    <div><div id="comment-list" class="comment-list"><div><form class="new-comment"><a class="avatar"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/avatar_default-78d4d1f68984cd6d4379508dd94b4210.png"></a> <div class="sign-container"><a href="http://www.jianshu.com/sign_in" class="btn btn-sign">登录</a> <span>后发表评论</span></div></form></div> <div id="normal-comment-list" class="normal-comment-list"><div><div><div class="top"><span>43条评论</span> <a class="author-only">只看作者</a> <a class="close-btn" style="display: none;">关闭评论</a> <div class="pull-right"><a class="active">按喜欢排序</a><a class="">按时间正序</a><a class="">按时间倒序</a></div></div></div> <!----> <!----> <div class="comments-placeholder" style="display: none;"><div class="author"><div class="avatar"></div> <div class="info"><div class="name"></div> <div class="meta"></div></div></div> <div class="text"></div> <div class="text animation-delay"></div> <div class="tool-group"><i class="iconfont ic-zan-active"></i><div class="zan"></div> <i class="iconfont ic-list-comments"></i><div class="zan"></div></div></div> <div id="comment-3316500" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/fc18a990849e" target="_blank" class="avatar"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/6-fd30f34c8641f6f32f5494df5d6b8f3c.jpg"></a> <div class="info"><a href="http://www.jianshu.com/u/fc18a990849e" target="_blank" class="name">kenan</a> <!----> <div class="meta"><span>5楼 · 2016.07.27 20:12</span></div></div></div> <div class="comment-wrap"><p>从楼主的这片文章，我可以推断出，楼主一定很帅～</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>2人赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list hide"><!----> <!----></div></div><div id="comment-6736145" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/9e58f3fc2a02" target="_blank" class="avatar"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/3-9a2bcc21a5d89e21dafc73b39dc5f582.jpg"></a> <div class="info"><a href="http://www.jianshu.com/u/9e58f3fc2a02" target="_blank" class="name">Dylanqing</a> <!----> <div class="meta"><span>12楼 · 2016.12.28 11:35</span></div></div></div> <div class="comment-wrap"><p>博主..文章中的scrollview嵌套listview，你使用的解决的方法是将listview的高度写死，我想问的就是你代码里面@dimen/lv_height的这个高度的大小你是怎样确定是这个数值的？</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>1人赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-6742164" class="sub-comment"><p><a href="http://www.jianshu.com/u/cfb0b6ae0bae" target="_blank">王三的猫阿德</a>：
+          <span><a href="http://www.jianshu.com/users/9e58f3fc2a02" class="maleskine-author" target="_blank" data-user-slug="9e58f3fc2a02">@Dylanqing</a> 这个值在demo中是随便写的，在项目中是和设计师讨论最终确定的一个值。</span></p> <div class="sub-tool-group"><span>2016.12.28 16:06</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <!----> <!----> <!----></div> <!----></div></div><div id="comment-2992942" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/80acfd92e939" target="_blank" class="avatar"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/9-cceda3cf5072bcdd77e8ca4f21c40998.jpg"></a> <div class="info"><a href="http://www.jianshu.com/u/80acfd92e939" target="_blank" class="name">天蝎猫吃鱼</a> <!----> <div class="meta"><span>2楼 · 2016.07.04 18:54</span></div></div></div> <div class="comment-wrap"><p>你好，我用你提供的方法试过之后发现还是行不通，上下滑动依然被ScrollView拦截了。<br>我的结构如下：<br>- ScrollView <br>    - ViewPager<br>        - Fragment<br>            - ListView<br>        - Fragment<br>            - ListView<br>左右滑动是没有问题的，但是上下滑动依然被拦截了。</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-3000438" class="sub-comment"><p><a href="http://www.jianshu.com/u/cfb0b6ae0bae" target="_blank">王三的猫阿德</a>：
+          <span><a href="http://www.jianshu.com/users/80acfd92e939" class="maleskine-author" target="_blank" data-user-slug="80acfd92e939">@天蝎猫吃鱼</a> 里面有两个listview，是哪个listview不能上下滑动</span></p> <div class="sub-tool-group"><span>2016.07.05 11:13</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <!----> <!----> <!----></div> <!----></div></div><div id="comment-3007273" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/80acfd92e939" target="_blank" class="avatar"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/9-cceda3cf5072bcdd77e8ca4f21c40998.jpg"></a> <div class="info"><a href="http://www.jianshu.com/u/80acfd92e939" target="_blank" class="name">天蝎猫吃鱼</a> <!----> <div class="meta"><span>3楼 · 2016.07.05 21:00</span></div></div></div> <div class="comment-wrap"><p>- ScrollView <br>---- ViewPager<br>------- Fragment<br>----------- ListView<br>------- Fragment<br>----------- ListView<br>是这种结构，每个Fragment中的ListView都不能滑动</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list hide"><!----> <!----></div></div><div id="comment-3007339" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/80acfd92e939" target="_blank" class="avatar"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/9-cceda3cf5072bcdd77e8ca4f21c40998.jpg"></a> <div class="info"><a href="http://www.jianshu.com/u/80acfd92e939" target="_blank" class="name">天蝎猫吃鱼</a> <!----> <div class="meta"><span>4楼 · 2016.07.05 21:04</span></div></div></div> <div class="comment-wrap"><p>如果我在ScrollView中设置拦截，则只能滑动ScrollView，无法进入ListView，最后重写ScrollView的OnTouchEvent方法后,每次当ListView的第一项滑到顶部时，总要先松开再上滑才能进入ListView ,我看你的效果图上好像是一直滑上去没有松开手指直接进入ListView的，所以请问怎么弄？？？谢谢啦！</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-3013598" class="sub-comment"><p><a href="http://www.jianshu.com/u/cfb0b6ae0bae" target="_blank">王三的猫阿德</a>：
+          <span><a href="http://www.jianshu.com/users/80acfd92e939" class="maleskine-author" target="_blank" data-user-slug="80acfd92e939">@天蝎猫吃鱼</a> int top = mListView.getChildAt(0).getTop();<br>float nowY = event.getY();<br>if(!isSvToBottom) {<br>   mScrollView.requestDisallowInterceptTouchEvent(false);<br>} else if(top == 0 &amp;&amp; nowY - mLastY &gt; THRESHOLD_Y_LIST_VIEW) {<br>    mScrollView.requestDisallowInterceptTouchEvent(false);<br>} else {<br>    mScrollView.requestDisallowInterceptTouchEvent(true);<br>}<br>看第二个条件的判断，在这里我会有一个nowY - mLastY &gt; THRESHOLD_Y_LIST_VIEW的判断，就是让用户滑动ListView到顶部，手指需要继续向下滑动一段距离，才让ScrollView滑动，中间有一个缓冲距离，在这个距离内，ListView就算是滑动了顶部依旧可以再向下滑动。</span></p> <div class="sub-tool-group"><span>2016.07.06 11:03</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-3056102" class="sub-comment"><p><a href="http://www.jianshu.com/u/80acfd92e939" target="_blank">天蝎猫吃鱼</a>：
+          <span>nowY - mLastY &gt; THRESHOLD_Y_LIST_VIEW 难道不是在判断 是否手势为向下滑动，缓冲距离这块我没搞懂，当ListView滑动到顶部时再向下滑就直接滑动ScrollView，没有缓冲距离啊，缓冲距离很小察觉不到吗？既然可以这样在ListView中传递滑动事件给ScrollView，那我在ScrollView中以同样的方式传递滑动事件给ListView却不行，为什么呢？效果就是 在滑动ScrollView到底部时再向上滑不松开手指直接能进入ListView却是不行的，是不是因为触摸事件是往上传递的，直接被外层消费掉或者没有处理吗？</span></p> <div class="sub-tool-group"><span>2016.07.09 19:04</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-3056122" class="sub-comment"><p><a href="http://www.jianshu.com/u/80acfd92e939" target="_blank">天蝎猫吃鱼</a>：
+          <span><a href="http://www.jianshu.com/users/cfb0b6ae0bae" class="maleskine-author" target="_blank" data-user-slug="cfb0b6ae0bae">@王三的猫阿德</a> nowY - mLastY &gt; THRESHOLD_Y_LIST_VIEW 难道不是在判断 是否手势为向下滑动，缓冲距离这块我没搞懂，当ListView滑动到顶部时再向下滑就直接滑动ScrollView，没有缓冲距离啊，缓冲距离很小察觉不到吗？既然可以这样在ListView中传递滑动事件给ScrollView，那我在ScrollView中以同样的方式传递滑动事件给ListView却不行，为什么呢？效果就是 在滑动ScrollView到底部时再向上滑不松开手指直接能进入ListView却是不行的，是不是因为触摸事件是往上传递的，直接被外层消费掉或者没有处理吗？</span></p> <div class="sub-tool-group"><span>2016.07.09 19:07</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <span class="line-warp">
+          还有1条评论，
+          <a>展开查看</a></span> <!----> <!----></div> <!----></div></div><div id="comment-3829971" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/3e319792d25b" target="_blank" class="avatar"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/10-e691107df16746d4a9f3fe9496fd1848.jpg"></a> <div class="info"><a href="http://www.jianshu.com/u/3e319792d25b" target="_blank" class="name">作为一个初学者</a> <!----> <div class="meta"><span>6楼 · 2016.08.25 13:40</span></div></div></div> <div class="comment-wrap"><p>你好，问一下THRESHOLD_Y_LIST_VIEW  这个变量是在哪定义的</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-3830210" class="sub-comment"><p><a href="http://www.jianshu.com/u/cfb0b6ae0bae" target="_blank">王三的猫阿德</a>：
+          <span><a href="http://www.jianshu.com/users/3e319792d25b" class="maleskine-author" target="_blank" data-user-slug="3e319792d25b">@作为一个初学者</a> 这个是自定义的一个变量，根据具体展示效果自定义的一个数值。</span></p> <div class="sub-tool-group"><span>2016.08.25 13:52</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-3830252" class="sub-comment"><p><a href="http://www.jianshu.com/u/cfb0b6ae0bae" target="_blank">王三的猫阿德</a>：
+          <span><a href="http://www.jianshu.com/users/3e319792d25b" class="maleskine-author" target="_blank" data-user-slug="3e319792d25b">@作为一个初学者</a> demo中定义的这个值是20个像素</span></p> <div class="sub-tool-group"><span>2016.08.25 13:55</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <!----> <!----> <!----></div> <!----></div></div><div id="comment-3935730" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/83babad450ac" target="_blank" class="avatar"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/8cfd49d70853"></a> <div class="info"><a href="http://www.jianshu.com/u/83babad450ac" target="_blank" class="name">最讨厌取昵称了</a> <!----> <div class="meta"><span>7楼 · 2016.08.31 09:40</span></div></div></div> <div class="comment-wrap"><p>大侠你好，我照着你的方法做了之后，如果滑动的慢的话确实没有冲突了，但是如果滑的快的话还是会被scrollview拦截，请问这是什么原因呢？是否有解决办法？</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-3936858" class="sub-comment"><p><a href="http://www.jianshu.com/u/cfb0b6ae0bae" target="_blank">王三的猫阿德</a>：
+          <span><a href="http://www.jianshu.com/users/83babad450ac" class="maleskine-author" target="_blank" data-user-slug="83babad450ac">@83babad450ac</a> 对滑动速度进行判断，快于某一个值就不允许scrollview滑动。</span></p> <div class="sub-tool-group"><span>2016.08.31 10:41</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-3936934" class="sub-comment"><p><a href="http://www.jianshu.com/u/83babad450ac" target="_blank">最讨厌取昵称了</a>：
+          <span><a href="http://www.jianshu.com/users/cfb0b6ae0bae" class="maleskine-author" target="_blank" data-user-slug="cfb0b6ae0bae">@王三的猫阿德</a> 在哪里面判断？我通过打印日志发现滑的快的时候事件无法传递到listview，它的ontouch方法不会执行，而scrollview的ontouch会执行，滑的慢的时候scrollview的不会执行，listview的会执行</span></p> <div class="sub-tool-group"><span>2016.08.31 10:46</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-3938125" class="sub-comment"><p><a href="http://www.jianshu.com/u/cfb0b6ae0bae" target="_blank">王三的猫阿德</a>：
+          <span><a href="http://www.jianshu.com/users/83babad450ac" class="maleskine-author" target="_blank" data-user-slug="83babad450ac">@最讨厌取昵称了</a> 滑动的时候在ScrollView的onInterceptTouchEvent方法里面判断一下滑动速度，如果过快就不然scrollview拦截事件</span></p> <div class="sub-tool-group"><span>2016.08.31 11:53</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <span class="line-warp">
+          还有4条评论，
+          <a>展开查看</a></span> <!----> <!----></div> <!----></div></div><div id="comment-4161316" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/5c472d820f4a" target="_blank" class="avatar"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/7-0993d41a595d6ab6ef17b19496eb2f21.jpg"></a> <div class="info"><a href="http://www.jianshu.com/u/5c472d820f4a" target="_blank" class="name">飞向苍穹的乌龟</a> <!----> <div class="meta"><span>8楼 · 2016.09.13 07:49</span></div></div></div> <div class="comment-wrap"><p>不错</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list hide"><!----> <!----></div></div><div id="comment-4161866" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/5c472d820f4a" target="_blank" class="avatar"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/7-0993d41a595d6ab6ef17b19496eb2f21.jpg"></a> <div class="info"><a href="http://www.jianshu.com/u/5c472d820f4a" target="_blank" class="name">飞向苍穹的乌龟</a> <!----> <div class="meta"><span>9楼 · 2016.09.13 08:31</span></div></div></div> <div class="comment-wrap"><p>如果是scrillview嵌套listview，重写listview   onmeasure，应该会复用的吧</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-4164342" class="sub-comment"><p><a href="http://www.jianshu.com/u/cfb0b6ae0bae" target="_blank">王三的猫阿德</a>：
+          <span><a href="http://www.jianshu.com/users/5c472d820f4a" class="maleskine-author" target="_blank" data-user-slug="5c472d820f4a">@飞向苍穹的乌龟</a> 你的意思是listview是父布局是吗？会被复用是指？</span></p> <div class="sub-tool-group"><span>2016.09.13 10:41</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-4173088" class="sub-comment"><p><a href="http://www.jianshu.com/u/5c472d820f4a" target="_blank">飞向苍穹的乌龟</a>：
+          <span>scrollview是父布局，为了解决冲突，才重写listview   onmeasure</span></p> <div class="sub-tool-group"><span>2016.09.13 19:20</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-4183031" class="sub-comment"><p><a href="http://www.jianshu.com/u/cfb0b6ae0bae" target="_blank">王三的猫阿德</a>：
+          <span><a href="http://www.jianshu.com/users/5c472d820f4a" class="maleskine-author" target="_blank" data-user-slug="5c472d820f4a">@飞向苍穹的乌龟</a> onmeasure过程是得到listview大小的，解决冲突主要是点击事件的处理，这两者联系在一起是为什么</span></p> <div class="sub-tool-group"><span>2016.09.14 10:44</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <!----> <!----> <!----></div> <!----></div></div><div id="comment-5146757" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/5606b64aad7d" target="_blank" class="avatar"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/1771f173-66fb-42ee-a17e-c4b06cba025d.jpg"></a> <div class="info"><a href="http://www.jianshu.com/u/5606b64aad7d" target="_blank" class="name">Answer_yzpppp</a> <!----> <div class="meta"><span>10楼 · 2016.10.27 15:59</span></div></div></div> <div class="comment-wrap"><p>mListView.setOnTouchListener(new View.OnTouchListener() {<br>    <a href="http://www.jianshu.com/users/d55323762b08" class="maleskine-author" target="_blank" data-user-slug="d55323762b08">@Override</a><br>    public boolean onTouch(View v, MotionEvent event) {<br>        int action = event.getAction();<br><br>        if(action == MotionEvent.ACTION_DOWN) {<br>            mLastY = event.getY();<br>        }<br>        if(action == MotionEvent.ACTION_MOVE) {<br>            int top = mListView.getChildAt(0).getTop();<br>            float nowY = event.getY();<br>            if(!isSvToBottom) {<br>                // 允许scrollview拦截点击事件, scrollView滑动<br>                mScrollView.requestDisallowInterceptTouchEvent(false);<br>            } else if(top == 0 &amp;&amp; nowY - mLastY &gt; THRESHOLD_Y_LIST_VIEW) {<br>                // 允许scrollview拦截点击事件, scrollView滑动<br>                mScrollView.requestDisallowInterceptTouchEvent(false);<br>            } else {<br>                // 不允许scrollview拦截点击事件， listView滑动<br>                mScrollView.requestDisallowInterceptTouchEvent(true);<br>            }<br>        }<br>这里不太明白为什么可以把mScrollView.requestDisallowInterceptTouchEvent写在setOnTouchListener的ACTION_MOVE里面，ScrollView的onInterceptTouchEvent的action_move不是会在listview的setOnTouchListener的action_move之前执行吗？那不就会直接将事件拦截吗？为什么还会执行到setOnTouchListener呢？求大神解答！！</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-5287898" class="sub-comment"><p><a href="http://www.jianshu.com/u/cfb0b6ae0bae" target="_blank">王三的猫阿德</a>：
+          <span><a href="http://www.jianshu.com/users/5606b64aad7d" class="maleskine-author" target="_blank" data-user-slug="5606b64aad7d">@Answer_yzpppp</a> 不好意思，10月末到11月10号都在日本休假，这段时间没有时间回复。你说的这个问题我也考虑过，从逻辑上面讲是个悖论，我也抽空看过几次源代码，有一些思路，等我回国在具体回复你一下。</span></p> <div class="sub-tool-group"><span>2016.11.02 09:48</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-5347399" class="sub-comment"><p><a href="http://www.jianshu.com/u/5606b64aad7d" target="_blank">Answer_yzpppp</a>：
+          <span><a href="http://www.jianshu.com/users/cfb0b6ae0bae" class="maleskine-author" target="_blank" data-user-slug="cfb0b6ae0bae">@王三的猫阿德</a> 好的 3Q</span></p> <div class="sub-tool-group"><span>2016.11.04 13:39</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-5543110" class="sub-comment"><p><a href="http://www.jianshu.com/u/cfb0b6ae0bae" target="_blank">王三的猫阿德</a>：
+          <span><a href="http://www.jianshu.com/users/5606b64aad7d" class="maleskine-author" target="_blank" data-user-slug="5606b64aad7d">@Answer_yzpppp</a> 写的有点多，看一下这篇文章，<a href="http://www.jianshu.com/p/a009d7415af0" rel="nofollow" target="_blank">http://www.jianshu.com/p/a009d7415af0</a>。事件传递这块本来就有些复杂，看起来可能有点乱。</span></p> <div class="sub-tool-group"><span>2016.11.10 17:11</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <!----> <!----> <!----></div> <!----></div></div><div id="comment-6005373" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/6eb70afca6a7" target="_blank" class="avatar"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/682898308802.jpg"></a> <div class="info"><a href="http://www.jianshu.com/u/6eb70afca6a7" target="_blank" class="name">近水鸿鹄</a> <!----> <div class="meta"><span>11楼 · 2016.11.28 14:57</span></div></div></div> <div class="comment-wrap"><p>大牛，能否给个例子？</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-6010625" class="sub-comment"><p><a href="http://www.jianshu.com/u/cfb0b6ae0bae" target="_blank">王三的猫阿德</a>：
+          <span><a href="http://www.jianshu.com/users/6eb70afca6a7" class="maleskine-author" target="_blank" data-user-slug="6eb70afca6a7">@jksfood</a> 文章末尾有demo工程的链接，你可以把工程下载下来看看</span></p> <div class="sub-tool-group"><span>2016.11.28 18:38</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <!----> <!----> <!----></div> <!----></div></div><div id="comment-7097376" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/760dfe99e9e2" target="_blank" class="avatar"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/b5d277b8e03f"></a> <div class="info"><a href="http://www.jianshu.com/u/760dfe99e9e2" target="_blank" class="name">天蝎無銘栺</a> <!----> <div class="meta"><span>13楼 · 2017.01.11 10:05</span></div></div></div> <div class="comment-wrap"><p>大神，listview里边 嵌套webview 上下滑动冲突 解决，能给个提示吗？感谢！</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-7098190" class="sub-comment"><p><a href="http://www.jianshu.com/u/cfb0b6ae0bae" target="_blank">王三的猫阿德</a>：
+          <span>用户操作webview时候，调用listview的requestDisallowInterceptTouchEvent，禁止listview拦截事件，让事件传递到webview中，当手指离开屏幕，恢复listview状态。</span></p> <div class="sub-tool-group"><span>2017.01.11 10:28</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-7131644" class="sub-comment"><p><a href="http://www.jianshu.com/u/760dfe99e9e2" target="_blank">天蝎無銘栺</a>：
+          <span><a href="http://www.jianshu.com/users/cfb0b6ae0bae" class="maleskine-author" target="_blank" data-user-slug="cfb0b6ae0bae">@王三的猫阿德</a> 已解决，感谢！</span></p> <div class="sub-tool-group"><span>2017.01.12 11:53</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <!----> <!----> <!----></div> <!----></div></div><div id="comment-7288143" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/3e2ab4cc7de6" target="_blank" class="avatar"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/5-33d2da32c552b8be9a0548c7a4576607.jpg"></a> <div class="info"><a href="http://www.jianshu.com/u/3e2ab4cc7de6" target="_blank" class="name">Snow安卓小菜鸟</a> <!----> <div class="meta"><span>14楼 · 2017.01.18 01:05</span></div></div></div> <div class="comment-wrap"><p>给个赞👍</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-7294189" class="sub-comment"><p><a href="http://www.jianshu.com/u/cfb0b6ae0bae" target="_blank">王三的猫阿德</a>：
+          <span>谢谢~</span></p> <div class="sub-tool-group"><span>2017.01.18 10:48</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <!----> <!----> <!----></div> <!----></div></div><div id="comment-7456723" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/5b8db0f1c979" target="_blank" class="avatar"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/1e37c3f70250.gif"></a> <div class="info"><a href="http://www.jianshu.com/u/5b8db0f1c979" target="_blank" class="name">捡淑</a> <!----> <div class="meta"><span>15楼 · 2017.01.24 17:29</span></div></div></div> <div class="comment-wrap"><p>老司机醍醐灌顶</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list hide"><!----> <!----></div></div><div id="comment-7456729" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/5b8db0f1c979" target="_blank" class="avatar"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/1e37c3f70250.gif"></a> <div class="info"><a href="http://www.jianshu.com/u/5b8db0f1c979" target="_blank" class="name">捡淑</a> <!----> <div class="meta"><span>16楼 · 2017.01.24 17:29</span></div></div></div> <div class="comment-wrap"><p>从楼主的这片文章，我可以推断出，楼主一定很帅～</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-7557452" class="sub-comment"><p><a href="http://www.jianshu.com/u/cfb0b6ae0bae" target="_blank">王三的猫阿德</a>：
+          <span><a href="http://www.jianshu.com/users/5b8db0f1c979" class="maleskine-author" target="_blank" data-user-slug="5b8db0f1c979">@捡淑</a> 哈哈哈，少年你很有眼光。</span></p> <div class="sub-tool-group"><span>2017.01.29 19:20</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <!----> <!----> <!----></div> <!----></div></div></div></div> <!----> <div><ul class="pagination"><!---->  <li><a href="javascript:void(null)" class="active">1</a></li> <li><a>2</a></li> <li><a>下一页</a></li></ul></div></div></div>
+  </div>
+
+  <div class="side-tool"><ul><li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="回到顶部"><a class="function-button"><i class="iconfont ic-backtop"></i></a></li> <!----> <!----> <li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="分享文章"><a tabindex="0" role="button" data-toggle="popover" data-placement="left" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="&lt;ul class=&#39;share-list&#39;&gt;
+                &lt;li&gt;&lt;a class=&quot;weixin-share&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-weixin&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到微信&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/4515514/weibo/image_113c22f0101b.jpg&#39;, &#39;推荐 王三的猫阿德 的文章《Android实践之ScrollView中滑动冲突处理》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/87a41b8c0dd0?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-weibo&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到微博&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;http://cwb.assets.jianshu.io/notes/images/4515514/weibo/image_113c22f0101b.jpg&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-picture&quot;&gt;&lt;/i&gt;&lt;span&gt;下载长微博图片&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/87a41b8c0dd0?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 王三的猫阿德 的文章《Android实践之ScrollView中滑动冲突处理》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-zone&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/87a41b8c0dd0?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 王三的猫阿德 的文章《Android实践之ScrollView中滑动冲突处理》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-twitter&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/87a41b8c0dd0?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-facebook&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/87a41b8c0dd0?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-google&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/87a41b8c0dd0?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;Android实践之ScrollView中滑动冲突处理&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-douban&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;" data-original-title="" title="" class="function-button"><i class="iconfont ic-share"></i></a> <!----></li></ul></div>
+</div>
+<div class="note-bottom">
+  <div><div class="main"><div class="title">被以下专题收入，发现更多相似内容</div> <!----> <div class="include-collection"><!----> <a href="http://www.jianshu.com/c/b0e250a7e64e?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/android.graphics.Bitmap_d6bfd60.jpeg"><div class="name">Android...</div></a><a href="http://www.jianshu.com/c/2ddd46458740?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/android.graphics.Bitmap_7a1c3d0.jpeg"><div class="name">安卓开发</div></a><a href="http://www.jianshu.com/c/4ccfa041f49a?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/Android04.jpg"><div class="name">Let's A...</div></a><a href="http://www.jianshu.com/c/b9bbba7783c5?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/android.graphics.Bitmap_291c5a9.jpeg"><div class="name">Android</div></a><a href="http://www.jianshu.com/c/16443a61b881?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/android.graphics.Bitmap_971d9db.jpeg"><div class="name">Android...</div></a><a href="http://www.jianshu.com/c/5632b9967897?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/fc4838adcbef7609fe686d4d28dda3cc7dd99e3a.jpg"><div class="name">经典好闻( ⊙...</div></a> <!----></div></div> <!----> <!----></div>
+  <div data-vcomp="recommended-notes" data-note-id="4515514"></div>
+</div>
+
+    <script src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/push.js.下载"></script><script src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/hm.js.下载"></script><script async="" src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/analytics.js.下载"></script><script type="application/json" data-name="page-data">{"user_signed_in":false,"locale":"zh-CN","os":"windows","read_mode":"day","read_font":"font2","note_show":{"is_author":false,"is_following_author":false,"is_liked_note":false,"uuid":"1bb6b4f9-3a31-4284-a623-10798f260b50"},"note":{"id":4515514,"slug":"87a41b8c0dd0","user_id":354846,"notebook_id":4353654,"commentable":true,"likes_count":41,"views_count":6537,"public_wordage":2889,"comments_count":43,"total_rewards_count":1,"is_author":false,"author":{"nickname":"王三的猫阿德","total_wordage":65395,"followers_count":58,"total_likes_count":127}}}</script>
+    
+    <script src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/babel-polyfill-d559ff50e67379d3113e.js.下载"></script>
+    <script src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/web-base-2b7f0d2277e406d2f0c4.js.下载"></script>
+<script src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/web-d86918bdc4616835d4c2.js.下载"></script>
+    
+    <script src="./Android实践之ScrollView中滑动冲突处理 - 简书_files/entry-0bb471d880cbec7bd675.js.下载"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35169517-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?0c0e9d9b1e7d617b3e6842e85b9fb068";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+  
+
+<!----><!----></body></html>

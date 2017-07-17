@@ -1,0 +1,1560 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0054)http://blog.csdn.net/iispring/article/details/50967445 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+
+            <link rel="canonical" href="http://blog.csdn.net/iispring/article/details/50967445"> 
+ <meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://blog.csdn.net/iispring/article/details/50967445#">
+
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848"> 
+       
+    <title>源码解析ListView中的RecycleBin机制 - 孙群
+        - CSDN博客</title>
+    
+    <meta name="description" content="在自定义Adapter时，我们常常会重写Adapter的getView方法，该方法的签名如下所示：public abstract View getView (int position, View convertView, ViewGroup parent) 此处会传入一个convertView变量，它的值有可能是null，也有可能不是null，如果不为null，我们就可以复用该convertView">
+
+    <meta name="keywords" content="ListView,RecycleBin,源码解析">
+
+   
+    <script src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/hm.js.下载"></script><script src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/hm.js(1).下载"></script><script src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/blog_static_head.min.js.下载" type="text/javascript"></script>
+
+    
+        <!--new top-->
+       
+       
+        <!--new top-->
+    
+      <!-- ad begin -->
+         
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/style.css">
+
+    
+
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/sunqunsunqun/rss/list">
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/default.css">
+ 
+
+
+
+    <link href="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/csdn_public_blog_detail.min.css" type="text/css" rel="stylesheet">
+     
+         <link rel="stylesheet" href="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/csdn_blog_detail.min.css">
+
+  
+
+
+    <!-- 请置于所有广告位代码之前 --> 
+            <script src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/ds.js.下载"></script>
+
+<script src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/share.js.下载"></script><link href="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/bdsstyle.css" rel="stylesheet" type="text/css"><style type="text/css"></style><script src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/wxLogin.js.下载"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><link rel="stylesheet" type="text/css" href="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/style(1).css"><link type="text/css" rel="stylesheet" href="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/style(2).css"><script src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/logger.js.下载"></script><link rel="stylesheet" href="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/share_style0_16.css"></head>
+
+
+<body><div id="MathJax_Message" style="display: none;"></div><iframe frameborder="0" style="display: none;" src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/saved_resource.html"></iframe><div class="csdn-toolbar csdn-toolbar-skin-black ">        <div class="container row center-block ">          <div class="col-md-3 pull-left logo clearfix"><a href="http://www.csdn.net/?ref=toolbar" title="CSDN首页" target="_blank" class="icon"></a><a title="频道首页" href="http://blog.csdn.net/?ref=toolbar_logo" class="img blog-icon"></a></div>          <div class="pull-right login-wrap unlogin">            <ul class="btns">              <li class="loginlink"><a href="https://passport.csdn.net/account/login?ref=toolbar" target="_top">登录&nbsp;</a>|<a target="_top" href="http://passport.csdn.net/account/mobileregister?ref=toolbar&amp;action=mobileRegister">&nbsp;注册</a></li>              <li class="search">                <div class="icon on-search-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <form action="http://so.csdn.net/search" id="toolbar_search" method="get" target="_blank">                      <input type="hidden" value="toolbar" name="ref" accesskey="2">                      <div class="border">                        <input placeholder="搜索" type="text" value="" name="q" accesskey="2"><span class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li class="favor">                <div class="icon on-favor-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div style="display:none;" class="favor-success"><span class="msg">收藏成功</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <div style="display:none;" class="favor-failed"><span class="icon-danger-lg"></span><span class="msg">收藏失败，请重新收藏</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <form role="form" class="form-horizontal favor-form">                      <div class="form-group">                        <div class="clearfix">                          <label for="input-title" class="col-sm-2 control-label"><span class="red_txt">*</span>标题</label>                          <div class="col-sm-10">                            <input id="inputTitle" type="text" placeholder="" class="title form-control">                          </div>                        </div>                        <div class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div class="form-group" style="display:none;">                        <label for="input-url" class="col-sm-2 control-label">网址</label>                        <div class="col-sm-10">                          <input id="input-url" type="text" placeholder="" class="url form-control">                        </div>                      </div>                      <div class="form-group">                        <label for="input-tag" class="col-sm-2 tag control-label">标签</label>                        <div class="col-sm-10">                          <input id="input-tag" type="text" class="form-control tag">                        </div>                      </div>                      <div class="form-group">                        <label for="input-description" class="description col-sm-2 control-label">位置</label>                        <div class="col-sm-10">                          <div class="my_lib_box">                            个人主页&nbsp;-&nbsp;<a href="http://my.csdn.net/" target="_blank">我的知识</a>                          </div>                          <div class="checkbox">                            <div class="pull-left">                              <label>                                <input type="checkbox" name="share" class="save_lib_map" checked="checked">同时保存至：                              </label>                            </div>                            <div class="pull-left">                              <div class="dropdown">                                <button id="toolbar_sele_map" type="button">                                  选择知识图谱                                  <i class="fa fa-chevron-down"></i>                                </button>                                <div class="top_arr"></div>                                <div class="outside">                                  <ul class="dropdown-menu" id="toolbar_Design_knowledge"><li>选择知识图谱</li></ul>                                </div>                              </div>                            </div>                            <div class="pull-left new_txt">                              <a href="http://lib.csdn.net/my/create/structure" target="_blank">新建？</a>                            </div>                          </div>                        </div>                      </div>                      <div class="form-group">                        <div class="col-sm-offset-2 col-sm-10 ft">                          <div class="col-sm-4 pull-left" style="display:none">                            <div class="checkbox">                              <label>                                <input type="checkbox" name="share" checked="checked" class="share">公开                              </label>                            </div>                          </div>                          <div class="col-sm-8 pull-right favor-btns">                            <button type="button" class="cancel btn btn-default">取消</button>                            <button type="submit" class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li class="notify">                <div style="display:none" class="number"></div>                <div style="display:none" class="icon-hasnotes-sm"></div>                <div id="header_notice_num"></div>                <div class="icon on-notify-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div id="note1" class="csdn_note">                      <div class="box"></div>                    <iframe src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/saved_resource(1).html" frameborder="0" allowtransparency="true" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li class="ugc">                <div class="icon on-ugc-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <dl>                      <dt><a href="http://geek.csdn.net/news/expert?ref=toolbar" target="_blank" class="p-news clearfix" style="display:none;"><em class="icon"></em><span>分享资讯</span></a></dt>                      <dt style="border: none;"><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-doc clearfix"><em class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a href="http://bbs.csdn.net/topics/new?ref=toolbar" target="_blank" class="p-ask clearfix"><em class="icon"></em><span>提问题</span></a></dt>                      <dt><a href="http://write.blog.csdn.net/postedit?ref=toolbar" target="_blank" class="p-blog clearfix"><em class="icon"></em><span>写博客</span></a></dt>                      <dt><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-src clearfix"><em class="icon"></em><span>传资源</span></a></dt>                      <dt><a href="https://code.csdn.net/projects/new?ref=toolbar" target="_blank" class="c-obj clearfix"><em class="icon"></em><span>创建项目</span></a></dt>                      <dt><a href="https://code.csdn.net/snippets/new?ref=toolbar" target="_blank" class="c-code clearfix"><em class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li class="profile">                <div class="icon on-profile-icon"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/100x100.jpg" class="curr-icon-img">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div class="bd">                      <dl class="clearfix">                        <dt class="pull-left img"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="avatar"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/100x100.jpg"></a></dt>                        <dd class="info" style="border: none;"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="nickname"></a><a class="set-nick" href="https://passport.csdn.net/account/profile">设置昵称<span class="write-icon"></span></a><span class="dec"><a class="fill-dec" href="http://my.csdn.net/" target="_blank">编辑自我介绍，让更多人了解你<span class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div class="ft clearfix"><a target="_blank" href="http://my.csdn.net/my/account/changepwd?ref=toolbar" class="pull-left"><span class="icon-cog"></span>帐号设置</a><a href="https://passport.csdn.net/account/logout?ref=toolbar" target="_top" class="pull-left" style="margin-left:132px; width:18px; height:27px; white-space:nowrap; overflow:hidden;"><span class="icon-signout"></span><span class="out">退出</span></a></div>                  </div>                </div>              </li>              <li class="apps">                <div id="chasnew123" class="hasnew" style="display: none;"></div>                <div id="cappsarea123" class="icon on-apps-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a href="http://blog.csdn.net/?ref=toolbar" target="_blank">博客</a></dd>                      <dd> <a href="http://bbs.csdn.net/?ref=toolbar" target="_blank">论坛</a></dd>                      <dd> <a href="http://download.csdn.net/?ref=toolbar" target="_blank">下载</a></dd>                      <dd> <a href="http://lib.csdn.net/?ref=toolbar" target="_blank">知识库</a></dd>                      <dd><a href="http://ask.csdn.net/?ref=toolbar" target="_blank">技术问答</a></dd>                      <dd><a href="http://geek.csdn.net/?ref=toolbar" target="_blank">极客头条</a></dd>                      <dd style="display:none"> <a href="http://hero.csdn.net/?ref=toolbar" target="_blank">英雄会</a></dd>                    </dl>                  </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd style="display:none"> <a href="http://job.csdn.net/?ref=toolbar" target="_blank">JOB<img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="http://edu.csdn.net/?ref=toolbar" target="_blank">学院<img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="https://code.csdn.net/?ref=toolbar" target="_blank">CODE</a></dd>                      <dd> <a href="http://huiyi.csdn.net/?ref=toolbar" target="_blank">活动</a></dd>                      <dd> <a href="http://www.csto.com/?ref=toolbar" target="_blank">CSTO</a></dd>                      <dd> <a href="http://mall.csdn.net/?ref=toolbar" target="_blank">C币兑换<img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                    </dl>                  </div>                  <div class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a href="http://cto.csdn.net/?ref=toolbar" target="_blank">CTO俱乐部</a></dd>                      <dd> <a href="http://student.csdn.net/?ref=toolbar" target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+     
+
+    <!-- 广告位开始 -->
+        
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/html.js.下载" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/iispring">孙群</a></h2>
+            <h3>记忆遥远了时光，脚步艰辛了成长，年少支付了梦想，坚守构筑了远方</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+     
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/iispring?viewmode=contents"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_mulu&#39;])">
+                    <img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/iispring?viewmode=list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_zhaiyao&#39;])">
+                    <img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/iispring/rss/list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_RSS&#39;])">
+                    <img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "sunqunsunqun";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/iispring";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod="popu_3"> 
+
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/75116901" target="_blank">
+<font color="red"><strong>从创业到再就业，浅述对程序员职业生涯的看法</strong></font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/74550215" target="_blank">
+<font color="blue"><strong>征文 | 你会为 AI 转型么？</strong></font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="http://blog.csdn.net/epubit17/article/details/74279903" target="_blank">
+<font color="red"><strong>赠书：7月大咖新书机器学习/Android/python</strong></font></a>
+
+
+</div>                        </div>
+
+                        
+
+
+
+  
+
+
+
+
+
+
+<script type="text/javascript" src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/category.js.下载"></script>
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+      var isBole = false; 
+      var fasrc="http://my.csdn.net/my/favorite/miniadd?t=%e6%ba%90%e7%a0%81%e8%a7%a3%e6%9e%90ListView%e4%b8%ad%e7%9a%84RecycleBin%e6%9c%ba%e5%88%b6&u=http://blog.csdn.net/iispring/article/details/50967445"
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+    <h1>
+        <span class="link_title"><a href="http://blog.csdn.net/iispring/article/details/50967445">
+        源码解析ListView中的RecycleBin机制        
+           
+        </a>
+        </span>
+
+         
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_l">
+            <span class="link_categories">
+            标签：
+              <a href="http://www.csdn.net/tag/ListView" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">ListView</a><a href="http://www.csdn.net/tag/RecycleBin" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">RecycleBin</a><a href="http://www.csdn.net/tag/%e6%ba%90%e7%a0%81%e8%a7%a3%e6%9e%90" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">源码解析</a><a href="http://www.csdn.net/tag/Android" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">Android</a>
+            </span>
+        </div>
+        <div class="article_r">
+            <span class="link_postdate">2016-04-05 23:38</span>
+            <span class="link_view" title="阅读次数">12988人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="http://blog.csdn.net/iispring/article/details/50967445#comments" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_pinglun&#39;])">评论</a>(10)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;%e6%ba%90%e7%a0%81%e8%a7%a3%e6%9e%90ListView%e4%b8%ad%e7%9a%84RecycleBin%e6%9c%ba%e5%88%b6&#39;,&#39;50967445&#39;);return false;" title="收藏" target="_blank">收藏</a></span>
+             <span class="link_report"> <a href="http://blog.csdn.net/iispring/article/details/50967445#report" onclick="javascript:report(50967445,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label onclick="GetCategoryArticles(&#39;1066576&#39;,&#39;sunqunsunqun&#39;,&#39;top&#39;,&#39;50967445&#39;);">
+                        <span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_fenlei&#39;]);">Android<em>（47）</em></span>
+                      <img class="arrow-down" src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a href="http://blog.csdn.net/sunqunsunqun/article/category/1066576" target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_1066576">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+        <div class="bog_copyright">         
+            <p class="copyright_p">版权声明：本文为博主原创文章，未经博主允许不得转载。如果觉得文章不错，记得顶一下！GitHub: https://github.com/iSpring</p>
+        </div>
+
+  
+
+  
+  
+     
+
+
+<div style="clear:both"></div><div style="border:solid 1px #ccc; background:#eee; float:left; min-width:200px;padding:4px 10px;"><p style="text-align:right;margin:0;"><span style="float:left;">目录<a href="http://blog.csdn.net/iispring/article/details/50967445#" title="系统根据文章中H1到H6标签自动生成文章目录">(?)</a></span><a href="http://blog.csdn.net/iispring/article/details/50967445#" onclick="javascript:return openct(this);" title="展开">[+]</a></p><ol style="display:none;margin-left:14px;padding-left:14px;line-height:160%;"><li><a href="http://blog.csdn.net/iispring/article/details/50967445#t0">RecycleBin基本原理</a></li><li><a href="http://blog.csdn.net/iispring/article/details/50967445#t1">源码解析</a></li></ol></div><div style="clear:both"></div><div id="article_content" class="article_content tracking-ad" data-mod="popu_307" data-dsm="post">
+        <div class="markdown_views"><p>在自定义Adapter时，我们常常会重写Adapter的getView方法，该方法的签名如下所示：</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs cs has-numbering"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> View <span class="hljs-title">getView</span> (<span class="hljs-keyword">int</span> position, View convertView, ViewGroup parent) </code><ul class="pre-numbering" style="opacity: 0;"><li>1</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li></ul></pre>
+
+<p>此处会传入一个convertView变量，它的值有可能是null，也有可能不是null，如果不为null，我们就可以复用该convertView，对convertView里面的一些控件赋值后可以将convertView作为getView的返回值返回，这么做的目的是减少LayoutInflater.inflate()的调用次数，从而提升了性能（LayoutInflater.inflate()比较消耗性能）。</p>
+
+<p>本文将介绍ListView中的RecycleBin机制，让大家对ListView中的优化机制有个概括的了解，同时也说明convertView的来龙去脉。</p>
+
+<p>首先，我们知道，Adapter是数据源，AdapterView是展示数据源的UI控件，Adapter是给AdapterView使用的，通过调用AdapterView的setAdapter方法就可以让一个AdapterView绑定Adapter对象，从而AdapterView会将Adapter中的数据展示出来。</p>
+
+<p>AdapterView的子类有AbsListView和AbsSpinner等，其中AbsListView的子类又有ListView、GridView等，所以ListView继承自AdapterView。</p>
+
+<p>如果Adapter中有10000条数据，将这个Adapter对象赋给ListView，如果ListView创建10000个子View，那么App肯定崩溃了，因为<a href="http://lib.csdn.net/base/android" class="replace_word" title="Android知识库" target="_blank" style="color:#df3434; font-weight:bold;">Android</a>没有能力同时绘制这么多的子View。而且，即便能同时绘制这10000个子View也没什么意义，因为手机的屏幕大小是有限的，有可能ListView的高度只能最多显示10个子View。基于此，<a href="http://lib.csdn.net/base/android" class="replace_word" title="Android知识库" target="_blank" style="color:#df3434; font-weight:bold;">android</a>在设计ListView这个类的时候，引入了RecycleBin机制—–对子View进行回收利用，RecycleBin直译过来就是回收站的意思。</p>
+
+<hr>
+
+
+
+<h2 id="recyclebin基本原理"><a name="t0" target="_blank"></a>RecycleBin基本原理</h2>
+
+<p>下面先简要说一下RecycleBin中的工作原理，后面会结合源码详细说明。</p>
+
+<p>在某一时刻，我们看到ListView中有许多View呈现在UI上，这些View对我们来说是可见的，这些可见的View可以称作OnScreen的View，即在屏幕中能看到的View，也可以叫做ActiveView，因为它们是在UI上可操作的。</p>
+
+<p>当触摸ListView并向上滑动时，ListView上部的一些OnScreen的View位置上移，并移除了ListView的屏幕范围，此时这些OnScreen的View就变得不可见了，不可见的View叫做OffScreen的View，即这些View已经不在屏幕可见范围内了，也可以叫做ScrapView，Scrap表示废弃的意思，ScrapView的意思是这些OffScreen的View不再处于可以交互的Active状态了。ListView会把那些ScrapView（即OffScreen的View）删除，这样就不用绘制这些本来就不可见的View了，同时，ListView会把这些删除的ScrapView放入到RecycleBin中存起来，就像把暂时无用的资源放到回收站一样。</p>
+
+<p>当ListView的底部需要显示新的View的时候，会从RecycleBin中取出一个ScrapView，将其作为convertView参数传递给Adapter的getView方法，从而达到View复用的目的，这样就不必在Adapter的getView方法中执行LayoutInflater.inflate()方法了。</p>
+
+<p><strong>RecycleBin中有两个重要的View数组，分别是mActiveViews和mScrapViews。这两个数组中所存储的View都是用来复用的，只不过mActiveViews中存储的是OnScreen的View，这些View很有可能被直接复用；而mScrapViews中存储的是OffScreen的View，这些View主要是用来间接复用的。</strong></p>
+
+<p>上面对mActiveViews和mScrapViews的说明比较笼统，其实在细节上还牵扯到Adapter的数据源发生变化的情况，具体细节后面会讲解。</p>
+
+<hr>
+
+
+
+<h2 id="源码解析"><a name="t1" target="_blank"></a>源码解析</h2>
+
+<p>AdapterView是继承自ViewGroup的，ViewGroup中有addView方法可以向ViewGroup中添加子View，但是AdapterView重写了addView方法，如下所示：</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering"><span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addView</span>(View child) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> UnsupportedOperationException(<span class="hljs-string">"addView(View) is not supported in AdapterView"</span>);
+    }
+
+<span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addView</span>(View child, <span class="hljs-keyword">int</span> index) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> UnsupportedOperationException(<span class="hljs-string">"addView(View, int) is not supported in AdapterView"</span>);
+    }</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li></ul></pre>
+
+<p>在AdapterView的addView方法中会抛出异常，也就是说AdapterView禁用了addView方法。</p>
+
+<p>在具体讲解之前，我们还是先花一点时间简要说一下View的每一帧的显示流程，当然，ListView也肯定遵循此流程。一个View要想在界面上呈现出来，需要经过三个阶段：measure-&gt;layout-&gt;draw。</p>
+
+<p>View是一帧一帧绘制的，每一帧绘制都经历了measure-&gt;layout-&gt;draw这三个阶段，绘制完一帧之后，如果UI需要更新，比如用户滚动了ListView，那么又会绘制下一帧，再次经历measure-&gt;layout-&gt;draw方法，如果对此不了解，可以参见另一篇博文<a href="http://blog.csdn.net/iispring/article/details/49203945" target="_blank">《 Android中View的量算、布局及绘图机制》</a>。</p>
+
+<p>我们上面说了，AdapterView把addView方法给禁用了，那么ListView怎么向其中添加child呢？奥秘就在layout中，在布局的时候，ListView会执行layoutChildren方法，该方法是ListView对View进行添加以及回收的关键方法，RecycleBin的很多方法都在layoutChildren方法中被调用。在layoutChildren方法中实现对子View的增删，经过layoutChildren方法之后，ListView中所有的子View都是在屏幕中可见的，也就是说layoutChildren方法为接下来的帧绘制把子View准备完善了，这就保证了在后面的draw方法的执行过程中能够正确绘制ListView。</p>
+
+<p>ListView的layoutChildren方法代码比较多，我们只研究和View增删相关的关键代码，主要分以下三个阶段：</p>
+
+<ol>
+<li>ListView的children-&gt;RecycleBin</li>
+<li>ListView清空children</li>
+<li>RecycleBin-&gt;ListView的children</li>
+</ol>
+
+<p><strong>在layout这个方法刚刚开始执行的时候，ListView中的children其实还是上一帧中需要绘制的子View的集合，在layout这个方法执行完成的时候，ListView中的children就变成了当前帧马上要进行绘制的子View的集合。</strong></p>
+
+<p>下面对以上这三个阶段分别说明。</p>
+
+<ol>
+<li><p><strong>ListView的children-&gt;RecycleBin</strong> <br>
+该阶段的关键代码如下所示：</p>
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering"><span class="hljs-comment">//mFirstPosition是ListView的成员变量，存储着第一个显示的child所对应的adapter的position</span>
+        <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> firstPosition = mFirstPosition;
+        <span class="hljs-keyword">final</span> RecycleBin recycleBin = mRecycler;
+        <span class="hljs-keyword">if</span> (dataChanged) {
+            <span class="hljs-comment">//如果数据发生了变化，那么就把ListView的所有子View都放入到RecycleBin的mScrapViews数组中</span>
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; childCount; i++) {
+                <span class="hljs-comment">//addScrapView方法会传入一个View，以及这个View所对应的position</span>
+                recycleBin.addScrapView(getChildAt(i), firstPosition+i);
+            }
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">//如果数据没发生变化，那么把ListView的所有子View都放入到RecycleBin的mActiveViews数组中</span>
+            recycleBin.fillActiveViews(childCount, firstPosition);
+        }</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li></ul></pre>
+
+<p>再次强调一下，在上面的代码刚开始的时候，ListView的中的children还是上一帧需要绘制的子View。</p>
+
+<ul><li><p>如果Adapter调用了notifyDataSetChanged方法，那么AdapterView就会知道Adapter的数据源发生了变化，此时dataChanged变量就为true，这种情况下，ListView会认为children中的View都是不合格的了，这时候会用getChildAt方法遍历children中所有的child，并把这些child通过RecycleBin的addScrapView方法将其放入RecycleBin的mScrapViews数组中。</p></li>
+<li><p>如果adapter的数据没有发生变化，那么会调用RecycleBin的fillActiveViews方法将所有的children都放入到RecycleBin的mActiveViews数组中。</p></li></ul>
+
+<p>经过上面的操作之后，ListView所有的子View都放入到了RecycleBin中，这就实现了ListView的children-&gt;RecycleBin的迁移过程，放到RecycleBin的目的是为了分类缓存ListView中的children，以便在后续过程中对这些View进行复用。</p></li>
+<li><p><strong>ListView清空children</strong> <br>
+然后调用ViewGroup的detachAllViewsFromParent方法，该方法将所有的子View从ListView中分离，也就是清空了children，该方法源码如下所示：</p>
+
+<pre class="prettyprint" name="code"><code class="hljs axapta has-numbering"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> detachAllViewsFromParent() {
+    <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> <span class="hljs-keyword">count</span> = mChildrenCount;
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">count</span> &lt;= <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">return</span>;
+    }
+
+    <span class="hljs-keyword">final</span> View[] children = mChildren;
+    mChildrenCount = <span class="hljs-number">0</span>;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-keyword">count</span> - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+        children[i].mParent = <span class="hljs-keyword">null</span>;
+        children[i] = <span class="hljs-keyword">null</span>;
+    }
+}</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li></ul></pre></li>
+<li><p><strong>RecycleBin-&gt;ListView的children</strong></p>
+
+<p>然后ListView会根据mLayoutMode进行判断，源码如下所示：</p>
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering"><span class="hljs-keyword">switch</span> (mLayoutMode) {
+        <span class="hljs-keyword">case</span> LAYOUT_SET_SELECTION:
+            <span class="hljs-keyword">if</span> (newSel != <span class="hljs-keyword">null</span>) {
+                sel = fillFromSelection(newSel.getTop(), childrenTop, childrenBottom);
+            } <span class="hljs-keyword">else</span> {
+                sel = fillFromMiddle(childrenTop, childrenBottom);
+            }
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> LAYOUT_SYNC:
+            sel = fillSpecific(mSyncPosition, mSpecificTop);
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> LAYOUT_FORCE_BOTTOM:
+            sel = fillUp(mItemCount - <span class="hljs-number">1</span>, childrenBottom);
+            adjustViewsUpOrDown();
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> LAYOUT_FORCE_TOP:
+            mFirstPosition = <span class="hljs-number">0</span>;
+            sel = fillFromTop(childrenTop);
+            adjustViewsUpOrDown();
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> LAYOUT_SPECIFIC:
+            sel = fillSpecific(reconcileSelectedPosition(), mSpecificTop);
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> LAYOUT_MOVE_SELECTION:
+            sel = moveSelection(oldSel, newSel, delta, childrenTop, childrenBottom);
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">if</span> (childCount == <span class="hljs-number">0</span>) {
+                <span class="hljs-keyword">if</span> (!mStackFromBottom) {
+                    <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> position = lookForSelectablePosition(<span class="hljs-number">0</span>, <span class="hljs-keyword">true</span>);
+                    setSelectedPositionInt(position);
+                    sel = fillFromTop(childrenTop);
+                } <span class="hljs-keyword">else</span> {
+                    <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> position = lookForSelectablePosition(mItemCount - <span class="hljs-number">1</span>, <span class="hljs-keyword">false</span>);
+                    setSelectedPositionInt(position);
+                    sel = fillUp(mItemCount - <span class="hljs-number">1</span>, childrenBottom);
+                }
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">if</span> (mSelectedPosition &gt;= <span class="hljs-number">0</span> &amp;&amp; mSelectedPosition &lt; mItemCount) {
+                    sel = fillSpecific(mSelectedPosition,
+                            oldSel == <span class="hljs-keyword">null</span> ? childrenTop : oldSel.getTop());
+                } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (mFirstPosition &lt; mItemCount) {
+                    sel = fillSpecific(mFirstPosition,
+                            oldFirst == <span class="hljs-keyword">null</span> ? childrenTop : oldFirst.getTop());
+                } <span class="hljs-keyword">else</span> {
+                    sel = fillSpecific(<span class="hljs-number">0</span>, childrenTop);
+                }
+            }
+            <span class="hljs-keyword">break</span>;
+        }</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li><li>32</li><li>33</li><li>34</li><li>35</li><li>36</li><li>37</li><li>38</li><li>39</li><li>40</li><li>41</li><li>42</li><li>43</li><li>44</li><li>45</li><li>46</li><li>47</li><li>48</li><li>49</li><li>50</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li><li>32</li><li>33</li><li>34</li><li>35</li><li>36</li><li>37</li><li>38</li><li>39</li><li>40</li><li>41</li><li>42</li><li>43</li><li>44</li><li>45</li><li>46</li><li>47</li><li>48</li><li>49</li><li>50</li></ul></pre>
+
+<p>在该switch代码段中，会根据不同情况增删子View，这些方法的代码逻辑大部分最终调用了fillDown、fillUp等方法。 <br>
+fillDown用子View从指定的position自上而下填充ListView，fillUp则是自下而上填充，我们以fillDown方法为例详细说明。 <br>
+fillDown方法的源码如下所示：</p>
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering"><span class="hljs-keyword">private</span> View <span class="hljs-title">fillDown</span>(<span class="hljs-keyword">int</span> pos, <span class="hljs-keyword">int</span> nextTop) {
+    View selectedView = <span class="hljs-keyword">null</span>;
+
+    <span class="hljs-comment">//end表示ListView的高度</span>
+    <span class="hljs-keyword">int</span> end = (mBottom - mTop);
+    <span class="hljs-keyword">if</span> ((mGroupFlags &amp; CLIP_TO_PADDING_MASK) == CLIP_TO_PADDING_MASK) {
+        end -= mListPadding.bottom;
+    }
+
+    <span class="hljs-comment">//nextTop &lt; end确保了我们只要将新增的子View能够覆盖ListView的界面就可以了</span>
+    <span class="hljs-comment">//pos &lt; mItemCount确保了我们新增的子View在Adapter中都有对应的数据源item</span>
+    <span class="hljs-keyword">while</span> (nextTop &lt; end &amp;&amp; pos &lt; mItemCount) {
+        <span class="hljs-comment">// is this the selected item?</span>
+        <span class="hljs-keyword">boolean</span> selected = pos == mSelectedPosition;
+        View child = makeAndAddView(pos, nextTop, <span class="hljs-keyword">true</span>, mListPadding.left, selected);
+        <span class="hljs-comment">//将最新child的bottom值作为下一个child的top值，存储在nextTop中</span>
+        nextTop = child.getBottom() + mDividerHeight;
+        <span class="hljs-keyword">if</span> (selected) {
+            selectedView = child;
+        }
+        <span class="hljs-comment">//position自增</span>
+        pos++;
+    }
+
+    setVisibleRangeHint(mFirstPosition, mFirstPosition + getChildCount() - <span class="hljs-number">1</span>);
+    <span class="hljs-keyword">return</span> selectedView;
+}</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li></ul></pre>
+
+<ul><li><p>fillDown接收两个参数，pos表示列表中第一个要绘制的item的position，其对应着Adapter中的索引，nextTop表示第一个要绘制的item在ListView中实际的位置，    即该item所对应的子View的顶部到ListView的顶部的像素数。</p></li>
+<li><p>首先将mBottom - mTop的值作为end，end表示ListView的高度。</p></li>
+<li><p>然后在while循环中添加子View，我们先不看while循环的具体条件，先看一下循环体。在循环体中，将pos和nextTop传递给makeAndAddView方法，该方法返回一个View作为child，该方法会创建View，并把该View作为child添加到ListView的children数组中。</p></li>
+<li><p>然后执行nextTop = child.getBottom() + mDividerHeight，child的bottom值表示的是该child的底部到ListView顶部的距离，将该child的bottom作为下一个child的top，也就是说nextTop一直保存着下一个child的top值。</p></li>
+<li><p>最后调用pos++实现position指针下移。现在我们回过头来看一下while循环的条件while (nextTop &lt; end &amp;&amp; pos &lt; mItemCount)。</p></li>
+<li><p>nextTop &lt; end确保了我们只要将新增的子View能够覆盖ListView的界面就可以了，比如ListView的高度最多显示10个子View，我们没必要向ListView中加入11个子View。</p></li>
+<li><p>pos &lt; mItemCount确保了我们新增的子View在Adapter中都有对应的数据源item，比如ListView的高度最多显示10个子View，但是我们Adapter中一共才有5条数据，这种情况下只能向ListView中加入5个子View，从而不能填充满ListView的全部高度。</p></li></ul></li>
+</ol>
+
+<p>经过了上面的while循环之后，ListView对子View的增删就完成了，即children中存放的就是要在后面绘图过程中即将渲染的子View的集合。</p>
+
+<p>上面while循环的方法体中调用了makeAndAddView方法，通过该方法会获得一个子View，并把该子View添加到ListView的children中。该方法的方法签名如下所示：</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering"><span class="hljs-keyword">private</span> View <span class="hljs-title">makeAndAddView</span>(<span class="hljs-keyword">int</span> position, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">boolean</span> flow, <span class="hljs-keyword">int</span> childrenLeft,
+            <span class="hljs-keyword">boolean</span> selected)</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li></ul></pre>
+
+<p>其源码如下所示：</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering"><span class="hljs-keyword">private</span> View <span class="hljs-title">makeAndAddView</span>(<span class="hljs-keyword">int</span> position, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">boolean</span> flow, <span class="hljs-keyword">int</span> childrenLeft,
+            <span class="hljs-keyword">boolean</span> selected) {
+        View child;
+
+
+        <span class="hljs-keyword">if</span> (!mDataChanged) {
+            <span class="hljs-comment">// 如果数据源没发生变化，那么尝试用该position从RecycleBin的mActiveViews中获取可复用的View</span>
+            child = mRecycler.getActiveView(position);
+            <span class="hljs-keyword">if</span> (child != <span class="hljs-keyword">null</span>) {
+                <span class="hljs-comment">// 如果child 不为空，说明我们找到了一个已经存在的child，这样mActiveViews中存储的View就被直接复用了</span>
+                <span class="hljs-comment">// 调用setupChild，对child进行定位</span>
+                setupChild(child, position, y, flow, childrenLeft, selected, <span class="hljs-keyword">true</span>);
+
+                <span class="hljs-keyword">return</span> child;
+            }
+        }
+
+        <span class="hljs-comment">// 如果没能够从mActivieViews中直接复用View，那么就要调用obtainView方法获取View，该方法尝试间接复用RecycleBin中的mScrapViews中的View，如果不能间接复用，则创建新的View</span>
+        child = obtainView(position, mIsScrap);
+
+        <span class="hljs-comment">// 调用setupChild方法，进行定位和量算</span>
+        setupChild(child, position, y, flow, childrenLeft, selected, mIsScrap[<span class="hljs-number">0</span>]);
+
+        <span class="hljs-keyword">return</span> child;
+    }</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li></ul></pre>
+
+<p>我们重点说一下前两个参数position和y，position表示的是数据源item在Adapter中的索引，y表示要生成的View的top值或bottom值。如果第三个参数flow是true，那么y表示top值，否则表示bottom值。</p>
+
+<ul>
+<li><p>如果数据源没发生变化，那么尝试用该position从RecycleBin的mActiveViews中获取可复用的View。RecycleBin的getActiveView方法接收一个position参数，可以在RecycleBin的mActiveViews数组中查找有没有对应position的View，如果能找到就可以直接复用该View作为child了。举一个例子，假设在某一时刻ListView中显示了10个子View，position依次为从0到9。然后我们手指向上滑动，且向上滑动了一个子View的高度，ListView需要绘制下一帧。这时候ListView在layoutChildren方法中把这10个子View都放入到了RecycleBin的mActiveViews数组中了，然后清空了children数组，然后调用fillDown方法，向ListView中依次添加position1到10的子View，在添加position为1的子View的时候，由于在上一帧中position为1的子View已经被放到mActiveViews数组中了，这次直接可以将其从mActiveViews数组中取出来，<strong>这样就是直接复用子View，所以说RecycleBin的mActiveViews数组主要是用于直接复用的</strong>。</p>
+
+<p>在直接复用了子View后，我们需要调用setupChild方法，该方法会将child添加到ListView的children数组中，并对child进行定位。</p></li>
+<li><p>如果没能够从mActivieViews中直接复用View，那么就要调用obtainView方法获取View，该方法尝试间接复用RecycleBin中的mScrapViews中的View，如果不能间接复用，则创建新的View。</p>
+
+<p>在通过obtainView获取了View之后，调用setupChild方法，该方法会将child添加到ListView的children数组中，并对child进行定位和量算。</p></li>
+</ul>
+
+<p>下面我们再来看一下obtainView方法，该方法的方法签名如下所示：</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering">View obtainView(<span class="hljs-keyword">int</span> position, <span class="hljs-keyword">boolean</span>[] isScrap)</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li></ul></pre>
+
+<p>该方法接收position参数，其关键的源码有以下两行：</p>
+
+
+
+<pre class="prettyprint" name="code"><code class="hljs java has-numbering"><span class="hljs-keyword">final</span> View scrapView = mRecycler.getScrapView(position);
+<span class="hljs-keyword">final</span> View child = mAdapter.getView(position, scrapView, <span class="hljs-keyword">this</span>);</code><ul class="pre-numbering" style="opacity: 0;"><li>1</li><li>2</li></ul><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/save_snippets.png"></a></div><ul class="pre-numbering"><li>1</li><li>2</li></ul></pre>
+
+<p>通过调用RecycleBin的getScrapView方法，从mScrapViews数组中获取一个View，该View是用来间接复用的，该View可能为null，也可能不为null，将其作为我们熟悉的convertView传递给Adapter的getView方法，这样我们就可以在AdapterView的getView方法中通过判断convertView是否为空进行间接复用了。</p>
+
+<p>希望本文对大家理解ListView的RecycleBin机制有所帮助！</p>
+
+<p>相关阅读： <br>
+<a href="http://blog.csdn.net/iispring/article/details/47690011" target="_blank">我的Android博文整理汇总</a> <br>
+<a href="http://blog.csdn.net/iispring/article/details/50793455" target="_blank">使用详解及源码解析Android中的Adapter、BaseAdapter、ArrayAdapter、SimpleAdapter和SimpleCursorAdapter</a></p></div>
+        <script type="text/javascript">
+            $(function () {
+                $('pre.prettyprint code').each(function () {
+                    var lines = $(this).text().split('\n').length;
+                    var $numbering = $('<ul></ul>').addClass('pre-numbering').hide();
+                    $(this).addClass('has-numbering').parent().append($numbering);
+                    for (i = 1; i <= lines; i++) {
+                        $numbering.append($('<li></li>').text(i));
+                    };
+                    $numbering.fadeIn(1700);
+                });
+            });
+        </script>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad bdshare-button-style0-16" style="float: right;" data-mod="popu_172" data-bd-bind="1500252847206">
+<a href="http://blog.csdn.net/iispring/article/details/50967445#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important" target="_blank"></a>
+<a href="http://blog.csdn.net/iispring/article/details/50967445#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" style="background-position:0 -52px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/iispring/article/details/50967445#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" style="background-position:0 -104px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/iispring/article/details/50967445#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博" style="background-position:0 -260px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/iispring/article/details/50967445#" class="bds_renren" data-cmd="renren" title="分享到人人网" style="background-position:0 -208px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/iispring/article/details/50967445#" class="bds_weixin" data-cmd="weixin" title="分享到微信" style="background-position:0 -1612px !important" target="_blank"></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   
+
+<!--172.16.140.13-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/bds_s_v2.js.下载"></script>
+
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+
+
+ 
+
+
+        <div id="digg" articleid="50967445">
+            <dl id="btnDigg" class="digg digg_disable" onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>8</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable" onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" target="_blank">&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" target="_blank">&nbsp;</a></div>
+    <script type="text/javascript">
+                function btndigga() {
+                    $(".tracking-ad[data-mod='popu_222'] a").click();
+                }
+                function btnburya() {
+                    $(".tracking-ad[data-mod='popu_223'] a").click();
+                }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;]);location.href=&#39;http://blog.csdn.net/sunqunsunqun/article/details/50793455&#39;;">上一篇</span><a href="http://blog.csdn.net/sunqunsunqun/article/details/50793455" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;])">使用详解及源码解析Android中的Adapter、BaseAdapter、ArrayAdapter、SimpleAdapter和SimpleCursorAdapter</a></li>
+                <li class="next_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;]);location.href=&#39;http://blog.csdn.net/sunqunsunqun/article/details/51127013&#39;;">下一篇</span><a href="http://blog.csdn.net/sunqunsunqun/article/details/51127013" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;])">无需Root实现Android手机屏幕流畅投影到电脑进行演示（附软件下载）</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+            <div class="similar_article">
+                    <h4></h4>
+                    <div class="similar_c" style="margin:20px 0px 0px 0px">
+                        <div class="similar_c_t">
+                          &nbsp;&nbsp;相关文章推荐
+                        </div>
+                   
+                        <div class="similar_wrap tracking-ad" data-mod="popu_36">                       
+                            <ul class="similar_list fl">    
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/xu_mengmeng/article/details/48543935" title="Android ListView工作原理完全解析，带你从源码的角度彻底理解" strategy="BlogCommendFromCsdn" target="_blank">Android ListView工作原理完全解析，带你从源码的角度彻底理解</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://baobaoupup.iteye.com/blog/1781820" title="android源码解析--ListView（上）" strategy="BlogCommendFromCsdn" target="_blank">android源码解析--ListView（上）</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://shangxun.iteye.com/blog/2122335" title="Android中的观察者模式的应用----ListView的源码解析" strategy="BlogCommendFromCsdn" target="_blank">Android中的观察者模式的应用----ListView的源码解析</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/github_34224676/article/details/50984897" title="Android ListView工作原理完全解析，带你从源码的角度彻底理解，androidlistview" strategy="BlogCommendFromCsdn" target="_blank">Android ListView工作原理完全解析，带你从源码的角度彻底理解，androidlistview</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://lxq-xsyu.iteye.com/blog/1990477" title="Android事件分发机制完全解析，带你从源码的角度彻底理解(上)" strategy="BlogCommendFromCsdn" target="_blank">Android事件分发机制完全解析，带你从源码的角度彻底理解(上)</a>
+                                   </li>
+                            </ul>
+                              <ul class="similar_list fr">      
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/hfyd_/article/details/53768690" title="安卓5.1源码解析 : ListView解析 从绘制,刷新机制到Item的回收机制全面讲解" strategy="BlogCommendFromCsdn" target="_blank">安卓5.1源码解析 : ListView解析 从绘制,刷新机制到Item的回收机制全面讲解</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/markZhangZQ/article/details/70238153" title="android listview工作原理的解析，带你到源码角度理解" strategy="BlogCommendFromCsdn" target="_blank">android listview工作原理的解析，带你到源码角度理解</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://810364804.iteye.com/blog/2120115" title="Android View 事件分发机制 源码解析 （上）" strategy="BlogCommendFromCsdn" target="_blank">Android View 事件分发机制 源码解析 （上）</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/wdx_1136346879/article/details/52953718" title="Listview 的RecycleBin  机制" strategy="BlogCommendFromCsdn" target="_blank">Listview 的RecycleBin  机制</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/ahubenkui/article/details/52130076" title="ListView 中的 RecycleBin 机制" strategy="BlogCommendFromCsdn" target="_blank">ListView 中的 RecycleBin 机制</a>
+                                   </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>   
+      
+</div>
+
+
+<div id="suggest">
+        <div class="mod_more_detail clearfix" style="margin-top:80px;">
+                                <h2 class="mod_more_detail_title">
+                                    <div class="mod_more_detail_left">我的更多文章</div>
+                                </h2>
+
+                                <div class="mod_more_detail_content clearfix " id="mod_more_detail_content">     
+                                                     
+                                    <div class="mod_more_detail_content_left clearfix">                                       
+<li><a href="http://blog.csdn.net/iispring/article/details/47690011" target="_blank">我的Android博文整理汇总  (2015-08-16 00:20:45)</a></li>                               </div>
+
+                                    <div class="mod_more_detail_content_right clearfix">
+                                                                  <li>
+                                                                     <a href="http://blog.csdn.net/iispring/article/details/50793455" target="_blank">使用详解及源码解析Android中的Adapter、BaseAdapter、ArrayAdapter、SimpleAdapter和SimpleCursorAdapter  ( 2016-03-06 00:22:19 )</a>
+                                                                 </li>
+                                         </div>
+                                </div>
+           </div>                                            
+
+</div>
+         <script language="javascript" type="text/javascript">     
+             $(function(){
+                 $.get("/sunqunsunqun/svc/GetSuggestContent/50967445",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+        <dl class="blog-ass-articl tracking-ad" id="res-relatived" data-mod="popu_84"> 
+             <dt><span>猜你在找</span></dt>    
+           
+    
+           
+
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/46" title="机器学习之概率与统计推断" strategy="undefined" target="_blank">机器学习之概率与统计推断</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/49" title="机器学习之数学基础" strategy="undefined" target="_blank">机器学习之数学基础</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/48" title="机器学习之凸优化" strategy="undefined" target="_blank">机器学习之凸优化</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/47" title="机器学习之矩阵" strategy="undefined" target="_blank">机器学习之矩阵</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/detail/421" title="响应式布局全新探索" strategy="undefined" target="_blank">响应式布局全新探索</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/detail/426" title="探究Linux的总线、设备、驱动模型" strategy="undefined" target="_blank">探究Linux的总线、设备、驱动模型</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/detail/422" title="深度学习基础与TensorFlow实践" strategy="undefined" target="_blank">深度学习基础与TensorFlow实践</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/45" title="深度学习之神经网络原理与实战技巧" strategy="undefined" target="_blank">深度学习之神经网络原理与实战技巧</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/43" title="前端开发在线峰会" strategy="undefined" target="_blank">前端开发在线峰会</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/44" title="TensorFlow实战进阶：手把手教你做图像识别应用" strategy="undefined" target="_blank">TensorFlow实战进阶：手把手教你做图像识别应用</a>
+                        </dd>
+        </dl>
+
+
+
+
+            
+                                    
+            
+                                    
+
+        <!-- 广告位开始 -->
+        <!-- 广告位结束 -->
+
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list"><dl class="comment_item comment_topic" id="comment_item_6595131"><dt class="comment_head" floor="8">8楼 <span class="user"><a class="username" href="http://blog.csdn.net/coder_nice" target="_blank">coder_nice</a> <span class="ptime">2017-02-10 11:37发表</span>  <a href="http://blog.csdn.net/iispring/article/details/50967445#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6595131" username="coder_nice"> <a href="http://blog.csdn.net/iispring/article/details/50967445#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/iispring/article/details/50967445#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/coder_nice" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/3_coder_nice.jpg" width="40" height="40"></a></dd><dd class="comment_body">例子，假设在某一时刻ListView中显示了10个子View，position依次为从0到9。然后我们手指向上滑动，且向上滑动了一个子View的高度，ListView需要绘制下一帧。这时候ListView在layoutChildren方法中把这10个子View都放入到了RecycleBin的mActiveViews数组中了，然后清空了children数组，然后调用fillDown方法，向ListView中依次添加position1到10的子View，在添加position为1的子View的时候，由于在上一帧中position为1的子View已经被放到mActiveViews数组中了，这次直接可以将其从mActiveViews数组中取出来，这样就是直接复用子View，所以说RecycleBin的mActiveViews数组主要是用于直接复用的。<br><br><br>这段话有错误吧，不会全部清空，只会把滑出屏幕的view清掉，还存在屏幕上的view只会发生偏移，不会清掉后重新添加的吧</dd><dl class="comment_item comment_reply" id="comment_item_6595226"><dt class="comment_head" floor="8">Re: <span class="user"><a class="username" href="http://blog.csdn.net/sunqunsunqun" target="_blank">孙群</a> <span class="ptime">2017-02-10 12:20发表</span>  <a href="http://blog.csdn.net/iispring/article/details/50967445#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6595226" username="sunqunsunqun"> <a href="http://blog.csdn.net/iispring/article/details/50967445#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/iispring/article/details/50967445#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/sunqunsunqun" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/3_sunqunsunqun.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复coder_nice：可以仔细读读我写的整段话</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_6465645"><dt class="comment_head" floor="7">7楼 <span class="user"><a class="username" href="http://blog.csdn.net/u011074392" target="_blank">程序员阿杰</a> <span class="ptime">2016-12-06 16:25发表</span>  <a href="http://blog.csdn.net/iispring/article/details/50967445#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6465645" username="u011074392"> <a href="http://blog.csdn.net/iispring/article/details/50967445#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/iispring/article/details/50967445#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u011074392" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/3_u011074392.jpg" width="40" height="40"></a></dd><dd class="comment_body">大神好，小弟膜拜。。。</dd></dl><dl class="comment_item comment_topic" id="comment_item_6141704"><dt class="comment_head" floor="6">6楼 <span class="user"><a class="username" href="http://blog.csdn.net/loveniy" target="_blank">瓦力668</a> <span class="ptime">2016-07-23 09:48发表</span>  <a href="http://blog.csdn.net/iispring/article/details/50967445#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6141704" username="loveniy"> <a href="http://blog.csdn.net/iispring/article/details/50967445#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/iispring/article/details/50967445#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/loveniy" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/3_loveniy.jpg" width="40" height="40"></a></dd><dd class="comment_body">多谢</dd></dl><dl class="comment_item comment_topic" id="comment_item_5982007"><dt class="comment_head" floor="5">5楼 <span class="user"><a class="username" href="http://blog.csdn.net/qw345" target="_blank">qw345</a> <span class="ptime">2016-04-13 18:15发表</span>  <a href="http://blog.csdn.net/iispring/article/details/50967445#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5982007" username="qw345"> <a href="http://blog.csdn.net/iispring/article/details/50967445#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/iispring/article/details/50967445#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qw345" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/3_qw345.jpg" width="40" height="40"></a></dd><dd class="comment_body">终于对ListView机制有点理解了</dd></dl><dl class="comment_item comment_topic" id="comment_item_5980869"><dt class="comment_head" floor="4">4楼 <span class="user"><a class="username" href="http://blog.csdn.net/zhengzhe1991325" target="_blank">zhengzhe1991325</a> <span class="ptime">2016-04-12 22:48发表</span>  <a href="http://blog.csdn.net/iispring/article/details/50967445#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5980869" username="zhengzhe1991325"> <a href="http://blog.csdn.net/iispring/article/details/50967445#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/iispring/article/details/50967445#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/zhengzhe1991325" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/3_zhengzhe1991325.jpg" width="40" height="40"></a></dd><dd class="comment_body">我师傅的，说的就是好，</dd></dl><dl class="comment_item comment_topic" id="comment_item_5975616"><dt class="comment_head" floor="3">3楼 <span class="user"><a class="username" href="http://blog.csdn.net/BobyApk" target="_blank">BobyApk</a> <span class="ptime">2016-04-08 22:48发表</span>  <a href="http://blog.csdn.net/iispring/article/details/50967445#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5975616" username="BobyApk"> <a href="http://blog.csdn.net/iispring/article/details/50967445#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/iispring/article/details/50967445#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/BobyApk" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/3_bobyapk.jpg" width="40" height="40"></a></dd><dd class="comment_body">棒棒哒,</dd></dl><dl class="comment_item comment_topic" id="comment_item_5974385"><dt class="comment_head" floor="2">2楼 <span class="user"><a class="username" href="http://blog.csdn.net/briblue" target="_blank">frank909</a> <span class="ptime">2016-04-08 09:39发表</span>  <a href="http://blog.csdn.net/iispring/article/details/50967445#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5974385" username="briblue"> <a href="http://blog.csdn.net/iispring/article/details/50967445#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/iispring/article/details/50967445#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/briblue" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/3_briblue.jpg" width="40" height="40"></a></dd><dd class="comment_body">讲得非常好，赞一个。如果不是把RecycleBin单独提出来的话，ListView与AbsListView的代码会把人的脑袋看晕。</dd><dl class="comment_item comment_reply" id="comment_item_5974414"><dt class="comment_head" floor="2">Re: <span class="user"><a class="username" href="http://blog.csdn.net/sunqunsunqun" target="_blank">孙群</a> <span class="ptime">2016-04-08 09:55发表</span>  <a href="http://blog.csdn.net/iispring/article/details/50967445#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5974414" username="sunqunsunqun"> <a href="http://blog.csdn.net/iispring/article/details/50967445#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/iispring/article/details/50967445#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/sunqunsunqun" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/3_sunqunsunqun.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复frank909：谢谢，多多交流！</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_5974383"><dt class="comment_head" floor="1">1楼 <span class="user"><a class="username" href="http://blog.csdn.net/briblue" target="_blank">frank909</a> <span class="ptime">2016-04-08 09:38发表</span>  <a href="http://blog.csdn.net/iispring/article/details/50967445#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5974383" username="briblue"> <a href="http://blog.csdn.net/iispring/article/details/50967445#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/iispring/article/details/50967445#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/briblue" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/3_briblue.jpg" width="40" height="40"></a></dd><dd class="comment_body">讲得非常好，赞一个。如果不是把RecycleBin单独提出来的话，ListView与AbsListView的代码会把人的脑袋看晕。</dd></dl><div class="clear"></div></div>
+    <div id="comment_bar" style="display: none;">
+    </div>
+    <div id="comment_form"><div class="guest_link">您还没有登录,请<a href="javascript:void(0);" onclick="javascript:loginbox();">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Fiispring%2Farticle%2Fdetails%2F50967445">[注册]</a></div></div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '50967445';
+    var commentscount = 10;
+    var islock = false
+</script>
+
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top" style="bottom:60px;">
+
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/blog-icon-reply.png" alt="快速回复">
+        </a>    
+    <a id="d-top-a" class="btn btn-top backtop" style="display: none;" title="返回顶部" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_huidaodingbu&#39;])">         
+         <img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){        
+        
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+    var articletitle='源码解析ListView中的RecycleBin机制';
+
+</script>
+
+
+
+
+
+
+
+
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+               
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/sunqunsunqun" target="_blank">
+    <img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/1_sunqunsunqun.jpg" title="访问我的空间" style="max-width:90%">
+    </a>
+    <br>
+    <span><a href="http://my.csdn.net/sunqunsunqun" class="user_name" target="_blank">孙群</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter" title="[发私信]" onclick="window.open(&#39;http://msg.csdn.net/letters/model?receiver=sunqunsunqun&#39;,&#39;_blank&#39;,&#39;height=350,width=700&#39;);_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_sixin&#39;])"></a>  
+</div>
+<div id="blog_medal">
+                       <div class="ico_expert" onclick="javascript:location=&#39;http://blog.csdn.net/experts/rule.html&#39;" title="CSDN认证专家" style="cursor:pointer;width:60px;height:60px;background:url(&#39;http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/bokezhuanjiamiddle.png&#39;) no-repeat"></div>
+                <div id="bms_box">
+                                            <a target="_blank">
+                                                    <img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/zhuanlandaren.png" onmouseover="m_over_m(this,2)" onmouseout="m_out_m()" alt="3">
+                                            </a>
+                                            <a target="_blank">
+                                                    <img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/chizhiyiheng.png" onmouseover="m_over_m(this,4)" onmouseout="m_out_m()" alt="3">
+                                            </a>
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>916637次</span></li>
+    <li>积分：<span>9577</span> </li>    
+    <li>等级： <span style="position:relative;display:inline-block;z-index:1">
+            <img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/blog6.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：9577 </div>
+        </span>  </li>
+    <li>排名：<span>第1775名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>159篇</span></li>
+    <li>转载：<span>19篇</span></li>
+    <li>译文：<span>4篇</span></li>
+    <li>评论：<span>586条</span></li>
+</ul>
+</ul>
+</div>
+
+
+
+
+<div id="custom_column_21591691" class="panel">
+<ul class="panel_head"><span>我的GitHub</span></ul>
+<ul class="panel_body" style="text-align: center;">
+<a href="https://github.com/iSpring" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/20151027193644798"></a>
+<script type="text/javascript" src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/csdn.js.下载"></script>
+</ul>
+<a style="display:inline-block;color:#3d84b0;padding:15px;text-decoration:none;" target="_blank" href="https://github.com/iSpring/WebGlobe"><div><span class="repo-name" style="display:inline-block;height:24px;line-height:24px;vertical-align:middle;">WebGlobe</span><iframe class="star-badge" src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/github-btn.html" frameborder="0" scrolling="0" width="100px" height="20px" style="vertical-align:middle;margin-left:20px;"></iframe></div><div class="repo-description">基于HTML5原生WebGL实现的轻量级Google Earth三维地图引擎</div></a><a style="display:inline-block;color:#3d84b0;padding:15px;text-decoration:none;" target="_blank" href="https://github.com/iSpring/GamePlane"><div><span class="repo-name" style="display:inline-block;height:24px;line-height:24px;vertical-align:middle;">GamePlane</span><iframe class="star-badge" src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/github-btn(1).html" frameborder="0" scrolling="0" width="100px" height="20px" style="vertical-align:middle;margin-left:20px;"></iframe></div><div class="repo-description">基于Android的仿微信打飞机游戏</div></a><a style="display:inline-block;color:#3d84b0;padding:15px;text-decoration:none;" target="_blank" href="https://github.com/iSpring/babel-webpack-react-redux-tutorials"><div><span class="repo-name" style="display:inline-block;height:24px;line-height:24px;vertical-align:middle;">React技术栈教程</span><iframe class="star-badge" src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/github-btn(2).html" frameborder="0" scrolling="0" width="100px" height="20px" style="vertical-align:middle;margin-left:20px;"></iframe></div><div class="repo-description">React技术栈一站式系列教程，涉及React、Redux、Babel、Webpack等相关技术</div></a></div><div id="panel_Category" class="panel">
+    <ul class="panel_head"><span>博客专栏</span></ul>
+    <ul class="panel_body" id="sp_column">
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/14837.html" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/20170313143113985" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/14837.html" target="_blank">React技术栈系列教程</a>
+    <p>文章：0篇</p>
+    <span>阅读：0</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/webgl3d.html" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/20160428132920491" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/webgl3d.html" target="_blank">原生WebGL开发</a>
+    <p>文章：18篇</p>
+    <span>阅读：84158</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/android-custom-view.html" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/20151123180537645" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/android-custom-view.html" target="_blank">Android自定义View</a>
+    <p>文章：14篇</p>
+    <span>阅读：140816</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/android-source-code.html" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/20160217230923845" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/android-source-code.html" target="_blank">Android源码解析</a>
+    <p>文章：13篇</p>
+    <span>阅读：88273</span>
+    </td>
+    </tr></tbody></table>
+    </ul>
+</div><div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search csdn-tracking-statistics" target="_blank" data-mod="popu_306">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+   
+    $(function () {
+        $("#btnSubmit").unbind("click");
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {           
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            if ($("#inputSearch").val() == "") {               
+                alert("请录入搜索关键词！");                         
+                return false;
+            }
+            //var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";           
+            var url = "https://www.baidu.com/s?wd=" + encodeURIComponent($("#inputSearch").val()) + "%20site%3Ablog.csdn.net"
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="http://blog.csdn.net/sunqunsunqun/article/category/1066576" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android</a><span>(48)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunqunsunqun/article/category/1708981" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Java</a><span>(9)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunqunsunqun/article/category/1063397" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">OpenGL</a><span>(15)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunqunsunqun/article/category/1174505" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">OpenGL ES</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunqunsunqun/article/category/1174504" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">WebGL</a><span>(25)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunqunsunqun/article/category/1085733" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Web</a><span>(30)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunqunsunqun/article/category/1164471" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">GIS</a><span>(38)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunqunsunqun/article/category/1066587" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">3D</a><span>(25)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunqunsunqun/article/category/1066588" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Silverlight</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunqunsunqun/article/category/1066586" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Flex</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunqunsunqun/article/category/1066577" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">C++</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunqunsunqun/article/category/1775077" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Linux</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunqunsunqun/article/category/2151991" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Tools</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/sunqunsunqun/article/category/1343377" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">生活</a><span>(3)</span>
+                </li>
+</ul>
+</div>
+
+<div id="custom_column_21384506" class="panel">
+<ul class="panel_head"><span>链接</span></ul>
+<ul class="panel_body">
+<a href="https://developer.mozilla.org/en-US/docs/Web" target="_blank">MDN</a><br>
+<a href="https://github.com/thejameskyle/babel-handbook/blob/master/translations/zh-Hans/README.md" target="_blank">Babel</a><br>
+<a href="https://facebook.github.io/react/docs/installation.html" target="_blank">React</a><br>
+<a href="http://redux.js.org/docs/introduction/index.html" target="_blank">Redux</a><br>
+<a href="https://facebook.github.io/react-native/docs/getting-started.html" target="_blank">React Native</a><br>
+<a href="http://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">TypeScript</a><br>
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API" target="_blank">MDN WebGL API</a><br>
+<a href="https://developers.google.com/web/fundamentals/" target="_blank">Google Web Fundamentals</a><br>
+<a href="http://www.khronos.org/registry/webgl/specs/1.0/" target="_blank">WebGL 1.0 Specification</a><br>
+<a href="http://www.opengl.org/sdk/docs/man/" target="_blank">OpenGL API</a><br>
+<a href="https://www.opengl.org/wiki/OpenGL_Shading_Language" target="_blank">OpenGL Shading Language</a><br>
+<a href="http://developer.android.com/reference/packages.html" target="_blank">Android API</a><br>
+<a href="https://github.com/android/platform_frameworks_base/tree/master/core/java/android" target="_blank">Android Source Code</a><br>
+<a href="http://www.khronos.org/opengles/sdk/docs/man/" target="_blank">OpenGL ES 2.0 API</a><br>
+<a href="http://blog.csdn.net/column/details/apidemoopengl.html" target="_blank">Android OpenGL ES 教程</a><br>
+</ul>
+</div><div id="hotarticls" class="panel tracking-ad" data-mod="popu_340">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/iispring/article/details/51127013" title="无需Root实现Android手机屏幕流畅投影到电脑进行演示（附软件下载）" target="_blank">无需Root实现Android手机屏幕流畅投影到电脑进行演示（附软件下载）</a><span>(124322)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iispring/article/details/51474529" title="Android中HttpURLConnection使用详解" target="_blank">Android中HttpURLConnection使用详解</a><span>(29063)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iispring/article/details/51661195" title="Okhttp使用详解" target="_blank">Okhttp使用详解</a><span>(24294)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iispring/article/details/49770651" title="Android中Canvas绘图基础详解（附源码下载）" target="_blank">Android中Canvas绘图基础详解（附源码下载）</a><span>(22611)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iispring/article/details/7703295" title="WebGL+ArcGIS JS API实现Web城市地下管线三维场景浏览" target="_blank">WebGL+ArcGIS JS API实现Web城市地下管线三维场景浏览</a><span>(20432)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iispring/article/details/8023319" title="node不是内部或外部命令" target="_blank">node不是内部或外部命令</a><span>(19501)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iispring/article/details/51615631" title="HTTPS理论基础及其在Android中的最佳实践" target="_blank">HTTPS理论基础及其在Android中的最佳实践</a><span>(15972)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iispring/article/details/50472485" title="Android中Canvas绘图之PorterDuffXfermode使用及工作原理详解" target="_blank">Android中Canvas绘图之PorterDuffXfermode使用及工作原理详解</a><span>(15005)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iispring/article/details/51314039" title="Android中自定义View、ViewGroup理论基础详解" target="_blank">Android中自定义View、ViewGroup理论基础详解</a><span>(14233)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iispring/article/details/50967445" title="源码解析ListView中的RecycleBin机制" target="_blank">源码解析ListView中的RecycleBin机制</a><span>(12984)</span>
+</li>
+</ul>
+</div>
+<div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list"><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2017/05">2017年05月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2017/03">2017年03月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2016/09">2016年09月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2016/07">2016年07月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2016/06">2016年06月</a><span>(2)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2016/05">2016年05月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2016/04">2016年04月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2016/03">2016年03月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2016/02">2016年02月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2016/01">2016年01月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2015/12">2015年12月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2015/11">2015年11月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2015/10">2015年10月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2015/09">2015年09月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2015/08">2015年08月</a><span>(10)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2015/07">2015年07月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2015/06">2015年06月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2015/02">2015年02月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2014/09">2014年09月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2014/06">2014年06月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2014/05">2014年05月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2014/04">2014年04月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2014/03">2014年03月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2014/01">2014年01月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2013/12">2013年12月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2013/11">2013年11月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2013/10">2013年10月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2013/08">2013年08月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2013/07">2013年07月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2013/06">2013年06月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2013/05">2013年05月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2013/02">2013年02月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2013/01">2013年01月</a><span>(15)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2012/12">2012年12月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2012/11">2012年11月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2012/10">2012年10月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2012/09">2012年09月</a><span>(9)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2012/08">2012年08月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2012/07">2012年07月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2012/06">2012年06月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2012/05">2012年05月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2012/04">2012年04月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2012/02">2012年02月</a><span>(8)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2012/01">2012年01月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2011/12">2011年12月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2011/11">2011年11月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2011/10">2011年10月</a><span>(12)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2011/09">2011年09月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/sunqunsunqun/article/month/2009/10">2009年10月</a><span>(1)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+</ul>
+</div>
+<div id="hotarticls2" class="panel tracking-ad" data-mod="popu_341">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/iispring/article/details/50472485" title="Android中Canvas绘图之PorterDuffXfermode使用及工作原理详解" target="_blank">Android中Canvas绘图之PorterDuffXfermode使用及工作原理详解</a><span>(54)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iispring/article/details/49770651" title="Android中Canvas绘图基础详解（附源码下载）" target="_blank">Android中Canvas绘图基础详解（附源码下载）</a><span>(43)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iispring/article/details/47180325" title="深入源码解析Android中的Handler,Message,MessageQueue,Looper" target="_blank">深入源码解析Android中的Handler,Message,MessageQueue,Looper</a><span>(28)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iispring/article/details/7703295" title="WebGL+ArcGIS JS API实现Web城市地下管线三维场景浏览" target="_blank">WebGL+ArcGIS JS API实现Web城市地下管线三维场景浏览</a><span>(23)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iispring/article/details/51615631" title="HTTPS理论基础及其在Android中的最佳实践" target="_blank">HTTPS理论基础及其在Android中的最佳实践</a><span>(22)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iispring/article/details/9119735" title="WebGL自学课程(15):WebGL在WebGIS上的应用——WebGlobe" target="_blank">WebGL自学课程(15):WebGL在WebGIS上的应用——WebGlobe</a><span>(21)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iispring/article/details/8574673" title="一个GISer毕业半年的生活状态" target="_blank">一个GISer毕业半年的生活状态</a><span>(17)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iispring/article/details/50708044" title="Android中View自定义XML属性详解以及R.attr与R.styleable的区别" target="_blank">Android中View自定义XML属性详解以及R.attr与R.styleable的区别</a><span>(17)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iispring/article/details/51127013" title="无需Root实现Android手机屏幕流畅投影到电脑进行演示（附软件下载）" target="_blank">无需Root实现Android手机屏幕流畅投影到电脑进行演示（附软件下载）</a><span>(16)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/iispring/article/details/49403315" title="源码解析Android中View的measure量算过程" target="_blank">源码解析Android中View的measure量算过程</a><span>(15)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/blogdevteam/article/details/75086638" target="_blank">* CSDN日报20170713——《程序人生，终究是起承转合》</a></li>
+<li><a href="http://blog.csdn.net/jiangwei0910410003/article/details/74435238" target="_blank">* Android中免root的hook框架Legend原理解析</a></li>
+<li><a href="http://blog.csdn.net/briblue/article/details/75093382" target="_blank">* 轻松学，浅析依赖倒置（DIP）、控制反转(IOC)和依赖注入(DI)</a></li>
+<li><a href="http://blog.csdn.net/sileixinhua/article/details/75091365" target="_blank">* 谣言识别系统（Python）：爬虫（bs+rq）+数据处理（jieba分词）+分类器（贝叶斯）</a></li>
+<li><a href="http://blog.csdn.net/lmj623565791/article/details/75000580" target="_blank">* 滴滴插件化方案 VirtualApk 源码解析</a></li>
+<li><a href="http://blog.csdn.net/broadview2006/article/details/75036429" target="_blank">* 每周荐书：大数据、深度学习、架构（评论送书）</a></li>
+
+</ul></ul>
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="http://blog.csdn.net/iispring/article/details/50472485#comments">Android中Canvas绘图之PorterDuffXfermode使用及工作原理详解</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_28775501" class="user_name">qq_28775501</a>:
+谢谢楼主，帮我解惑．不过背景是绿色的有点尴尬，我一开始看ＳＲＣ＿ＯＵＴ的时候　以为中间交集的部分的绿...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/iispring/article/details/49770651#comments">Android中Canvas绘图基础详解（附源码下载）</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/Black_Mamba_code" class="user_name">Black_Mamba_code</a>:
+楼主我想实现一个画图工具，就是手指在屏幕上 滑动的时候就能出现固定的几个几何图形。几何图形是这样的，...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/iispring/article/details/49770651#comments">Android中Canvas绘图基础详解（附源码下载）</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/IT_luntan" class="user_name">IT_luntan</a>:
+楼主，请教一下，画折线图，下方如何填充颜色
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/iispring/article/details/50708044#comments">Android中View自定义XML属性详解以及R.attr与R.styleable的区别</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_30263589" class="user_name">FoolishDev</a>:
+我觉得作者对于&amp;lt;declare-styleable&amp;gt;理解有误，作者认为该标签的作用是可以...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/iispring/article/details/50708044#comments">Android中View自定义XML属性详解以及R.attr与R.styleable的区别</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/wallyone" class="user_name">wallyone</a>:
+高质量美文一篇，赞！！
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/iispring/article/details/47180325#comments">深入源码解析Android中的Handler,Message,MessageQueue,Looper</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_24469309" class="user_name">TripleZ_z</a>:
+感谢博主，真的写的非常好，思路很清晰。赞赞赞~~~
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/iispring/article/details/47180325#comments">深入源码解析Android中的Handler,Message,MessageQueue,Looper</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/allen252027913" class="user_name">allen252027913</a>:
+这图，无敌
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/iispring/article/details/50793455#comments">使用详解及源码解析Android中的Adapter、BaseAdapter、ArrayAdapter、SimpleAdapter和SimpleCursorAdapter</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/Mr_Choi" class="user_name">Mr_Choi</a>:
+博主 我想问一下 像上面Adapter 相关类的关系图你是用visio自己画的呢还是从哪里找的啊
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/iispring/article/details/50793455#comments">使用详解及源码解析Android中的Adapter、BaseAdapter、ArrayAdapter、SimpleAdapter和SimpleCursorAdapter</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/Mr_Choi" class="user_name">Mr_Choi</a>:
+博主 我想问一下 像上面Adapter 相关类的关系图你是用visio自己画的呢还是从哪里找的啊
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/iispring/article/details/50793455#comments">使用详解及源码解析Android中的Adapter、BaseAdapter、ArrayAdapter、SimpleAdapter和SimpleCursorAdapter</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/Mr_Choi" class="user_name">Mr_Choi</a>:
+博主 我想问一下 像上面Adapter 相关类的关系图你是用visio自己画的呢还是从哪里找的啊
+    </p>
+    </li>
+</ul>
+</div>
+
+
+<div id="custom_column_41358551" class="panel">
+<ul class="panel_head"><span>百度统计</span></ul>
+<ul class="panel_body">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?de6ea440436dc3a44d4ddfa686b4a87a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</ul>
+</div>    </div>
+    <div class="clear">
+    </div>
+
+
+           </div>   
+
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/login.js.下载"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div>
+      <!--new top-->
+    
+
+     
+
+   
+   
+     <!--new top-->
+   
+   
+
+    
+    
+    
+   
+
+   
+
+
+       <script type="text/javascript" src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/MathJax.js.下载"></script>
+          <script type="text/javascript">
+              //$(function () {
+              //    setTimeout(function () {
+              //        var searchtitletags = articletitle + ',' + $("#tags").html();
+              //        searchService({
+              //            index: 'blog',
+              //            query: searchtitletags,
+              //            from: 5,
+              //            size: 5,
+              //            appendTo: '#res',
+              //            url: 'recommend',
+              //            his: 2,
+              //            client: "blog_cf_enhance",
+              //            tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+              //        });
+              //    }, 1000);
+              //});
+
+         </script>
+    
+    <script src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/csdn_blog_detail.min.js.下载" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/pub_footer_2014.css"><div class="pub_fo"><div id="pub_footerall" class="pub_footer_new"><dl><dt></dt> <dd class="foot_sub_menu"><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a><span>|</span><a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a><span>|</span><a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a><span>|</span><a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a><span>|</span><a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a><span>|</span><a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a><span>|</span><a href="mailto:webmaster@csdn.net">问题报告</a><span>|</span><a target="_blank" href="http://www.csdn.net/friendlink.html">合作伙伴</a><span>|</span><a href="http://bbs.csdn.net/forums/Service" target="_blank">论坛反馈</a></dd><dd class="foot_contact"><a href="javascript:void(0);" target="_blank" class="qq">网站客服</a><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2251809102&amp;site=qq&amp;menu=yes" target="_blank" class="qq">杂志客服</a><a href="http://e.weibo.com/csdnsupport/profile" target="_blank" class="weibo">微博客服</a><a href="mailto:webmaster@csdn.net" class="email" title="联系邮箱">webmaster@csdn.net</a><span class="phone" title="服务热线">400-660-0108</span><span class="interval">|</span><span>北京创新乐知信息技术有限公司 版权所有</span><span class="interval">|</span><span>江苏知之为计算机有限公司</span><span class="interval">|</span><span>江苏乐知网络技术有限公司</span></dd><dd class="foot_copyright"><span>京&nbsp;ICP&nbsp;证&nbsp;09002463&nbsp;号</span><span class="interval">|</span><span>Copyright © 1999-2017, CSDN.NET, All Rights Reserved&nbsp;</span><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div></div><div id="note1" class="csdn_note" style="display:none; position:absolute; z-index:9999; width:440px">  <span class="notice_top_arrow"><span class="inner"></span></span>  <div class="box"></div></div><div class="csdn_notice_tip" style="display:none; position:absolute; z-index:9990; width:170px">  <iframe src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/saved_resource(2).html" frameborder="0" scrolling="no" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div class="tip_text">您有<strong>0</strong>条新通知</div>  <a href="javascript:void 0" class="close2"></a></div><script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/notify.js.下载"></script><input type="hidden" id="aa_g_data_ids">
+        
+    <script type="text/javascript" src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/csdn_public_blog_detail.min.js.下载"></script>
+
+    <script type="text/javascript" src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/showblogmedal.ashx"></script>
+
+     
+    
+
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334" src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/52b5334.js.下载"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+
+    
+    
+        
+     
+
+    
+          
+    <div class="pop_CA_cover" style="display:none"></div>
+    <div class="pop pop_CA" style="display:none">
+          <div class="CA_header">
+            收藏助手
+            <span class="cancel_icon" id="fapancle" onclick="$(&#39;.pop_CA&#39;).hide();$(&#39;.pop_CA_cover&#39;).hide();"></span>
+          </div>
+          <iframe src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/saved_resource(3).html" id="fa" frameborder="0" width="100%" height="360" scrolling="no"></iframe>
+    </div>
+
+
+        <script type="text/javascript">
+
+            $(function () {
+                var fromjs = $("#fromjs");
+                if (fromjs.length > 0) {
+                    $("#fromjs .markdown_views pre").addClass("prettyprint");
+                    prettyPrint();
+
+                    $('pre.prettyprint code').each(function () {
+                        var lines = $(this).text().split('\n').length;
+                        var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                        $(this).addClass('has-numbering').parent().append($numbering);
+                        for (i = 1; i <= lines; i++) {
+                            $numbering.append($('<li/>').text(i));
+                        };
+                        $numbering.fadeIn(1700);
+                    });
+
+                    $('.pre-numbering li').css("color", "#999");
+                }
+            });
+
+            $(".markdown_views a[target!='_blank']").attr("target", "_blank");
+
+            //$(".toc a[target='_blank']").attr("target", "");
+
+            setTimeout(function () {
+                $(".toc a[target='_blank']").attr("target", "");
+            }, 500);
+
+        </script>
+
+
+   
+<div id="tag-suggest-pop">
+  <div class="relative">
+    <div class="close"></div>
+    <div class="content"></div>
+  </div>
+</div><div id="mask_code"></div><div class="gist_edit"><div class="save_snippets clearfix"><div class="tit"><h3>保存代码片</h3><span>整理和分享保存的代码片，请访问<a href="https://code.csdn.net/snippets_manage" target="_blank">代码笔记</a></span></div><div class="con_form"><ul class="gist_edit_list clearfix"><li><span class="red">*</span><span class="txt">标题</span><input id="form_title" class="form-input" placeholder="源码解析ListView中的RecycleBin机制" type="text"></li><li><span class="red">*</span><span class="txt">描述</span><textarea id="form-textarea" class="form-textarea" placeholder="源码解析ListView中的RecycleBin机制： http://blog.csdn.net/iispring/article/details/50967445"></textarea></li><li><span class="red">&nbsp;</span><span class="txt">标签</span><div id="divSearchTags"><span class="label blog_tag"><span>ListView</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>RecycleBin</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>源码解析</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>Android</span><a title="Removing tag" href="javascript:;">x</a></span><input id="insertTag" class="insertTag" placeholder="请输入标签，按Enter生成(最多5项)" type="text" value="" name="insertTag" maxlength="21" style="color: rgb(51, 51, 51);"><input id="OrganTag" class="OrganTag" type="hidden" name="OrganTag" value="ListView,RecycleBin,源码解析,Android,"><input id="OldOrganTag" class="OldOrganTag" type="hidden" name="OldOrganTag" value=""><input type="hidden" name="txtSearchTags"></div></li></ul></div><div class="bottom-bar"><a href="javascript:;" class="btn-submit btn-cancel">取消</a><span class="tracking-ad" data-mod="popu_250"><a class="btn-submit btn-confirm" href="javascript:;" target="_blank">确定</a></span></div></div></div><link rel="stylesheet" type="text/css" media="screen" href="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/ask_float_fonts_css-6b30a53970eb5c3a2a045e3df585b475.css"><div data-mod="popu_64" class="csdn-tracking-statistics" chg-blk="0"><a id="com-quick-QRcode" class="QRcodebg1" title="扫描二维码" style="top:227px"><span class="closeQR"></span></a><a id="com-quick-reply" title="快速回复" style="top:361px"></a><a id="com-quick-collect" title="我要收藏" style="top:399px"></a><a id="com-d-top-a" style="top: 437px; display: inline;" title="返回顶部" onclick=""></a></div><div class="pop_edit ask_second comm_ask_second"><h3>提问</h3><span class="ask_float_span">您的问题将会被发布在“<a class="ask_float_channel" href="http://ask.csdn.net/" target="_blank" style="cursor:pointer">技术问答</a>”频道</span><a href="http://blog.csdn.net/iispring/article/details/50967445#" nodetype="close" class="close">×</a><div class="context"><div class="err_div"><span class="err_ico"></span><span class="err_txt">该问题已存在，请勿重复提问</span></div><div class="input_div"><input id="askInputSecond" type="text" style="font-size:14px;" placeholder="问题标题"></div><div class="cm_box"><div class="cm_dialog"></div> <div class="pop_cm cm_add_link"><input type="text" placeholder="链接内容" id="af_cm_link_txt"><input type="text" placeholder="链接地址" id="af_cm_link_url"><input type="text" placeholder="链接提示" id="af_cm_link_tit"><div class="text-right"><span class="btn btn-default btn-sm" id="add_link_btn">插入链接</span> </div> </div><div class="pop_cm cm_add_img"><div class="nav-tabs"><a class="img_tab active" href="http://blog.csdn.net/iispring/article/details/50967445#tab_upload">本地上传</a><a class="img_tab" href="http://blog.csdn.net/iispring/article/details/50967445#tab_weburl">网络图片</a></div><div class="tab_panel active" id="tab_upload"><div class="set_img"><iframe src="./源码解析ListView中的RecycleBin机制 - 孙群 - CSDN博客_files/upload.html"></iframe></div></div><div class="tab_panel" id="tab_weburl"><input type="text" placeholder="图片地址" id="af_cm_img_url"><input type="text" placeholder="图片说明" id="af_cm_img_alt"><div class="text-right"><span class="btn btn-default btn-sm" id="add_img_btn">插入图片</span> </div></div> </div></div> <textarea id="editor_all" rows="8" style="display: none;"></textarea><div class="editor-toolbar"><i class="separator">|</i><a class="icon-headline" title="标题一（Ctrl+Alt+1）"></a><a class="icon-heading" title="标题二（Ctrl+Alt+2）"></a><a class="icon-bold" title="粗体（Ctrl+B）"></a><a class="icon-italic" title="斜体（Ctrl+I）"></a><i class="separator">|</i><a class="icon-quote-left" title="引用（Ctrl+’）"></a><a class="icon-code" title="插入代码片（Ctrl+,）"></a><a class="icon-list-ul" title="无序列表（Ctrl+L）"></a><a class="icon-list-ol" title="有序列表（Ctrl+Alt+L）"></a><i class="separator">|</i><a class="icon-link" title="添加链接（Ctrl+K）"></a><a class="icon-picture" title="添加图片（Ctrl+Alt+I）"></a><i class="separator">|</i><a class="icon-reply" title="撤退（Ctrl+Z）"></a><a class="icon-share-alt" title="前进（Ctrl+Shift+Z）"></a><i class="separator">|</i><a class="icon-info" href="http://ask.csdn.net/pages/markdown" target="_blank" title="markdown语法参考"></a><a class="icon-preview" title="预览"></a><i class="separator">|</i></div><div class="CodeMirror cm-s-paper CodeMirror-focused"><div style="overflow: hidden; position: relative; width: 3px; height: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none; font-size: 4px;" tabindex="0"></textarea></div><div class="CodeMirror-hscrollbar"><div style="height: 1px;"></div></div><div class="CodeMirror-vscrollbar"><div style="width: 1px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="min-width: 33px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>&nbsp;<span style="display: inline-block; width: 1px; margin-right: -1px;">&nbsp;</span></pre></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code"></div><div class="CodeMirror-cursor">&nbsp;</div><div class="CodeMirror-cursor CodeMirror-secondarycursor">&nbsp;</div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px;"></div><div class="CodeMirror-gutters" style="display: none;"></div></div></div><div class="editor-statusbar"><span class="lines">0</span><span class="words">0</span><span class="cursor">0:0</span></div><div class="div_tags clearfix"><div id="divSearchTags" class="tags_con"><input type="text"></div><input type="hidden" name="txtSearchTags"></div><div id="ask2_tagRecomm_div" class="drt_tagRecomm tracking-ad" data-mod="popu_73"><span class="drt_tit">推荐标签：</span></div></div><div class="success"><div class="left_area"><input id="chk_cb" type="checkbox"><span class="wyxs">我要悬赏</span><input id="cb_num" class="cb_num" readonly="true"><span class="phib_rii"><span> 币</span></span></div><a href="http://blog.csdn.net/iispring/article/details/50967445#" nodetype="cancel" class="cancel">取消</a><a href="http://blog.csdn.net/iispring/article/details/50967445#" nodetype="ok" class="ok">发布</a></div></div><div id="common_ask_div_sc" class="searchContainer"><div class="sTitle">可能存在类似的问题：</div><div class="sFooter"><a class="sFirstNewAsk">我想提一个新问题</a></div></div><div style="position:fixed; top:0; left:0; overflow:hidden;"><input style="position:absolute; left:-300px;" type="text" value="" id="focus_retriever" readonly="true"></div></body></html>

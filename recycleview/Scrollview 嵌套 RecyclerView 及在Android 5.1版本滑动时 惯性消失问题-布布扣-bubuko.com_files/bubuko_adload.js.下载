@@ -1,0 +1,107 @@
+﻿function bubuko_adload(ad_id) {
+    var str = '';
+    if (ad_id == 'top_memu') {
+        str = '';
+    }
+    else if (ad_id == 'title_before') {
+        str = '<div>'+
+                '    <div class="divfloatleft">'+
+                '        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"><\/script>'+
+                '        <!-- bubuko-infodetail-336x280-1 -->'+
+                '        <ins class="adsbygoogle" style="display: inline-block; width: 336px; height: 280px"'+
+                '            data-ad-client="ca-pub-8616102841876629" data-ad-slot="8276669881"><\/ins>'+
+                '        <script>'+
+                '            (adsbygoogle = window.adsbygoogle || []).push({});'+
+                '        <\/script>'+
+                '    <\/div>'+
+                '    <div class="divfloatright">'+
+                '        <script type="text/javascript">'+
+                '            /*bu-336x280-1*/'+
+                '            var cpro_id = "u2910309";'+
+                '        <\/script>'+
+                '        <script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/c.js"><\/script>'+
+                '    <\/div>'+
+                '    <div class="divfloatclear">'+
+                '    <\/div>'+
+                '<\/div>';
+    }
+    else if (ad_id == 'content_before') {
+        str = '';
+    }
+    else if (ad_id == 'content_after') {
+        str = '<div class="margintop20">' +
+                '    <div class="divfloatleft">'+
+                '        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"><\/script>'+
+                '        <!-- bubuko-infodetail-336x280-2 -->'+
+                '        <ins class="adsbygoogle" style="display: inline-block; width: 336px; height: 280px"'+
+                '            data-ad-client="ca-pub-8616102841876629" data-ad-slot="9753403083"><\/ins>'+
+                '        <script>'+
+                '            (adsbygoogle = window.adsbygoogle || []).push({});'+
+                '        <\/script>'+
+                '    <\/div>'+
+                '    <div class="divfloatright">'+
+                '        <script type="text/javascript">'+
+                '            /*bu-336x280-2*/'+
+                '            var cpro_id = "u2910312";'+
+                '        <\/script>'+
+                '        <script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/c.js"><\/script>'+
+                '    <\/div>'+
+                '    <div class="divfloatclear">'+
+                '    <\/div>'+
+                '<\/div>'+
+                '<div class="margintop20">'+
+                '    <script type="text/javascript">'+
+                '        /*bubuko-bottom-680x250*/'+
+                '        var cpro_id = "u2744467";'+
+                '    <\/script>'+
+                '    <script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/c.js"><\/script>'+
+                '<\/div>';
+    }
+    else if (ad_id == 'content_bottom') {
+        str = '<div class="divtextaligncenter paddingtop20">'+
+                '    <script type="text/javascript">'+
+                '        /*bubuko-infodetail-title-top-680x250*/'+
+                '        var cpro_id = "u2860050";'+
+                '    <\/script>'+
+                '    <script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"><\/script>'+
+                '<\/div>';
+    }
+    else if (ad_id == 'right_top') {
+        str = '<div class="paddingbottom20">'+
+                '    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"><\/script>'+
+                '    <!-- bubuko-right-300x600 -->'+
+                '    <ins class="adsbygoogle" style="display: inline-block; width: 300px; height: 600px"'+
+                '        data-ad-client="ca-pub-8616102841876629" data-ad-slot="1530302281"><\/ins>'+
+                '    <script>'+
+                '        (adsbygoogle = window.adsbygoogle || []).push({});'+
+                '    <\/script>'+
+                '<\/div>';
+    }
+    else if (ad_id == 'right_bottom') {
+        str = '<div id="xuanting" class="width300px margintop20">'+
+                '    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"><\/script>'+
+                '    <!-- bubuko-xuanting-300x600 -->'+
+                '    <ins class="adsbygoogle" style="display: inline-block; width: 300px; height: 600px"'+
+                '        data-ad-client="ca-pub-8616102841876629" data-ad-slot="1911227883"><\/ins>'+
+                '    <script>'+
+                '        (adsbygoogle = window.adsbygoogle || []).push({});'+
+                '    <\/script>'+
+                '<\/div>';
+    }
+    else if (ad_id == 'bottom') {
+        str = '';
+    }
+    else if (ad_id == 'jc_title_before') {
+        str = '';
+    }
+    else if (ad_id == 'jc_content_before') {
+        str = '';
+    }
+    else if (ad_id == 'jc_content_after') {
+        str = '';
+    }
+    else if (ad_id == 'jc_content_bottom') {
+        str = '';
+    }
+    document.write(str);
+}

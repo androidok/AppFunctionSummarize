@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://www.cnblogs.com/zgz345/p/3768174.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Android webview使用详解 - zgz345 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Android webview使用详解 - zgz345 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Android webview使用详解 - zgz345 - 博客园_files/bundle-Cogitation.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./Android webview使用详解 - zgz345 - 博客园_files/bundle-Cogitation-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/zgz345/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/zgz345/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/zgz345/wlwmanifest.xml">
+<script async="" src="./Android webview使用详解 - zgz345 - 博客园_files/analytics.js.下载"></script><script type="text/javascript" src="./Android webview使用详解 - zgz345 - 博客园_files/encoder.js.下载"></script><script src="./Android webview使用详解 - zgz345 - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'zgz345', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Android webview使用详解 - zgz345 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<div id="top">
+	
+<div>
+	<table>
+		<tbody><tr>
+			<td class="HeaderTitles">
+				<h1 class="HeaderTitle"><a id="Header1_HeaderTitle" class="HeaderMainTitle" href="http://www.cnblogs.com/zgz345/">zgz345</a></h1>
+				<p id="tagline"></p>
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+<div class="HeaderBar">
+	<table id="HeaderBar" class="HeaderBar" cellpadding="0" cellspacing="0">
+		<tbody><tr>
+			<td class="HeaderBarTab" nowrap="">
+&nbsp;
+<a id="blog_nav_sitehome" href="http://www.cnblogs.com/">博客园</a> ::
+<a id="blog_nav_myhome" href="http://www.cnblogs.com/zgz345/">首页</a> ::
+<a href="http://q.cnblogs.com/" class="menu">博问</a> ::
+<a href="http://home.cnblogs.com/ing/" class="menu">闪存</a> ::
+<a id="blog_nav_newpost" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a> ::
+<a id="blog_nav_contact" accesskey="9" rel="nofollow" href="https://msg.cnblogs.com/send/zgz345">联系</a> ::
+<a id="blog_nav_rss" href="http://www.cnblogs.com/zgz345/rss">订阅</a>
+<a id="blog_nav_rss_image" class="XMLLink" href="http://www.cnblogs.com/zgz345/rss"><img src="./Android webview使用详解 - zgz345 - 博客园_files/xml.gif" alt="订阅"></a> ::
+<a id="blog_nav_admin" rel="nofollow" href="https://i.cnblogs.com/">管理</a> ::
+
+</td>
+			<td><img id="Header1_BlueTab" src="./Android webview使用详解 - zgz345 - 博客园_files/BlueTabRight.gif" align="absmiddle"></td>
+			<td class="HeaderBarTabBack" nowrap="" width="100%">
+				<div id="blog_stats">
+<div class="BlogStatsBar">
+	<table class="BlogStatsBar">
+		<tbody><tr>
+			<td width="100%">
+			</td>
+			<td class="BlogStatsBar" nowrap="">
+				&nbsp;
+				111 
+				随笔&nbsp;::
+				3 文章
+				::
+				16 评论
+				::
+				0 引用
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+</div>
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+
+</div>
+<div id="leftmenu">	
+
+	    <div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/06/01&#39;);return false;">&lt;</a></td><td align="center">2017年7月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/08/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalWeekendDay" align="center">1</td></tr><tr><td class="CalWeekendDay" align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center"><a href="http://www.cnblogs.com/zgz345/archive/2017/07/06.html"><u>6</u></a></td><td align="center">7</td><td class="CalWeekendDay" align="center">8</td></tr><tr><td class="CalWeekendDay" align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td class="CalWeekendDay" align="center">15</td></tr><tr><td class="CalWeekendDay" align="center">16</td><td class="CalTodayDay" align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td class="CalWeekendDay" align="center">22</td></tr><tr><td class="CalWeekendDay" align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalWeekendDay" align="center">29</td></tr><tr><td class="CalWeekendDay" align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+		
+<h3>公告</h3>
+<div class="News">
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/zgz345/">zgz345</a><br>园龄：<a href="http://home.cnblogs.com/u/zgz345/" title="入园时间：2012-02-07">5年5个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/zgz345/followers/">39</a><br>关注：<a href="http://home.cnblogs.com/u/zgz345/followees/">2</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;5b939797-3351-e111-aa3f-842b2b196315&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+		<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/zgz345/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/zgz345/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/zgz345/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/zgz345/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/zgz345/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<h3 class="catListTitle">我的标签</h3>
+<div id="MyTag">
+<ul>
+<li><a href="http://www.cnblogs.com/zgz345/tag/apk%E6%B8%A0%E9%81%93%E6%A0%A1%E9%AA%8C/">apk渠道校验</a>(2)</li><li><a href="http://www.cnblogs.com/zgz345/tag/Enum%20Enum%E4%BC%98%E7%BC%BA%E7%82%B9%20%E6%98%AF%E5%90%A6%E4%BD%BF%E7%94%A8Enum%20android%20interface%E6%8E%A5%E5%8F%A3%E5%B8%B8%E9%87%8F%20%E4%BD%BF%E7%94%A8%E6%9E%9A%E4%B8%BEEn/">Enum Enum优缺点 是否使用Enum android interface接口常量 使用枚举En</a>(1)</li><li><a href="http://www.cnblogs.com/zgz345/tag/locat%E6%98%BE%E7%A4%BA%E4%B8%8D%E5%85%A8%20json%E6%98%BE%E7%A4%BA%E4%B8%8D%E5%85%A8%20%20logcat%E6%89%93%E5%8D%B0%E4%B8%8D%E5%85%A8%20adb%20logcat%20%E6%98%BE%E7%A4%BA%E4%B8%8D%E5%85%A8/">locat显示不全 json显示不全  logcat打印不全 adb logcat 显示不全</a>(1)</li><li><a href="http://www.cnblogs.com/zgz345/tag/monkey%20log%E5%88%B0sdcard%20monkey%E4%BD%BF%E7%94%A8/">monkey log到sdcard monkey使用</a>(1)</li><li><a href="http://www.cnblogs.com/zgz345/tag/MultiDex%20AndroidMultiDex%20Android65535/">MultiDex AndroidMultiDex Android65535</a>(1)</li><li><a href="http://www.cnblogs.com/zgz345/tag/quot/">quot</a>(1)</li><li><a href="http://www.cnblogs.com/zgz345/tag/String%20s%20%3D%20a%2Bb%2Bc%2Bd/">String s = a+b+c+d</a>(1)</li><li><a href="http://www.cnblogs.com/zgz345/tag/String%20str%20%3D%20new%20String%28%26amp%3Bamp/">String str = new String(&amp;amp</a>(1)</li><li><a href="http://www.cnblogs.com/zgz345/tag/Ubuntu%2014.04%E4%B8%8D%E6%98%BE%E7%A4%BA%E6%A0%87%E9%A2%98%E6%A0%8F%E5%92%8C%E4%BE%A7%E8%BE%B9%E6%A0%8F/">Ubuntu 14.04不显示标题栏和侧边栏</a>(1)</li><li><a href="http://www.cnblogs.com/zgz345/tag/%E5%BD%A9%E8%9B%8B%20Android%E5%BD%A9%E8%9B%8B%20%E5%BE%AE%E4%BF%A1%E5%BD%A9%E8%9B%8B%20%E4%BB%BF%E5%BE%AE%E4%BF%A1/">彩蛋 Android彩蛋 微信彩蛋 仿微信</a>(1)</li><li><a href="http://www.cnblogs.com/zgz345/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+		<h3>随笔分类</h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/zgz345/category/352810.html">Android(55)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/zgz345/category/352801.html">Android Data(8)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/zgz345/category/352808.html">Android Decompilation(2)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/zgz345/category/371214.html">Android Exception(1)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/zgz345/category/352700.html">Android Launcher</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/zgz345/category/751567.html">Android Optimize(2)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/zgz345/category/759472.html">Android Studio(3)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/zgz345/category/352762.html">Android Thread(1)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/zgz345/category/516735.html">Common(3)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/zgz345/category/391503.html">Eclipse(6)</a> </li>
+			
+				<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/zgz345/category/352811.html">Linux(21)</a> </li>
+			
+				</ul>
+			
+	
+		<h3>随笔档案</h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/zgz345/archive/2017/07.html">2017年7月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/zgz345/archive/2017/04.html">2017年4月 (2)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/zgz345/archive/2017/03.html">2017年3月 (5)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/zgz345/archive/2016/09.html">2016年9月 (2)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/zgz345/archive/2016/06.html">2016年6月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/zgz345/archive/2016/05.html">2016年5月 (2)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/zgz345/archive/2016/04.html">2016年4月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/zgz345/archive/2015/12.html">2015年12月 (3)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/zgz345/archive/2015/11.html">2015年11月 (4)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/zgz345/archive/2015/05.html">2015年5月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/zgz345/archive/2015/01.html">2015年1月 (2)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/zgz345/archive/2014/12.html">2014年12月 (3)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/zgz345/archive/2014/10.html">2014年10月 (2)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/zgz345/archive/2014/08.html">2014年8月 (3)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/zgz345/archive/2014/07.html">2014年7月 (2)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/zgz345/archive/2014/06.html">2014年6月 (4)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/zgz345/archive/2014/05.html">2014年5月 (4)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/zgz345/archive/2014/03.html">2014年3月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/zgz345/archive/2014/01.html">2014年1月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/zgz345/archive/2013/12.html">2013年12月 (2)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/zgz345/archive/2013/11.html">2013年11月 (5)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/zgz345/archive/2013/10.html">2013年10月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/zgz345/archive/2013/09.html">2013年9月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/zgz345/archive/2013/08.html">2013年8月 (10)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/zgz345/archive/2013/07.html">2013年7月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_25" href="http://www.cnblogs.com/zgz345/archive/2013/06.html">2013年6月 (2)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_26" href="http://www.cnblogs.com/zgz345/archive/2013/04.html">2013年4月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_27" href="http://www.cnblogs.com/zgz345/archive/2013/03.html">2013年3月 (3)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_28" href="http://www.cnblogs.com/zgz345/archive/2013/02.html">2013年2月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_29" href="http://www.cnblogs.com/zgz345/archive/2013/01.html">2013年1月 (8)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_30" href="http://www.cnblogs.com/zgz345/archive/2012/11.html">2012年11月 (1)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_31" href="http://www.cnblogs.com/zgz345/archive/2012/10.html">2012年10月 (2)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_32" href="http://www.cnblogs.com/zgz345/archive/2012/09.html">2012年9月 (2)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_33" href="http://www.cnblogs.com/zgz345/archive/2012/08.html">2012年8月 (2)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_34" href="http://www.cnblogs.com/zgz345/archive/2012/07.html">2012年7月 (6)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_35" href="http://www.cnblogs.com/zgz345/archive/2012/06.html">2012年6月 (2)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_36" href="http://www.cnblogs.com/zgz345/archive/2012/05.html">2012年5月 (4)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_37" href="http://www.cnblogs.com/zgz345/archive/2012/04.html">2012年4月 (2)</a> </li>
+			
+				<li><a id="CatList_LinkList_1_Link_38" href="http://www.cnblogs.com/zgz345/archive/2012/02.html">2012年2月 (11)</a> </li>
+			
+				</ul>
+			
+	
+		<h3>文章分类</h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/zgz345/category/352795.html">Android Launcher(1)</a> </li>
+			
+				<li><a id="CatList_LinkList_2_Link_1" href="http://www.cnblogs.com/zgz345/category/352797.html">Android Source Struct(1)</a> </li>
+			
+				<li><a id="CatList_LinkList_2_Link_2" href="http://www.cnblogs.com/zgz345/category/352763.html">Android Threads(1)</a> </li>
+			
+				</ul>
+			
+	</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zgz345/p/3768174.html#3669982">1. Re:Android webview使用详解</a></li>
+        <li class="recent_comment_body">很详细</li>
+        <li class="recent_comment_author">--一个人去地老天荒吧</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zgz345/p/3186811.html#3541791">2. Re:如何进行Monkey Test</a></li>
+        <li class="recent_comment_body">谢谢分享</li>
+        <li class="recent_comment_author">--Kings红茶</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zgz345/archive/2013/03/04/2942553.html#3483460">3. Re:解决IllegalStateException: Can not perform this action after onSaveInstanceState</a></li>
+        <li class="recent_comment_body">正好遇到这样的情况，感谢！</li>
+        <li class="recent_comment_author">--傻瓶子</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zgz345/p/3429542.html#3381611">4. Re:java中判断是否为中文</a></li>
+        <li class="recent_comment_body">好文</li>
+        <li class="recent_comment_author">--【MK】山丘之王</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/zgz345/p/3768174.html#3370492">5. Re:Android webview使用详解</a></li>
+        <li class="recent_comment_body">@VAU 我觉得应该是你控件的名字...</li>
+        <li class="recent_comment_author">--小又鸟</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/zgz345/p/3768174.html">1. Android webview使用详解(104294)</a></li><li><a href="http://www.cnblogs.com/zgz345/archive/2013/03/04/2942553.html">2. 解决IllegalStateException: Can not perform this action after onSaveInstanceState(48530)</a></li><li><a href="http://www.cnblogs.com/zgz345/p/3502315.html">3. Android开源框架ImageLoader的完美例子(22843)</a></li><li><a href="http://www.cnblogs.com/zgz345/p/4994885.html">4. Android Studio 增加函数注释模板(18395)</a></li><li><a href="http://www.cnblogs.com/zgz345/archive/2013/01/08/2851204.html">5. Android内存溢出BitmapFactory decoding大文件(14967)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/zgz345/p/3768174.html">1. Android webview使用详解(6)</a></li><li><a href="http://www.cnblogs.com/zgz345/p/3186811.html">2. 如何进行Monkey Test(5)</a></li><li><a href="http://www.cnblogs.com/zgz345/archive/2013/03/04/2942553.html">3. 解决IllegalStateException: Can not perform this action after onSaveInstanceState(1)</a></li><li><a href="http://www.cnblogs.com/zgz345/p/4164239.html">4. Android彩蛋效果，微信彩蛋效果(1)</a></li><li><a href="http://www.cnblogs.com/zgz345/p/3429542.html">5. java中判断是否为中文(1)</a></li></ul></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/zgz345/p/3768174.html">1. Android webview使用详解(9)</a></li><li><a href="http://www.cnblogs.com/zgz345/archive/2013/01/11/2856820.html">2. Android 赞一下+1动画(4)</a></li><li><a href="http://www.cnblogs.com/zgz345/p/3186811.html">3. 如何进行Monkey Test(2)</a></li><li><a href="http://www.cnblogs.com/zgz345/p/4994885.html">4. Android Studio 增加函数注释模板(2)</a></li><li><a href="http://www.cnblogs.com/zgz345/p/3834138.html">5. PagerSlidingTabStrip 高亮选中标题(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+	
+</div>
+<div id="main">
+	
+<div id="post_detail">
+<div class="post">
+	<div class="postTitle">
+		<a id="cb_post_title_url" href="http://www.cnblogs.com/zgz345/p/3768174.html">Android webview使用详解</a>
+	</div>
+	
+	<div class="postText">
+		<div id="cnblogs_post_body"><p>1. 打开网页时不调用系统浏览器， 而是在本WebView中显示：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android webview使用详解 - zgz345 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>mWebView.setWebViewClient(<span style="color: #0000ff;">new</span><span style="color: #000000;"> WebViewClient(){
+      @Override
+      </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">boolean</span><span style="color: #000000;"> shouldOverrideUrlLoading(WebView view, String url) {
+          view.loadUrl(url);
+          </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+      }
+  });</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android webview使用详解 - zgz345 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span>2. 通过java代码调用javascript</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android webview使用详解 - zgz345 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>WebSettings webSettings =<span style="color: #000000;">   mWebView .getSettings();       
+webSettings.setJavaScriptEnabled(</span><span style="color: #0000ff;">true</span><span style="color: #000000;">); 
+mWebView.addJavascriptInterface(</span><span style="color: #0000ff;">new</span><span style="color: #000000;"> Object() {       
+            </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> clickOnAndroid() {       
+                mHandler.post(</span><span style="color: #0000ff;">new</span><span style="color: #000000;"> Runnable() {       
+                    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> run() {       
+                        webview.loadUrl(</span>"javascript:wave()"<span style="color: #000000;">);       
+                    }       
+                });       
+            }       
+        }, </span>"demo"); </pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android webview使用详解 - zgz345 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span>3. 按返回键时， 不退出程序而是返回上一浏览页面：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android webview使用详解 - zgz345 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">boolean</span> onKeyDown(<span style="color: #0000ff;">int</span><span style="color: #000000;"> keyCode, KeyEvent event) {       
+        </span><span style="color: #0000ff;">if</span> ((keyCode == KeyEvent.KEYCODE_BACK) &amp;&amp;<span style="color: #000000;"> mWebView.canGoBack()) {       
+            mWebView.goBack();       
+            </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span><span style="color: #000000;">;       
+        }       
+        </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">super</span><span style="color: #000000;">.onKeyDown(keyCode, event);       
+    }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android webview使用详解 - zgz345 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span>4. 打开页面时， 自适应屏幕：</span></p>
+<div class="cnblogs_code">
+<pre>WebSettings webSettings =<span style="color: #000000;">   mWebView .getSettings();       
+webSettings.setUseWideViewPort(</span><span style="color: #0000ff;">true</span><span style="color: #000000;">);//<span>设置此属性，可任意比例缩放</span>
+webSettings.setLoadWithOverviewMode(</span><span style="color: #0000ff;">true</span>);</pre>
+</div>
+<p><span>5. 便页面支持缩放：</span></p>
+<div class="cnblogs_code">
+<pre>WebSettings webSettings =<span style="color: #000000;">   mWebView .getSettings();       
+webSettings.setJavaScriptEnabled(</span><span style="color: #0000ff;">true</span><span style="color: #000000;">);  
+webSettings.setBuiltInZoomControls(</span><span style="color: #0000ff;">true</span><span style="color: #000000;">);
+webSettings.setSupportZoom(</span><span style="color: #0000ff;">true</span>);</pre>
+</div>
+<p>6.如果webView中需要用户手动输入用户名、密码或其他，则webview必须设置支持获取手势焦点。</p>
+<div class="cnblogs_code">
+<pre>webview.requestFocusFromTouch();</pre>
+</div>
+<p>7.WebView 加载界面主要调用三个方法：LoadUrl、LoadData、LoadDataWithBaseURL.&nbsp;</p>
+<div class="cnblogs_code">
+<pre>1<span style="color: #000000;">、LoadUrl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;直接加载网页、图片并显示.（本地或是网络上的网页、图片、gif）&nbsp;&nbsp;
+</span>2、LoadData&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;显示文字与图片内容&nbsp;（模拟器1.5、1.6<span style="color: #000000;">）&nbsp;&nbsp;
+</span>3、LoadDataWithBase&nbsp;&nbsp;显示文字与图片内容（支持多个模拟器版本）&nbsp;</pre>
+</div>
+<p>8.WebSettings 的常用方法介绍</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android webview使用详解 - zgz345 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>setJavaScriptEnabled(<span style="color: #0000ff;">true</span>);&nbsp;&nbsp;<span style="color: #008000;">//</span><span style="color: #008000;">支持js<br></span>
+setPluginsEnabled(<span style="color: #0000ff;">true</span>);&nbsp;&nbsp;<span style="color: #008000;">//</span><span style="color: #008000;">支持插件&nbsp;<br></span>
+setUseWideViewPort(<span style="color: #0000ff;">false</span>);&nbsp;&nbsp;<span style="color: #008000;">//</span><span style="color: #008000;">将图片调整到适合webview的大小&nbsp;<br></span>
+setSupportZoom(<span style="color: #0000ff;">true</span>);&nbsp;&nbsp;<span style="color: #008000;">//</span><span style="color: #008000;">支持缩放&nbsp;<br></span>
+setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);&nbsp;<span style="color: #008000;">//</span><span style="color: #008000;">支持内容重新布局&nbsp;&nbsp;<br></span>
+supportMultipleWindows();&nbsp;&nbsp;<span style="color: #008000;">//</span><span style="color: #008000;">多窗口&nbsp;<br></span>
+setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);&nbsp;&nbsp;<span style="color: #008000;">//</span><span style="color: #008000;">关闭webview中缓存&nbsp;<br></span>
+setAllowFileAccess(<span style="color: #0000ff;">true</span>);&nbsp;&nbsp;<span style="color: #008000;">//</span><span style="color: #008000;">设置可以访问文件&nbsp;<br></span>
+setNeedInitialFocus(<span style="color: #0000ff;">true</span>);&nbsp;//当webview调用requestFocus时为webview设置节点<span style="color: #008000;"><br><br>webview&nbsp;webSettings.setBuiltInZoomControls(true);&nbsp;</span><span style="color: #008000;">//</span><span style="color: #008000;">设置支持缩放&nbsp;<br></span>
+setJavaScriptCanOpenWindowsAutomatically(<span style="color: #0000ff;">true</span>);&nbsp;<span style="color: #008000;">//</span><span style="color: #008000;">支持通过JS打开新窗口&nbsp;<br><br><span>setLoadWithOverviewMode(true); // 缩放至屏幕的大小</span><br></span>
+setLoadsImagesAutomatically(<span style="color: #0000ff;">true</span>);&nbsp;&nbsp;<span style="color: #008000;">//</span><span style="color: #008000;">支持自动加载图片</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android webview使用详解 - zgz345 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>9.WebViewClient 的方法全解</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android webview使用详解 - zgz345 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>doUpdateVisitedHistory(WebView&nbsp;view,&nbsp;String&nbsp;url,&nbsp;<span style="color: #0000ff;">boolean</span>&nbsp;isReload)&nbsp;&nbsp;<span style="color: #008000;">//</span><span style="color: #008000;">(更新历史记录)&nbsp;</span>
+<span style="color: #000000;">
+onFormResubmission(WebView&nbsp;view,&nbsp;Message&nbsp;dontResend,&nbsp;Message&nbsp;resend)&nbsp;</span><span style="color: #008000;">//</span><span style="color: #008000;">(应用程序重新请求网页数据)&nbsp;</span>
+<span style="color: #000000;">
+onLoadResource(WebView&nbsp;view,&nbsp;String&nbsp;url)&nbsp;</span><span style="color: #008000;">//</span><span style="color: #008000;">&nbsp;在加载页面资源时会调用，每一个资源（比如图片）的加载都会调用一次。&nbsp;</span>
+<span style="color: #000000;">
+onPageStarted(WebView&nbsp;view,&nbsp;String&nbsp;url,&nbsp;Bitmap&nbsp;favicon)&nbsp;</span><span style="color: #008000;">//</span><span style="color: #008000;">这个事件就是开始载入页面调用的，通常我们可以在这设定一个loading的页面，告诉用户程序在等待网络响应。&nbsp;<br></span>
+onPageFinished(WebView&nbsp;view,&nbsp;String&nbsp;url)&nbsp;<span style="color: #008000;">//</span><span style="color: #008000;">在页面加载结束时调用。同样道理，我们知道一个页面载入完成，于是我们可以关闭loading&nbsp;条，切换程序动作。&nbsp;</span>
+<span style="color: #000000;">
+onReceivedError(WebView&nbsp;view,&nbsp;</span><span style="color: #0000ff;">int</span>&nbsp;errorCode,&nbsp;String&nbsp;description,&nbsp;String&nbsp;failingUrl)<span style="color: #008000;">//</span><span style="color: #008000;">&nbsp;(报告错误信息)&nbsp;</span>
+<span style="color: #000000;">
+onReceivedHttpAuthRequest(WebView&nbsp;view,&nbsp;HttpAuthHandler&nbsp;handler,&nbsp;String&nbsp;host,String&nbsp;realm)</span><span style="color: #008000;">//</span><span style="color: #008000;">（获取返回信息授权请求）&nbsp;</span>
+<span style="color: #000000;">&nbsp;
+onReceivedSslError(WebView&nbsp;view,&nbsp;SslErrorHandler&nbsp;handler,&nbsp;SslError&nbsp;error)&nbsp;</span><span style="color: #008000;">//</span><span style="color: #008000;">重写此方法可以让webview处理https请求。</span>
+<span style="color: #000000;">&nbsp;
+onScaleChanged(WebView&nbsp;view,&nbsp;</span><span style="color: #0000ff;">float</span>&nbsp;oldScale,&nbsp;<span style="color: #0000ff;">float</span>&nbsp;newScale)&nbsp;<span style="color: #008000;">//</span><span style="color: #008000;">&nbsp;(WebView发生改变时调用)&nbsp;</span>
+<span style="color: #000000;">
+onUnhandledKeyEvent(WebView&nbsp;view,&nbsp;KeyEvent&nbsp;event)&nbsp;</span><span style="color: #008000;">//</span><span style="color: #008000;">（Key事件未被加载时调用）&nbsp;</span>
+<span style="color: #000000;">
+shouldOverrideKeyEvent(WebView&nbsp;view,&nbsp;KeyEvent&nbsp;event)</span><span style="color: #008000;">//</span><span style="color: #008000;">重写此方法才能够处理在浏览器中的按键事件。&nbsp;</span>
+<span style="color: #000000;">
+shouldOverrideUrlLoading(WebView&nbsp;view,&nbsp;String&nbsp;url)&nbsp;
+</span><span style="color: #008000;">//</span><span style="color: #008000;">在点击请求的是链接是才会调用，重写此方法返回true表明点击网页里面的链接还是在当前的webview里跳转，不跳到浏览器那边。这个函数我们可以做很多操作，比如我们读取到某些特殊的URL，于是就可以不打开地址，取消这个操作，进行预先定义的其他操作，这对一个程序是非常必要的。</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android webview使用详解 - zgz345 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/zgz345/category/352810.html" target="_blank">Android</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(3768174,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;5b939797-3351-e111-aa3f-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Android webview使用详解 - zgz345 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Android webview使用详解 - zgz345 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/zgz345/" target="_blank"><img src="./Android webview使用详解 - zgz345 - 博客园_files/u373240.jpg" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/zgz345/">zgz345</a><br>
+            <a href="http://home.cnblogs.com/u/zgz345/followees">关注 - 2</a><br>
+            <a href="http://home.cnblogs.com/u/zgz345/followers">粉丝 - 39</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;5b939797-3351-e111-aa3f-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(3768174,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">9</span>
+    </div>
+    <div class="buryit" onclick="votePost(3768174,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">1</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/zgz345/p/3761623.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/zgz345/p/3761623.html" title="发布于2014-05-30 18:19">Android 引用library project</a><br><a href="http://www.cnblogs.com/zgz345/p/3785657.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/zgz345/p/3785657.html" title="发布于2014-06-13 13:35">Android WindowManager 监听返回键及home键</a><br></div>
+</div>
+
+
+	</div>
+	
+	<div class="postfoot">
+		posted on <span id="post-date">2014-06-04 16:36</span> <a href="http://www.cnblogs.com/zgz345/">zgz345</a> 阅读(<span id="post_view_count">104294</span>) 评论(<span id="post_comment_count">6</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=3768174" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/zgz345/p/3768174.html#" onclick="AddToWz(3768174);return false;">收藏</a>
+	</div>
+</div>
+<script type="text/javascript">var allowComments=true,cb_blogId=108026,cb_entryId=3768174,cb_blogApp=currentBlogApp,cb_blogUserGuid='5b939797-3351-e111-aa3f-842b2b196315',cb_entryCreatedDate='2014/6/4 16:36:00';loadViewCount(cb_entryId);</script>
+
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<a name="comments"></a>
+<br>
+<div id="comments">
+<h3>评论</h3>
+
+
+		<div class="post">			
+			<div class="postTitle">
+				<a href="http://www.cnblogs.com/zgz345/p/3768174.html#3193772" class="layer">#1楼</a><a name="3193772" id="comment_anchor_3193772"></a>
+					<span>
+						 <span class="comment_date">2015-05-26 19:12</span>
+					</span>
+				<a id="a_comment_author_3193772" href="http://home.cnblogs.com/u/762163/" target="_blank">VAU</a> <a href="http://msg.cnblogs.com/send/VAU" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="postText">
+				<div id="comment_body_3193772" class="blog_comment_body">第三项重写返回键有点小错误<br><br>应该是webview .canGoBack()而不是mWebView .canGoBack()</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3193772,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3193772,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+            <div class="commentOpt">
+			&nbsp;&nbsp;<span class="comment_actions"></span>
+            </div>
+		</div>
+		<br>
+	
+		<div class="post">			
+			<div class="postTitle">
+				<a href="http://www.cnblogs.com/zgz345/p/3768174.html#3253910" class="layer">#2楼</a><a name="3253910" id="comment_anchor_3253910"></a>
+					<span>
+						 <span class="comment_date">2015-08-25 15:29</span>
+					</span>
+				<a id="a_comment_author_3253910" href="http://www.cnblogs.com/hellocwh/" target="_blank">梦里风林</a> <a href="http://msg.cnblogs.com/send/%E6%A2%A6%E9%87%8C%E9%A3%8E%E6%9E%97" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="postText">
+				<div id="comment_body_3253910" class="blog_comment_body">博主有没有办法强行停掉webview中的js？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3253910,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3253910,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3253910_avatar" style="display:none;">http://pic.cnblogs.com/face/780612/20150702122232.png</span>
+			</div>
+            <div class="commentOpt">
+			&nbsp;&nbsp;<span class="comment_actions"></span>
+            </div>
+		</div>
+		<br>
+	
+		<div class="post">			
+			<div class="postTitle">
+				<a href="http://www.cnblogs.com/zgz345/p/3768174.html#3265946" class="layer">#3楼</a><a name="3265946" id="comment_anchor_3265946"></a>
+					<span>
+						 <span class="comment_date">2015-09-13 22:43</span>
+					</span>
+				<a id="a_comment_author_3265946" href="http://www.cnblogs.com/henrymo/" target="_blank">m.henry</a> <a href="http://msg.cnblogs.com/send/m.henry" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="postText">
+				<div id="comment_body_3265946" class="blog_comment_body"><a href="http://www.cnblogs.com/zgz345/p/3768174.html#3253910" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3253910);">@</a>
+梦里风林<br>有,webview有一个监听所有链接的方法,当某个链接是你要屏蔽的js时,把链接替换成其他或者错误的.</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3265946,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3265946,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3265946_avatar" style="display:none;">http://pic.cnblogs.com/face/570094/20150909190435.png</span>
+			</div>
+            <div class="commentOpt">
+			&nbsp;&nbsp;<span class="comment_actions"></span>
+            </div>
+		</div>
+		<br>
+	
+		<div class="post">			
+			<div class="postTitle">
+				<a href="http://www.cnblogs.com/zgz345/p/3768174.html#3320671" class="layer">#4楼</a><a name="3320671" id="comment_anchor_3320671"></a>[<span class="louzhu">楼主</span>]
+					<span>
+						 <span class="comment_date">2015-12-04 12:54</span>
+					</span>
+				<a id="a_comment_author_3320671" href="http://www.cnblogs.com/zgz345/" target="_blank">zgz345</a> <a href="http://msg.cnblogs.com/send/zgz345" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="postText">
+				<div id="comment_body_3320671" class="blog_comment_body"><a href="http://www.cnblogs.com/zgz345/p/3768174.html#3193772" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3193772);">@</a>
+VAU<br>多谢提醒</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3320671,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3320671,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3320671_avatar" style="display:none;">http://pic.cnblogs.com/face/u373240.jpg?id=07104632</span>
+			</div>
+            <div class="commentOpt">
+			&nbsp;&nbsp;<span class="comment_actions"></span>
+            </div>
+		</div>
+		<br>
+	
+		<div class="post">			
+			<div class="postTitle">
+				<a href="http://www.cnblogs.com/zgz345/p/3768174.html#3370492" class="layer">#5楼</a><a name="3370492" id="comment_anchor_3370492"></a>
+					<span>
+						 <span class="comment_date">2016-03-02 18:23</span>
+					</span>
+				<a id="a_comment_author_3370492" href="http://home.cnblogs.com/u/901862/" target="_blank">小又鸟</a> <a href="http://msg.cnblogs.com/send/%E5%B0%8F%E5%8F%88%E9%B8%9F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="postText">
+				<div id="comment_body_3370492" class="blog_comment_body"><a href="http://www.cnblogs.com/zgz345/p/3768174.html#3193772" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3193772);">@</a>
+VAU 我觉得应该是你控件的名字</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3370492,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3370492,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+            <div class="commentOpt">
+			&nbsp;&nbsp;<span class="comment_actions"></span>
+            </div>
+		</div>
+		<br>
+	
+		<div class="post">			
+			<div class="postTitle">
+				<a href="http://www.cnblogs.com/zgz345/p/3768174.html#3669982" class="layer">#6楼</a><a name="3669982" id="comment_anchor_3669982"></a><span id="comment-maxId" style="display:none;">3669982</span><span id="comment-maxDate" style="display:none;">2017/4/17 12:03:18</span>
+					<span>
+						 <span class="comment_date">2017-04-17 12:03</span>
+					</span>
+				<a id="a_comment_author_3669982" href="http://www.cnblogs.com/leelugen/" target="_blank">一个人去地老天荒吧</a> <a href="http://msg.cnblogs.com/send/%E4%B8%80%E4%B8%AA%E4%BA%BA%E5%8E%BB%E5%9C%B0%E8%80%81%E5%A4%A9%E8%8D%92%E5%90%A7" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="postText">
+				<div id="comment_body_3669982" class="blog_comment_body">很详细</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3669982,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3669982,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3669982_avatar" style="display:none;">http://pic.cnblogs.com/face/1132844/20170409181500.png</span>
+			</div>
+            <div class="commentOpt">
+			&nbsp;&nbsp;<span class="comment_actions"></span>
+            </div>
+		</div>
+		<br>
+	
+</div><div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/zgz345/p/3768174.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/zgz345/p/3768174.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/573981/" target="_blank">柳传志、孙宏斌亲述：一场横跨27年的恩怨始末</a><br> ·  <a href="http://news.cnblogs.com/n/573980/" target="_blank">Kickstarter的“非诚勿扰”，小米众筹的“柴米油盐”</a><br> ·  <a href="http://news.cnblogs.com/n/573979/" target="_blank">腾讯创始人曾李青讽刺乐视骗局|秦朔怒怼：学会好好说话</a><br> ·  <a href="http://news.cnblogs.com/n/573978/" target="_blank">全球最权威人脸识别测试 刚被中国团队夺了第一</a><br> ·  <a href="http://news.cnblogs.com/n/573977/" target="_blank">LISA探路者任务将于7月18日终结：引力波观测技术验证取得成功</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/570194/" target="_blank">小printf的故事：什么是真正的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/569992/" target="_blank">程序员的工作、学习与绩效</a><br> ·  <a href="http://kb.cnblogs.com/page/569056/" target="_blank">软件开发为什么很难</a><br> ·  <a href="http://kb.cnblogs.com/page/565901/" target="_blank">唱吧DevOps的落地，微服务CI/CD的范本技术解读</a><br> ·  <a href="http://kb.cnblogs.com/page/566523/" target="_blank">程序员，如何从平庸走向理想？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+</div>
+<div class="footer">
+
+<p id="footer">
+	Powered by: 
+	<br>
+	
+	<a id="Footer1_Hyperlink3" name="Hyperlink1" href="http://www.cnblogs.com/" style="font-family:Verdana;font-size:12px;">博客园</a>
+	<br>
+	Copyright © zgz345
+</p>
+</div>
+
+
+</body></html>
