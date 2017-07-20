@@ -1,0 +1,17 @@
+function shareSina(title,rLink,pic){
+	
+		var t = (screen.height-450)/2; //离顶部距离
+		var l = (screen.width-600)/2; //离左边距离
+
+        rLink = "http://bbs.umeng.com";
+      site=1610263497;
+       
+		window.open('http://service.weibo.com/share/share.php?title='+encodeURIComponent(title)+'&url='+encodeURIComponent(rLink)+'&appkey='+encodeURIComponent(site),'_blank','scrollbars=no,width=600,height=450,left='+l+',top='+t+',status=no,resizable=yes');
+
+
+       
+}
+
+
+
+

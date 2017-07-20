@@ -1,0 +1,1196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0064)http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script charset="utf-8" async="" src="https://atanx.alicdn.com/t/tanxssp.js?_v=12"></script><script src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/ca-pub-6625678643128649.js.下载"></script><script type="text/javascript" charset="gbk" id="tanx-s-mm_11220363_1101997_26568831" async="" src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/ex"></script>
+<script src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/hm.js.下载"></script><script type="text/javascript">
+        if (window.location.toString().indexOf("shtml?") > 0) {
+            self.location = window.location.toString().replace(window.location.search.toString(), "");
+        }
+        function doccheckart(json) {
+            if (json[0].result == "1") {
+                self.location = "http://www.360doc.com/noarticle.aspx";
+            }
+        }
+    </script>
+<script src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/jquery1.js.下载" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+        if (navigator.userAgent.indexOf("iPhone") > 0 || navigator.userAgent.indexOf("Android") > 0 || navigator.userAgent.indexOf("iPod") > 0) {  //手机端跳转
+            var patt1 = new RegExp("[0-9]*_[0-9]*");
+            var url = patt1.exec(location.href);
+            if (url != "") {
+                self.location = "http://www.360doc.cn/article/" + url + ".html";
+            }
+        }
+    </script>
+<meta content="360doc" name="classification"><link rel="alternate" media="only screen and (max-width: 640px)" href="http://www.360doc.cn/article/9200790_405698272.html"><meta content="jar,android,socialsdk" name="keywords"><meta content="Android | 社会化分享 | 开发者中心 | 友盟" name="description"><meta name="mobile-agent" content="format=html5;url=http://www.360doc.cn/article/9200790_405698272.html"><meta content="SocialSDK_WeiXin_1.jar,SocialSDK_WeiXin_2.jar.1.解压已下载的zip文件，将platforms/tencentweibo/libs中SocialSDK_tencentWB_1.jar,SocialSDK_tencentWB_2.jar，,SocialSDK_tencentWB_3.jar拷贝到工程的libs（如果没有此目录，新建libs目录）目录中.2.在libs目录中找到SocialSDK_tencentWB_1.jar,SocialSDK_tencentWB_2.jar，,SocialSDK_tencentWB_3.jar文件，鼠标右键--&gt;Add to Build Path. 6.6.2 在集成代码中添加如下代码。" name="360docabstract"><meta content="www.360doc.com" name="author"><title>
+Android | 社会化分享 | 开发者中心 | 友盟
+</title>
+<script src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/showarticlefollow20160329.js.下载" type="text/javascript" charset="utf-8"></script>
+<script src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/jQuery.md5.min.js.下载" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?d86954201130d615136257dde062a503";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+<link rel="stylesheet" type="text/css" href="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/wzhead-cleaned.css"><link rel="stylesheet" type="text/css" href="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/newArticle20160509.css">
+<script type="text/javascript" language="javascript">
+        window.onerror = ignoreError;
+        function ignoreError() {
+            return true;
+        }
+    </script>
+<link href="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/newheader.css" rel="stylesheet" type="text/css"><script src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/share.js.下载"></script><script type="text/javascript" src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/EssayforIE120425.js.下载"></script><link href="about:blank" rel="styleSheet" type="text/css"></head>
+<body onmouseup="setDragEnd()" onclick="delAllDiv(event)">
+<span id="LayerLogin"></span>
+<div style="position: fixed; width: 100%; z-index: 1000;">
+<div class="header" style="background-color: #ffffff;">
+<div class="header_1">
+<a href="http://www.360doc.com/index.html">
+<img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/nlogo.jpg" class="f_left"></a>
+<div class="mylibrary">
+<a id="userInfoUrl" href="http://www.360doc.com/login.aspx?reurl=http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml" class="a1">
+<div class="h_user">
+<img id="divuserinfonew" src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/dingtu.gif"><span></span>
+</div>
+我的图书馆
+</a>
+<ul class="hm_list hm_account" style="display: none;">
+<li><a href="http://www.360doc.com/myindex.aspx">首页</a></li>
+<li><a href="http://www.360doc.com/myfiles.aspx?app=1&amp;type=3">馆藏</a></li>
+<li><a href="http://www.360doc.com/myreadroom.aspx">阅览室</a></li>
+<li><a href="http://www.360doc.com/mycontacts.aspx">通讯录</a></li>
+<li><a href="javascript:void(0);" onclick="displaylogin();">退出帐号</a></li>
+</ul>
+</div>
+<div class="headmail f_left" style="display: none;">
+<p class="h_icon1" id="newMsg"></p>
+<span class="h_border"></span>
+<ul class="hm_list" id="msgtips">
+<li id="msgicon"><a href="http://www.360doc.com/mymsg.aspx?app=2">查看信箱</a></li>
+<li id="sysmsgicon"><a href="http://www.360doc.com/mymsg.aspx?app=9">系统消息</a></li>
+<li id="sysicon"><a href="http://www.360doc.com/mymsg.aspx?app=4">官方通知</a></li>
+<li class="hm_color2" style="background-color: #f4f4f4"><a href="http://www.360doc.com/mymsg.aspx?app=6">设置</a></li>
+</ul>
+</div>
+<div class="headtalker f_left" style="display: none;">
+<p class="h_icon1" id="newDialog"></p>
+<span class="h_border"></span>
+<ul class="hm_list">
+<li id="li1chat"><a href="javascript:void(0)" onclick="initchatnew()">开始对话</a></li>
+<li id="li2chat" style="display: none;"><a href="javascript:void(0)" style="color: #141414;">有<span>11</span>人和你对话，<span onclick="initchatnew()" style="color: #4578b4">查看</span>&nbsp;<span onclick="clearinfochat()" style="color: #4578b4">忽略</span></a></li>
+<li><a href="http://www.360doc.com/mycontacts.aspx?app=8">历史对话记录</a></li>
+<li class="hm_color2" style="background-color: #f4f4f4"><a href="http://www.360doc.com/mycontacts.aspx?app=7">通知设置</a></li>
+</ul>
+</div>
+<a href="http://www.360doc.com/advice.html" target="_blank" class="head_talk f_right">留言交流</a>
+<div class="headsearch f_right">
+<div class="zcomdiv">
+<input type="text" class="headsearch_inp f_left" value="搜文章 找馆友">
+<span class="headsearch_btn f_right" id="searchlinkid"></span>
+</div>
+<div class="headsearch_select">
+<p class="hs_title">请选择搜索范围</p>
+<a href="javascript:goSearch();" class="cur">含&nbsp;<span></span>&nbsp;的文章</a>
+<a href="javascript:goSearch();">昵称为&nbsp;<span></span>&nbsp;的馆友</a>
+<a href="javascript:goSearch();">兴趣为&nbsp;<span></span>&nbsp;的馆友</a>
+</div>
+</div>
+</div>
+</div>
+<div class="arti_type_shadow" style="display: block;"></div>
+</div>
+<div style="height: 68px; _height: 0px; width: 100%;"></div>
+<div class="clear360doc"></div>
+<div class="doc360article_content" style="width: 1016px;">
+<div style="height: 90px; padding-top: 13px;">
+<script async="" src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/adsbygoogle.js.下载"></script><ins class="adsbygoogle" style="display: inline-block; width: 970px; height: 90px" data-ad-client="ca-pub-6625678643128649" data-ad-slot="2709112222" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:970px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:970px;background-color:transparent"><iframe width="970" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;width:970px;height:90px;" src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/saved_resource.html"></iframe></ins></ins></ins><script> (adsbygoogle = window.adsbygoogle || []).push({ }); </script>
+</div>
+<p class="clearboth"></p>
+<div class="a_left" style="width: 686px;">
+<div id="bgchange" style="width: 660px;">
+<div class="fontsize_bgcolor_controler">
+<div class="a_bgcolor">
+<img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/bgcolor.jpg">
+<div class="a_colorlist">
+<span class="a_color1" onclick="artStatistics(&#39;20-11-1&#39;);">
+<img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/yes.gif"></span>
+<span class="a_color2" onclick="artStatistics(&#39;20-11-2&#39;);">
+<img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/yes.gif"></span>
+<span class="a_color3" onclick="artStatistics(&#39;20-11-3&#39;);">
+<img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/yes.gif"></span>
+<span class="a_color4" onclick="artStatistics(&#39;20-11-4&#39;);">
+<img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/yes.gif"></span>
+<span class="a_color5" onclick="artStatistics(&#39;20-11-5&#39;);">
+<img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/yes.gif"></span>
+<span class="a_color6 cur" onclick="artStatistics(&#39;20-11-6&#39;);">
+<img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/yes.gif"></span>
+</div>
+</div>
+<div class="a_fontsize">
+<img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/fontSize.jpg">
+<div class="fschange">
+<label>
+<input type="radio" name="font_Size" id="" value="18" onclick="artStatistics(&#39;20-10-1&#39;);">大
+</label>
+&nbsp;
+<label>
+<input type="radio" name="font_Size" id="" value="16" onclick="artStatistics(&#39;20-10-2&#39;);">中
+</label>
+&nbsp;
+<label>
+<input type="radio" name="font_Size" id="" value="14" onclick="artStatistics(&#39;20-10-3&#39;);">小
+</label>
+</div>
+</div>
+</div>
+<h2 id="titiletext">Android | 社会化分享 | 开发者中心 | 友盟</h2>
+<div class="article_data">
+<div class="article_data_left">
+2014-08-29
+<span class="a_username">&nbsp;<a href="http://www.360doc.com/userhome/9200790" id="savernickname" target="_blank" onclick="artStatistics(&#39;20-7-1&#39;);">quasiceo</a>
+</span>
+<span id="articleinfo">
+<span id="docsource" class="a_from">&nbsp;<a href="http://dev.umeng.com/social/android/share/quick-integration" target="_blank" onclick="artStatistics(&#39;20-12&#39;);">文章来源</a></span><span id="360doc_Readnum">&nbsp;&nbsp;阅&nbsp;6920&nbsp;</span><span id="360docResaveCount"><span onclick="ShowSaverUser();artStatistics(&#39;20-13&#39;);" id="360doc_saverNum" style="cursor: pointer;">&nbsp;转&nbsp;<span style="cursor:pointer;" onclick="javascript:ShowSaverUser();">15</span></span>
+<span id="360doc_saverUser"><div id="sameArtOuter" style="display:none;position: absolute; height:305px;width:144px;left:0px;margin-top:15px;z-index:100000;"><div id="sameArt" style=" overflow-y: auto;  height:300px;overflow-x: hidden; z-index: 100;right:0px;margin-top:-10px;" onclick="event.cancelBubble=true;"></div></div></span>
+</span>
+</span>
+</div>
+<div id="resavelayer1" class="bdsharebuttonbox article_data_right bdshare-button-style0-16" data-bd-bind="1500371910665"><div class="zcommond"><a class="p2" href="javascript:void(0);" onclick="SaveArt();artStatistics(&#39;20-3-1&#39;);">转藏到我的图书馆</a><div class="s2 f_right" onclick="setTimeout(function(){$(&#39;.article_data_right .sharelist_new&#39;).slideToggle(0);},10);"><span onclick="artStatistics(&#39;20-8-2&#39;);"></span></div><a class="p1" href="javascript:void(0);" onclick="shareWeixin();artStatistics(&#39;20-8-5&#39;);">微信</a> <span class="s1" onclick="setTimeout(function(){$(&#39;.article_data_right .sharelist_new&#39;).slideToggle(0);},10);artStatistics(&#39;20-8-1&#39;);" onmouseover="this.style.color=&#39;#0f659c&#39;" onmouseout="this.style.color=&#39;&#39;">分享：</span></div><div class="sharelist_new" id="fenxiangLayer"> <a class="slbg1" href="javascript:void(0);" data-cmd="qzone" onclick="artStatistics(&#39;20-8-7&#39;);">QQ空间</a> <a class="slbg2" href="javascript:void(0);" data-cmd="sqq" onclick="artStatistics(&#39;20-8-9&#39;);">QQ好友</a> <a class="slbg3" href="javascript:void(0);" data-cmd="tsina" onclick="artStatistics(&#39;20-8-11&#39;);">新浪微博</a><a class="slbg5" href="javascript:void(0);" onclick="showdivemail1();artStatistics(&#39;20-8-15&#39;);">推荐给朋友</a> </div><div style="position: absolute;display:none;z-index:1;left:143px;" id="fuzhitishidiv"></div></div>
+</div>
+<div id="articlecontent" class="article_container" onmousedown="newhighlight = true;" onmouseup="NewHighlight(event);">
+<table>
+<tbody>
+<tr>
+<td id="artContent">
+<div style="width: 656px; margin: 0; padding: 0; height: 0;"></div>
+<div><div><a href="http://dev.umeng.com/"><div>友盟开发者中心</div>
+</a>
+<ul>
+<li><a href="http://dev.umeng.com/app">客户端下载</a></li>
+<li>
+<a href="http://dev.umeng.com/switch_locale?page_id=141&amp;locale=en" title="English">
+English
+</a> </li>
+</ul>
+</div>
+</div>
+<div>
+<div>
+<a href="http://dev.umeng.com/">首页</a> / <a href="http://dev.umeng.com/social">社会化组件</a> / Android
+</div>
+<ul>
+<li>
+<ul><li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">分享</a><ul><li><a href="http://dev.umeng.com/social/android/share/quick-integration">快速集成</a></li><li><a href="http://dev.umeng.com/social/android/share/specific-integration">详细集成</a></li><li><a href="http://dev.umeng.com/social/android/share/shake">摇一摇截屏分享</a></li><li><a href="http://dev.umeng.com/social/android/share/photowall">摇一摇照片墙</a></li><li><a href="http://dev.umeng.com/social/cocos2d-x/integration">Cocos2d-x游戏集成</a></li><li><a href="http://dev.umeng.com/system/resources/W1siZiIsIjIwMTQvMDcvMTgvMTRfMDJfMThfMjRfVW1lbmdfU29jaWFsX0FuZHJvaWRfU0RLX0RvYy5wZGYiXV0/Umeng_Social_Android_SDK_Doc.pdf">API列表</a></li></ul></li><li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">登录</a></li><li><a href="http://dev.umeng.com/social/android/like">喜欢</a></li><li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">评论</a></li><li><a href="http://dev.umeng.com/social/android/operation-bar">操作栏</a></li><li><a href="http://dev.umeng.com/social/android/sdk-download">SDK下载</a></li><li><a href="http://dev.umeng.com/social/android/release-notes">SDK更新日志</a></li><li><a href="http://support.umeng.com/">常见问题</a></li><li><a href="http://dev.umeng.com/system/resources/W1siZiIsIjIwMTQvMDcvMTgvMTRfMDJfMThfMjRfVW1lbmdfU29jaWFsX0FuZHJvaWRfU0RLX0RvYy5wZGYiXV0/Umeng_Social_Android_SDK_Doc.pdf">Android SDK开发手册</a></li></ul>
+</li>
+</ul>
+<div>
+<div>
+<h1>分享快速集成</h1>
+<ul>
+<li>1.<a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">产品概述</a>
+</li>
+<li>2.<a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">获取友盟AppKey</a>
+</li>
+<li>3.<a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">下载并安装SDK</a>
+</li>
+<li>4.<a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">打开平台选择页面</a>
+<ul>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">设置分享内容</a>
+</li>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">打开面板</a>
+</li>
+</ul>
+</li>
+<li>5.<a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">验证结果</a>
+</li>
+<li>6.<a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">各平台SSO(免登陆)配置</a>
+<ul>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">配置SSO授权回调</a>
+</li>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">分享到微信和朋友圈</a>
+</li>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">分享给QQ好友</a>
+</li>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">SSO（免登录）分享到QQ空间</a>
+</li>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">SSO（免登录）分享到新浪微博</a>
+</li>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">SSO（免登录）分享到腾讯微博</a>
+</li>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">SSO（免登录）分享到人人网</a>
+</li>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">分享到短信</a>
+</li>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">分享到邮件</a>
+</li>
+</ul>
+</li>
+<li>7.<a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">应用信息注册地址列表</a>
+</li>
+<li>8.<a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">混淆</a>
+</li>
+<li>9.<a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">进阶使用</a>
+</li>
+</ul>
+<p><strong></strong>
+</p>
+<h1>1 产品概述</h1>
+<p>友盟社会化组件，可以让移动应用快速具备社会化分享、登录、评论、喜欢等功能，并提供实时、全面的社会化数据统计分析服务。</p>
+<p>指南将会手把手教你使用社会化组件SDK，用5分钟为APP增加新浪微博、腾讯微博、人人网分享功能。</p>
+<p>注意：本文示例代码均针对最新版SDK，如果你所用SDK的类名或方法名与此文不符合，请使用你所用SDK的随包文档、或者下载使用最新版SDK。</p>
+<p><strong></strong>
+</p>
+<h1>2 获取友盟Appkey</h1>
+<p>如果你之前已经在友盟注册了应用，并获取到了Appkey，可以继续使用它.</p>
+<p>如果你尚未在友盟注册开发者账号，需要先<a href="http://www.umeng.com/users/sign_up">注册</a>，注册之后登录你的账号，点击**添加新应用**，填写完应用基本信息后，将进入"下载SDK并添加代码"页面，此页面即可得到<code>Appkey</code>。</p>
+<p><strong></strong>
+</p>
+<h1>3 下载并安装SDK</h1>
+<h2><strong>3.1 下载<a href="http://dev.umeng.com/social/android/sdk-download">SDK最新版</a>
+</strong></h2>
+<h2><strong>3.2 添加代码和资源引用</strong>
+</h2>
+<p>jar文件对应列表 </p>
+<table><thead>
+<tr>
+<th align="center">平台</th>
+<th align="center">jar文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">腾讯微博</td>
+<td align="center">SocialSDK_TencentWB_1.jar,SocialSDK_TencentWB_2.jar</td>
+</tr>
+<tr>
+<td align="center">QQ空间</td>
+<td align="center">SocialSDK_QQZone_1.jar,SocialSDK_QQZone_2.jar,SocialSDK_QQZone_3.jar</td>
+</tr>
+<tr>
+<td align="center">微信好友</td>
+<td align="center">SocialSDK_WeiXin_1.jar,SocialSDK_WeiXin_2.jar</td>
+</tr>
+<tr>
+<td align="center">QQ</td>
+<td align="center">SocialSDK_QQZone_1.jar,SocialSDK_QQZone_2.jar,SocialSDK_QQZone_3.jar</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意</strong>
+</p>
+<blockquote>
+<p>1：QQ和QQ Zone SSO（免登录）引用的jar文件相同。当需要同时支持QQ和QQ Zone的时候，只需添加一次SocialSDK_QQZone_1.jar,SocialSDK_QQZone_2.jar文件即可.<br>
+2：由于我们对微信的包名做了修改（libammsdk.jar -&gt; SocialSDK_WeiXin.jar）,如出现"Unable to execute dex: Multiple dex files define "问题,请删除libammsdk.jar或者SocialSDK_WeiXin.jar中的一个即可解决问题。</p>
+</blockquote>
+<h3>添加资源文件和jar文件有三种方式，请根据您的需求进行选择</h3>
+<h3>方法A：快速集成工具 ( 推荐 )</h3>
+<p>1：解压SDK下载包，双击运行SDK根目录下的SDKIntegration.jar或者在命令行下输入java -jar SDKIntegration.jar运行集成工具；<br>
+2：选择Android工程的根目录，并且填写您的友盟App Key；<br>
+3：勾选所需平台和组件，点击"快速集成";<br>
+4：检查AndroidManifest.xml、jar文件是否正确。如果集成了QQ或者QZone，请修改相应地appid。如下图所示: </p>
+<p><img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/44717718_1.png" width="600" height="398"> </p>
+<h3>方法B：添加工程引用（升级方便，推荐）</h3>
+<p>解压SDK压缩包，将文件夹中的social_sdk_library_project文件夹导入Eclipse，并在您的工程中添加对此项目的引用即可。</p>
+<h3>方法C：添加资源到现有项目中</h3>
+<p>解压SDK压缩包，将文件夹中的'main/libs'和'main/res'文件夹复制到你的项目工程根目录下（如使用'ADT 17'以下用户需要手动添加'libs'下的jar文件到工程Path中）：</p>
+<table><thead>
+<tr>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/44717718_2.jpg" width="600" height="400"></td>
+</tr>
+<tr>
+<td align="center">SDK压缩包目录</td>
+</tr>
+</tbody>
+</table>
+<p><strong></strong>
+</p>
+<h2><strong>3.3 Manifest配置，添加友盟Appkey/Activity/权限</strong>
+</h2>
+<pre lang="xml"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.umeng.example"
+    android:versionCode="1"
+    android:versionName="1.0" &gt;
+
+    &lt;application
+        android:debuggable="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Black.NoTitleBar" &gt;
+
+        &lt;!-- ###################注册SDK使用的Activity###################### --&gt;
+        &lt;!--分享编辑页--&gt;
+        &lt;activity
+            android:name="com.umeng.socialize.view.ShareActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:theme="@style/Theme.UMDialog"
+            android:windowSoftInputMode="stateVisible|adjustResize" &gt;
+        &lt;/activity&gt;
+
+        &lt;!-- ############ QQ空间和QQ SSO授权的Activity注册 ############ --&gt;
+        &lt;activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" &gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.intent.action.VIEW" /&gt;
+
+                &lt;category android:name="android.intent.category.DEFAULT" /&gt;
+                &lt;category android:name="android.intent.category.BROWSABLE" /&gt;
+                &lt;!-- 100424468，如果你使用的公用账号，则不需要修改；否则修改成你在QQ开放平台申请的 APP ID--&gt;
+                &lt;data android:scheme="tencent100424468" /&gt; 
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+        &lt;activity android:name="com.tencent.connect.common.AssistActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:screenOrientation="portrait"&gt;
+        &lt;/activity&gt;
+
+    &lt;!-- ###################添加UmengAppkey###################### --&gt;
+        &lt;meta-data
+            android:name="UMENG_APPKEY"
+            android:value="xxxxxxxxxxxxxxxxxxxxxx" &gt;
+        &lt;/meta-data&gt;
+
+    &lt;/application&gt;
+
+    &lt;uses-sdk android:minSdkVersion="8" /&gt;
+
+    &lt;!-- ###################声明SDK使用的相关权限###################### --&gt;
+    &lt;!-- 检测网络状态 --&gt;
+    &lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;  
+    &lt;!-- 获取mac地址作为用户的备用唯一标识 --
+    &lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /&gt;     
+    &lt;!-- 获取用户手机的IMEI，用来唯一的标识用户 --&gt;
+    &lt;uses-permission android:name="android.permission.READ_PHONE_STATE" /&gt;      
+    &lt;!-- 缓存资源优先存入SDcard --&gt;
+    &lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt;
+    &lt;!-- 允许应用程序联网，以便向我们的服务器端发送数据 --&gt;
+    &lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+&lt;/manifest&gt;
+</code></pre>
+<p>如果选用多种UmengSDK产品使用不同Appkey,可为SocialSDK配置单独的appkey,如下：</p>
+<pre lang="java"><code>/*代码添加Appkey，如果设置了非null值，SocialSDK将使用该值.*/
+SocializeConstants.APPKEY = "xxxxxxxxx";
+</code></pre>
+<p><strong></strong>
+</p>
+<h1>4 打开平台选择面板</h1>
+<p><strong></strong>
+</p>
+<h3>4.1 首先在您的Activity中添加如下成员变量并设置分享内容</h3>
+<pre lang="java"><code>// 首先在您的Activity中添加如下成员变量
+final UMSocialService mController = UMServiceFactory.getUMSocialService("com.umeng.share");
+// 设置分享内容
+mController.setShareContent("友盟社会化组件（SDK）让移动应用快速整合社交分享功能，http://www.umeng.com/social");
+// 设置分享图片, 参数2为图片的url地址
+mController.setShareMedia(new UMImage(getActivity(), 
+                                      "http://www.umeng.com/images/pic/banner_module_social.png"));
+// 设置分享图片，参数2为本地图片的资源引用
+//mController.setShareMedia(new UMImage(getActivity(), R.drawable.icon));
+// 设置分享图片，参数2为本地图片的路径(绝对路径)
+//mController.setShareMedia(new UMImage(getActivity(), 
+//                                BitmapFactory.decodeFile("/mnt/sdcard/icon.png")));
+
+// 设置分享音乐
+//UMusic uMusic = new UMusic("http://sns.whalecloud.com/test_music.mp3");
+//uMusic.setAuthor("GuGu");
+//uMusic.setTitle("天籁之音");
+// 设置音乐缩略图
+//uMusic.setThumb("http://www.umeng.com/images/pic/banner_module_social.png");
+//mController.setShareMedia(uMusic);
+
+// 设置分享视频
+//UMVideo umVideo = new UMVideo(
+//          "http://v.youku.com/v_show/id_XNTE5ODAwMDM2.html?f=19001023");
+// 设置视频缩略图
+//umVideo.setThumb("http://www.umeng.com/images/pic/banner_module_social.png");
+//umVideo.setTitle("友盟社会化分享!");
+//mController.setShareMedia(umVideo);
+</code></pre>
+<h3>人人网分享时，如果不设置website，点击¨应用名称¨或者¨图片¨将跳转到人人网主页；如果设置website将跳转到此website的页面。</h3>
+<p>设置website的方式如下：</p>
+<pre lang="java"><code>mController.setAppWebSite(SHARE_MEDIA.RENREN, "http://www.umeng.com/social");
+</code></pre>
+<p><strong></strong>
+</p>
+<h3>4.2 通过某个按钮或其他方法弹出分享面板</h3>
+<pre lang="java"><code>mController.getConfig().removePlatform( SHARE_MEDIA.RENREN, SHARE_MEDIA.DOUBAN);
+yourShareButton.setOnClickListener(new OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        // 是否只有已登录用户才能打开分享选择页
+        mController.openShare(getActivity(), false);
+    }
+});
+
+</code></pre>
+<p><strong></strong>
+</p>
+<h1>5 验证效果</h1>
+<p>编译并运行后，点击添加分享功能的View出现如下页面，那么说明你已经集成成功基本的分享功能和平台了！但是，为了使您的用户有更好的分享体验，以及您的应用有更多的分享量，更好地在社交平台上传播，我们建议您按照下面的指引进行SSO（免登录）和新平台的设置。</p>
+<table><thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/44717718_3.png" width="270" height="450"></td>
+<td align="center"><img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/44717718_4.png" width="270" height="450"></td>
+</tr>
+<tr>
+<td align="center">选择分享平台面板</td>
+<td align="center">分享编辑页</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<blockquote>
+<p>SSO名词解释 : SSO英文全称Single Sign On，单点登录。SSO是在多个应用系统中，用户只需要登录一次就可以访问所有相互信任的应用系统。<br>
+例如用户已经登录新浪微博客户端，使用SSO授权登录时则不需要用户手动输入用户名、密码，直接点击登录即可， 因此可成为免登录. </p>
+</blockquote>
+<p><strong></strong>
+</p>
+<h1>6 各平台SSO（免登录）配置</h1>
+<p><strong></strong>
+</p>
+<h2>6.1 配置SSO授权回调</h2>
+<h3><strong style="color:#F00;">如果有使用任一平台的SSO授权或者集成了facebook平台, 则必须在对应的activity中实现onActivityResult方法, 并添加如下代码 </strong>
+</h3>
+<pre lang="java"><code>@Override 
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    /**使用SSO授权必须添加如下代码 */
+    UMSsoHandler ssoHandler = mController.getConfig().getSsoHandler(requestCode) ;
+    if(ssoHandler != null){
+       ssoHandler.authorizeCallBack(requestCode, resultCode, data);
+    }
+}
+</code></pre>
+<p><strong></strong> </p>
+<h2><strong>6.2 分享到微信和朋友圈</strong>
+</h2>
+<h2>6.2.1 添加微信和朋友圈所依赖的jar文件</h2>
+<p>1.解压已下载的zip文件，将platforms/weixin/libs目录中SocialSDK_WeiXin_1.jar，SocialSDK_WeiXin_2.jar拷贝到工程的libs（如果没有此目录，新建libs目录）目录中。<br>
+2.在libs目录中找到SocialSDK_WeiXin_1.jar，SocialSDK_WeiXin_2.jar文件，鼠标右键--&gt;Add to Build Path。<br>
+1.3 将解压目录中platforms/weixin/res拷贝至你工程的res目录。</p>
+<h2>6.2.2 添加如下集成代码</h2>
+<pre lang="java"><code>// wx967daebe835fbeac是你在微信开发平台注册应用的AppID, 这里需要替换成你注册的AppID
+String appID = "wx967daebe835fbeac";
+// 添加微信平台
+UMWXHandler wxHandler = new UMWXHandler(getActivity(),appId);
+wxHandler.addToSocialSDK();
+// 支持微信朋友圈
+UMWXHandler wxCircleHandler = new UMWXHandler(getActivity(),appId);
+wxCircleHandler.setToCircle(true);
+wxCircleHandler.addToSocialSDK();
+</code></pre>
+<p>微信和朋友圈支持纯文字，纯图片（点击查看大图），图文，音乐，视频分享。<br>
+<strong>注意</strong>
+<br>
+此版本兼容了微信支付的功能，请更新SocialSDK_WeiXin_1.jar文件。 </p>
+<h2>6.2.3 微信和微信朋友圈的回调</h2>
+<p>如果在您的项目中集成了微信或者微信朋友圈，并且您需要准确的分享回调，则需要在AndroidManifest.xml中下注册下面的回调Activity。 </p>
+<pre lang="xml"><code>&lt;activity
+   android:name=".wxapi.WXEntryActivity"
+   android:theme="@android:style/Theme.Translucent.NoTitleBar"
+   android:configChanges="keyboardHidden|orientation|screenSize"
+   android:exported="true"
+   android:screenOrientation="portrait" /&gt;
+</code></pre>
+<p>然后将SDK包中platforms/weixin目录下的wxapi文件夹拷贝到您的工程的包目录下, 然后修改WXEntryActivity的完整路径即可。<br>
+例如social_sdk_example的包名为com.umeng.soexample,因此将wxapi文件夹拷贝到com.umeng.soexample下,最终WXEntryActivity的
+完整路径为com.umeng.soexample.wxapi.WXEntryActivity。<br>
+其中分享的回调接口SnsPostListener的onComplete方法的第二个参数代表分享的状态码，当值为200时表示分享成功;其余的值则为分享失败。 </p>
+<p><strong>微信集成相关说明</strong> </p>
+<p>1.微信集成注意以下几点 </p>
+<blockquote>
+<ul>
+<li>正确填写AppID。</li>
+<li>工程的包名必须同申请应用的包名一致。</li>
+<li>在微信开放平台填写你App的的签名，测试、发布时要保证App的签名跟微信开放平台的签名一致。</li>
+<li>开发者的应用需要通过审核。开发者在申请应用必须要通过微信官网的审核才能进行调试。 </li>
+<li>微信签名过程参考<a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">微信签名说明</a>
+</li>
+</ul>
+</blockquote>
+<p>2.Demo中集成的微信无法使用？ </p>
+<p>原因：Demo中使用的微信AppID绑定的签名信息和你打包时所用的签名信息不一致,导致无法响应.
+解决办法有两个，您任选其一： </p>
+<blockquote>
+<ul>
+<li><p>申请一个测试Demo中AppID.(<a href="http://open.weixin.qq.com/">申请地址</a>).<br>
+填写"包名"时请使用Demo的包名"com.umeng.soexample".<br>
+填写"签名"使用签名生成工具(<a href="http://open.weixin.qq.com/download/sdk/gen_signature.apk">签名工具</a>)生成,签名时填写Demo的包名.<br>
+获取微信AppID后替换Demo中的使用的AppID. </p>
+</li>
+<li><p>使用SDK中的 debug.keystore编译运行Demo工程. </p>
+</li>
+</ul>
+</blockquote>
+<p><strong></strong> </p>
+<h2>6.3 <strong>分享给QQ好友</strong>
+</h2>
+<h2>6.3.1 添加QQ分享所依赖的jar文件</h2>
+<ol>
+<li>解压已下载的zip文件，将platforms/qq_zone/libs目录中SocialSDK_QQZone_1.jar,SocialSDK_QQZone_2.jar，SocialSDK_QQZone_3.jar拷贝到工程的libs（如果没有此目录，新建libs目录）目录中。</li>
+<li>在libs目录中找到SocialSDK_QQZone_1.jar,SocialSDK_QQZone_2.jar，SocialSDK_QQZone_3.jar文件，鼠标右键--&gt;Add to Build Path。</li>
+<li>将解压目录中platforms/qq_zone/res文件拷贝至你工程res目录。 </li>
+<li>在AndroidManifest.xml中注册AuthActivity,QQ空间和QQ共用该授权Activity,具体配置参考上文的AndroidManifest.xml文件。</li>
+<li>请在QQ互联填写签名：移动应用信息-&gt;平台信息-&gt;apk签名.(<a href="http://connect.qq.com/manage/">签名地址</a>)。</li>
+</ol>
+<h2>6.3.2 添加如下集成代码</h2>
+<pre lang="java"><code>//参数1为当前Activity，参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
+UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(getActivity(), "100424468",
+                "c7394704798a158208a74ab60104f0ba");
+qqSsoHandler.addToSocialSDK();  
+</code></pre>
+<p><strong>注意:</strong> </p>
+<blockquote>
+<p>1.此版本集成了QQ的最新jar文件，请更新SocialSDK_QQZone_1.jar,SocialSDK_QQZone_2.jar，SocialSDK_QQZone_3.jar文件。<br>
+2.QQ分享内容为音乐，视频的时候，其形式必须为url;图片支持url和本地图片类型。<br>
+3.QQ SSO授权不会在onActivityResult方法内被调用。<br>
+4.未安装手机QQ客户端的情况下，QQ不支持纯图片分享。<br>
+5.未安装手机QQ客户端的情况下，QQ取消授权不执行相关回调。<br>
+6.QQ和QQ空间授权，对于同一个应用同一个账号返回的uid，openid相同。 </p>
+</blockquote>
+<p><strong></strong>
+</p>
+<h2>6.4 <strong>SSO（免登录）分享到QQ空间</strong>
+</h2>
+<h2>6.4.1 添加QQ空间所依赖的jar文件跟资源文件</h2>
+<p>注意在QQ互联填写签名：移动应用信息-&gt;平台信息-&gt;apk签名。移动应用信息-&gt;平台信息-&gt;apk签名.(<a href="http://connect.qq.com/manage/">签名地址</a>)
+如果已经添加了SocialSDK_QQZone_1.jar,SocialSDK_QQZone_2.jar,SocialSDK_QQZone_3.jar文件，则不需要再次添加。<br>
+1.1 解压已下载的zip文件，将platforms/qq_qzone/libs中 SocialSDK_QQZone_1.jar,SocialSDK_QQZone_2.jar,SocialSDK_QQZone_3.jar拷贝到工程的libs（如果没有此目录，新建libs目录）目录中。<br>
+1.2 在libs目录中找到SocialSDK_QQZone_1.jar,SocialSDK_QQZone_2.jar,SocialSDK_QQZone_3.jar文件，鼠标右键--&gt;Add to Build Path。<br>
+1.3 将解压目录中platforms/qq_zone/res文件拷贝至你工程res目录。
+1.4 在AndroidManifest.xml中注册AuthActivity,QQ空间和QQ共用该授权Activity,具体配置参考上文的AndroidManifest.xml文件。 </p>
+<h2>6.4.2 在集成代码中添加如下代码</h2>
+<pre lang="java"><code>//参数1为当前Activity，参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
+QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(getActivity(), "100424468",
+                "c7394704798a158208a74ab60104f0ba");
+qZoneSsoHandler.addToSocialSDK();
+</code></pre>
+<p><strong>注意：</strong>
+</p>
+<blockquote>
+<p>1.本次集成了QZone的最新jar包，升级时请注意更新SocialSDK_QQZone_1.jar,SocialSDK_QQZone_2.jar，SocialSDK_QQZone_3.jar文件。<br>
+2.在进行QZone SSO授权时，请在AndroidManifest.xml中配置相应的Activity。具体参加上文AndroidManifest.xml文件配置。<br>
+3.QZone不支持纯图片分享。<br>
+4.无手机QQ客户端的情况下，QQ取消授权不执行相关回调。<br>
+5.QQ和QQ空间授权，对于同一个应用同一个账号返回的uid，openid相同。 </p>
+</blockquote>
+<p><strong></strong>
+</p>
+<h2>6.5 <strong>SSO（免登录）分享到新浪微博</strong>
+</h2>
+<h2>**<strong style="color:#F00;">注意一定保证在新浪微博上填写应用签名，原因参考：<a href="http://support.umeng.com/1955/">http://support.umeng.com/1955/</a>
+</strong></h2>
+<h3>1.添加SSO必须的文件</h3>
+<p>1：将platforms/sina/目录下的src覆盖到项目工程根目录下，确保已添加'com/sina/sso/RemoteSSO.aidl'文件。
+2：将platforms/sina/libs中的SocialSDK_Sina.jar添加到工程libs中并将该jar加入到build path中。</p>
+<h2>6.5.2 在代码中添加如下代码</h2>
+<pre lang="java"><code>//设置新浪SSO handler
+mController.getConfig().setSsoHandler(new SinaSsoHandler());
+</code></pre>
+<p><strong></strong>
+</p>
+<h2>6.6 <strong>SSO（免登录）分享到腾讯微博</strong>
+</h2>
+<h2>6.6.1 添加腾讯微博SSO所依赖的jar文件</h2>
+<p>1.解压已下载的zip文件，将platforms/tencentweibo/libs中SocialSDK_tencentWB_1.jar,SocialSDK_tencentWB_2.jar，,SocialSDK_tencentWB_3.jar拷贝到工程的libs（如果没有此目录，新建libs目录）目录中.<br>
+2.在libs目录中找到SocialSDK_tencentWB_1.jar,SocialSDK_tencentWB_2.jar，,SocialSDK_tencentWB_3.jar文件，鼠标右键--&gt;Add to Build Path. </p>
+<h2>6.6.2 在集成代码中添加如下代码</h2>
+<pre lang="java"><code>//设置腾讯微博SSO handler
+mController.getConfig().setSsoHandler(new TencentWBSsoHandler());
+</code></pre>
+<p><strong>注意:</strong>
+</p>
+<blockquote>
+<p>1.手机中必须安装微博客户端V3.8.1及以上的版本才支持SSO功能.<br>
+2.腾讯微博的SSO没有回调。由于腾讯微博SSO没有提供回调，因此腾讯微博SSO不会在onActivityResult方法内被调用（腾讯微博授权流程不经过onActivityResult方法). </p>
+</blockquote>
+<p><strong></strong>
+</p>
+<h2>6.7 <strong>SSO（免登录）分享到人人</strong>
+</h2>
+<h2>6.7.1 添加人人SSO所依赖的jar文件</h2>
+<p>1.解压已下载的zip文件，将platforms/renren/libs/SocialSDK_renren_1.jar,SocialSDK_renren_2.jar,拷贝到你工程libs目录中。<br>
+2.在libs工程找到SocialSDK_renren_1.jar,SocialSDK_renren_2.jar文件，鼠标右键--&gt;Add to Build Path。</p>
+<h2>6.7.2 在集成代码中添加如下代码</h2>
+<pre lang="java"><code>//添加人人网SSO授权功能
+//APPID:201874
+//API Key:28401c0964f04a72a14c812d6132fcef
+//Secret:3bf66e42db1e4fa9829b955cc300b737
+RenrenSsoHandler renrenSsoHandler = new RenrenSsoHandler(getActivity(),
+            "201874", "28401c0964f04a72a14c812d6132fcef",
+            "3bf66e42db1e4fa9829b955cc300b737");
+mController.getConfig().setSsoHandler(renrenSsoHandler);
+</code></pre>
+<p>在SDK中的OAuth授权部分包含了Activity，为了程序能正常允许，请将以下Activity信息在您的应该工程Androidmanefest.xml中注册： </p>
+<pre lang="xml"><code>&lt;activity android:name="com.renn.rennsdk.oauth.OAuthActivity"
+android:configChanges="orientation|navigation|keyboardHidden"/&gt;
+</code></pre>
+<pre><code>然后添加如下权限 :     
+</code></pre>
+<pre lang="xml"><code>    &lt;uses-permission android:name="android.permission.GET_TASKS" /&gt;
+    &lt;uses-permission android:name="android.permission.SET_DEBUG_APP" /&gt;
+    &lt;uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /&gt;
+    &lt;uses-permission android:name="android.permission.GET_ACCOUNTS" /&gt;
+    &lt;uses-permission android:name="android.permission.USE_CREDENTIALS" /&gt;
+    &lt;uses-permission android:name="android.permission.MANAGE_ACCOUNTS" /&gt;
+</code></pre>
+<p><strong>注意</strong>
+</p>
+<blockquote>
+<p>1.手机中必须安装人人客户端V5.9.3及以上的版本才支持SSO功能。<br>
+2.由于人人SSO没有提供回调，因此人人SSO不会在onActivityResult方法内被调用（人人SSO授权流程不经过onActivityResult方法)。</p>
+</blockquote>
+<p><strong></strong>
+</p>
+<h2>6.8 <strong>分享到短信</strong>
+</h2>
+<h2>6.8.1 添加短信平台所依赖的jar文件和资源</h2>
+<p>1.解压已下载的zip文件，将platforms/sms/libs/SocialSDK_sms.jar拷贝到你工程libs目录中。<br>
+2.在libs工程找到SocialSDK_sms.jar文件，鼠标右键--&gt;Add to Build Path。
+3.将res/drawable中的资源添加到你工程对应的res/drawable目录中。</p>
+<h2>6.8.2 在集成代码中添加如下代码</h2>
+<pre lang="java"><code>// 添加短信
+SmsHandler smsHandler = new SmsHandler();
+smsHandler.addToSocialSDK();
+</code></pre>
+<pre><code>添加如上代码后，短信平台就会添加到SDK中。     
+</code></pre>
+<p><strong></strong>
+</p>
+<h2>6.9 <strong>分享到邮件</strong>
+</h2>
+<h2>6.9.1 添加邮件平台所依赖的jar文件和资源</h2>
+<p>1.解压已下载的zip文件，将platforms/email/libs/SocialSDK_email.jar拷贝到你工程libs目录中。<br>
+2.在libs工程找到SocialSDK_email.jar文件，鼠标右键--&gt;Add to Build Path。
+3.将res/drawable中的资源添加到你工程对应的res/drawable目录中。</p>
+<h2>6.9.2 在集成代码中添加如下代码</h2>
+<pre lang="java"><code>// 添加email
+EmailHandler emailHandler = new EmailHandler();
+emailHandler.addToSocialSDK();
+</code></pre>
+<pre><code>添加如上代码后，邮件平台就会添加到SDK中。     
+</code></pre>
+<p><strong></strong>
+</p>
+<h1>7 微信签名说明</h1>
+<p>由于微信的签名过程跟验证流程较多，出错的可能性较大，这里将对微信的签名过程跟验证做详细的说明。</p>
+<h3>7.1：获取签名文件</h3>
+<p>获取应用签名方式有两种
+方式一：<br>
+1：用eclipse导出 <strong>带签名</strong> 的apk文件，注意此时选择的签名文件是你发布app时的签名文件。在导出的最后一步，eclipse会显示一个Certificate fingerprints(证书指纹)，如下图。此时找到MD5值，将该MD5值复制出来，按照“ <strong>去掉冒号(:)，大写转小写</strong> ”的规则装换，此时字符串就是签名。</p>
+<table><thead>
+<tr>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/44717718_5.png" width="500" height="400"></td>
+</tr>
+<tr>
+<td align="center">通过eclispe获取签名</td>
+</tr>
+</tbody>
+</table>
+<p>方式二：<br>
+导出 <strong>带签名</strong> 的apk文件，将该apk文件安装至手机中。安装微信的<a href="https://open.weixin.qq.com/zh_CN/htmledition/res/dev/download/sdk/Gen_Signature_Android.apk">签名工具</a>,打开GenSignature应用程序，填写你App的包名，点击“Get Signature”即可得到签名。 </p>
+<table><thead>
+<tr>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/44717718_6.png" width="500" height="400"></td>
+</tr>
+<tr>
+<td align="center">通过微信签名工具获取签名</td>
+</tr>
+</tbody>
+</table>
+<h3>7.2：请在<a href="https://open.weixin.qq.com/">微信开放平台</a>申请应用</h3>
+<p>1：填写App的相关信息，注意确保包名跟签名填写正确，填写完成提交微信审核。</p>
+<h3>7.3：微信集成测试</h3>
+<p>1：在进行微信集成测试时，请填写你申请App的AppID。测试时需要导出带签名的apk文件测试，否则将不能正常分享。</p>
+<p><strong></strong>
+</p>
+<h1>8 应用信息注册地址列表</h1>
+<p>下面是Social SDK不同平台应用信息注册网站的地址: </p>
+<table><thead>
+<tr>
+<th align="center">平台</th>
+<th align="center">网址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">新浪微博</td>
+<td align="center"><a href="http://open.weibo.com/">http://open.weibo.com</a>
+</td>
+</tr>
+<tr>
+<td align="center">腾讯微博</td>
+<td align="center"><a href="http://dev.t.qq.com/">http://dev.t.qq.com</a>
+</td>
+</tr>
+<tr>
+<td align="center">QQ空间</td>
+<td align="center"><a href="http://connect.qq.com/intro/login/">http://connect.qq.com/intro/login/</a>
+</td>
+</tr>
+<tr>
+<td align="center">微信好友</td>
+<td align="center"><a href="http://open.weixin.qq.com/">http://open.weixin.qq.com</a>
+</td>
+</tr>
+<tr>
+<td align="center">FaceBook</td>
+<td align="center"><a href="https://developers.facebook.com/">https://developers.facebook.com</a>
+</td>
+</tr>
+<tr>
+<td align="center">Twitter</td>
+<td align="center"><a href="https://dev.twitter.com/">https://dev.twitter.com</a>
+</td>
+</tr>
+<tr>
+<td align="center">人人</td>
+<td align="center"><a href="http://dev.renren.com/">http://dev.renren.com</a>
+</td>
+</tr>
+<tr>
+<td align="center">豆瓣</td>
+<td align="center"><a href="http://developers.douban.com/">http://developers.douban.com/</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong></strong>
+</p>
+<h1>8 混淆</h1>
+<p>为了保证引用友盟Social SDK jar文件以及腾讯jar文件被混淆，请在proguard.cfg文件中添加以下代码避免被混淆. </p>
+<pre lang="text"><code>
+-dontshrink
+-dontoptimize
+-dontwarn com.google.android.maps.**
+-dontwarn android.webkit.WebView
+-dontwarn com.umeng.**
+-dontwarn com.tencent.weibo.sdk.**
+-dontwarn com.facebook.**
+
+-libraryjars libs/SocialSDK_QQZone_2.jar
+
+-keep enum com.facebook.**
+-keepattributes Exceptions,InnerClasses,Signature
+-keepattributes *Annotation*
+-keepattributes SourceFile,LineNumberTable
+
+-keep public interface com.facebook.**
+-keep public interface com.tencent.**
+-keep public interface com.umeng.socialize.**
+-keep public interface com.umeng.socialize.sensor.**
+-keep public interface com.umeng.scrshot.**
+
+-keep public class com.umeng.socialize.* {*;}
+-keep public class javax.**
+-keep public class android.webkit.**
+
+-keep class com.facebook.**
+-keep class com.umeng.scrshot.**
+-keep public class com.tencent.** {*;}
+-keep class com.umeng.socialize.sensor.**
+
+-keep class com.tencent.mm.sdk.modelmsg.WXMediaMessage {*;}
+
+-keep class com.tencent.mm.sdk.modelmsg.** implements com.tencent.mm.sdk.modelmsg.WXMediaMessage$IMediaObject {*;}
+
+-keep class im.yixin.sdk.api.YXMessage {*;}
+-keep class im.yixin.sdk.api.** implements im.yixin.sdk.api.YXMessage$YXMessageData{*;}
+
+-keep public class [your_pkg].R$*{
+    public static final int *;
+}
+</code></pre>
+<p><strong></strong>
+</p>
+<h1>9 进阶使用</h1>
+<p>如果上述文档不能满足你的分享需求，请移步至<a href="http://dev.umeng.com/social/android/share/specific-integration">详细集成文档</a>
+</p>
+</div>
+</div>
+<div><ul>
+<li>1.<a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">产品概述</a>
+</li>
+<li>2.<a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">获取友盟AppKey</a>
+</li>
+<li>3.<a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">下载并安装SDK</a>
+</li>
+<li>4.<a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">打开平台选择页面</a>
+<ul>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">设置分享内容</a>
+</li>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">打开面板</a>
+</li>
+</ul>
+</li>
+<li>5.<a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">验证结果</a>
+</li>
+<li>6.<a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">各平台SSO(免登陆)配置</a>
+<ul>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">配置SSO授权回调</a>
+</li>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">分享到微信和朋友圈</a>
+</li>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">分享给QQ好友</a>
+</li>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">SSO（免登录）分享到QQ空间</a>
+</li>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">SSO（免登录）分享到新浪微博</a>
+</li>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">SSO（免登录）分享到腾讯微博</a>
+</li>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">SSO（免登录）分享到人人网</a>
+</li>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">分享到短信</a>
+</li>
+<li><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">分享到邮件</a>
+</li>
+</ul>
+</li>
+<li>7.<a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">应用信息注册地址列表</a>
+</li>
+<li>8.<a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">混淆</a>
+</li>
+<li>9.<a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml">进阶使用</a>
+</li>
+</ul></div>
+</div>
+<div>
+<div>
+<dl>
+<dt><h6>产品与服务</h6></dt>
+<dd>
+<ul>
+<li>开发组件</li>
+<li><a href="http://www.umeng.com/message">消息推送</a></li>
+<li><a href="http://www.umeng.com/social">社会化组件</a></li>
+<li><a href="http://www.umeng.com/component_feedback">用户反馈</a></li>
+<li><a href="http://www.umeng.com/component_update">自动更新</a></li>
+</ul>
+<ul>
+<li>统计分析</li>
+<li><a href="http://www.umeng.com/analytics">统计分析</a></li>
+<li><a href="http://www.umeng.com/analytics_games">游戏统计分析</a></li>
+<li><a href="http://www.umeng.com/analytics_errortype">APP错误分析</a></li>
+<li><a href="http://www.umeng.com/analytics_social">社会化行为分析</a></li>
+<li><a href="http://dev.umeng.com/app" target="_blank">客户端</a></li>
+</ul>
+<ul>
+<li>营销推广</li>
+<li><a href="http://www.umeng.com/appunion_exchange">应用联盟交叉推广</a></li>
+<li><a href="http://www.umeng.com/umtrack">推广效果分析</a></li>
+<li><a href="http://www.umeng.com/payspread">付费推广</a></li>
+</ul>
+<ul>
+<li>盈利服务</li>
+<li><a href="http://www.umeng.com/appunion_adnetwork">应用联盟广告网络</a></li>
+<li><a href="http://www.umeng.com/appunion_selfadvertsing">应用联盟自主广告</a></li>
+</ul>
+<ul>
+<li>友盟实验室</li>
+<li><a href="https://github.com/umeng/umeng-muti-channel-build-tool">Android渠道打包工具</a></li>
+<li><a href="http://www.umeng.com/lab">友盟统计Unity插件</a></li>
+<li><a href="http://www.umeng.com/lab">Android插件框架</a></li>
+</ul>
+</dd>
+</dl>
+<dl>
+<dt><h6>数据</h6></dt>
+<dd><a href="http://www.umeng.com/umengdata_reports">数据报告</a></dd>
+<dd><a href="http://www.umindex.com/">友盟指数</a></dd>
+<dd><a href="http://blog.umeng.com/">友盟观点</a></dd>
+</dl>
+<dl>
+<dt><h6>帮助与支持</h6></dt>
+<dd><a href="http://dev.umeng.com/social" target="_blank">社会化组件</a></dd>
+<dd><a href="http://dev.umeng.com/feedback" target="_blank">用户反馈</a></dd>
+<dd><a href="http://dev.umeng.com/auto-update" target="_blank">自动更新</a></dd>
+<dd><a href="http://dev.umeng.com/analytics" target="_blank">APP统计分析</a></dd>
+<dd><a href="http://dev.umeng.com/social-behaviour-analytics" target="_blank">社会化行为分析</a></dd>
+<dd><a href="http://dev.umeng.com/app-unions" target="_blank">应用联盟</a></dd>
+<dd><a href="http://support.umeng.com/" target="_blank">技术支持</a></dd>
+</dl>
+<dl>
+<dt><h6>关于我们</h6></dt>
+<dd><a href="http://www.umeng.com/aboutus_about">公司介绍</a></dd>
+<dd><a href="http://www.umeng.com/aboutus_news">友盟新闻</a></dd>
+<dd><a href="http://www.umeng.com/aboutus_partner">合作伙伴</a></dd>
+<dd><a href="http://www.umeng.com/aboutus_case">最佳案例</a></dd>
+<dd><a href="http://www.umeng.com/joinus">加入我们</a></dd>
+<dd><a href="http://www.umeng.com/aboutus_contact">联系我们</a></dd>
+<dd><a href="http://www.umeng.com/home/privacypolicy">隐私政策</a></dd>
+<dd><a href="http://salon.umeng.com/" target="_blank">开发者沙龙</a></dd>
+</dl>
+</div>
+<div>
+<p>移动开发者服务平台</p>
+<p>? 2011-2015 Umeng.com , All Rights Reserved.</p>
+<p><a href="http://www.miibeian.gov.cn/state/outPortal/loginPortal.action;jsessionid=WP0XP9XL01psnWRLpbY2Lfn8LyfmvJVbrQsyy3B8yfnT1MkjFmGQ!-903956894" target="_blank">京ICP备案11021163号-6</a> | <a href="http://www.miibeian.gov.cn/state/outPortal/loginPortal.action;jsessionid=WP0XP9XL01psnWRLpbY2Lfn8LyfmvJVbrQsyy3B8yfnT1MkjFmGQ!-903956894" target="_blank">京公网安备 110108008330</a></p></div></div>
+</td>
+<script>
+                                    var html = document.getElementById("artContent").innerHTML;
+                                    document.getElementById("artContent").innerHTML = html;
+
+                                </script>
+</tr>
+</tbody>
+</table>
+<div id="viewerPlaceHolder" style="width: 717px; height: 700px; display: none; margin: 0 auto;">
+</div>
+</div>
+<table>
+<tbody>
+<tr>
+<td>
+<ul></ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div></div>
+<span></span>
+<a></a>
+<p style="margin: 0; padding: 0;"></p>
+<p class="clearboth"></p>
+<div class="bdsharebuttonbox bottombtn bdshare-button-style0-16" data-bd-bind="1500371910665">
+<div class="zcommond" style="overflow: visible;">
+<a href="javascript:void(0);" class="btn_collect" onclick="SaveArt();artStatistics(&#39;20-3-2&#39;);">转藏到我的图书馆</a>
+<a id="flowimg3" href="javascript:void(0);" class="btn_good" onclick="Showflowerlayer(&#39;sendedLayer1&#39;);">献花（<span id="articleflowernum">0</span>）
+<span id="flowernumadd" style="display: none;">+1</span>
+</a>
+<span class="span1 f_left" onclick="setTimeout(function(){$(&#39;.bottombtn .sharelist_new&#39;).slideToggle(0);},10);artStatistics(&#39;20-8-3&#39;);" onmouseover="this.style.color=&#39;#0f659c&#39;" onmouseout="this.style.color=&#39;&#39;">分享：</span>
+<a class="sharewx f_left" href="javascript:void(0);" onclick="shareWeixin();artStatistics(&#39;20-8-6&#39;);">微信</a>
+<div class="s2 f_left" onclick="setTimeout(function(){$(&#39;.bottombtn .sharelist_new&#39;).slideToggle(0);},10);artStatistics(&#39;20-8-4&#39;);"><span></span></div>
+</div>
+<div class="sharelist_new" id="fenxiangLayer2">
+<a class="slbg1" href="javascript:void(0);" data-cmd="qzone" onclick="artStatistics(&#39;20-8-8&#39;);">QQ空间</a>
+<a class="slbg2" href="javascript:void(0);" data-cmd="sqq" onclick="artStatistics(&#39;20-8-10&#39;);">QQ好友</a>
+<a class="slbg3" href="javascript:void(0);" data-cmd="tsina" onclick="artStatistics(&#39;20-8-12&#39;);">新浪微博</a>
+<a class="slbg5" href="javascript:void(0);" onclick="showdivemail1();artStatistics(&#39;20-8-16&#39;);">推荐给朋友</a>
+</div>
+</div>
+<div class="bottom_controler">
+<p class="bottom_cleft">
+来自：
+<span class="a_username" style="width: auto;">
+<a href="http://www.360doc.com/userhome/9200790" id="savernickname2" target="_blank" onclick="artStatistics(&#39;20-7-2&#39;);">quasiceo</a>
+</span>
+&gt;
+<span id="cname" class="a_from"><a href="http://www.360doc.com/userhome.aspx?userid=9200790&amp;cid=2" target="_blank" onclick="artStatistics(&quot;20-6&quot;);">《待分类1》</a></span>
+</p>
+<div class="bottom_cright">
+<a href="https://www.baidu.com/s?wd=jar+android+socialsdk&amp;tn=SE_hldp01010_6r0gix1f" target="_blank" class="a1" onclick="artStatistics(&#39;20-19&#39;);">以文找文</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+<a href="javascript:void(0);" class="a2" onclick="showAlertLayer1();artStatistics(&#39;20-18&#39;);">举报</a>
+</div>
+</div>
+<div class="prev_next">
+<p id="lastart" class="p1" style="display: block;"> 上一篇：<a onclick="artStatistics(&quot;20-9-5&quot;);" href="http://www.360doc.com/content/14/0829/22/9200790_405697331.shtml" target="_blank">Android中使用ListView绘制自定义表格技巧分享</a></p>
+<p id="nextart" class="p2" style="display: block;"> 下一篇：<a onclick="artStatistics(&quot;20-9-6&quot;);" href="http://www.360doc.com/content/14/0829/22/9200790_405699848.shtml" target="_blank">网络营销</a></p>
+</div>
+</div>
+<p class="clearboth"></p>
+<div style="width: 676px; float: left;">
+<div class="str_border" style="border: none; position: relative; z-index: 2;">
+<strong>猜你喜欢</strong>
+</div>
+<ul class="youlike" style="margin-top: -18px; position: relative; z-index: 1;">
+<div style="width: 676px; height: 280px; border: 0;" id="divyoulikead"><iframe id="youlikead" style="width: 676px; height: 280px; border: 0;" frameborder="0" scrolling="no" src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/adbaiduyoulike.html"></iframe></div>
+</ul>
+<div class="zcommond" style="padding: 10px 0 5px;">
+<div class="bottom_article f_left">
+<div class="str_border">
+<strong>类似文章</strong>
+<a href="http://www.360doc.com/relevant/405698272_more.shtml" target="_blank" class="a_more f_right" onclick="artStatistics(" 20-9-8');'="">更多</a>
+</div>
+<ul class="barticle_list">
+<li><span><a href="http://www.360doc.com/content/14/0113/20/1542811_345040391.shtml" target="_blank" onclick="artStatistics(&quot;20-9-7&quot;);">友盟开发者中心-友盟统计android集成</a></span></li>
+<li><span><a href="http://www.360doc.com/content/14/1201/18/9200790_429636386.shtml" target="_blank" onclick="artStatistics(&quot;20-9-7&quot;);">在Android中使App快速、简单地支持新浪微...</a></span></li>
+<li><span><a href="http://www.360doc.com/content/12/0612/17/9369336_217713703.shtml" target="_blank" onclick="artStatistics(&quot;20-9-7&quot;);">快速切换Android工程版本的方法</a></span></li>
+<li><span><a href="http://www.360doc.com/content/12/0817/01/7446551_230598120.shtml" target="_blank" onclick="artStatistics(&quot;20-9-7&quot;);">安装完QQ后，你绝对要删除的几个恐怖文件...</a></span></li>
+<li><span><a href="http://www.360doc.com/content/13/0320/11/21412_272659229.shtml" target="_blank" onclick="artStatistics(&quot;20-9-7&quot;);">Android 代码混淆及反编译方法</a></span></li>
+<li><span><a href="http://www.360doc.com/content/16/0412/00/26211242_549863270.shtml" target="_blank" onclick="artStatistics(&quot;20-9-7&quot;);">Android项目中使用Eclipse导出jar文件</a></span></li>
+<li><span><a href="http://www.360doc.com/content/15/0114/16/1429048_440713044.shtml" target="_blank" onclick="artStatistics(&quot;20-9-7&quot;);">uiautomator介绍和使用</a></span></li>
+<li><span><a href="http://www.360doc.com/content/11/0521/00/4154133_118254865.shtml" target="_blank" onclick="artStatistics(&quot;20-9-7&quot;);">Android调用天气预报的WebService简单例...</a></span></li>
+</ul>
+</div>
+<div class="bottom_article f_right">
+<div class="str_border">
+<strong>精选文章</strong>
+</div>
+<ul class="barticle_list">
+<li><span><a onclick="artStatistics(&#39;20-9-9&#39;);" href="http://www.360doc.com/content/13/0820/00/1437057_308304698.shtml" target="_blank">穴位大全【动态高清大图】</a></span></li>
+<li><span><a onclick="artStatistics(&#39;20-9-9&#39;);" href="http://www.360doc.com/content/13/0702/04/3397672_296866511.shtml" target="_blank">让你厨艺大增的53个小窍门</a></span></li>
+<li><span><a onclick="artStatistics(&#39;20-9-9&#39;);" href="http://www.360doc.com/content/13/0513/17/10983756_285057763.shtml" target="_blank">【摄影教程】图解摄影基础知识大全</a></span></li>
+<li><span><a onclick="artStatistics(&#39;20-9-9&#39;);" href="http://www.360doc.com/content/13/1112/08/9331441_328513482.shtml" target="_blank">凡尘仙乐飘飘</a></span></li>
+<li><span><a onclick="artStatistics(&#39;20-9-9&#39;);" href="http://www.360doc.com/content/13/1112/05/3426256_328480582.shtml" target="_blank">北大新任校长王恩哥十句话</a></span></li>
+<li><span><a onclick="artStatistics(&#39;20-9-9&#39;);" href="http://www.360doc.com/content/13/1127/04/3404269_332376832.shtml" target="_blank">爱的血泪史</a></span></li>
+<li><span><a onclick="artStatistics(&#39;20-9-9&#39;);" href="http://www.360doc.com/content/14/0405/02/4666759_366419279.shtml" target="_blank">女人决定家族的和谐,影响家人的幸福</a></span></li>
+<li><span><a onclick="artStatistics(&#39;20-9-9&#39;);" href="http://www.360doc.com/content/14/0504/00/6755395_374217603.shtml" target="_blank">中国人的“活命道理”:在自己的壳里观察世界</a></span></li>
+</ul>
+</div>
+</div>
+<div id="divunderad"><iframe id="underZcommondAd" style="width: 676px; height: 100px;" frameborder="0" scrolling="no" src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/underad.html"></iframe></div>
+<div id="ReflectionPart"><div style="margin: 0px 0px;"><div class="plbox" style="height:auto;"><div style="padding-left:6px;margin-top:10px;padding-bottom:14px;"><div style="height: 23px;font-size:16px;font-weight:bold;" class="titwx">发表评论</div><div class="deluwx" style="margin-top:10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请&nbsp;<span><a onclick="ReflectionLoginform();artStatistics(&#39;20-4-1&#39;);" href="javascript:void(0);">登录</a></span>&nbsp;或者&nbsp;<span><a onclick="InsertLogData(4);artStatistics(&#39;20-4-2&#39;);" href="http://www.360doc.com/register.aspx?refer=53&amp;reurl=showweb/0/0/54400091122.aspx" target="_blank">注册</a></span>&nbsp;后再进行评论</div><div class="rt360" style="height: 26px;margin:-22px 170px 0 0;_display:inline;"><span class="dsfwz">社交帐号登录：</span><a class="dsftb sf1" href="javascript:void(0);" onclick="ArtLoginTypeID=13;toSNSLogin(&#39;smb&#39;);artStatistics(&#39;20-4-3&#39;);_hmt.push([&#39;_trackEvent&#39;,&#39;loginsina&#39;,&#39;clicknum&#39;,&#39;wenzhangyeremark&#39;]);" title="新浪微博"></a><a class="dsftb sf2 " onclick="ArtLoginTypeID=13;toSNSLogin(&#39;qq&#39;);artStatistics(&#39;20-4-4&#39;);_hmt.push([&#39;_trackEvent&#39;,&#39;loginqq&#39;,&#39;clicknum&#39;,&#39;wenzhangyeremark&#39;]); " href="javascript:void(0);" title="腾讯QQ"></a><a class="dsftb sf3" href="javascript:void(0);" onclick="ArtLoginTypeID=13;toSNSLogin(&#39;wx&#39;);artStatistics(&#39;20-4-5&#39;);_hmt.push([&#39;_trackEvent&#39;,&#39;loginrenren&#39;,&#39;clicknum&#39;,&#39;wenzhangyeremark&#39;]);" title="微信"></a></div></div></div></div></div>
+<div style="padding-top: 15px; padding-left: 15px;" id="Reflction"><div id="360docRefTN" class="wenzhang_bt" style="display:none;"></div><div id="360docRefCT"></div><div id="360docRefPB" style="display: none;"></div></div>
+</div>
+</div>
+<div class="a_right">
+<div class="user_info">
+<div class="user_photo f_left">
+<p class="user_photopic">
+<a href="http://www.360doc.com/userhome/9200790" id="userphotourl" target="_blank" onclick="artStatistics(&#39;20-7-4&#39;);">
+<img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/001.gif" id="userphoto" width="58" height="58">
+</a>
+</p>
+<a href="javascript:void(0);" onclick="docTalk();artStatistics(&#39;20-15&#39;);" class="user_talk" title="与TA对话"></a>
+</div>
+<div class="user_data f_right">
+<div class="user_data_name">
+<a href="http://www.360doc.com/userhome/9200790" id="nickname" target="_blank" onclick="artStatistics(&#39;20-7-3&#39;);">quasiceo</a>
+<img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/user_name_tag.gif" alt="图书馆">
+</div>
+<p id="userdegree"><img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/userstar1.gif"><img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/userstar1.gif"><img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/userstar1.gif"><img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/userstar1.gif"><img src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/userstar2.gif"></p>
+<div class="user_data_num">
+<a id="spanfollowstatus" class="gz_no"></a>
+<script type="text/javascript">isfollow(9200790);</script>
+<span id="follownum">2025</span>&nbsp;&nbsp;&nbsp;&nbsp;
+<span>馆藏</span>&nbsp;<span id="artnum">22869</span>
+</div>
+</div>
+</div>
+<div class="his_her"><ul class="his_her_type"><li class="f_left curone">TA的最新馆藏</li></ul><div class="his_her_div" style="height:190px;"><ul class="his_her_list"><li><div><span></span><a href="http://www.360doc.com/content/17/0717/15/9200790_672080663.shtml" target="_blank" onclick="artStatistics(&#39;20-9-3&#39;);">python utf</a></div><div><span></span><a href="http://www.360doc.com/content/17/0717/13/9200790_672055530.shtml" target="_blank" onclick="artStatistics(&#39;20-9-3&#39;);">唱吧DevOps的落地，微服务CI/CD的范本技术解读</a></div><div><span></span><a href="http://www.360doc.com/content/17/0717/11/9200790_672036646.shtml" target="_blank" onclick="artStatistics(&#39;20-9-3&#39;);">Django根据现有数据库建立model</a></div><div><span></span><a href="http://www.360doc.com/content/17/0717/11/9200790_672034992.shtml" target="_blank" onclick="artStatistics(&#39;20-9-3&#39;);">Django根据现有数据库建立model</a></div><div><span></span><a href="http://www.360doc.com/content/17/0717/10/9200790_672016121.shtml" target="_blank" onclick="artStatistics(&#39;20-9-3&#39;);">UnicodeDecodeError: 'ascii' codec can't decode byte 0xe9 in position 0: ordinal not in range(128) 解决</a></div><div><span></span><a href="http://www.360doc.com/content/17/0717/10/9200790_672009551.shtml" target="_blank" onclick="artStatistics(&#39;20-9-3&#39;);">饿了么的PWA升级实践</a></div></li></ul></div></div>
+<div class="clear360doc" style="padding-top: 10px; height: 260px;">
+<div id="divifartad1">
+<script>
+            var strow = document.body.offsetWidth;
+            var strsw = document.body.scrollWidth;
+            var strsc = window.screen.width;
+
+            function aliad1() {
+                document.write('<a style="display:none!important" id="tanx-a-mm_11220363_1101997_10218757"></a>');
+                tanx_s = document.createElement("script");
+                tanx_s.type = "text/javascript";
+                tanx_s.charset = "gbk";
+                tanx_s.id = "tanx-s-mm_11220363_1101997_10218757";
+                tanx_s.async = true;
+                tanx_s.src = "http://p.tanx.com/ex?i=mm_11220363_1101997_10218757";
+                tanx_h = document.getElementsByTagName("head")[0];
+                if (tanx_h) tanx_h.insertBefore(tanx_s, tanx_h.firstChild);
+            }
+
+            function aliad2() {
+                document.write('<a style="display:none!important" id="tanx-a-mm_11220363_1101997_26568831"></a>');
+                tanx_s = document.createElement("script");
+                tanx_s.type = "text/javascript";
+                tanx_s.charset = "gbk";
+                tanx_s.id = "tanx-s-mm_11220363_1101997_26568831";
+                tanx_s.async = true;
+                tanx_s.src = "http://p.tanx.com/ex?i=mm_11220363_1101997_26568831";
+                tanx_h = document.getElementsByTagName("head")[0];
+                if (tanx_h) tanx_h.insertBefore(tanx_s, tanx_h.firstChild);
+            }
+
+
+            if (strsc <= 1024) {
+                aliad1();
+            }
+            else {
+                //300宽
+                aliad2();
+            }
+        </script><a style="display:none!important" id="tanx-a-mm_11220363_1101997_26568831"></a>
+</div>
+<div style="height: 10px;">
+</div>
+</div>
+<div class="his_her" id="recommendArt" style="margin-top: 5px;">
+<div class="str_border" style="margin: 0;">
+<span style="font-size: 14px; float: left;">推荐阅读</span>
+<a style="float: right;" class="a_more" onclick="artStatistics(&#39;20-9-4&#39;);" href="http://www.360doc.com/readroom.html" target="_blank">更多</a>
+</div>
+<div class="his_her_div" style="height: 264px;">
+<ul class="his_her_list">
+<li id="recommendArtLists"><div><span></span><a href="http://www.360doc.com/content/14/1026/06/9200790_419869910.shtml" target="_blank" onclick="artStatistics(&#39;20-9-1&#39;);">public.xml的作用！</a></div><div><span></span><a href="http://www.360doc.com/content/14/0829/09/9200790_405694002.shtml" target="_blank" onclick="artStatistics(&#39;20-9-1&#39;);">Android中AsyncTask的用法实例分享</a></div><div><span></span><a href="http://www.360doc.com/content/15/0709/09/15077656_483720105.shtml" target="_blank" onclick="artStatistics(&#39;20-9-1&#39;);">使用四种框架分别实现1百万websocket常连接的服务器 | 鸟窝</a></div><div><span></span><a href="http://www.360doc.com/content/13/1103/08/9200790_326230875.shtml" target="_blank" onclick="artStatistics(&#39;20-9-1&#39;);">安裝 MODI 以便於和 Microsoft Office 2010 搭配使用</a></div><div><span></span><a href="http://www.360doc.com/content/13/1105/06/9200790_326845666.shtml" target="_blank" onclick="artStatistics(&#39;20-9-1&#39;);">JavaScript语言精粹读书笔记</a></div><div><span></span><a href="http://www.360doc.com/content/12/1219/03/9200790_255087723.shtml" target="_blank" onclick="artStatistics(&#39;20-9-1&#39;);">COM对象创建过程总结（进程外和进程内）</a></div><div><span></span><a href="http://www.360doc.com/content/13/1214/01/6624919_337073479.shtml" target="_blank" onclick="artStatistics(&#39;20-9-1&#39;);">Protel自制PCB封装元件过程（一）</a></div><div><span></span><a href="http://www.360doc.com/content/13/0319/07/11495619_272535579.shtml" target="_blank" onclick="artStatistics(&#39;20-9-1&#39;);">Android权限大全代码</a></div><div><span></span><a href="http://www.360doc.com/content/15/1110/06/8734721_512175453.shtml" target="_blank" onclick="artStatistics(&#39;20-9-1&#39;);">震惊！大数据告诉你，电商会把假货发给谁？</a></div></li>
+</ul>
+</div>
+</div>
+<div class="clear360doc" style="padding-top: 10px;" id="divifartad2"><iframe id="ifartad2" height="250" width="300px" frameborder="0" scrolling="no" src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/ad2_300.html"></iframe></div>
+<br>
+<div id="divifartrightsogou"><iframe id="ifartrightsogou" height="190" width="300px" frameborder="0" scrolling="no" src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/artrightadsogou300.html"></iframe></div>
+<div class="clear360doc" id="divad5" style="padding-top: 11px; zoom: 1; width: 300px; position: fixed; top: 80px; left: 999.5px;">
+<div id="divad4" style="">
+<div id="divifartad"><iframe id="ifartad" height="250px" width="300px" frameborder="0" scrolling="no" src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/ad4_300.html"></iframe></div>
+<div class="ggwz">
+<a href="javascript:void(0);" onclick="closead(2);">关闭</a>
+</div>
+<div style="height: 13px;">
+</div>
+</div>
+<div style="clear: both;" id="divad6">
+<div id="adfloatbaidu"><iframe id="ifartadfloadbaidu" height="250px" width="250px" frameborder="0" scrolling="no" src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/ad5.html" style="width: 250px; margin: 0px auto;"></iframe></div>
+<div class="ggwz" style="left: 25px;">
+<a href="javascript:void(0);" onclick="closead(3);">关闭</a>
+</div>
+<div style="height: 13px;">
+</div>
+</div>
+<div style="height: 75px;">
+</div>
+</div>
+</div>
+</div>
+<p class="clearboth"></p>
+<input type="hidden" id="artid" value="405698272">
+<input type="hidden" id="docarttitle" value="Android+%7c+%e7%a4%be%e4%bc%9a%e5%8c%96%e5%88%86%e4%ba%ab+%7c+%e5%bc%80%e5%8f%91%e8%80%85%e4%b8%ad%e5%bf%83+%7c+%e5%8f%8b%e7%9b%9f">
+<input type="hidden" id="firstartid" value="405698272">
+<input type="hidden" id="subclassid" value="-1">
+<input type="hidden" id="recommendart1" value="230598120">
+<input type="hidden" id="recommendart2" value="512175453">
+<input type="hidden" id="isowner" value="False">
+<input type="hidden" id="artreadroomid" value="0">
+<script src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/showarticle.js.下载" type="text/javascript" charset="utf-8"></script>
+<script>GerLookingUserInfo(1,9200790,1,0,'-1',-1,10,0);OutputSource('http://dev.umeng.com/social/android/share/quick-integration','');OutputLastNextArt('Android%e4%b8%ad%e4%bd%bf%e7%94%a8ListView%e7%bb%98%e5%88%b6%e8%87%aa%e5%ae%9a%e4%b9%89%e8%a1%a8%e6%a0%bc%e6%8a%80%e5%b7%a7%e5%88%86%e4%ba%ab','http://www.360doc.com/content/14/0829/22/9200790_405697331.shtml',0);OutputLastNextArt('%e7%bd%91%e7%bb%9c%e8%90%a5%e9%94%80','http://www.360doc.com/content/14/0829/22/9200790_405699848.shtml',1);</script>
+<script type="text/javascript" src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/newheader.js.下载"></script>
+<script type="text/javascript" src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/addStatistics.js.下载"></script>
+<script src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/getstatusv2.ashx" type="text/javascript" charset="utf-8" async="async"></script>
+<script type="text/javascript">
+        var baiduImagePlus = {
+            noLogo: true,
+            unionId: 'u2617463',
+            maxMiniAdCount: 0,
+            formList: [{ formId: 10 }]
+        };
+    </script>
+<script type="text/javascript" src="./Android _ 社会化分享 _ 开发者中心 _ 友盟_files/i.js.下载"></script>
+
+
+<div id="goTop2" style="left: 1319.5px;"><div id="goTop"><a href="http://www.360doc.com/content/14/0829/22/9200790_405698272.shtml#" id="go_top" onclick="artStatistics(&#39;20-20&#39;);"></a></div><div id="goTop1"><a href="javascript:void(0);" id="go_top1"></a></div><div></div></div></body></html>
