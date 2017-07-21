@@ -1,0 +1,3 @@
+var OX_14ff6f07 = '';
+OX_14ff6f07 += "<"+"a href=\'//gg.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=5920__zoneid=255__cb=1411a7c2d0__oadest=http%3A%2F%2Fserver.51cto.com%2Fact%2FZerto%2FZerto2017Q1\' target=\'_blank\'><"+"font color=\'red\'>专注灾难恢复 保证业务持续可用<"+"/font><"+"/a><"+"div id=\'beacon_1411a7c2d0\' style=\'position: absolute; left: 0px; top: 0px; visibility: hidden;\'><"+"img src=\'//gg3.51cto.com/www/delivery/lg.php?bannerid=5920&amp;campaignid=1267&amp;zoneid=255&amp;loc=1&amp;referer=http%3A%2F%2Fmobile.51cto.com%2Fandroid-265878.htm&amp;cb=1411a7c2d0\' width=\'0\' height=\'0\' alt=\'\' style=\'width: 0px; height: 0px;\' /><"+"/div>\n";
+document.write(OX_14ff6f07);

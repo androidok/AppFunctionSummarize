@@ -1,0 +1,3 @@
+var OX_3c2be5a9 = '';
+OX_3c2be5a9 += "<"+"img src=\'http://s1.51cto.com/wyfs02/M02/9C/4F/wKiom1lu14_gl9VyAAB1vcz-ooU115.jpg\' width=\'300\' height=\'260\' alt=\'\' title=\'\' border=\'0\' /><"+"div id=\'beacon_c36a1674ca\' style=\'position: absolute; left: 0px; top: 0px; visibility: hidden;\'><"+"img src=\'//gg2.51cto.com/www/delivery/lg.php?bannerid=5774&amp;campaignid=1250&amp;zoneid=953&amp;loc=http%3A%2F%2Fother.51cto.com%2Fad%2Fart%2Fhzh%2F14.htm&amp;referer=http%3A%2F%2Fmobile.51cto.com%2Fandroid-265878.htm&amp;cb=c36a1674ca\' width=\'0\' height=\'0\' alt=\'\' style=\'width: 0px; height: 0px;\' /><"+"/div>\n";
+document.write(OX_3c2be5a9);

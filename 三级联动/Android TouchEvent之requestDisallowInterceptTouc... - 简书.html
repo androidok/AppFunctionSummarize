@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.jianshu.com/p/fe3d109eb27e -->
+<html><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+
+  <!-- Start of Baidu Transcode -->
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="MobileOptimized" content="width">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="mobile-agent" content="format=html5;url=http://www.jianshu.com/p/fe3d109eb27e">
+  <!-- End of Baidu Transcode -->
+
+    <meta name="description" content="1从一个细节展开前些日子收藏了@郑海波-mobctrl的SwipeRefreshLayout，想研究下如何实现。当自己动手实现的时候发现了一个问题：在listview距离上方还有一定距离的地方开始下拉，顶住上方内容后滑不动了，而SwipeRefreshLayout却可以继续下拉...">
+
+  <meta name="360-site-verification" content="604a14b53c6b871206001285921e81d8">
+  <meta property="wb:webmaster" content="294ec9de89e7fadb">
+  <meta property="qc:admins" content="104102651453316562112116375">
+  <meta property="qc:admins" content="11635613706305617">
+  <meta property="qc:admins" content="1163561616621163056375">
+  <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4">
+  <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI">
+  <meta http-equiv="mobile-agent" content="format=html5; url=http://www.jianshu.com/p/fe3d109eb27e">
+
+  <!-- Apple -->
+  <meta name="apple-mobile-web-app-title" content="简书">
+
+    <!--  Meta for Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=888237539, app-argument=jianshu://notes/1927331">
+  <!-- End -->
+
+  <!--  Meta for Twitter Card -->
+  <meta content="summary" property="twitter:card">
+  <meta content="@jianshucom" property="twitter:site">
+  <meta content="Android TouchEvent之requestDisallowInterceptTouchEvent" property="twitter:title">
+  <meta content="1从一个细节展开前些日子收藏了@郑海波-mobctrl的SwipeRefreshLayout，想研究下如何实现。当自己动手实现的时候发现了一个问题：在listview距离上方还有一定距离的地方开始下拉，顶住上方内容后滑不动了，而SwipeRefreshLayout却可以继续下拉..." property="twitter:description">
+  <meta content="http://www.jianshu.com/p/fe3d109eb27e" property="twitter:url">
+  <!-- End -->
+
+  <!--  Meta for OpenGraph -->
+  <meta property="fb:app_id" content="865829053512461">
+  <meta property="og:site_name" content="简书">
+  <meta property="og:title" content="Android TouchEvent之requestDisallowInterceptTouchEvent">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://www.jianshu.com/p/fe3d109eb27e">
+  <meta property="og:description" content="1从一个细节展开前些日子收藏了@郑海波-mobctrl的SwipeRefreshLayout，想研究下如何实现。当自己动手实现的时候发现了一个问题：在listview距离上方还有一定距离的地方开...">
+  <!-- End -->
+
+  <!--  Meta for Facebook Applinks -->
+  <meta property="al:ios:url" content="jianshu://notes/1927331">
+  <meta property="al:ios:app_store_id" content="888237539">
+  <meta property="al:ios:app_name" content="简书">
+
+  <meta property="al:android:url" content="jianshu://notes/1927331">
+  <meta property="al:android:package" content="com.jianshu.haruki">
+  <meta property="al:android:app_name" content="简书">
+  <!-- End -->
+
+
+    <title>Android TouchEvent之requestDisallowInterceptTouc... - 简书</title>
+
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="cGt3XoXVmB7+GWbxFSt8oudc6wF+My7TinBadj9xjwKSgK3X7KBJii0VTXFHqYVOtxmnyDOANVzgIeatR1cPFw==">
+
+  <link rel="stylesheet" media="all" href="./Android TouchEvent之requestDisallowInterceptTouc... - 简书_files/web-f3d80ff74f02eba0007d.css">
+  
+  <link rel="stylesheet" media="all" href="./Android TouchEvent之requestDisallowInterceptTouc... - 简书_files/entry-f3d80ff74f02eba0007d.css">
+
+  <link href="http://cdn2.jianshu.io/assets/favicons/favicon-783beb88ed621ceab614de960376ac0c.ico" rel="icon">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/57-47624b2e2161e8eb144462c85db0a5ff.png" sizes="57x57">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/72-c00cde7cf98fc49e50cbb3ee1dcd5804.png" sizes="72x72">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/76-e8af0bdeaf1ba31e303b1fde8b5e66c4.png" sizes="76x76">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/114-f4c78569bbf1977e8382a5fd90c9237a.png" sizes="114x114">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/120-cf10c3711dba269522743729efe66bbc.png" sizes="120x120">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/152-7bd60457b5f3ecbf1343f0e6241be4f8.png" sizes="152x152">
+<link rel="stylesheet" href="blob:http://www.jianshu.com/7e2bd3ed-3f0a-4130-ae07-7bef65d34d6e"><link rel="stylesheet" href="blob:http://www.jianshu.com/16f7b6bf-7c32-452f-80c9-774d98a8bb2c"></head>
+
+  <body lang="zh-CN" class="reader-black-font">
+    <!-- 全局顶部导航栏 -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="width-limit">
+    <!-- 左上方 Logo -->
+    <a class="logo" href="http://www.jianshu.com/"><img src="./Android TouchEvent之requestDisallowInterceptTouc... - 简书_files/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo"></a>
+
+    <!-- 右上角 -->
+      <!-- 未登录显示登录/注册/写文章 -->
+      <a class="btn write-btn" target="_blank" href="http://www.jianshu.com/writer#/">
+        <i class="iconfont ic-write"></i>写文章
+</a>      <a class="btn sign-up" href="http://www.jianshu.com/sign_up">注册</a>
+      <a class="btn log-in" href="http://www.jianshu.com/sign_in">登录</a>
+
+    <!-- 如果用户登录，显示下拉菜单 -->
+
+    <div class="style-mode"><a class="style-mode-btn"><i class="iconfont ic-navigation-mode"></i></a> <div class="popover-modal" style="left: 0px; display: none;"><div class="meta"><i class="iconfont ic-navigation-night"></i><span>夜间模式</span></div> <div class="switch day-night-group"><a class="switch-btn">开</a> <a class="switch-btn active">关</a></div> <hr> <div class="switch font-family-group"><a class="switch-btn font-song">宋体</a> <a class="switch-btn font-hei active">黑体</a></div> <div class="switch"><a class="switch-btn active">简</a> <a class="switch-btn">繁</a></div></div></div>
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="nav navbar-nav">
+            <li class="">
+              <a href="http://www.jianshu.com/">
+                <span class="menu-text">首页</span><i class="iconfont ic-navigation-discover menu-icon"></i>
+</a>            </li>
+            <li class="">
+              <a class="app-download-btn" href="http://www.jianshu.com/apps"><span class="menu-text">下载App</span><i class="iconfont ic-navigation-download menu-icon"></i></a>
+            </li>
+          <li class="search">
+            <form target="_blank" action="http://www.jianshu.com/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+              <input type="text" name="q" id="q" value="" placeholder="搜索" class="search-input">
+              <a class="search-btn" href="javascript:void(null)"><i class="iconfont ic-search"></i></a>
+              <!-- <div id="navbar-trending-search"></div> -->
+</form>          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+    
+<div class="note">
+  <div class="post">
+    <div class="article">
+        <h1 class="title">Android TouchEvent之requestDisallowInterceptTouchEvent</h1>
+
+        <!-- 作者区域 -->
+        <div class="author">
+          <a class="avatar" href="http://www.jianshu.com/u/4d9892c8d3bb">
+            <img src="./Android TouchEvent之requestDisallowInterceptTouc... - 简书_files/b49d005bf4a0.jpg" alt="144">
+</a>          <div class="info">
+            <span class="tag">作者</span>
+            <span class="name"><a href="http://www.jianshu.com/u/4d9892c8d3bb">我是Asha</a></span>
+            <!-- 关注用户按钮 -->
+            <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+            <!-- 文章数据信息 -->
+            <div class="meta">
+              <!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
+                <span class="publish-time">2015.08.28 16:04</span>
+              <span class="wordage">字数 1533</span>
+            <span class="views-count">阅读 1719</span><span class="comments-count">评论 1</span><span class="likes-count">喜欢 11</span></div>
+          </div>
+          <!-- 如果是当前作者，加入编辑按钮 -->
+        </div>
+        <!-- -->
+
+        <!-- 文章内容 -->
+        <div data-note-content="" class="show-content">
+          <h2>1 从一个细节展开</h2>
+<p>前些日子收藏了<a href="http://weibo.com/mobctrl" target="_blank">@郑海波-mobctrl</a>的<a href="https://github.com/nuptboyzhb/SuperSwipeRefreshLayout" target="_blank">SwipeRefreshLayout</a>，想研究下如何实现。当自己动手实现的时候发现了一个问题：在listview距离上方还有一定距离的地方开始下拉，顶住上方内容后滑不动了，而SwipeRefreshLayout却可以继续下拉，并触发下拉刷新。如图所示：</p>
+<div class="image-package">
+<img src="./Android TouchEvent之requestDisallowInterceptTouc... - 简书_files/638171-aa46c8a307c5f3e7.jpg" data-original-src="http://upload-images.jianshu.io/upload_images/638171-aa46c8a307c5f3e7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">左图开始滑动，右图拉到顶无法继续下拉</div>
+</div>
+<p>经过一番排查，发现我自己实现的代码，在onInterceptTouchEvent中能接收到1个ACTION_DOWN，和2个ACTION_MOVE，之后就再也接受不到ACTION_MOVE事件，导致无法更新子view是否能下拉，是否在下拉的状态；而SwipeRefreshLayout可以接收连续的ACTION_MOVE事件。</p>
+<p>最后发现，居然是SwipeRefreshLayout中一句不起眼的函数重写实现的，代码如下：</p>
+<pre class="hljs java"><code class="java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">requestDisallowInterceptTouchEvent</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> b)</span> </span>{
+    <span class="hljs-comment">// Nope.</span>
+}</code></pre>
+<p>SwipeRefreshLayout继承自ViewGroup，requestDisallowInterceptTouchEvent覆盖的是ViewGroup中的下述代码：</p>
+<pre class="hljs java"><code class="java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">requestDisallowInterceptTouchEvent</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> disallowIntercept)</span> </span>{
+
+    <span class="hljs-keyword">if</span> (disallowIntercept == ((mGroupFlags &amp; FLAG_DISALLOW_INTERCEPT) != <span class="hljs-number">0</span>)) {
+        <span class="hljs-comment">// We're already in this state, assume our ancestors are too</span>
+        <span class="hljs-keyword">return</span>;
+    }
+
+    <span class="hljs-keyword">if</span> (disallowIntercept) {
+        mGroupFlags |= FLAG_DISALLOW_INTERCEPT;
+    } <span class="hljs-keyword">else</span> {
+        mGroupFlags &amp;= ~FLAG_DISALLOW_INTERCEPT;
+    }
+
+    <span class="hljs-comment">// Pass it up to our parent</span>
+    <span class="hljs-keyword">if</span> (mParent != <span class="hljs-keyword">null</span>) {
+        mParent.requestDisallowInterceptTouchEvent(disallowIntercept);
+    }
+}</code></pre>
+<p>为什么一句简单的重写，能解决这个问题？</p>
+<h2>2 Android TouchEvent</h2>
+<p>Touch事件通过底层接收，传递到ViewRootImpl中，分发给phoneWindow的decorView，首先回调给Activity的dispatchTouchEvent处理，随后回到decorView开始往子view进行dispatch，在一个ViewGroup中的传递逻辑如下图所示:</p>
+<div class="image-package">
+<img src="./Android TouchEvent之requestDisallowInterceptTouc... - 简书_files/638171-a06b6ec93ad30382.png" data-original-src="http://upload-images.jianshu.io/upload_images/638171-a06b6ec93ad30382.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">TouchEvent dispatchTouchEvent流程</div>
+</div>
+<p>在TouchEvent dispatchTouchEvent到某ViewGroup中时，会有三步判断，如上图浅绿色所示。</p>
+<ol>
+<li>
+<p>disallowIntercept?<br><strong>disallowIntercept的作用</strong><br>ViewGroup有一个disallowIntercept开关，可以设置此ViewGroup是否屏蔽onInterceptTouchEvent事件。如果开启此开关，则此ViewGroup跳过自身的onInterceptTouchEvent事件，直接dispatchTouchEvent到子View。<br><strong>重置disallowIntercept</strong><br>disallowIntercept，会在每次ACTION_DOWN被重置，默认为允许调用onInterceptTouchEvent。</p>
+<pre class="hljs java"><code class="java"><span class="hljs-comment">//ViewGroup.dispatchTouchEvent</span>
+<span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">dispatchTouchEvent</span><span class="hljs-params">(MotionEvent ev)</span> </span>{
+ ...
+ <span class="hljs-keyword">boolean</span> handled = <span class="hljs-keyword">false</span>;
+ <span class="hljs-keyword">if</span> (onFilterTouchEventForSecurity(ev)) {
+     <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> action = ev.getAction();
+     <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> actionMasked = action &amp; MotionEvent.ACTION_MASK;
+
+     <span class="hljs-comment">// Handle an initial down.</span>
+     <span class="hljs-keyword">if</span> (actionMasked == MotionEvent.ACTION_DOWN) {
+         <span class="hljs-comment">// Throw away all previous state when starting a new touch gesture.</span>
+         <span class="hljs-comment">// The framework may have dropped the up or cancel event for the previous gesture</span>
+         <span class="hljs-comment">// due to an app switch, ANR, or some other state change.</span>
+         cancelAndClearTouchTargets(ev);
+         resetTouchState();
+     }
+     ...
+ }
+ ...
+}
+<span class="hljs-comment">/**
+* 
+* Resets all touch state in preparation for a new cycle.
+*/</span>
+<span class="hljs-comment">//ViewGroup.resetTouchState</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">resetTouchState</span><span class="hljs-params">()</span> </span>{
+ clearTouchTargets();
+ resetCancelNextUpFlag(<span class="hljs-keyword">this</span>);
+ mGroupFlags &amp;= ~FLAG_DISALLOW_INTERCEPT;
+ mNestedScrollAxes = SCROLL_AXIS_NONE;
+}</code></pre>
+<p>每次用户的按下滑动抬起操作为一组完整的操作。新一组操作开始，即当用户开始点击屏幕的时候，ViewGroup会重置当前的disallowIntercept开关，恢复到允许调用onInterceptTouchEvent状态。</p>
+</li>
+<li>
+<p>intercept?<br><strong>onInterceptTouchEvent返回值为true</strong><br>当调用ViewGroup的onInterceptTouchEvent后返回值为true，则表示当前ViewGroup拦截了此TouchEvent事件，此ViewGroup的onTouchEvent会收到回调；<br><strong>onInterceptTouchEvent返回值为false</strong><br>如果返回值为false，则调用dispatchTransformedTouchEvent，去寻找此Point上hit到的子View，如果寻找到子View，则调用子View的dispatchTouchEvent事件，否则就调用super.dispatchTouchEvent，即调用View的dispatchTouchEvent实现，在此会调用到onTouchEvent函数去处理此TouchEvent事件。<br><strong>onInterceptTouchEvent总结</strong><br>onInterceptTouchEvent流程为父ViewGroup-&gt;子ViewGroup-&gt;孙ViewGruop，如果其中一个ViewGroup拦截了事件，则此ViewGroup，则此ViewGroup直接处理OnTouchEvent事件，且TouchEvent不在往下dispatch，而是开始return。</p>
+</li>
+<li>
+<p>handled?<br><strong>onTouchEvent返回值为true</strong><br>如果返回值为true，则此TouchEvent被处理完毕<br><strong>onTouchEvent返回值为false</strong><br>如果为false，则return给父ViewGroup，父ViewGroup会继续交给此ViewGroup的兄弟View处理。</p>
+</li>
+</ol>
+<h2>3 requestDisallowInterceptTouchEvent</h2>
+<p>子View在onInterceptTouchEvent的ACTION_DOWN之后调用requestDisallowInterceptTouchEvent(true)，则此子View的所有父ViewGroup会跳过onInterceptTouchEvent回调，即文章中开头出现的情况：ACTION_MOVE开始后，父ViewGroup的后几个ACTION_MOVE事件接收不到了。那么可以断定，ScrollView、ListView等子View在判断开始滑动并拦截事件后，调用了requestDisallowInterceptTouchEvent(true)，致使所有父ViewGroup跳过onInterceptTouchEvent回调，直接dispatchTransformedTouchEvent到ScrollView或者ListView，实现代码如下：</p>
+<pre class="hljs java"><code class="java"> <span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onInterceptTouchEvent</span><span class="hljs-params">(MotionEvent ev)</span> </span>{
+    ...
+    <span class="hljs-keyword">switch</span> (action &amp; MotionEvent.ACTION_MASK) {
+        <span class="hljs-keyword">case</span> MotionEvent.ACTION_MOVE: {
+            ...
+            <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> yDiff = Math.abs(y - mLastMotionY);
+            <span class="hljs-keyword">if</span> (yDiff &gt; mTouchSlop &amp;&amp; (getNestedScrollAxes() &amp; SCROLL_AXIS_VERTICAL) == <span class="hljs-number">0</span>) {
+                mIsBeingDragged = <span class="hljs-keyword">true</span>;
+                mLastMotionY = y;
+                initVelocityTrackerIfNotExists();
+                mVelocityTracker.addMovement(ev);
+                mNestedYOffset = <span class="hljs-number">0</span>;
+                <span class="hljs-keyword">if</span> (mScrollStrictSpan == <span class="hljs-keyword">null</span>) {
+                    mScrollStrictSpan = StrictMode.enterCriticalSpan(<span class="hljs-string">"ScrollView-scroll"</span>);
+                }
+                <span class="hljs-keyword">final</span> ViewParent parent = getParent();
+                <span class="hljs-keyword">if</span> (parent != <span class="hljs-keyword">null</span>) {
+                    parent.requestDisallowInterceptTouchEvent(<span class="hljs-keyword">true</span>);
+                }
+            }
+            <span class="hljs-keyword">break</span>;
+            ...
+        }
+    }
+    <span class="hljs-keyword">return</span> mIsBeingDragged;
+}</code></pre>
+<p>如果滑动超过mTouchSlop阙值，则判断为ScrollView正在滑动，所以开始屏蔽掉父ViewGroup的onInterceptTouchEvent回调。所以如果在此ScrollView的父ViewGroup中覆盖了requestDisallowInterceptTouchEvent，并且什么都不做，那么ScrollView无法屏蔽掉父ViewGroup的onInterceptTouchEvent回调，那么ScrollView开始处理滑动后的ACTION_MOVE也可以被父ViewGroup所接收到，也就解决了这个问题。</p>
+<h2>4 应用</h2>
+<p>在<a href="https://github.com/chrisbanes/Android-PullToRefresh" target="_blank">chrisbanes的Android-PullToRefresh</a>项目中也存在这个问题，只需要以下2步即可修复：</p>
+<ol>
+<li>新建个RefreshableViewWrapperLayout.java<pre class="hljs java"><code class="java"><span class="hljs-keyword">package</span> com.handmark.pulltorefresh.library;
+<span class="hljs-keyword">import</span> android.annotation.TargetApi;
+<span class="hljs-keyword">import</span> android.content.Context;
+<span class="hljs-keyword">import</span> android.os.Build;
+<span class="hljs-keyword">import</span> android.util.AttributeSet;
+<span class="hljs-keyword">import</span> android.widget.FrameLayout;
+<span class="hljs-comment">/**
+* Created by Asha on 15-8-28.
+* Asha ashqalcn@gmail.com
+*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RefreshableViewWrapperLayout</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FrameLayout</span> </span>{
+ <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">RefreshableViewWrapperLayout</span><span class="hljs-params">(Context context)</span> </span>{
+     <span class="hljs-keyword">super</span>(context);
+ }
+ <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">RefreshableViewWrapperLayout</span><span class="hljs-params">(Context context, AttributeSet attrs)</span> </span>{
+     <span class="hljs-keyword">super</span>(context, attrs);
+ }
+ <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">RefreshableViewWrapperLayout</span><span class="hljs-params">(Context context, AttributeSet attrs, <span class="hljs-keyword">int</span> defStyleAttr)</span> </span>{
+     <span class="hljs-keyword">super</span>(context, attrs, defStyleAttr);
+ }
+ <span class="hljs-meta">@TargetApi</span>(Build.VERSION_CODES.LOLLIPOP)
+ <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">RefreshableViewWrapperLayout</span><span class="hljs-params">(Context context, AttributeSet attrs, <span class="hljs-keyword">int</span> defStyleAttr, <span class="hljs-keyword">int</span> defStyleRes)</span> </span>{
+     <span class="hljs-keyword">super</span>(context, attrs, defStyleAttr, defStyleRes);
+ }
+ <span class="hljs-meta">@Override</span>
+ <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">requestDisallowInterceptTouchEvent</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> disallowIntercept)</span> </span>{
+     <span class="hljs-comment">//do nothing</span>
+ }
+}</code></pre>
+</li>
+<li>
+<p>替换PullToRefreshBase中addRefreshableView的实现</p>
+<pre class="hljs java"><code class="java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addRefreshableView</span><span class="hljs-params">(Context context, T refreshableView)</span> </span>{
+     <span class="hljs-comment">//mRefreshableViewWrapper = new FrameLayout(context);</span>
+     <span class="hljs-comment">//替换为</span>
+     mRefreshableViewWrapper = <span class="hljs-keyword">new</span> RefreshableViewWrapperLayout(context);
+
+     mRefreshableViewWrapper.addView(refreshableView, ViewGroup.LayoutParams.MATCH_PARENT,
+         ViewGroup.LayoutParams.MATCH_PARENT);
+
+     addViewInternal(mRefreshableViewWrapper, <span class="hljs-keyword">new</span> LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
+         LayoutParams.MATCH_PARENT));
+}</code></pre>
+</li>
+</ol>
+<h2>5 形象的注释</h2>
+<p>在AbsListView的ACTION_MOVE开始后调用了startScrollIfNeeded函数，函数中有一句注释：</p>
+<blockquote><p>Time to start stealing events! Once we've stolen them, don't let anyone steal from us</p></blockquote>
+<p>哈哈哈，我的事件，谁都别想从我这偷走！</p>
+<h2>6 SwipeRefreshLayout实现中另外的小细节</h2>
+<ul>
+<li>
+<p>判断child是否还可以往上滑动<br>如果可以滑动，则让子View处理滑动</p>
+<pre class="hljs java"><code class="java">ViewCompat.canScrollVertically(child,-<span class="hljs-number">1</span>);</code></pre>
+</li>
+<li>
+<p>标准的滑动开始阈值</p>
+<pre class="hljs java"><code class="java"><span class="hljs-keyword">final</span> ViewConfiguration configuration = ViewConfiguration.get(mContext);
+mTouchSlop = configuration.getScaledTouchSlop();</code></pre>
+</li>
+<li>
+<p>View的同步位移方法<br>相比异步的requestLayout，这个方法是同步执行的</p>
+<pre class="hljs java"><code class="java">child.offsetTopAndBottom(offset);</code></pre>
+</li>
+</ul>
+<h2>7 疑问</h2>
+<p>ListView和ScrollView为什么要屏蔽调这些事件不让父ViewGroup回调onInterceptTouchEvent？出于效率的考虑，还是简化逻辑避免滑动出错，期待高手解答。</p>
+<h2>8 reference</h2>
+<p><a href="https://github.com/nuptboyzhb/SuperSwipeRefreshLayout" target="_blank">SwipeRefreshLayout源代码</a><br>Android SDK 22源代码<br><a href="http://blog.csdn.net/jiwangkailai02/article/details/46666147" target="_blank">探究requestDisallowInterceptTouchEvent失效的原因</a></p>
+
+        </div>
+        <!--  -->
+
+        <div class="show-foot">
+          <a class="notebook" href="http://www.jianshu.com/nb/1293723">
+            <i class="iconfont ic-search-notebook"></i> <span>日记本</span>
+</a>          <div class="copyright" data-toggle="tooltip" data-html="true" data-original-title="转载请联系作者获得授权，并标注“简书作者”。">
+            © 著作权归作者所有
+          </div>
+          <div class="modal-wrap" data-report-note="">
+            <a id="report-modal">举报文章</a>
+          </div>
+        </div>
+    </div>
+
+    <!-- 文章底部作者信息 -->
+      <div class="follow-detail">
+        <div class="info">
+          <a class="avatar" href="http://www.jianshu.com/u/4d9892c8d3bb">
+            <img src="./Android TouchEvent之requestDisallowInterceptTouc... - 简书_files/b49d005bf4a0.jpg" alt="144">
+</a>          <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+          <a class="title" href="http://www.jianshu.com/u/4d9892c8d3bb">我是Asha</a>
+        <p>写了 18273 字，被 255 人关注，获得了 209 个喜欢</p></div>
+      </div>
+
+      <div class="support-author"></div>
+
+    <div class="meta-bottom">
+      <div class="like"><div class="btn like-group"><div class="btn-like"><a href="http://www.jianshu.com/sign_in"><i class="iconfont ic-like"></i>喜欢</a></div> <div class="modal-wrap"><a>11</a></div></div> <!----></div>
+      <div class="share-group">
+        <a class="share-circle" data-action="weixin-share" data-toggle="tooltip" data-original-title="分享到微信">
+          <i class="iconfont ic-wechat"></i>
+        </a>
+        <a class="share-circle" data-toggle="tooltip" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/1927331/weibo/image_0819d117c67b.jpg&#39;, &#39;推荐 我是Asha 的文章《Android TouchEvent之requestDisallowInterceptTouchEvent》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/fe3d109eb27e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));" data-original-title="分享到微博">
+          <i class="iconfont ic-weibo"></i>
+        </a>
+          <a class="share-circle" data-toggle="tooltip" href="http://cwb.assets.jianshu.io/notes/images/1927331/weibo/image_0819d117c67b.jpg" target="_blank" data-original-title="下载长微博图片">
+            <i class="iconfont ic-picture"></i>
+          </a>
+        <a class="share-circle more-share" tabindex="0" data-toggle="popover" data-placement="top" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="
+          &lt;ul class=&quot;share-list&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/fe3d109eb27e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 我是Asha 的文章《Android TouchEvent之requestDisallowInterceptTouchEvent》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-zone&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/fe3d109eb27e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 我是Asha 的文章《Android TouchEvent之requestDisallowInterceptTouchEvent》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-twitter&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/fe3d109eb27e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-facebook&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/fe3d109eb27e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-google&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/fe3d109eb27e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;Android TouchEvent之requestDisallowInterceptTouchEvent&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-douban&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        " data-original-title="" title="">更多分享</a>
+      </div>
+    </div>
+    <div id="vue_comment"></div>
+  </div>
+
+  <div class="side-tool"><ul><li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="回到顶部"><a class="function-button"><i class="iconfont ic-backtop"></i></a></li> <!----> <!----> <li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="分享文章"><a tabindex="0" role="button" data-toggle="popover" data-placement="left" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="&lt;ul class=&#39;share-list&#39;&gt;
+                &lt;li&gt;&lt;a class=&quot;weixin-share&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-weixin&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到微信&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/1927331/weibo/image_0819d117c67b.jpg&#39;, &#39;推荐 我是Asha 的文章《Android TouchEvent之requestDisallowInterceptTouchEvent》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/fe3d109eb27e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-weibo&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到微博&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;http://cwb.assets.jianshu.io/notes/images/1927331/weibo/image_0819d117c67b.jpg&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-picture&quot;&gt;&lt;/i&gt;&lt;span&gt;下载长微博图片&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/fe3d109eb27e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 我是Asha 的文章《Android TouchEvent之requestDisallowInterceptTouchEvent》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-zone&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/fe3d109eb27e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 我是Asha 的文章《Android TouchEvent之requestDisallowInterceptTouchEvent》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-twitter&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/fe3d109eb27e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-facebook&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/fe3d109eb27e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-google&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/fe3d109eb27e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;Android TouchEvent之requestDisallowInterceptTouchEvent&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-douban&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;" data-original-title="" title="" class="function-button"><i class="iconfont ic-share"></i></a> <!----></li></ul></div>
+</div>
+<div class="note-bottom">
+  <!---->
+  <div data-vcomp="recommended-notes" data-note-id="1927331"></div>
+</div>
+
+    <script src="./Android TouchEvent之requestDisallowInterceptTouc... - 简书_files/push.js.下载"></script><script src="./Android TouchEvent之requestDisallowInterceptTouc... - 简书_files/hm.js.下载"></script><script async="" src="./Android TouchEvent之requestDisallowInterceptTouc... - 简书_files/analytics.js.下载"></script><script type="application/json" data-name="page-data">{"user_signed_in":false,"locale":"zh-CN","os":"windows","read_mode":"day","read_font":"font2","note_show":{"is_author":false,"is_following_author":false,"is_liked_note":false,"uuid":"5f8eaed3-a29d-44b7-a2fc-bf2b19b2628c"},"note":{"id":1927331,"slug":"fe3d109eb27e","user_id":638171,"notebook_id":1293723,"commentable":true,"likes_count":11,"views_count":1719,"public_wordage":1533,"comments_count":1,"total_rewards_count":0,"is_author":false,"author":{"nickname":"我是Asha","total_wordage":18273,"followers_count":255,"total_likes_count":209}}}</script>
+    
+    <script src="./Android TouchEvent之requestDisallowInterceptTouc... - 简书_files/babel-polyfill-879c5f4bc085ce8a6153.js.下载"></script>
+    <script src="./Android TouchEvent之requestDisallowInterceptTouc... - 简书_files/web-base-f3d80ff74f02eba0007d.js.下载"></script>
+<script src="./Android TouchEvent之requestDisallowInterceptTouc... - 简书_files/web-ebb6146a88610b3894fb.js.下载"></script>
+    
+    <script src="./Android TouchEvent之requestDisallowInterceptTouc... - 简书_files/entry-0d135705a611b5d42041.js.下载"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35169517-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?0c0e9d9b1e7d617b3e6842e85b9fb068";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+  
+
+<!----><!----></body></html>

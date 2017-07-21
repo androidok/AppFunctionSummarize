@@ -1,0 +1,624 @@
+html, body { margin: 0; padding: 0;}
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, del, dfn, em, img, q, s, samp, small, strike, strong, sub, sup, tt, var, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, button, table, caption, tbody, tfoot, thead, tr, th, td { border: 0 none; /*font-family: inherit; font-size: 100%;font-weight: 400; line-height: 1; */ font-style: normal;margin: 0; padding: 0;}
+table { border-collapse: collapse; border-spacing: 0;}
+ol, ul { list-style: none outside none;}
+q:before, q:after, blockquote:before, blockquote:after { content: "";}
+/*
+html { font-size: 100%; overflow-y: scroll;font-family:"Helvetica Neue",helvetica,arial,sans-serif;color:#404040}
+*/
+body{
+	/*
+	font-family:"Helvetica Neue",helvetica,arial,sans-serif;
+	*/
+	font-family:"Helvetica Neue","Hiragino Sans GB",Arial,sans-serif;
+	color:#404040;
+}
+a{ text-decoration:none;}
+.claer{ clear:both;}
+h4 {font-size: 18px;font-weight: 600;line-height: 1.2;}
+h6 {color:#8E949C;font-size: 11px;font-weight:normal; line-height:15px;margin: 0 0 6px;}
+.global-nav { margin: 0 0 18px;}
+.pull-right { float: right !important;}
+.pull-right .thread-liked{}
+.pull-right .thread-liked .icon-star{ display:block; background:url(../images/star_hover.png) no-repeat; width:18px; height:18px; float:left; margin-top:3px; margin-right:5px;}
+.pull-right .thread-liked .icon-star img{ width:18px; height:18px;}
+.pull-right .thread-liked .icon-star_bgl{ display:block; float:left; width:12px; background:url(../images/star_bg.png) 0 -46px no-repeat; height:23px;}
+.pull-right .thread-liked .icon-star_bgr{ display:block; float:left; width:17px; background:url(../images/star_bg.png) -10px -46px no-repeat; height:23px;}
+.pull-right .thread-liked .counter{ display:block; float:left; height:23px; background:#90c651; font-size:13px; color:#fff; line-height:22px; font-weight:700;}
+
+.pull-right .thread-likes{}
+.pull-right .thread-likes .icon-star{ display:block; background:url(../images/star.png) no-repeat; width:18px; height:18px; float:left; margin-top:3px; margin-right:5px;}
+.pull-right .thread-likes .icon-star img{ width:18px; height:18px;}
+.pull-right .thread-likes .icon-star_bgl{ display:block; float:left; width:12px; background:url(../images/star_bg.png) no-repeat; height:23px;}
+.pull-right .thread-likes .icon-star_bgr{ display:block; float:left; width:8px; background:url(../images/star_bg.png) right 0 no-repeat; height:23px;}
+.pull-right .thread-likes .counter{ display:block; float:left; height:23px; background:#d3d8db; font-size:13px; color:#5E5E5E; line-height:22px; font-weight:700;}
+.pull-right .thread-likes a:hover .icon-star_bgl{ display:block; float:left; width:12px; background:url(../images/star_bg.png) 0 -23px no-repeat; height:23px;}
+.pull-right .thread-likes a:hover .icon-star_bgr{ display:block; float:left; width:8px; background:url(../images/star_bg.png)  -19px -23px no-repeat; height:23px;}
+.pull-right .thread-likes a:hover .counter{ display:block; float:left; height:23px; background:#bdc5c9; font-size:13px; color:#333333; line-height:22px; font-weight:700;}
+
+div.resetbox {
+    border: 0 none;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+div.resetbox select, div.resetbox input, div.resetbox textarea, div.resetbox select option {
+    border: 0 none;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+}
+
+.uyanpost .sectionbox {
+    padding: 0 0 18x;
+}
+.uyanpost .sectionbox .blockbox .blockhead {
+    float: left;
+}
+
+.uyanpost .sectionbox .blockbox .blockhead .headimg, .uyanpost .sectionbox .blockbox .blockhead .headimg img {
+    height: 48px;
+    width: 48px; border-radius: 3px 3px 3px 3px;
+}
+
+.post-list .post .uyanpost .sectionbox .blockbox .blockhead .headimg,.post-list .post .uyanpost .sectionbox .blockbox .blockhead .headimg img {
+    height:36px;
+    width:36px; border-radius: 3px 3px 3px 3px;
+}
+.uyanpost .sectionbox .blockbox .postarea {
+    padding: 0 0 0 60px; margin: 0 0 12px;
+}
+.post-list .post .uyanpost .sectionbox .blockbox .postarea {
+    padding: 0 0 0 48px; margin: 0 0 12px;
+}
+
+.uyanpost .sectionbox .blockbox .postarea .post-default-w, .user-login-wrapper-dw, .visitor-login-wrapper-dw, .bind-number-wrapper-dw, .user-bind-wrapper-dw, .user-msg-wrapper-dw .wrapper-cont-bd, .uyanpost .postborder, .user-msg-wrapper-dw .postborder {
+    border-radius: 3px 3px 3px 3px;
+	cursor: pointer;
+}
+.uyanpost .postwrap .postaction .actionfunction ul li a i.face {
+    background: url(../images/happy.png) no-repeat;
+}
+.uyanpost .postwrap .postaction .actionfunction ul li a i.face-hover {
+    background: url(../images/happy_hover.png) no-repeat;
+}
+.uyanpost .postwrap .postaction .actionfunction ul li a i {
+    cursor: pointer;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}
+.uyanpost .postwrap .postaction .actionfunction ul li.function-uploadimg-w a {
+    padding-right: 10px;
+    width: 20px;
+}
+
+.uyanpost .postwrap .postaction .actionissue, .uyanpost .postwrap .postaction .actionissue .issuebtn, .uyanpost .postwrap .postaction .actionissue .issueicon {
+    float: right;
+}
+
+.uyanpost .postwrap .wraparea .textareawrap {
+	background-color: #FFFFFF;
+    overflow: hidden;
+    padding: 4px 0 3px 7px;
+	_width: 92%
+}
+/*
+.uyanpost .postwrap .wraparea .textareawrap .textareafont {
+    color: #AAB2B8;
+}
+*/
+
+.inputdefaultcolor {
+    color: #AAB2B8;
+}
+
+
+.uyanpost .postwrap .wraparea .textareawrap .textareastyle {
+	font-family:"Helvetica Neue",helvetica,arial,sans-serif;
+    font-size: 14px;
+    height: 66px;
+    line-height: 22px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    resize: none;
+    width: 100%;
+	_overflow-y:hidden;
+}
+
+.post-list .post .children .post .children .post .children .uyanpost{ margin-left:-48px;}
+.post-list .post .children .post .children .post .children .uyanpost .postwrap .wraparea .textareawrap .textareastyle{ *padding-left:48px !important; _padding-left:48px;}
+
+.uyanpost .postwrap .paborder {
+    background-color: #F6F8F9;
+    border-top: 1px solid #F1F3F4;
+}
+.uyanpost .postwrap .postaction {
+    height: 30px;
+}
+
+
+.uyanpost .postwrap .postaction .actionrelative, .user-msg-wrapper-dw .postwrap .postaction .actionrelative {
+    z-index: 12;
+}
+.uyanpost .postwrap .postaction .actionfunction, .uyanpost .postwrap .postaction .actionfunction ul li {
+    float: left;
+}
+
+
+
+.uyanpost .postwrap .postaction .actionfunction ul li {
+    height: 30px;
+    width: 40px;
+}
+.uyanpost .postwrap .postaction .actionfunction, .uyanpost .postwrap .postaction .actionfunction ul li {
+    float: left; width:30px; height:30px;
+}
+
+
+.uyanpost .postwrap .postaction .actionfunction ul li.functionface a, .uyanpost .postwrap .postaction .actionfunction ul li.function-at-w a {
+    /*padding-right: 11px;*/
+    width: 30px;
+}
+.uyanpost .postwrap .postaction .actionfunction ul li a.effect {
+    display: block;
+    height: 16px;
+    padding:7px 10px 7px;
+}
+
+
+
+.uyanpost .postwrap .postaction .actionissue .issuebtn a .btnstyle, .uyanpost .postwrap .postaction .actionissue .issuebtn a:hover .btnstyle, .user-msg-wrapper-dw .postwrap .postaction .actionissue .issuebtn a .btnstyle {
+    border-radius: 0 0 3px 0;
+}	
+	
+.uyanpost .postwrap .postaction .actionissue .issueicon ul li span.iconshare {
+    display: inline-block;
+    height: 17px;
+    width: 17px;
+}
+
+
+
+
+.uyanpost .postwrap .postaction .actionissue .issueicon ul li.iconname {
+    line-height: 17px;
+    margin: 0;
+    padding: 8px 0 0;
+	font-size:12px;
+}
+.uyanpost .postwrap .postaction .actionissue .issueicon ul li {
+    float: right;
+    margin: 0 10px 0 0;
+    padding: 8px 0 0;
+}
+
+
+
+.uyanpost .postwrap .postaction .actionissue .issueicon li.iconname strong.namestyle {
+    color: #999999;
+}
+
+/*.postwrap*/
+
+
+/*.postborder*/
+
+.uyanpost .postborder {
+    border: 2px solid #CCD4D9; margin-bottom:12px;
+}
+/*.postborder*/
+
+
+.uyanpost .issuebtn .btn{ 
+	background:url(../images/Release.png) no-repeat; height:33px;
+	border-radius: 0 0 3px 0; display:block;
+	cursor: pointer; margin-top:-1px; _margin-top:0px; margin-right:-2px;
+	color: #FFFFFF;
+ float:right; width:70px; text-indent:-999em;
+}
+.uyanpost .issuebtn .btn:hover { 
+background:url(../images/Release.png) 0 -33px no-repeat; 
+}
+.uyanpost .issuebtn .btn-release{ 
+	background:url(../images/Release.png) 0 -66px no-repeat; height:33px;
+	border-radius: 0 0 3px 0; display:block;
+	cursor: pointer; margin-top:-1px; _margin-top:0px; margin-right:-2px;
+	color: #FFFFFF;
+ float:right; width:70px; text-indent:-999em;
+}	
+	
+
+
+.rompt{ background:#fcf8e3; width:100%; height:32px; overflow:hidden;font-size:13px; color:#c09853;margin-bottom:15px; border-radius:3px;display:none;}
+.rompt span{ display:block; border:1px solid #faebcc; height:30px; overflow:hidden;}
+.rompt p{ display:block; float:left; padding-left:10px; line-height:32px;}
+.rompt a{background:url(../images/close.png) no-repeat; width:14px; height:14px; overflow:hidden; display:block; float:right; margin:9px 10px 0 0; display:inline;}
+.rompt a:hover{background:url(../images/close.png) 0 -14px no-repeat;}
+
+
+
+.postbox { margin: 0 0 18px;}
+.avatar {float:left;}
+.avatar .user { background: none repeat scroll 0 0 #E6E6E6; border-radius: 3px 3px 3px 3px; display: block;z-index: 10;}
+.avatar .user img { border-radius: 3px 3px 3px 3px; display: block; height: 48px; width: 48px;}
+.textarea-wrapper { background: none repeat scroll 0 0 rgba(255, 255, 255, 0.95); border-radius: 4px 4px 4px 4px; margin: 0 0 0 60px; border:2px solid #ced5d9;margin-bottom:14px;}
+.textarea-wrapper .textarea { outline: 0 none;border: 0 none;color: #3F4549; cursor: text; display: block;font-size: 14px; height: auto; line-height: 1.4; margin: 0; min-height: 44px; overflow-y: scroll; padding: 6px 10px 8px; resize: none;transition: all 0.15s ease-in-out 0s;}
+.postbox .post-actions { 
+background: none repeat scroll 0 0 #F6F8F9;
+border-top: 1px solid #F1F3F4;
+height: 30px;
+
+}
+.post-actions .Expression{ height:16px; margin-top:5px; display:block; float:left; margin-left:5px;}
+.post-actions .Expression img{ width:16px; height:16px; margin: 3px 0 0 5px;}
+
+.icon_share{ float:right; _margin-top:-33px;*margin-top:-33px;margin-right:5px; _margin-right:-75px; *margin-right:75px; display:inline;}
+.icon_share p{ margin:0; padding:0; font-size:12px; line-height:32px; height:30px; overflow:hidden; display:block; float:left;color:#8E949C}
+.icon_share a{ display:block; float:left; width:18px; height:18px; overflow:hidden; margin-top:6px;}
+.icon_share .tsina{ background:url(../images/icon_share.png) -18px 0 no-repeat;}
+.icon_share .tsina-active{ background:url(../images/icon_share.png) no-repeat;}
+.icon_share .qq{ background:url(../images/icon_share.png) -18px -18px no-repeat;}
+.icon_share .qq-active{ background:url(../images/icon_share.png) 0 -18px no-repeat;}
+.icon_share .renren{ background:url(../images/icon_share.png) -18px -36px no-repeat;}
+.icon_share .renren-active{ background:url(../images/icon_share.png) 0 -36px no-repeat;}
+.icon_share .kaixin001{ background:url(../images/icon_share.png) -18px -54px no-repeat;}
+.icon_share .kaixin001-active{ background:url(../images/icon_share.png) 0 -54px no-repeat;}
+
+/*
+.post-actions .btn{ background:#749fb2;border-bottom:2px solid #6491a5;border-right:2px solid #6491a5;border-radius: 0 0 3px 0;color: #FFFFFF;font-size: 14px;font-weight: 700;margin-top: -1px;padding:10px 20px 7px;position:absolute;right: -2px;transition: background 0.2s ease 0s;}
+.post-actions .btn:hover { background:#5e90a5;border-bottom:2px solid #52859c;border-right:2px solid #52859c; color: #FFFFFF; text-decoration: none;transition: background-position 0.1s linear 0s;}
+*/
+
+.Social-Login{}
+.Social-Login .Social{ float:left; margin-bottom:15px;}
+.Social-Login .Login{ right:0; float:right; width:200px;}
+.Social-Login span{ display:block; float:left; height:32px;}
+.Social-Login .Social a{ margin-right:3px; margin-top:1px;}
+.Social-Login .Social .sina{ width:32px; height:32px; display:block; float:left; background:url(../images/uyan32.png) 0 -32px no-repeat;}
+.Social-Login .Social .qqweibo{ width:32px; height:32px; display:block; float:left; background:url(../images/uyan32.png) 0 0 no-repeat;}
+.Social-Login .Social .wangyi{ width:32px; height:32px; display:block; float:left; background:url(../images/uyan32.png) 0 -192px no-repeat;}
+.Social-Login .Social .kaixin{ width:32px; height:32px; display:block; float:left; background:url(../images/uyan32.png) 0 -160px no-repeat;}
+.Social-Login .Social .soho{ width:32px; height:32px; display:block; float:left; background:url(../images/uyan32.png) 0 -128px no-repeat;}
+.Social-Login .Social .renren{ width:32px; height:32px; display:block; float:left; background:url(../images/uyan32.png) 0 -96px no-repeat;}
+.Social-Login .Social .qq{ width:32px; height:32px; display:block; float:left; background:url(../images/uyan32.png) 0 -224px no-repeat;}
+.Social-Login .Social .qzone{ width:32px; height:32px; display:block; float:left; background:url(../images/uyan32.png) 0 -64px no-repeat;}
+.Social-Login .Social .sso{ width:32px; height:32px; display:block; float:left;border-radius: 15px;}
+.Social-Login .Login .Login-border{ border:2px solid #CCD4D9;  border-radius:4px; height:28px; overflow:hidden;}
+.Social-Login .Login .txt{display:block; float:left; font-size: 13px; height:28px;  margin:0 0 0 0; width:117px; padding-left:6px; line-height:28px !important;}
+.Social-Login .Login .btn{height:28px; display:block; float:right; cursor:pointer; background:url(../images/Release_s.png) no-repeat; margin:0; padding:0; color: #FFFFFF; font-weight:600; text-align:center; width:73px; text-indent:-999em;  border-radius:0 2px 2px 0;}
+.Social-Login .Login .btn:hover{ background:url(../images/Release_s.png) 0 -28px no-repeat; } 
+.Social-Login .Login .btn-release{height:28px; display:block; float:right; cursor:pointer; background:url(../images/Release_s.png) 0 -56px no-repeat; margin:0; padding:0; color: #FFFFFF; font-weight:600; text-align:center; width:73px; text-indent:-999em;  border-radius:0 2px 2px 0;}
+
+.Social-Login .proceed .btn{height:32px; background:#749fb2; cursor:pointer; border: 0 none; border-radius: 3px 3px 3px 3px; color: #FFFFFF; display: inline-block; font-weight:600; line-height: 1.1; text-shadow: none; transition: background 0.2s ease 0s; text-align:center; width:80px; line-height:26px; text-decoration:none;}
+.Social-Login .proceed .btn:hover {background:#5e90a5; color: #FFFFFF; text-decoration: none;  transition:background-position 0.1s linear 0s;}
+
+.Expression{ position:absolute; margin-top:-6px; margin-left:-2px; z-index:1000;}
+.Expression .Expression_top{ position:relative; height:8px; width:16px; overflow:hidden; z-index:100; margin-left:12px;}
+.Expression .Expression_top span{ display:block; margin:0 auto; height:1px; overflow:hidden;}
+.Expression .Expression_top .sp1{ width:2px; background:#CED5D9;}
+.Expression .Expression_top .sp2{ width:2px; border-left:1px solid #CED5D9; border-right:1px solid #CED5D9; background:#fff;}
+.Expression .Expression_top .sp3{ width:4px; border-left:1px solid #CED5D9; border-right:1px solid #CED5D9; background:#fff;}
+.Expression .Expression_top .sp4{ width:6px; border-left:1px solid #CED5D9; border-right:1px solid #CED5D9; background:#fff;}
+.Expression .Expression_top .sp5{ width:8px; border-left:1px solid #CED5D9; border-right:1px solid #CED5D9; background:#fff;}
+.Expression .Expression_top .sp6{ width:10px; border-left:1px solid #CED5D9; border-right:1px solid #CED5D9; background:#fff;}
+.Expression .Expression_top .sp7{ width:12px; border-left:1px solid #CED5D9; border-right:1px solid #CED5D9; background:#fff;}
+.Expression .Expression_top .sp8{ width:14px; border-left:1px solid #CED5D9; border-right:1px solid #CED5D9; background:#fff;}
+.Expression .Expression_Content{border:2px solid #CED5D9; background:#fff; width:285px; padding:15px 4px 4px 15px; position:relative; margin-top:-2px; border-radius:3px;}
+.Expression .Expression_Content .Close{ height:16px; position:relative; margin-top:-12px; margin-bottom:4px;}
+.Expression .Expression_Content .Close a{ height:16px; width:16px; overflow:hidden; margin-right:-8px; float:right; background:url(../images/x_alt.png) no-repeat;}
+.Expression .Expression_Content .Close a:hover{ background:url(../images/x_alt_hover.png) no-repeat;}
+.Expression .Expression_Content ul{}
+.Expression .Expression_Content ul li{ display:block; float:left; width:28px; height:28px; overflow:hidden; padding:0 5px 5px 0;}
+.Expression .Expression_Content ul li a{ display:block; border:1px solid #E8E8E8; height:23px; padding-top:3px; width:26px; overflow:hidden; text-align:center;}
+.Expression .Expression_Content ul li a:hover{border:1px solid #749FB2;}
+
+
+.nav .user-menu .cog i { background: url(../images/top.png) no-repeat; display: block; float:left; height: 7px; margin-top: 13px; width: 12px;}
+.nav .user-menu a:hover .cog i{  background:url(../images/bottom.png) no-repeat; }
+
+.nav{ height:32px; overflow:hidden; font-size:14px; border-bottom:2px solid #ebeef1; margin-bottom:15px;}
+.nav .nav-left{ float:left; line-height:32px; cursor:pointer;}
+.nav span{ display:block; line-height:32px; color:#404040;}
+.nav b{ display:block; float:left; margin-right:4px;}
+.nav .nav-left span i.downicon{  background: url(../images/down-arrow.png) no-repeat; display: block; float:left; height: 7px; margin-top:14px;  width: 12px;}
+.nav .nav-left span i.downiconhover{ background: url(../images/down-arrow-hover.png) no-repeat; display: block; float:left; height: 7px; margin-top:14px;  width: 12px;}
+
+
+.nav .nav-right{ float:right; line-height:32px;cursor:pointer;}
+.nav .nav-right span{ color:#8E949C; font-size:12px;}
+.nav .nav-right span b{ font-weight:normal;}
+.nav .nav-right span i.seticon{ background: url(../images/Set-up.png) no-repeat; display: block; float:left; height:12px; margin-top:10px;  width: 12px;}
+.nav .nav-right span i.seticonhover{ background: url(../images/Set-up-hover.png) no-repeat; display: block; float:left; height:12px; margin-top:10px;  width: 12px;}
+
+.nav-menu{ border:2px solid #CCD4D9;border-radius:4px; padding:5px 0; background:#fff; margin-top:32px;}
+.nav-menu li{ display:block;}
+.nav-menu li a{ display:block; line-height:26px; height:26px; color:#8E949C; font-size:12px; padding:0 10px;}
+.nav-menu li b{ font-weight:normal; display:block; float:left;}
+.nav-menu li.on i{ display:block; float:right; width:10px; height:8px; font-size:12px; font-style:normal; font-weight:bold;}
+.nav-menu li a:hover{ background:#aaa; color:#fff;}
+.nav-menu li.on a:hover i{ display:block; float:right; color:#fff; width:10px; height:8px; font-size:12px; font-style:normal; font-weight:bold;}
+
+.nav-menu-left{ width:95px; float:left; position:absolute; left:0; z-index:1000;}
+.nav-menu-right{ width:90px; float:right; position:absolute; right:0; z-index:1000;}
+
+.post-list{}
+
+.post-list .post {z-index:10; }
+.post-content { margin-bottom: 24px;transition: all 0.2s ease-in-out 0s;}
+.post-content .indicator { height: 48px; position:absolute; z-index:10;}
+.post-content .avatar { top: 0;}
+.post-content .post-body {z-index:10; *margin-top:-10px !important; margin-top:0;_margin-top:-10px; margin-left: 60px;}
+.post-content .u-header { color: #777777; font-size: 13px; /*line-height: 17px;height:17px;*/z-index:10;overflow: hidden;}
+.post-content .u-header a, .post-content .u-header .author { float:left; display:block; font-weight: 600; line-height:14px;}
+.publisher-anchor-color span { color: #999999 !important;}
+.publisher-anchor-color a { color: #44708E !important;}
+.post-content .u-header .bullet {  padding: 0 4px; float:left;}
+.post-content .bullet { color: #CCCCCC; /*font-size: 75%; line-height: 1.4;*/  padding: 0;}
+.post-content .u-header .time-ago, .post-content .u-header .total-votes, .post-content .u-header .parent-link { 
+color:#AAB2B8;font-size:12px; font-weight:normal; line-height:16px;
+}
+.post-meta { float:left;}
+.post-content .u-header .post-menu { 
+/*
+position:relative; 
+float: right; 
+top:-3px; 
+height:16px;
+*/
+position:absolute;
+right:0;
+opacity:10;
+z-index:10;
+display:none; 
+
+}
+.post-content .u-header .post-menu a{ display:block; float:left;cursor:pointer; width:16px; height:16px; overflow:hidden;opacity:0.6;filter:alpha(opacity=60);}
+.post-content .u-header .post-menu a:hover{opacity: 1;filter:alpha(opacity=100);}
+.post-content .u-header .post-menu .packup{background:url(../images/show.png) 0 -16px no-repeat;}
+.post-content .u-header .post-menu .unwind{background:url(../images/show.png) no-repeat;}
+.post-content .u-header .post-menu .dropdown-toggle{ background:url(../images/jb.png) 0 1px no-repeat; width:12px; height:10px; display:block; float:right;opacity: 0.5; border-left:2px solid #ccc;}
+.post-content .u-header .connector{ display:block; float:left; padding-left:8px; /*cursor:pointer;*/}
+.post-content .u-header .connector .replyname{ color:#AAB2B8; font-size:13px; /*line-height:14px;*/ font-weight:normal;background:url(../images/return.png) 0 2px no-repeat; padding-left:14px;}
+.connector-box{display:none;background:#fff; position:absolute; z-index:1000; width:220px; padding:5px; overflow:hidden;border: 2px solid #CCD4D9;border-radius: 3px; margin-top:-18px; margin-left:14px; *margin-left:-28px !important; _margin-left:-28px;}
+.connector-box .avatar{ width:36px; height:36px; overflow:hidden; float:left;}
+.connector-box .avatar img,.connector-box .avatar a img{ width:36px; height:36px;border-radius: 3px;}
+.connector-box .content{ float:left; width:174px; padding-left:10px; overflow:hidden;}
+.connector-box .content h3,.connector-box .content h3 a{ display: block; float:none; font-size:14px; font-weight:600; margin-top:2px;}
+.connector-box .content h3{color:#999999}
+.connector-box .content h3 a{color:#404040}
+.connector-box .content p{ font-size:13px; float:none; line-height:16px; color:#8E949C; height:14px; margin-top:4px; overflow:hidden; display:block;}
+
+.post-content .post-message-container {overflow: hidden;z-index:10; width: 100%; _width: 98%;}
+.post-content .post-message p {
+	line-height: 20px; margin: 5px 0 2px 0; font-size:14px;
+	word-wrap:break-word;
+	overflow:hidden;
+}
+
+.post-content .post-message-container .loading {
+   background:url(../images/waiting.gif) center left no-repeat;
+   height:22px
+}
+
+.loading{
+	background:;background:url(../images/loader.gif) no-repeat center center;
+	height:100px;
+}
+
+
+.post-content .u-footer {color: #6C6C6C; margin:2px 0 0; height:18px; overflow:hidden; line-height:18px;}
+.post-content .u-footer ul li{ display:block; float:left; font-size:13px; line-height:18px; list-style:none;}
+.post-content .u-footer ul li em{ 
+	font-weight:normal;  
+	color:#DEE2E5; 
+	line-height:16px;
+	margin-right:5px;
+}
+.post-content .u-footer a{color: #AAB2B8; }
+
+.post-content .u-footer .thread-voted {
+	margin-right:5px;
+	cursor:pointer;
+	height:16px; overflow:hidden; font-size:13px; 
+	line-height:18px; display:block; 
+	float:left; 
+}
+.post-content .u-footer .thread-voted  span{color:#44708E;}
+
+.post-content .u-footer a i{ width:9px; height:6px; display:block; float:left; margin:6px 3px 0;}
+.post-content .u-footer .arrow_top{background:url(../images/jiao.png) -9px 0 no-repeat;}
+.post-content .u-footer .arrow_bottom{background:url(../images/jiao.png) no-repeat;}
+.post-content .u-footer .action{ 
+	margin-right:5px;
+	cursor:pointer;
+	height:16px; overflow:hidden; font-size:13px; 
+	line-height:18px; display:block; float:left; 
+	color:#8B9399;
+}
+.post-content .u-footer .action:hover{ 
+	color:#777F85;
+	
+}
+.post-content .u-footer  .share {display:block; width:100px;}
+.post-content .u-footer  .shareto {display:none;}
+.post-content .u-footer  .shareto a.tsina{ width:18px; height:18px; overflow:hidden; background:url(../images/ico.png) no-repeat; text-indent:-999em; float:left; display:block;}
+.post-content .u-footer  .shareto a.tsina:hover{ background:url(../images/ico.png) 0 -18px no-repeat;}
+.post-content .u-footer  .shareto a.tqq{ width:18px; height:18px; overflow:hidden; background:url(../images/ico.png) -18px 0 no-repeat; text-indent:-999em; float:left; display:block; margin-left:3px; margin-right:2px;}
+.post-content .u-footer  .shareto a.tqq:hover{ background:url(../images/ico.png) -18px -18px no-repeat; }
+.post-list .post .postbox .Social-Login, .post-list .post .postbox .textarea-wrapper { margin-left:48px;}
+.post-list .post .post .avatar .user img { height: 36px;width: 36px;}
+
+.no-posts{
+	line-height: 100px;
+	color: #8E949C;
+    text-align: center;
+}
+
+.uyantips{
+	background: none repeat scroll 0 0 #F5F6F8;
+    border: 1px solid #CCD4D9;
+    border-radius: 2px;
+    color: #008000;
+    font-size: 12px;
+    overflow: hidden;
+    padding: 2px;
+    position: absolute;
+    z-index: 1000;
+}
+
+
+.post-list .post .post,.post-list .post .children .post {padding-left: 60px !important;}
+.post-list .post .children .post .children .post {padding-left: 48px !important;}
+.post-list .post .children .post .children .post .children .post .children .post {padding-left: 0px !important;}
+
+
+
+.post-list .post .uyanpost{padding-left:60px;}
+.post-list .post .children .uyanpost,.post-list .post .children .post .children .uyanpost{padding-left:48px !important;}
+
+
+.post-list .post .post .post-content .post-body{margin-left:48px !important;}
+
+
+.post-list .post.minimized .avatar .user img {
+    height: 36px;
+    width: 36px;
+}
+.post-list .post.minimized .post-body{
+	margin-left: 48px;
+}
+
+.post-list .post.minimized .children .post{
+	padding-left: 48px !important;
+}
+
+.post-list .post.minimized.collapsed .post-content.mini .post-body-inner {
+    display: block;
+}
+.post-list .post.minimized.collapsed .post-content.mini .u-header {
+    padding-top: 0;
+}
+
+.post-list .post.minimized.collapsed .post-content.mini .post-menu{
+	margin-top: 0;
+} 
+
+.post-list .post.minimized .post-content.mini {
+	margin-bottom:10px;
+}
+
+
+.post-list .post-content.mini .post-message p{
+	opacity:0.6;
+	filter: alpha(opacity=60);
+	font-size:12px;
+	line-height: 36px;
+}
+
+.post-list .post-content.mini .u-footer{
+	display: none;
+}
+
+.post-list .post-content.mini .u-header span{
+	display: none;
+}
+
+
+
+.post-list .post-content.mini .u-header .post-meta{
+	display: none;
+}
+
+.post-list .post.collapsed .children {
+    display: none;
+}
+.post-list .post.collapsed .uyanpost {
+    display: none;
+}
+
+.post-list .post.collapsed .post-body-inner {
+    display: none;
+}
+.post-list .post.collapsed .u-footer {
+    display: none;
+}
+
+.post-list .post.collapsed .u-header {
+    padding-top: 10px;
+}
+
+.post-list .post.collapsed .avatar .user img {
+    height: 36px;
+    width: 36px;
+}
+.post-list .post.collapsed .post-content .post-body{
+	margin-left: 48px;
+}
+
+.post-list .post.collapsed .post-menu{
+	margin-top: -12px;
+} 
+
+
+.more{border-radius:3px; background:#f5f6f8; font-size:14px; height:36px; line-height:36px; display:block; width:100%; text-align:center; color:#fff; color:#404040;}
+.more:hover{ background:#ebeef1;}
+
+.busy{
+    color: #BBBBBB;
+    text-shadow: none;
+	cursor:not-allowed;
+}
+
+.more span{ display:block;border: 1px solid #CCD4D9;border-radius:3px; height:34px; }
+
+.Copyright{ border-top:2px solid #ebeef1; margin-top:20px; padding:20px 0;}
+.Copyright a{ float:right; font-size:12px; color: #AAB2B8;}
+
+
+@media screen and (max-width: 405px){
+	.post-list .post .children .post .children .uyanpost .Social-Login .Login,.post-list .post .children .post .children .post .children .uyanpost .Social-Login .Login{
+ 		width:140px;
+ 	}
+	.post-list .post .children .post .children .uyanpost .Social-Login .Login .txt,.post-list .post .children .post .children .post .children .uyanpost .Social-Login .Login .txt {
+		width:57px;
+	}
+}
+@media screen and (max-width: 343px){
+	.post-list .post .children .post .children .uyanpost .Social-Login .Social,.post-list .post .children .post .children .post .children .uyanpost .Social-Login .Social{
+ 		margin-bottom:40px;
+		_margin-bottom:15px;
+		*margin-bottom:15px !important;
+ 	}
+} 
+@media screen and (max-width: 368px){
+	.Expression .Expression_Content{width: auto;}
+}
+@media screen and (max-width: 543px){
+	.post-list .post .children .post .children .uyanpost .Social-Login .Login{
+ 		float: left;
+ 	}
+	.post-list .post .children .post .children .post .children .uyanpost .Social-Login .Login{
+ 		float: left;
+ 	}
+ }
+ 
+@media screen and (max-width: 496px){
+	.post-list .post .children .uyanpost .Social-Login .Login{
+ 		float: left;
+ 	}
+}
+ 
+@media screen and (max-width: 447px){
+	.post-list .uyanpost .Social-Login .Login{
+ 		float: left;
+ 	}
+}
+  
+ 
+@media screen and (max-width: 400px){
+	.uyanpost .Social-Login .Login{
+ 		float: left;
+ 	}
+}

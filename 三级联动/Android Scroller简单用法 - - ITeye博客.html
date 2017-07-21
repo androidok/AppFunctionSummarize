@@ -1,0 +1,761 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0035)http://ipjmc.iteye.com/blog/1615828 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Android Scroller简单用法 -  - ITeye博客</title>
+    <meta name="description" content="       Android里Scroller类是为了实现View平滑滚动的一个Helper类。通常在自定义的View时使用，在View中定义一个私有成员mScroller = new Scroller(context)。设置mScroller滚动的位置时，并不会导致View的滚动，通常是用mScroller记录/计算View滚动的位置，再重写View的computeScroll()，完成实际的滚动 ...">
+    <meta name="keywords" content="android, scroller, computescroll Android Scroller简单用法">
+    <link rel="shortcut icon" href="http://ipjmc.iteye.com/images/favicon.ico" type="image/x-icon">
+    <link rel="search" type="application/opensearchdescription+xml" href="http://ipjmc.iteye.com/open_search.xml" title="ITeye">
+    <link href="http://ipjmc.iteye.com/rss" rel="alternate" title="" type="application/rss+xml">
+    <link href="./Android Scroller简单用法 - - ITeye博客_files/blog.css" media="screen" rel="stylesheet" type="text/css">
+<link href="./Android Scroller简单用法 - - ITeye博客_files/blue.css" media="screen" rel="stylesheet" type="text/css">
+    <script type="text/javascript" async="" src="./Android Scroller简单用法 - - ITeye博客_files/icwm"></script><script src="./Android Scroller简单用法 - - ITeye博客_files/ca-pub-8990951720398508.js.下载"></script><script type="text/javascript" async="" src="./Android Scroller简单用法 - - ITeye博客_files/icwm(1)"></script><script src="./Android Scroller简单用法 - - ITeye博客_files/hm.js.下载"></script><script src="./Android Scroller简单用法 - - ITeye博客_files/application.js.下载" type="text/javascript"></script>    
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?e19a8b00cf63f716d774540875007664";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+      <link href="./Android Scroller简单用法 - - ITeye博客_files/SyntaxHighlighter.css" media="screen" rel="stylesheet" type="text/css">
+  <script src="./Android Scroller简单用法 - - ITeye博客_files/shCoreCommon.js.下载" type="text/javascript"></script>
+<script src="./Android Scroller简单用法 - - ITeye博客_files/hotkey.js.下载" type="text/javascript"></script>
+  <script src="./Android Scroller简单用法 - - ITeye博客_files/code_favorites.js.下载" type="text/javascript"></script>
+<script src="./Android Scroller简单用法 - - ITeye博客_files/weiboshare.js.下载" type="text/javascript"></script>
+
+    
+  <style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style></head>
+  <body>
+    <div id="header">
+	      <div id="blog_site_nav">
+  <a href="http://www.iteye.com/" class="homepage">首页</a>
+  <a href="http://www.iteye.com/news">资讯</a>
+  <a href="http://www.iteye.com/magazines">精华</a>
+  <a href="http://www.iteye.com/forums">论坛</a>
+  <a href="http://www.iteye.com/ask">问答</a>
+  <a href="http://www.iteye.com/blogs">博客</a>
+  <a href="http://www.iteye.com/blogs/subjects">专栏</a>
+  <a href="http://www.iteye.com/groups">群组</a>
+  <a href="http://ipjmc.iteye.com/blog/1615828#" onclick="return false;" id="msna"><u>更多</u> <small>▼</small></a>
+  <div class="quick_menu" style="display:none;">
+    <a target="_blank" href="http://job.iteye.com/iteye">知识库</a>
+    <a href="http://www.iteye.com/search">搜索</a>
+  </div>
+</div>
+
+	      <div id="user_nav">
+  <span style="color:red;">因系统升级，暂停注册。稍后将全面支持使用CSDN帐号进行注册及登录</span>
+  
+      <a href="http://ipjmc.iteye.com/login" class="welcome" title="登录">您还未登录 !</a>
+    <a href="http://ipjmc.iteye.com/login">登录</a>
+  </div>
+
+	    
+    </div>
+
+    <div id="page">
+        <div id="branding" class="clearfix" style="overflow: hidden;background: none;padding:0 0 2px;">
+          <script type="text/javascript">
+            /*Iteye博客内页顶部通栏-960*90，创建于 2016-08-01*/
+            var cpro_id = "u2720131";
+          </script>
+          <script type="text/javascript" src="./Android Scroller简单用法 - - ITeye博客_files/c.js.下载"></script><div id="BAIDU_SSP__wrapper_u2720131_0"></div>
+        </div>
+      <div id="branding" class="clearfix">
+        <div id="blog_name">
+          <h1><a href="http://ipjmc.iteye.com/"></a></h1>
+        </div>
+        <div id="fd"></div>
+        <div id="blog_navbar">
+          <ul>
+            <li class="blog_navbar_for"><a href="http://ipjmc.iteye.com/"><strong>博客</strong></a></li>
+            <li><a href="http://ipjmc.iteye.com/weibo">微博</a></li>
+            <li><a href="http://ipjmc.iteye.com/album">相册</a></li>
+            <li><a href="http://ipjmc.iteye.com/link">收藏</a></li>
+            <li><a href="http://ipjmc.iteye.com/blog/guest_book">留言</a></li>
+            <li><a href="http://ipjmc.iteye.com/blog/profile">关于我</a></li>
+          </ul>
+    
+          <div class="search">
+            <form action="http://ipjmc.iteye.com/blog/search" method="get">
+              <input class="search_text" id="query" name="query" style="margin-left: 10px;width: 110px;" type="text" value="">
+              <input class="submit_search" type="submit" value="">
+            </form>
+          </div> 
+          <div id="fd"></div>         
+        </div>
+      </div>
+      
+      <div id="content" class="clearfix">
+        <div id="main">
+          
+
+
+
+          
+
+
+<div class="h-entry" style="display:none">
+  <a href="http://ipjmc.iteye.com/" class="p-author" target="_blank">ipjmc</a>
+</div>
+
+
+<div class="blog_main">
+  <div class="blog_title">
+    <h3>
+      <a href="http://ipjmc.iteye.com/blog/1615828">Android Scroller简单用法</a>
+      <em class="actions">      </em>
+    </h3>
+    <ul class="blog_categories"><strong>博客分类：</strong> <li><a href="http://ipjmc.iteye.com/category/167926">Android 文章</a></li> </ul>
+        <div class="news_tag"><a href="http://www.iteye.com/blogs/tag/android">android</a><a href="http://www.iteye.com/blogs/tag/scroller">scroller</a><a href="http://www.iteye.com/blogs/tag/computescroll">computescroll</a>&nbsp;</div>
+    	  
+    	
+    	
+  		
+      </div>
+
+  <div id="blog_content" class="blog_content">
+    <span style="font-size: medium;">
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Android里Scroller类是为了实现View平滑滚动的一个Helper类。通常在自定义的View时使用，在View中定义一个私有成员mScroller = new Scroller(context)。设置mScroller滚动的位置时，并不会导致View的滚动，通常是用mScroller记录/计算View滚动的位置，再重写View的computeScroll()，完成实际的滚动。
+<br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 相关API介绍如下</span>
+<br><div class="dp-highlighter" id=""><div class="bar"><div class="tools">Java代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=mScroller.getCurrX()%20%2F%2F%E8%8E%B7%E5%8F%96mScroller%E5%BD%93%E5%89%8D%E6%B0%B4%E5%B9%B3%E6%BB%9A%E5%8A%A8%E7%9A%84%E4%BD%8D%E7%BD%AE%0AmScroller.getCurrY()%20%2F%2F%E8%8E%B7%E5%8F%96mScroller%E5%BD%93%E5%89%8D%E7%AB%96%E7%9B%B4%E6%BB%9A%E5%8A%A8%E7%9A%84%E4%BD%8D%E7%BD%AE%0AmScroller.getFinalX()%20%2F%2F%E8%8E%B7%E5%8F%96mScroller%E6%9C%80%E7%BB%88%E5%81%9C%E6%AD%A2%E7%9A%84%E6%B0%B4%E5%B9%B3%E4%BD%8D%E7%BD%AE%0AmScroller.getFinalY()%20%2F%2F%E8%8E%B7%E5%8F%96mScroller%E6%9C%80%E7%BB%88%E5%81%9C%E6%AD%A2%E7%9A%84%E7%AB%96%E7%9B%B4%E4%BD%8D%E7%BD%AE%0AmScroller.setFinalX(int%20newX)%20%2F%2F%E8%AE%BE%E7%BD%AEmScroller%E6%9C%80%E7%BB%88%E5%81%9C%E7%95%99%E7%9A%84%E6%B0%B4%E5%B9%B3%E4%BD%8D%E7%BD%AE%EF%BC%8C%E6%B2%A1%E6%9C%89%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C%EF%BC%8C%E7%9B%B4%E6%8E%A5%E8%B7%B3%E5%88%B0%E7%9B%AE%E6%A0%87%E4%BD%8D%E7%BD%AE%0AmScroller.setFinalY(int%20newY)%20%2F%2F%E8%AE%BE%E7%BD%AEmScroller%E6%9C%80%E7%BB%88%E5%81%9C%E7%95%99%E7%9A%84%E7%AB%96%E7%9B%B4%E4%BD%8D%E7%BD%AE%EF%BC%8C%E6%B2%A1%E6%9C%89%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C%EF%BC%8C%E7%9B%B4%E6%8E%A5%E8%B7%B3%E5%88%B0%E7%9B%AE%E6%A0%87%E4%BD%8D%E7%BD%AE%0A%0A%2F%2F%E6%BB%9A%E5%8A%A8%EF%BC%8CstartX%2C%20startY%E4%B8%BA%E5%BC%80%E5%A7%8B%E6%BB%9A%E5%8A%A8%E7%9A%84%E4%BD%8D%E7%BD%AE%EF%BC%8Cdx%2Cdy%E4%B8%BA%E6%BB%9A%E5%8A%A8%E7%9A%84%E5%81%8F%E7%A7%BB%E9%87%8F%2C%20duration%E4%B8%BA%E5%AE%8C%E6%88%90%E6%BB%9A%E5%8A%A8%E7%9A%84%E6%97%B6%E9%97%B4%0AmScroller.startScroll(int%20startX%2C%20int%20startY%2C%20int%20dx%2C%20int%20dy)%20%2F%2F%E4%BD%BF%E7%94%A8%E9%BB%98%E8%AE%A4%E5%AE%8C%E6%88%90%E6%97%B6%E9%97%B4250ms%0AmScroller.startScroll(int%20startX%2C%20int%20startY%2C%20int%20dx%2C%20int%20dy%2C%20int%20duration)%0A%0AmScroller.computeScrollOffset()%20%2F%2F%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%BAboolean%EF%BC%8Ctrue%E8%AF%B4%E6%98%8E%E6%BB%9A%E5%8A%A8%E5%B0%9A%E6%9C%AA%E5%AE%8C%E6%88%90%EF%BC%8Cfalse%E8%AF%B4%E6%98%8E%E6%BB%9A%E5%8A%A8%E5%B7%B2%E7%BB%8F%E5%AE%8C%E6%88%90%E3%80%82%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E5%BE%88%E9%87%8D%E8%A6%81%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%8C%E9%80%9A%E5%B8%B8%E6%94%BE%E5%9C%A8View.computeScroll()%E4%B8%AD%EF%BC%8C%E7%94%A8%E6%9D%A5%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E6%BB%9A%E5%8A%A8%E6%98%AF%E5%90%A6%E7%BB%93%E6%9D%9F%E3%80%82%0A" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./Android Scroller简单用法 - - ITeye博客_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./Android Scroller简单用法 - - ITeye博客_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-j"><li><span><span>mScroller.getCurrX()&nbsp;</span><span class="comment">//获取mScroller当前水平滚动的位置</span><span>&nbsp;&nbsp;</span></span></li><li><span>mScroller.getCurrY()&nbsp;<span class="comment">//获取mScroller当前竖直滚动的位置</span><span>&nbsp;&nbsp;</span></span></li><li><span>mScroller.getFinalX()&nbsp;<span class="comment">//获取mScroller最终停止的水平位置</span><span>&nbsp;&nbsp;</span></span></li><li><span>mScroller.getFinalY()&nbsp;<span class="comment">//获取mScroller最终停止的竖直位置</span><span>&nbsp;&nbsp;</span></span></li><li><span>mScroller.setFinalX(<span class="keyword">int</span><span>&nbsp;newX)&nbsp;</span><span class="comment">//设置mScroller最终停留的水平位置，没有动画效果，直接跳到目标位置</span><span>&nbsp;&nbsp;</span></span></li><li><span>mScroller.setFinalY(<span class="keyword">int</span><span>&nbsp;newY)&nbsp;</span><span class="comment">//设置mScroller最终停留的竖直位置，没有动画效果，直接跳到目标位置</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span><span class="comment">//滚动，startX,&nbsp;startY为开始滚动的位置，dx,dy为滚动的偏移量,&nbsp;duration为完成滚动的时间</span><span>&nbsp;&nbsp;</span></span></li><li><span>mScroller.startScroll(<span class="keyword">int</span><span>&nbsp;startX,&nbsp;</span><span class="keyword">int</span><span>&nbsp;startY,&nbsp;</span><span class="keyword">int</span><span>&nbsp;dx,&nbsp;</span><span class="keyword">int</span><span>&nbsp;dy)&nbsp;</span><span class="comment">//使用默认完成时间250ms</span><span>&nbsp;&nbsp;</span></span></li><li><span>mScroller.startScroll(<span class="keyword">int</span><span>&nbsp;startX,&nbsp;</span><span class="keyword">int</span><span>&nbsp;startY,&nbsp;</span><span class="keyword">int</span><span>&nbsp;dx,&nbsp;</span><span class="keyword">int</span><span>&nbsp;dy,&nbsp;</span><span class="keyword">int</span><span>&nbsp;duration)&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>mScroller.computeScrollOffset()&nbsp;<span class="comment">//返回值为boolean，true说明滚动尚未完成，false说明滚动已经完成。这是一个很重要的方法，通常放在View.computeScroll()中，用来判断是否滚动是否结束。</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre class="java" name="code" codeable_id="" codeable_type="BlogComment" source_url="http://ipjmc.iteye.com/blog/1615828#" pre_index="0" title="Android Scroller简单用法" style="display: none;">mScroller.getCurrX() //获取mScroller当前水平滚动的位置
+mScroller.getCurrY() //获取mScroller当前竖直滚动的位置
+mScroller.getFinalX() //获取mScroller最终停止的水平位置
+mScroller.getFinalY() //获取mScroller最终停止的竖直位置
+mScroller.setFinalX(int newX) //设置mScroller最终停留的水平位置，没有动画效果，直接跳到目标位置
+mScroller.setFinalY(int newY) //设置mScroller最终停留的竖直位置，没有动画效果，直接跳到目标位置
+
+//滚动，startX, startY为开始滚动的位置，dx,dy为滚动的偏移量, duration为完成滚动的时间
+mScroller.startScroll(int startX, int startY, int dx, int dy) //使用默认完成时间250ms
+mScroller.startScroll(int startX, int startY, int dx, int dy, int duration)
+
+mScroller.computeScrollOffset() //返回值为boolean，true说明滚动尚未完成，false说明滚动已经完成。这是一个很重要的方法，通常放在View.computeScroll()中，用来判断是否滚动是否结束。
+</pre>
+<br>
+<br><span style="font-size: medium;">
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 举例说明，自定义一个CustomView，使用Scroller实现滚动：
+<br></span>
+<br><div class="dp-highlighter" id=""><div class="bar"><div class="tools">Java代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=import%20android.content.Context%3B%0Aimport%20android.util.AttributeSet%3B%0Aimport%20android.util.Log%3B%0Aimport%20android.view.View%3B%0Aimport%20android.widget.LinearLayout%3B%0Aimport%20android.widget.Scroller%3B%0A%0Apublic%20class%20CustomView%20extends%20LinearLayout%20%7B%0A%0A%09private%20static%20final%20String%20TAG%20%3D%20%22Scroller%22%3B%0A%0A%09private%20Scroller%20mScroller%3B%0A%0A%09public%20CustomView(Context%20context%2C%20AttributeSet%20attrs)%20%7B%0A%09%09super(context%2C%20attrs)%3B%0A%09%09mScroller%20%3D%20new%20Scroller(context)%3B%0A%09%7D%0A%0A%09%2F%2F%E8%B0%83%E7%94%A8%E6%AD%A4%E6%96%B9%E6%B3%95%E6%BB%9A%E5%8A%A8%E5%88%B0%E7%9B%AE%E6%A0%87%E4%BD%8D%E7%BD%AE%0A%09public%20void%20smoothScrollTo(int%20fx%2C%20int%20fy)%20%7B%0A%09%09int%20dx%20%3D%20fx%20-%20mScroller.getFinalX()%3B%0A%09%09int%20dy%20%3D%20fy%20-%20mScroller.getFinalY()%3B%0A%09%09smoothScrollBy(dx%2C%20dy)%3B%0A%09%7D%0A%0A%09%2F%2F%E8%B0%83%E7%94%A8%E6%AD%A4%E6%96%B9%E6%B3%95%E8%AE%BE%E7%BD%AE%E6%BB%9A%E5%8A%A8%E7%9A%84%E7%9B%B8%E5%AF%B9%E5%81%8F%E7%A7%BB%0A%09public%20void%20smoothScrollBy(int%20dx%2C%20int%20dy)%20%7B%0A%0A%09%09%2F%2F%E8%AE%BE%E7%BD%AEmScroller%E7%9A%84%E6%BB%9A%E5%8A%A8%E5%81%8F%E7%A7%BB%E9%87%8F%0A%09%09mScroller.startScroll(mScroller.getFinalX()%2C%20mScroller.getFinalY()%2C%20dx%2C%20dy)%3B%0A%09%09invalidate()%3B%2F%2F%E8%BF%99%E9%87%8C%E5%BF%85%E9%A1%BB%E8%B0%83%E7%94%A8invalidate()%E6%89%8D%E8%83%BD%E4%BF%9D%E8%AF%81computeScroll()%E4%BC%9A%E8%A2%AB%E8%B0%83%E7%94%A8%EF%BC%8C%E5%90%A6%E5%88%99%E4%B8%8D%E4%B8%80%E5%AE%9A%E4%BC%9A%E5%88%B7%E6%96%B0%E7%95%8C%E9%9D%A2%EF%BC%8C%E7%9C%8B%E4%B8%8D%E5%88%B0%E6%BB%9A%E5%8A%A8%E6%95%88%E6%9E%9C%0A%09%7D%0A%09%0A%09%40Override%0A%09public%20void%20computeScroll()%20%7B%0A%09%0A%09%09%2F%2F%E5%85%88%E5%88%A4%E6%96%ADmScroller%E6%BB%9A%E5%8A%A8%E6%98%AF%E5%90%A6%E5%AE%8C%E6%88%90%0A%09%09if%20(mScroller.computeScrollOffset())%20%7B%0A%09%09%0A%09%09%09%2F%2F%E8%BF%99%E9%87%8C%E8%B0%83%E7%94%A8View%E7%9A%84scrollTo()%E5%AE%8C%E6%88%90%E5%AE%9E%E9%99%85%E7%9A%84%E6%BB%9A%E5%8A%A8%0A%09%09%09scrollTo(mScroller.getCurrX()%2C%20mScroller.getCurrY())%3B%0A%09%09%09%0A%09%09%09%2F%2F%E5%BF%85%E9%A1%BB%E8%B0%83%E7%94%A8%E8%AF%A5%E6%96%B9%E6%B3%95%EF%BC%8C%E5%90%A6%E5%88%99%E4%B8%8D%E4%B8%80%E5%AE%9A%E8%83%BD%E7%9C%8B%E5%88%B0%E6%BB%9A%E5%8A%A8%E6%95%88%E6%9E%9C%0A%09%09%09postInvalidate()%3B%0A%09%09%7D%0A%09%09super.computeScroll()%3B%0A%09%7D%0A%7D" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./Android Scroller简单用法 - - ITeye博客_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./Android Scroller简单用法 - - ITeye博客_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-j"><li><span><span class="keyword">import</span><span>&nbsp;android.content.Context;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;android.util.AttributeSet;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;android.util.Log;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;android.view.View;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;android.widget.LinearLayout;&nbsp;&nbsp;</span></span></li><li><span><span class="keyword">import</span><span>&nbsp;android.widget.Scroller;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;CustomView&nbsp;</span><span class="keyword">extends</span><span>&nbsp;LinearLayout&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">final</span><span>&nbsp;String&nbsp;TAG&nbsp;=&nbsp;</span><span class="string">"Scroller"</span><span>;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;Scroller&nbsp;mScroller;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;CustomView(Context&nbsp;context,&nbsp;AttributeSet&nbsp;attrs)&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">super</span><span>(context,&nbsp;attrs);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mScroller&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;Scroller(context);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//调用此方法滚动到目标位置</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;smoothScrollTo(</span><span class="keyword">int</span><span>&nbsp;fx,&nbsp;</span><span class="keyword">int</span><span>&nbsp;fy)&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span><span>&nbsp;dx&nbsp;=&nbsp;fx&nbsp;-&nbsp;mScroller.getFinalX();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span><span>&nbsp;dy&nbsp;=&nbsp;fy&nbsp;-&nbsp;mScroller.getFinalY();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;smoothScrollBy(dx,&nbsp;dy);&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//调用此方法设置滚动的相对偏移</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;smoothScrollBy(</span><span class="keyword">int</span><span>&nbsp;dx,&nbsp;</span><span class="keyword">int</span><span>&nbsp;dy)&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//设置mScroller的滚动偏移量</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mScroller.startScroll(mScroller.getFinalX(),&nbsp;mScroller.getFinalY(),&nbsp;dx,&nbsp;dy);&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;invalidate();<span class="comment">//这里必须调用invalidate()才能保证computeScroll()会被调用，否则不一定会刷新界面，看不到滚动效果</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;computeScroll()&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//先判断mScroller滚动是否完成</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;(mScroller.computeScrollOffset())&nbsp;{&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//这里调用View的scrollTo()完成实际的滚动</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scrollTo(mScroller.getCurrX(),&nbsp;mScroller.getCurrY());&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//必须调用该方法，否则不一定能看到滚动效果</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;postInvalidate();&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">super</span><span>.computeScroll();&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li><span>}&nbsp;&nbsp;</span></li></ol></div><pre class="java" name="code" codeable_id="" codeable_type="BlogComment" source_url="http://ipjmc.iteye.com/blog/1615828#" pre_index="1" title="Android Scroller简单用法" style="display: none;">import android.content.Context;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.Scroller;
+
+public class CustomView extends LinearLayout {
+
+	private static final String TAG = "Scroller";
+
+	private Scroller mScroller;
+
+	public CustomView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		mScroller = new Scroller(context);
+	}
+
+	//调用此方法滚动到目标位置
+	public void smoothScrollTo(int fx, int fy) {
+		int dx = fx - mScroller.getFinalX();
+		int dy = fy - mScroller.getFinalY();
+		smoothScrollBy(dx, dy);
+	}
+
+	//调用此方法设置滚动的相对偏移
+	public void smoothScrollBy(int dx, int dy) {
+
+		//设置mScroller的滚动偏移量
+		mScroller.startScroll(mScroller.getFinalX(), mScroller.getFinalY(), dx, dy);
+		invalidate();//这里必须调用invalidate()才能保证computeScroll()会被调用，否则不一定会刷新界面，看不到滚动效果
+	}
+	
+	@Override
+	public void computeScroll() {
+	
+		//先判断mScroller滚动是否完成
+		if (mScroller.computeScrollOffset()) {
+		
+			//这里调用View的scrollTo()完成实际的滚动
+			scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
+			
+			//必须调用该方法，否则不一定能看到滚动效果
+			postInvalidate();
+		}
+		super.computeScroll();
+	}
+}</pre>
+  </div>
+
+  
+  <div class="attachments">
+    
+      
+        <ul>
+          <li><a href="http://dl.iteye.com/topics/download/9cdfd70f-40a6-31e5-adf9-d3fd48e6946b">ScrollerDemo.rar</a> (322.3 KB)</li>
+          
+          <li>下载次数: 2844</li>
+        </ul>
+      
+    
+    
+  </div>
+
+
+  
+      <script type="text/javascript"><!--
+      google_ad_client = "ca-pub-8990951720398508";
+      /* iteye博客内页Banner-728*90 */
+      google_ad_slot = "8267689356/1918544322";
+      google_ad_width = 728;
+      google_ad_height = 90;
+      //-->
+      </script>
+      <script type="text/javascript" src="./Android Scroller简单用法 - - ITeye博客_files/show_ads.js.下载">
+      </script><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;width:728px;height:90px;" src="./Android Scroller简单用法 - - ITeye博客_files/saved_resource.html"></iframe></ins></ins>
+  
+
+  <div id="bottoms" class="clearfix">
+    <div id="digg_bottom" class="clearfix"><div class="digged"><strong>18</strong> <br>顶</div><div class="digged"><strong>0</strong> <br>踩</div></div>
+    <div id="share_weibo">分享到：
+      <a data-type="sina" href="javascript:;" title="分享到新浪微博"><img src="./Android Scroller简单用法 - - ITeye博客_files/sina.jpg"></a>
+      <a data-type="qq" href="javascript:;" title="分享到腾讯微博"><img src="./Android Scroller简单用法 - - ITeye博客_files/tec.jpg"></a>
+    </div>
+  </div>
+
+  <div class="blog_nav">
+    <div class="pre_next">
+      <a href="http://ipjmc.iteye.com/blog/1675094" class="next" title="关于 SVN 目录结构">关于 SVN 目录结构</a>
+      |
+      <a href="http://ipjmc.iteye.com/blog/1600700" class="pre" title="Android 使用WebView.loadData中文乱码解决办法">Android 使用WebView.loadData中文乱码解决 ...</a>
+    </div>
+  </div>
+  <div class="blog_bottom">
+    <ul>
+      <li>2012-08-01 16:35</li>
+      <li>浏览 59125</li>
+      <li><a href="http://ipjmc.iteye.com/blog/1615828#comments">评论(20)</a></li>
+      
+      
+      <li>分类:<a href="http://www.iteye.com/blogs/category/mobile">移动开发</a></li>      
+      <li class="last"><a href="http://www.iteye.com/wiki/blog/1615828" target="_blank" class="more">相关推荐</a></li>
+    </ul>    
+  </div>
+  
+		    
+		
+<div class="boutique-curr-box blog_comment">
+	  <div class="boutique-curr clearfix">
+	    <h5 class="h3titles">参考知识库</h5>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/android"><img src="./Android Scroller简单用法 - - ITeye博客_files/1455589744328_328.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/android" classs="title">Android知识库</a>
+              <span>
+                 <em>35900</em>&nbsp;&nbsp;关注 <i>|</i> <em>3137</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	  </div>
+</div>
+ 		
+      
+  <div class="blog_comment">
+    <h5>评论</h5>
+    <a id="comments" name="comments"></a>
+    <div id="bc2398199">
+  <div class="comment_title">
+    20 楼
+    <a href="http://254258315.iteye.com/" target="_blank" title="葫芦瓢">葫芦瓢</a>
+    2017-05-26&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><div class="quote_title">葫芦瓢 写道</div><div class="quote_div"><div class="quote_title">专注IT 写道</div><div class="quote_div">请问楼主demo中为什么是CustomView中的子view在滚动，而不是CustomView滚动呢，不解</div><br>因为scrollTo只能改变view内容的位置，而不能改变view本身的内容。</div><br>因为scrollTo只能改变view内容的位置，而不能改变view本身的位置，刚刚写错了<img src="./Android Scroller简单用法 - - ITeye博客_files/icon_cry.gif"> </div>
+</div>
+
+<div id="bc2398198">
+  <div class="comment_title">
+    19 楼
+    <a href="http://254258315.iteye.com/" target="_blank" title="葫芦瓢">葫芦瓢</a>
+    2017-05-26&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><div class="quote_title">专注IT 写道</div><div class="quote_div">请问楼主demo中为什么是CustomView中的子view在滚动，而不是CustomView滚动呢，不解</div><br>因为scrollTo只能改变view内容的位置，而不能改变view本身的内容。</div>
+</div>
+
+<div id="bc2390899">
+  <div class="comment_title">
+    18 楼
+    <a href="http://u011493452.iteye.com/" target="_blank" title="u011493452">u011493452</a>
+    2016-06-30&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">注册账号给楼主点赞！<img src="./Android Scroller简单用法 - - ITeye博客_files/icon_idea.gif">&nbsp;<img src="./Android Scroller简单用法 - - ITeye博客_files/icon_arrow.gif"> </div>
+</div>
+
+<div id="bc2377579">
+  <div class="comment_title">
+    17 楼
+    <a href="http://1132760021.iteye.com/" target="_blank" title="专注IT">专注IT</a>
+    2015-09-05&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">请问楼主demo中为什么是CustomView中的子view在滚动，而不是CustomView滚动呢，不解</div>
+</div>
+
+<div id="bc2377517">
+  <div class="comment_title">
+    16 楼
+    <a href="http://1019514235.iteye.com/" target="_blank" title="红柚子">红柚子</a>
+    2015-09-02&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">demo不好用呢！！！</div>
+</div>
+
+<div id="bc2377510">
+  <div class="comment_title">
+    15 楼
+    <a href="http://1019514235.iteye.com/" target="_blank" title="红柚子">红柚子</a>
+    2015-09-02&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><img src="./Android Scroller简单用法 - - ITeye博客_files/icon_arrow.gif"> </div>
+</div>
+
+<div id="bc2377455">
+  <div class="comment_title">
+    14 楼
+    <a href="http://junhao495.iteye.com/" target="_blank" title="junhao495">junhao495</a>
+    2015-09-01&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">博主，我真想亲你一口啊，我在做AndroidTV，横向滑动一卡一卡的，这个问题弄了我快一个星期了，用了你这个瞬间变好了！！！！多谢啊！！！！哈哈！<img src="./Android Scroller简单用法 - - ITeye博客_files/icon_lol.gif"> </div>
+</div>
+
+<div id="bc2373420">
+  <div class="comment_title">
+    13 楼
+    <a href="http://wan261.iteye.com/" target="_blank" title="wan261">wan261</a>
+    2015-06-12&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><div class="quote_title">weifengxiatian 写道</div><div class="quote_div">44 postInvalidate();&nbsp; 也可以用Invalidate()吧。都在UI线程里。</div><br>我也想问这个问题，楼主可以回答下嘛？</div>
+</div>
+
+<div id="bc2361864">
+  <div class="comment_title">
+    12 楼
+    <a href="http://czxpfdbxh.iteye.com/" target="_blank" title="czxpfdbxh">czxpfdbxh</a>
+    2014-10-31&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">实用简单。很能说明sroller的的用法，能说明问题就好，喜欢楼主的风格</div>
+</div>
+
+<div id="bc2350544">
+  <div class="comment_title">
+    11 楼
+    <a href="http://weifengxiatian.iteye.com/" target="_blank" title="weifengxiatian">weifengxiatian</a>
+    2014-06-12&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">44 postInvalidate();&nbsp; 也可以用Invalidate()吧。都在UI线程里。</div>
+</div>
+
+<div id="bc2348203">
+  <div class="comment_title">
+    10 楼
+    <a href="http://chipstar.iteye.com/" target="_blank" title="chipstar">chipstar</a>
+    2014-05-16&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">这个例子非常好，实用简单。很能说明sroller的的用法，感谢博主。</div>
+</div>
+
+<div id="bc2339464">
+  <div class="comment_title">
+    9 楼
+    <a href="http://panwen79.iteye.com/" target="_blank" title="panwen79">panwen79</a>
+    2014-02-12&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><img src="./Android Scroller简单用法 - - ITeye博客_files/icon_idea.gif"> 强，正在找这方面的东西</div>
+</div>
+
+<div id="bc2335659">
+  <div class="comment_title">
+    8 楼
+    <a href="http://dollgo.iteye.com/" target="_blank" title="dollgo">dollgo</a>
+    2013-12-26&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">解析清楚，例子简单，能说明实际问题！！！！！&nbsp;&nbsp;<img src="./Android Scroller简单用法 - - ITeye博客_files/icon_idea.gif"> </div>
+</div>
+
+<div id="bc2333176">
+  <div class="comment_title">
+    7 楼
+    <a href="http://u011404046.iteye.com/" target="_blank" title="u011404046">u011404046</a>
+    2013-12-02&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">下载的列子怎么没用？？</div>
+</div>
+
+<div id="bc2322970">
+  <div class="comment_title">
+    6 楼
+    <a href="http://122601478.iteye.com/" target="_blank" title="122601478">122601478</a>
+    2013-08-20&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">下载不了。</div>
+</div>
+
+<div id="bc2308007">
+  <div class="comment_title">
+    5 楼
+    <a href="http://kkmike999.iteye.com/" target="_blank" title="kkmike999">kkmike999</a>
+    2013-04-16&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">解析清楚，例子简单，能说明实际问题！！！！！<img src="./Android Scroller简单用法 - - ITeye博客_files/icon_idea.gif">&nbsp;<img src="./Android Scroller简单用法 - - ITeye博客_files/icon_exclaim.gif"> </div>
+</div>
+
+<div id="bc2290376">
+  <div class="comment_title">
+    4 楼
+    <a href="http://zhuruyi.iteye.com/" target="_blank" title="zhuruyi">zhuruyi</a>
+    2012-11-20&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">例子效果不错</div>
+</div>
+
+<div id="bc2282538">
+  <div class="comment_title">
+    3 楼
+    <a href="http://yodang1.iteye.com/" target="_blank" title="yodang1">yodang1</a>
+    2012-09-20&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">例子很不错，很详细，谢谢了</div>
+</div>
+
+<div id="bc2281855">
+  <div class="comment_title">
+    2 楼
+    <a href="http://ipjmc.iteye.com/" target="_blank" title="ipjmc">ipjmc</a>
+    2012-09-16&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><div class="quote_title">huangbo_2020 写道</div><div class="quote_div">不知道如何用····请博主随便写过简单Demo吧·感谢···`</div><br>已更新</div>
+</div>
+
+<div id="bc2275509">
+  <div class="comment_title">
+    1 楼
+    <a href="http://huangbo-2020.iteye.com/" target="_blank" title="huangbo_2020">huangbo_2020</a>
+    2012-08-10&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">不知道如何用····请博主随便写过简单Demo吧·感谢···`</div>
+</div>
+
+
+    
+    
+  </div>
+
+  <div class="blog_comment">
+    <h5>发表评论</h5>
+            <p style="text-align:center; margin-top:30px;margin-bottom:0px;"><a href="http://ipjmc.iteye.com/login" style="background-color:white;"> <img src="./Android Scroller简单用法 - - ITeye博客_files/login_icon.png" style="vertical-align:middle; margin-right: 10px;"></a><a href="http://ipjmc.iteye.com/login">  您还没有登录,请您登录后再发表评论 </a></p>
+      </div>
+</div>
+
+
+<script type="text/javascript">
+  dp.SyntaxHighlighter.HighlightAll('code', true, true);
+
+  $$('#main .blog_content pre[name=code]').each(function(pre, index){ // blog content
+    var post_id = 1615828;
+    var location = window.location;
+    source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+    pre.writeAttribute('codeable_id', post_id);
+    pre.writeAttribute('codeable_type', "Blog");
+    pre.writeAttribute('source_url', source_url);
+    pre.writeAttribute('pre_index', index);
+    pre.writeAttribute('title', 'Android Scroller简单用法');
+  });
+
+  fix_image_size($$('div.blog_content img'), 700);
+
+  function processComment() {
+    $$('#main .blog_comment > div').each(function(comment){// comment
+      var post_id = comment.id.substr(2);
+      $$("#"+comment.id+" pre[name=code]").each(function(pre, index){
+        var location = window.location;
+        source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+        source_url += "#" + comment.id;
+        pre.writeAttribute('codeable_id', post_id);
+        pre.writeAttribute('codeable_type', "BlogComment");
+        pre.writeAttribute('source_url', source_url);
+        pre.writeAttribute('pre_index', index);
+        pre.writeAttribute('title', 'Android Scroller简单用法');
+      });
+    });
+  }
+
+  function quote_comment(id) {
+    new Ajax.Request('/editor/quote', {
+      parameters: {'id':id, 'type':'BlogComment'},
+      onSuccess:function(response){editor.bbcode_editor.textarea.insertAfterSelection(response.responseText);
+        Element.scrollTo(editor.bbcode_editor.textarea.element);}
+    });
+  }
+
+  code_favorites_init();
+  processComment();
+  new WeiboShare({share_buttons: $('share_weibo'), img_scope: $('blog_content')});
+</script>
+
+
+
+
+        </div>
+
+        <div id="local">
+          <div class="local_top"></div>
+          <div id="blog_owner">
+  <div id="blog_owner_logo"><a href="http://ipjmc.iteye.com/"><img alt="ipjmc的博客" class="logo" src="./Android Scroller简单用法 - - ITeye博客_files/17de9ab5-9632-3c26-a02d-5957e9d8eb0d.jpg" title="ipjmc的博客: " width=""></a></div>
+  <div id="blog_owner_name">ipjmc</div>
+</div>
+
+          <div id="blog_actions">
+            <ul>
+              <li>浏览: 572547 次</li>
+              <li>性别: <img alt="Icon_minigender_1" src="./Android Scroller简单用法 - - ITeye博客_files/icon_minigender_1.gif" title="男"></li>
+              <li>来自: 北京</li>
+              <li><img src="./Android Scroller简单用法 - - ITeye博客_files/offline.gif"></li>
+              
+            </ul>
+          </div>
+          <div id="user_visits" class="clearfix">
+            <h5>最近访客 <span style="font-weight:normal;font-size:12px;padding-left:30px;"><a href="http://ipjmc.iteye.com/blog/user_visits">更多访客&gt;&gt;</a></span></h5>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://jiangzhongwei-66.iteye.com/" target="_blank"><img alt="jiangzhongwei_66的博客" class="logo" src="./Android Scroller简单用法 - - ITeye博客_files/user-logo-thumb.gif" title="jiangzhongwei_66的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://jiangzhongwei-66.iteye.com/" target="_blank" title="jiangzhongwei_66">jiangzhongwei_66</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://lijianary.iteye.com/" target="_blank"><img alt="lijianary的博客" class="logo" src="./Android Scroller简单用法 - - ITeye博客_files/user-logo-thumb.gif" title="lijianary的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://lijianary.iteye.com/" target="_blank" title="lijianary">lijianary</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://yitongfly.iteye.com/" target="_blank"><img alt="yitongfly的博客" class="logo" src="./Android Scroller简单用法 - - ITeye博客_files/user-logo-thumb.gif" title="yitongfly的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://yitongfly.iteye.com/" target="_blank" title="yitongfly">yitongfly</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://hcl-ins.iteye.com/" target="_blank"><img alt="hcl_ins的博客" class="logo" src="./Android Scroller简单用法 - - ITeye博客_files/user-logo-thumb.gif" title="hcl_ins的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://hcl-ins.iteye.com/" target="_blank" title="hcl_ins">hcl_ins</a></div>
+              </div>
+            
+          </div>
+
+          
+
+                      <div id="blog_menu">
+              <h5>文章分类</h5>
+              <ul>
+                <li><a href="http://ipjmc.iteye.com/">全部博客 (105)</a></li>
+                
+                  <li><a href="http://ipjmc.iteye.com/category/194562">Android 2D 编程 (8)</a></li>
+                
+                  <li><a href="http://ipjmc.iteye.com/category/167926">Android 文章 (49)</a></li>
+                
+                  <li><a href="http://ipjmc.iteye.com/category/167927">Android网站收藏 (1)</a></li>
+                
+                  <li><a href="http://ipjmc.iteye.com/category/167978">JAVA (6)</a></li>
+                
+                  <li><a href="http://ipjmc.iteye.com/category/167998">IT网站收藏 (1)</a></li>
+                
+                  <li><a href="http://ipjmc.iteye.com/category/169780">网站架构 (4)</a></li>
+                
+                  <li><a href="http://ipjmc.iteye.com/category/177071">Linux (3)</a></li>
+                
+                  <li><a href="http://ipjmc.iteye.com/category/208958">JavaScript (10)</a></li>
+                
+                  <li><a href="http://ipjmc.iteye.com/category/211652">Android推送 (1)</a></li>
+                
+                  <li><a href="http://ipjmc.iteye.com/category/228509">CSS (5)</a></li>
+                
+                  <li><a href="http://ipjmc.iteye.com/category/232883">git (1)</a></li>
+                
+                  <li><a href="http://ipjmc.iteye.com/category/233397">HTTP (1)</a></li>
+                
+                  <li><a href="http://ipjmc.iteye.com/category/250664">Android事件处理 (1)</a></li>
+                
+                  <li><a href="http://ipjmc.iteye.com/category/251280">thrift (2)</a></li>
+                
+                  <li><a href="http://ipjmc.iteye.com/category/251339">python (2)</a></li>
+                
+                  <li><a href="http://ipjmc.iteye.com/category/251580">推荐 (1)</a></li>
+                
+                  <li><a href="http://ipjmc.iteye.com/category/252554">Hadoop (1)</a></li>
+                
+                  <li><a href="http://ipjmc.iteye.com/category/257185">C/C++ (4)</a></li>
+                
+                  <li><a href="http://ipjmc.iteye.com/category/272816">jetty (3)</a></li>
+                
+                  <li><a href="http://ipjmc.iteye.com/category/276637">搜索 (1)</a></li>
+                
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>社区版块</h5>
+              <ul>
+                <li><a href="http://ipjmc.iteye.com/blog/news">我的资讯</a> (0)</li>
+                <li>
+                  <a href="http://ipjmc.iteye.com/blog/post">我的论坛</a> (0)
+                </li>
+                <li><a href="http://ipjmc.iteye.com/blog/answered_problems">我的问答</a> (0)</li>
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>存档分类</h5>
+              <ul>
+                
+                  <li><a href="http://ipjmc.iteye.com/blog/monthblog/2014-04">2014-04</a> (1)</li>
+                
+                  <li><a href="http://ipjmc.iteye.com/blog/monthblog/2013-06">2013-06</a> (1)</li>
+                
+                  <li><a href="http://ipjmc.iteye.com/blog/monthblog/2013-04">2013-04</a> (4)</li>
+                
+                <li><a href="http://ipjmc.iteye.com/blog/monthblog_more">更多存档...</a></li>
+              </ul>
+            </div>
+            
+            
+
+            <div id="guest_books">
+              <h5>最新评论</h5>
+              <ul>
+                
+                <li>
+                  <a href="http://254258315.iteye.com/" target="_blank" title="葫芦瓢">葫芦瓢</a>： 
+                  葫芦瓢 写道专注IT 写道请问楼主demo中为什么是Custo ...<br>
+                  <a href="http://ipjmc.iteye.com/blog/1615828#bc2398199">Android Scroller简单用法</a>
+                </li>
+                
+                <li>
+                  <a href="http://254258315.iteye.com/" target="_blank" title="葫芦瓢">葫芦瓢</a>： 
+                  专注IT 写道请问楼主demo中为什么是CustomView中 ...<br>
+                  <a href="http://ipjmc.iteye.com/blog/1615828#bc2398198">Android Scroller简单用法</a>
+                </li>
+                
+                <li>
+                  <a href="http://u011493452.iteye.com/" target="_blank" title="u011493452">u011493452</a>： 
+                  注册账号给楼主点赞！&nbsp;<br>
+                  <a href="http://ipjmc.iteye.com/blog/1615828#bc2390899">Android Scroller简单用法</a>
+                </li>
+                
+                <li>
+                  <a href="http://jiduoduo.iteye.com/" target="_blank" title="jiduoduo">jiduoduo</a>： 
+                  整理的不错！<br>
+                  <a href="http://ipjmc.iteye.com/blog/1447097#bc2385274">Android文件存储</a>
+                </li>
+                
+                <li>
+                  <a href="http://xiaofeng0817166.iteye.com/" target="_blank" title="xiaofeng0817166">xiaofeng0817166</a>： 
+                  http://deerchao.net/tutorials/r ...<br>
+                  <a href="http://ipjmc.iteye.com/blog/1169491#bc2382194">Java正则表达式应用</a>
+                </li>
+                
+              </ul>
+            </div>
+
+            <div class="local_bottom"></div>
+          
+        </div>
+        <div style="margin-top: 10px;float: left;clear: left;">
+          <script type="text/javascript">
+            /*iteye博客内页左侧Button-200*200，创建于2016-08-01*/
+            var cpro_id = "u2720202";
+          </script>
+          <script type="text/javascript" src="./Android Scroller简单用法 - - ITeye博客_files/c.js.下载"></script><div id="BAIDU_SSP__wrapper_u2720202_0"></div>
+				</div>
+      </div>    
+
+      <div id="footer" class="clearfix">
+        <div id="copyright">
+          <hr>
+          声明：ITeye文章版权属于作者，受法律保护。没有作者书面许可不得转载。若作者同意转载，必须以超链接形式标明文章原始出处和作者。<br>
+          © 2003-2017 ITeye.com.   All rights reserved.  [ 京ICP证110151号  京公网安备110105010620 ]
+        </div>
+        <div style="position: fixed;bottom:0px;right:0px;line-height:0px;z-index:1000;">
+          <script type="text/javascript"><!--
+          google_ad_client = "ca-pub-8990951720398508";
+          /* iteye博客内页弹窗-300*250 */
+          google_ad_slot = "8267689356/5752063962";
+          google_ad_width = 300;
+          google_ad_height = 250;
+          //-->
+          </script>
+          <script type="text/javascript" src="./Android Scroller简单用法 - - ITeye博客_files/show_ads.js.下载">
+          </script><ins id="aswift_1_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe width="300" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;width:300px;height:250px;" src="./Android Scroller简单用法 - - ITeye博客_files/saved_resource(1).html"></iframe></ins></ins>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+  document.write("<img src='http://stat.iteye.com/?url="+ encodeURIComponent(document.location.href) + "&referrer=" + encodeURIComponent(document.referrer) + "&user_id=' width='0' height='0' />");
+</script><img src="./Android Scroller简单用法 - - ITeye博客_files/saved_resource" width="0" height="0">
+
+<script src="./Android Scroller简单用法 - - ITeye博客_files/tracking.js.下载" type="text/javascript"></script>
+
+    
+    
+    <script language="javascript" type="text/javascript" src="./Android Scroller简单用法 - - ITeye博客_files/async_new.js.下载"></script>
+<script src="./Android Scroller简单用法 - - ITeye博客_files/jquery-1.11.1.min.js.下载" type="text/javascript"></script>
+<script type="text/javascript">var $csdn_iteye_jq = jQuery.noConflict();// 解决jq与prototype.js命名空间冲突的问题</script>
+<script src="./Android Scroller简单用法 - - ITeye博客_files/tracking.js(1).下载" type="text/javascript"></script>
+    
+	    
+	    <script src="./Android Scroller简单用法 - - ITeye博客_files/web-storage-cache.min.js.下载" type="text/javascript"></script>
+	    <script src="./Android Scroller简单用法 - - ITeye博客_files/replace.min.js.下载" type="text/javascript"></script>
+    
+    
+  
+
+</body></html>

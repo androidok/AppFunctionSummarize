@@ -1,0 +1,125 @@
+#map_h {
+	width:980px;
+	}
+.time_h {
+	float: left;
+	margin: 0 0 0 10px;
+	}
+.tag_t {
+	float:right;
+	width:750px;
+	height:23px;
+	overflow:hidden;
+	}
+.tag_t a {
+	padding:0 0 0 10px;
+	font-weight:bold;
+	text-shadow: 0px 1px 0px #fff;
+	}
+/* 图片分类 */
+#images_content {
+	width:980px;
+	margin: 0 0 10px 1px;
+	overflow:hidden;
+	}
+#images_featured {
+	width:988px;
+	margin: 0 0 0 1px;
+	}
+.grid{
+	position: relative;
+	overflow:hidden;
+	width:236px;
+	height:155px;
+	float:left;
+	margin: 0 11px 11px 0;
+	}
+#images_featured .grid img {
+	position:absolute;
+	width:236px;
+	height:155px;
+	}
+#images_featured .grid .boxCaption {
+	width:211px;
+	padding:10px;
+	margin: 115px 0 0 3px;
+	position:absolute;
+	top:160px;
+	z-index:4;
+	background:url(../images/bg-box.png) repeat top left;
+	}
+#images_featured .grid h2 {
+	font-weight:normal;
+	text-align:center;
+	}
+#images_featured .grid a {
+	color:#fff;
+	text-shadow: 0px 1px 0px #000;
+	}
+#images_featured .item a:hover {
+	color:#d9d9d9;
+	}
+
+/* 图片正文 */
+.entry_c {
+	padding:15px 0 0 20px;
+	}
+.entry_c img{
+	margin:0 15px 15px 0;
+	padding:5px;
+	border:1px solid #ccc;
+	}
+.entry_c p {
+	display:none;
+	text-indent:0em;
+	}
+.img_title_box {
+	margin:0 0 0 70px;
+	}
+.img_info{
+	float:right;
+	margin:2px 0 0 0;
+	padding:0 25px 0 15px;
+	}
+.img_info ul{
+	width:340px;
+	font-size:13px;
+	font-weight:bold;
+	line-height:25px; 
+	margin:7px 0 0 0;
+	padding:0 8px 0 15px;
+	border:1px solid #ccc;
+	}
+.pic {
+	position: absolute;
+	top:40px;
+	left:42px;
+	}
+.pic img{
+	width:236px;
+	height:155px;
+	padding:6px;
+	border:1px solid #ccc;
+	-webkit-box-shadow:2px 2px 2px #cacaca;
+	-moz-box-shadow:2px 2px 2px #cacaca;
+	box-shadow:2px 2px 2px #cacaca;
+	}
+.imgcat {
+	position: absolute;
+	background:url(../images/img.png);
+	width:40px;
+	height:40px;
+	top:18px;
+	left:40px;
+	z-index: 999;
+	}
+#gallery-1 {
+
+}
+#gallery-1 img {
+	padding:4px;
+	border:1px solid #ccc !important;
+	-webkit-box-shadow:2px 2px 2px #cacaca;
+	-moz-box-shadow:2px 2px 2px #cacaca;
+	box-shadow:2px 2px 2px #cacaca;
+}

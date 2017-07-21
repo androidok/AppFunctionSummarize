@@ -1,0 +1,612 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0042)http://mobile.51cto.com/android-265878.htm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK"><script src="./ListView动态加载数据模板 - 51CTO.COM_files/v4.js.下载" charset="utf-8" id="UYScript"></script><script src="./ListView动态加载数据模板 - 51CTO.COM_files/hm.js.下载"></script><script src="./ListView动态加载数据模板 - 51CTO.COM_files/saved_resource" charset="utf-8" id="uyan_script"></script>
+
+<meta http-equiv="x-ua-compatible" content="ie=7">
+
+<title>ListView动态加载数据模板 - 51CTO.COM</title>
+<meta name="description" content="ListView 控件可使用四种不同视图显示项目。通过此控件，可将项目组成带有或不带有列标头的列，并显示伴随的图标和文本。本文是使用xml布局来实现的。">
+<meta name="keywords" content="ListView , 数据">
+<!--<base target="_blank">--><base href="." target="_blank">
+<link href="./ListView动态加载数据模板 - 51CTO.COM_files/grid.css" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="./ListView动态加载数据模板 - 51CTO.COM_files/art_master_top.css">
+<link href="./ListView动态加载数据模板 - 51CTO.COM_files/css3.css" rel="stylesheet" type="text/css">
+<script language="javaScript" src="./ListView动态加载数据模板 - 51CTO.COM_files/base_art.js.下载"></script>
+<script src="./ListView动态加载数据模板 - 51CTO.COM_files/index_1_down.js.下载"></script>
+<style type="text/css">
+.bds_tools a{ padding:0; margin:0;}
+</style>
+<style type="text/css"></style><link href="./ListView动态加载数据模板 - 51CTO.COM_files/bdsstyle.css" rel="stylesheet" type="text/css"><script src="./ListView动态加载数据模板 - 51CTO.COM_files/logger.js.下载"></script></head>
+<body><iframe frameborder="0" style="display: none;" src="./ListView动态加载数据模板 - 51CTO.COM_files/saved_resource.html"></iframe><div id="bdshare_s" style="display: block;"><iframe id="bdsIfr" style="position:absolute;display:none;z-index:9999;" frameborder="0" src="./ListView动态加载数据模板 - 51CTO.COM_files/saved_resource(1).html"></iframe><div id="bdshare_l" style="display: none;"><div id="bdshare_l_c"><h6>分享到</h6><ul><li><a href="http://mobile.51cto.com/android-265878.htm#" class="bds_mshare mshare">一键分享</a></li><li><a href="http://mobile.51cto.com/android-265878.htm#" class="bds_qzone qqkj">QQ空间</a></li><li><a href="http://mobile.51cto.com/android-265878.htm#" class="bds_tsina xlwb">新浪微博</a></li><li><a href="http://mobile.51cto.com/android-265878.htm#" class="bds_bdysc bdysc">百度云收藏</a></li><li><a href="http://mobile.51cto.com/android-265878.htm#" class="bds_renren rrw">人人网</a></li><li><a href="http://mobile.51cto.com/android-265878.htm#" class="bds_tqq txwb">腾讯微博</a></li><li><a href="http://mobile.51cto.com/android-265878.htm#" class="bds_bdxc bdxc">百度相册</a></li><li><a href="http://mobile.51cto.com/android-265878.htm#" class="bds_kaixin001 kxw">开心网</a></li><li><a href="http://mobile.51cto.com/android-265878.htm#" class="bds_tqf txpy">腾讯朋友</a></li><li><a href="http://mobile.51cto.com/android-265878.htm#" class="bds_tieba bdtb">百度贴吧</a></li><li><a href="http://mobile.51cto.com/android-265878.htm#" class="bds_douban db">豆瓣网</a></li><li><a href="http://mobile.51cto.com/android-265878.htm#" class="bds_tsohu shwb">搜狐微博</a></li><li><a href="http://mobile.51cto.com/android-265878.htm#" class="bds_bdhome bdhome">百度新首页</a></li><li><a href="http://mobile.51cto.com/android-265878.htm#" class="bds_sqq sqq">QQ好友</a></li><li><a href="http://mobile.51cto.com/android-265878.htm#" class="bds_thx thx">和讯微博</a></li><li><a href="http://mobile.51cto.com/android-265878.htm#" class="bds_more">更多...</a></li></ul><p><a href="http://mobile.51cto.com/android-265878.htm#" class="goWebsite">百度分享</a></p></div></div></div>
+<!-- 导航 开始-->
+<script id="allmobilize" charset="utf-8" src="./ListView动态加载数据模板 - 51CTO.COM_files/allmobilize.min.js.下载"></script><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://mobile.51cto.com/android-265878.htm#">
+<div id="home_top">    <div class="top_nav">        <div class="left" style="width:400px"><div class="logo_51cto" title="51CTO.COM - 技术成就梦想 -  中国领先的IT技术网站"></div><a href="http://www.51cto.com/">首页</a><img width="16" height="25" align="absmiddle" src="./ListView动态加载数据模板 - 51CTO.COM_files/top_bg_xian.gif" style="padding-top: 2px;"><a onmouseover="show(1,this);" onmouseout="popupClose();" href="http://www.51cto.com/col/35/" target="_blank">技术频道<img align="absmiddle" src="./ListView动态加载数据模板 - 51CTO.COM_files/nav_ico1.gif" style="padding-left: 4px;"></a><img width="16" height="25" align="absmiddle" src="./ListView动态加载数据模板 - 51CTO.COM_files/top_bg_xian.gif"><a onmouseover="show(2,this);" onmouseout="popupClose();" href="http://www.51cto.com/" target="_blank">51CTO旗下网站<img align="absmiddle" src="./ListView动态加载数据模板 - 51CTO.COM_files/nav_ico1.gif" style="padding-left: 4px;"></a><img width="16" height="25" align="absmiddle" src="./ListView动态加载数据模板 - 51CTO.COM_files/top_bg_xian.gif"><a href="http://www.51cto.com/about/map.htm" target="_blank">地图</a> <a href="http://www.51cto.com/about/rss.html" target="_blank"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/143749870.gif" style="vertical-align:middle; margin-bottom: 5px; margin-left:5px;"></a>       </div>        <div class="right">            <div class="more"><img width="27" height="16" align="absmiddle" src="./ListView动态加载数据模板 - 51CTO.COM_files/top_shequ.gif"><a href="http://wot.51cto.com/" target="_blank" style="color:#CC0000">WOT</a><a href="http://edu.51cto.com/" target="_blank" style="color:#CC0000">学院</a><a href="http://down.51cto.com/" target="_blank">下载</a><a href="http://bbs.51cto.com/" target="_blank">论坛</a><a href="http://blog.51cto.com/" target="_blank">博客</a><a onmouseover="show(3,this)" onmouseout="popupClose()" href="javascript:viod(0);">更多<img align="absmiddle" src="./ListView动态加载数据模板 - 51CTO.COM_files/nav_ico1.gif" style="padding-left: 4px;"></a>            </div>            <span id="login_status"><div class="login" style="padding-top:8px; text-align:right;"><a href="http://home.51cto.com/index?reback=http://mobile.51cto.com/android-265878.htm" target="_self">登录</a><a href="http://home.51cto.com/user/register?reback=http://mobile.51cto.com/android-265878.htm" target="_self">注册</a><a href="http://home.51cto.com/members/in-fo?down" target="_blank"><span class="jsVipDrop" style="position: relative;"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/vip_grey2.png" style="float:right; margin-top:5px"><div id="vip_mes_top" style="display:none;position: absolute;right:-75px;top: 17px;width: 137px;z-index: 99;"><div style="background: #faf7e6 none repeat scroll 0 0;border: 1px solid #ecb7a5;color: #666;font-size: 12px;padding: 3px 5px;position: relative;"><span style="background: rgba(0, 0, 0, 0) url(https://static1.51cto.com/home/web/images/hidearro.png) no-repeat scroll center center;display: inline-block;height: 7px;position: absolute;right: 57px;top: -6px;width: 12px;"></span><div style="color:#f60; text-align:center;">一个会员，全站特权</div></div></div></span></a></div></span>                </div>    </div></div>
+<div class="subMenu1" id="s1" onmouseover="popupNoClose();" onmouseout="popupClose();">
+<ul>
+<li><a href="http://network.51cto.com/" target="_blank">网络</a></li>
+<li><a href="http://netsecurity.51cto.com/" target="_blank">安全</a></li>
+<li><a href="http://developer.51cto.com/" target="_blank">开发</a></li>
+<li><a href="http://database.51cto.com/" target="_blank">数据库</a></li>
+<li><a href="http://server.51cto.com/" target="_blank">服务器</a></li>
+<li><a href="http://os.51cto.com/" target="_blank">系统</a></li>
+<li><a href="http://virtual.51cto.com/" target="_blank">虚拟化</a></li>
+<li><a href="http://cloud.51cto.com/" target="_blank">云计算</a></li>
+<li><a href="http://developer.51cto.com/embed/" target="_blank">嵌入式</a></li>
+<li><a href="http://mobile.51cto.com/" target="_blank">移动开发</a></li>
+</ul>
+</div> 
+<div class="subMenu2" id="s2" onmouseover="popupNoClose()" onmouseout="popupClose()">
+<ul>
+<li><a href="http://www.51cto.com/" target="_blank" title="中国领先的IT技术网站">51CTO.COM</a></li>
+<li><a href="http://cio.51cto.com/" target="_blank" title="中国首个专门服务于CIO的专业网站">CIOage.com</a></li>
+<li><a href="http://www.watchstor.com/" target="_blank" title="领先的中文存储网络媒体">WatchStor.com</a></li>
+<li><a href="http://www.hc3i.cn/" target="_blank" title="中国首家专注于数字医疗及医疗信息化的专业网站">HC3i.cn</a></li>
+</ul>
+</div>
+<script src="./ListView动态加载数据模板 - 51CTO.COM_files/jquery-1.8.3.min.js.下载"></script>
+<script>
+$(function(){
+	$(".bann").height(265);	 
+	$(".bann").css("background-color","white");
+	var s=window.location.toString();
+	var s1=s.substr(7,s.length);
+	var s2=s1.indexOf(".");
+	s=s.substr(7,s2);
+	if (s == 'cloud') {
+	     $(".hot").css("top","1200px");
+		$(".g_13").find(".focus").css("height","1390px");
+	}else{
+		$(".hot").css("top","450px");
+
+	}
+	//$(".fixfloat").css("height","640px");
+	$(".g_13").find(".focus").css("height","640px");
+	var url = window.location.host;
+	if (url.indexOf('developer.51cto.com/col')) {
+		$('.banner_r').css('position', 'relative');
+		$('.banner_r').children().append('<div style="right: 0px; width: 24px; height: 14px; z-index: 12; position: absolute; background: transparent url(http://s5.51cto.com/wyfs02/M00/86/BB/wKiom1fI4nWStYqXAAAEoZQn6vs942.png) repeat scroll 0% 0%; bottom: 2px;"></div>');
+	}
+});
+var edunum=2;
+$(function(){
+	$("#change").click(function(){
+		$("#edu > ul").css("display","none");
+		var eduid='edu'+edunum;
+		$("#" + eduid).css("display","block");	
+		if(edunum<4){
+			edunum++;	
+		}else{
+			edunum=1;	
+		}							
+	});  
+});
+</script>
+
+<script src="./ListView动态加载数据模板 - 51CTO.COM_files/head_art_more1.js.下载"></script><div class="subMenu3" id="s3" onmouseover="popupNoClose()" onmouseout="popupClose()" style="z-index:9999;position: absolute;">
+<ul>
+<li><a href="http://home.51cto.com/" target="_blank">家园</a></li>
+<li><a href="http://gaozhao.51cto.com/" target="_blank" style="color:red;">招聘</a></li>
+<li><a href="http://wot.51cto.com/" target="_blank">WOT</a></li>
+<li><a href="http://edu.51cto.com/" target="_blank">学院</a></li>
+<li><a href="http://blog.51cto.com/" target="_blank">博客</a></li>
+<li><a href="http://bbs.51cto.com/" target="_blank">论坛</a></li>
+<li><a href="http://down.51cto.com/" target="_blank">下载</a></li>
+<li><a href="http://selftest.51cto.com/" target="_blank">自测</a></li>
+<li><a href="http://doctor.51cto.com/" target="_blank">门诊</a></li>
+<li><a href="http://blog.51cto.com/newsletter/" target="_blank">周刊</a></li>
+<li><a href="http://book.51cto.com/" target="_blank">读书</a></li>
+<li><a href="http://t.51cto.com/" target="_blank" style="color:red;">题库</a></li>
+</ul>
+</div>
+
+<!-- 登陆信息 -->
+<!-- 导航 结束--> 
+ <div class="g_39 mb10">
+	<div id="tonglanad" class="fl"><script language="JavaScript" src="./ListView动态加载数据模板 - 51CTO.COM_files/ad.js.下载"></script><script type="text/javascript" src="./ListView动态加载数据模板 - 51CTO.COM_files/ad.php"></script><iframe width="760" height="90" noresize="" scrolling="No" frameborder="0" marginheight="0" marginwidth="0" src="./ListView动态加载数据模板 - 51CTO.COM_files/mobile.html" align="center"></iframe></div>
+	<div id="list4" class="fr" style="position: relative;">
+		<ul>
+			<li id="wordlinkad1"><script src="./ListView动态加载数据模板 - 51CTO.COM_files/wordlink1.js.下载"></script><script type="text/javascript" src="./ListView动态加载数据模板 - 51CTO.COM_files/ajs.php"></script><a href="http://gg2.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3933__zoneid=270__cb=738f650419__oadest=http%3A%2F%2Fedu.51cto.com%2Fzt%2Fzt_id-1.html%3Fan" target="_blank"><font color="red">网络安全一个大写的反“作死”</font></a><div id="beacon_738f650419" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/lg.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</li>
+			<li id="wordlinkad2"><script src="./ListView动态加载数据模板 - 51CTO.COM_files/wordlink2.js.下载"></script><script type="text/javascript" src="./ListView动态加载数据模板 - 51CTO.COM_files/ajs(1).php"></script><a href="http://gg.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=5920__zoneid=255__cb=1411a7c2d0__oadest=http%3A%2F%2Fserver.51cto.com%2Fact%2FZerto%2FZerto2017Q1" target="_blank"><font color="red">专注灾难恢复 保证业务持续可用</font></a><div id="beacon_1411a7c2d0" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/lg(1).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</li>
+			<li id="wordlinkad3"><script src="./ListView动态加载数据模板 - 51CTO.COM_files/wordlink3.js.下载"></script><script type="text/javascript" src="./ListView动态加载数据模板 - 51CTO.COM_files/ajs(2).php"></script><a href="http://gg3.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3717__zoneid=594__cb=a9219e063f__oadest=http%3A%2F%2Fedu.51cto.com%2Fpx%2Ftrain%2F115%3Fwzl" target="_blank"><font color="red">Linux云计算与架构师进阶</font></a><div id="beacon_a9219e063f" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/lg(2).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</li>
+			<li id="wordlinkad4"><script src="./ListView动态加载数据模板 - 51CTO.COM_files/wordlink4.js.下载"></script><script type="text/javascript" src="./ListView动态加载数据模板 - 51CTO.COM_files/ajs(3).php"></script><a href="http://gg3.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3549__zoneid=636__cb=072b5799a7__oadest=http%3A%2F%2Fedu.51cto.com%2Ftraining%2Ftraining_id-17.html%3Fxiaoshou" target="_blank"><font color="red">2016年备战软考-重难点解析</font></a><div id="beacon_072b5799a7" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/lg(3).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</li>
+		<div style="right: 0px; width: 24px; height: 14px; z-index: 12; position: absolute; background: transparent url(http://s5.51cto.com/wyfs02/M00/86/BB/wKiom1fI4nWStYqXAAAEoZQn6vs942.png) repeat scroll 0% 0%; bottom: 2px;"></div></ul>
+	</div>
+<br class="dle">
+</div>
+
+<div class="g_39 menu">
+<div class="subNav_logo"><a href="http://mobile.51cto.com/" title="移动开发"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/143329156.gif"></a></div>
+<div class="subNav_l"><a href="http://mobile.51cto.com/">首页</a> | <a href="http://mobile.51cto.com/android/">Android</a> | <a href="http://mobile.51cto.com/iphone/">iOS</a> | <a href="http://mobile.51cto.com/windows-phone/">Windows Phone</a> | <a href="http://mobile.51cto.com/blackberry/">BlackBerry</a> | <a href="http://mobile.51cto.com/webos/">webOS</a> | <a href="http://mobile.51cto.com/symbian/">Symbian</a> | <a href="http://mobile.51cto.com/bada/">bada</a> | <a href="http://mobile.51cto.com/ophone/">OPhone</a> | <a href="http://mobile.51cto.com/others/" target="_blank">其他</a></div>  
+<div class="search fr">
+<dl>
+<form name="searchform" action="http://www.51cto.com/php/search.php" target="_blank" method="post" style="margin:0px; padding:0px;">
+<dt class="fl"><input name="keyword" type="text" class="searchInput f14 input" value="请输入关键字" onfocus="doempty(this, &#39;请输入关键字&#39;);" onblur="doempty(this, &#39;请输入关键字&#39;);"></dt>
+<dd class="fl"><input type="image" src="./ListView动态加载数据模板 - 51CTO.COM_files/search.gif"></dd></form>
+</dl>
+</div>
+<br class="dle">
+</div>
+<div class="g_39 b3-s-4273B3 rel">
+<!--width : 26*25 - 15 = 635px-->
+<div class="g_26 fl m_l">
+<div class="brief bgF8F8F8">
+<p class="crumb ">您所在的位置：<a href="http://mobile.51cto.com/"><b>移动开发</b></a> &gt; <a href="http://mobile.51cto.com/android/"><b>Android</b></a> &gt; <a href="http://mobile.51cto.com/abased/"><b>Android基础</b></a> &gt;  <b>ListView动态加载数据模板</b> </p>
+<h1>ListView动态加载数据模板</h1>
+<div class="msg">
+<div>2011-05-31 11:05  佚名  博客园 <span class="f12-a"><a href="http://mobile.51cto.com/android-265878.htm#commment" target="_self"></a></span> 字号：<span class="f14-b"><a href="javascript:setfont(12);" target="_self">T</a></span> | <span class="f16-b"><a href="javascript:setfont(16);" target="_self">T</a></span></div>
+<div class="artHd" id="books" style="padding:5px 25px;display:none;"><script language="JavaScript" src="./ListView动态加载数据模板 - 51CTO.COM_files/getBookData.php"></script></div>
+<div class="fav"><a href="javascript:favorBox(&#39;open&#39;);" title="一键收藏，随时查看，分享好友！" target="_self"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/Fav.gif" alt="一键收藏，随时查看，分享好友！" border="0"></a></div>
+</div>
+<div class="brieftext">
+<p class="f14 green">ListView 控件可使用四种不同视图显示项目。通过此控件，可将项目组成带有或不带有列标头的列，并显示伴随的图标和文本。本文是使用xml布局来实现的。</p>
+<p class="ad">AD：<script src="./ListView动态加载数据模板 - 51CTO.COM_files/keywords_ad_new.js.下载"></script><a href="http://mobile.51cto.com/mobile/mdsa12/" target="_blank" style="text-decoration: none;color:red">51CTO 网+ 第十二期沙龙：大话数据之美_如何用数据驱动用户体验</a>
+</p>
+</div>
+</div>
+<div class="tag bgF8F8F8" id="indexlist" style="display:none;">
+<ul id="indexliststr">
+</ul>
+<br class="dle">
+</div>
+<div class="content bgF8F8F8 f14">
+<div id="content">
+<p></p><p>对于做<strong>Android</strong>应用程序来说，ListView一定用得非常多，经常解析xml文件然后在ListView中显示，往往我们需要让它动态地加载内容，也就是不一次性地加载完成，对于手机来说，这点很重要！笔者之前也是弄的不明白，用的时候直接在网上找代码，复制粘贴，再修改一下就是自己的了，笔者的这个小Demo灵感来自于新浪或者腾讯微博手机客户端，比如第一页加载十条Item，当翻到最后一个Item的时候，会出来一个Button，当点击Button的时候就会继续加载更多的，当然如果不点，就不会加载的，节约用户流量，先看效果图</p>
+<p><a href="./ListView动态加载数据模板 - 51CTO.COM_files/1115280.jpg" target="_blank"><img class="fit-image" onload="javascript:if(this.width&gt;498)this.width=498;" onmousewheel="javascript:return big(this)" width="498" height="428" border="0" src="./ListView动态加载数据模板 - 51CTO.COM_files/1115280.jpg" alt="" style="width: 550px; height: 417px"></a>&nbsp;</p>
+<p><a href="./ListView动态加载数据模板 - 51CTO.COM_files/1115281.jpg" target="_blank"><img class="fit-image" onload="javascript:if(this.width&gt;498)this.width=498;" onmousewheel="javascript:return big(this)" width="498" height="430" border="0" src="./ListView动态加载数据模板 - 51CTO.COM_files/1115281.jpg" alt="" style="width: 551px; height: 430px"></a>&nbsp;</p>
+<p><a href="./ListView动态加载数据模板 - 51CTO.COM_files/1115282.jpg" target="_blank"><img class="fit-image" onload="javascript:if(this.width&gt;498)this.width=498;" onmousewheel="javascript:return big(this)" width="498" height="447" border="0" src="./ListView动态加载数据模板 - 51CTO.COM_files/1115282.jpg" alt="" style="width: 555px; height: 447px"></a></p>
+<p>如果觉得满意的话就继续看下面的代码吧，笔者这里没有用到main.xml文件，全部在java文件中定义的，如果理解了的话自己可以在xml文件里面写布局</p>
+<pre><ol class="dp-xml"><li class="alt"><span><span>package&nbsp;com.focus.loading; &nbsp;</span></span></li><li><span>import&nbsp;android.app.ListActivity; &nbsp;</span></li><li class="alt"><span>import&nbsp;android.os.Bundle; &nbsp;</span></li><li><span>import&nbsp;android.os.Handler; &nbsp;</span></li><li class="alt"><span>import&nbsp;android.view.Gravity; &nbsp;</span></li><li><span>import&nbsp;android.view.View; &nbsp;</span></li><li class="alt"><span>import&nbsp;android.view.View.OnClickListener; &nbsp;</span></li><li><span>import&nbsp;android.view.ViewGroup; &nbsp;</span></li><li class="alt"><span>import&nbsp;android.view.ViewGroup.LayoutParams; &nbsp;</span></li><li><span>import&nbsp;android.widget.AbsListView; &nbsp;</span></li><li class="alt"><span>import&nbsp;android.widget.AbsListView.OnScrollListener; &nbsp;</span></li><li><span>import&nbsp;android.widget.BaseAdapter; &nbsp;</span></li><li class="alt"><span>import&nbsp;android.widget.Button; &nbsp;</span></li><li><span>import&nbsp;android.widget.LinearLayout; &nbsp;</span></li><li class="alt"><span>import&nbsp;android.widget.ListView; &nbsp;</span></li><li><span>import&nbsp;android.widget.ProgressBar; &nbsp;</span></li><li class="alt"><span>import&nbsp;android.widget.TextView; &nbsp;</span></li><li><span>public&nbsp;class&nbsp;ListViewActivity&nbsp;extends&nbsp;ListActivity&nbsp;implements&nbsp;OnScrollListener&nbsp;{ &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;LinearLayout&nbsp;mLoadLayout; &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;LinearLayout&nbsp;mProgressLoadLayout; &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;ListView&nbsp;mListView; &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;ListViewAdapter&nbsp;</span><span class="attribute">mListViewAdapter</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">new</span><span>&nbsp;ListViewAdapter(); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;int&nbsp;</span><span class="attribute">mLastItem</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">0</span><span>; &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;int&nbsp;</span><span class="attribute">mCount</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">41</span><span>; &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;final&nbsp;Handler&nbsp;</span><span class="attribute">mHandler</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">new</span><span>&nbsp;Handler();//&nbsp;在Handler中加载数据 &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;final&nbsp;LayoutParams&nbsp;</span><span class="attribute">mLayoutParams</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">new</span><span>&nbsp;LinearLayout.LayoutParams( &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LinearLayout.LayoutParams.WRAP_CONTENT, &nbsp;</span></li><li><span>LinearLayout.LayoutParams.WRAP_CONTENT); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;scrollState;//&nbsp;全局变量，用来记录ScrollView的滚动状态，1表示开始滚动，2表示正在滚动，0表示滚动停止 &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;visibleItemCount;//&nbsp;当前可见页面中的Item总数 &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;@Override &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;onCreate(Bundle&nbsp;savedInstanceState)&nbsp;{ &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super.onCreate(savedInstanceState); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/** &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;"加载项"布局，此布局被添加到ListView的Footer中。 &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/ &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">mLoadLayout</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">new</span><span>&nbsp;LinearLayout(this); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mLoadLayout.setMinimumHeight(30); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mLoadLayout.setGravity(Gravity.CENTER); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mLoadLayout.setOrientation(LinearLayout.VERTICAL); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;当点击按钮的时候显示这个View，此View使用水平方式布局，左边是一个进度条，右边是文本，默认设为不可见 &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">mProgressLoadLayout</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">new</span><span>&nbsp;LinearLayout(this); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mProgressLoadLayout.setMinimumHeight(30); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mProgressLoadLayout.setGravity(Gravity.CENTER); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mProgressLoadLayout.setOrientation(LinearLayout.HORIZONTAL); &nbsp;</span></li><li><span>&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ProgressBar&nbsp;</span><span class="attribute">mProgressBar</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">new</span><span>&nbsp;ProgressBar(this); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mProgressBar.setPadding(0,&nbsp;0,&nbsp;15,&nbsp;0); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mProgressLoadLayout.addView(mProgressBar,&nbsp;mLayoutParams);//&nbsp;为布局添加进度条 &nbsp;</span></li><li><span>&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TextView&nbsp;</span><span class="attribute">mTipContent</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">new</span><span>&nbsp;TextView(this); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mTipContent.setText("加载中..."); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mProgressLoadLayout.addView(mTipContent,&nbsp;mLayoutParams);//&nbsp;为布局添加文本 &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mProgressLoadLayout.setVisibility(View.GONE);//&nbsp;默认设为不可见，注意View.GONE和View.INVISIBLE的区别 &nbsp;</span></li><li class="alt"><span>&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mLoadLayout.addView(mProgressLoadLayout);//&nbsp;把之前的布局以View对象添加进来 &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;final&nbsp;Button&nbsp;</span><span class="attribute">button</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">new</span><span>&nbsp;Button(this); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button.setText("加载更多"); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;添加按钮 &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mLoadLayout.addView(button,&nbsp;new&nbsp;LayoutParams(LayoutParams.FILL_PARENT, &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LayoutParams.WRAP_CONTENT)); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button.setOnClickListener(new&nbsp;OnClickListener()&nbsp;{ &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Override &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;onClick(View&nbsp;v)&nbsp;{ &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span class="attribute">mLastItem</span><span>&nbsp;==&nbsp;mListViewAdapter.count &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp;&nbsp;</span><span class="attribute">scrollState</span><span>&nbsp;==&nbsp;OnScrollListener.SCROLL_STATE_IDLE)&nbsp;{ &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;当点击时把带进度条的Layout设为可见，把Button设为不可见 &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mProgressLoadLayout.setVisibility(View.VISIBLE); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button.setVisibility(View.GONE); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(mListViewAdapter.count&nbsp;</span><span class="tag">&lt;</span><span>=&nbsp;mCount)&nbsp;{ &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mHandler.postDelayed(new&nbsp;Runnable()&nbsp;{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Override &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;run()&nbsp;{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mListViewAdapter.count&nbsp;+=&nbsp;10; &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mListViewAdapter.notifyDataSetChanged(); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mListView.setSelection(mLastItem &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;visibleItemCount&nbsp;+&nbsp;1); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;获取数据成功时把Layout设为不可见，把Button设为可见 &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mProgressLoadLayout.setVisibility(View.GONE); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button.setVisibility(View.VISIBLE); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},&nbsp;2000); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}); &nbsp;</span></li><li class="alt"><span>&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">mListView</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">getListView</span><span>(); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mListView.addFooterView(mLoadLayout); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setListAdapter(mListViewAdapter); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mListView.setOnScrollListener(this); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;@Override &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;onScroll(AbsListView&nbsp;view,&nbsp;int&nbsp;firstVisibleItem, &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;visibleItemCount,&nbsp;int&nbsp;totalItemCount)&nbsp;{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">this.visibleItemCount</span><span>&nbsp;=&nbsp;visibleItemCount; &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">mLastItem</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">firstVisibleItem</span><span>&nbsp;+&nbsp;visibleItemCount&nbsp;-&nbsp;1; &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(mListViewAdapter.count&nbsp;</span><span class="tag">&gt;</span><span>&nbsp;mCount)&nbsp;{ &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mListView.removeFooterView(mLoadLayout); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;@Override &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;onScrollStateChanged(AbsListView&nbsp;view,&nbsp;int&nbsp;scrollState)&nbsp;{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">this.scrollState</span><span>&nbsp;=&nbsp;scrollState; &nbsp;</span></li><li class="alt"><span>&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;ListViewAdapter&nbsp;extends&nbsp;BaseAdapter&nbsp;{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;</span><span class="attribute">count</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">10</span><span>; &nbsp;</span></li><li class="alt"><span>&nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;int&nbsp;getCount()&nbsp;{ &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;count; &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;Object&nbsp;getItem(int&nbsp;position)&nbsp;{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;position; &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li><span>&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;long&nbsp;getItemId(int&nbsp;position)&nbsp;{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;position; &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;View&nbsp;getView(int&nbsp;position,&nbsp;View&nbsp;view,&nbsp;ViewGroup&nbsp;parent)&nbsp;{ &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TextView&nbsp;mTextView; &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span class="attribute">view</span><span>&nbsp;==&nbsp;null)&nbsp;{ &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">mTextView</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">new</span><span>&nbsp;TextView(ListViewActivity.this); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{ &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">mTextView</span><span>&nbsp;=&nbsp;(TextView)&nbsp;view; &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mTextView.setText("Item&nbsp;"&nbsp;+&nbsp;position); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mTextView.setTextSize(20f); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mTextView.setGravity(Gravity.CENTER); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mTextView.setHeight(60); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;mTextView; &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li><span>}&nbsp;</span></li></ol></pre>
+<p>【编辑推荐】</p>
+<p><a href="http://mobile.51cto.com/android-265197.htm" target="_blank">Android ListView详解</a></p>
+<p><a href="http://mobile.51cto.com/android-265538.htm" target="_blank">使用ListView 显示数据</a></p>
+<p><a href="http://mobile.51cto.com/android-259861.htm" target="_blank">Android开发：自定义GridView/ListView数据源</a></p>
+<p><a href="http://mobile.51cto.com/android-254823.htm" target="_blank">Android开发：实现带图片和checkbox的listview</a></p>
+<p><a href="http://mobile.51cto.com/android-254823.htm" target="_blank">Android开发：实现带图片和checkbox的listview</a></p>
+<div align="right">【责任编辑：<a href="mailto:licz@51cto.com" class="ln">李程站</a> TEL：（010）68476606】</div><br> 
+<p class="blank10"></p> 
+ 
+ 
+
+<p class="blank10"></p>
+<div class="f12"> <span class="fl">原文：<a href="./ListView动态加载数据模板 - 51CTO.COM_files/ListView动态加载数据模板 - 51CTO.COM.html" class="blue"><b>ListView动态加载数据模板</b></a></span> <span class="fr"><a href="http://mobile.51cto.com/">返回移动开发首页</a></span> </div>
+<p class="blank1"></p>
+</div>
+<hr style="border-top: #555555 1px solid; height: 1px; border-right: medium none; border-bottom: medium none; border-left: medium none">
+<div style="width: 600px; background: #ffffff"><img width="600" height="140" alt="" src="./ListView动态加载数据模板 - 51CTO.COM_files/wKioL1ZOwrbDjDqxAABJOr5GFjU021.png" border="0"></div>
+<hr style="border-top: #555555 1px solid; height: 1px; border-right: medium none; border-bottom: medium none; border-left: medium none">
+<iframe width="600" height="239" src="./ListView动态加载数据模板 - 51CTO.COM_files/bulkfollow.html" frameborder="0" scrolling="no"></iframe>
+<div class="tips">
+<div style="float:left;">
+<span style="float:left; margin-top:4px;">分享到：</span>
+<!-- Baidu Button BEGIN -->
+    <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="margin-right:5px; float:left;">
+        <a class="bds_qzone" title="分享到QQ空间" href="http://mobile.51cto.com/android-265878.htm#"></a>
+        <a class="bds_tsina" title="分享到新浪微博" href="http://mobile.51cto.com/android-265878.htm#"></a>
+        <a class="bds_tqq" title="分享到腾讯微博" href="http://mobile.51cto.com/android-265878.htm#"></a>
+        <a class="bds_renren" title="分享到人人网" href="http://mobile.51cto.com/android-265878.htm#"></a>
+        <a class="bds_t163" title="分享到网易微博" href="http://mobile.51cto.com/android-265878.htm#"></a>
+        <span class="bds_more"></span>
+		<a class="shareCount" href="http://mobile.51cto.com/android-265878.htm#" title="累计分享0次">0</a>
+
+</div>
+<!--<div class="fl"> 
+    </div>
+--><script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=585532" src="./ListView动态加载数据模板 - 51CTO.COM_files/bds_s_v2.js.下载"></script>
+
+<script type="text/javascript">
+	var bds_config = {'snsKey':{'tsina':'2378297317'}};
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?t=" + new Date().getHours();
+</script>
+<!-- Baidu Button END -->
+
+
+
+</div><div class="fr blue"><a href="javascript:AddFavorite(document.location.href,document.title);" target="_self">收藏</a>|<a href="javascript:window.print();" target="_self">打印</a>|<a id="msnqqcopy" title="分享本资源给好友" target="_self">复制</a></div>
+</div>
+</div>
+<!--内容 end-->
+<div class="topbiaoqing">
+<div class="biaoqing fixfloat pad">
+<ul>
+<li><a href="javascript:getcountscom(265878,1)" target="_self"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/bq1.jpg"></a>
+<div><a href="javascript:getcountscom(265878,1)" target="_self">给力</a></div>
+<span id="265878_1">(59票)</span></li>
+<li><a href="javascript:getcountscom(265878,2)" target="_self"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/bq2.jpg"></a>
+<div><a href="javascript:getcountscom(265878,2)" target="_self">动心</a></div>
+<span id="265878_2">(50票)</span></li>
+<li><a href="javascript:getcountscom(265878,3)" target="_self"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/bq3.jpg"></a>
+<div><a href="javascript:getcountscom(265878,3)" target="_self">废话</a></div>
+<span id="265878_3">(54票)</span></li>
+<li><a href="javascript:getcountscom(265878,4)" target="_self"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/bq4.jpg"></a>
+<div><a href="javascript:getcountscom(265878,4)" target="_self">专业</a></div>
+<span id="265878_4">(51票)</span></li>
+<li><a href="javascript:getcountscom(265878,5)" target="_self"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/bq5.jpg"></a>
+<div><a href="javascript:getcountscom(265878,5)" target="_self">标题党</a></div>
+<span id="265878_5">(50票)</span></li>
+<li><a href="javascript:getcountscom(265878,6)" target="_self"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/bq6.jpg"></a>
+<div><a href="javascript:getcountscom(265878,6)" target="_self">路过</a></div>
+<span id="265878_6">(51票)</span></li>
+</ul>
+</div>
+<script language="javascript"> 
+getcountscom(265878,11);
+
+</script>
+</div>
+<p class="blank10"></p>
+<!--reltag end-->
+
+<p class="blank10"></p>
+<div class="uyan">
+<div id="uyan_frame"><iframe id="uyan_ifr_8226542" scrolling="no" frameborder="0" style="height: 421px; display: block !important; width: 100% !important; border: 0px none !important; overflow: hidden !important;" src="./ListView动态加载数据模板 - 51CTO.COM_files/saved_resource(2).html"></iframe></div>
+<script type="text/javascript" src="./ListView动态加载数据模板 - 51CTO.COM_files/uyan.js.下载"></script><script type="text/javascript" src="./ListView动态加载数据模板 - 51CTO.COM_files/plugin.client.js.下载" charset="utf-8"></script>
+</div>
+<!--box end-->
+
+<div class="bor">
+<div class="titbg pl15">关于<a href="http://www.51cto.com/php/search.php?keyword=ListView%20" target="_blank" class="underline">ListView </a>&nbsp;&nbsp;<a href="http://www.51cto.com/php/search.php?keyword=%20%CA%FD%BE%DD" target="_blank" class="underline"> 数据</a>的更多文章</div>
+<div class="reltag">
+<ul class="fl list02">
+  <li><a href="http://mobile.51cto.com/anews-415877.htm" title="过半 Android 设备运行 Jelly Bean 系统">过半 Android 设备运行 Jelly Bean 系统</a></li><li><a href="http://mobile.51cto.com/news-415634.htm" title="华为戎国强：大趋势下联盟才是生存下去的保证">华为戎国强：大趋势下联盟才是生存下去的保</a></li><li><a href="http://mobile.51cto.com/news-415041.htm" title="AppBuilder 应用开发向导">AppBuilder 应用开发向导</a></li><li><a href="http://mobile.51cto.com/anews-415040.htm" title="AppBuilder 优势介绍">AppBuilder 优势介绍</a></li><li><a href="http://mobile.51cto.com/anews-414885.htm" title="AppBuilder简介">AppBuilder简介</a></li>
+</ul>
+<div class="fr">
+<div class="h5 f12"><a href="http://mobile.51cto.com/news-415852.htm" title="移动异构计算：移动计算的新时代"><b>移动异构计算：移动计算的新时代</b></a></div>
+<a href="http://mobile.51cto.com/news-415852.htm" title="移动异构计算：移动计算的新时代"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/wKioJlJ5pZ7y2tKDAABB2Z_KI0s523.jpg" alt="移动异构计算：移动计算的新时代" width="100" height="80" border="0"></a>
+<p class="c666">移动异构计算是相对于同构计算来说的，同构计算就是使用同一个处<a class="blue" href="http://mobile.51cto.com/news-415852.htm" title="移动异构计算：移动计算的新时代">[详细]</a></p>
+</div>
+</div></div>
+
+<p class="blank10"></p>
+<div class="relart fl bor">
+<div class="titbg">
+<h3 class="fl t1">栏目热门</h3>
+<a href="http://mobile.51cto.com/col/1618/click1.htm" class="tmore">更多&gt;&gt;</a></div>
+<ul>
+  
+	  <li><a href="http://mobile.51cto.com/abased-410785.htm" title="Android 性能优化方法">Android 性能优化方法</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/abased-410889.htm" title="Android之ListView原理学习与优化总结">Android之ListView原理学习与优化总结</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/abased-410788.htm" title="Android开发优化之——对界面UI的优化（1）">Android开发优化之——对界面UI的优化（1）</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/abased-410852.htm" title="Android布局的优化方案汇总">Android布局的优化方案汇总</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/abased-410791.htm" title="Android开发优化之——从代码角度进行优化">Android开发优化之——从代码角度进行优化</a></li>
+	  
+</ul>
+</div>
+<div class="cathot fr bor">
+<div class="titbg">
+<h3 class="fl t1">同期最新</h3>
+<a href="http://mobile.51cto.com/col/1618" class="tmore">更多&gt;&gt;</a></div>
+<ul>
+	
+	  <li><a href="http://mobile.51cto.com/android-265868.htm" title="Android实战系统对话框实现登陆注册功能">Android实战系统对话框实现登陆注册功能</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/android-265857.htm" title="Android Spring依赖注入">Android Spring依赖注入</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/android-265842.htm" title="Android布局属性详解">Android布局属性详解</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/android-265834.htm" title="Activity页面切换的效果">Activity页面切换的效果</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/android-265825.htm" title="Android开发之旅：Android架构">Android开发之旅：Android架构</a></li>
+	  
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="fl t1"><a href="http://mobile.51cto.com/">移动开发</a></h3>
+<span class="pl10">频道导航</span></div>
+ <ul class="xtlist">
+<li><span class="tit">平台</span>
+<div><a href="http://mobile.51cto.com/web/">移动Web</a>|<a href="http://mobile.51cto.com/android/">Android</a>|<a href="http://mobile.51cto.com/iphone/">iOS</a>|<a href="http://mobile.51cto.com/windows-phone/">Windows Phone</a></div>
+</li>
+
+<li><span class="tit">应用</span>
+<div><a href="http://mobile.51cto.com/app-show/">移动应用</a>|<a href="http://mobile.51cto.com/team/">移动团队</a>|<a href="http://mobile.51cto.com/market/">应用商店</a>|<a href="http://mobile.51cto.com/speclist/">专题汇总</a>|<a href="http://mobile.51cto.com/1603/">Phone Club</a></div>
+</li>
+
+<li><span class="tit">观察</span>
+<div><a href="http://mobile.51cto.com/comment/">业界观察</a>|<a href="http://mobile.51cto.com/data/">调查数据</a>|<a href="http://mobile.51cto.com/informatization/">移动信息化</a></div>
+</li>
+
+<li class="last"><span class="tit">Android</span>
+<div><a href="http://mobile.51cto.com/ahot/">热点</a>|<a href="http://mobile.51cto.com/anews/">资讯</a>|<a href="http://mobile.51cto.com/android/abased/">基础</a>|<a href="http://mobile.51cto.com/android/amedia/">多媒体</a>|<a href="http://mobile.51cto.com/android/adatabase/">数据库</a>|<a href="http://mobile.51cto.com/android/design/">设计</a>|<a href="http://mobile.51cto.com/android/aengine/">工具</a>|<a href="http://mobile.51cto.com/android/aprogram/">编译</a></div>
+</li>
+</ul> 
+</div> 
+<p class="blank10"></p>
+<p class="blank10"></p>
+<div class="leftbotcon">
+<div class="bor jdlist">
+<div class="titbg">
+<h3 class="t2">热点推荐</h3></div>
+<ul>
+<li><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-t-4&#39;]);" href="http://mobile.51cto.com/mobile-182392.htm"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/153546162.jpg"></a> 
+<div class="name"><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-t-4&#39;]);" href="http://mobile.51cto.com/mobile-182392.htm">Android开发应用详解</a></div></li>
+<li><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-t-4&#39;]);" href="http://developer.51cto.com/art/201106/266369.htm"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/133620622.jpg"></a> 
+<div class="name"><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-t-4&#39;]);" href="http://developer.51cto.com/art/201106/266369.htm">那些性感的让人尖叫的程序员</a></div></li>
+<li><a href="http://developer.51cto.com/art/200907/133407.htm"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/134217922.jpg"></a> 
+<div class="name"><a href="http://developer.51cto.com/art/200907/133407.htm">HTML5 下一代Web开发标准详解</a></div></li>
+<li><a href="http://developer.51cto.com/art/201104/257581.htm"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/123123954.jpg"></a> 
+<div class="name"><a href="http://developer.51cto.com/art/201104/257581.htm">高性能WEB开发应用指南</a></div></li>
+<li><a href="http://os.51cto.com/art/200706/49181.htm"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/195816929.jpg"></a> 
+<div class="name"><a href="http://os.51cto.com/art/200706/49181.htm">Ubuntu开源技术交流频道</a></div></li></ul></div>
+<p class="blank10"></p>
+<div class="bor hotTag"><strong>热门标签：</strong> <a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-2]);" href="http://os.51cto.com/windows/">windows频道</a><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-w&#39;]);" href="http://mobile.51cto.com/">移动开发</a><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-w&#39;]);" href="http://cloud.51cto.com/">云计算</a><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-w&#39;]);" href="http://mobile.51cto.com/mobile/objc/">objective-c</a><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-w&#39;]);" href="http://network.51cto.com/art/200909/151122.htm">tp-link路由器设置图解</a><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-w&#39;]);" href="http://developer.51cto.com/art/200907/133407.htm">html5</a> </div></div>
+<div class="leftbotbox"> </div>
+</div>
+<!--left end-->
+<div class="g_13 fr">
+<div class="focus fixfloat" style="height: 640px;"> 
+ <img width="298" style="border: 1px solid #CCCCCC; margin:5px 0px 5px;" src="./ListView动态加载数据模板 - 51CTO.COM_files/weixin.jpg"><div class="hot" style="top: 450px;">
+<ul>
+<li class="tit"><em>头条</em> <a href="http://ai.51cto.com/art/201703/536061.htm">摆好正确姿势 看 Google 神级深度学习框架 TensorFlow 的实践思路</a> </li>
+<li class="con"><dl><dt><a href="http://ai.51cto.com/art/201703/536061.htm"><img border="0" src="./ListView动态加载数据模板 - 51CTO.COM_files/ListView动态加载数据模板 - 51CTO.COM.html"></a></dt>
+<dd> </dd>
+</dl></li></ul><ol class="hotlist"><li><a href="http://mobile.51cto.com/iphone-535106.htm">iOS与Android设备到底是如何被入侵的？</a></li><li><a href="http://developer.51cto.com/art/201703/534563.htm">你所不了解的移动支付背后的技术支撑</a></li></ol></div>
+<p>
+<script language="JavaScript" src="./ListView动态加载数据模板 - 51CTO.COM_files/ad.js(1).下载" type="text/javascript"></script><script type="text/javascript" src="./ListView动态加载数据模板 - 51CTO.COM_files/ad(1).php"></script><iframe width="300" height="260" noresize="" scrolling="No" frameborder="0" marginheight="0" marginwidth="0" src="./ListView动态加载数据模板 - 51CTO.COM_files/14.html" align="left"></iframe>
+</p>
+</div>
+<div class="rank">
+<div class="tlt">
+      <h3>文章排行</h3>
+      <a onmouseover="change_top10(3);" id="top_3">本月</a><a onmouseover="change_top10(2);" id="top_2">本周</a><a onmouseover="change_top10(1);" class="myon" id="top_1">24小时</a> </div>
+ <div id="top10_1" style="display: block;" class="list"><ul>
+<li><a href="http://mobile.51cto.com/design-250037.htm" target="_blank" title="21个免费的UI界面设计工具、资源及网站">21个免费的UI界面设计工具、资源及网站</a>
+</li><li><a href="http://mobile.51cto.com/aprogram-442833.htm" target="_blank" title="Android开发中Handler的经典总结">Android开发中Handler的经典总结</a>
+</li><li><a href="http://mobile.51cto.com/hot-508139.htm" target="_blank" title="什么，YouTube, App这些英文你都读错了">什么，YouTube, App这些英文你都读错了</a>
+</li><li><a href="http://mobile.51cto.com/aprogram-464015.htm" target="_blank" title="Android 反编译 -smali语法">Android 反编译 -smali语法</a>
+</li><li><a href="http://mobile.51cto.com/hot-495118.htm" target="_blank" title="51CTO原创精选">51CTO原创精选</a>
+</li><li><a href="http://mobile.51cto.com/aprogram-491662.htm" target="_blank" title="来自谷歌的Android性能优化大起底">来自谷歌的Android性能优化大起底</a>
+</li><li><a href="http://mobile.51cto.com/hot-511417.htm" target="_blank" title="I/O 首日，Google 发布了自家的 Siri、">I/O 首日，Google 发布了自家的 Siri、</a>
+</li><li><a href="http://mobile.51cto.com/news-508147.htm" target="_blank" title="html5 app轻架构高性能开发交流会即将">html5 app轻架构高性能开发交流会即将</a>
+</li><li><a href="http://mobile.51cto.com/hot-494444.htm" target="_blank" title="51CTO外电精选">51CTO外电精选</a>
+</li><li><a href="http://mobile.51cto.com/iphone-441694.htm" target="_blank" title="iOS新语言swift上手指南">iOS新语言swift上手指南</a>
+</li></ul></div>
+<div id="top10_2" style="display: none;" class="list"><ul>
+<li><a href="http://mobile.51cto.com/ahot-515466.htm" target="_blank" title="Android 7.0正式版8月登场 无缘Nexus 5">Android 7.0正式版8月登场 无缘Nexus 5</a>
+</li><li><a href="http://mobile.51cto.com/news-515470.htm" target="_blank" title="苹果将发布Swift 3.0 公布第四版开发内">苹果将发布Swift 3.0 公布第四版开发内</a>
+</li><li><a href="http://mobile.51cto.com/news-515524.htm" target="_blank" title="Android与iOS谁更优秀？消费者必看的五">Android与iOS谁更优秀？消费者必看的五</a>
+</li><li><a href="http://mobile.51cto.com/iphone-515464.htm" target="_blank" title="苹果会开放iOS操作系统吗？30年前已错">苹果会开放iOS操作系统吗？30年前已错</a>
+</li><li><a href="http://mobile.51cto.com/hot-515468.htm" target="_blank" title="移动支付技术架构及应用模式探讨">移动支付技术架构及应用模式探讨</a>
+</li><li><a href="http://mobile.51cto.com/iphone-515526.htm" target="_blank" title="软硬皆失：苹果授权操作系统缘何是个“">软硬皆失：苹果授权操作系统缘何是个“</a>
+</li><li><a href="http://mobile.51cto.com/data-515467.htm" target="_blank" title="移动营销大鱼吃小鱼 行业并购成趋势">移动营销大鱼吃小鱼 行业并购成趋势</a>
+</li><li><a href="http://mobile.51cto.com/comment-515079.htm" target="_blank" title="柴洪峰：移动支付已经成为金融创新的重">柴洪峰：移动支付已经成为金融创新的重</a>
+</li><li><a href="http://mobile.51cto.com/iphone-515505.htm" target="_blank" title="我们总结了十条变化 让你了解iOS 10第">我们总结了十条变化 让你了解iOS 10第</a>
+</li><li><a href="http://mobile.51cto.com/hot-515509.htm" target="_blank" title="物联网正在给批发业带来新的商业模式">物联网正在给批发业带来新的商业模式</a>
+</li></ul></div>
+<div id="top10_3" style="display: none;" class="list"><ul>
+<li><a href="http://mobile.51cto.com/iphone-514400.htm" target="_blank" title="iOS 10平台SpriteKit新特性之Tile Maps">iOS 10平台SpriteKit新特性之Tile Maps</a>
+</li><li><a href="http://mobile.51cto.com/iphone-514408.htm" target="_blank" title="iOS 10平台SpriteKit新特性之Tile Maps">iOS 10平台SpriteKit新特性之Tile Maps</a>
+</li><li><a href="http://mobile.51cto.com/android-514025.htm" target="_blank" title="使用Xamarin和Visual Studio开发Androi">使用Xamarin和Visual Studio开发Androi</a>
+</li><li><a href="http://mobile.51cto.com/anews-513979.htm" target="_blank" title="慧点科技新品牌SmartGO亮相   发力政企">慧点科技新品牌SmartGO亮相   发力政企</a>
+</li><li><a href="http://mobile.51cto.com/hot-514926.htm" target="_blank" title="用Horizon搭建可扩展的Javascript移动">用Horizon搭建可扩展的Javascript移动</a>
+</li><li><a href="http://mobile.51cto.com/ahot-515466.htm" target="_blank" title="Android 7.0正式版8月登场 无缘Nexus 5">Android 7.0正式版8月登场 无缘Nexus 5</a>
+</li><li><a href="http://mobile.51cto.com/news-515470.htm" target="_blank" title="苹果将发布Swift 3.0 公布第四版开发内">苹果将发布Swift 3.0 公布第四版开发内</a>
+</li><li><a href="http://mobile.51cto.com/news-515524.htm" target="_blank" title="Android与iOS谁更优秀？消费者必看的五">Android与iOS谁更优秀？消费者必看的五</a>
+</li><li><a href="http://mobile.51cto.com/iphone-515464.htm" target="_blank" title="苹果会开放iOS操作系统吗？30年前已错">苹果会开放iOS操作系统吗？30年前已错</a>
+</li><li><a href="http://mobile.51cto.com/hot-515468.htm" target="_blank" title="移动支付技术架构及应用模式探讨">移动支付技术架构及应用模式探讨</a>
+</li></ul></div>
+ 
+ </div>
+<p class="blank1"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="fl t1">热点职位</h3>
+<a href="http://gaozhao.51cto.com/job-search/list" class="tmore">更多&gt;&gt;</a></div>
+	<div class="rmzwn_xx"><dl><dt><a href="http://gaozhao.51cto.com/job/view/id-6189.html" target="_blank"> iOS高级开发工程师 </a></dt><dd><h2>全职/5-10年/本科</h2><span>25k-35k</span><a href="http://gaozhao.51cto.com/company/view/id-149.html" target="_blank">奇艺视频</a></dd></dl><dl><dt><a href="http://gaozhao.51cto.com/job/view/id-7088.html" target="_blank"> Android </a></dt><dd><h2>全职/1-3年/大专</h2><span>8k-15k</span><a href="http://gaozhao.51cto.com/company/view/id-837.html" target="_blank">乐歌人体工学</a></dd></dl><dl><dt><a href="http://gaozhao.51cto.com/job/view/id-4073.html" target="_blank"> 资深iOS </a></dt><dd><h2>全职/不限/不限</h2><span>15k-20k</span><a href="http://gaozhao.51cto.com/company/view/id-812.html" target="_blank">路路由</a></dd></dl><dl><dt><a href="http://gaozhao.51cto.com/job/view/id-6949.html" target="_blank"> IOS开发工程师 </a></dt><dd><h2>全职/1-3年/大专</h2><span>10k-20k</span><a href="http://gaozhao.51cto.com/company/view/id-1088.html" target="_blank">豆播</a></dd></dl><dl><dt><a href="http://gaozhao.51cto.com/job/view/id-6922.html" target="_blank"> 游戏调研/推广 省级区域经理 </a></dt><dd><h2>全职/1-3年/不限</h2><span>10k-15k</span><a href="http://gaozhao.51cto.com/company/view/id-1084.html" target="_blank">红猫软件</a></dd></dl></div>
+</div>
+<div class="blank10"></div>
+<script src="./ListView动态加载数据模板 - 51CTO.COM_files/51cto_sha1.js.下载"></script>
+<div class="bor">
+<div class="titbg">
+<h3 class="fl t1">热点专题</h3>
+<a href="http://mobile.51cto.com/col/1618/spec1.htm" class="tmore">更多&gt;&gt;</a></div>
+<ul class="plist01">
+<li><a href="http://mobile.51cto.com/android-407018.htm" title="Android开发常见“疑难杂症”解决方案大汇总"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/wKioOVIJ5uWgFxUkAABMv2ROsmo801.png" alt="Android开发常见“疑难杂症”解决方案大汇总" width="100" height="80"></a>
+<h5><a href="http://mobile.51cto.com/android-407018.htm" title="Android开发常见“疑难杂症”解决方案大汇总">Android开发常见“疑</a></h5>
+<div class="c666">作为Android开发者，最头疼是什么？相信大家会异口同</div>
+</li><li><a href="http://mobile.51cto.com/app-show-406924.htm" title="8大APP给你完美情人节"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/wKioOVIIphnyjleUAAAsy5P9X3k337.jpg" alt="8大APP给你完美情人节" width="100" height="80"></a>
+<h5><a href="http://mobile.51cto.com/app-show-406924.htm" title="8大APP给你完美情人节">8大APP给你完美情人节</a></h5>
+<div class="c666">七夕，是让人听起来就觉得美好的日子，牛郎织女鹊桥相</div>
+</li><li><a href="http://mobile.51cto.com/comment-406849.htm" title="BAT三巨头移动互联网战略大起底"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/wKioOVIIN6jhByRzAABQ76t6r0w963.jpg" alt="BAT三巨头移动互联网战略大起底" width="100" height="80"></a>
+<h5><a href="http://mobile.51cto.com/comment-406849.htm" title="BAT三巨头移动互联网战略大起底">BAT三巨头移动互联网</a></h5>
+<div class="c666">PC互联网巨头百度、腾讯和阿里，通过在移动互联网投资</div>
+</li> 
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="tagCloud">
+<div class="tlt">
+<h3>热点标签</h3>
+</div>
+<div class="taglist"><a title="iOS开发" href="http://mobile.51cto.com/mobile/objc/">iOS开发</a>  <a title="Android开发" href="http://mobile.51cto.com/mobile-182392.htm">Android开发</a> <a title="Symbian开发" href="http://mobile.51cto.com/mobile-220581.htm">Symbian开发</a>  <a title="MeeGo开发" href="http://mobile.51cto.com/meego-208013.htm">MeeGo开发</a>  <a title="BlackBerry开发" href="http://mobile.51cto.com/blackberry-255350.htm">BlackBerry开发</a>  <a title="Windows Phone开发" href="http://mobile.51cto.com/mobile-219051.htm">Windows Phone开发</a>  <a title="Phone Club" href="http://mobile.51cto.com/1603/">Phone Club</a>  <a title="Android 4.0" href="http://mobile.51cto.com/android-297987.htm" class="imp">Android 4.0</a>  <a title="webOS 3.0" href="http://mobile.51cto.com/webos-256291.htm">webOS 3.0</a>  <a title="智能手机" href="http://www.linkphone.cn/">智能手机</a> <a title="软件下载" href="http://download.linkphone.cn/">软件下载</a> </div>
+</div>
+<div class="rss">
+<ul>
+<li class="lin f12-c"><a href="http://news.51cto.com/col/1323/"><strong>点击这里查看样刊</strong></a></li>
+<li>
+<dl>
+<dt> </dt>
+<dd><a href="http://home.51cto.com/index.php?s=/Subscribe"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/dingy.gif"></a></dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1">全站热点</h3>
+</div>
+<div class="webhot fixfloat">
+<ul>
+
+<li>
+  <a href="http://netsecurity.51cto.com/secu/RSA/Security_Analytics/" title="智能安全分析：高级威胁的终结者"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/wKioOVHvnfyAH-0aAAAQgU0pHCQ362.jpg"></a>
+  <div><a href="http://netsecurity.51cto.com/secu/RSA/Security_Analytics/" title="智能安全分析：高级威胁的终结者">智能安全分析：高级威胁的终结者</a></div>
+</li>
+
+<li>
+  <a href="http://mobile.51cto.com/exp/Push2013/index.html" title="云推送移动互联网的太极推手"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/wKioOVHsxF-gUATqAAApioMlGJQ755.jpg"></a>
+  <div><a href="http://mobile.51cto.com/exp/Push2013/index.html" title="云推送移动互联网的太极推手">云推送移动互联网的太极推手</a></div>
+</li>
+
+</ul>
+</div>
+<p class="blank1"></p>
+<ul class="list03">
+
+<li><a href="http://book.51cto.com/art/201310/414820.htm" title="Visual C++程序设计">Visual C++程序设计</a></li>
+
+<li><a href="http://book.51cto.com/art/201310/414722.htm" title="SQL Server 2012 管理高级教程（第2版）">SQL Server 2012 管理高级教程（第2</a></li>
+
+<li><a href="http://news.51cto.com/art/201310/414668.htm" title="电商3.0：是战略而非战术">电商3.0：是战略而非战术</a></li>
+
+<li><a href="http://book.51cto.com/art/201310/414594.htm" title="Visual Basic 2012入门经典（第7版）">Visual Basic 2012入门经典（第7版）</a></li>
+
+<li><a href="http://os.51cto.com/art/201310/414555.htm" title="OS X Mavericks 欲与 Windows 8.1 试比高">OS X Mavericks 欲与 Windows 8.1 试</a></li>
+
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1">读书</h3>
+</div>
+  
+<div class="catbook"><a href="http://book.51cto.com/art/200712/61956.htm" title="C# 2005 &amp; .NET 3.0高级编程(第5版)"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/104239252.gif" width="66" height="98" border="0"></a>
+<h5><a href="http://book.51cto.com/art/200712/61956.htm">C# 2005 &amp; .NET 3.0高级编程(第5版)</a></h5>
+<div class="c666 text">该书为C#经典名著！是Wrox红皮书中最畅销的品种之一。从第1版开始就名满天下；其第3版被评选为2005年最权威的十大IT图书之一；并</div>
+</div>
+
+
+<ul class="list03">
+
+<li><a href="http://book.51cto.com/art/200704/46217.htm" title="C#和.NET核心技术">C#和.NET核心技术</a></li>
+
+<li><a href="http://book.51cto.com/art/200704/46221.htm" title="安全模式：J2EE、Web服务和身份管理最佳实践与策略">安全模式：J2EE、Web服务和身份管理最佳实践与策</a></li>
+
+<li><a href="http://book.51cto.com/art/200704/46224.htm" title="数据库系统概念">数据库系统概念</a></li>
+
+<li><a href="http://book.51cto.com/art/200704/46230.htm" title="Java程序设计教程">Java程序设计教程</a></li>
+
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1 fl">博文推荐</h3>
+<a class="tmore" href="http://blog.51cto.com/">更多&gt;&gt;</a></div>
+<div class="blogtj">
+<ul>
+<li> <a href="http://nowpaper.blog.51cto.com/"><img width="60" height="65" src="./ListView动态加载数据模板 - 51CTO.COM_files/3893223_1320825949.jpg"></a>
+<h5><a href="http://nowpaper.blog.51cto.com/">nowpaper</a></h5>
+Windows Phone专家</li>
+<li> <a href="http://xiaominghimi.blog.51cto.com/"><img width="60" height="65" src="./ListView动态加载数据模板 - 51CTO.COM_files/125657389.jpg"></a>
+<h5><a href="http://xiaominghimi.blog.51cto.com/">himi</a></h5>
+<p>Android开发专家</p>
+</li>
+</ul>
+</div>
+<ul class="list03">
+ <li><a href="http://chenguang.blog.51cto.com/350944/531102/" target="_blank" title="如何修复和检测Windows系统漏洞">如何修复和检测Windows系统漏洞</a></li><li><a href="http://passover.blog.51cto.com/2431658/531075/" target="_blank" title="按能力发薪酬？还是按贡献发薪酬？">按能力发薪酬？还是按贡献发薪酬？</a></li><li><a href="http://passover.blog.51cto.com/2431658/531041/" target="_blank" title="解决奇怪问题的思路">解决奇怪问题的思路</a></li><li><a href="http://yangye.blog.51cto.com/922715/530911/" target="_blank" title="DHCP服务迁移、升级">DHCP服务迁移、升级</a></li>
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="tj">
+<div class="tlt">
+<h3>最新热帖</h3>
+<a class="more" href="http://bbs.51cto.com/hotthreads.php">更多&gt;&gt;</a></div>
+<ul>
+<li><a href="http://bbs.51cto.com/thread-26429-1.html" target="_blank" title="通用WAP网站生成系统(PowerDiamond) v.1">通用WAP网站生成系统(PowerDiamond) </a></li><li><a href="http://bbs.51cto.com/thread-11063-1.html" target="_blank" title="八类大学毕业生求职时不受欢迎">八类大学毕业生求职时不受欢迎</a></li><li><a href="http://bbs.51cto.com/thread-6946-1.html" target="_blank" title="IT人为什么难以拿到高薪？【转帖】">IT人为什么难以拿到高薪？【转帖】</a></li><li><a href="http://bbs.51cto.com/thread-4333-1.html" target="_blank" title="想去外企上班">想去外企上班</a></li>
+</ul>
+</div>
+<div class="picAD">
+<iframe class="bann" frameborder="0" src="./ListView动态加载数据模板 - 51CTO.COM_files/baidu.html" scrolling="No" style="background-color: white; height: 265px; width: 300px; padding: 0px; margin: 0px; overflow: hidden;"></iframe>
+</div>
+</div>
+<p class="blank1"></p> 
+<!--leftbotcon end-->
+</div> 
+<div class="subweb">
+<h4>51CTO旗下网站</h4>
+<div>
+<a target="_blank" href="http://www.51cto.com/">领先的IT技术网站 51CTO</a>
+<a target="_blank" href="http://www.watchstor.com/">领先的中文存储媒体 WatchStor</a>
+<a target="_blank" href="http://cio.51cto.com/">中国首个CIO网站 CIOage</a>
+<a target="_blank" href="http://www.hc3i.cn/">中国首家数字医疗网站 HC3i</a>
+</div>
+</div>
+<div id="ft"><div id="foot" align="center"><script src="./ListView动态加载数据模板 - 51CTO.COM_files/copy_right.js.下载"></script>Copyright&#169;2005-2017 <a href="http://www.51cto.com/">51CTO.COM</a> 版权所有 未经许可 请勿转载<script src="./ListView动态加载数据模板 - 51CTO.COM_files/111ef0d5dd0beb1ff4ebd70294eb2ea1" type="text/javascript"></script></div></div>
+<script src="./ListView动态加载数据模板 - 51CTO.COM_files/count.js.下载"></script><script src="./ListView动态加载数据模板 - 51CTO.COM_files/count.php"></script>
+<script type="text/javascript">
+	$("#uyan_cmt_list").next().remove();	
+	$("#uyan_cmt_list").next().css("display","none");	
+</script>
+<!-- 悬浮广告 -->
+<!--<style type="text/css">-->
+	<!--.ipadFload{display:none;}-->
+	<!--.ipadFloada{ position:fixed; width:280px; height:210px; font-family:"微软雅黑"; padding-left:18px;right: 20px; bottom: 240px;  }-->
+	<!--.ipadClosea{ text-align:right; font-size:14px; line-height:20px;cursor:pointer;}-->
+<!--</style>-->
+<!--<div class="ipadFloada" id="ipadFloada" style="z-index:9999;">-->
+	<!--<div onclick="document.getElementById('ipadFloada').style.display='none';" class="ipadClosea"><img src="http://s3.51cto.com/wyfs02/M02/85/21/wKiom1eaubuSesqTAAAB9Jb8kBA734.gif"></div>-->
+	<!--<div class="ipadImg">-->
+		<!--<a href="http://x.51cto.com?sytc" target="_blank"><img width="280px" height="210px" src="http://s4.51cto.com/wyfs02/M00/8D/9C/wKioL1ij756hibWaAAFNKBkaLKk823.jpg"></a></div>-->
+<!--</div>-->
+<!--end-->
+
+<style>
+.Nfloat { position: fixed; right: 2%; top: 35%; z-index: 801; }
+</style>
+
+<!-- 新监测代码 -->
+<!-- 新监测代码 -->
+<div id="MyMoveAd" style="display: none; height: 2px;">
+<span id="wordlink_1"><script src="./ListView动态加载数据模板 - 51CTO.COM_files/wordlink1.js.下载"></script><script type="text/javascript" src="./ListView动态加载数据模板 - 51CTO.COM_files/ajs.php"></script><a href="http://gg2.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3933__zoneid=270__cb=738f650419__oadest=http%3A%2F%2Fedu.51cto.com%2Fzt%2Fzt_id-1.html%3Fan" target="_blank"><font color="red">网络安全一个大写的反“作死”</font></a><div id="beacon_738f650419" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/lg.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</span>
+<span id="wordlink_2"><script src="./ListView动态加载数据模板 - 51CTO.COM_files/wordlink2.js.下载"></script><script type="text/javascript" src="./ListView动态加载数据模板 - 51CTO.COM_files/ajs(1).php"></script><a href="http://gg.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=5920__zoneid=255__cb=1411a7c2d0__oadest=http%3A%2F%2Fserver.51cto.com%2Fact%2FZerto%2FZerto2017Q1" target="_blank"><font color="red">专注灾难恢复 保证业务持续可用</font></a><div id="beacon_1411a7c2d0" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/lg(1).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</span>
+<span id="wordlink_3"><script src="./ListView动态加载数据模板 - 51CTO.COM_files/wordlink3.js.下载"></script><script type="text/javascript" src="./ListView动态加载数据模板 - 51CTO.COM_files/ajs(2).php"></script><a href="http://gg3.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3717__zoneid=594__cb=a9219e063f__oadest=http%3A%2F%2Fedu.51cto.com%2Fpx%2Ftrain%2F115%3Fwzl" target="_blank"><font color="red">Linux云计算与架构师进阶</font></a><div id="beacon_a9219e063f" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/lg(2).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</span>
+<span id="wordlink_4"><script src="./ListView动态加载数据模板 - 51CTO.COM_files/wordlink4.js.下载"></script><script type="text/javascript" src="./ListView动态加载数据模板 - 51CTO.COM_files/ajs(3).php"></script><a href="http://gg3.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3549__zoneid=636__cb=072b5799a7__oadest=http%3A%2F%2Fedu.51cto.com%2Ftraining%2Ftraining_id-17.html%3Fxiaoshou" target="_blank"><font color="red">2016年备战软考-重难点解析</font></a><div id="beacon_072b5799a7" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./ListView动态加载数据模板 - 51CTO.COM_files/lg(3).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+</span>
+<span id="pinglun"><script language="JavaScript" src="./ListView动态加载数据模板 - 51CTO.COM_files/getArtCount.php"></script>1</span>
+<span id="tonglan"></span>
+<span id="wordlink"><script language="JavaScript" src="./ListView动态加载数据模板 - 51CTO.COM_files/ad.js(2).下载"></script></span>
+<script src="./ListView动态加载数据模板 - 51CTO.COM_files/ad.js(2).下载"></script>
+<span id="bookss"><script language="JavaScript" src="./ListView动态加载数据模板 - 51CTO.COM_files/getBookData.php"></script></span>
+</div>   
+<script language="javascript" src="./ListView动态加载数据模板 - 51CTO.COM_files/favorite.js.下载"></script>
+
+<script language="javaScript" src="./ListView动态加载数据模板 - 51CTO.COM_files/dialog_utf8.js.下载"></script>
+<script language="javaScript" src="./ListView动态加载数据模板 - 51CTO.COM_files/mail.js.下载"></script>  
+<script type="text/javascript" src="./ListView动态加载数据模板 - 51CTO.COM_files/favorbox.js.下载"></script>
+<script language="javascript" src="./ListView动态加载数据模板 - 51CTO.COM_files/clipboard.js.下载"></script>
+<script language="javaScript"> 
+	var thistid=265878; 
+	
+	//收藏按钮
+	var favor_url = 'http://mobile.51cto.com/android-265878.htm';  // 如：http://bbs.51cto.com/thread-789649-1.html
+	var favor_title = 'ListView动态加载数据模板';       //  
+	
+	//绑定复制按钮
+	copy('msnqqcopy', 'http://mobile.51cto.com/android-265878.htm', '分享到MSN/QQ的链接复制成功!');
+//	copy('bbscopy', '[url=http://mobile.51cto.com/android-265878.htm][u]ListView动态加载数据模板[/u][/url]', '分享到论坛的UBB代码复制成功!');
+
+</script><div style="position: absolute; left: 901px; top: 5271px; width: 34px; height: 12px; z-index: 99;"><embed id="ZeroClipboardMovie_1" src="http://images.51cto.com/images/art/newart1012/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="34" height="12" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=34&amp;height=12" wmode="transparent"></div> 
+<script src="./ListView动态加载数据模板 - 51CTO.COM_files/index.php" charset="utf-8"></script><script src="./ListView动态加载数据模板 - 51CTO.COM_files/vip_top.js.下载"></script>
+<script src="./ListView动态加载数据模板 - 51CTO.COM_files/count(1).php" language="javascript"></script>
+<script language="javascript">
+document.getElementById('books').innerHTML = document.getElementById("bookss").innerHTML; 
+</script>
+
+
+
+</body></html>

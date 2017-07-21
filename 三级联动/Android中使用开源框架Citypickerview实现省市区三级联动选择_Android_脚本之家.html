@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)http://www.jb51.net/article/107847.htm -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+
+<meta name="applicable-device" content="pc">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform">
+<title>Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家</title>
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+<meta name="keywords" content="android,省市区三级联动选择">
+<meta name="description" content="这篇文章主要介绍了Android中使用开源框架Citypickerview实现省市区三级联动选择效果,非常不错，具有参考借鉴价值，需要的朋友可以参考下">
+<link rel="alternate" media="only screen and(max-width: 640px)" href="http://m.jb51.net/article/107847.htm">
+<meta http-equiv="mobile-agent" content="format=html5; url=http://m.jb51.net/article/107847.htm">
+<meta http-equiv="mobile-agent" content="format=xhtml; url=http://m.jb51.net/article/107847.htm">
+<script src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/hm.js.下载"></script><script src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/push.js.下载"></script><script type="text/javascript">
+var tougao="mrr";var lmname="Android";
+(function(){var reWriteUrl=function(url){if(url){var Splits=url.split("/"),siteName=window.location.pathname;if(typeof siteName!=="undefined"){return "http://m.jb51.net"+siteName}}};if(/Android|webOS|iPhone|iPad|Windows Phone|iPod|BlackBerry|SymbianOS|Nokia|Mobile/i.test(navigator.userAgent)){var url=window.location.href;var pathname=window.location.pathname;if(url.indexOf("?pc")<0){try{window.location.href=reWriteUrl(url)}catch(e){}}}})();
+</script>
+<link type="text/css" href="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/base.css" rel="stylesheet">
+<link type="text/css" href="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/common.css" rel="stylesheet">
+<script type="text/javascript" src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/jquery.min.js.下载"></script>
+<script type="text/javascript" src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/function.js.下载"></script>
+<script type="text/javascript" charset="UTF-8" src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/version-v3.js.下载"></script><script type="text/javascript" charset="UTF-8" src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/cookie"></script><script type="text/javascript" charset="UTF-8" src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/adapter.min.js.下载"></script><script type="text/javascript" charset="UTF-8" src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/cyrHH3dwi"></script><script type="text/javascript" charset="UTF-8" src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/version.js.下载"></script><script type="text/javascript" charset="UTF-8" src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/cookie(1)"></script><script type="text/javascript" charset="UTF-8" src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/cyrHH3dwi(1)"></script><script type="text/javascript" charset="UTF-8" src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/event"></script><script type="text/javascript" charset="UTF-8" src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/sea.v2.2.0.js.下载"></script><script type="text/javascript" charset="UTF-8" src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/app-build.js.下载"></script><link rel="stylesheet" type="text/css" href="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/upload-img.css"><style id="changyanCss">#SOHUCS{clear:both;min-height:320;_height:320px;overflow:visible;}#SOHUCS iframe{width:100%;min-height:320px;_height:320px;}</style><link charset="utf-8" rel="stylesheet" href="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/changyan2.css"><link charset="utf-8" rel="stylesheet" href="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/default.css"><script type="text/javascript" charset="UTF-8" src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/main.js.下载"></script><script type="text/javascript" charset="UTF-8" src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/render-pc.js.下载"></script></head>
+<body>
+<!--head Star -->
+<div id="head">
+  <div class="toolBar">
+  <div class="main">
+    <!--topNav Star -->
+    <div class="topNav clearfix">
+      <ul class="navList fl">
+        <li>
+          <div class="one"><a href="http://www.jb51.net/" target="_blank">脚本之家</a></div>
+        </li>
+        <li>
+          <div class="one"><a href="http://www.jb51.net/softs/" target="_blank">软件下载<i class="icon"></i></a></div>
+          <div class="two">
+<a href="http://www.jb51.net/softs/android.html" target="_blank">android软件</a> <a href="http://www.jb51.net/softs/mac.html" target="_blank">MAC软件</a> <a href="http://www.jb51.net/qudong/" target="_blank">驱动下载</a> <a href="http://www.jb51.net/fonts/" target="_blank">字体下载</a> <a href="http://www.jb51.net/dll/" target="_blank">DLL下载</a> </div>
+</li>
+        <li class="">
+          <div class="one"><a href="http://www.jb51.net/codes/" target="_blank">源码下载<i class="icon"></i></a></div>
+          <div class="two"> <a href="http://www.jb51.net/codes/asp.html" target="_blank">asp源码</a> <a href="http://www.jb51.net/codes/php.html" target="_blank">php源码</a> <a href="http://www.jb51.net/codes/aspnet.html" target="_blank">asp.net源码</a> <a href="http://www.jb51.net/codes/jsp.html" target="_blank">jsp源码</a> <a href="http://www.jb51.net/codes/editor.html" target="_blank">网页编辑器</a> <a href="http://www.jb51.net/codes/list123_1.html" target="_blank">数据库管理</a> <a href="http://www.jb51.net/codes/list124_1.html" target="_blank">常用组件</a> <a href="http://www.jb51.net/jiaoben/" target="_blank">脚本下载</a></div>
+        </li>
+        <li>
+          <div class="one"><a href="http://tools.jb51.net/" target="_blank">在线工具<i class="icon"></i></a></div>
+          <div class="two"> <a href="http://www.jb51.net/shouce/" target="_blank">在线手册</a> <a href="http://www.jb51.net/tools/cssyasuo.shtml" target="_blank">CSS格式化</a> <a href="http://tools.jb51.net/code/js" target="_blank">JS格式化</a> <a href="http://www.jb51.net/tools/html-js.htm" target="_blank">Html转化为Js</a> <a href="http://tools.jb51.net/regex/javascript" target="_blank">js正则表达式</a>
+</div>
+        </li>
+        <li>
+          <div class="one"><a href="http://www.jb51.net/w3school/" target="_blank">网页教程基础</a></div>
+        </li>
+			<li>
+          <div class="one"><a href="http://s.jb51.net/" target="_blank">服务器常用软件</a></div>
+        </li>
+		<li>
+          <div class="one"><a href="http://m.jb51.net/" target="_blank">手机版</a></div>
+          <div class="two"><img src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/m.jb51.net.png" data-baiduimageplus-ignore=""></div>     
+        </li>
+        <li class="watch">
+          <div class="one"><a href="http://www.jb51.net/about.htm" target="_blank" rel="nofollow"><i class="icon"></i>关注微信</a></div>
+          <div class="two"><img src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/weixin_200.gif" data-baiduimageplus-ignore=""></div>
+        </li>
+      </ul>
+      <div class="navUser mt5 fr" id="jb51_topbar">
+
+      </div>
+    </div>
+    <!--topNav End -->
+  </div>
+</div>
+
+  <div class="main clearfix">
+    <div class="mtb10 clearfix">
+      <div class="logo"><a href="http://www.jb51.net/"><img src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/logo.gif" title="脚本之家" alt="脚本之家"></a></div>
+      <div class="logom fl"><span id="logo_m" class="jbTestPos"></span></div>
+      <div class="logor fr"><span id="logo_r" class="jbTestPos"></span></div>
+    </div>
+<!-- 导航-->
+<div class="nav_top clearfix">
+<ul>
+<li><a href="http://www.jb51.net/web/">网页制作</a></li>
+<li><a href="http://www.jb51.net/list/index_1.htm">网络编程</a></li>
+<li><a href="http://www.jb51.net/list/index_96.htm">脚本专栏</a></li>
+<li><a href="http://www.jb51.net/jiaoben/">脚本下载</a></li>
+<li><a href="http://www.jb51.net/list/index_104.htm">数据库</a></li>
+<li><a href="http://www.jb51.net/cms/">CMS教程</a></li>
+<li><a href="http://www.jb51.net/books/">电子书籍</a></li>
+<li><a href="http://www.jb51.net/pingmian/">平面设计</a></li>
+<li><a href="http://www.jb51.net/media/">媒体动画</a></li>
+<li><a href="http://www.jb51.net/os/">操作系统</a></li>
+<li><a href="http://www.jb51.net/yunying/">网站运营</a></li>
+<li><a href="http://www.jb51.net/hack/">网络安全</a></li>
+<li class="last"><a href="http://www.jb51.net/shouce/">在线手册</a></li>
+
+</ul>
+</div>
+
+<!--导航结束-->
+<div class="subnav clearfix">
+<ul><li><a href="http://www.jb51.net/list/list_85_1.htm" title="C#教程">C#教程</a></li>
+<li><a href="http://www.jb51.net/list/list_93_1.htm" title="vb">vb</a></li>
+<li><a href="http://www.jb51.net/list/list_205_1.htm" title="vb.net">vb.net</a></li>
+<li><a href="http://www.jb51.net/list/list_159_1.htm" title="C 语言">C 语言</a></li>
+<li><a href="http://www.jb51.net/list/list_134_1.htm" title="Java编程">Java编程</a></li>
+<li><a href="http://www.jb51.net/list/list_206_1.htm" title="Delphi">Delphi</a></li>
+<li><a href="http://www.jb51.net/list/list_207_1.htm" title="java">java</a></li>
+<li><a href="http://www.jb51.net/list/list_233_1.htm" title="Android">Android</a></li>
+<li><a href="http://www.jb51.net/list/list_238_1.htm" title="IOS">IOS</a></li>
+<li><a href="http://www.jb51.net/list/list_244_1.htm" title="Swift">Swift</a></li>
+<li><a href="http://www.jb51.net/list/list_250_1.htm" title="Scala">Scala</a></li>
+<li><a href="http://www.jb51.net/list/list_254_1.htm" title="易语言">易语言</a></li>
+<li><a href="http://www.jb51.net/list/list_188_1.htm" title="其它相关">其它相关</a></li>
+</ul>
+</div>
+<div class="NavBar clearfix ptb10">
+<div class="fl w690">
+<div class="box mb15 mt10"><i class="icon"></i>您的位置：<a href="http://www.jb51.net/">首页</a> → <a href="http://www.jb51.net/list/index_84.htm" title="软件编程">软件编程</a> → <a href="http://www.jb51.net/list/list_233_1.htm" title="Android">Android</a> → 正文内容 android 省市区三级联动选择</div>
+</div>
+<div class="fr w300"><div class="search">
+<form action="http://so.jb51.net/cse/search" target="_blank">
+    <input type="hidden" name="s" value="10520733385329581432">
+    <input type="hidden" name="ie" value="gbk">
+    <input type="text" name="q" class="key_input" placeholder="请输入关键词">
+    <input type="submit" value="搜索" class="c_btn">
+</form></div></div>
+  </div>
+</div>
+<!--head End -->
+<div class="main mb10 clearfix">
+<div class="clearfix"><span id="tonglan1" class="jbTestPos"></span></div>
+</div>
+
+<!--content Star -->
+<div id="contents">
+ <div class="main clearfix">
+      <div class="w690 fl">
+      <div class="article-content border">
+      <div class="title">
+            <h1 class="YaHei">Android中使用开源框架Citypickerview实现省市区三级联动选择</h1>
+            <p>作者：潘侯爷  字体：[<a href="javascript:turnbig()">增加</a> <a href="javascript:turnsmall()">减小</a>] 类型：转载 时间：2017-03-08<a href="http://www.jb51.net/article/107847.htm#comments"> 我要评论</a></p>
+        </div>
+        <div class="art_desc mt10"><div id="art_demo">这篇文章主要介绍了Android中使用开源框架Citypickerview实现省市区三级联动选择效果,非常不错，具有参考借鉴价值，需要的朋友可以参考下</div></div>
+        <div class="lbd clearfix"><span id="art_up" class="jbTestPos"></span></div>
+        <div id="content">
+<p><span style="color: #ff0000"><strong>1．概述</strong></span></p>
+<p>记得之前做商城项目，需要在地址选择中实现省市区三级联动，方便用户快速的填写地址，当时使用的是一个叫做android-wheel 的开源控件，当时感觉非常好用，唯一麻烦的是需要自己整理并解析省市区的xml文件，思路很简单，但是代码量相对大了些。偶然期间发现了另外一个开源组件，也就是今天要介绍的citypickerview。</p>
+<p>github地址:<a target="_blank" href="https://github.com/crazyandcoder/citypicker">crazyandcoder/citypicker</a></p>
+<p><span style="color: #ff0000"><strong>2. 实现效果</strong></span></p>
+<p>下面给大家演示下实现效果：</p>
+<p style="text-align: center"><img src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/201703081526218.gif" alt=""></p>
+<p><span style="color: #ff0000"><strong>3.&nbsp;&nbsp; 实现方法</strong></span></p>
+<p><strong>（1）添加依赖</strong></p>
+<div class="jb51code">
+<div><div id="highlighter_708507" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://www.jb51.net/article/107847.htm#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java plain">dependencies {</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">...</code></div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">compile </code><code class="java string">'liji.library.dev:citypickerview:0.7.0'</code></div><div class="line number4 index3 alt1"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p><strong>（2）代码实现</strong></p>
+<p>这里就不在介绍布局文件了，直接演示实现代码：</p>
+<div class="jb51code">
+<div><div id="highlighter_760129" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://www.jb51.net/article/107847.htm#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div><div class="line number35 index34 alt2">35</div><div class="line number36 index35 alt1">36</div><div class="line number37 index36 alt2">37</div><div class="line number38 index37 alt1">38</div><div class="line number39 index38 alt2">39</div><div class="line number40 index39 alt1">40</div><div class="line number41 index40 alt2">41</div><div class="line number42 index41 alt1">42</div><div class="line number43 index42 alt2">43</div><div class="line number44 index43 alt1">44</div><div class="line number45 index44 alt2">45</div><div class="line number46 index45 alt1">46</div><div class="line number47 index46 alt2">47</div><div class="line number48 index47 alt1">48</div><div class="line number49 index48 alt2">49</div><div class="line number50 index49 alt1">50</div><div class="line number51 index50 alt2">51</div><div class="line number52 index51 alt1">52</div><div class="line number53 index52 alt2">53</div><div class="line number54 index53 alt1">54</div><div class="line number55 index54 alt2">55</div><div class="line number56 index55 alt1">56</div><div class="line number57 index56 alt2">57</div><div class="line number58 index57 alt1">58</div><div class="line number59 index58 alt2">59</div><div class="line number60 index59 alt1">60</div><div class="line number61 index60 alt2">61</div><div class="line number62 index61 alt1">62</div><div class="line number63 index62 alt2">63</div><div class="line number64 index63 alt1">64</div><div class="line number65 index64 alt2">65</div><div class="line number66 index65 alt1">66</div><div class="line number67 index66 alt2">67</div><div class="line number68 index67 alt1">68</div><div class="line number69 index68 alt2">69</div><div class="line number70 index69 alt1">70</div><div class="line number71 index70 alt2">71</div><div class="line number72 index71 alt1">72</div><div class="line number73 index72 alt2">73</div><div class="line number74 index73 alt1">74</div><div class="line number75 index74 alt2">75</div><div class="line number76 index75 alt1">76</div><div class="line number77 index76 alt2">77</div><div class="line number78 index77 alt1">78</div><div class="line number79 index78 alt2">79</div><div class="line number80 index79 alt1">80</div><div class="line number81 index80 alt2">81</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">package</code> <code class="java plain">com.mly.panhouye.anchong.activity;</code></div><div class="line number2 index1 alt1"><code class="java keyword">import</code> <code class="java plain">android.content.Context;</code></div><div class="line number3 index2 alt2"><code class="java keyword">import</code> <code class="java plain">android.content.Intent;</code></div><div class="line number4 index3 alt1"><code class="java keyword">import</code> <code class="java plain">android.graphics.Color;</code></div><div class="line number5 index4 alt2"><code class="java keyword">import</code> <code class="java plain">android.os.Bundle;</code></div><div class="line number6 index5 alt1"><code class="java keyword">import</code> <code class="java plain">android.text.TextUtils;</code></div><div class="line number7 index6 alt2"><code class="java keyword">import</code> <code class="java plain">android.view.View;</code></div><div class="line number8 index7 alt1"><code class="java keyword">import</code> <code class="java plain">android.view.inputmethod.InputMethodManager;</code></div><div class="line number9 index8 alt2"><code class="java keyword">import</code> <code class="java plain">android.widget.EditText;</code></div><div class="line number10 index9 alt1"><code class="java keyword">import</code> <code class="java plain">android.widget.TextView;</code></div><div class="line number11 index10 alt2"><code class="java keyword">import</code> <code class="java plain">com.lljjcoder.citypickerview.widget.CityPicker;</code></div><div class="line number12 index11 alt1"><code class="java keyword">import</code> <code class="java plain">com.mly.panhouye.anchong.R;</code></div><div class="line number13 index12 alt2"><code class="java keyword">import</code> <code class="java plain">com.mly.panhouye.anchong.entity.Anchong_Address;</code></div><div class="line number14 index13 alt1"><code class="java keyword">import</code> <code class="java plain">com.mly.panhouye.anchong.view.TitleBarView;</code></div><div class="line number15 index14 alt2"><code class="java keyword">import</code> <code class="java keyword">static</code> <code class="java plain">com.mly.panhouye.anchong.utils.Constant.NEWADDRESS;</code></div><div class="line number16 index15 alt1"><code class="java keyword">public</code> <code class="java keyword">class</code> <code class="java plain">NewAddressActivity </code><code class="java keyword">extends</code> <code class="java plain">BaseActivity {</code></div><div class="line number17 index16 alt2"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">TitleBarView address_manager_titleBar;</code></div><div class="line number18 index17 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">EditText new_address_name,new_address_phone,new_address_address;</code></div><div class="line number19 index18 alt2"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">Anchong_Address newAddress = </code><code class="java keyword">new</code> <code class="java plain">Anchong_Address();</code></div><div class="line number20 index19 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">TextView new_address_area;</code></div><div class="line number21 index20 alt2"><code class="java spaces">&nbsp;&nbsp;</code><code class="java color1">@Override</code></div><div class="line number22 index21 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java keyword">protected</code> <code class="java keyword">void</code> <code class="java plain">onCreate(Bundle savedInstanceState) {</code></div><div class="line number23 index22 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">super</code><code class="java plain">.onCreate(savedInstanceState);</code></div><div class="line number24 index23 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">setContentView(R.layout.activity_new_address);</code></div><div class="line number25 index24 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">initView();</code></div><div class="line number26 index25 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number27 index26 alt2"><code class="java spaces">&nbsp;&nbsp;</code><code class="java comments">//Texview的点击事件</code></div><div class="line number28 index27 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">chooseArea(View view) {</code></div><div class="line number29 index28 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">//判断输入法的隐藏状态</code></div><div class="line number30 index29 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);</code></div><div class="line number31 index30 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">if</code> <code class="java plain">(imm.isActive()) {</code></div><div class="line number32 index31 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">imm.hideSoftInputFromWindow(view.getWindowToken(),</code></div><div class="line number33 index32 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">InputMethodManager.HIDE_NOT_ALWAYS);</code></div><div class="line number34 index33 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">selectAddress();</code><code class="java comments">//调用CityPicker选取区域</code></div><div class="line number35 index34 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number36 index35 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number37 index36 alt2"><code class="java spaces">&nbsp;&nbsp;</code><code class="java keyword">private</code> <code class="java keyword">void</code> <code class="java plain">selectAddress() {</code></div><div class="line number38 index37 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">CityPicker cityPicker = </code><code class="java keyword">new</code> <code class="java plain">CityPicker.Builder(NewAddressActivity.</code><code class="java keyword">this</code><code class="java plain">)</code></div><div class="line number39 index38 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.textSize(</code><code class="java value">14</code><code class="java plain">)</code></div><div class="line number40 index39 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.title(</code><code class="java string">"地址选择"</code><code class="java plain">)</code></div><div class="line number41 index40 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.titleBackgroundColor(</code><code class="java string">"#FFFFFF"</code><code class="java plain">)</code></div><div class="line number42 index41 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.titleTextColor(</code><code class="java string">"#696969"</code><code class="java plain">)</code></div><div class="line number43 index42 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.confirTextColor(</code><code class="java string">"#696969"</code><code class="java plain">)</code></div><div class="line number44 index43 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.cancelTextColor(</code><code class="java string">"#696969"</code><code class="java plain">)</code></div><div class="line number45 index44 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.province(</code><code class="java string">"江苏省"</code><code class="java plain">)</code></div><div class="line number46 index45 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.city(</code><code class="java string">"常州市"</code><code class="java plain">)</code></div><div class="line number47 index46 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.district(</code><code class="java string">"天宁区"</code><code class="java plain">)</code></div><div class="line number48 index47 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.textColor(Color.parseColor(</code><code class="java string">"#000000"</code><code class="java plain">))</code></div><div class="line number49 index48 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.provinceCyclic(</code><code class="java keyword">true</code><code class="java plain">)</code></div><div class="line number50 index49 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.cityCyclic(</code><code class="java keyword">false</code><code class="java plain">)</code></div><div class="line number51 index50 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.districtCyclic(</code><code class="java keyword">false</code><code class="java plain">)</code></div><div class="line number52 index51 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.visibleItemsCount(</code><code class="java value">7</code><code class="java plain">)</code></div><div class="line number53 index52 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.itemPadding(</code><code class="java value">10</code><code class="java plain">)</code></div><div class="line number54 index53 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.onlyShowProvinceAndCity(</code><code class="java keyword">false</code><code class="java plain">)</code></div><div class="line number55 index54 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">.build();</code></div><div class="line number56 index55 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">cityPicker.show();</code></div><div class="line number57 index56 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">//监听方法，获取选择结果</code></div><div class="line number58 index57 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">cityPicker.setOnCityItemClickListener(</code><code class="java keyword">new</code> <code class="java plain">CityPicker.OnCityItemClickListener() {</code></div><div class="line number59 index58 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java color1">@Override</code></div><div class="line number60 index59 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">void</code> <code class="java plain">onSelected(String... citySelected) {</code></div><div class="line number61 index60 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">//省份</code></div><div class="line number62 index61 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">String province = citySelected[</code><code class="java value">0</code><code class="java plain">];</code></div><div class="line number63 index62 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">//城市</code></div><div class="line number64 index63 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">String city = citySelected[</code><code class="java value">1</code><code class="java plain">];</code></div><div class="line number65 index64 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">//区县（如果设定了两级联动，那么该项返回空）</code></div><div class="line number66 index65 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">String district = citySelected[</code><code class="java value">2</code><code class="java plain">];</code></div><div class="line number67 index66 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">//邮编</code></div><div class="line number68 index67 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">String code = citySelected[</code><code class="java value">3</code><code class="java plain">];</code></div><div class="line number69 index68 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java comments">//为TextView赋值</code></div><div class="line number70 index69 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">new_address_area.setText(province.trim() + </code><code class="java string">"-"</code> <code class="java plain">+ city.trim() + </code><code class="java string">"-"</code> <code class="java plain">+ district.trim());</code></div><div class="line number71 index70 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number72 index71 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">});</code></div><div class="line number73 index72 alt2"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number74 index73 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java color1">@Override</code></div><div class="line number75 index74 alt2"><code class="java spaces">&nbsp;&nbsp;</code><code class="java keyword">protected</code> <code class="java keyword">void</code> <code class="java plain">initView() {</code></div><div class="line number76 index75 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">new_address_name = (EditText) findViewById(R.id.new_address_name);</code></div><div class="line number77 index76 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">new_address_phone = (EditText) findViewById(R.id.new_address_phone);</code></div><div class="line number78 index77 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">new_address_address = (EditText) findViewById(R.id.new_address_address);</code></div><div class="line number79 index78 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">new_address_area = (TextView) findViewById(R.id.new_address_area);</code></div><div class="line number80 index79 alt1"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number81 index80 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p><span style="color: #ff0000"><strong>4.使用说明</strong></span></p>
+<p>摘自github地址:<a target="_blank" href="https://github.com/crazyandcoder/citypicker">crazyandcoder/citypicker</a></p>
+<p>结果返回</p>
+<p>只需传入Context便可获取选择的省市区域的信息，结果返回四项，可根据自己的实际需求进行选择。</p>
+<ol>
+  <li>citySelected[0]：表示：省份信息</li>
+  <li>citySelected[1]：表示：城市信息</li>
+  <li>citySelected[2]：表示：区县信息</li>
+  <li>citySelected[3]：表示：邮编信息</li>
+</ol>
+<p>方法说明</p>
+<ol>
+  <li>textSize（滚轮文字的大小，int 类型，默认为18）</li>
+  <li>title（选择器标题，默认为“选择地区”）</li>
+  <li>backgroundPop（背景，默认为半透明，16位进制颜色代码，带alpha值，如0xa0ffffff）</li>
+  <li>titleBackgroundColor（标题栏背景，默认为灰色，#C7C7C7）</li>
+  <li>confirTextColor（确认按钮字体颜色，默认为系统的colorPrimary颜色值）</li>
+  <li>cancelTextColor（取消按钮字体颜色，默认为系统的colorPrimary颜色值）</li>
+  <li>province（默认的显示省份，显示选择器后直接定位的item位置）</li>
+  <li>city（默认的显示市，显示选择器后直接定位的item位置）</li>
+  <li>district（默认的显示区，显示选择器后直接定位的item位置）</li>
+  <li>textColor（滚轮文字的颜色 ，int 类型，默认为0xFF585858）</li>
+  <li>provinceCyclic（省份的滚轮是否循环滚动）</li>
+  <li>cityCyclic（市的滚轮是否循环滚动）</li>
+  <li>districtCyclic（区的滚轮是否循环滚动）</li>
+  <li>visibleItemsCount（滚轮显示的item个数，int 类型，默认为5个）</li>
+  <li>itemPadding（滚轮item间距，默认为5dp）</li>
+  <li>onlyShowProvinceAndCity(boolean flag)（是否只显示省份和市的两级联动，去掉区或者县）</li>
+  <li>titleTextColor(标题文字颜色，默认为 #E9E9E9)</li>
+</ol>
+<p>以上所述是小编给大家介绍的Android中使用开源框架Citypickerview实现省市区三级联动选择，希望对大家有所帮助，如果大家有任何疑问请给我留言，小编会及时回复大家的。在此也非常感谢大家对脚本之家网站的支持！</p>
+
+</div><!--endmain-->
+<div class="art_xg">
+<h4>您可能感兴趣的文章:</h4><ul><li><a href="http://www.jb51.net/article/93544.htm" title="仿饿了吗点餐界面两个ListView联动效果" target="_blank">仿饿了吗点餐界面两个ListView联动效果</a></li><li><a href="http://www.jb51.net/article/93541.htm" title="仿饿了吗点餐界面ListView联动的实现" target="_blank">仿饿了吗点餐界面ListView联动的实现</a></li><li><a href="http://www.jb51.net/article/106750.htm" title="Android自定义WheelView地区选择三级联动" target="_blank">Android自定义WheelView地区选择三级联动</a></li><li><a href="http://www.jb51.net/article/102067.htm" title="Android省市区三级联动控件使用方法实例讲解" target="_blank">Android省市区三级联动控件使用方法实例讲解</a></li><li><a href="http://www.jb51.net/article/96137.htm" title="android-wheel控件实现三级联动效果" target="_blank">android-wheel控件实现三级联动效果</a></li><li><a href="http://www.jb51.net/article/95103.htm" title="Android仿eleme点餐页面二级联动列表" target="_blank">Android仿eleme点餐页面二级联动列表</a></li><li><a href="http://www.jb51.net/article/91677.htm" title="Android使用android-wheel实现省市县三级联动" target="_blank">Android使用android-wheel实现省市县三级联动</a></li><li><a href="http://www.jb51.net/article/73819.htm" title="Android实现两个ScrollView互相联动的同步滚动效果代码" target="_blank">Android实现两个ScrollView互相联动的同步滚动效果代码</a></li><li><a href="http://www.jb51.net/article/41877.htm" title="Android实现三级联动下拉框 下拉列表spinner的实例代码" target="_blank">Android实现三级联动下拉框 下拉列表spinner的实例代码</a></li><li><a href="http://www.jb51.net/article/110468.htm" title="6步轻松实现两个listView联动效果" target="_blank">6步轻松实现两个listView联动效果</a></li></ul>
+</div>
+<div class="lbd clearfix">
+<span id="art_down" class="jbTestPos"></span>
+</div>
+<div id="shoucang"></div>
+<div class="tags mt10">
+<strong>Tags：</strong><a href="http://common.jb51.net/tag/android/1.htm" target="_blank" title="搜索关于android的文章">android</a> <a href="http://common.jb51.net/tag/%E7%9C%81%E5%B8%82%E5%8C%BA/1.htm" target="_blank" title="搜索关于省市区的文章">省市区</a> <a href="http://common.jb51.net/tag/%E4%B8%89%E7%BA%A7%E8%81%94%E5%8A%A8/1.htm" target="_blank" title="搜索关于三级联动的文章">三级联动</a> 
+</div>
+<div class="relatedarticle clearfix mt5">
+<h2>相关文章</h2>
+<ul><li><span>2017-04-04</span><a href="http://www.jb51.net/article/110838.htm" title="Android TextWatcher监控EditText中的输入内容并限制其个数" target="_blank">Android TextWatcher监控EditText中的输入内容并限制其个数</a></li><li><span>2017-01-01</span><a href="http://www.jb51.net/article/104119.htm" title="Android自定义Material进度条效果" target="_blank">Android自定义Material进度条效果</a></li><li><span>2016-03-03</span><a href="http://www.jb51.net/article/81481.htm" title="Android App实现应用内部自动更新的最基本方法示例" target="_blank">Android App实现应用内部自动更新的最基本方法示例</a></li><li><span>2016-03-03</span><a href="http://www.jb51.net/article/80372.htm" title="设置Android系统永不锁屏永不休眠的方法" target="_blank">设置Android系统永不锁屏永不休眠的方法</a></li><li><span>2017-02-02</span><a href="http://www.jb51.net/article/105003.htm" title="Android 加载asset文件夹下边的图片" target="_blank">Android 加载asset文件夹下边的图片</a></li><li><span>2016-02-02</span><a href="http://www.jb51.net/article/79462.htm" title="Android实现发送短信功能实例详解" target="_blank">Android实现发送短信功能实例详解</a></li><li><span>2015-11-11</span><a href="http://www.jb51.net/article/74755.htm" title="Android编程开发之性能优化技巧总结" target="_blank">Android编程开发之性能优化技巧总结</a></li><li><span>2014-10-10</span><a href="http://www.jb51.net/article/56729.htm" title="Java4Android开发教程（三）java基本概念" target="_blank">Java4Android开发教程（三）java基本概念</a></li><li><span>2016-01-01</span><a href="http://www.jb51.net/article/78575.htm" title="详解Android中提示对话框（ProgressDialog和DatePickerDialog和TimePickerDialog&amp;PopupWindow）" target="_blank">详解Android中提示对话框（ProgressDialog和DatePickerDialog和T</a></li><li><span>2017-03-03</span><a href="http://www.jb51.net/article/109258.htm" title="Android仿探探卡片式滑动效果实现" target="_blank">Android仿探探卡片式滑动效果实现</a></li></ul>
+</div>
+<div class="lbd clearfix mt5">
+<span id="art_down2" class="jbTestPos"></span>
+</div>
+<a href="http://www.jb51.net/article/107847.htm#comments"></a>
+<div id="comments">
+<h2>最新评论</h2>
+<div class="pd5"><div id="SOHUCS" sid="art_107847" style="width: 100%; height: auto;"><div id="SOHU_MAIN"><div id="SOHU-comment-main" class="sohu-comment-wrapper"><div id="article_info_sohu">        <div class="reset-g clear-g section-title-w  section-title-logoutStyle">
+            <div class="title-join-w">
+                <div class="join-wrap-w join-wrap-b"><strong class="wrap-name-w wrap-name-b">评论</strong><span class="wrap-join-w wrap-join-b">(<em class="join-strong-gw join-strong-bg">2</em><span node-type="involved">人参与</span><i class="gap-b">，</i><em class="join-strong-gw join-strong-bg">0</em><span node-type="comments">条评论</span>)</span></div>
+            </div>
+            <div class="title-user-w">
+                <div node-type="sohu-pact" class="title-link-w" style="display: none;"><a href="http://zt.pinglun.sohu.com/s2014/sljyhgy/index.shtml" target="_blank">搜狐“我来说两句”用户公约</a></div>
+            </div>
+        </div>
+        </div><div id="login_sohu"></div><div id="comment_sohu"><div node-type="cbox-wrapper" class="reset-g section-cbox-w"><div style="width:1px;height:1px;overflow:hidden;"><img src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/vcode.jpg" style="visibility:hidden;width:1px;height:1px;"></div><div class="clear-g cbox-block-w">
+            <div class="block-head-w">
+                <div class="head-img-w">
+                                        <a node-type="user-avatar" href="javascript:void(0)" target="_self"><img src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/pic42_null.gif" onerror="SOHUCS.isImgErr(this)" width="42" height="42" alt=""></a>
+                    </div>
+                <!--
+                -->
+            </div>
+        <div class="block-post-w block-post-default-e"><div class="post-wrap-w post-wrap-b"><div class="wrap-area-w"><div class="area-textarea-w" style="position:relative;zoom:1;z-index:9;"><textarea name="" class="textarea-fw textarea-bf">来说两句吧...</textarea></div></div><div class="clear-g wrap-action-w wrap-action-b"><div class="action-function-w action-function-b relative-z-w"><ul class="clear-g"><li class="function-face-w"><a href="javascript:void(0)" class="effect-w" title="表情"><i class="face-b"></i></a></li><li class="function-uploadimg-w"><a href="javascript:void(0)" class="effect-w" title="上传图片"><i class="uploadimg-b"></i></a><div class="uploadimg-file-w"><input class="file-fw" id="img_upload" name="file" type="file" accept="image/*"></div><div class="img-btn-cover" style="width:40px;height:40px;margin-top:-40px;z-index:-1;position: relative;"></div></li><!--<li class="function-at-w"><a href="javascript:void(0)" class="effect-w"><i class="at-b"></i></a></li>--></ul></div><div class="clear-g action-issue-w"><div class="issue-btn-w"><a href="javascript:void(0)"><button class="btn-fw btn-bf btn-fw-main">发布</button></a></div></div></div></div>
+                                    <div node-type="login-list" class="post-login-w">
+                <ul class="clear-g">
+                                                            <li style="display:block">
+                        <div class="login-wrap-w login-wrap-b">
+                            <a data-key="sina" target="_self" href="javascript:;" title="新浪微博" alt="新浪微博">
+                                <span class="wrap-icon-w icon30-sina-b"></span><span class="wrap-name-w wrap-name-b">微博登录</span>
+                            </a>
+                        </div>
+                    </li>
+                                        <li style="display:block">
+                        <div class="login-wrap-w login-wrap-b">
+                            <a data-key="qq" target="_self" href="javascript:;" title="QQ" alt="QQ">
+                                <span class="wrap-icon-w icon30-qq-b"></span><span class="wrap-name-w wrap-name-b">QQ登录</span>
+                            </a>
+                        </div>
+                    </li>
+                                        <li style="display:">
+                        <div class="login-wrap-w login-wrap-b">
+                            <a data-key="" target="_self" href="javascript:;" title="" alt="">
+                                <span class="wrap-icon-w icon30--b"></span><span class="wrap-name-w wrap-name-b"></span>
+                            </a>
+                        </div>
+                    </li>
+                                        <li>
+                        <div class="login-wrap-w login-wrap-b login-wrap-phone-b">
+                            <a data-key="phone" target="_self" href="javascript:void(0)">
+                                <span class="wrap-icon-w icon30-phone-b"></span><span class="wrap-name-w wrap-name-b">手机登录</span>
+                            </a>
+                        </div>
+                    </li>
+                    </ul>
+            </div>
+            </div></div><div node-type="prompt-no-privilege" class="cbox-prompt-w" style="display: none;">
+            <span class="prompt-empty-w prompt-empty-b">等级不够，发表评论升至指定级别才能获得该特权。详情请参见<a node-type="privilege-intro" href="javascript:;">等级说明</a>。</span>
+        </div></div></div><div id="list_sort_sohu"></div><div id="list_sohu" topicid="2644315491">
+        <div class="reset-g section-list-w">
+            <div class="list-comment-empty-w">
+                <div class="empty-prompt-w"><span class="prompt-null-w prompt-null-b">还没有评论，快来抢沙发吧！</span></div>
+            </div>
+        </div></div><div id="list_hot"></div><div id="page_sohu"></div><div id="more_list_sohu"></div><div id="powerby_sohu">        <div class="reset-g section-service-w">
+            <div class="service-wrap-w service-wrap-b"><a node-type="powered-by" href="http://changyan.sohu.com/?from=changyan" target="_blank">Powered by 畅言</a></div>
+        </div></div></div></div></div></div>
+</div>
+      </div><!--endborder-->
+      </div><!--end fl-->
+      
+<div class="w300 fr">
+<div class="r300 clearfix"><span id="side_up" class="jbTestPos"></span></div>
+<div class="tabTitleBar mt10 bgf borderTblue">
+<div class="borderTnone pb10 YaHei">
+<h4 class="blue">大家感兴趣的内容</h4>
+<ul class="newsList newList-in">
+<li><em class="no1">1</em><a href="http://www.jb51.net/article/50395.htm" title="一看就懂的Android APP开发入门教程" target="_blank">一看就懂的Android APP开发入门教</a></li><li><em class="no2">2</em><a href="http://www.jb51.net/article/41750.htm" title="微信公众平台开发入门教程(图文详解)" target="_blank">微信公众平台开发入门教程(图文详</a></li><li><em class="no3">3</em><a href="http://www.jb51.net/article/40108.htm" title="Android基础之使用Fragment控制切换多个页面" target="_blank">Android基础之使用Fragment控制切</a></li><li><em class="no4">4</em><a href="http://www.jb51.net/article/51052.htm" title="六款值得推荐的android（安卓）开源框架简介" target="_blank">六款值得推荐的android（安卓）开</a></li><li><em class="no5">5</em><a href="http://www.jb51.net/article/33060.htm" title="android TextView设置中文字体加粗实现方法" target="_blank">android TextView设置中文字体加</a></li><li><em class="no6">6</em><a href="http://www.jb51.net/article/31911.htm" title="Android应用开发SharedPreferences存储数据的使用方法" target="_blank">Android应用开发SharedPreferenc</a></li><li><em class="no7">7</em><a href="http://www.jb51.net/article/32339.htm" title="Android 动画之TranslateAnimation应用详解" target="_blank">Android 动画之TranslateAnimati</a></li><li><em class="no8">8</em><a href="http://www.jb51.net/article/48557.htm" title="android压力测试命令monkey详解" target="_blank">android压力测试命令monkey详解</a></li><li><em class="no9">9</em><a href="http://www.jb51.net/article/55329.htm" title="Android按钮单击事件的四种常用写法总结" target="_blank">Android按钮单击事件的四种常用写</a></li><li><em class="no10">10</em><a href="http://www.jb51.net/article/36668.htm" title="android调试工具DDMS的使用详解" target="_blank">android调试工具DDMS的使用详解</a></li>
+</ul>
+</div>
+</div>
+<div class="r300 clearfix mt10"><span id="idctu" class="jbTestPos"></span></div>
+<div class="tabTitleBar mt10 bgf borderTblue">
+<div class="borderTnone pb10 YaHei">
+<h4 class="blue">最近更新的内容</h4>
+<ul class="newsListA">
+<ul><li><a href="http://www.jb51.net/article/86078.htm" title="Android自定义View仿QQ健康界面" target="_blank">Android自定义View仿QQ健康界面</a></li><li><a href="http://www.jb51.net/article/58348.htm" title="几个Android编程时需要注意的 web 问题" target="_blank">几个Android编程时需要注意的 web 问题</a></li><li><a href="http://www.jb51.net/article/79872.htm" title="Android UI效果之绘图篇（二）" target="_blank">Android UI效果之绘图篇（二）</a></li><li><a href="http://www.jb51.net/article/56537.htm" title="Android中生成、使用Json数据实例" target="_blank">Android中生成、使用Json数据实例</a></li><li><a href="http://www.jb51.net/article/92995.htm" title="Android开发基于ViewPager+GridView实现仿大众点评横向滑动功能" target="_blank">Android开发基于ViewPager+GridView实现仿</a></li><li><a href="http://www.jb51.net/article/106684.htm" title="Android 欢迎全屏图片详解及实例代码" target="_blank">Android 欢迎全屏图片详解及实例代码</a></li><li><a href="http://www.jb51.net/article/91464.htm" title="Android系统进程间通信（IPC）机制Binder中的Server和Client获得Service Manager接口之路" target="_blank">Android系统进程间通信（IPC）机制Binder</a></li><li><a href="http://www.jb51.net/article/81777.htm" title="Android程序开发之Fragment实现底部导航栏实例代码" target="_blank">Android程序开发之Fragment实现底部导航栏</a></li><li><a href="http://www.jb51.net/article/110151.htm" title="Android通过HTTP协议实现断点续传下载实例" target="_blank">Android通过HTTP协议实现断点续传下载实例</a></li><li><a href="http://www.jb51.net/article/52969.htm" title="Android学习笔记（二）App工程文件分析" target="_blank">Android学习笔记（二）App工程文件分析</a></li></ul>
+</ul>
+</div>
+</div>   
+<div class="r300 clearfix mt10"><span id="idctu1" class="jbTestPos"></span></div>
+<div class="tabTitleBar mt10 bgf borderTblue">
+<div class="borderTnone pb10 YaHei">
+<h4 class="blue">常用在线小工具</h4>
+<ul class="newsListA"><span id="bctools" class="jbTestPos"></span></ul>
+</div>
+</div>
+<div class="r300 clearfix mt10" id="idctu2"><span id="idctu2" class="jbTestPos"></span></div>
+<div class="mt10 rFixedBox" style="position: static; top: 0px;">
+<span id="r_2" class="jbTestPos"></span>
+</div>
+      
+      
+      </div><!--end fr-->
+      </div>
+</div><!--end content-->
+<div id="footer">
+<div class="main clearfix">
+<p>
+<a href="http://www.jb51.net/about.htm" target="_blank">关于我们</a> - 
+<a href="http://www.jb51.net/support.htm" target="_blank">广告合作</a> - 
+<a href="http://www.jb51.net/linkus.htm" target="_blank">联系我们</a> -  
+<a href="http://www.jb51.net/sm.htm" target="_blank">免责声明</a> -  
+<a href="http://www.jb51.net/sitemap.htm" target="_blank">网站地图</a> - 
+<a href="tencent://message/?uin=461478385&amp;Site=http://www.jb51.net" target="_blank">投诉建议</a> - 
+<a href="http://www.jb51.net/up.htm" target="_blank">在线投稿</a>
+</p>
+<p>&#169;CopyRight 2006-2017 JB51.Net Inc All Rights Reserved. 脚本之家 版权所有</p>
+</div>
+</div><!--end footer-->
+<link type="text/css" rel="stylesheet" href="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/shCore.css">
+<link type="text/css" rel="Stylesheet" href="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/shThemeDefault.css">
+<script type="text/javascript" src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/shCore.js.下载"></script>
+<script type="text/javascript" src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/shAutoloader.js.下载"></script>
+<script type="text/javascript">
+(function(){
+    var bp = document.createElement('script');
+    bp.src = '//push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+if (top.location != self.location)top.location=self.location;
+$(function(){
+	$('#content').find('img').each(function(){
+        var img = this;
+        if (img.width >= 650){
+            img.style.width = "650px";
+            img.style.height = "auto";
+            //$(img).removeAttr('height');
+            var aTag = document.createElement('a');
+            aTag.href = img.src;
+			aTag.target="_blank";
+            $(aTag).addClass('bPic')
+            .insertAfter(img).append(img)
+          }
+    });
+	$(window).scroll(function()
+    {	
+    	//rFixedBox跟随滚动
+    	var h = $(window).height();
+        var top = $(window).scrollTop();
+    	var rFixedBox = $('.rFixedBox').prev().offset();
+        var fixedTop = rFixedBox.top;
+		
+        if(top>=fixedTop+344)
+        {
+			var h1 = parseInt($('#content').children('.main').height());
+			if(parseInt(top) + 340 < h1){
+				$('.rFixedBox').css({'position':'fixed','top': 0});
+			}else{
+				$('.rFixedBox').css({'position':'absolute','top': h1-510});
+			}
+        }
+        else
+        {
+            $('.rFixedBox').css({'position':'static', 'top':0});   
+        }	
+       /* return true;*/
+    });
+/*$(document).ready(function() {
+  $("#content img").unveil();
+});	*/
+SyntaxHighlighter.autoloader(
+	'applescript			/jslib/syntaxhighlighter/scripts/shBrushAppleScript.js',
+	'actionscript3 as3		/jslib/syntaxhighlighter/scripts/shBrushAS3.js',
+	'bash shell				/jslib/syntaxhighlighter/scripts/shBrushBash.js',
+	'coldfusion cf			/jslib/syntaxhighlighter/scripts/shBrushColdFusion.js',
+	'cpp c					/jslib/syntaxhighlighter/scripts/shBrushCpp.js',
+	'obj-c objc				/jslib/syntaxhighlighter/scripts/shBrushObjC.js',
+	'c# c-sharp csharp		/jslib/syntaxhighlighter/scripts/shBrushCSharp.js',
+	'css					/jslib/syntaxhighlighter/scripts/shBrushCss.js',
+	'delphi pascal			/jslib/syntaxhighlighter/scripts/shBrushDelphi.js',
+	'diff patch pas			/jslib/syntaxhighlighter/scripts/shBrushDiff.js',
+	'erl erlang				/jslib/syntaxhighlighter/scripts/shBrushErlang.js',
+	'groovy					/jslib/syntaxhighlighter/scripts/shBrushGroovy.js',
+	'haxe hx				/jslib/syntaxhighlighter/scripts/shBrushHaxe.js',
+	'java					/jslib/syntaxhighlighter/scripts/shBrushJava.js',
+	'jfx javafx				/jslib/syntaxhighlighter/scripts/shBrushJavaFX.js',
+	'js jscript javascript	/jslib/syntaxhighlighter/scripts/shBrushJScript.js',
+	'perl pl				/jslib/syntaxhighlighter/scripts/shBrushPerl.js',
+	'php					/jslib/syntaxhighlighter/scripts/shBrushPhp.js',
+	'text plain				/jslib/syntaxhighlighter/scripts/shBrushPlain.js',
+	'py python				/jslib/syntaxhighlighter/scripts/shBrushPython.js',
+	'ruby rails ror rb		/jslib/syntaxhighlighter/scripts/shBrushRuby.js',
+	'scala					/jslib/syntaxhighlighter/scripts/shBrushScala.js',
+	'sql					/jslib/syntaxhighlighter/scripts/shBrushSql.js',
+	'vb vbnet				/jslib/syntaxhighlighter/scripts/shBrushVb.js',
+	'ps powershell			/jslib/syntaxhighlighter/scripts/shBrushPowerShell.js',
+	'xml xhtml xslt html	/jslib/syntaxhighlighter/scripts/shBrushXml.js'
+);
+SyntaxHighlighter.all();
+});
+var ourl="http://www.cnblogs.com/panhouye/archive/2017/03/08/6519582.html";
+</script>
+<script type="text/javascript" src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/arc.js.下载"></script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<script>jbLoader();</script><script class="closetag">jbLoader(true);</script>
+<div id="tongji">
+<script type="text/javascript" src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/tongji.js.下载"></script><script src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/i.js.下载" type="text/javascript"></script><script src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/stat.php" language="JavaScript"></script><script src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=1585378" target="_blank" title="站长统计">站长统计</a><script src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/stat(1).php" language="JavaScript"></script><script src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/core(1).php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=1255898164" target="_blank" title="站长统计">站长统计</a>
+<script charset="utf-8" type="text/javascript" src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/changyan.js.下载"></script>
+<script type="text/javascript">
+window.changyan.api.config({
+appid: 'cyrHH3dwi',
+conf: 'prod_1dc5dc80970106099d43fe242b7465fc'
+});
+</script>
+</div> 
+<script type="text/javascript" src="./Android中使用开源框架Citypickerview实现省市区三级联动选择_Android_脚本之家_files/pl.asp.下载"></script>
+
+
+<!-- published at 2017/7/3 17:41:52By dxycms qq:461478385  -->
+</div></body></html>

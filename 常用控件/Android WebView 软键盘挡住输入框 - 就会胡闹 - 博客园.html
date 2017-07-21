@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)http://www.cnblogs.com/jamkier/p/SoftInputMode.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Android WebView 软键盘挡住输入框 - 就会胡闹 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Android WebView 软键盘挡住输入框 - 就会胡闹 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Android WebView 软键盘挡住输入框 - 就会胡闹 - 博客园_files/bundle-coffee.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./Android WebView 软键盘挡住输入框 - 就会胡闹 - 博客园_files/bundle-coffee-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/jamkier/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/jamkier/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/jamkier/wlwmanifest.xml">
+<script async="" src="./Android WebView 软键盘挡住输入框 - 就会胡闹 - 博客园_files/analytics.js.下载"></script><script src="./Android WebView 软键盘挡住输入框 - 就会胡闹 - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'jamkier', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Android WebView 软键盘挡住输入框 - 就会胡闹 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/jamkier/"><img id="blogLogo" src="./Android WebView 软键盘挡住输入框 - 就会胡闹 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/jamkier/">就会胡闹</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="navigator">
+			
+<ul id="navList">
+	<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+	<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/jamkier/">首页</a></li>
+	<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E5%B0%B1%E4%BC%9A%E8%83%A1%E9%97%B9">联系</a></li>
+	<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+	<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/jamkier/rss">订阅</a>
+	<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/jamkier/rss"><img src="./Android WebView 软键盘挡住输入框 - 就会胡闹 - 博客园_files/xml.gif" alt="订阅"></a></li>
+</ul>
+
+
+			<div class="blogStats">
+				
+				<div id="blog_stats">
+<!--done-->
+随笔- 18&nbsp;
+文章- 0&nbsp;
+评论- 0&nbsp;
+</div>
+				
+			</div><!--end: blogStats -->
+		</div><!--end: navigator 博客导航栏 -->
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/jamkier/p/SoftInputMode.html">Android WebView 软键盘挡住输入框</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>解决方法一：</p>
+<p>在所在的Activity中加入</p>
+<p>getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE|WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);</p>
+<p>解决方法二：</p>
+<p>1.调整AndroidManifest.xml</p>
+<p>找到对应的Activity，加入以下属性</p>
+<p>android:windowSoftInputMode="adjustResize"</p>
+<p>若此时Activity还有全屏属性android:theme="@android:style/Theme.NoTitleBar.Fullscreen"，则删除全屏属性。</p>
+<p>原因：软键盘弹出时，要对主窗口布局重新进行布局，并调用onSizeChanged方法，当设置为全屏模式，google官方有说明，会忽略输入框调整。</p>
+<p>2.布局xml调整</p>
+<p>WebView控件所在的布局，WebView祖先节点不能有ScrollView。另外，根节点不能固定高度。还有，当根节点是FrameLayout时，WebView本身、WebView父节点不能固定高度。</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/jamkier/category/788117.html" target="_blank">Android</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/jamkier/tag/windowSoftInputMode/">windowSoftInputMode</a>, <a href="http://www.cnblogs.com/jamkier/tag/%E8%BD%AF%E9%94%AE%E7%9B%98%E6%8C%A1%E4%BD%8F%E8%BE%93%E5%85%A5%E6%A1%86/">软键盘挡住输入框</a>, <a href="http://www.cnblogs.com/jamkier/tag/WebView%E8%BD%AF%E9%94%AE%E7%9B%98/">WebView软键盘</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5279196,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;7a8a5a06-7d86-e511-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Android WebView 软键盘挡住输入框 - 就会胡闹 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Android WebView 软键盘挡住输入框 - 就会胡闹 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/jamkier/" target="_blank"><img src="./Android WebView 软键盘挡住输入框 - 就会胡闹 - 博客园_files/20151109085956.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/jamkier/">就会胡闹</a><br>
+            <a href="http://home.cnblogs.com/u/jamkier/followees">关注 - 0</a><br>
+            <a href="http://home.cnblogs.com/u/jamkier/followers">粉丝 - 1</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;7a8a5a06-7d86-e511-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5279196,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(5279196,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/jamkier/p/android-path.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/jamkier/p/android-path.html" title="发布于2016-03-11 11:29">Android Path</a><br><a href="http://www.cnblogs.com/jamkier/p/5466821.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/jamkier/p/5466821.html" title="发布于2016-05-06 18:56">.Net Errors</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-03-15 13:42</span> <a href="http://www.cnblogs.com/jamkier/">就会胡闹</a> 阅读(<span id="post_view_count">8034</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5279196" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/jamkier/p/SoftInputMode.html#" onclick="AddToWz(5279196);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=252961,cb_entryId=5279196,cb_blogApp=currentBlogApp,cb_blogUserGuid='7a8a5a06-7d86-e511-9fc1-ac853d9f53cc',cb_entryCreatedDate='2016/3/15 13:42:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/jamkier/p/SoftInputMode.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/jamkier/p/SoftInputMode.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://console.upyun.com/register/?invite=H124C2iMZ?utm_source=cnblogs&amp;utm_medium=referral" target="_blank">【推荐】现在注册又拍云，首月可享 200G CDN流量，还可免费申请 SSL 证书</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://click.aliyun.com/m/26126/" target="_blank"><img width="300" height="250" src="./Android WebView 软键盘挡住输入框 - 就会胡闹 - 博客园_files/24442-20170718132533661-166801094.jpg" alt="阿里云0718"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/574326/" target="_blank">除了热狗，AI还能识别什么？MIT宣布研发新型食物识别技术</a><br> ·  <a href="http://news.cnblogs.com/n/574325/" target="_blank">非洲人民爱上阿里巴巴速卖通，中国麻将让“胡了”成当地金句</a><br> ·  <a href="http://news.cnblogs.com/n/574319/" target="_blank">软件工程师的鄙视链到底有多惨烈、多残酷呢？</a><br> ·  <a href="http://news.cnblogs.com/n/574327/" target="_blank">在华首次补贴营销第四天，Apple Pay和银联干得怎么样了？</a><br> ·  <a href="http://news.cnblogs.com/n/574323/" target="_blank">马云第一次去非洲传道 建议非洲青年「不要放弃」</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice?source=bky&amp;hmsr=%E5%8D%9A%E5%AE%A2%E5%9B%AD&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank"><img width="468" height="60" src="./Android WebView 软键盘挡住输入框 - 就会胡闹 - 博客园_files/24442-20170629165247758-2056260207.png" alt="极光推广_0701"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/570194/" target="_blank">小printf的故事：什么是真正的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/569992/" target="_blank">程序员的工作、学习与绩效</a><br> ·  <a href="http://kb.cnblogs.com/page/569056/" target="_blank">软件开发为什么很难</a><br> ·  <a href="http://kb.cnblogs.com/page/565901/" target="_blank">唱吧DevOps的落地，微服务CI/CD的范本技术解读</a><br> ·  <a href="http://kb.cnblogs.com/page/566523/" target="_blank">程序员，如何从平庸走向理想？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/jamkier/">就会胡闹</a><br>园龄：<a href="http://home.cnblogs.com/u/jamkier/" title="入园时间：2015-11-09">1年8个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/jamkier/followers/">1</a><br>关注：<a href="http://home.cnblogs.com/u/jamkier/followees/">0</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;7a8a5a06-7d86-e511-9fc1-ac853d9f53cc&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/06/01&#39;);return false;">&lt;</a></td><td align="center">2017年7月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/08/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalWeekendDay" align="center">1</td></tr><tr><td class="CalWeekendDay" align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td class="CalWeekendDay" align="center">8</td></tr><tr><td class="CalWeekendDay" align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td class="CalWeekendDay" align="center">15</td></tr><tr><td class="CalWeekendDay" align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td class="CalTodayDay" align="center">21</td><td class="CalWeekendDay" align="center">22</td></tr><tr><td class="CalWeekendDay" align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalWeekendDay" align="center">29</td></tr><tr><td class="CalWeekendDay" align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/jamkier/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/jamkier/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/jamkier/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/jamkier/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/jamkier/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="http://www.cnblogs.com/jamkier/p/SoftInputMode.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/jamkier/tag/16%E8%BF%9B%E5%88%B6ascii%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/">16进制ascii转字符串</a>(1)</li><li><a href="http://www.cnblogs.com/jamkier/tag/16%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/">16进制转字符串</a>(1)</li><li><a href="http://www.cnblogs.com/jamkier/tag/android%20lambda/">android lambda</a>(1)</li><li><a href="http://www.cnblogs.com/jamkier/tag/android%20path/">android path</a>(1)</li><li><a href="http://www.cnblogs.com/jamkier/tag/Android%20Studio%20Bugs/">Android Studio Bugs</a>(1)</li><li><a href="http://www.cnblogs.com/jamkier/tag/Android%20Studio%20Errors/">Android Studio Errors</a>(1)</li><li><a href="http://www.cnblogs.com/jamkier/tag/android%E8%B7%AF%E5%BE%84/">android路径</a>(1)</li><li><a href="http://www.cnblogs.com/jamkier/tag/cropper/">cropper</a>(1)</li><li><a href="http://www.cnblogs.com/jamkier/tag/dataUrl%E8%BD%AC%E4%BA%8C%E8%BF%9B%E5%88%B6/">dataUrl转二进制</a>(1)</li><li><a href="http://www.cnblogs.com/jamkier/tag/eclipse%20bugs/">eclipse bugs</a>(1)</li><li><a href="http://www.cnblogs.com/jamkier/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/jamkier/category/788117.html">Android(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/jamkier/category/753475.html">Javascript(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/jamkier/category/761686.html">Web App(5)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/jamkier/archive/2016/05.html">2016年5月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/jamkier/archive/2016/03.html">2016年3月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/jamkier/archive/2016/02.html">2016年2月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/jamkier/archive/2016/01.html">2016年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/jamkier/archive/2015/12.html">2015年12月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/jamkier/archive/2015/11.html">2015年11月 (4)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap" style="display: none;">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"></div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/jamkier/p/SoftInputMode.html">1. Android WebView 软键盘挡住输入框(8033)</a></li><li><a href="http://www.cnblogs.com/jamkier/p/jscoding.html">2. JS Encoding and Decoding(345)</a></li><li><a href="http://www.cnblogs.com/jamkier/p/android-lambda.html">3. Android Lambda(315)</a></li><li><a href="http://www.cnblogs.com/jamkier/p/structure.html">4. Web App 前端构建（纯净版）(269)</a></li><li><a href="http://www.cnblogs.com/jamkier/p/gradle.html">5. Android 加速Gradle构建项目(168)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap" style="display: none;">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap" style="display: none;">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 就会胡闹
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

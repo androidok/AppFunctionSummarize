@@ -1,0 +1,1296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0053)http://blog.csdn.net/xyz_lmn/article/details/12517911 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+        <script src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/hm.js.下载"></script><script type="text/javascript" src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/tingyun-rum.js.下载"></script>
+            <link rel="canonical" href="http://blog.csdn.net/xyz_lmn/article/details/12517911"> 
+ <meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://blog.csdn.net/xyz_lmn/article/details/12517911#">
+
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848"> 
+       
+    <title>Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客
+        - CSDN博客</title>
+    
+    <meta name="description" content="Android中触摸事件传递过程中最重要的是dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent()方法。这个是困扰初学者的问题之一，我开始也是。这里记录一下dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent()的处理过程，以供记忆。">
+
+    <meta name="keywords" content="">
+
+   
+    <script src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/blog_static_head.min.js.下载" type="text/javascript"></script>
+
+    
+        <!--new top-->
+       
+       
+        <!--new top-->
+    
+      <!-- ad begin -->
+         
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/style.css">
+
+    
+
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/xyz_lmn/rss/list">
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/blue.css">
+ 
+
+
+
+    <link href="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/csdn_public_blog_detail.min.css" type="text/css" rel="stylesheet">
+     
+         <link rel="stylesheet" href="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/csdn_blog_detail.min.css">
+
+  
+
+
+    <!-- 请置于所有广告位代码之前 --> 
+            <script src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/ds.js.下载"></script>
+
+<script src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/share.js.下载"></script><script src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/wxLogin.js.下载"></script><link type="text/css" rel="stylesheet" href="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/style(1).css"><script src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/logger.js.下载"></script><link rel="stylesheet" type="text/css" href="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/style(2).css"><link href="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/bdsstyle.css" rel="stylesheet" type="text/css"><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><link rel="stylesheet" href="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/share_style0_16.css"></head>
+
+
+<body><div id="MathJax_Message" style="display: none;"></div><iframe frameborder="0" style="display: none;" src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/saved_resource.html"></iframe><div class="csdn-toolbar csdn-toolbar-skin-black ">        <div class="container row center-block ">          <div class="col-md-3 pull-left logo clearfix"><a href="http://www.csdn.net/?ref=toolbar" title="CSDN首页" target="_blank" class="icon"></a><a title="频道首页" href="http://blog.csdn.net/?ref=toolbar_logo" class="img blog-icon"></a></div>          <div class="pull-right login-wrap unlogin">            <ul class="btns">              <li class="loginlink"><a href="https://passport.csdn.net/account/login?ref=toolbar" target="_top">登录&nbsp;</a>|<a target="_top" href="http://passport.csdn.net/account/mobileregister?ref=toolbar&amp;action=mobileRegister">&nbsp;注册</a></li>              <li class="search">                <div class="icon on-search-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <form action="http://so.csdn.net/search" id="toolbar_search" method="get" target="_blank">                      <input type="hidden" value="toolbar" name="ref" accesskey="2">                      <div class="border">                        <input placeholder="搜索" type="text" value="" name="q" accesskey="2"><span class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li class="favor">                <div class="icon on-favor-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div style="display:none;" class="favor-success"><span class="msg">收藏成功</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <div style="display:none;" class="favor-failed"><span class="icon-danger-lg"></span><span class="msg">收藏失败，请重新收藏</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <form role="form" class="form-horizontal favor-form">                      <div class="form-group">                        <div class="clearfix">                          <label for="input-title" class="col-sm-2 control-label"><span class="red_txt">*</span>标题</label>                          <div class="col-sm-10">                            <input id="inputTitle" type="text" placeholder="" class="title form-control">                          </div>                        </div>                        <div class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div class="form-group" style="display:none;">                        <label for="input-url" class="col-sm-2 control-label">网址</label>                        <div class="col-sm-10">                          <input id="input-url" type="text" placeholder="" class="url form-control">                        </div>                      </div>                      <div class="form-group">                        <label for="input-tag" class="col-sm-2 tag control-label">标签</label>                        <div class="col-sm-10">                          <input id="input-tag" type="text" class="form-control tag">                        </div>                      </div>                      <div class="form-group">                        <label for="input-description" class="description col-sm-2 control-label">位置</label>                        <div class="col-sm-10">                          <div class="my_lib_box">                            个人主页&nbsp;-&nbsp;<a href="http://my.csdn.net/" target="_blank">我的知识</a>                          </div>                          <div class="checkbox">                            <div class="pull-left">                              <label>                                <input type="checkbox" name="share" class="save_lib_map" checked="checked">同时保存至：                              </label>                            </div>                            <div class="pull-left">                              <div class="dropdown">                                <button id="toolbar_sele_map" type="button">                                  选择知识图谱                                  <i class="fa fa-chevron-down"></i>                                </button>                                <div class="top_arr"></div>                                <div class="outside">                                  <ul class="dropdown-menu" id="toolbar_Design_knowledge"><li>选择知识图谱</li></ul>                                </div>                              </div>                            </div>                            <div class="pull-left new_txt">                              <a href="http://lib.csdn.net/my/create/structure" target="_blank">新建？</a>                            </div>                          </div>                        </div>                      </div>                      <div class="form-group">                        <div class="col-sm-offset-2 col-sm-10 ft">                          <div class="col-sm-4 pull-left" style="display:none">                            <div class="checkbox">                              <label>                                <input type="checkbox" name="share" checked="checked" class="share">公开                              </label>                            </div>                          </div>                          <div class="col-sm-8 pull-right favor-btns">                            <button type="button" class="cancel btn btn-default">取消</button>                            <button type="submit" class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li class="notify">                <div style="display:none" class="number"></div>                <div style="display:none" class="icon-hasnotes-sm"></div>                <div id="header_notice_num"></div>                <div class="icon on-notify-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div id="note1" class="csdn_note">                      <div class="box"></div>                    <iframe src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/saved_resource(1).html" frameborder="0" allowtransparency="true" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li class="ugc">                <div class="icon on-ugc-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <dl>                      <dt><a href="http://geek.csdn.net/news/expert?ref=toolbar" target="_blank" class="p-news clearfix" style="display:none;"><em class="icon"></em><span>分享资讯</span></a></dt>                      <dt style="border: none;"><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-doc clearfix"><em class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a href="http://bbs.csdn.net/topics/new?ref=toolbar" target="_blank" class="p-ask clearfix"><em class="icon"></em><span>提问题</span></a></dt>                      <dt><a href="http://write.blog.csdn.net/postedit?ref=toolbar" target="_blank" class="p-blog clearfix"><em class="icon"></em><span>写博客</span></a></dt>                      <dt><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-src clearfix"><em class="icon"></em><span>传资源</span></a></dt>                      <dt><a href="https://code.csdn.net/projects/new?ref=toolbar" target="_blank" class="c-obj clearfix"><em class="icon"></em><span>创建项目</span></a></dt>                      <dt><a href="https://code.csdn.net/snippets/new?ref=toolbar" target="_blank" class="c-code clearfix"><em class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li class="profile">                <div class="icon on-profile-icon"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/100x100.jpg" class="curr-icon-img">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div class="bd">                      <dl class="clearfix">                        <dt class="pull-left img"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="avatar"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/100x100.jpg"></a></dt>                        <dd class="info" style="border: none;"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="nickname"></a><a class="set-nick" href="https://passport.csdn.net/account/profile">设置昵称<span class="write-icon"></span></a><span class="dec"><a class="fill-dec" href="http://my.csdn.net/" target="_blank">编辑自我介绍，让更多人了解你<span class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div class="ft clearfix"><a target="_blank" href="http://my.csdn.net/my/account/changepwd?ref=toolbar" class="pull-left"><span class="icon-cog"></span>帐号设置</a><a href="https://passport.csdn.net/account/logout?ref=toolbar" target="_top" class="pull-left" style="margin-left:132px; width:18px; height:27px; white-space:nowrap; overflow:hidden;"><span class="icon-signout"></span><span class="out">退出</span></a></div>                  </div>                </div>              </li>              <li class="apps">                <div id="chasnew123" class="hasnew" style="display: none;"></div>                <div id="cappsarea123" class="icon on-apps-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a href="http://blog.csdn.net/?ref=toolbar" target="_blank">博客</a></dd>                      <dd> <a href="http://bbs.csdn.net/?ref=toolbar" target="_blank">论坛</a></dd>                      <dd> <a href="http://download.csdn.net/?ref=toolbar" target="_blank">下载</a></dd>                      <dd> <a href="http://lib.csdn.net/?ref=toolbar" target="_blank">知识库</a></dd>                      <dd><a href="http://ask.csdn.net/?ref=toolbar" target="_blank">技术问答</a></dd>                      <dd><a href="http://geek.csdn.net/?ref=toolbar" target="_blank">极客头条</a></dd>                      <dd style="display:none"> <a href="http://hero.csdn.net/?ref=toolbar" target="_blank">英雄会</a></dd>                    </dl>                  </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd style="display:none"> <a href="http://job.csdn.net/?ref=toolbar" target="_blank">JOB<img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="http://edu.csdn.net/?ref=toolbar" target="_blank">学院<img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="https://code.csdn.net/?ref=toolbar" target="_blank">CODE</a></dd>                      <dd> <a href="http://huiyi.csdn.net/?ref=toolbar" target="_blank">活动</a></dd>                      <dd> <a href="http://www.csto.com/?ref=toolbar" target="_blank">CSTO</a></dd>                      <dd> <a href="http://mall.csdn.net/?ref=toolbar" target="_blank">C币兑换<img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                    </dl>                  </div>                  <div class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a href="http://cto.csdn.net/?ref=toolbar" target="_blank">CTO俱乐部</a></dd>                      <dd> <a href="http://student.csdn.net/?ref=toolbar" target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+     
+
+    <!-- 广告位开始 -->
+        
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/html.js.下载" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/xyz_lmn">张兴业的博客</a></h2>
+            <h3></h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+     
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/xyz_lmn?viewmode=contents"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_mulu&#39;])">
+                    <img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/xyz_lmn?viewmode=list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_zhaiyao&#39;])">
+                    <img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/xyz_lmn/rss/list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_RSS&#39;])">
+                    <img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "xyz_lmn";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/xyz_lmn";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod="popu_3"> 
+
+
+<a href="http://blog.csdn.net/broadview2006/article/details/75423492" target="_blank">
+<font color="red"><strong>评论送书 | 云原生、Docker、Web算法 </strong></font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/74550215" target="_blank">
+<font color="blue"><strong>征文 | 你会为 AI 转型么？</strong></font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="http://blog.csdn.net/soledadzz/article/details/75312484" target="_blank">
+<font color="red"><strong>福利 | 免费参加 2017 OpenStack Days China</strong></font></a>
+
+
+</div>                        </div>
+
+                        
+
+
+
+  
+
+
+
+
+
+
+<script type="text/javascript" src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/category.js.下载"></script>
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+      var isBole = false; 
+      var fasrc="http://my.csdn.net/my/favorite/miniadd?t=Android%e4%b8%ad%e7%9a%84dispatchTouchEvent()%e3%80%81onInterceptTouchEvent()%e5%92%8conTouchEvent()&u=http://blog.csdn.net/xyz_lmn/article/details/12517911"
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+    <h1>
+        <span class="link_title"><a href="http://blog.csdn.net/xyz_lmn/article/details/12517911">
+        Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent()        
+           
+        </a>
+        </span>
+
+         
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_r">
+            <span class="link_postdate">2014-03-05 21:04</span>
+            <span class="link_view" title="阅读次数">58866人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#comments" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_pinglun&#39;])">评论</a>(33)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;Android%e4%b8%ad%e7%9a%84dispatchTouchEvent()%e3%80%81onInterceptTouchEvent()%e5%92%8conTouchEvent()&#39;,&#39;12517911&#39;);return false;" title="收藏" target="_blank">收藏</a></span>
+             <span class="link_report"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" onclick="javascript:report(12517911,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label onclick="GetCategoryArticles(&#39;912146&#39;,&#39;xyz_lmn&#39;,&#39;top&#39;,&#39;12517911&#39;);">
+                        <span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_fenlei&#39;]);">android UI（常用）<em>（66）</em></span>
+                      <img class="arrow-down" src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a href="http://blog.csdn.net/xyz_lmn/article/category/912146" target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_912146">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+        <div class="bog_copyright">         
+            <p class="copyright_p">版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+        </div>
+
+  
+
+  
+  
+     
+
+
+<div id="article_content" class="article_content tracking-ad" data-mod="popu_307" data-dsm="post">
+<p><span style="font-family:SimSun;font-size:18px;">&nbsp; &nbsp;&nbsp;</span></p><p><span style="font-family:SimSun;font-size:18px;">&nbsp; &nbsp; <a href="http://lib.csdn.net/base/android" class="replace_word" title="Android知识库" target="_blank" style="color:#df3434; font-weight:bold;">Android</a>中触摸事件传递过程中最重要的是dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent()方法。这个是困扰初学者的问题之一，我开始也是。这里记录一下<span style="font-family: SimSun;font-size:18px;">dispatchTouchEvent()、</span><span style="font-family: SimSun;font-size:18px;">onInterceptTouchEvent()和onTouchEvent()的处理过程，以供记忆。</span></span></p><p><span style="font-family:SimSun;font-size:18px;"><span style="font-family: SimSun;font-size:18px;"><br></span></span></p><p><span style="font-size: 18px; font-family: SimSun;">&nbsp; &nbsp; dispatchTouchEvent</span><span style="font-size:18px;"><span style="font-family:SimSun;">是处理触摸事件分发,事件(多数情况)是从Activity的dispatchTouchEvent开始的</span><span style="font-family:SimSun;">。执行</span></span></p><p class="p1"><span style="font-family:SimSun;font-size:18px;"><span class="s1">super</span>.dispatchTouchEvent(ev)，事件向下分发。</span></p><p><span style="font-family:SimSun;font-size:18px;">&nbsp; &nbsp; <strong>onInterceptTouchEvent</strong>是<span style="color: rgb(51, 51, 51); line-height: 26px;">ViewGroup提供的方法，默认返回false，返回true表示拦截。</span><br></span></p><p><span style="font-family:SimSun;font-size:18px;"><span style="color: rgb(51, 51, 51); line-height: 26px;"><span style="font-family: SimSun;font-size:18px;">&nbsp; &nbsp; <strong>onTouchEvent</strong>是View中提供的方法，<span style="color: rgb(51, 51, 51); font-family: SimSun;font-size:18px; line-height: 26px;">ViewGroup也有这个方法，<span style="color: rgb(51, 51, 51); font-family: SimSun;font-size:18px; line-height: 26px;">view中不提供<span style="font-family: SimSun;font-size:18px;">onInterceptTouchEvent。view中默认返回true，表示消费了这个事件。</span></span></span></span><br></span></span></p><p><span style="font-family:SimSun;font-size:18px;"><span style="color: rgb(51, 51, 51); line-height: 26px;"><span style="font-family: SimSun;font-size:18px;"><span style="color: rgb(51, 51, 51); font-family: SimSun;font-size:18px; line-height: 26px;"><span style="color: rgb(51, 51, 51); font-family: SimSun;font-size:18px; line-height: 26px;"><span style="font-family: SimSun;font-size:18px;"><br></span></span></span></span></span></span></p><p><span style="font-family: SimSun;"><span style="color: rgb(51, 51, 51); line-height: 26px;"><span style="font-family: SimSun;"><span style="color: rgb(51, 51, 51); font-family: SimSun; line-height: 26px;"><span style="color: rgb(51, 51, 51); font-family: SimSun; line-height: 26px;"><span style="font-family: SimSun;"><span style="font-size:18px;"><span style="color: rgb(51, 51, 51); font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25.1875px;">View里，有两个回调函数</span><span style="color: rgb(51, 51, 51); font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25.1875px;">&nbsp;：</span></span></span></span></span></span></span></span></p><p><span style="font-family:SimSun;font-size:18px;"><span style="color: rgb(51, 51, 51); line-height: 26px;"><span style="font-family: SimSun;font-size:18px;"><span style="color: rgb(51, 51, 51); font-family: SimSun;font-size:18px; line-height: 26px;"><span style="color: rgb(51, 51, 51); font-family: SimSun;font-size:18px; line-height: 26px;"><span style="font-family: SimSun;font-size:18px;"><span style="color: rgb(51, 51, 51); font-family: Helvetica, Tahoma, Arial, sans-serif; font-size: 14px; line-height: 25.1875px;"></span></span></span></span></span></span></span></p><div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;" target="_blank">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;" target="_blank">copy</a><div style="position: absolute; left: 602px; top: 712px; width: 27px; height: 15px; z-index: 99;"><embed id="ZeroClipboardMovie_1" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="27" height="15" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=27&amp;height=15" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;" target="_blank">print</a></span><a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;" target="_blank">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">boolean</span><span>&nbsp;dispatchTouchEvent(MotionEvent&nbsp;ev)；&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">boolean</span><span>&nbsp;onTouchEvent(MotionEvent&nbsp;ev);&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre code_snippet_id="219578" snippet_file_name="blog_20140305_1_3180670" name="code" class="java" style="display: none;">public boolean dispatchTouchEvent(MotionEvent ev)；  
+public boolean onTouchEvent(MotionEvent ev); </pre><br><p></p><p><span style="font-size:18px;"><span style="color: rgb(51, 51, 51);">ViewGroup里，有三个回调函数</span><span style="color: rgb(51, 51, 51); font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25.1875px;">&nbsp;：</span></span></p><p><span style="color: rgb(51, 51, 51); font-family: Helvetica, Tahoma, Arial, sans-serif; font-size: 14px; line-height: 25.1875px;"></span></p><div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;" target="_blank">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;" target="_blank">copy</a><div style="position: absolute; left: 602px; top: 866px; width: 27px; height: 15px; z-index: 99;"><embed id="ZeroClipboardMovie_2" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="27" height="15" name="ZeroClipboardMovie_2" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=27&amp;height=15" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;" target="_blank">print</a></span><a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;" target="_blank">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">boolean</span><span>&nbsp;dispatchTouchEvent(MotionEvent&nbsp;ev)；&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">boolean</span><span>&nbsp;onInterceptTouchEvent(MotionEvent&nbsp;ev);&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">boolean</span><span>&nbsp;onTouchEvent(MotionEvent&nbsp;ev);&nbsp;&nbsp;</span></span></li></ol></div><pre code_snippet_id="219578" snippet_file_name="blog_20140305_2_595185" name="code" class="java" style="display: none;">public boolean dispatchTouchEvent(MotionEvent ev)；  
+public boolean onInterceptTouchEvent(MotionEvent ev);  
+public boolean onTouchEvent(MotionEvent ev);</pre><p></p><p><span style="color: rgb(51, 51, 51); font-family: Helvetica, Tahoma, Arial, sans-serif; font-size: 14px; line-height: 25.1875px;"><br></span></p><span style="font-size:18px;"><span style="color: rgb(51, 51, 51); font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25.1875px;">在Activity里，有两个回调函数</span><span style="color: rgb(51, 51, 51); font-family: Helvetica, Tahoma, Arial, sans-serif; line-height: 25.1875px;">&nbsp;：</span></span><br><p></p><p><span style="font-family:SimSun;font-size:18px;"><span style="color: rgb(51, 51, 51); line-height: 26px;"><span style="font-family: SimSun;font-size:18px;"><span style="color: rgb(51, 51, 51); font-family: SimSun;font-size:18px; line-height: 26px;"><span style="color: rgb(51, 51, 51); font-family: SimSun;font-size:18px; line-height: 26px;"><span style="font-family: SimSun;font-size:18px;"><span style="color: rgb(51, 51, 51); font-family: Helvetica, Tahoma, Arial, sans-serif; font-size: 14px; line-height: 25.1875px;"><span style="color: rgb(51, 51, 51); font-family: Helvetica, Tahoma, Arial, sans-serif; font-size: 14px; line-height: 25.1875px;"></span></span></span></span></span></span></span></span></p><div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;" target="_blank">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;" target="_blank">copy</a><div style="position: absolute; left: 602px; top: 1036px; width: 27px; height: 15px; z-index: 99;"><embed id="ZeroClipboardMovie_3" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="27" height="15" name="ZeroClipboardMovie_3" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=3&amp;width=27&amp;height=15" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;" target="_blank">print</a></span><a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;" target="_blank">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">boolean</span><span>&nbsp;dispatchTouchEvent(MotionEvent&nbsp;ev)；&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">boolean</span><span>&nbsp;onTouchEvent(MotionEvent&nbsp;ev);&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li></ol></div><pre code_snippet_id="219578" snippet_file_name="blog_20140305_3_4248492" name="code" class="java" style="display: none;">public boolean dispatchTouchEvent(MotionEvent ev)；  
+public boolean onTouchEvent(MotionEvent ev);  </pre><br><span style="font-family: SimSun; font-size: 18px;"><br></span><p></p><p><span style="font-family: SimSun; font-size: 18px;">&nbsp; &nbsp; <a href="http://lib.csdn.net/base/android" class="replace_word" title="Android知识库" target="_blank" style="color:#df3434; font-weight:bold;">android</a>中默认情况下事件传递是由最终的view的接收到，传递过程是从父布局到子布局，也就是从Activity到ViewGroup到View的过程，默认情况，ViewGroup起到的是透传作用。<span style="font-family: SimSun; font-size: 18px;">Android中事件传递过程（按箭头方向）如下图,图片来自<a target="_blank" href="http://blog.csdn.net/qiushuiqifei/article/details/9918527">[qiushuiqifei]</a>，谢谢<a target="_blank" href="http://blog.csdn.net/qiushuiqifei/article/details/9918527" style="font-family: SimSun; font-size: 18px;">[qiushuiqifei]</a>整理。</span></span></p><p style="text-align: center;"><span style="font-family: SimSun; font-size: 18px;"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/20140227095525546" width="723" height="470" alt=""><br></span></p><p><span style="font-family: SimSun; font-size: 18px;"><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px;"><br></span></span></p><p><span style="font-family: SimSun; font-size: 18px;"><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px;"><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px;">&nbsp;&nbsp;</span></span></span></p><p><span style="color: rgb(68, 68, 68); line-height: 21px;"><span style="color: rgb(68, 68, 68); line-height: 21px;"><span style="font-family:SimSun;font-size:18px;">&nbsp; &nbsp; 触摸事件是一连串ACTION_DOWN，ACTION_MOVE..MOVE…MOVE、最后ACTION_UP，触摸事件还有<span style="color: rgb(68, 68, 68); line-height: 21px;">ACTION_CANCEL事件。事件都是从<span style="color: rgb(68, 68, 68); line-height: 21px;">ACTION_DOWN开始的，Activity的<span style="font-family: SimSun;font-size:18px;">dispatchTouchEvent()首先接收到<span style="color: rgb(68, 68, 68); font-family: SimSun;font-size:18px; line-height: 21px;">ACTION_DOWN，执行<span class="s1" style="font-family: SimSun; font-size: 18px;">super</span><span style="font-family: SimSun; font-size: 18px;">.dispatchTouchEvent(ev)，事件向下分发。</span></span></span></span></span></span></span><br></span></p><p><span style="font-family:SimSun;font-size:18px;">&nbsp; &nbsp; dispatchTouchEvent()返回true，后续事件（<span style="color: rgb(68, 68, 68); font-family: SimSun;font-size:18px; line-height: 21px;">ACTION_MOVE、<span style="color: rgb(68, 68, 68); font-family: SimSun;font-size:18px; line-height: 21px;">ACTION_UP</span></span>）会再传递，如果返回false，dispatchTouchEvent()就接收不到<span style="color: rgb(68, 68, 68); line-height: 21px;">ACTION_UP、ACTION_MOVE。</span></span><br></p><p><span style="font-family:SimSun;font-size:18px;"><span style="color: rgb(68, 68, 68); line-height: 21px;"><br></span></span></p><p><span style="font-family:SimSun;font-size:18px;"><span style="color: rgb(68, 68, 68); line-height: 21px;"><br></span></span></p><p><span style="font-family:SimSun;font-size:18px;"><span style="color: rgb(68, 68, 68); line-height: 21px;">下面的几张图参考自<a target="_blank" href="http://www.eoeandroid.com/thread-319301-1-1.html">[eoe]</a></span></span></p><p><span style="font-family:SimSun;font-size:18px;"><span style="color: rgb(68, 68, 68); line-height: 21px;"><br></span></span></p><p><br></p><p style="text-align: center;"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/20140226202907812" alt=""><br></p><p><br></p><p><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;">&nbsp; &nbsp; &nbsp; &nbsp;</span><span style="color: rgb(68, 68, 68); line-height: 21px; text-align: -webkit-center;"><span style="font-family:SimSun;font-size:18px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图1.ACTION_DOWN都没被消费</span></span><br></p><p><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;"><br></span></p><p><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;"><br></span></p><p><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;"><br></span></p><p><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;"><br></span></p><p><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;"><br></span></p><p style="text-align: justify;"><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/20140226203028734" alt=""><br></span></p><p><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;"><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图2-1.ACTION_DOWN被View消费了</span><br></span></p><p><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;"><br></span></p><p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/20140226203125390" alt=""><br></p><p><br></p><p><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;图2-2.后续ACTION_MOVE和UP在不被拦截的情况下都会去找VIEW</span><br></p><p><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;"><br></span></p><p><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/20140226203214000" alt=""><br></span></p><p><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;"><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图3.后续的被拦截了</span><br></span></p><p><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;"><br></span></p><p><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/20140226203301578" alt=""><br></span></p><p><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;"><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;图4ACTION_DOWN一开始就被拦截</span><br></span></p><p><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;"><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;"><br></span></span></p><p style="text-align: left;"><span style="color: rgb(68, 68, 68); line-height: 21px; text-align: -webkit-center;"><span style="color: rgb(68, 68, 68); line-height: 21px; text-align: -webkit-center;"><span style="font-family:SimSun;font-size:18px;"><br></span></span></span></p><p style="text-align: left;"><span style="line-height: 21px; text-align: -webkit-center;"><span style="line-height: 21px; text-align: -webkit-center;"><span style="font-family:SimSun;font-size:18px;">android中的Touch事件都是从ACTION_DOWN开始的：</span></span></span></p><p style="text-align: left;"><span style="text-align: -webkit-center;"><span style="text-align: -webkit-center;"></span></span></p><p style="font-family: Arial; font-size: 14px; line-height: 26px; text-align: left; margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><span style="font-family: SimSun; font-size: 18px;">单手指操作：ACTION_DOWN---ACTION_MOVE----ACTION_UP</span></p><p style="font-family: Arial; font-size: 14px; line-height: 26px; text-align: left; margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px;"><span style="font-family: SimSun; font-size: 18px;">多手指操作：ACTION_DOWN---ACTION_POINTER_DOWN---ACTION_MOVE--ACTION_POINTER_UP---ACTION_UP.</span></p><div style="font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: left;"><span style="font-family: SimSun; font-size: 18px;"><br></span></div><div style="text-align: left;"><span style="font-family:Microsoft YaHei, Tahoma, Helvetica, SimSun, sans-serif;color:#444444;"><span style="font-size: 14px; line-height: 21px;"><br></span></span></div><p><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;"><span style="color: rgb(68, 68, 68); font-family: &#39;Microsoft YaHei&#39;, Tahoma, Helvetica, SimSun, sans-serif; font-size: 14px; line-height: 21px; text-align: -webkit-center;"></span></span></p><div style="font-family: Arial; font-size: 14px; line-height: 26px;"><div style="text-align: left;"><span style="color: rgb(51, 51, 51);">/**</span></div><span style="color: rgb(51, 51, 51);"></span><div style="text-align: left;">* @author 张兴业</div></div><div style="font-family: Arial; font-size: 14px; line-height: 26px;"><div style="text-align: left;">* &nbsp;http://blog.csdn.net/xyz_lmn</div><div style="text-align: left;">* &nbsp;android开发进阶群：<span style="font-family: Arial, Console, Verdana, &#39;Courier New&#39;; line-height: 14px;"><span style="font-size: 18px; color: rgb(255, 0, 0);"><span style="font-family: Arial, Console, Verdana, &#39;Courier New&#39;; line-height: 14px;"><span style="font-size: 18px; color: rgb(255, 0, 0);">281537853</span></span></span></span></div><div style="text-align: left;">* &nbsp;iOS入门群：<span style="font-family: Arial, Console, Verdana, &#39;Courier New&#39;; line-height: 14px;"><span style="font-size: 18px; color: rgb(255, 0, 0);">83702688</span></span></div><span style="color: rgb(51, 51, 51);"></span><div style="text-align: left;">* &nbsp;我的新浪微博：<span style="font-family: &#39;Comic Sans MS&#39;; font-size: 18px; color: rgb(255, 102, 102);"><strong><a target="_blank" href="http://weibo.com/xyzlmn" style="color: rgb(202, 0, 0); text-decoration: none;">@张兴业TBOW</a></strong></span></div></div><span style="font-family: Arial; font-size: 14px; line-height: 26px;"></span><div style="text-align: left;">*/</div><p></p><p><br></p>   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad bdshare-button-style0-16" style="float: right;" data-mod="popu_172" data-bd-bind="1500533585216">
+<a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important" target="_blank"></a>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" style="background-position:0 -52px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" style="background-position:0 -104px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博" style="background-position:0 -260px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="bds_renren" data-cmd="renren" title="分享到人人网" style="background-position:0 -208px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="bds_weixin" data-cmd="weixin" title="分享到微信" style="background-position:0 -1612px !important" target="_blank"></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   
+
+<!--172.16.140.11-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/bds_s_v2.js.下载"></script>
+
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+
+
+ 
+
+
+        <div id="digg" articleid="12517911">
+            <dl id="btnDigg" class="digg digg_disable" onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>93</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable" onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>1</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" target="_blank">&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" target="_blank">&nbsp;</a></div>
+    <script type="text/javascript">
+                function btndigga() {
+                    $(".tracking-ad[data-mod='popu_222'] a").click();
+                }
+                function btnburya() {
+                    $(".tracking-ad[data-mod='popu_223'] a").click();
+                }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;]);location.href=&#39;http://blog.csdn.net/xyz_lmn/article/details/20483709&#39;;">上一篇</span><a href="http://blog.csdn.net/xyz_lmn/article/details/20483709" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;])">Android使用SurfaceView实现墨迹天气的风车效果</a></li>
+                <li class="next_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;]);location.href=&#39;http://blog.csdn.net/xyz_lmn/article/details/20122303&#39;;">下一篇</span><a href="http://blog.csdn.net/xyz_lmn/article/details/20122303" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;])">Android View的加载过程</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+            <div class="similar_article">
+                    <h4></h4>
+                    <div class="similar_c" style="margin:20px 0px 0px 0px">
+                        <div class="similar_c_t">
+                          &nbsp;&nbsp;相关文章推荐
+                        </div>
+                   
+                        <div class="similar_wrap tracking-ad" data-mod="popu_36">                       
+                            <ul class="similar_list fl">    
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/stzy00/article/details/40378533" title="dispatchTouchEvent(),onInterceptTouchEvent()和onTouchEvent()的事件分发" strategy="BlogCommendFromBaidu" target="_blank">dispatchTouchEvent(),onInterceptTouchEvent()和onTouchEvent()的事件分发</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/OMG_2012/article/details/7881443" title="android的Touch事件解析（dispatchTouchEvent，onInterceptTouchEvent，onTouchEvent）" strategy="BlogCommendFromBaidu" target="_blank">android的Touch事件解析（dispatchTouchEvent，onInterceptTouchEvent，onTouchEvent）</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/u013790519/article/details/50763953" title="Android事件分发机制完全解析，带你从源码的角度彻底理解dispatchTouchEvent，onInterceptTouchEvent" strategy="BlogCommendFromBaidu" target="_blank">Android事件分发机制完全解析，带你从源码的角度彻底理解dispatchTouchEvent，onInterceptTouchEvent</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/DDK837239693/article/details/51003081" title="下拉刷新组件中嵌套ViewPager的一个手势冲突" strategy="BlogCommendFromBaidu" target="_blank">下拉刷新组件中嵌套ViewPager的一个手势冲突</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/ID19870510/article/details/46683501" title="Activity dispatchTouchEvent事件分发--总结（一）" strategy="BlogCommendFromBaidu" target="_blank">Activity dispatchTouchEvent事件分发--总结（一）</a>
+                                   </li>
+                            </ul>
+                              <ul class="similar_list fr">      
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/wei7017406/article/details/38319129" title="ScrollView的dispatchTouchEvent截取时遇到的问题" strategy="BlogCommendFromBaidu" target="_blank">ScrollView的dispatchTouchEvent截取时遇到的问题</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/Cayla_hcm/article/details/52754947" title="关于ScrollView滚动事件与内部按钮点击事件冲突的问题" strategy="BlogCommendFromBaidu" target="_blank">关于ScrollView滚动事件与内部按钮点击事件冲突的问题</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/zhao_zepeng/article/details/41084433" title="android scrollview的所有touchevent的顺序" strategy="BlogCommendFromBaidu" target="_blank">android scrollview的所有touchevent的顺序</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/hpb21/article/details/11520257" title="dispatchTouchEvent,onTouchEvent与onInterceptTouchEvent" strategy="BlogCommendFromBaidu" target="_blank">dispatchTouchEvent,onTouchEvent与onInterceptTouchEvent</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/sunqunsunqun/article/details/50364126" title="Android中TouchEvent触摸事件机制" strategy="BlogCommendFromBaidu" target="_blank">Android中TouchEvent触摸事件机制</a>
+                                   </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>   
+      
+</div>
+
+
+<div id="suggest">
+
+</div>
+         <script language="javascript" type="text/javascript">     
+             $(function(){
+                 $.get("/xyz_lmn/svc/GetSuggestContent/12517911",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+        <dl class="blog-ass-articl tracking-ad" id="res-relatived" data-mod="popu_84"> 
+             <dt><span>猜你在找</span></dt>    
+           
+    
+           
+
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/combo/detail/30" title="C语言及程序设计（讲师：贺利坚）" strategy="undefined" target="_blank">C语言及程序设计（讲师：贺利坚）</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/combo/detail/379" title="Python爬虫工程师培养课程全套（讲师:韦玮）" strategy="undefined" target="_blank">Python爬虫工程师培养课程全套（讲师:韦玮）</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/combo/detail/468" title="Python全栈开发入门与实战课（讲师：李杰）" strategy="undefined" target="_blank">Python全栈开发入门与实战课（讲师：李杰）</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/combo/detail/233" title="2017软考网络规划设计师视频套餐（讲师：任铄）" strategy="undefined" target="_blank">2017软考网络规划设计师视频套餐（讲师：任铄）</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/combo/detail/169" title="2017软考软件设计师视频套餐（讲师：任铄）" strategy="undefined" target="_blank">2017软考软件设计师视频套餐（讲师：任铄）</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/combo/detail/144" title="2017软考-信息系统项目管理师视频套餐（讲师：任铄）" strategy="undefined" target="_blank">2017软考-信息系统项目管理师视频套餐（讲师：任铄）</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/combo/detail/58" title="软考(高级)项目经理实战营（讲师：张传波）" strategy="undefined" target="_blank">软考(高级)项目经理实战营（讲师：张传波）</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/combo/detail/58" title="微信公众平台开发套餐（讲师：刘运强）" strategy="undefined" target="_blank">微信公众平台开发套餐（讲师：刘运强）</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/combo/detail/422" title="深度学习原理+实战+算法+主流框架套餐（讲师：唐宇迪）" strategy="undefined" target="_blank">深度学习原理+实战+算法+主流框架套餐（讲师：唐宇迪）</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/combo/detail/471" title="2017系统集成项目管理工程师通关套餐（讲师：徐朋）" strategy="undefined" target="_blank">2017系统集成项目管理工程师通关套餐（讲师：徐朋）</a>
+                        </dd>
+        </dl>
+
+
+
+
+            
+                                    
+            
+                                    
+
+        <!-- 广告位开始 -->
+        <!-- 广告位结束 -->
+
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list"><dl class="comment_item comment_topic" id="comment_item_6988222"><dt class="comment_head" floor="27">27楼 <span class="user"><a class="username" href="http://blog.csdn.net/u013351403" target="_blank">蝙蝠骑士</a> <span class="ptime">4天前 11:47发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6988222" username="u013351403"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u013351403" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_u013351403.jpg" width="40" height="40"></a></dd><dd class="comment_body">学习了</dd></dl><dl class="comment_item comment_topic" id="comment_item_6640430"><dt class="comment_head" floor="26">26楼 <span class="user"><a class="username" href="http://blog.csdn.net/tsc45600" target="_blank">tsc45600</a> <span class="ptime">2017-02-28 23:10发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6640430" username="tsc45600"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/tsc45600" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_tsc45600.jpg" width="40" height="40"></a></dd><dd class="comment_body">赞一个</dd></dl><dl class="comment_item comment_topic" id="comment_item_6545005"><dt class="comment_head" floor="25">25楼 <span class="user"><a class="username" href="http://blog.csdn.net/baidu_24514043" target="_blank">ACrazyCat</a> <span class="ptime">2017-01-10 15:43发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6545005" username="baidu_24514043"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/baidu_24514043" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_baidu_24514043.jpg" width="40" height="40"></a></dd><dd class="comment_body">不错的感觉</dd></dl><dl class="comment_item comment_topic" id="comment_item_6387787"><dt class="comment_head" floor="24">24楼 <span class="user"><a class="username" href="http://blog.csdn.net/cheng13576927404" target="_blank">小茅屋90</a> <span class="ptime">2016-11-02 09:54发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6387787" username="cheng13576927404"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/cheng13576927404" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_cheng13576927404.jpg" width="40" height="40"></a></dd><dd class="comment_body">图不错！</dd></dl><dl class="comment_item comment_topic" id="comment_item_6222500"><dt class="comment_head" floor="23">23楼 <span class="user"><a class="username" href="http://blog.csdn.net/u010080945" target="_blank">wangzihan12345</a> <span class="ptime">2016-08-22 12:10发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6222500" username="u010080945"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u010080945" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_u010080945.jpg" width="40" height="40"></a></dd><dd class="comment_body">写的真好</dd></dl><dl class="comment_item comment_topic" id="comment_item_6131618"><dt class="comment_head" floor="22">22楼 <span class="user"><a class="username" href="http://blog.csdn.net/kangjianwei101" target="_blank">StrayedKing</a> <span class="ptime">2016-07-17 00:37发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6131618" username="kangjianwei101"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/kangjianwei101" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_kangjianwei101.jpg" width="40" height="40"></a></dd><dd class="comment_body">不要拦我，我要点赞！</dd></dl><dl class="comment_item comment_topic" id="comment_item_6092590"><dt class="comment_head" floor="21">21楼 <span class="user"><a class="username" href="http://blog.csdn.net/u014748504" target="_blank">1212056</a> <span class="ptime">2016-06-23 14:57发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6092590" username="u014748504"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u014748504" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_u014748504.jpg" width="40" height="40"></a></dd><dd class="comment_body">求 楼主把我拉入群里 我的QQ：1565294767</dd></dl><dl class="comment_item comment_topic" id="comment_item_5984754"><dt class="comment_head" floor="20">20楼 <span class="user"><a class="username" href="http://blog.csdn.net/u014710198" target="_blank">萧樂</a> <span class="ptime">2016-04-15 14:55发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5984754" username="u014710198"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u014710198" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_u014710198.jpg" width="40" height="40"></a></dd><dd class="comment_body">图相当不错，感谢楼主</dd></dl><dl class="comment_item comment_topic" id="comment_item_5926908"><dt class="comment_head" floor="19">19楼 <span class="user"><a class="username" href="http://blog.csdn.net/lxj1137800599" target="_blank">勇敢地追</a> <span class="ptime">2016-03-10 16:04发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5926908" username="lxj1137800599"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/lxj1137800599" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_lxj1137800599.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主，那在写代码的时候，究竟什么时候用dispatchtouchevent ，什么时候用ontouchevent啊？既然dispatchtouchevent 最终还是会调用ontouchevent，那我能不能全部写成ontouchevent？能不能这样理解？</dd></dl><dl class="comment_item comment_topic" id="comment_item_5858950"><dt class="comment_head" floor="18">18楼 <span class="user"><a class="username" href="http://blog.csdn.net/Kement" target="_blank">Kement</a> <span class="ptime">2016-01-28 09:35发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5858950" username="Kement"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/Kement" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_kement.jpg" width="40" height="40"></a></dd><dd class="comment_body">还不错啊</dd></dl><dl class="comment_item comment_topic" id="comment_item_5846141"><dt class="comment_head" floor="17">17楼 <span class="user"><a class="username" href="http://blog.csdn.net/mzh3344258" target="_blank">酷_莫名简单KNothing</a> <span class="ptime">2016-01-18 17:45发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5846141" username="mzh3344258"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/mzh3344258" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_mzh3344258.jpg" width="40" height="40"></a></dd><dd class="comment_body">表达能力有待提高。。写的挺乱。新手很容易看晕。</dd></dl><dl class="comment_item comment_topic" id="comment_item_5618059"><dt class="comment_head" floor="16">16楼 <span class="user"><a class="username" href="http://blog.csdn.net/qq_18323157" target="_blank">chz19920630</a> <span class="ptime">2015-11-16 21:40发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5618059" username="qq_18323157"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_18323157" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_qq_18323157.jpg" width="40" height="40"></a></dd><dd class="comment_body">GroupView 中没有  onTouchEvent() 哦，楼主写错了</dd><dl class="comment_item comment_reply" id="comment_item_6011237"><dt class="comment_head" floor="16">Re: <span class="user"><a class="username" href="http://blog.csdn.net/sword_52013142008" target="_blank">sword_52013142008</a> <span class="ptime">2016-04-30 10:06发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6011237" username="sword_52013142008"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/sword_52013142008" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_sword_52013142008.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复chz19920630：你自己看看ViewGroup继承哪个VIew， 看看父VIew 是否有onTouch</dd></dl><dl class="comment_item comment_reply" id="comment_item_5895120"><dt class="comment_head" floor="16">Re: <span class="user"><a class="username" href="http://blog.csdn.net/biyeshengplay" target="_blank">biyeshengplay</a> <span class="ptime">2016-02-25 18:42发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5895120" username="biyeshengplay"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/biyeshengplay" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_biyeshengplay.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复chz19920630：但是父类view里有啊</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_5617511"><dt class="comment_head" floor="15">15楼 <span class="user"><a class="username" href="http://blog.csdn.net/u012205719" target="_blank">想念那炊烟</a> <span class="ptime">2015-11-16 18:12发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5617511" username="u012205719"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u012205719" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_u012205719.jpg" width="40" height="40"></a></dd><dd class="comment_body">dispatchTouchEvent的作用没有讲清楚</dd></dl><dl class="comment_item comment_topic" id="comment_item_5422273"><dt class="comment_head" floor="14">14楼 <span class="user"><a class="username" href="http://blog.csdn.net/A18767101172" target="_blank">A18767101172</a> <span class="ptime">2015-09-18 17:14发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5422273" username="A18767101172"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/A18767101172" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_a18767101172.jpg" width="40" height="40"></a></dd><dd class="comment_body">还没看完，写的很好，先赞一个</dd></dl><dl class="comment_item comment_topic" id="comment_item_5418365"><dt class="comment_head" floor="13">13楼 <span class="user"><a class="username" href="http://blog.csdn.net/qq596179991" target="_blank">W伟V</a> <span class="ptime">2015-09-16 22:06发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5418365" username="qq596179991"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq596179991" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_qq596179991.jpg" width="40" height="40"></a></dd><dd class="comment_body">嘿嘿。。受教了。。</dd></dl><dl class="comment_item comment_topic" id="comment_item_5383845"><dt class="comment_head" floor="12">12楼 <span class="user"><a class="username" href="http://blog.csdn.net/hyc_willie" target="_blank">hyc_willie</a> <span class="ptime">2015-09-01 16:10发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5383845" username="hyc_willie"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/hyc_willie" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_hyc_willie.jpg" width="40" height="40"></a></dd><dd class="comment_body">说的好，清晰明了</dd></dl><dl class="comment_item comment_topic" id="comment_item_5243293"><dt class="comment_head" floor="11">11楼 <span class="user"><a class="username" href="http://blog.csdn.net/wang1156132362" target="_blank">wang1156132362</a> <span class="ptime">2015-07-30 13:50发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5243293" username="wang1156132362"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/wang1156132362" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_wang1156132362.jpg" width="40" height="40"></a></dd><dd class="comment_body">看博主的博客真是太享受了</dd></dl><dl class="comment_item comment_topic" id="comment_item_4855741"><dt class="comment_head" floor="10">10楼 <span class="user"><a class="username" href="http://blog.csdn.net/xiaominglei001" target="_blank">xiaominglei001</a> <span class="ptime">2015-03-18 09:33发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4855741" username="xiaominglei001"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xiaominglei001" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_xiaominglei001.jpg" width="40" height="40"></a></dd><dd class="comment_body">讲的好，看着比我们老师讲的还详细。</dd></dl><dl class="comment_item comment_topic" id="comment_item_4844851"><dt class="comment_head" floor="9">9楼 <span class="user"><a class="username" href="http://blog.csdn.net/woshimiaoxingren" target="_blank">锦时素年</a> <span class="ptime">2015-03-13 16:54发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4844851" username="woshimiaoxingren"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/woshimiaoxingren" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_woshimiaoxingren.jpg" width="40" height="40"></a></dd><dd class="comment_body">越看越乱</dd></dl><dl class="comment_item comment_topic" id="comment_item_4775431"><dt class="comment_head" floor="8">8楼 <span class="user"><a class="username" href="http://blog.csdn.net/u011510784" target="_blank">杜家旭</a> <span class="ptime">2015-02-03 09:54发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4775431" username="u011510784"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u011510784" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_u011510784.jpg" width="40" height="40"></a></dd><dd class="comment_body">nice,32个赞!</dd></dl><dl class="comment_item comment_topic" id="comment_item_4708767"><dt class="comment_head" floor="7">7楼 <span class="user"><a class="username" href="http://blog.csdn.net/yumengbdw" target="_blank">Brandon不倒翁1</a> <span class="ptime">2015-01-14 11:17发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4708767" username="yumengbdw"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/yumengbdw" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_yumengbdw.jpg" width="40" height="40"></a></dd><dd class="comment_body">太好了。。</dd></dl><dl class="comment_item comment_topic" id="comment_item_4582761"><dt class="comment_head" floor="6">6楼 <span class="user"><a class="username" href="http://blog.csdn.net/zhao_zepeng" target="_blank">Shawn_Dut</a> <span class="ptime">2014-12-04 11:39发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4582761" username="zhao_zepeng"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/zhao_zepeng" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_zhao_zepeng.jpg" width="40" height="40"></a></dd><dd class="comment_body">讲的非常漂亮，还有，我补充一个吧，requestDisallowInterceptTouchEvent，这个函数，需要注意一下</dd></dl><dl class="comment_item comment_topic" id="comment_item_4428429"><dt class="comment_head" floor="5">5楼 <span class="user"><a class="username" href="http://blog.csdn.net/caixuejian19940318" target="_blank">caixuejian19940318</a> <span class="ptime">2014-10-23 14:52发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4428429" username="caixuejian19940318"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/caixuejian19940318" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_caixuejian19940318.jpg" width="40" height="40"></a></dd><dd class="comment_body">漂亮 。。。。。</dd></dl><dl class="comment_item comment_topic" id="comment_item_4327471"><dt class="comment_head" floor="4">4楼 <span class="user"><a class="username" href="http://blog.csdn.net/pigwen521" target="_blank">pigwen521</a> <span class="ptime">2014-09-26 17:17发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4327471" username="pigwen521"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/pigwen521" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_pigwen521.jpg" width="40" height="40"></a></dd><dd class="comment_body">顶。彻底明白了。好文。好图。</dd></dl><dl class="comment_item comment_topic" id="comment_item_4194653"><dt class="comment_head" floor="3">3楼 <span class="user"><a class="username" href="http://blog.csdn.net/I_can_move_you" target="_blank">chen_qing_zhen</a> <span class="ptime">2014-08-20 13:16发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4194653" username="I_can_move_you"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/I_can_move_you" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_i_can_move_you.jpg" width="40" height="40"></a></dd><dd class="comment_body">onTouchEvent()默认返回false，楼主错了。</dd><dl class="comment_item comment_reply" id="comment_item_5618049"><dt class="comment_head" floor="3">Re: <span class="user"><a class="username" href="http://blog.csdn.net/qq_18323157" target="_blank">chz19920630</a> <span class="ptime">2015-11-16 21:39发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5618049" username="qq_18323157"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_18323157" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_qq_18323157.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复chen_qing_zhen：正解</dd><dl class="comment_item comment_reply" id="comment_item_6278489"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/kong92917" target="_blank">七号大蒜</a> <span class="ptime">2016-09-19 11:29发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6278489" username="kong92917"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/kong92917" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_kong92917.jpg" width="40" height="40"></a></dd><dd class="comment_body"><div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 747px; top: 8152px; width: 27px; height: 15px; z-index: 99;"><embed id="ZeroClipboardMovie_4" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="27" height="15" name="ZeroClipboardMovie_4" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=4&amp;width=27&amp;height=15" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">boolean</span><span>&nbsp;onTouchEvent(MotionEvent&nbsp;event)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;((viewFlags&nbsp;&amp;&nbsp;ENABLED_MASK)&nbsp;==&nbsp;DISABLED)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;(action&nbsp;==&nbsp;MotionEvent.ACTION_UP&nbsp;&amp;&amp;&nbsp;(mPrivateFlags&nbsp;&amp;&nbsp;PFLAG_PRESSED)&nbsp;!=&nbsp;</span><span class="number">0</span><span>)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setPressed(<span class="keyword">false</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;(((viewFlags&nbsp;&amp;&nbsp;CLICKABLE)&nbsp;==&nbsp;CLICKABLE&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;(viewFlags&nbsp;&amp;&nbsp;LONG_CLICKABLE)&nbsp;==&nbsp;LONG_CLICKABLE)&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;(viewFlags&nbsp;&amp;&nbsp;CONTEXT_CLICKABLE)&nbsp;==&nbsp;CONTEXT_CLICKABLE);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;(mTouchDelegate&nbsp;!=&nbsp;</span><span class="keyword">null</span><span>)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;(mTouchDelegate.onTouchEvent(event))&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="keyword">true</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;(((viewFlags&nbsp;&amp;&nbsp;CLICKABLE)&nbsp;==&nbsp;CLICKABLE&nbsp;||&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(viewFlags&nbsp;&amp;&nbsp;LONG_CLICKABLE)&nbsp;==&nbsp;LONG_CLICKABLE)&nbsp;||&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(viewFlags&nbsp;&amp;&nbsp;CONTEXT_CLICKABLE)&nbsp;==&nbsp;CONTEXT_CLICKABLE)&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">switch</span><span>&nbsp;(action)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="keyword">true</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="keyword">false</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li></ol></div><pre name="code2" class="java" style="display: none;">    public boolean onTouchEvent(MotionEvent event) {
+```
+        if ((viewFlags &amp; ENABLED_MASK) == DISABLED) {
+            if (action == MotionEvent.ACTION_UP &amp;&amp; (mPrivateFlags &amp; PFLAG_PRESSED) != 0) {
+                setPressed(false);
+            }
+            return (((viewFlags &amp; CLICKABLE) == CLICKABLE
+                    || (viewFlags &amp; LONG_CLICKABLE) == LONG_CLICKABLE)
+                    || (viewFlags &amp; CONTEXT_CLICKABLE) == CONTEXT_CLICKABLE);
+        }
+
+        if (mTouchDelegate != null) {
+            if (mTouchDelegate.onTouchEvent(event)) {
+                return true;
+            }
+        }
+        if (((viewFlags &amp; CLICKABLE) == CLICKABLE ||
+                (viewFlags &amp; LONG_CLICKABLE) == LONG_CLICKABLE) ||
+                (viewFlags &amp; CONTEXT_CLICKABLE) == CONTEXT_CLICKABLE) {
+            switch (action) {
+            ```
+            }
+            return true;
+        }
+        return false;
+    }
+</pre><br>View中源码</dd></dl></dl></dl><dl class="comment_item comment_topic" id="comment_item_3618675"><dt class="comment_head" floor="2">2楼 <span class="user"><a class="username" href="http://blog.csdn.net/zhongxiaweimian" target="_blank">仲夏未眠</a> <span class="ptime">2014-03-20 16:43发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="3618675" username="zhongxiaweimian"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/zhongxiaweimian" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_zhongxiaweimian.jpg" width="40" height="40"></a></dd><dd class="comment_body">有图确实好理解多了</dd></dl><dl class="comment_item comment_topic" id="comment_item_3560029"><dt class="comment_head" floor="1">1楼 <span class="user"><a class="username" href="http://blog.csdn.net/lfdfhl" target="_blank">lfdfhl</a> <span class="ptime">2014-03-07 16:22发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="3560029" username="lfdfhl"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/lfdfhl" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_lfdfhl.jpg" width="40" height="40"></a></dd><dd class="comment_body">"默认情况，ViewGroup起到的是透传左右"<br>语句不是很通顺，楼主</dd><dl class="comment_item comment_reply" id="comment_item_3560219"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/xyz_lmn" target="_blank">xyz_lmn</a> <span class="ptime">2014-03-07 17:10发表</span>  <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="3560219" username="xyz_lmn"> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xyz_lmn" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/3_xyz_lmn.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复lfdfhl：作用，写错了</dd></dl></dl><div class="clear"></div></div>
+    <div id="comment_bar" style="display: none;">
+    </div>
+    <div id="comment_form"><div class="guest_link">您还没有登录,请<a href="javascript:void(0);" onclick="javascript:loginbox();">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Fxyz_lmn%2Farticle%2Fdetails%2F12517911">[注册]</a></div></div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '12517911';
+    var commentscount = 33;
+    var islock = false
+</script>
+
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top" style="bottom:60px;">
+
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/blog-icon-reply.png" alt="快速回复">
+        </a>    
+    <a id="d-top-a" class="btn btn-top backtop" style="display: none;" title="返回顶部" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_huidaodingbu&#39;])">         
+         <img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){        
+        
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+    var articletitle='Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent()';
+
+</script>
+
+
+
+
+
+
+
+
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+               
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/xyz_lmn" target="_blank">
+    <img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/1_xyz_lmn.jpg" title="访问我的空间" style="max-width:90%">
+    </a>
+    <br>
+    <span><a href="http://my.csdn.net/xyz_lmn" class="user_name" target="_blank">xyz_lmn</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter" title="[发私信]" onclick="window.open(&#39;http://msg.csdn.net/letters/model?receiver=xyz_lmn&#39;,&#39;_blank&#39;,&#39;height=350,width=700&#39;);_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_sixin&#39;])"></a>  
+</div>
+<div id="blog_medal">
+                       <div class="ico_expert" onclick="javascript:location=&#39;http://blog.csdn.net/experts/rule.html&#39;" title="CSDN认证专家" style="cursor:pointer;width:60px;height:60px;background:url(&#39;http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/bokezhuanjiamiddle.png&#39;) no-repeat"></div>
+                <div id="bms_box">
+                                            <a target="_blank">
+                                                    <img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/zhuanlandaren.png" onmouseover="m_over_m(this,2)" onmouseout="m_out_m()" alt="6">
+                                            </a>
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>5521506次</span></li>
+    <li>积分：<span>40230</span> </li>    
+    <li>等级： <span style="position:relative;display:inline-block;z-index:1">
+            <img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/blog8.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：40230 </div>
+        </span>  </li>
+    <li>排名：<span>第90名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>273篇</span></li>
+    <li>转载：<span>195篇</span></li>
+    <li>译文：<span>20篇</span></li>
+    <li>评论：<span>1907条</span></li>
+</ul>
+</ul>
+</div>
+
+
+
+
+<div id="custom_column_9068886" class="panel">
+<ul class="panel_head"><span>新浪微博</span></ul>
+<ul class="panel_body">
+<iframe width="100%" height="150" class="share_self" frameborder="0" scrolling="no" src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/index.html"></iframe>
+</ul>
+</div>
+
+<div id="custom_column_22012770" class="panel">
+<ul class="panel_head"><span>android 开发群</span></ul>
+<ul class="panel_body">
+<div>
+	<span style="font-weight: bold;"><span style="font-size:14px;color:#ff0000;">android 开发交流</span></span>
+</div>
+<br>
+
+
+<div>
+	<span style="font-weight: bold;"><span style="font-family: Arial, Console, Verdana, &#39;Courier New&#39;;  line-height: 14px; "><strong><span style="font-size:14px;color:#ff0000;">济南移动互联网：<br>173928818</span></strong></span><br>
+	</span>
+</div>
+</ul>
+</div><div id="panel_Category" class="panel">
+    <ul class="panel_head"><span>博客专栏</span></ul>
+    <ul class="panel_body" id="sp_column">
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/android-performance.html" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/20151123175856786" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/android-performance.html" target="_blank">Android性能优化</a>
+    <p>文章：10篇</p>
+    <span>阅读：471051</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/xyzlmnios.html" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/20151123175445161" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/xyzlmnios.html" target="_blank">iOS学习</a>
+    <p>文章：18篇</p>
+    <span>阅读：609273</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/android-safe.html" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/20151123175405239" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/android-safe.html" target="_blank">android应用安全</a>
+    <p>文章：7篇</p>
+    <span>阅读：117665</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/android-jni.html" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/20151123175257520" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/android-jni.html" target="_blank">Android JNI入门</a>
+    <p>文章：11篇</p>
+    <span>阅读：151400</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/xyzlmnnetdev.html" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/20151123175212302" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/xyzlmnnetdev.html" target="_blank">Android网络开发</a>
+    <p>文章：13篇</p>
+    <span>阅读：274223</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/xyzlmn.html" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/20151123174945786" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/xyzlmn.html" target="_blank">Android UI开发专栏</a>
+    <p>文章：59篇</p>
+    <span>阅读：1743136</span>
+    </td>
+    </tr></tbody></table>
+    </ul>
+</div><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/912146" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android UI（常用）</a><span>(67)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/1395130" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android 应用安全</a><span>(12)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/566667" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android（综合）</a><span>(124)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/922246" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android NDK（含语音编解码）</a><span>(13)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/919453" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android 网络编程</a><span>(18)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/2299565" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android性能优化</a><span>(11)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/1127423" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android web（html5）</a><span>(9)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/639384" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">iOS开发</a><span>(20)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/912121" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android 工具</a><span>(11)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/924028" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android xmpp</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/1252855" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">MongoDB</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/761338" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">SIP/RTP/RTSP</a><span>(24)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/613644" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">技术思考</a><span>(8)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/614397" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Windows Mobile UI</a><span>(10)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/566712" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Windows Mobile</a><span>(67)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/626565" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">java</a><span>(9)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/599548" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">c#</a><span>(13)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/620699" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">基础知识</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/568848" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">思考人生</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/547348" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Web 方向</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/652736" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">WINCE程序设计笔记</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/646201" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">VC++</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/xyz_lmn/article/category/646771" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">win32</a><span>(15)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list"><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2015/09">2015年09月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2015/08">2015年08月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2015/01">2015年01月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2014/11">2014年11月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2014/10">2014年10月</a><span>(1)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2014/09">2014年09月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2014/08">2014年08月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2014/07">2014年07月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2014/06">2014年06月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2014/05">2014年05月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2014/04">2014年04月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2014/03">2014年03月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2014/02">2014年02月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2013/12">2013年12月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2013/11">2013年11月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2013/10">2013年10月</a><span>(11)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2013/09">2013年09月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2013/08">2013年08月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2013/07">2013年07月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2013/06">2013年06月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2013/05">2013年05月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2013/04">2013年04月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2013/03">2013年03月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2013/02">2013年02月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2013/01">2013年01月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2012/12">2012年12月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2012/11">2012年11月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2012/10">2012年10月</a><span>(10)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2012/09">2012年09月</a><span>(11)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2012/08">2012年08月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2012/07">2012年07月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2012/06">2012年06月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2012/05">2012年05月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2012/04">2012年04月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2012/03">2012年03月</a><span>(8)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2012/02">2012年02月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2012/01">2012年01月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2011/12">2011年12月</a><span>(8)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2011/11">2011年11月</a><span>(23)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2011/10">2011年10月</a><span>(23)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2011/06">2011年06月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2011/05">2011年05月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2011/04">2011年04月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2011/03">2011年03月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2011/02">2011年02月</a><span>(9)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2011/01">2011年01月</a><span>(15)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2010/12">2010年12月</a><span>(34)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2010/11">2010年11月</a><span>(11)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2010/10">2010年10月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2010/09">2010年09月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2010/08">2010年08月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2010/07">2010年07月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2010/06">2010年06月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2010/05">2010年05月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2010/04">2010年04月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2010/03">2010年03月</a><span>(14)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2010/02">2010年02月</a><span>(23)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2010/01">2010年01月</a><span>(22)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2009/12">2009年12月</a><span>(25)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2009/11">2009年11月</a><span>(46)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2009/10">2009年10月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2009/09">2009年09月</a><span>(9)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2009/08">2009年08月</a><span>(30)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2009/07">2009年07月</a><span>(8)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2009/06">2009年06月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2009/05">2009年05月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/xyz_lmn/article/month/2009/03">2009年03月</a><span>(1)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+</ul>
+</div>
+<div id="hotarticls" class="panel tracking-ad" data-mod="popu_340">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/8132420" title="Android UI开发第二十四篇——Action Bar" target="_blank">Android UI开发第二十四篇——Action Bar</a><span>(192377)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/48055919" title="android CoordinatorLayout使用" target="_blank">android CoordinatorLayout使用</a><span>(159147)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/9312837" title="iOS学习笔记（十六）——数据库操作(使用FMDB)" target="_blank">iOS学习笔记（十六）——数据库操作(使用FMDB)</a><span>(148137)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/7004710" title="adb logcat 查看日志" target="_blank">adb logcat 查看日志</a><span>(138052)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/14524567" title="Android抽象布局——include、merge 、ViewStub" target="_blank">Android抽象布局——include、merge 、ViewStub</a><span>(110059)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/12165391" title="网络通信框架Volley使用详细说明" target="_blank">网络通信框架Volley使用详细说明</a><span>(109262)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/5908355" title="Android中Intent传递对象的两种方法(Serializable,Parcelable)" target="_blank">Android中Intent传递对象的两种方法(Serializable,Parcelable)</a><span>(100573)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/6927763" title="Android FragmentManage FragmentTransaction介绍" target="_blank">Android FragmentManage FragmentTransaction介绍</a><span>(97381)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/8946205" title="Android Studio 初体验" target="_blank">Android Studio 初体验</a><span>(84265)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/8968213" title="iOS学习笔记（十七）——文件操作（NSFileManager）" target="_blank">iOS学习笔记（十七）——文件操作（NSFileManager）</a><span>(72573)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/blogdevteam/article/details/75116901" target="_blank">* CSDN日报20170714——《从创业到再就业，浅述对程序员职业生涯的看法》</a></li>
+<li><a href="http://blog.csdn.net/jiangwei0910410003/article/details/74886918" target="_blank">* Android 逆向 | 锁屏密码算法解析以及破解方案</a></li>
+<li><a href="http://blog.csdn.net/hopeztm/article/details/75201823" target="_blank">* 从单一WAR到多活，记述一个创业公司的架构演变</a></li>
+<li><a href="http://blog.csdn.net/sileixinhua/article/details/75203725" target="_blank">* 我的AI转型之路与AI之我见（非985211的奋斗路程与视角）</a></li>
+<li><a href="http://blog.csdn.net/u013709270/article/details/74892124" target="_blank">* AI大行其道，你准备好了吗？—谨送给徘徊于转行AI的程序员</a></li>
+<li><a href="http://blog.csdn.net/chancein007/article/details/74943322" target="_blank">* AI转型中的思考和洞见</a></li>
+
+</ul></ul>
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#comments">Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent()</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u013351403" class="user_name">蝙蝠骑士</a>:
+学习了
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/xyz_lmn/article/details/14222975#comments">Android UI 优化——使用HierarchyViewer工具</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/xy707707" class="user_name">stone_with_the_wind</a>:
+对于新版的Android studio， 我感觉这个答案写的很详细 https://stackove...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/xyz_lmn/article/details/12618149#comments">Android UI开发第三十四篇——SlidingPaneLayout</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/fesdgasdgasdg" class="user_name">android阿杜</a>:
+你这博客写得，代码一贴完事了。
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/xyz_lmn/article/details/48055919#comments">android CoordinatorLayout使用</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/xiyangyang8110" class="user_name">xiyangyang8110</a>:
+坑！第三效果，viewPager中的代码没有，我放了一个listview，死活不行，换成recycl...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/xyz_lmn/article/details/48055919#comments">android CoordinatorLayout使用</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/xiyangyang8110" class="user_name">xiyangyang8110</a>:
+楼主你好，第二个动画效果，MainActivity中的代码在哪里？？
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/xyz_lmn/article/details/16826669#comments">Android 触摸及手势操作GestureDetector</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u010042660" class="user_name">情迁666</a>:
+return super.onTouchEvent(event); 没有这玩意。
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/xyz_lmn/article/details/20385049#comments">Android View绘制过程</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u013277209" class="user_name">话说小波</a>:
+看了博主的文章，辛苦了，自己写了一篇附带源码解析：http://blog.csdn.net/u013...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/xyz_lmn/article/details/8015619#comments">Silk编解码在android实现</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/xulingchung" class="user_name">xulingchung</a>:
+能编译吗？用AS ndk build 报错
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/xyz_lmn/article/details/7004710#comments">adb logcat 查看日志</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/linyuhan9977" class="user_name">linyuhan32</a>:
+xyz_lmn老师：     您好，请问可以通过adb 命令只打印出手机的GC执行情况日志吗？
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/xyz_lmn/article/details/6176478#comments"> 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/cszhang570221322" class="user_name">cszhang570221322</a>:
+关闭了也不可以呀
+    </p>
+    </li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel tracking-ad" data-mod="popu_341">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/21799725" title="Android UI开发第四十一篇——墨迹天气3.0引导界面及动画实现" target="_blank">Android UI开发第四十一篇——墨迹天气3.0引导界面及动画实现</a><span>(116)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/48055919" title="android CoordinatorLayout使用" target="_blank">android CoordinatorLayout使用</a><span>(80)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/13745489" title="ListView具有多种item布局——实现微信对话列" target="_blank">ListView具有多种item布局——实现微信对话列</a><span>(67)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/7587807" title="AndroidPN真机环境测试" target="_blank">AndroidPN真机环境测试</a><span>(58)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/6921097" title="Android UI开发第十六篇——分享一个popuwindow实例" target="_blank">Android UI开发第十六篇——分享一个popuwindow实例</a><span>(45)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/41411355" title="Android 知识图谱" target="_blank">Android 知识图谱</a><span>(45)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/8013490" title="speex编解码在android上实现" target="_blank">speex编解码在android上实现</a><span>(41)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/12746581" title="Android UI开发第三十六篇——使用Volley加载图片列表" target="_blank">Android UI开发第三十六篇——使用Volley加载图片列表</a><span>(35)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/12517911" title="Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent()" target="_blank">Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent()</a><span>(33)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/xyz_lmn/article/details/12523895" title="Android UI开发第三十二篇——Creating a Navigation Drawer" target="_blank">Android UI开发第三十二篇——Creating a Navigation Drawer</a><span>(32)</span>
+</li>
+</ul>
+</div>
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search csdn-tracking-statistics" target="_blank" data-mod="popu_306">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+   
+    $(function () {
+        $("#btnSubmit").unbind("click");
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {           
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            if ($("#inputSearch").val() == "") {               
+                alert("请录入搜索关键词！");                         
+                return false;
+            }
+            //var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";           
+            var url = "https://www.baidu.com/s?wd=" + encodeURIComponent($("#inputSearch").val()) + "%20site%3Ablog.csdn.net"
+            window.location.href = url;
+        }   
+    });
+</script>    </div>
+    <div class="clear">
+    </div>
+
+
+           </div>   
+
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/login.js.下载"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div>
+      <!--new top-->
+    
+
+     
+
+   
+   
+     <!--new top-->
+   
+   
+
+    
+    
+    
+   
+
+   
+
+
+       <script type="text/javascript" src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/MathJax.js.下载"></script>
+          <script type="text/javascript">
+              //$(function () {
+              //    setTimeout(function () {
+              //        var searchtitletags = articletitle + ',' + $("#tags").html();
+              //        searchService({
+              //            index: 'blog',
+              //            query: searchtitletags,
+              //            from: 5,
+              //            size: 5,
+              //            appendTo: '#res',
+              //            url: 'recommend',
+              //            his: 2,
+              //            client: "blog_cf_enhance",
+              //            tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+              //        });
+              //    }, 1000);
+              //});
+
+         </script>
+    
+    <script src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/csdn_blog_detail.min.js.下载" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/pub_footer_2014.css"><div class="pub_fo"><div id="pub_footerall" class="pub_footer_new"><dl><dt></dt> <dd class="foot_sub_menu"><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a><span>|</span><a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a><span>|</span><a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a><span>|</span><a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a><span>|</span><a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a><span>|</span><a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a><span>|</span><a href="mailto:webmaster@csdn.net">问题报告</a><span>|</span><a target="_blank" href="http://www.csdn.net/friendlink.html">合作伙伴</a><span>|</span><a href="http://bbs.csdn.net/forums/Service" target="_blank">论坛反馈</a></dd><dd class="foot_contact"><a href="javascript:void(0);" target="_blank" class="qq">网站客服</a><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2251809102&amp;site=qq&amp;menu=yes" target="_blank" class="qq">杂志客服</a><a href="http://e.weibo.com/csdnsupport/profile" target="_blank" class="weibo">微博客服</a><a href="mailto:webmaster@csdn.net" class="email" title="联系邮箱">webmaster@csdn.net</a><span class="phone" title="服务热线">400-660-0108</span><span class="interval">|</span><span>北京创新乐知信息技术有限公司 版权所有</span><span class="interval">|</span><span>江苏知之为计算机有限公司</span><span class="interval">|</span><span>江苏乐知网络技术有限公司</span></dd><dd class="foot_copyright"><span>京&nbsp;ICP&nbsp;证&nbsp;09002463&nbsp;号</span><span class="interval">|</span><span>Copyright © 1999-2017, CSDN.NET, All Rights Reserved&nbsp;</span><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div></div><div id="note1" class="csdn_note" style="display:none; position:absolute; z-index:9999; width:440px">  <span class="notice_top_arrow"><span class="inner"></span></span>  <div class="box"></div></div><div class="csdn_notice_tip" style="display:none; position:absolute; z-index:9990; width:170px">  <iframe src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/saved_resource(2).html" frameborder="0" scrolling="no" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div class="tip_text">您有<strong>0</strong>条新通知</div>  <a href="javascript:void 0" class="close2"></a></div><script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/notify.js.下载"></script><input type="hidden" id="aa_g_data_ids">
+        
+    <script type="text/javascript" src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/csdn_public_blog_detail.min.js.下载"></script>
+
+    <script type="text/javascript" src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/showblogmedal.ashx"></script>
+
+     
+    
+
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334" src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/52b5334.js.下载"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+
+    
+    
+        
+     
+
+    
+          
+    <div class="pop_CA_cover" style="display:none"></div>
+    <div class="pop pop_CA" style="display:none">
+          <div class="CA_header">
+            收藏助手
+            <span class="cancel_icon" id="fapancle" onclick="$(&#39;.pop_CA&#39;).hide();$(&#39;.pop_CA_cover&#39;).hide();"></span>
+          </div>
+          <iframe src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/saved_resource(3).html" id="fa" frameborder="0" width="100%" height="360" scrolling="no"></iframe>
+    </div>
+
+
+        <script type="text/javascript">
+
+            $(function () {
+                var fromjs = $("#fromjs");
+                if (fromjs.length > 0) {
+                    $("#fromjs .markdown_views pre").addClass("prettyprint");
+                    prettyPrint();
+
+                    $('pre.prettyprint code').each(function () {
+                        var lines = $(this).text().split('\n').length;
+                        var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                        $(this).addClass('has-numbering').parent().append($numbering);
+                        for (i = 1; i <= lines; i++) {
+                            $numbering.append($('<li/>').text(i));
+                        };
+                        $numbering.fadeIn(1700);
+                    });
+
+                    $('.pre-numbering li').css("color", "#999");
+                }
+            });
+
+            $(".markdown_views a[target!='_blank']").attr("target", "_blank");
+
+            //$(".toc a[target='_blank']").attr("target", "");
+
+            setTimeout(function () {
+                $(".toc a[target='_blank']").attr("target", "");
+            }, 500);
+
+        </script>
+
+
+   
+<div id="mask_code"></div><div class="gist_edit"><div class="save_snippets clearfix"><div class="tit"><h3>保存代码片</h3><span>整理和分享保存的代码片，请访问<a href="https://code.csdn.net/snippets_manage" target="_blank">代码笔记</a></span></div><div class="con_form"><ul class="gist_edit_list clearfix"><li><span class="red">*</span><span class="txt">标题</span><input id="form_title" class="form-input" placeholder="Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent()" type="text"></li><li><span class="red">*</span><span class="txt">描述</span><textarea id="form-textarea" class="form-textarea" placeholder="Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent()： http://blog.csdn.net/xyz_lmn/article/details/12517911"></textarea></li><li><span class="red">&nbsp;</span><span class="txt">标签</span><div id="divSearchTags"><input id="insertTag" class="insertTag" placeholder="请输入标签，按Enter生成(最多5项)" type="text" value="" name="insertTag" maxlength="21" style="color: rgb(51, 51, 51);"><input id="OrganTag" class="OrganTag" type="hidden" name="OrganTag" value=""><input id="OldOrganTag" class="OldOrganTag" type="hidden" name="OldOrganTag" value=""><input type="hidden" name="txtSearchTags"></div></li></ul></div><div class="bottom-bar"><a href="javascript:;" class="btn-submit btn-cancel">取消</a><span class="tracking-ad" data-mod="popu_250"><a class="btn-submit btn-confirm" href="javascript:;" target="_blank">确定</a></span></div></div></div><link rel="stylesheet" type="text/css" media="screen" href="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/ask_float_fonts_css-6b30a53970eb5c3a2a045e3df585b475.css"><div data-mod="popu_64" class="csdn-tracking-statistics" chg-blk="0"><a id="com-quick-QRcode" class="QRcodebg1" title="扫描二维码" style="top:200px"><span class="closeQR"></span></a><a id="com-quick-reply" title="快速回复" style="top:334px"></a><a id="com-quick-collect" title="我要收藏" style="top:372px"></a><a id="com-d-top-a" style="top: 410px; display: inline;" title="返回顶部" onclick=""></a></div><div class="pop_edit ask_second comm_ask_second"><h3>提问</h3><span class="ask_float_span">您的问题将会被发布在“<a class="ask_float_channel" href="http://ask.csdn.net/" target="_blank" style="cursor:pointer">技术问答</a>”频道</span><a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" nodetype="close" class="close">×</a><div class="context"><div class="err_div"><span class="err_ico"></span><span class="err_txt">该问题已存在，请勿重复提问</span></div><div class="input_div"><input id="askInputSecond" type="text" style="font-size:14px;" placeholder="问题标题"></div><div class="cm_box"><div class="cm_dialog"></div> <div class="pop_cm cm_add_link"><input type="text" placeholder="链接内容" id="af_cm_link_txt"><input type="text" placeholder="链接地址" id="af_cm_link_url"><input type="text" placeholder="链接提示" id="af_cm_link_tit"><div class="text-right"><span class="btn btn-default btn-sm" id="add_link_btn">插入链接</span> </div> </div><div class="pop_cm cm_add_img"><div class="nav-tabs"><a class="img_tab active" href="http://blog.csdn.net/xyz_lmn/article/details/12517911#tab_upload">本地上传</a><a class="img_tab" href="http://blog.csdn.net/xyz_lmn/article/details/12517911#tab_weburl">网络图片</a></div><div class="tab_panel active" id="tab_upload"><div class="set_img"><iframe src="./Android中的dispatchTouchEvent()、onInterceptTouchEvent()和onTouchEvent() - 张兴业的博客 - CSDN博客_files/upload.html"></iframe></div></div><div class="tab_panel" id="tab_weburl"><input type="text" placeholder="图片地址" id="af_cm_img_url"><input type="text" placeholder="图片说明" id="af_cm_img_alt"><div class="text-right"><span class="btn btn-default btn-sm" id="add_img_btn">插入图片</span> </div></div> </div></div> <textarea id="editor_all" rows="8" style="display: none;"></textarea><div class="editor-toolbar"><i class="separator">|</i><a class="icon-headline" title="标题一（Ctrl+Alt+1）"></a><a class="icon-heading" title="标题二（Ctrl+Alt+2）"></a><a class="icon-bold" title="粗体（Ctrl+B）"></a><a class="icon-italic" title="斜体（Ctrl+I）"></a><i class="separator">|</i><a class="icon-quote-left" title="引用（Ctrl+’）"></a><a class="icon-code" title="插入代码片（Ctrl+,）"></a><a class="icon-list-ul" title="无序列表（Ctrl+L）"></a><a class="icon-list-ol" title="有序列表（Ctrl+Alt+L）"></a><i class="separator">|</i><a class="icon-link" title="添加链接（Ctrl+K）"></a><a class="icon-picture" title="添加图片（Ctrl+Alt+I）"></a><i class="separator">|</i><a class="icon-reply" title="撤退（Ctrl+Z）"></a><a class="icon-share-alt" title="前进（Ctrl+Shift+Z）"></a><i class="separator">|</i><a class="icon-info" href="http://ask.csdn.net/pages/markdown" target="_blank" title="markdown语法参考"></a><a class="icon-preview" title="预览"></a><i class="separator">|</i></div><div class="CodeMirror cm-s-paper CodeMirror-focused"><div style="overflow: hidden; position: relative; width: 3px; height: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none; font-size: 4px;" tabindex="0"></textarea></div><div class="CodeMirror-hscrollbar"><div style="height: 1px;"></div></div><div class="CodeMirror-vscrollbar"><div style="width: 1px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="min-width: 33px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>&nbsp;<span style="display: inline-block; width: 1px; margin-right: -1px;">&nbsp;</span></pre></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code"></div><div class="CodeMirror-cursor">&nbsp;</div><div class="CodeMirror-cursor CodeMirror-secondarycursor">&nbsp;</div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px;"></div><div class="CodeMirror-gutters" style="display: none;"></div></div></div><div class="editor-statusbar"><span class="lines">0</span><span class="words">0</span><span class="cursor">0:0</span></div><div class="div_tags clearfix"><div id="divSearchTags" class="tags_con"><input type="text"></div><input type="hidden" name="txtSearchTags"></div><div id="ask2_tagRecomm_div" class="drt_tagRecomm tracking-ad" data-mod="popu_73"><span class="drt_tit">推荐标签：</span></div></div><div class="success"><div class="left_area"><input id="chk_cb" type="checkbox"><span class="wyxs">我要悬赏</span><input id="cb_num" class="cb_num" readonly="true"><span class="phib_rii"><span> 币</span></span></div><a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" nodetype="cancel" class="cancel">取消</a><a href="http://blog.csdn.net/xyz_lmn/article/details/12517911#" nodetype="ok" class="ok">发布</a></div></div><div id="common_ask_div_sc" class="searchContainer"><div class="sTitle">可能存在类似的问题：</div><div class="sFooter"><a class="sFirstNewAsk">我想提一个新问题</a></div></div><div style="position:fixed; top:0; left:0; overflow:hidden;"><input style="position:absolute; left:-300px;" type="text" value="" id="focus_retriever" readonly="true"></div><div id="tag-suggest-pop">
+  <div class="relative">
+    <div class="close"></div>
+    <div class="content"></div>
+  </div>
+</div></body></html>

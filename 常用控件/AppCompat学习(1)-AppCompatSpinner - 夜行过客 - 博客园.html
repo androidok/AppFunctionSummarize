@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://www.cnblogs.com/yongdaimi/p/6089604.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/bundle-SimpleMemory.css">
+<link type="text/css" rel="stylesheet" href="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/288657.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/bundle-SimpleMemory-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/yongdaimi/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/yongdaimi/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/yongdaimi/wlwmanifest.xml">
+<script async="" src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/analytics.js.下载"></script><script type="text/javascript" src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/encoder.js.下载"></script><script src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'yongdaimi', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/yongdaimi/"><img id="blogLogo" src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/yongdaimi/">夜行过客</a></h1>
+<h2>纸上得来终觉浅，绝知此事要躬行。</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/yongdaimi/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E5%A4%9C%E8%A1%8C%E8%BF%87%E5%AE%A2">联系</a></li>
+<li>
+<!----></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 268&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 3</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/yongdaimi/p/6089604.html">AppCompat学习(1)-AppCompatSpinner</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p><span style="font-family: 宋体; font-size: 15px;">andriod中的spinner控件一共有两个，</span>一个是本身的Spinner,一个是android.support.v7.widget.AppCompatSpinner。</p>
+<p>两者的区别在于v7内的Spinner是兼容低版本的,Spinner再高版本中才能使用的方法换了v7下的Spinner后可以一直兼容到2.1 (v7兼容到api7),初次之外两者的使用没有其他差别,推荐使用v7,保证效果在不同版本上都能显示。</p>
+<p><em><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/653161-20161122151145925-1896860391.png" alt=""></em></p>
+<p>spinner的使用步骤如下：</p>
+<p><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/653161-20161122151254112-1388717764.png" alt=""></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><span style="color: #339966;"><strong>1.设置数据源</strong></span></h2>
+<hr>
+<p>&nbsp;在values文件夹下新建如下文件：</p>
+<p>&nbsp;values/arrays.xml</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000;">&lt;!--</span><span style="color: #008000;">?xml version="1.0" encoding="utf-8"?</span><span style="color: #008000;">--&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">resources</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">string-array </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="week"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>星期一<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>星期二<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>星期三<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>星期四<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>星期五<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>星期六<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>星期天<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">string-array</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">resources</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>layout/login.xml</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">android.support.v7.widget.AppCompatSpinner
+                </span><span style="color: #ff0000;">android:id</span><span style="color: #0000ff;">="@+id/sp_select_email"</span><span style="color: #ff0000;">
+                android:layout_width</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+                android:layout_height</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+                android:entries</span><span style="color: #0000ff;">="@array/login_company_email"</span><span style="color: #ff0000;">
+                android:spinnerMode</span><span style="color: #0000ff;">="dropdown"</span><span style="color: #ff0000;">
+                android:theme</span><span style="color: #0000ff;">="@style/common_spinner"</span>
+                <span style="color: #0000ff;">/&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<div class="line number1 index0 alt2">&nbsp;</div>
+<div class="line number1 index0 alt2">android:entries // 传入的是values文件夹下的arrayx.xml内的数据</div>
+<div class="line number1 index0 alt2"><code class="java plain">android:spinnerMode&nbsp; </code><code class="java comments">//显示模式有<span style="background-color: #99cc00;">popmenu</span>和<span style="background-color: #99cc00;">dialog</span>两种</code></div>
+<div class="line number2 index1 alt1"><code class="java plain">android:prompt </code><code class="java comments">//当显示模式为dialog时生效,作用为显示dialog的标题内容</code></div>
+<p><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/653161-20161122152218612-2055752871.png" alt="" width="427" height="759"><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/653161-20161122152240550-326057688.png" alt="" width="426" height="757"></p>
+<p>还有一些其它常用的属性：</p>
+<p><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/653161-20161122152555909-1603136985.png" alt=""></p>
+<h2><span style="color: #339966;"><strong>2.设置显示主题</strong></span></h2>
+<hr>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre> <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">android.support.v7.widget.AppCompatSpinner
+                </span><span style="color: #ff0000;">android:id</span><span style="color: #0000ff;">="@+id/sp_select_email"</span><span style="color: #ff0000;">
+                android:layout_width</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+                android:layout_height</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+                android:entries</span><span style="color: #0000ff;">="@array/login_company_email"</span><span style="color: #ff0000;">
+                android:spinnerMode</span><span style="color: #0000ff;">="dropdown"</span><span style="color: #ff0000;">
+                android:theme</span><span style="color: #0000ff;">="@style/common_spinner"</span>
+                <span style="color: #0000ff;">/&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>@style/common_spinner设置的是下拉item的主题。</p>
+<p>styles.xml</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">style </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="common_spinner"</span><span style="color: #ff0000;"> parent</span><span style="color: #0000ff;">="Widget.AppCompat.DropDownItem.Spinner"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">item </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="android:textColor"</span><span style="color: #0000ff;">&gt;</span>@color/app_text_color<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">item </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="android:textSize"</span><span style="color: #0000ff;">&gt;</span>14sp<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">item</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">style</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<p>&nbsp;</p>
+<h2><span style="color: #339966;"><strong>3.添加响应事件</strong></span></h2>
+<hr>
+<p>Spinner的响应事件是<span style="color: #ff0000;">OnItemSelectedListener</span> ,千万不要写出onItemClickListener,否则直接报错:</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>mSpinner.setOnItemSelectedListener(<span style="color: #0000ff;">new</span><span style="color: #000000;"> AdapterView.OnItemSelectedListener() {
+            @Override
+            </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> onItemSelected(AdapterView&lt;!--?--&gt; parent, View view, <span style="color: #0000ff;">int</span> position, <span style="color: #0000ff;">long</span><span style="color: #000000;"> id) {
+                </span><span style="color: #008000;">//</span><span style="color: #008000;">选择列表项的操作</span>
+<span style="color: #000000;">            }
+ 
+            @Override
+            </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> onNothingSelected(AdapterView&lt;!--?--&gt;<span style="color: #000000;"> parent) {
+                </span><span style="color: #008000;">//</span><span style="color: #008000;">未选中时候的操作</span>
+<span style="color: #000000;">            }
+        });</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>也可以使用代码添加数据源给spinner,此时布局文件中只需要包含基本的宽高属性即可。</p>
+<p>适配器的选择:</p>
+<p>最方便的的适配器是ArrayAdapter,缺点是只能显示单个TextView内容(采用List存储数据)</p>
+<div class="cnblogs_code">
+<pre>ArrayAdapter arrayAdapter = <span style="color: #0000ff;">new</span><span style="color: #000000;"> ArrayAdapter(mContext, R.layout.item_select, mList);
+ </span><span style="color: #008000;">//</span><span style="color: #008000;">传入的参数分别为 Context , 未选中项的textview , 数据源List
+</span><span style="color: #008000;">//</span><span style="color: #008000;">单独设置下拉的textview</span>
+arrayAdapter.setDropDownViewResource(R.layout.item_drop);</pre>
+</div>
+<p>R.layou.item_select</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000;">&lt;!--</span><span style="color: #008000;">?xml version="1.0" encoding="utf-8"?</span><span style="color: #008000;">--&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">textview </span><span style="color: #ff0000;">xmlns:android</span><span style="color: #0000ff;">="http://schemas.android.com/apk/res/android"</span><span style="color: #ff0000;"> <br>　　android:layout_width</span><span style="color: #0000ff;">="match_parent"</span><span style="color: #ff0000;"> <br>　　android:textsize</span><span style="color: #0000ff;">="20dp"</span><span style="color: #ff0000;"> <br>　　android:typeface</span><span style="color: #0000ff;">="serif"</span><span style="color: #ff0000;"> <br>　　android:gravity</span><span style="color: #0000ff;">="center"</span><span style="color: #ff0000;"> <br>　　android:textcolor</span><span style="color: #0000ff;">="#000000"</span><span style="color: #ff0000;"> <br>　　android:layout_height</span><span style="color: #0000ff;">="match_parent"</span><span style="color: #ff0000;"> <br>　　android:background</span><span style="color: #0000ff;">="@color/colorAccent"</span><span style="color: #ff0000;"> <br>　　android:orientation</span><span style="color: #0000ff;">="vertical"</span><span style="color: #0000ff;">&gt;</span>
+ 
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">textview</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>R.layout.item_drop</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000;">&lt;!--</span><span style="color: #008000;">?xml version="1.0" encoding="utf-8"?</span><span style="color: #008000;">--&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">textview </span><span style="color: #ff0000;">xmlns:android</span><span style="color: #0000ff;">="http://schemas.android.com/apk/res/android"</span><span style="color: #ff0000;"> <br>　　android:layout_width</span><span style="color: #0000ff;">="match_parent"</span><span style="color: #ff0000;"> <br>　　android:layout_height</span><span style="color: #0000ff;">="match_parent"</span><span style="color: #ff0000;"> <br>　　android:padding</span><span style="color: #0000ff;">="5dp"</span><span style="color: #ff0000;"> <br>　　android:background</span><span style="color: #0000ff;">="@color/colorPrimary"</span><span style="color: #ff0000;"> <br>　　android:gravity</span><span style="color: #0000ff;">="center"</span><span style="color: #ff0000;"> <br>　　android:orientation</span><span style="color: #0000ff;">="vertical"</span><span style="color: #ff0000;"> <br>　　android:textcolor</span><span style="color: #0000ff;">="#000000"</span><span style="color: #ff0000;"> <br>　　android:textsize</span><span style="color: #0000ff;">="20dp"</span><span style="color: #0000ff;">&gt;</span>
+ 
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">textview</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>效果如下图所示：</p>
+<p><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/653161-20161122153946221-1948064496.png" alt="" width="407" height="724"><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/653161-20161122154006987-534375412.png" alt="" width="407" height="723"></p>
+<p>&nbsp;</p>
+<p>有时实际的需求中有可能需要Spinner的下拉不单单显示一个TextView,那么这个时候就需要对适配器进行自定义</p>
+<p>自定义Adapter:</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">private</span> <span style="color: #0000ff;">class</span> MyAdapter <span style="color: #0000ff;">implements</span><span style="color: #000000;"> SpinnerAdapter {
+        </span><span style="color: #0000ff;">private</span><span style="color: #000000;"> ThemedSpinnerAdapter.Helper helper;
+ 
+ 
+        @Override
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> registerDataSetObserver(DataSetObserver observer) {
+ 
+        }
+ 
+        @Override
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> unregisterDataSetObserver(DataSetObserver observer) {
+ 
+        }
+ 
+        @Override
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> getCount() {
+            </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> mList.size();
+        }
+ 
+        @Override
+        </span><span style="color: #0000ff;">public</span> Object getItem(<span style="color: #0000ff;">int</span><span style="color: #000000;"> position) {
+            </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> mList.get(position);
+        }
+ 
+        @Override
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">long</span> getItemId(<span style="color: #0000ff;">int</span><span style="color: #000000;"> position) {
+            </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> position;
+        }
+ 
+        @Override
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">boolean</span><span style="color: #000000;"> hasStableIds() {
+            </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+        }
+ 
+        @Override
+        </span><span style="color: #0000ff;">public</span> View getView(<span style="color: #0000ff;">int</span><span style="color: #000000;"> position, View convertView, ViewGroup parent) {
+            TextView textView </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> TextView(mContext);
+            textView.setTextSize(</span>30<span style="color: #000000;">);
+            textView.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+            textView.setText(mList.get(position));
+            </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> textView;
+        }
+ 
+        @Override
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">int</span> getItemViewType(<span style="color: #0000ff;">int</span><span style="color: #000000;"> position) {
+            </span><span style="color: #0000ff;">return</span> 1<span style="color: #000000;">;
+        }
+ 
+        @Override
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> getViewTypeCount() {
+            </span><span style="color: #0000ff;">return</span> 1<span style="color: #000000;">;
+        }
+ 
+        @Override
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">boolean</span><span style="color: #000000;"> isEmpty() {
+            </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+        }
+ 
+        @Override
+        </span><span style="color: #0000ff;">public</span> View getDropDownView(<span style="color: #0000ff;">int</span><span style="color: #000000;"> position, View convertView, ViewGroup parent) {
+            TextView textView </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> TextView(mContext);
+            textView.setTextSize(</span>30<span style="color: #000000;">);
+            textView.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            textView.setText(mList.get(position));
+            </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> textView;
+        }
+    }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>效果如下(对下拉和默认显示设置了颜色作为区分,且为方便起见没用引用布局文件,设置了下拉偏移)：</p>
+<p><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/653161-20161122154300050-1919030375.png" alt="" width="470" height="835"></p>
+<p>至此适配器的使用的完成了,可以实现默认显示的和下拉的使用相同布局,也可是不同的布局,基本上满足需求了</p>
+<p><em id="__mceDel">另外还有几个在23中新出的方法,可以做更多的自定义(使用AppcomptSpinner可适配到低版本):</em></p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">mSpinner.setPopupBackgroundResource(R.drawable.back);
+mSpinner.setBackgroundResource(R.drawable.back);</span></pre>
+</div>
+<pre><span style="background-color: #ffffff;"><span style="color: #339966;">//给默认显示项和下拉菜单设置背景</span>  </span></pre>
+<p>&nbsp;<img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/653161-20161122154448440-1913351368.png" alt="" width="409" height="727"></p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/yongdaimi/category/912708.html" target="_blank">android-新特性</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6089604,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;e97941e1-6e11-e411-8d02-90b11c0b17d6&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/yongdaimi/" target="_blank"><img src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/20161213181628.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/yongdaimi/">夜行过客</a><br>
+            <a href="http://home.cnblogs.com/u/yongdaimi/followees">关注 - 6</a><br>
+            <a href="http://home.cnblogs.com/u/yongdaimi/followers">粉丝 - 3</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;e97941e1-6e11-e411-8d02-90b11c0b17d6&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(6089604,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(6089604,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/yongdaimi/p/6089328.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/yongdaimi/p/6089328.html" title="发布于2016-11-22 14:55">Android Studio-AndroidStudio目录结构</a><br><a href="http://www.cnblogs.com/yongdaimi/p/6091336.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/yongdaimi/p/6091336.html" title="发布于2016-11-22 21:55">新浪微博客户端(30)-制作微博中的九宫格相册图片</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-11-22 15:46</span> <a href="http://www.cnblogs.com/yongdaimi/">夜行过客</a> 阅读(<span id="post_view_count">1561</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6089604" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/yongdaimi/p/6089604.html#" onclick="AddToWz(6089604);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=288657,cb_entryId=6089604,cb_blogApp=currentBlogApp,cb_blogUserGuid='e97941e1-6e11-e411-8d02-90b11c0b17d6',cb_entryCreatedDate='2016/11/22 15:46:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/yongdaimi/p/6089604.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/yongdaimi/p/6089604.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://console.upyun.com/register/?invite=H124C2iMZ?utm_source=cnblogs&amp;utm_medium=referral" target="_blank">【推荐】现在注册又拍云，首月可享 200G CDN流量，还可免费申请 SSL 证书</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://cn.udacity.com/course/deep-learning-nanodegree-foundation--nd101/?utm_source=cnblog&amp;utm_medium=referral&amp;utm_campaign=DAND04" target="_blank"><img width="300" height="250" src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/24442-20170720103913224-1587456811.jpg" alt="AI工程师"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/574343/" target="_blank">新顶级域名.health向公众开放 医疗健康行业积极推进</a><br> ·  <a href="http://news.cnblogs.com/n/574341/" target="_blank">乐视门口又来了一波讨债者：这次针对的是乐视致新</a><br> ·  <a href="http://news.cnblogs.com/n/574318/" target="_blank">中国的「洋垃圾」拉锯战</a><br> ·  <a href="http://news.cnblogs.com/n/574340/" target="_blank">支付宝重磅功能上线 可查高考录取通知书</a><br> ·  <a href="http://news.cnblogs.com/n/574339/" target="_blank">高德地图V8.1.2发布 ofo单车正式入驻！</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice?source=bky&amp;hmsr=%E5%8D%9A%E5%AE%A2%E5%9B%AD&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank"><img width="468" height="60" src="./AppCompat学习(1)-AppCompatSpinner - 夜行过客 - 博客园_files/24442-20170629165247758-2056260207.png" alt="极光推广_0701"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/570194/" target="_blank">小printf的故事：什么是真正的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/569992/" target="_blank">程序员的工作、学习与绩效</a><br> ·  <a href="http://kb.cnblogs.com/page/569056/" target="_blank">软件开发为什么很难</a><br> ·  <a href="http://kb.cnblogs.com/page/565901/" target="_blank">唱吧DevOps的落地，微服务CI/CD的范本技术解读</a><br> ·  <a href="http://kb.cnblogs.com/page/566523/" target="_blank">程序员，如何从平庸走向理想？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/yongdaimi/">夜行过客</a><br>园龄：<a href="http://home.cnblogs.com/u/yongdaimi/" title="入园时间：2014-07-22">2年11个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/yongdaimi/followers/">3</a><br>关注：<a href="http://home.cnblogs.com/u/yongdaimi/followees/">6</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;e97941e1-6e11-e411-8d02-90b11c0b17d6&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="日历">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/06/01&#39;);return false;">&lt;</a></td><td align="center">2017年7月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/08/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalWeekendDay" align="center">1</td></tr><tr><td class="CalWeekendDay" align="center">2</td><td align="center"><a href="http://www.cnblogs.com/yongdaimi/archive/2017/07/03.html"><u>3</u></a></td><td align="center"><a href="http://www.cnblogs.com/yongdaimi/archive/2017/07/04.html"><u>4</u></a></td><td align="center"><a href="http://www.cnblogs.com/yongdaimi/archive/2017/07/05.html"><u>5</u></a></td><td align="center"><a href="http://www.cnblogs.com/yongdaimi/archive/2017/07/06.html"><u>6</u></a></td><td align="center">7</td><td class="CalWeekendDay" align="center">8</td></tr><tr><td class="CalWeekendDay" align="center">9</td><td align="center">10</td><td align="center"><a href="http://www.cnblogs.com/yongdaimi/archive/2017/07/11.html"><u>11</u></a></td><td align="center"><a href="http://www.cnblogs.com/yongdaimi/archive/2017/07/12.html"><u>12</u></a></td><td align="center"><a href="http://www.cnblogs.com/yongdaimi/archive/2017/07/13.html"><u>13</u></a></td><td align="center">14</td><td class="CalWeekendDay" align="center">15</td></tr><tr><td class="CalWeekendDay" align="center">16</td><td align="center">17</td><td align="center"><a href="http://www.cnblogs.com/yongdaimi/archive/2017/07/18.html"><u>18</u></a></td><td align="center">19</td><td align="center"><a href="http://www.cnblogs.com/yongdaimi/archive/2017/07/20.html"><u>20</u></a></td><td class="CalTodayDay" align="center">21</td><td class="CalWeekendDay" align="center">22</td></tr><tr><td class="CalWeekendDay" align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalWeekendDay" align="center">29</td></tr><tr><td class="CalWeekendDay" align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+
+</div>
+</div>
+
+</div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/yongdaimi/category/920532.html">android-Google商店(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/yongdaimi/category/906680.html">android-Gradle(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/yongdaimi/category/1022687.html">android-jni(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/yongdaimi/category/950867.html">android-Service(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/yongdaimi/category/918914.html">android-UI开发(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/yongdaimi/category/909633.html">android-错误笔记(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/yongdaimi/category/982722.html">android-代码混淆(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/yongdaimi/category/902451.html">android-分享操作(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/yongdaimi/category/922927.html">android-屏幕相关(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/yongdaimi/category/910433.html">android-权限管理(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/yongdaimi/category/912708.html">android-新特性(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/yongdaimi/category/914363.html">android-自定义控件(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/yongdaimi/category/991275.html">C/C++错误笔记(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/yongdaimi/category/1033970.html">C++标准模板库(STL)(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/yongdaimi/category/1021347.html">C++和C的区别(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/yongdaimi/category/1029222.html">C++基础提高(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/yongdaimi/category/1021350.html">C++基础知识(25)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/yongdaimi/category/983865.html">C语言基础提高(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/yongdaimi/category/927994.html">C语言基础知识(21)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/yongdaimi/category/896415.html">Git-TortoiseGit(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/yongdaimi/category/891822.html">IDE-android studio(18)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/yongdaimi/category/896407.html">IDE-eclipse(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/yongdaimi/category/903016.html">IDE-SourceInsight(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/yongdaimi/category/928021.html">IDE-Visual Studio(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/yongdaimi/category/893932.html">IDE-Xcode(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="http://www.cnblogs.com/yongdaimi/category/926287.html">iOS-Autolayout(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="http://www.cnblogs.com/yongdaimi/category/894472.html">iOS-category(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_27" href="http://www.cnblogs.com/yongdaimi/category/926804.html">iOS-iPad开发(15)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_28" href="http://www.cnblogs.com/yongdaimi/category/897290.html">iOS-错误整理(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_29" href="http://www.cnblogs.com/yongdaimi/category/895658.html">iOS-开发技巧(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_30" href="http://www.cnblogs.com/yongdaimi/category/924239.html">iOS-数据库相关(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_31" href="http://www.cnblogs.com/yongdaimi/category/893935.html">iOS-项目相关(64)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_32" href="http://www.cnblogs.com/yongdaimi/category/929129.html">iOS-新特性(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_33" href="http://www.cnblogs.com/yongdaimi/category/899880.html">Java-NIO(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_34" href="http://www.cnblogs.com/yongdaimi/category/1039465.html">Java-集合容器</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_35" href="http://www.cnblogs.com/yongdaimi/category/899664.html">Java-随笔(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_36" href="http://www.cnblogs.com/yongdaimi/category/898012.html">Java-网络编程(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_37" href="http://www.cnblogs.com/yongdaimi/category/885968.html">Java-位运算(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_38" href="http://www.cnblogs.com/yongdaimi/category/1039467.html">Java-线程模型</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_39" href="http://www.cnblogs.com/yongdaimi/category/907942.html">Linux-Vim(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_40" href="http://www.cnblogs.com/yongdaimi/category/907413.html">Linux-终端(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_41" href="http://www.cnblogs.com/yongdaimi/category/928949.html">Mac OS X(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_42" href="http://www.cnblogs.com/yongdaimi/category/983335.html">Microsoft Office(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_43" href="http://www.cnblogs.com/yongdaimi/category/902468.html">Microsoft Windows(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_44" href="http://www.cnblogs.com/yongdaimi/category/1019615.html">QT-错误笔记(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_45" href="http://www.cnblogs.com/yongdaimi/category/1014288.html">数据结构和算法(3)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/yongdaimi/archive/2017/07.html">2017年7月 (22)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/yongdaimi/archive/2017/06.html">2017年6月 (34)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/yongdaimi/archive/2017/05.html">2017年5月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/yongdaimi/archive/2017/04.html">2017年4月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/yongdaimi/archive/2017/03.html">2017年3月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/yongdaimi/archive/2017/02.html">2017年2月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/yongdaimi/archive/2017/01.html">2017年1月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/yongdaimi/archive/2016/12.html">2016年12月 (60)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/yongdaimi/archive/2016/11.html">2016年11月 (53)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/yongdaimi/archive/2016/10.html">2016年10月 (53)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/yongdaimi/archive/2016/09.html">2016年9月 (3)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yongdaimi/p/6072629.html#3719602">1. Re:android-android各大手机系统打开权限管理页面</a></li>
+        <li class="recent_comment_body">@TillWu小米使用 PermissionChecker.checkSelfPermission 可以用来校验是否有权限...</li>
+        <li class="recent_comment_author">--leeboke</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yongdaimi/p/6072629.html#3676578">2. Re:android-android各大手机系统打开权限管理页面</a></li>
+        <li class="recent_comment_body">你好，看了你的文章，有一个问题。比如说国产类似小米，魅族都有自己的权限管理，我调用了一个相机的权限，点了拒绝，下次就不太显示了。我用checkSelfPermission 一直返回的false。你有好......</li>
+        <li class="recent_comment_author">--TillWu</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yongdaimi/p/6001550.html#3552417">3. Re:新浪微博客户端(13)-使用UIWebView加载OAuth授权界面</a></li>
+        <li class="recent_comment_body">你好，我也在用微博授权，升级xcode之后试了很多方法都不行，想和你交流一下</li>
+        <li class="recent_comment_author">--代小皓</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/yongdaimi/p/6067319.html">1. android-解决 Android N 上 报错：android.os.FileUriExposedException(6442)</a></li><li><a href="http://www.cnblogs.com/yongdaimi/p/6072629.html">2. android-android各大手机系统打开权限管理页面(4626)</a></li><li><a href="http://www.cnblogs.com/yongdaimi/p/5899328.html">3. Java中的char到底是多少个字节？(3604)</a></li><li><a href="http://www.cnblogs.com/yongdaimi/p/5941200.html">4. Android Studio-设置代码自动提示(2970)</a></li><li><a href="http://www.cnblogs.com/yongdaimi/p/5941510.html">5. Android Studio-设置快速转换局部变量为成员变量(2677)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/yongdaimi/p/6072629.html">1. android-android各大手机系统打开权限管理页面(2)</a></li><li><a href="http://www.cnblogs.com/yongdaimi/p/6001550.html">2. 新浪微博客户端(13)-使用UIWebView加载OAuth授权界面(1)</a></li></ul></div>
+</div>
+</div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 夜行过客
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<script language="javascript" type="text/javascript">
+//生成目录索引列表
+function GenerateContentList()
+{
+    var jquery_h3_list = $('#cnblogs_post_body h3');//如果你的章节标题不是h3,只需要将这里的h3换掉即可
+    if(jquery_h3_list.length>0)
+    {
+        var content = '<a name="_labelTop"></a>';
+        content    += '<div id="navCategory">';
+        content    += '<p style="font-size:18px"><b>阅读目录</b></p>';
+        content    += '<ul>';
+        for(var i =0;i<jquery_h3_list.length;i++)
+        {
+            var go_to_top = '<div style="text-align: right"><a href="#_labelTop">回到顶部</a><a name="_label' + i + '"></a></div>';
+            $(jquery_h3_list[i]).before(go_to_top);
+            var li_content = '<li><a href="#_label' + i + '">' + $(jquery_h3_list[i]).text() + '</a></li>';
+            content += li_content;
+        }
+        content    += '</ul>';
+        content    += '</div>';
+        if($('#cnblogs_post_body').length != 0 )
+        {
+            $($('#cnblogs_post_body')[0]).prepend(content);
+        }
+    }    
+}
+GenerateContentList();
+</script>
+<!--PageEndHtml Block End-->
+
+
+</body></html>

@@ -1,0 +1,672 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0037)http://www.xuebuyuan.com/2013505.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>关于View的ScrollTo， getScrollX 和 getScrollY | 学步园</title> 
+<meta name="description" content="当利用 Scroller 去滑动屏幕或者扩展 ScrollView 的时候，总是会用到 getScrollX 和 getScrollY 去获取当前View 滑动到的位置，那么getScrollX() 和 getScrollY() 获取的到底是什么呢？ ">
+<meta name="keywords" content="">
+<link rel="stylesheet" href="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/css.css">
+<link rel="stylesheet" href="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/highlight.css">
+<link rel="stylesheet" href="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/img.css">
+<link rel="pingback" href="http://www.xuebuyuan.com/xmlrpc.php">
+<link rel="shortcut icon" href="http://cdn.xuebuyuan.com/wp-content/themes/HotNewspro/images/favicon.ico">
+<script type="text/javascript" async="" src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/ucrm"></script><script type="text/javascript" async="" src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/ucrm(1)"></script><script type="text/javascript" async="" src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/ucrm(2)"></script><script type="text/javascript" async="" src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/ucrm(3)"></script><script type="text/javascript" src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/jquery.min.js.下载"></script>
+<link rel="alternate" type="application/rss+xml" title="学步园 » Feed" href="http://www.xuebuyuan.com/feed">
+<link rel="alternate" type="application/rss+xml" title="学步园 » 评论Feed" href="http://www.xuebuyuan.com/comments/feed">
+<link rel="stylesheet" id="wp-syntax-css-css" href="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/wp-syntax.css" type="text/css" media="all">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.xuebuyuan.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.xuebuyuan.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Android学习小demo（2）自定义ViewGroup" href="http://www.xuebuyuan.com/2013504.html">
+<link rel="next" title="Android学习小Demo（10）ToDoList的改进版之ViewPager显示多个图片" href="http://www.xuebuyuan.com/2013506.html">
+<meta name="generator" content="WordPress 3.8">
+<link rel="canonical" href="http://www.xuebuyuan.com/2013505.html">
+<link rel="shortlink" href="http://www.xuebuyuan.com/?p=2013505">
+<style data-context="foundation-flickity-css">/*! Flickity v2.0.2
+http://flickity.metafizzy.co
+---------------------------------------------- */.flickity-enabled{position:relative}.flickity-enabled:focus{outline:0}.flickity-viewport{overflow:hidden;position:relative;height:100%}.flickity-slider{position:absolute;width:100%;height:100%}.flickity-enabled.is-draggable{-webkit-tap-highlight-color:transparent;tap-highlight-color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.flickity-enabled.is-draggable .flickity-viewport{cursor:move;cursor:-webkit-grab;cursor:grab}.flickity-enabled.is-draggable .flickity-viewport.is-pointer-down{cursor:-webkit-grabbing;cursor:grabbing}.flickity-prev-next-button{position:absolute;top:50%;width:44px;height:44px;border:none;border-radius:50%;background:#fff;background:hsla(0,0%,100%,.75);cursor:pointer;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.flickity-prev-next-button:hover{background:#fff}.flickity-prev-next-button:focus{outline:0;box-shadow:0 0 0 5px #09F}.flickity-prev-next-button:active{opacity:.6}.flickity-prev-next-button.previous{left:10px}.flickity-prev-next-button.next{right:10px}.flickity-rtl .flickity-prev-next-button.previous{left:auto;right:10px}.flickity-rtl .flickity-prev-next-button.next{right:auto;left:10px}.flickity-prev-next-button:disabled{opacity:.3;cursor:auto}.flickity-prev-next-button svg{position:absolute;left:20%;top:20%;width:60%;height:60%}.flickity-prev-next-button .arrow{fill:#333}.flickity-page-dots{position:absolute;width:100%;bottom:-25px;padding:0;margin:0;list-style:none;text-align:center;line-height:1}.flickity-rtl .flickity-page-dots{direction:rtl}.flickity-page-dots .dot{display:inline-block;width:10px;height:10px;margin:0 8px;background:#333;border-radius:50%;opacity:.25;cursor:pointer}.flickity-page-dots .dot.is-selected{opacity:1}</style><style data-context="foundation-slideout-css">.slideout-menu{position:fixed;left:0;top:0;bottom:0;right:auto;z-index:0;width:256px;overflow-y:auto;-webkit-overflow-scrolling:touch;display:none}.slideout-menu.pushit-right{left:auto;right:0}.slideout-panel{position:relative;z-index:1;will-change:transform}.slideout-open,.slideout-open .slideout-panel,.slideout-open body{overflow:hidden}.slideout-open .slideout-menu{display:block}.pushit{display:none}</style>		<link href="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/4-blue.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+.banner img{
+	margin: 0 0 5px 0;
+}
+</style>
+
+<style>.ios7.web-app-mode.has-fixed header{ background-color: rgba(3,122,221,.88);}</style><script type="text/javascript" src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/comments-ajax.js.下载"></script>
+<script type="text/javascript" src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/reply.js.下载"></script>
+<script type="text/javascript" src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/custom.js.下载"></script>
+<script type="text/javascript" src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/superfish.js.下载"></script>
+<script type="text/javascript" src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/mousewheel.js.下载"></script>
+<script type="text/javascript" src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/fancybox.js.下载"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$("a[rel=example_group]").fancybox({
+			'transitionIn'		: 'none',
+			'transitionOut'		: 'none',
+			'titlePosition' 	: 'over',
+			'titleFormat'		: function(title, currentArray, currentIndex, currentOpts) {
+				return '<span id="fancybox-title-over">共 ' + currentArray.length + ' 张图片，当前第 ' + (currentIndex + 1) +' 张 '+ (title.length ? ' &nbsp; ' + title : '') + '</span>';
+			}
+		});
+
+		$("#various").fancybox({
+			'padding'			: 0,
+			'autoScale'			: false,
+			'transitionIn'		: 'none',
+			'transitionOut'		: 'none'
+		});
+		$("#download").fancybox({
+			'transitionIn'		: 'none',
+			'transitionOut'		: 'none'
+		});
+	});
+</script>
+<script type="text/javascript">
+$(function () {
+$('.thumbnail img,.thumbnail_t img,.box_comment img,#slideshow img,.cat_ico,.cat_name,.r_comments img,.v_content_list img').hover(
+function() {$(this).fadeTo("fast", 0.5);},
+function() {$(this).fadeTo("fast", 1);
+});
+});
+</script>
+<!-- PNG -->
+<!--[if lt IE 7]>
+<script type="text/javascript" src="http://www.xuebuyuan.com/wp-content/themes/HotNewspro/js/pngfix.js"></script>
+<script type="text/javascript">
+DD_belatedPNG.fix('.boxCaption,.top_box,.logo,.reply,.imgcat,.banner img,#fancybox-left-ico,#fancybox-right-ico,#fancybox-close');
+</script>
+<![endif]-->
+<!-- 图片延迟加载 -->
+<script type="text/javascript" src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/lazyload.js.下载"></script>
+<script type="text/javascript">
+	$(function() {          
+    	$(".entry_box img,.entry_box_h img,#entry img,.entry_b img").lazyload({
+            effect:"fadeIn",
+			failurelimit : 30
+          });
+    	});
+</script>
+<!-- IE6菜单 -->
+<script type="text/javascript"><!--//--><![CDATA[//><!--
+sfHover = function() {
+	if (!document.getElementsByTagName) return false;
+	var sfEls = document.getElementById("menu").getElementsByTagName("li");
+
+	for (var i=0; i<sfEls.length; i++) {
+		sfEls[i].onmouseover=function() {
+			this.className+=" sfhover";
+		}
+		sfEls[i].onmouseout=function() {
+			this.className=this.className.replace(new RegExp(" sfhover\\b"), "");
+		}
+	}	
+	var sfEls = document.getElementById("topnav").getElementsByTagName("li");
+	for (var i=0; i<sfEls.length; i++) {
+		sfEls[i].onmouseover=function() {
+			this.className+=" sfhover";
+		}
+	}
+}
+if (window.attachEvent) window.attachEvent("onload", sfHover);
+//--><!]]></script>
+<!-- 预加载 -->
+</head>
+<body class="single single-post postid-2013505 single-format-standard zh">
+<div id="wrapper">
+	<div id="top">
+		<div id="topnav">
+			<div class="left_top ">
+				<div class="home_h"><a href="http://www.xuebuyuan.com/" title="首  页" class="home_h"></a></div>
+				<div class="menu-%e5%af%bc%e8%88%aa-container"><ul id="menu-%e5%af%bc%e8%88%aa" class="menu sf-js-enabled sf-shadow"><li id="menu-item-1703978" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1703978"><a href="http://www.xuebuyuan.com/category/web%e5%89%8d%e7%ab%af">web前端</a></li>
+<li id="menu-item-1703980" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1703980"><a href="http://www.xuebuyuan.com/category/%e6%95%b0%e6%8d%ae%e5%ba%93">数据库</a></li>
+<li id="menu-item-1703982" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1703982"><a href="http://www.xuebuyuan.com/category/%e7%bc%96%e7%a8%8b%e8%af%ad%e8%a8%80">编程语言</a></li>
+<li id="menu-item-1703979" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1703979"><a href="http://www.xuebuyuan.com/category/%e6%90%9c%e7%b4%a2%e6%8a%80%e6%9c%af">搜索技术</a></li>
+<li id="menu-item-1810308" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1810308"><a href="http://www.xuebuyuan.com/aboutus">关于本站</a></li>
+</ul></div> 
+			</div>
+			<!-- end: left_top --> 
+			<div id="searchbar">
+								<form action="http://www.xuebuyuan.com/search" id="cse-search-box">
+	<div>
+	<input type="hidden" name="cx" value="007504628711321185124:w-wufhldrhc">
+	<input type="hidden" name="cof" value="FORID:10">
+	<input type="text" onclick="this.value=&#39;&#39;;" name="q" id="q" class="swap_value">
+	<input type="image" src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/go.gif" id="go" alt="Search" title="搜索">
+	</div>
+</form>							</div>
+			<!-- end: searchbar -->
+		</div>
+		<!-- end: topnav -->
+	</div>
+	<!-- end: top -->
+	<div id="header">
+		<div class="header_c">
+			<div class="login_t"><a id="showbtn" onclick="showid(&#39;smallLay&#39;);">登录</a>  <div id="smallLay">
+	<div id="smallLay_box">
+	<!-- if not logged -->
+	<form action="http://www.xuebuyuan.com/wp-login.php?redirect_to=http%3A%2F%2Fwww.xuebuyuan.com%2F2013505.html" method="post" id="loginform">
+		<div class="loginblock">
+			<p class="login"><input type="text" name="log" id="log" size="" tabindex="11"></p>
+			<p class="password"><input type="password" name="pwd" id="pwd" size="" tabindex="12"></p>
+			<p class="lefted"><button value="Submit" id="submit_t" type="submit" tabindex="13">登&nbsp;录</button></p>
+		</div>
+		<input type="hidden" name="redirect_to" value="/2013505.html">
+		<input type="checkbox" name="rememberme" id="modlogn_remember" value="yes" checked="checked" alt="Remember Me">下次自动登录
+	</form>
+	<!-- end if not logged -->
+	</div>
+</div>
+</div>
+			<div class="time">
+<script type="text/javascript">
+today=new Date();
+var day; var date; var hello;
+hour=new Date().getHours()
+if(hour < 6)hello='  凌晨好! '
+else if(hour < 9)hello=' 早上好! '
+else if(hour < 12)hello=' 上午好! '
+else if(hour < 14)hello=' 中午好! '
+else if(hour < 17)hello=' 下午好! '
+else if(hour < 19)hello=' 傍晚好! '
+else if(hour < 22)hello=' 晚上好! '
+else {hello='夜深了! '}
+var webUrl = webUrl;
+document.write(' '+hello);
+</script>  下午好! 
+<span id="localtime">
+<script type="text/javascript">
+today=new Date(); var tdate,tday, x,year; var x = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五","星期六");
+var MSIE=navigator.userAgent.indexOf("MSIE");
+if(MSIE != -1)
+year =(today.getFullYear());
+else
+year = (today.getYear()+1900);
+tdate= year+ "年" + (today.getMonth() + 1 ) + "月" + today.getDate() + "日" + " " + x[today.getDay()];
+document.write(tdate);
+</script>2017年7月20日 星期四
+</span>
+</div>			<a href="http://www.xuebuyuan.com/" title="学步园"><h1 class="logo">学步园</h1></a>		</div>
+		<div class="clear"></div>
+		<!-- end: header_c -->
+
+<script type="text/javascript">
+var cpro_id="u2275153";
+(window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"980",rsi1:"250",pat:"6",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"1",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"",rss2:"#000000",titSU:"0",ptbg:"90",piw:"0",pih:"0",ptp:"0"}
+</script>
+
+	</div>
+	<!-- end: header -->
+			<!-- header_image -->
+		<div class="banner">
+					</div>
+		<!-- end:header_image -->
+		<!-- scroll -->
+	<ul class="scroll">
+	<li class="sct">
+		<a href="http://www.xuebuyuan.com/2013505.html#">&nbsp;&nbsp;&nbsp;</a>
+		<div><a class="scroll_t">返回顶部</a></div>
+	</li>
+		<li class="scc">
+		<a href="http://www.xuebuyuan.com/2013505.html#">&nbsp;&nbsp;&nbsp;</a>
+		<div><a class="scroll_c">查看留言</a></div>
+	</li>
+		<li class="scb">
+		<a href="http://www.xuebuyuan.com/2013505.html#">&nbsp;&nbsp;&nbsp;</a>
+		<div><a class="scroll_b">转到底部</a></div>
+	</li>
+</ul><script type="text/javascript">
+    function doZoom(size) {
+        var zoom = document.all ? document.all['entry'] : document.getElementById('entry');
+        zoom.style.fontSize = size + 'px';
+    }
+</script>
+
+<script type="text/javascript">
+    /*正文顶部大横幅*/
+    var cpro_id = "u2275153";
+</script>
+<script type="text/javascript" src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/c.js.下载"></script><div id="BAIDU_SSP__wrapper_u2275153_0"></div>
+
+
+<div id="content">
+		
+	 <!-- menu -->
+		<div id="map">
+			<div class="browse">现在的位置: <a title="返回首页" href="http://www.xuebuyuan.com/">首页</a> &gt; 综合 &gt; 正文</div>
+			<div id="feed"><a href="http://www.xuebuyuan.com/feed" title="RSS">RSS</a></div>
+		</div>
+		<!-- end: menu -->
+		<div class="entry_box_s">
+			<div class="context">
+				<div class="context_t" style="display: none;">
+					<span class="prev"></span>
+					<span class="next"></span>
+				</div>
+			</div>
+			<div class="entry_title_box">
+				<!-- 分类图标 -->
+				<div class="ico"></div>
+				<!-- end: 分类图标 -->
+				<h2 class="entry_title">关于View的ScrollTo， getScrollX 和 getScrollY</h2>
+				<div class="archive_info">
+					<span class="date">2014年04月05日</span>
+					<span class="category"> ⁄ 综合</span>
+										⁄ 共 3010字					⁄ 字号 <span class="font"><a href="javascript:doZoom(12)">小</a> <a href="javascript:doZoom(13)">中</a> <a href="javascript:doZoom(18)">大</a></span>
+					<span class="comment"> ⁄ <span>评论关闭</span></span>
+										<span class="edit"></span>
+				</div>
+			</div>
+			<!-- end: entry_title_box -->
+			<div class="entry">
+				<div id="entry">
+					<div class="ad_r">
+	<script type="text/javascript">
+    /*正文右侧中大矩形*/
+    var cpro_id = "u1788635";
+</script>
+<script type="text/javascript" src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/c.js.下载"></script><div id="BAIDU_SSP__wrapper_u1788635_0"></div>
+
+</div>					<div id="article_content" class="article_content">
+<p>当利用 Scroller 去滑动屏幕或者扩展 ScrollView 的时候，总是会用到 getScrollX 和 getScrollY 去获取当前View 滑动到的位置，那么getScrollX() 和 getScrollY() 获取的到底是什么呢？&nbsp;</p>
+<p>由于getScrollX 和 getScrollY 本质 上是一样的东西，下面只说明一下getScrollX, 一般是在屏幕上面左右划动的时候会去获取这个值。</p>
+<p>请看下图：</p>
+<p><img src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/20140104184252578" alt="" original="http://img.blog.csdn.net/20140104184252578?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGlubWlhbnNoZW5n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast"></p>
+<p>图上面，褐色的框，其实就是我们眼睛看到的手机界面，就是一个窗口。</p>
+<p>而绿色的长方体呢，就是一块可以左右拉动的幕布啦，其实也就是我们要显示在窗口上面的内容，它其实是可以很大的，大到无限大，只是没在窗口中间的，所以我们就看不到。</p>
+<p>而getScrollX 其实获取的值，就是这块&nbsp;<strong>幕布</strong>在窗口左边界时候的值了，而幕布上面哪个点是原点（0，0）呢？就是初始化时内容显示的位置。</p>
+<p>所以当我们将幕布往右推动的时候，幕布在窗口左边界的值就会在0的左边（-100），而向左推动，则其值会是在0的右边（100）。</p>
+<p></p>
+<p>下面以一个实际例子来看一下。</p>
+<p>随便在CSDN上面截了一下图，</p>
+<p><img src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/20140104194540328" alt="" original="http://img.blog.csdn.net/20140104194540328?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGlubWlhbnNoZW5n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast"></p>
+<p>我们在一个LinearLayout 里面定义了三个TextView 来显示 getScrollX() 的值，三个ImageView来显示图片, 都是指向同一张图片，布局如下：</p>
+<p></p>
+<pre code_snippet_id="142344" snippet_file_name="blog_20140104_1_1279152" name="code" class="html">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical" &gt;
+	&lt;TextView
+        android:id="@+id/textView"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_height="wrap_content" 
+        android:layout_width="match_parent"/&gt;
+    &lt;ImageView 
+        android:id="@+id/scrollImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/scroll_testing"
+        android:contentDescription="Testing Scrolling"/&gt;
+    &lt;TextView
+        android:id="@+id/textViewToRight"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_height="wrap_content" 
+        android:layout_width="match_parent"/&gt;
+    &lt;ImageView 
+        android:id="@+id/scrollImageViewToRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/scroll_testing"
+        android:contentDescription="Testing Scrolling"/&gt;
+    &lt;TextView
+        android:id="@+id/textViewToLeft"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_height="wrap_content" 
+        android:layout_width="match_parent"/&gt;
+    &lt;ImageView 
+        android:id="@+id/scrollImageViewToLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/scroll_testing"
+        android:contentDescription="Testing Scrolling"/&gt;
+
+&lt;/LinearLayout&gt;
+</pre>
+<p>
+然后我们在Activity 中，分别对下面两张ImageView 进行 scrollTo 操作，然后获取其getScrollX() &nbsp;的值，放到对应的TextView 上面，其<span class="wp_keywordlink"><a href="http://www.xuebuyuan.com/" title="代码" target="_blank">代码</a></span>如下：</p>
+<pre code_snippet_id="142344" snippet_file_name="blog_20140104_2_6579069" name="code" class="java">public class ScrollActivity extends Activity{
+
+	protected void onCreate(Bundle savedInstanceState){
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.scroll_layout);
+		
+		ImageView imageView = (ImageView) findViewById(R.id.scrollImageView);
+		TextView textView = (TextView) findViewById(R.id.textView);
+		textView.setText("getScrollX() = " + imageView.getScrollX());
+		
+		ImageView imageViewToRight = (ImageView) findViewById(R.id.scrollImageViewToRight);
+		imageViewToRight.scrollTo(-100, 0);
+		TextView textViewToRight = (TextView) findViewById(R.id.textViewToRight);
+		textViewToRight.setText("getScrollX() = " + imageViewToRight.getScrollX());
+		
+		ImageView imageViewToLeft = (ImageView) findViewById(R.id.scrollImageViewToLeft);
+		imageViewToLeft.scrollTo(100, 0);
+		TextView textViewToLeft = (TextView) findViewById(R.id.textViewToLeft);
+		textViewToLeft.setText("getScrollX() = " + imageViewToLeft.getScrollX());
+	}
+}</pre>
+<p>
+</p><p>下面是运行后的效果</p>
+<p><img alt="" original="http://img.blog.csdn.net/20140104195626218?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGlubWlhbnNoZW5n/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/20140104195626218" style="display: inline;"></p>
+<p>可以看到，正如上面所说的，向右滚动的时候，等于是把背后的幕布向右推动，使得没有内容的幕布（X &lt; 0）显示出来, 而向左滚动，则是把幕左向左推动，让右边的内容（X &gt; 0）移到窗口的左边缘上。</p>
+<p></p>
+<p>在View上面还一个叫ScrollBy的函数，跟ScrollTo的区别在于，ScrollTo 是 到那个位置，ScrollBy 是经过这段位置，这个从英文的To 跟 By 来理解就很简单了。</p>
+</div>
+
+<div style="font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both"></div>														</div>
+							</div>
+			<div class="back_b">
+				<a href="javascript:void(0);" onclick="history.back();">返回</a>
+			</div>
+			<div class="clear"></div>
+			<!-- end: entry -->
+			<i class="lt"></i>
+			<i class="rt"></i>
+		</div>
+		<div class="entry_sb">
+			<i class="lb"></i>
+			<i class="rb"></i>
+		</div>
+                <div class="ad_h">
+		<div class="ad_h_c">
+<table>
+<tbody><tr>
+<td>
+<script type="text/javascript">
+    /*500宽矩形*/
+    var cpro_id = "u1507413";
+</script>
+<script src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/c.js.下载" type="text/javascript"></script><div id="BAIDU_SSP__wrapper_u1507413_0"></div>
+
+</td>
+<td>
+
+<script type="text/javascript">
+    /*右侧小矩形*/
+    var cpro_id = "u1507403";
+</script>
+<script src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/c.js.下载" type="text/javascript"></script><div id="BAIDU_SSP__wrapper_u1507403_0"></div>
+
+
+</td>
+</tr>
+</tbody></table>
+			<div class="clear"></div>
+		</div>
+	<i class="lt"></i>
+	<i class="rt"></i>
+</div>
+<div class="entry_box_b">
+	<i class="lb"></i>
+	<i class="rb"></i>
+</div>
+		<!-- ad -->
+						
+                <!-- tuijian -->
+                <div class="ad_h">
+		<div class="ad_h_c">
+                        <h4>&nbsp;&nbsp;&nbsp;&nbsp;推荐文章:</h4> <table width="90%" style="margin:auto;">
+<tbody><tr>
+<td width="50%">
+<li><a href="http://www.xuebuyuan.com/825319.html">IE首页被强置为piaoxue.com的三个另类临时解决办法</a></li>
+<li><a href="http://www.xuebuyuan.com/825321.html">用MASM32写的定时关机、重启、注销、待机、休眠程序ClosePC 0.0.0.1 beta4</a></li>
+<li><a href="http://www.xuebuyuan.com/825323.html">用MASM32写的DLL等内存模块卸载程序FreeDLL 0.0.0001 beta2</a></li>
+<li><a href="http://www.xuebuyuan.com/825325.html">免费软件 Cmd GUI Shell(图形界面的命令提示符壳)-beta3</a></li>
+<li><a href="http://www.xuebuyuan.com/825327.html">Hacking你的商业合伙人（已译完）</a></li>
+<li><a href="http://www.xuebuyuan.com/825329.html">【原创】报告CPU当前工作模式的汇编源代码</a></li>
+<li><a href="http://www.xuebuyuan.com/825331.html">在Windows 2000 Pro中监控和管理TCP/IP</a></li>
+<li><a href="http://www.xuebuyuan.com/825333.html">悲怆:IT人的一声叹息-&gt;一个程序员的自白[转帖]</a></li>
+</td>
+<td>
+<li><a href="http://www.xuebuyuan.com/825320.html">US-CERT：一个宝贵的安全工具免费来源(译完)</a></li>
+<li><a href="http://www.xuebuyuan.com/825322.html">用CSS+JavaScript打造网页中的选项卡</a></li>
+<li><a href="http://www.xuebuyuan.com/825324.html">某县农业信息网挂马RootKit.Win32.Mnless,Trojan.Win32.Edog等</a></li>
+<li><a href="http://www.xuebuyuan.com/825326.html">遭遇auto.exe,Hack.ArpCheater.a(ARP欺骗工具),Trojan.PSW.ZhengTu等1</a></li>
+<li><a href="http://www.xuebuyuan.com/825328.html">【原创翻译】是间谍程序阻塞了你的防火墙吗？</a></li>
+<li><a href="http://www.xuebuyuan.com/825330.html">[收藏]用JavaScript让弹出页面以最小化的形式出现在状态栏中</a></li>
+<li><a href="http://www.xuebuyuan.com/825332.html">体会Linux与生俱来的美　中级篇　</a></li>
+<li><a href="http://www.xuebuyuan.com/825334.html">观清华大学队用弹簧秤称大象表现不佳有感</a></li>
+</td>
+</tr>
+</tbody></table>
+			<div class="clear"></div>
+		</div>
+	<i class="lt"></i>
+	<i class="rt"></i>
+</div>
+<div class="entry_box_b">
+	<i class="lb"></i>
+	<i class="rb"></i>
+</div>
+
+<!--
+                <div class="ad_h">
+		<div class="ad_h_c">
+                        <h4>&nbsp;&nbsp;&nbsp;&nbsp;友情推荐:</h4> <table width="95%" style="margin:auto;">
+<tr>
+<td>
+&nbsp;&nbsp;<a style="color: #0196e3;" href = "http://www.carcube.com.cn/chanpin/scjRx7XPRzXOstLttcY=.html">比亚迪G5尾翼灯</a>
+&nbsp;&nbsp;<a style="color: #0196e3;" href = "http://www.carcube.com.cn/chanpin/scjRx7XPRzbOstLttcY=.html">比亚迪G6尾翼灯</a>
+&nbsp;&nbsp;<a style="color: #0196e3;" href = "http://www.carcube.com.cn/chanpin/s6Szx86y0u21xg==.html">长城尾翼灯</a>
+&nbsp;&nbsp;<a style="color: #0196e3;" href = "http://www.carcube.com.cn/chanpin/xubI8M6y0u21xg==.html">奇瑞尾翼灯</a>
+&nbsp;&nbsp;<a style="color: #0196e3;" href = "http://www.carcube.com.cn/chanpin/t-a3ts6y0u21xg==.html">锋范尾翼灯</a>
+&nbsp;&nbsp;<a style="color: #0196e3;" href = "http://www.carcube.com.cn/chanpin/VjPB4tTDzrLS7bXG.html">V3菱悦尾翼灯</a>
+
+</td>
+</tr>
+</table>
+			<div class="clear"></div>
+		</div>
+	<i class="lt"></i>
+	<i class="rt"></i>
+</div>
+<div class="entry_box_b">
+	<i class="lb"></i>
+	<i class="rb"></i>
+</div>
+
+-->
+		<div class="context_b">
+			【上篇】<a href="http://www.xuebuyuan.com/2013504.html" rel="prev">Android学习小demo（2）自定义ViewGroup</a><br>【下篇】<a href="http://www.xuebuyuan.com/2013506.html" rel="next">Android学习小Demo（10）ToDoList的改进版之ViewPager显示多个图片</a>			<i class="lt"></i>
+			<i class="rt"></i>
+			<i class="lb"></i>
+			<i class="rb"></i>
+		</div>
+		<!-- relatedposts -->
+								<!-- end: relatedposts -->
+		<!-- entrymeta -->
+
+		<div class="entrymeta">
+			<div class="authorbio">
+				<div class="author_pic">
+<!--
+					<img alt='' src='http://0.gravatar.com/avatar/6aa5ff0b91034ca528978f1c6775e5c0?s=48&amp;d=wavatar&amp;r=G' class='avatar avatar-48 photo' height='48' width='48' />-->
+				</div>
+				<div class="clear"></div>
+				<div class="author_text">
+					<h4>作者: <span><a href="http://www.xuebuyuan.com/author/sandysogema" title="由sandysogema发布" rel="author">sandysogema</a></span></h4>
+				</div>
+			</div>
+			<span class="spostinfo">
+				<ul>
+					<li>该日志由 sandysogema 于3年前发表在综合分类下，最后更新于 2014年04月05日.</li>
+					<li>转载请注明: <a href="http://www.xuebuyuan.com/2013505.html" rel="bookmark" title="本文固定链接 http://www.xuebuyuan.com/2013505.html">关于View的ScrollTo， getScrollX 和 getScrollY | 学步园</a><a href="http://www.xuebuyuan.com/2013505.html#" onclick="copy_code(&#39;http://www.xuebuyuan.com/2013505.html&#39;); return false;"> +复制链接</a></li>
+					<li class="content_tag"></li>
+				</ul>
+			</span>
+			<i class="lt"></i>
+			<i class="rt"></i>
+			<div class="clear"></div>
+		</div>
+		<div class="entry_sb">
+			<i class="lb"></i>
+			<i class="rb"></i>
+		</div>
+		<!-- end: entrymeta -->
+	<div class="ct"></div>
+	<!-- You can start editing here. -->
+			<!-- If comments are closed. -->
+		<p class="nocomments">抱歉!评论已关闭.</p>
+							</div>
+<!-- end: content -->
+<div id="sidebar">
+	
+						
+		<div class="widget">
+					</div>
+		<div class="widget">
+		<h3>本站推荐</h3>
+<div class="box">
+	<div class="scat_img"></div>
+	<div id="scat">
+				<ul>
+			<li><a href="http://www.xuebuyuan.com/2201282.html" rel="bookmark" title="详细阅读作业的提交和监控（二）">作业的提交和监控（二）</a></li>
+		</ul>
+				<ul>
+			<li><a href="http://www.xuebuyuan.com/2201280.html" rel="bookmark" title="详细阅读作业的提交和监控（一）">作业的提交和监控（一）</a></li>
+		</ul>
+				<ul>
+			<li><a href="http://www.xuebuyuan.com/2198208.html" rel="bookmark" title="详细阅读Electric-fence 介绍">Electric-fence 介绍</a></li>
+		</ul>
+				<ul>
+			<li><a href="http://www.xuebuyuan.com/2198206.html" rel="bookmark" title="详细阅读原子操作浅谈">原子操作浅谈</a></li>
+		</ul>
+				<ul>
+			<li><a href="http://www.xuebuyuan.com/2198205.html" rel="bookmark" title="详细阅读C++模板显式实例化">C++模板显式实例化</a></li>
+		</ul>
+				<ul>
+			<li><a href="http://www.xuebuyuan.com/2198204.html" rel="bookmark" title="详细阅读Hadoop Local 模式运行 Pipes 程序">Hadoop Local 模式运行 Pipes 程</a></li>
+		</ul>
+				<ul>
+			<li><a href="http://www.xuebuyuan.com/2198202.html" rel="bookmark" title="详细阅读Hadoop I/O 上 SequenceFile 类在 Pipes 上的应用">Hadoop I/O 上 SequenceFile 类</a></li>
+		</ul>
+				<ul>
+			<li><a href="http://www.xuebuyuan.com/2198273.html" rel="bookmark" title="详细阅读Boost – Function 分析">Boost – Function 分析</a></li>
+		</ul>
+			
+				<ul>
+			<li><a href="http://www.xuebuyuan.com/2201282.html" rel="bookmark" title="详细阅读作业的提交和监控（二）">作业的提交和监控（二）</a></li>
+		</ul>
+				<ul>
+			<li><a href="http://www.xuebuyuan.com/2201280.html" rel="bookmark" title="详细阅读作业的提交和监控（一）">作业的提交和监控（一）</a></li>
+		</ul>
+				<ul>
+			<li><a href="http://www.xuebuyuan.com/2198208.html" rel="bookmark" title="详细阅读Electric-fence 介绍">Electric-fence 介绍</a></li>
+		</ul>
+				<ul>
+			<li><a href="http://www.xuebuyuan.com/2198206.html" rel="bookmark" title="详细阅读原子操作浅谈">原子操作浅谈</a></li>
+		</ul>
+				<ul>
+			<li><a href="http://www.xuebuyuan.com/2198205.html" rel="bookmark" title="详细阅读C++模板显式实例化">C++模板显式实例化</a></li>
+		</ul>
+				<ul>
+			<li><a href="http://www.xuebuyuan.com/2198204.html" rel="bookmark" title="详细阅读Hadoop Local 模式运行 Pipes 程序">Hadoop Local 模式运行 Pipes 程</a></li>
+		</ul>
+				<ul>
+			<li><a href="http://www.xuebuyuan.com/2198202.html" rel="bookmark" title="详细阅读Hadoop I/O 上 SequenceFile 类在 Pipes 上的应用">Hadoop I/O 上 SequenceFile 类</a></li>
+		</ul>
+				<ul>
+			<li><a href="http://www.xuebuyuan.com/2198273.html" rel="bookmark" title="详细阅读Boost – Function 分析">Boost – Function 分析</a></li>
+		</ul>
+			</div>
+	<div class="clear"></div>
+</div>
+<div class="box-bottom">
+	<i class="lb"></i>
+	<i class="rb"></i>
+</div>
+<script type="text/javascript">
+var c,_=Function;
+with(o=document.getElementById("scat")){ innerHTML+=innerHTML; onmouseover=_("c=1"); onmouseout=_("c=0");}
+(F=_("if(#%26||!c)#++,#%=o.scrollHeight>>1;setTimeout(F,#%26?10:3500);".replace(/#/g,"o.scrollTop")))();
+</script><div class="random_r">
+	<h3>随便看看</h3>
+	<div class="box_r">
+		<ul><ul class="random-post-link">
+<li class="random-post-link">
+<a href="http://www.xuebuyuan.com/zt/38383577.html" title="visual studio 精简版">visual studio 精简版</a>
+</li>
+<li class="random-post-link">
+<a href="http://www.xuebuyuan.com/zt/38384004.html" title="vector 函数">vector 函数</a>
+</li>
+<li class="random-post-link">
+<a href="http://www.xuebuyuan.com/zt/38385237.html" title="ubuntu python">ubuntu python</a>
+</li>
+<li class="random-post-link">
+<a href="http://www.xuebuyuan.com/zt/38387162.html" title="sql代码">sql代码</a>
+</li>
+<li class="random-post-link">
+<a href="http://www.xuebuyuan.com/zt/38387425.html" title="sendmail邮件服务器">sendmail邮件服务器</a>
+</li>
+<li class="random-post-link">
+<a href="http://www.xuebuyuan.com/zt/38389136.html" title="rapidxml">rapidxml</a>
+</li>
+<li class="random-post-link">
+<a href="http://www.xuebuyuan.com/zt/38390206.html" title="php数组转字符串">php数组转字符串</a>
+</li>
+<li class="random-post-link">
+<a href="http://www.xuebuyuan.com/zt/38391881.html" title="很牛的头像">很牛的头像</a>
+</li>
+<li class="random-post-link">
+<a href="http://www.xuebuyuan.com/zt/38392541.html" title="oracle 部署">oracle 部署</a>
+</li>
+<li class="random-post-link">
+<a href="http://www.xuebuyuan.com/zt/38393189.html" title="自动寻路算法">自动寻路算法</a>
+</li>
+<ul>
+</ul>
+		<div class="clear"></div>
+	</ul></ul></div>
+	<div class="box-bottom">
+		<i class="lb"></i>
+		<i class="rb"></i>
+	</div>
+</div>	</div>
+
+	
+	
+			
+	<div class="widget">
+			</div>
+
+		<div class="widget">
+					</div>
+	
+				<div class="clear"></div>
+
+							</div><div class="clear"></div>
+<div class="footer_top">
+	<div id="menu">
+		<div class="menu-%e5%af%bc%e8%88%aa-container"><ul id="menu-%e5%af%bc%e8%88%aa-1" class="menu"><li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1703978"><a href="http://www.xuebuyuan.com/category/web%e5%89%8d%e7%ab%af">web前端</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1703980"><a href="http://www.xuebuyuan.com/category/%e6%95%b0%e6%8d%ae%e5%ba%93">数据库</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1703982"><a href="http://www.xuebuyuan.com/category/%e7%bc%96%e7%a8%8b%e8%af%ad%e8%a8%80">编程语言</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1703979"><a href="http://www.xuebuyuan.com/category/%e6%90%9c%e7%b4%a2%e6%8a%80%e6%9c%af">搜索技术</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1810308"><a href="http://www.xuebuyuan.com/aboutus">关于本站</a></li>
+</ul></div>	</div>
+	<h2 class="blogtitle">
+	<a href="http://www.xuebuyuan.com/" title="学步园">返回首页</a></h2>
+		<big class="lt"></big>
+	<big class="rt"></big>
+</div>
+<!-- 页脚 -->
+<div class="footer_bottom_a">
+	Copyright © 2013-2014 学步园&nbsp;&nbsp;保留所有权利.
+		<big class="lb"></big>
+	<big class="rb"></big>
+</div>
+<!-- 首页页脚 -->
+ <div class="clear"></div>
+</div>
+
+
+<!-- Powered by WPtouch: 4.3.18 -->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fc0f0742eeb83d6ab6614a81723b00197' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/h.js.下载" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=c0f0742eeb83d6ab6614a81723b00197" target="_blank"><img border="0" src="./关于View的ScrollTo， getScrollX 和 getScrollY _ 学步园_files/21.gif" width="20" height="20"></a>
+<div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div id="fancybox-content"></div><a id="fancybox-close"></a><div id="fancybox-title"></div><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div></body></html>

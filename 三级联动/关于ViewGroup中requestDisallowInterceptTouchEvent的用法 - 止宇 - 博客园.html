@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)http://www.cnblogs.com/txlbupt/p/4371290.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>关于ViewGroup中requestDisallowInterceptTouchEvent的用法 - 止宇 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./关于ViewGroup中requestDisallowInterceptTouchEvent的用法 - 止宇 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./关于ViewGroup中requestDisallowInterceptTouchEvent的用法 - 止宇 - 博客园_files/bundle-AnotherEon001.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./关于ViewGroup中requestDisallowInterceptTouchEvent的用法 - 止宇 - 博客园_files/bundle-AnotherEon001-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/txlbupt/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/txlbupt/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/txlbupt/wlwmanifest.xml">
+<script async="" src="./关于ViewGroup中requestDisallowInterceptTouchEvent的用法 - 止宇 - 博客园_files/analytics.js.下载"></script><script src="./关于ViewGroup中requestDisallowInterceptTouchEvent的用法 - 止宇 - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'txlbupt', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./关于ViewGroup中requestDisallowInterceptTouchEvent的用法 - 止宇 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<div id="wrapper">
+<div id="header">
+
+<div id="top">
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/txlbupt/">tutu_smile</a></h1>
+<div id="subtitle"></div>
+</div>
+<div id="sub"><div id="blog_stats">
+<div class="BlogStats">随笔 - 14, 文章 - 0, 评论 - 0, 引用 - 0</div>
+</div></div>
+
+
+
+</div>
+<div id="main_container">
+<div id="main_content">
+<div id="content">
+	
+<div id="post_detail">
+	<div class="post">
+		<h2>
+			<a id="cb_post_title_url" href="http://www.cnblogs.com/txlbupt/p/4371290.html">关于ViewGroup中requestDisallowInterceptTouchEvent的用法</a>
+		</h2>
+		<div class="postbody">
+		<div id="cnblogs_post_body"><p>在开发过程中可能会遇到诸如此类问题：</p>
+<p>1、在上下滑动的ScrollView中嵌套一个横滑列表，拖动横滑列表时可能引起ScrollView的上下滑动导致体验极差</p>
+<p>2、在ViewPager中嵌套了一个横滑列表，在拖动横滑列表时同样可能导致ViewPager的tab切换。</p>
+<p>&nbsp;</p>
+<p>requestDisallowInterceptTouchEvent 是ViewGroup类中的一个公用方法，参数是一个boolean值，官方介绍如下</p>
+<p>Called when a child does not want this parent and its ancestors to intercept touch events with <code><a href="eclipse-javadoc:%E2%98%82=Huatian-3.2.4-branch/D:%5C/adt-bundle-windows-x86_64-20140321%5C/android-sdk%5C/platforms%5C/android-17%5C/android.jar%3Candroid.view(ViewParent.class%E2%98%83ViewParent~requestDisallowInterceptTouchEvent~Z%E2%98%82ViewGroup%E2%98%82onInterceptTouchEvent%E2%98%82MotionEvent">ViewGroup.onInterceptTouchEvent(MotionEvent)</a></code>.</p>
+<p>This parent should pass this call onto its parents. This parent must obey this request for the duration of the touch (that is, only clear the flag after this parent has received an up or a cancel.</p>
+<p>android系统中，一次点击事件是从父view传递到子view中，每一层的view可以决定是否拦截并处理点击事件或者传递到下一层，如果子view不处理点击事件，则该事件会传递会父view，由父view去决定是否处理该点击事件。在子view可以通过设置此方法去告诉父view不要拦截并处理点击事件，父view应该接受这个请求直到此次点击事件结束。</p>
+<p>实际的应用中，可以在子view的ontouch事件中注入父ViewGroup的实例，并调用requestDisallowInterceptTouchEvent去阻止父view拦截点击事件</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_290995" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://www.cnblogs.com/txlbupt/p/4371290.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">public</code> <code class="java keyword">boolean</code> <code class="java plain">onTouch(View v, MotionEvent event) {</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">ViewGroup viewGroup = (ViewGroup) v.getParent();</code></div><div class="line number3 index2 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">switch</code> <code class="java plain">(event.getAction()) {</code></div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">case</code> <code class="java plain">MotionEvent.ACTION_MOVE: </code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">viewGroup.requestDisallowInterceptTouchEvent(</code><code class="java keyword">true</code><code class="java plain">);</code></div><div class="line number6 index5 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">break</code><code class="java plain">;</code></div><div class="line number7 index6 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">case</code> <code class="java plain">MotionEvent.ACTION_UP:</code></div><div class="line number8 index7 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">case</code> <code class="java plain">MotionEvent.ACTION_CANCEL:</code></div><div class="line number9 index8 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">viewGroup .requestDisallowInterceptTouchEvent(</code><code class="java keyword">false</code><code class="java plain">);</code></div><div class="line number10 index9 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">break</code><code class="java plain">;</code></div><div class="line number11 index10 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number12 index11 alt1"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>　　</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/txlbupt/category/462579.html" target="_blank">Android开发</a>,<a href="http://www.cnblogs.com/txlbupt/category/462582.html" target="_blank">项目总结</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(4371290,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;3cd3263f-bc92-e211-9010-c3d7423e3b07&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./关于ViewGroup中requestDisallowInterceptTouchEvent的用法 - 止宇 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./关于ViewGroup中requestDisallowInterceptTouchEvent的用法 - 止宇 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/txlbupt/" target="_blank"><img src="./关于ViewGroup中requestDisallowInterceptTouchEvent的用法 - 止宇 - 博客园_files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/txlbupt/">止宇</a><br>
+            <a href="http://home.cnblogs.com/u/txlbupt/followees">关注 - 2</a><br>
+            <a href="http://home.cnblogs.com/u/txlbupt/followers">粉丝 - 0</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;3cd3263f-bc92-e211-9010-c3d7423e3b07&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(4371290,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(4371290,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/txlbupt/p/4260623.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/txlbupt/p/4260623.html" title="发布于2015-01-29 18:37">仿微信照片多选的几点总结</a><br><a href="http://www.cnblogs.com/txlbupt/p/4371397.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/txlbupt/p/4371397.html" title="发布于2015-03-27 11:57">监听ScrollView的滑动距离和滑动状态</a><br></div>
+</div>
+
+
+		</div>
+		<p class="postfoot">
+			posted on <span id="post-date">2015-03-27 11:26</span> <a href="http://www.cnblogs.com/txlbupt/">止宇</a> 阅读(<span id="post_view_count">2636</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=4371290" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/txlbupt/p/4371290.html#" onclick="AddToWz(4371290);return false;">收藏</a>
+		</p>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=145327,cb_entryId=4371290,cb_blogApp=currentBlogApp,cb_blogUserGuid='3cd3263f-bc92-e211-9010-c3d7423e3b07',cb_entryCreatedDate='2015/3/27 11:26:00';loadViewCount(cb_entryId);</script>
+	
+	</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/txlbupt/p/4371290.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/txlbupt/p/4371290.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/574254/" target="_blank">现代机器人之父：人工智能领域马斯克是外行</a><br> ·  <a href="http://news.cnblogs.com/n/574253/" target="_blank">微软向合作伙伴发推广指南：如何更好推销Windows 10 S/Pro</a><br> ·  <a href="http://news.cnblogs.com/n/574252/" target="_blank">首例淘宝诉店家售假案在沪落槌 一审获赔12万元</a><br> ·  <a href="http://news.cnblogs.com/n/574251/" target="_blank">高通在德国起诉苹果侵犯专利 要求全面禁售iPhone</a><br> ·  <a href="http://news.cnblogs.com/n/574250/" target="_blank">开通“音乐号”的QQ音乐，想让你在播放器里了解所有音乐信息</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/570194/" target="_blank">小printf的故事：什么是真正的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/569992/" target="_blank">程序员的工作、学习与绩效</a><br> ·  <a href="http://kb.cnblogs.com/page/569056/" target="_blank">软件开发为什么很难</a><br> ·  <a href="http://kb.cnblogs.com/page/565901/" target="_blank">唱吧DevOps的落地，微服务CI/CD的范本技术解读</a><br> ·  <a href="http://kb.cnblogs.com/page/566523/" target="_blank">程序员，如何从平庸走向理想？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+</div>
+</div>
+<div id="leftmenu">
+
+
+<h3>导航</h3>
+<ul>
+<li>
+<a id="blog_nav_sitehome" href="http://www.cnblogs.com/">博客园</a></li>
+<li>
+<a id="blog_nav_myhome" class="two_words" href="http://www.cnblogs.com/txlbupt/">首页</a></li>
+<li>
+<a id="blog_nav_newpost" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li>
+<a id="blog_nav_contact" accesskey="9" class="two_words" rel="nofollow" href="https://msg.cnblogs.com/send/%E6%AD%A2%E5%AE%87">联系</a></li>
+<li>
+<a id="blog_nav_rss" class="two_words" href="http://www.cnblogs.com/txlbupt/rss">订阅</a>
+<a id="blog_nav_rss_image" href="http://www.cnblogs.com/txlbupt/rss"><img src="./关于ViewGroup中requestDisallowInterceptTouchEvent的用法 - 止宇 - 博客园_files/xml.gif" alt="订阅"></a>
+</li>
+<li>
+<a id="blog_nav_admin" class="two_words" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+
+<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/06/01&#39;);return false;">&lt;</a></td><td align="center">2017年7月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/08/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalWeekendDay" align="center">1</td></tr><tr><td class="CalWeekendDay" align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td class="CalWeekendDay" align="center">8</td></tr><tr><td class="CalWeekendDay" align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td class="CalWeekendDay" align="center">15</td></tr><tr><td class="CalWeekendDay" align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td class="CalTodayDay" align="center">20</td><td align="center">21</td><td class="CalWeekendDay" align="center">22</td></tr><tr><td class="CalWeekendDay" align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalWeekendDay" align="center">29</td></tr><tr><td class="CalWeekendDay" align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+<meta name="vs_showGrid" content="False">
+
+<h3>公告</h3>
+<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/txlbupt/">止宇</a><br>园龄：<a href="http://home.cnblogs.com/u/txlbupt/" title="入园时间：2013-03-22">4年3个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/txlbupt/followers/">0</a><br>关注：<a href="http://home.cnblogs.com/u/txlbupt/followees/">2</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;3cd3263f-bc92-e211-9010-c3d7423e3b07&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+
+<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/txlbupt/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/txlbupt/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/txlbupt/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/txlbupt/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/txlbupt/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+		<h3>随笔分类</h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/txlbupt/category/462579.html">Android开发(6)</a></li>
+			
+				<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/txlbupt/category/462581.html">C++</a></li>
+			
+				<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/txlbupt/category/462578.html">算法/POJ/UVA(5)</a></li>
+			
+				<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/txlbupt/category/462582.html">项目总结(3)</a></li>
+			
+				<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/txlbupt/category/462577.html">心情随笔</a></li>
+			
+				<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/txlbupt/category/462580.html">行业关注</a></li>
+			
+				</ul>
+			
+	
+		<h3>随笔档案</h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/txlbupt/archive/2015/03.html">2015年3月 (2)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/txlbupt/archive/2015/01.html">2015年1月 (1)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/txlbupt/archive/2014/12.html">2014年12月 (1)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/txlbupt/archive/2014/04.html">2014年4月 (1)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/txlbupt/archive/2013/12.html">2013年12月 (3)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/txlbupt/archive/2013/07.html">2013年7月 (3)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/txlbupt/archive/2013/06.html">2013年6月 (1)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/txlbupt/archive/2013/03.html">2013年3月 (2)</a></li>
+			
+				</ul>
+			
+	</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap" style="display: none;">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"></div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/txlbupt/p/3640826.html">1. Android中实现不同文字颜色和图文混排的Span总结(2905)</a></li><li><a href="http://www.cnblogs.com/txlbupt/p/4371290.html">2. 关于ViewGroup中requestDisallowInterceptTouchEvent的用法(2637)</a></li><li><a href="http://www.cnblogs.com/txlbupt/p/4371397.html">3. 监听ScrollView的滑动距离和滑动状态(1271)</a></li><li><a href="http://www.cnblogs.com/txlbupt/p/3465444.html">4. svn检出时出现Previous operation has not finished; run 'cleanup' if it was interrupted(569)</a></li><li><a href="http://www.cnblogs.com/txlbupt/p/4169076.html">5. Android的handler机制理解(420)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap" style="display: none;">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap" style="display: none;">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+
+</div>
+</div>
+<div class="clear"></div>
+<div id="footer">
+
+<p id="footer">
+	Powered by: 
+	<br>
+	
+	<a id="Footer1_Hyperlink3" name="Hyperlink1" href="http://www.cnblogs.com/" style="font-family:Verdana;font-size:12px;">博客园</a>
+	<br>
+	Copyright © 止宇
+</p>
+</div>
+</div>
+
+
+
+</body></html>

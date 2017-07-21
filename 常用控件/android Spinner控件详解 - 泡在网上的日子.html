@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK"><script src="./android Spinner控件详解 - 泡在网上的日子_files/ca-pub-8583773779396897.js.下载"></script><script src="./android Spinner控件详解 - 泡在网上的日子_files/shares.php" charset="utf-8"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>android Spinner控件详解 - 泡在网上的日子</title>
+<meta name="keywords" content="Spinner">
+<meta name="description" content="Spinner提供了从一个数据集合中快速选择一项值的办法。默认情况下Spinner显示的是当前选择的值，点击Spinner会弹出一个包含所有可选值的dropdown菜单，从该菜单中可以为Spinner选择一个新值。 上图显示的是Spinner常见的样式。 使用方法 最简单的Spinner 在">
+<link href="./android Spinner控件详解 - 泡在网上的日子_files/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="./android Spinner控件详解 - 泡在网上的日子_files/new.css" rel="stylesheet" type="text/css">
+<script language="javascript" type="text/javascript" src="./android Spinner控件详解 - 泡在网上的日子_files/jquery-1.7.1.min.js.下载"></script>
+<link href="./android Spinner控件详解 - 泡在网上的日子_files/tranquil-heart.min.css" rel="stylesheet">
+<script language="javascript" type="text/javascript" src="./android Spinner控件详解 - 泡在网上的日子_files/myajax.js.下载"></script>
+<script language="javascript" type="text/javascript">
+	function CheckLogin(){
+	    var taget_obj = document.getElementById('login_info');
+	    myajax = new MyAjax(taget_obj,false,false,'','','');
+	    myajax.SendGet2("/member/ajax_loginsta.php");
+	    DedeXHTTP = null;
+	}
+	function checkSubmit(){
+		if(document.feedback.msg.value!='') document.feedback.submit();
+		else alert("评论内容不能为空！");
+	}		
+
+	function postBadGood(ftype,fid)
+	{
+		var taget_obj = document.getElementById(ftype+fid);
+		var saveid = GetCookie('badgoodid');
+		if(saveid != null)
+		{
+			var saveids = saveid.split(',');
+			var hasid = false;
+			saveid = '';
+			j = 1;
+			for(i=saveids.length-1;i>=0;i--)
+			{
+				if(saveids[i]==fid && hasid) continue;
+				else {
+					if(saveids[i]==fid && !hasid) hasid = true;
+					saveid += (saveid=='' ? saveids[i] : ','+saveids[i]);
+					j++;
+					if(j==10 && hasid) break;
+					if(j==9 && !hasid) break;
+				}
+			}
+			if(hasid) { alert('您刚才已表决过了喔！'); return false;}
+			else saveid += ','+fid;
+			SetCookie('badgoodid',saveid,1);
+		}
+		else
+		{
+			SetCookie('badgoodid',fid,1);
+		}
+		myajax = new MyAjax(taget_obj,false,false,'','','');
+		myajax.SendGet2("/plus/feedback.php?aid="+fid+"&action="+ftype+"&fid="+fid);
+	}
+	function postStow(aid)
+	{
+		var taget_obj = document.getElementById('newdigg');
+ 
+		myajax = new MyAjax(taget_obj,false,false,'','','');
+		myajax.SendGet2("/plus/stow.php?aid="+aid);
+	}
+	function postDigg(ftype,aid)
+	{
+		var taget_obj = document.getElementById('newdigg');
+		var saveid = GetCookie('diggid');
+		if(saveid != null)
+		{
+			var saveids = saveid.split(',');
+			var hasid = false;
+			saveid = '';
+			j = 1;
+			for(i=saveids.length-1;i>=0;i--)
+			{
+				if(saveids[i]==aid && hasid) continue;
+				else {
+					if(saveids[i]==aid && !hasid) hasid = true;
+					saveid += (saveid=='' ? saveids[i] : ','+saveids[i]);
+					j++;
+					if(j==20 && hasid) break;
+					if(j==19 && !hasid) break;
+				}
+			}
+			if(hasid) { alert("您已经顶过该帖，请不要重复顶帖 ！"); return; }
+			else saveid += ','+aid;
+			SetCookie('diggid',saveid,1);
+		}
+		else
+		{
+			SetCookie('diggid',aid,1);
+		}
+		myajax = new MyAjax(taget_obj,false,false,'','','');
+		var url = "/plus/digg_ajax.php?action="+ftype+"&id="+aid;
+		myajax.SendGet2(url);
+	}
+	function getDigg(aid)
+	{
+		var taget_obj = document.getElementById('newdigg');
+		myajax = new MyAjax(taget_obj,false,false,'','','');
+		myajax.SendGet2("/plus/digg_ajax.php?id="+aid);
+		DedeXHTTP = null;
+	} 
+	function getcollectionuser(aid)
+	{
+		var taget_obj = document.getElementById('collection-users-list');
+		myajax = new MyAjax(taget_obj,false,false,'','','');
+		myajax.SendGet2("/plus/collection_user_ajax.php?id="+aid);
+		DedeXHTTP = null;
+	} 	
+	jQuery(document).ready(function($) {
+		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+	    prettyPrint();
+	
+	    //注意最后的@me必须要加两重引号，不然js语法会出错
+	    var htmlstr =  '';
+	    $(".arc_body").prepend(htmlstr); 
+	});
+			
+</script>
+
+</head>
+<body><link href="./android Spinner控件详解 - 泡在网上的日子_files/jiathis_counter.css" rel="stylesheet" type="text/css"><link href="./android Spinner控件详解 - 泡在网上的日子_files/jiathis_share.css" rel="stylesheet" type="text/css"><iframe frameborder="0" style="position: absolute; display: none; opacity: 0;" src="./android Spinner控件详解 - 泡在网上的日子_files/saved_resource.html"></iframe><div class="jiathis_style" style="position: absolute; z-index: 1000000000; display: none; top: 50%; left: 50%; overflow: auto;"></div><div class="jiathis_style" style="position: absolute; z-index: 1000000000; display: none; overflow: auto;"></div><iframe frameborder="0" src="./android Spinner控件详解 - 泡在网上的日子_files/jiathis_utility.html" style="display: none;"></iframe>
+
+<div class="header">  
+	<div class="headercon container clearfix">
+        <div class="row">
+            <div class="col-md-12">
+            	<!-- 导航部分 -->
+                <a class="logo-t" href="http://www.jcodecraeer.com/"><img src="./android Spinner控件详解 - 泡在网上的日子_files/logo.png">泡在网上的日子</a>
+                <ul class="nav-ul">
+                	<li id="nav-index"><a href="http://www.jcodecraeer.com/">首页</a></li>
+                    <li id="nav-code"><a href="http://www.jcodecraeer.com/plus/list.php?tid=31">代码</a></li>
+                    <li id="nav-feed"><a class="" href="http://www.jcodecraeer.com/plus/freelist.php?lid=12">话题</a></li>
+                    <li id="nav-ask"><a class="" href="http://www.jcodecraeer.com/hao">导航</a></li>
+                    <li id="nav-ask"><a class="" href="http://www.jcodecraeer.com/ask">问答</a></li>
+                    <!-- <li id="nav-tag"><a href="/tags.php" class="trigger">标签</a></li>-->
+                    <li><a href="http://www.jcodecraeer.com/about.html" class="">关于</a></li>
+                </ul>
+                <!-- 导航部分 end -->
+                
+                <!-- 搜索-下拉 -->
+                <div class="header_right">
+                	<div class="search_start">
+                         <div class="search_cont">
+                            <form action="http://www.jcodecraeer.com/plus/search.php" method="get">
+                            	<input type="hidden" name="kwtype" value="0">
+                                <input type="text" name="q" class="in_search" autocomplete="off" value="搜索">
+                                <input type="submit" class="in_submit">
+        						<span class="glyphicon glyphicon-search icon-search"></span>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- 消息下拉 -->
+                    <div class="header_right_msg z">  
+                        <!-- 登录 -->
+                        <div class="right_login" id="login_info">
+                            <a class="l" href="http://www.jcodecraeer.com/member/login.php">登录</a>
+                            <a href="http://www.jcodecraeer.com/member/reg_new.php">注册</a>
+                        </div>
+                        <!-- 登录 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script language="javascript" type="text/javascript">CheckLogin();</script>
+<script language="javascript" type="text/javascript">
+  $(function(){
+	
+	$(".in_search").click(function(){
+		$(".search_cont").addClass('ser').animate({
+			width:200,
+		},200);
+		if($(this).val() == '搜索'){
+			$(".in_search").val('');
+		}
+	})
+	$(".in_search").blur(function(){
+		if($(this).val() !== ''){
+			return false;
+		}
+		$(".search_cont").removeClass('ser').animate({
+			width:90,
+		},200);
+		$(".in_search").val('搜索');
+	});
+	
+});
+</script>
+
+
+<div class="container main">
+	<div class="row">	
+	    <div class="text-center mgt20">	
+			<script src="./android Spinner控件详解 - 泡在网上的日子_files/fuckblok.php" language="javascript"></script><script async="" src="./android Spinner控件详解 - 泡在网上的日子_files/adsbygoogle.js.下载"></script>
+<!-- 超大横幅 -->
+<ins class="adsbygoogle" style="display:inline-block;width:970px;height:250px" data-ad-client="ca-pub-8583773779396897" data-ad-slot="3361054319" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:970px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:970px;background-color:transparent"><iframe width="970" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;width:970px;height:250px;" src="./android Spinner控件详解 - 泡在网上的日子_files/saved_resource(1).html"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script> 
+		</div>
+	</div>
+	<div class="row">	
+        <div class="col-md-9">
+			<div class="arc_position">
+				  <a href="http://www.jcodecraeer.com/">首页</a>&nbsp;&#8250;&nbsp;<a href="http://www.jcodecraeer.com/plus/list.php?tid=16">安卓开发</a>&nbsp;&#8250;&nbsp;<a href="http://www.jcodecraeer.com/plus/list.php?tid=18">android开发</a>
+			</div>	
+					
+            <div class="articlecon clearfix">
+				<h1 class="title">android Spinner控件详解</h1>
+			
+				<div class="subinfo clearfix">              
+					<span>泡在网上的日子 / 文</span>
+					<span> 发表于2015-01-05 02:00</span>   
+					<span>第<script src="./android Spinner控件详解 - 泡在网上的日子_files/count.php" type="text/javascript" language="javascript"></script>194171次阅读
+					</span>
+					<span class="tags" id="arc_tags">                            
+						<a href="http://www.jcodecraeer.com/tags.php?/Spinner/" class="tag">Spinner</a>
+					 </span>
+				</div>
+				<!-- JiaThis Button BEGIN -->
+				<div class="jiathis_style" style=" height:30px; width:180px; margin:auto;text-align:center;">
+					<a class="jiathis_button_qzone" title="分享到QQ空间"><span class="jiathis_txt jtico jtico_qzone"></span></a>
+					<a class="jiathis_button_tsina" title="分享到微博"><span class="jiathis_txt jtico jtico_tsina"></span></a>
+					<a class="jiathis_button_tqq" title="分享到腾讯微博"><span class="jiathis_txt jtico jtico_tqq"></span></a>
+					<a class="jiathis_button_weixin" title="分享到微信"><span class="jiathis_txt jtico jtico_weixin"></span></a>
+					<a class="jiathis_button_renren" title="分享到人人网"><span class="jiathis_txt jtico jtico_renren"></span></a>
+					<a class="jiathis_button_xiaoyou" title="分享到朋友网"><span class="jiathis_txt jtico jtico_xiaoyou"></span></a>
+					<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+					<a class="jiathis_counter_style"><span class="jiathis_button_expanded jiathis_counter jiathis_bubble_style" id="jiathis_counter_21" title="累计分享81次">81</span></a>
+				</div>
+				<script type="text/javascript" src="./android Spinner控件详解 - 泡在网上的日子_files/jia.js.下载" charset="utf-8"></script><script type="text/javascript" src="./android Spinner控件详解 - 泡在网上的日子_files/plugin.client.js.下载" charset="utf-8"></script>
+				<!-- JiaThis Button END -->
+             
+				<div class="arc_body"> 
+					 <p style="margin-top:10px">
+						<script src="./android Spinner控件详解 - 泡在网上的日子_files/fuckblok(1).php" language="javascript"></script><strong>编辑推荐：</strong><a href="https://juejin.im/">稀土掘金</a>，这是一个针对技术开发者的一个应用，你可以在掘金上获取最新最优质的技术干货，不仅仅是Android知识、前端、后端以至于产品和设计都有涉猎，想成为全栈工程师的朋友不要错过！
+					</p>
+					 <p>Spinner提供了从一个数据集合中快速选择一项值的办法。默认情况下Spinner显示的是当前选择的值，点击Spinner会弹出一个包含所有可选值的dropdown菜单，从该菜单中可以为Spinner选择一个新值。</p><p><img alt="spinner.png" src="./android Spinner控件详解 - 泡在网上的日子_files/1420392233199796.png" title="1420392233199796.png"></p><p>上图显示的是Spinner常见的样式。这篇文章中我将讨论1.Spinner的基本用法 2.设置Spinner的Adapter (arrayadapter 和自定义BaseAdapter)3.Spinner的菜单显示方式 4.Spinner的xml属性</p><h2>最简单的Spinner</h2><p>在布局文件中添加Spinner控件</p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;LinearLayout</span><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"fill_parent"</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"fill_parent"</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:orientation</span><span class="pun">=</span><span class="atv">"vertical"</span><span class="pln">&nbsp;</span><span class="tag">&gt;</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;Spinner</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:id</span><span class="pun">=</span><span class="atv">"@+id/spinner1"</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"wrap_content"</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"wrap_content"</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:entries</span><span class="pun">=</span><span class="atv">"@array/languages"</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">/&gt;</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;/LinearLayout&gt;</span></li></ol></pre><p>其中android:entries="@array/languages"表示Spinner的数据集合是从资源数组languages中获取的，languages数组资源定义在values/arrays.xml中：</p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="pun">&lt;?</span><span class="pln">xml&nbsp;version</span><span class="pun">=</span><span class="str">"1.0"</span><span class="pln">&nbsp;encoding</span><span class="pun">=</span><span class="str">"utf-8"</span><span class="pun">?&gt;</span></li><li class="L1"><span class="tag">&lt;resources&gt;</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;string-array</span><span class="pln">&nbsp;</span><span class="atn">name</span><span class="pun">=</span><span class="atv">"languages"</span><span class="tag">&gt;</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;item&gt;</span><span class="pln">c语言</span><span class="tag">&lt;/item&gt;</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;item&gt;</span><span class="pln">java&nbsp;</span><span class="tag">&lt;/item&gt;</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;item&gt;</span><span class="pln">php</span><span class="tag">&lt;/item&gt;</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;item&gt;</span><span class="pln">xml</span><span class="tag">&lt;/item&gt;</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;item&gt;</span><span class="pln">html</span><span class="tag">&lt;/item&gt;</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;/string-array&gt;</span></li><li class="L9"><span class="tag">&lt;/resources&gt;</span></li></ol></pre><p>如果你不需要对Spinner的选择事件做响应，那么一个完整的Spinner使用流程就结束了。</p><p>运行结果：</p><p><br></p><p><img alt="QQ图片20150105013559.jpg" src="./android Spinner控件详解 - 泡在网上的日子_files/1420392981112880.jpg" title="1420392981112880.jpg"></p><p>当然，一般情况下我们是需要响应Spinner选择事件的,可以通过OnItemSelectedListener的回调方法实现</p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="kwd">public</span><span class="pln">&nbsp;</span><span class="kwd">class</span><span class="pln">&nbsp;</span><span class="typ">MainActivity</span><span class="pln">&nbsp;</span><span class="kwd">extends</span><span class="pln">&nbsp;</span><span class="typ">Activity</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">@Override</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">protected</span><span class="pln">&nbsp;</span><span class="kwd">void</span><span class="pln">&nbsp;onCreate</span><span class="pun">(</span><span class="typ">Bundle</span><span class="pln">&nbsp;savedInstanceState</span><span class="pun">)</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">super</span><span class="pun">.</span><span class="pln">onCreate</span><span class="pun">(</span><span class="pln">savedInstanceState</span><span class="pun">);</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setContentView</span><span class="pun">(</span><span class="pln">R</span><span class="pun">.</span><span class="pln">layout</span><span class="pun">.</span><span class="pln">activity_main</span><span class="pun">);</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="typ">Spinner</span><span class="pln">&nbsp;spinner&nbsp;</span><span class="pun">=</span><span class="pln">&nbsp;</span><span class="pun">(</span><span class="typ">Spinner</span><span class="pun">)</span><span class="pln">&nbsp;findViewById</span><span class="pun">(</span><span class="pln">R</span><span class="pun">.</span><span class="pln">id</span><span class="pun">.</span><span class="pln">spinner1</span><span class="pun">);</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spinner</span><span class="pun">.</span><span class="pln">setOnItemSelectedListener</span><span class="pun">(</span><span class="kwd">new</span><span class="pln">&nbsp;</span><span class="typ">OnItemSelectedListener</span><span class="pun">()</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">@Override</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">public</span><span class="pln">&nbsp;</span><span class="kwd">void</span><span class="pln">&nbsp;onItemSelected</span><span class="pun">(</span><span class="typ">AdapterView</span><span class="pun">&lt;?&gt;</span><span class="pln">&nbsp;parent</span><span class="pun">,</span><span class="pln">&nbsp;</span><span class="typ">View</span><span class="pln">&nbsp;view</span><span class="pun">,</span><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">int</span><span class="pln">&nbsp;pos</span><span class="pun">,</span><span class="pln">&nbsp;</span><span class="kwd">long</span><span class="pln">&nbsp;id</span><span class="pun">)</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="typ">String</span><span class="pun">[]</span><span class="pln">&nbsp;languages&nbsp;</span><span class="pun">=</span><span class="pln">&nbsp;getResources</span><span class="pun">().</span><span class="pln">getStringArray</span><span class="pun">(</span><span class="pln">R</span><span class="pun">.</span><span class="pln">array</span><span class="pun">.</span><span class="pln">languages</span><span class="pun">);</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="typ">Toast</span><span class="pun">.</span><span class="pln">makeText</span><span class="pun">(</span><span class="typ">MainActivity</span><span class="pun">.</span><span class="kwd">this</span><span class="pun">,</span><span class="pln">&nbsp;</span><span class="str">"你点击的是:"</span><span class="pun">+</span><span class="pln">languages</span><span class="pun">[</span><span class="pln">pos</span><span class="pun">],</span><span class="pln">&nbsp;</span><span class="lit">2000</span><span class="pun">).</span><span class="pln">show</span><span class="pun">();</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">}</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">@Override</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">public</span><span class="pln">&nbsp;</span><span class="kwd">void</span><span class="pln">&nbsp;onNothingSelected</span><span class="pun">(</span><span class="typ">AdapterView</span><span class="pun">&lt;?&gt;</span><span class="pln">&nbsp;parent</span><span class="pun">)</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="com">//&nbsp;Another&nbsp;interface&nbsp;callback</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">}</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">});</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">}</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pun">}</span></li></ol></pre><p>上面的Spinner看起来非常漂亮，不过它并不是总是如此，刚刚看到的是在android:Theme.Holo.Light主题下的效果，同样的代码如果在android:Theme.Light下面就会变得很丑。 <br></p><p><img src="./android Spinner控件详解 - 泡在网上的日子_files/1420393816866832.jpg" style="" title="1420393816866832.jpg"></p><p><img src="./android Spinner控件详解 - 泡在网上的日子_files/1420393815311248.jpg" style="" title="1420393815311248.jpg"></p><p><br>想必这也是很多人不想使用Spinner的原因了吧。如果想兼容2.3，则只能忍受这样的效果。</p><h2>设置Spinner的Adapter</h2><p>上面使用Spinner数据源于xml数组，其实用的最多的还是通过adapter来跟Spinner绑定数据。</p><h3>使用ArrayAdapter</h3><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="com">//&nbsp;初始化控件</span></li><li class="L1"><span class="typ">Spinner</span><span class="pln">&nbsp;spinner&nbsp;</span><span class="pun">=</span><span class="pln">&nbsp;</span><span class="pun">(</span><span class="typ">Spinner</span><span class="pun">)</span><span class="pln">&nbsp;findViewById</span><span class="pun">(</span><span class="pln">R</span><span class="pun">.</span><span class="pln">id</span><span class="pun">.</span><span class="pln">spinner1</span><span class="pun">);</span></li><li class="L2"><span class="com">//&nbsp;建立数据源</span></li><li class="L3"><span class="typ">String</span><span class="pun">[]</span><span class="pln">&nbsp;mItems&nbsp;</span><span class="pun">=</span><span class="pln">&nbsp;getResources</span><span class="pun">().</span><span class="pln">getStringArray</span><span class="pun">(</span><span class="pln">R</span><span class="pun">.</span><span class="pln">array</span><span class="pun">.</span><span class="pln">languages</span><span class="pun">);</span></li><li class="L4"><span class="com">//&nbsp;建立Adapter并且绑定数据源</span></li><li class="L5"><span class="typ">ArrayAdapter</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">&gt;</span><span class="pln">&nbsp;adapter</span><span class="pun">=</span><span class="kwd">new</span><span class="pln">&nbsp;</span><span class="typ">ArrayAdapter</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">&gt;(</span><span class="kwd">this</span><span class="pun">,</span><span class="pln">android</span><span class="pun">.</span><span class="pln">R</span><span class="pun">.</span><span class="pln">layout</span><span class="pun">.</span><span class="pln">simple_spinner_item</span><span class="pun">,</span><span class="pln">&nbsp;mItems</span><span class="pun">);</span></li><li class="L6"><span class="pln">adapter</span><span class="pun">.</span><span class="pln">setDropDownViewResource</span><span class="pun">(</span><span class="pln">android</span><span class="pun">.</span><span class="pln">R</span><span class="pun">.</span><span class="pln">layout</span><span class="pun">.</span><span class="pln">simple_spinner_dropdown_item</span><span class="pun">);</span></li><li class="L7"><span class="com">//绑定&nbsp;Adapter到控件</span></li><li class="L8"><span class="pln">spinner&nbsp;</span><span class="pun">.</span><span class="pln">setAdapter</span><span class="pun">(</span><span class="pln">adapter</span><span class="pun">);</span></li><li class="L9"><span class="pln">spinner</span><span class="pun">.</span><span class="pln">setOnItemSelectedListener</span><span class="pun">(</span><span class="kwd">new</span><span class="pln">&nbsp;</span><span class="typ">OnItemSelectedListener</span><span class="pun">()</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">@Override</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">public</span><span class="pln">&nbsp;</span><span class="kwd">void</span><span class="pln">&nbsp;onItemSelected</span><span class="pun">(</span><span class="typ">AdapterView</span><span class="pun">&lt;?&gt;</span><span class="pln">&nbsp;parent</span><span class="pun">,</span><span class="pln">&nbsp;</span><span class="typ">View</span><span class="pln">&nbsp;view</span><span class="pun">,</span><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">int</span><span class="pln">&nbsp;pos</span><span class="pun">,</span><span class="pln">&nbsp;</span><span class="kwd">long</span><span class="pln">&nbsp;id</span><span class="pun">)</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="typ">String</span><span class="pun">[]</span><span class="pln">&nbsp;languages&nbsp;</span><span class="pun">=</span><span class="pln">&nbsp;getResources</span><span class="pun">().</span><span class="pln">getStringArray</span><span class="pun">(</span><span class="pln">R</span><span class="pun">.</span><span class="pln">array</span><span class="pun">.</span><span class="pln">languages</span><span class="pun">);</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="typ">Toast</span><span class="pun">.</span><span class="pln">makeText</span><span class="pun">(</span><span class="typ">MainActivity</span><span class="pun">.</span><span class="kwd">this</span><span class="pun">,</span><span class="pln">&nbsp;</span><span class="str">"你点击的是:"</span><span class="pun">+</span><span class="pln">languages</span><span class="pun">[</span><span class="pln">pos</span><span class="pun">],</span><span class="pln">&nbsp;</span><span class="lit">2000</span><span class="pun">).</span><span class="pln">show</span><span class="pun">();</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">}</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">@Override</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">public</span><span class="pln">&nbsp;</span><span class="kwd">void</span><span class="pln">&nbsp;onNothingSelected</span><span class="pun">(</span><span class="typ">AdapterView</span><span class="pun">&lt;?&gt;</span><span class="pln">&nbsp;parent</span><span class="pun">)</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="com">//&nbsp;Another&nbsp;interface&nbsp;callback</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">}</span></li><li class="L1"><span class="pun">});</span></li></ol></pre><p>这是Spinner的标准使用方法，其中，有两行代码可以决定Spinner的外观：</p><p>1<br></p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="typ">ArrayAdapter</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">&gt;</span><span class="pln">&nbsp;adapter</span><span class="pun">=</span><span class="kwd">new</span><span class="pln">&nbsp;</span><span class="typ">ArrayAdapter</span><span class="pun">&lt;</span><span class="typ">String</span><span class="pun">&gt;(</span><span class="kwd">this</span><span class="pun">,</span><span class="pln">android</span><span class="pun">.</span><span class="pln">R</span><span class="pun">.</span><span class="pln">layout</span><span class="pun">.</span><span class="pln">simple_spinner_item</span><span class="pun">,</span><span class="pln">&nbsp;mItems</span><span class="pun">);</span></li></ol></pre><p>第二个参数是Spinner未展开菜单时Spinner的默认样式，android.R.layout.simple_spinner_item是系统自带的内置布局。</p><p>2<br></p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="pln">adapter</span><span class="pun">.</span><span class="pln">setDropDownViewResource</span><span class="pun">(</span><span class="pln">android</span><span class="pun">.</span><span class="pln">R</span><span class="pun">.</span><span class="pln">layout</span><span class="pun">.</span><span class="pln">simple_spinner_dropdown_item</span><span class="pun">);</span></li></ol></pre><p>设置的是展开的时候下拉菜单的样式（注意和上面区别），同理android.R.layout.simple_spinner_dropdown_item也是内置布局。</p><p>如果不设置adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)会怎样呢？</p><p>会造成未展开的sipnner和展开的菜单都是一种布局样式。下面一运行截图来说明：</p><p>没有adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)：</p><p><img alt="QQ图片20150105161936.jpg" src="./android Spinner控件详解 - 泡在网上的日子_files/1420445983571763.jpg" title="1420445983571763.jpg"></p><p>有setDropDownViewResource：</p><p><img alt="QQ图片20150105162135.jpg" src="./android Spinner控件详解 - 泡在网上的日子_files/1420446100922687.jpg" title="1420446100922687.jpg"></p><p>你可能会很好奇如果设置了setDropDownViewResource但是setDropDownViewResource的参数和ArrayAdapter的第二个布局参数（simple_spinner_item）一致的情况下会怎样。情况是和没有setDropDownViewResource是一样的，因为上面说了不设置setDropDownViewResource Spinner未展开和展开都是用的一样的布局。</p><p>其实simple_spinner_item和simple_spinner_dropdown_item两者的名字正好反映了他们的区别。一个应用于下拉一个应用于Spinner本身。</p><p><br></p><h3>使用自定义的BaseAdapter</h3><p>这种情况适用于spinner比较复杂的情况，比如带有图标。</p><p>下面我们定义一个选择联系人的Spinner。</p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;LinearLayout</span><span class="pln">&nbsp;</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"fill_parent"</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"80dip"</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:orientation</span><span class="pun">=</span><span class="atv">"vertical"</span><span class="pln">&nbsp;</span><span class="tag">&gt;</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;Spinner</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:id</span><span class="pun">=</span><span class="atv">"@+id/spinner2"</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"wrap_content"</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"wrap_content"</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">/&gt;</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;/LinearLayout&gt;</span></li></ol></pre><p>activity中：</p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="com">//&nbsp;初始化控件</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="typ">Spinner</span><span class="pln">&nbsp;spinner2&nbsp;&nbsp;</span><span class="pun">=</span><span class="pln">&nbsp;</span><span class="pun">(</span><span class="typ">Spinner</span><span class="pun">)</span><span class="pln">&nbsp;findViewById</span><span class="pun">(</span><span class="pln">R</span><span class="pun">.</span><span class="pln">id</span><span class="pun">.</span><span class="pln">spinner2</span><span class="pun">);</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="com">//&nbsp;建立数据源</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">Person</span><span class="pun">&gt;</span><span class="pln">&nbsp;&nbsp;persons</span><span class="pun">=</span><span class="kwd">new</span><span class="pln">&nbsp;</span><span class="typ">ArrayList</span><span class="pun">&lt;</span><span class="typ">Person</span><span class="pun">&gt;();</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;persons</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln">&nbsp;</span><span class="typ">Person</span><span class="pun">(</span><span class="str">"张三"</span><span class="pun">,</span><span class="pln">&nbsp;</span><span class="str">"上海&nbsp;"</span><span class="pun">));</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;persons</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln">&nbsp;</span><span class="typ">Person</span><span class="pun">(</span><span class="str">"李四"</span><span class="pun">,</span><span class="pln">&nbsp;</span><span class="str">"上海&nbsp;"</span><span class="pun">));</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;persons</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln">&nbsp;</span><span class="typ">Person</span><span class="pun">(</span><span class="str">"王五"</span><span class="pun">,</span><span class="pln">&nbsp;</span><span class="str">"北京"</span><span class="pln">&nbsp;</span><span class="pun">));</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;persons</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="kwd">new</span><span class="pln">&nbsp;</span><span class="typ">Person</span><span class="pun">(</span><span class="str">"赵六"</span><span class="pun">,</span><span class="pln">&nbsp;</span><span class="str">"广州&nbsp;"</span><span class="pun">));</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="com">//&nbsp;&nbsp;建立Adapter绑定数据源</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="typ">MyAdapter</span><span class="pln">&nbsp;</span><span class="typ">_MyAdapter</span><span class="pun">=</span><span class="kwd">new</span><span class="pln">&nbsp;</span><span class="typ">MyAdapter</span><span class="pun">(</span><span class="kwd">this</span><span class="pun">,</span><span class="pln">&nbsp;persons</span><span class="pun">);</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="com">//绑定Adapter</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;spinner2</span><span class="pun">.</span><span class="pln">setAdapter</span><span class="pun">(</span><span class="typ">_MyAdapter</span><span class="pun">);</span></li></ol></pre><p>Person.java</p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="kwd">package</span><span class="pln">&nbsp;com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">spinnerdemo</span><span class="pun">;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="kwd">public</span><span class="pln">&nbsp;</span><span class="kwd">class</span><span class="pln">&nbsp;</span><span class="typ">Person</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">private</span><span class="pln">&nbsp;</span><span class="typ">String</span><span class="pln">&nbsp;personName</span><span class="pun">;</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">private</span><span class="pln">&nbsp;</span><span class="typ">String</span><span class="pln">&nbsp;personAddress</span><span class="pun">;</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">public</span><span class="pln">&nbsp;</span><span class="typ">Person</span><span class="pun">(</span><span class="typ">String</span><span class="pln">&nbsp;personName</span><span class="pun">,</span><span class="pln">&nbsp;</span><span class="typ">String</span><span class="pln">&nbsp;personAddress</span><span class="pun">)</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">super</span><span class="pun">();</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">personName&nbsp;</span><span class="pun">=</span><span class="pln">&nbsp;personName</span><span class="pun">;</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">personAddress&nbsp;</span><span class="pun">=</span><span class="pln">&nbsp;personAddress</span><span class="pun">;</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">}</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">public</span><span class="pln">&nbsp;</span><span class="typ">String</span><span class="pln">&nbsp;getPersonName</span><span class="pun">()</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">return</span><span class="pln">&nbsp;personName</span><span class="pun">;</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">}</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">public</span><span class="pln">&nbsp;</span><span class="kwd">void</span><span class="pln">&nbsp;setPersonName</span><span class="pun">(</span><span class="typ">String</span><span class="pln">&nbsp;personName</span><span class="pun">)</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">personName&nbsp;</span><span class="pun">=</span><span class="pln">&nbsp;personName</span><span class="pun">;</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">}</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">public</span><span class="pln">&nbsp;</span><span class="typ">String</span><span class="pln">&nbsp;getPersonAddress</span><span class="pun">()</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">return</span><span class="pln">&nbsp;personAddress</span><span class="pun">;</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">}</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">public</span><span class="pln">&nbsp;</span><span class="kwd">void</span><span class="pln">&nbsp;setPersonAddress</span><span class="pun">(</span><span class="typ">String</span><span class="pln">&nbsp;personAddress</span><span class="pun">)</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">personAddress&nbsp;</span><span class="pun">=</span><span class="pln">&nbsp;personAddress</span><span class="pun">;</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">}</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pun">}</span></li></ol></pre><p>MyAdapter.java</p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="kwd">package</span><span class="pln">&nbsp;com</span><span class="pun">.</span><span class="pln">example</span><span class="pun">.</span><span class="pln">spinnerdemo</span><span class="pun">;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="kwd">import</span><span class="pln">&nbsp;java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="typ">List</span><span class="pun">;</span></li><li class="L3"><span class="kwd">import</span><span class="pln">&nbsp;android</span><span class="pun">.</span><span class="pln">content</span><span class="pun">.</span><span class="typ">Context</span><span class="pun">;</span></li><li class="L4"><span class="kwd">import</span><span class="pln">&nbsp;android</span><span class="pun">.</span><span class="pln">view</span><span class="pun">.</span><span class="typ">LayoutInflater</span><span class="pun">;</span></li><li class="L5"><span class="kwd">import</span><span class="pln">&nbsp;android</span><span class="pun">.</span><span class="pln">view</span><span class="pun">.</span><span class="typ">View</span><span class="pun">;</span></li><li class="L6"><span class="kwd">import</span><span class="pln">&nbsp;android</span><span class="pun">.</span><span class="pln">view</span><span class="pun">.</span><span class="typ">ViewGroup</span><span class="pun">;</span></li><li class="L7"><span class="kwd">import</span><span class="pln">&nbsp;android</span><span class="pun">.</span><span class="pln">widget</span><span class="pun">.</span><span class="typ">BaseAdapter</span><span class="pun">;</span></li><li class="L8"><span class="kwd">import</span><span class="pln">&nbsp;android</span><span class="pun">.</span><span class="pln">widget</span><span class="pun">.</span><span class="typ">ImageView</span><span class="pun">;</span></li><li class="L9"><span class="kwd">import</span><span class="pln">&nbsp;android</span><span class="pun">.</span><span class="pln">widget</span><span class="pun">.</span><span class="typ">TextView</span><span class="pun">;</span></li><li class="L0"><span class="pln">&nbsp;</span></li><li class="L1"><span class="com">/**</span></li><li class="L2"><span class="com">&nbsp;*&nbsp;自定义适配器类</span></li><li class="L3"><span class="com">&nbsp;*&nbsp;@author&nbsp;jiangqq&nbsp;&nbsp;&lt;a&nbsp;href=http://blog.csdn.net/jiangqq781931404&gt;&lt;/a&gt;</span></li><li class="L4"><span class="com">&nbsp;*</span></li><li class="L5"><span class="com">&nbsp;*/</span></li><li class="L6"><span class="kwd">public</span><span class="pln">&nbsp;</span><span class="kwd">class</span><span class="pln">&nbsp;</span><span class="typ">MyAdapter</span><span class="pln">&nbsp;</span><span class="kwd">extends</span><span class="pln">&nbsp;</span><span class="typ">BaseAdapter</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">private</span><span class="pln">&nbsp;</span><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">Person</span><span class="pun">&gt;</span><span class="pln">&nbsp;mList</span><span class="pun">;</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">private</span><span class="pln">&nbsp;</span><span class="typ">Context</span><span class="pln">&nbsp;mContext</span><span class="pun">;</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">public</span><span class="pln">&nbsp;</span><span class="typ">MyAdapter</span><span class="pun">(</span><span class="typ">Context</span><span class="pln">&nbsp;pContext</span><span class="pun">,</span><span class="pln">&nbsp;</span><span class="typ">List</span><span class="pun">&lt;</span><span class="typ">Person</span><span class="pun">&gt;</span><span class="pln">&nbsp;pList</span><span class="pun">)</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">mContext&nbsp;</span><span class="pun">=</span><span class="pln">&nbsp;pContext</span><span class="pun">;</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">mList&nbsp;</span><span class="pun">=</span><span class="pln">&nbsp;pList</span><span class="pun">;</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">}</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">@Override</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">public</span><span class="pln">&nbsp;</span><span class="kwd">int</span><span class="pln">&nbsp;getCount</span><span class="pun">()</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">return</span><span class="pln">&nbsp;mList</span><span class="pun">.</span><span class="pln">size</span><span class="pun">();</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">}</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">@Override</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">public</span><span class="pln">&nbsp;</span><span class="typ">Object</span><span class="pln">&nbsp;getItem</span><span class="pun">(</span><span class="kwd">int</span><span class="pln">&nbsp;position</span><span class="pun">)</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">return</span><span class="pln">&nbsp;mList</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="pln">position</span><span class="pun">);</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">}</span></li><li class="L4"><span class="pln">&nbsp;</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">@Override</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">public</span><span class="pln">&nbsp;</span><span class="kwd">long</span><span class="pln">&nbsp;getItemId</span><span class="pun">(</span><span class="kwd">int</span><span class="pln">&nbsp;position</span><span class="pun">)</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">return</span><span class="pln">&nbsp;position</span><span class="pun">;</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">}</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="com">/**</span></li><li class="L0"><span class="com">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;下面是重要代码</span></li><li class="L1"><span class="com">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="lit">@Override</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">public</span><span class="pln">&nbsp;</span><span class="typ">View</span><span class="pln">&nbsp;getView</span><span class="pun">(</span><span class="kwd">int</span><span class="pln">&nbsp;position</span><span class="pun">,</span><span class="pln">&nbsp;</span><span class="typ">View</span><span class="pln">&nbsp;convertView</span><span class="pun">,</span><span class="pln">&nbsp;</span><span class="typ">ViewGroup</span><span class="pln">&nbsp;parent</span><span class="pun">)</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="typ">LayoutInflater</span><span class="pln">&nbsp;</span><span class="typ">_LayoutInflater</span><span class="pun">=</span><span class="typ">LayoutInflater</span><span class="pun">.</span><span class="kwd">from</span><span class="pun">(</span><span class="pln">mContext</span><span class="pun">);</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;convertView</span><span class="pun">=</span><span class="typ">_LayoutInflater</span><span class="pun">.</span><span class="pln">inflate</span><span class="pun">(</span><span class="pln">R</span><span class="pun">.</span><span class="pln">layout</span><span class="pun">.</span><span class="pln">item_custom</span><span class="pun">,</span><span class="pln">&nbsp;</span><span class="kwd">null</span><span class="pun">);</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">if</span><span class="pun">(</span><span class="pln">convertView</span><span class="pun">!=</span><span class="kwd">null</span><span class="pun">)</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="typ">ImageView</span><span class="pln">&nbsp;imageView&nbsp;</span><span class="pun">=</span><span class="pln">&nbsp;</span><span class="pun">(</span><span class="typ">ImageView</span><span class="pun">)</span><span class="pln">convertView</span><span class="pun">.</span><span class="pln">findViewById</span><span class="pun">(</span><span class="pln">R</span><span class="pun">.</span><span class="pln">id</span><span class="pun">.</span><span class="pln">image</span><span class="pun">);</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imageView</span><span class="pun">.</span><span class="pln">setImageResource</span><span class="pun">(</span><span class="pln">R</span><span class="pun">.</span><span class="pln">drawable</span><span class="pun">.</span><span class="pln">ic_launcher</span><span class="pun">);</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="typ">TextView</span><span class="pln">&nbsp;</span><span class="typ">_TextView1</span><span class="pun">=(</span><span class="typ">TextView</span><span class="pun">)</span><span class="pln">convertView</span><span class="pun">.</span><span class="pln">findViewById</span><span class="pun">(</span><span class="pln">R</span><span class="pun">.</span><span class="pln">id</span><span class="pun">.</span><span class="pln">textView1</span><span class="pun">);</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="typ">TextView</span><span class="pln">&nbsp;</span><span class="typ">_TextView2</span><span class="pun">=(</span><span class="typ">TextView</span><span class="pun">)</span><span class="pln">convertView</span><span class="pun">.</span><span class="pln">findViewById</span><span class="pun">(</span><span class="pln">R</span><span class="pun">.</span><span class="pln">id</span><span class="pun">.</span><span class="pln">textView2</span><span class="pun">);</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="typ">_TextView1</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="pln">mList</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="pln">position</span><span class="pun">).</span><span class="pln">getPersonName</span><span class="pun">());</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="typ">_TextView2</span><span class="pun">.</span><span class="pln">setText</span><span class="pun">(</span><span class="pln">mList</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="pln">position</span><span class="pun">).</span><span class="pln">getPersonAddress</span><span class="pun">());</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">}</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">return</span><span class="pln">&nbsp;convertView</span><span class="pun">;</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">}</span></li><li class="L6"><span class="pun">}</span></li></ol></pre><p>运行效果：<br></p><p><img alt="QQ图片20150105170110.png" src="./android Spinner控件详解 - 泡在网上的日子_files/1420448598206810.png" title="1420448598206810.png"></p><p><br></p><h2>Spinner的菜单显示方式</h2><p>它有两种显示形式，<span style="color: rgb(255, 0, 0);">一种是下拉菜单，一种是弹出框</span>，菜单显示形式是<span style="color: rgb(255, 0, 0);">spinnerMode</span>属性决定的：</p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="pln">android</span><span class="pun">:</span><span class="pln">spinnerMode</span><span class="pun">=</span><span class="str">"dropdown"</span></li><li class="L1"><span class="pln">android</span><span class="pun">:</span><span class="pln">spinnerMode</span><span class="pun">=</span><span class="str">"dialog"</span></li></ol></pre><p>在android2.3上没有这个属性，系统默认将Spinner弹出菜单显示成dialog。下面是Theme.Light和Theme.Holo.Light下Spinner在不同模式下的效果对比图。</p><table height="660" width="890"><tbody><tr class="firstRow"><td valign="top" width="526"><br></td><td valign="top" width="526">dropdown</td><td valign="top" width="526">dialog</td></tr><tr><td style="word-break: break-all;" valign="top" width="526"><p>Theme.Light</p><p>默认为弹出框的形式</p></td><td valign="top" width="526"><p style="text-align:center"><img src="./android Spinner控件详解 - 泡在网上的日子_files/1451035986116293.jpg" style="width: 231px; height: 245px;" title="1420430551277253.jpg" height="245" width="231"></p></td><td style="word-break: break-all;" valign="top" width="526"><p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong><br></p><p><img src="./android Spinner控件详解 - 泡在网上的日子_files/1451035986140903.jpg" style="width: 237px; height: 312px;" title="1420430551487679.jpg" height="312" width="237"></p></td></tr><tr><td style="word-break: break-all;" valign="top" width="526"><p>Theme.Holo.Light <br></p><p><br></p><p>默认为下拉菜单的形式 &nbsp;</p></td><td style="word-break: break-all;" valign="top" width="526">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br><p><img src="./android Spinner控件详解 - 泡在网上的日子_files/1451035986850609.jpg" style="width: 316px; height: 252px;" title="1420431302551753.jpg" height="252" width="316"></p></td><td style="word-break: break-all;" valign="top" width="526"><p><img src="./android Spinner控件详解 - 泡在网上的日子_files/1451035986438665.jpg" style="width: 245px; height: 255px;" title="1420431302118685.jpg" height="255" width="245"></p></td></tr></tbody></table><p><br></p><p><br></p><p><br></p><h2>Spinner的xml属性</h2><p>其实上面已经提到了Spinner的两个属性：</p><p>1 entries: 直接在xml布局文件中绑定数据源（可以不设置，即可以在Activity中动态绑定）</p><p>2 spinnerMode: Spinner的显示形式</p><p>除此之外还有如下属性：</p><p>prompt：在Spinner弹出选择对话框的时候对话框的标题：</p><p><img alt="QQ图片20150105024315.jpg" src="./android Spinner控件详解 - 泡在网上的日子_files/1420397001110419.jpg" title="1420397001110419.jpg"></p><p><br></p><p>属性名称</p><p><strong>android:dropDownHorizontalOffset</strong></p><p>对应方法：&nbsp; &nbsp; <br></p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="pln">setDropDownHorizontalOffset</span><span class="pun">(</span><span class="kwd">int</span><span class="pun">)</span></li></ol></pre><p>spinnerMode=”dropdown”时，下拉的项目选择窗口在水平方向相对于Spinner窗口的偏移量。</p><p>它必须是一个带有单位的浮点型尺寸值，如：”14.5sp”。有效的单位包括：px(像素)、dp(密度无关的像素)、sp(基于引用字体的尺寸来缩放的像素)、in(英寸)、mm(毫米)。</p><p>这个属性还可以引用一个资源(格式：@[package:]type:name）或者是包含这种类型值的主题属性（格式：?[package][type:]name）。</p><p>这个属性对应全局属性资源符号dropDownHorizontalOffset。</p><p><strong>android:dropDownSelector</strong></p><p>用于设定spinnerMode=”dropdown”时列表选择器的显示效果。</p><p>它可以用”@[+][package]:type:name”格式来引用另外的资源，或者是用”?[package:][type:]name”的格式来
+应用主题属性，还可以是”#rgb”、”#argb”、”#rrggbb”、”aarrggbb”格式的颜色值。</p><p>它对应的全局属性资源符号是dropDownSelector。</p><p><strong>android:dropDownVerticalOffset</strong></p><p>对应方法：</p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="pln">setDropDownVerticalOffset</span><span class="pun">(</span><span class="kwd">int</span><span class="pun">)</span></li></ol></pre><p>spinnerMode=”dropdown”时，下拉的项目选择窗口在垂直方向相对于Spinner窗口的偏移量。</p><p>这个属性它必须是一个带有单位的浮点型尺寸值，如：”14.5sp”。有效的单位包括：px(像素)、dp(密度无关的像素)、sp(基于引用字体的尺寸来缩放的像素)、in(英寸)、mm(毫米)。</p><p>还可以引用一个资源(格式：@[package:]type:name）或者是包含这种类型值的主题属性（格式：?[package][type:]name）。</p><p>这个属性对应全局属性资源符号dropDownVerticalOffset。</p><p><strong>android:dropDownWidth</strong></p><p>对应方法：</p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="pln">setDropDownWidth</span><span class="pun">(</span><span class="kwd">int</span><span class="pun">)</span></li></ol></pre><p>在spinnerMode=”dropdown”时，设定下拉框的宽度。</p><p>这个属性可以是带有单位的浮点型的尺寸值，如：14.5sp。有效的单位包括：px(像素)、dp(密度无关的像素)、sp(基于引用字体的尺寸来缩放的像素)、in(英寸)、mm(毫米)。</p><p>还可以引用一个资源(格式：@[package:]type:name）或者是包含这种类型值的主题属性（格式：?[package][type:]name）。</p><p>还可以是下列常量之一：</p><p>fill_parent = -1，下拉框的宽度应该使用屏幕的宽度来设定。这个常量从API Level 8开始被废弃了，并且使用mach_parent常量来代替。</p><p>mach_parent = -1，下拉框的宽度应该使用屏幕的宽度来设定。在API Level 8中被引入。</p><p>wrap_content = -2，下拉框的宽度应该跟它的内容相适应。</p><p>它对应的全局资源符号是dropDownWidth。</p><p><strong>android:gravity</strong></p><p>对应方法：</p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="pln">setGravity</span><span class="pun">(</span><span class="kwd">int</span><span class="pun">)</span></li></ol></pre><p>这个属性用于设置当前选择的项目的对齐方式。</p><p>它必须是以下常量值之一或组合（用”|”符号分离）。</p><p>top = 0x30：把选择的对象放到它的容器的顶部，不改变它的尺寸。</p><p>bottom = 0x50：把选择的对象放到它的容器的底部，不改变它的尺寸。</p><p>left = 0x03：把选择的对象放到它的容器的左边，不改变它的尺寸。</p><p>right = 0x05：把选择的对象放到它的容器的右边，不改变它的尺寸。</p><p>center_vertical = 0x10：把选择的对象放到它的容器的垂直中心，不改变它的尺寸。</p><p>fill_vertical = 0x70：为了完全的填充它的容器，系统会根据需要来增加选择对象的垂直尺寸。</p><p>center_horizontal = 0x01：把选择的对象放到它的容器的水平中心，不改变它的尺寸。</p><p>fill_horizontal = 0x07：为了完全的填充它的容器，系统会根据需要来增加选择对象的水平尺寸。</p><p>center = 0x11：把选择的对象放到它的容器的垂直和水平中心，不改变它的尺寸。</p><p>fill = 0x77：为了完全的填充它的容器，系统会根据需要来增加选择对象的水平和垂直尺寸。</p><p>clip_vertical = 0x80：附加的可选设置，它可以设置容器内子对象的上下边缘裁剪它的容器边框。裁剪会基于垂直对齐的方式：顶部对齐的会裁剪底部边缘，底部对齐的会裁剪顶部边缘，不会上下边缘都裁剪。</p><p>clip_horizontal = 0x08：附加的可选设置，它可以设置容器内子对象的左右边缘裁剪它的容器边框。裁剪会基于水平对齐的方式：左对齐的会裁剪右边缘，右对齐的会裁剪左边缘，不会左右边缘都裁剪。</p><p>start = 0x00800003：把对象放到它的容器的开始位置，不改变它的尺寸。</p><p>end = 0x00800005：把对象放到它的容器的结束位置，不改变它的尺寸。</p><p>对应的全局属性资源符号是gravity。</p><p>注：Spinner对象是一个视窗对象容器，设置它的gravity属性时，只会改变容器内部子视窗对象的对齐方式，并不会改变子视窗内部内容的对齐方式。</p><p><strong>android:popupBackground</strong></p><p>对应方法：</p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="pln">setPopupBackgroundResource</span><span class="pun">(</span><span class="kwd">int</span><span class="pun">)</span></li></ol></pre><p>在spinner=”dropdown”时，使用这个属性来设置下拉列表的背景。</p><p>可以使用”@[+][package:]type:name”格式来引用另外的资源，或者使用”?[package:][type:]name”格式来应
+用主题属性，也可以使用”#rgb”、”#argb”、”#rrggbb”、”#aarrggbb”格式的颜色值。</p><p>对应的全局属性资源符号是popupBackground</p><h2 style="white-space: normal;">打赏</h2><p style="white-space: normal;"><img src="./android Spinner控件详解 - 泡在网上的日子_files/1451035740457944.jpg" title="1451035740457944.jpg" alt="1451035740457944.jpg" width="320" height="372" border="0" vspace="0" style="width: 320px; height: 372px;"></p><p><br></p>
+				</div>
+			 
+				<div class="pageActive clearfix" id="newdigg"><a href="javascript:void(0)" class="pageActive-item" onclick="postStow(2264)"><span><img src="./android Spinner控件详解 - 泡在网上的日子_files/collection.png"></span>收藏(43)</a>
+			<a href="javascript:void(0)" class="pageActive-item" onclick="postDigg(&#39;good&#39;,2264)"> <span><img src="./android Spinner控件详解 - 泡在网上的日子_files/approve.png"></span>赞(419)</a>
+			<a href="javascript:void(0)" class="pageActive-item" onclick="postDigg(&#39;bad&#39;,2264)"> <span><img src="./android Spinner控件详解 - 泡在网上的日子_files/disapprove.png"></span>踩(34)</a>
+          							
+				</div>				
+				<div id="collection-users-list" class="mgt60"><div class="sub-title">他们收藏了这篇文章</div><ul class="users-list clearfix"><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=wxyu26"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index.php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=BingGadget"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(1).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=guoguangchao"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(2).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=emotiona"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(3).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Hy%D0%A1%95%84"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/myface.jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=275213508@qq.com"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(4).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%CC%B8%D0%A6%B7%E7%C9%FA"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(5).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=hongshangren"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(6).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Williamguan"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/myface(1).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=hanfengmingyang"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(7).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%C7%ED%ABh%E8%A4"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(8).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=lanxj0703"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(9).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=amomissile"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/myface(2).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B7%C9%B1%BC%B5%C4%D0%A1%C2%ED"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(10).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%BB%E1%B7%C9%B5%C4%D3%A5"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(11).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=wkwkwkwkwk"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(12).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%BB%A8%BE%ED"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/myface(3).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=skyunicorn"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(13).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%A1%A2%B6%AB%BE%A9%B2%BB%CC%AB%C8%C8"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/myface(4).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=1192918673"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/myface(5).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%E5%D0%D2%A3"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(14).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%C0%B2%C0%B2%C0%B2"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/myface(6).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%C1%D6%C1%D6%D5%C5"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/myface(7).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=pull2car"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/myface(8).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=qq920020062"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(15).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=seamless"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/myface(9).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%C2%FE%B2%BD%D4%C6%B6%CB"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/myface(10).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%BC%C5%C4%AF%B2%BB%B5%E3%D1%CC"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/myface(11).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=helloworld33"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/myface(12).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=WSJ-Geek"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(16).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=pixiaozhi"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/myface(13).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=benjamin"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(17).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B2%DF%C2%ED%D0%A5%CE%F7%B7%E7"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(18).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%BB%F0%B3%C7%B1%F9%B7%E7"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(19).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=hearterfly"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/myface(14).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B3%C1%B5%D7%B1%B4%BF%C7"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(20).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=frankivy"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(21).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=odin%B0%C2%B6%A1"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(22).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=yftiger1981"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(23).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=good-good-study"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(24).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=StillGAKKI"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/index(25).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Lincl"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/myface(15).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B8%F8%B5%E3color-see-see"> <img class="avatar" src="./android Spinner控件详解 - 泡在网上的日子_files/myface(16).jpg">  </a></li></ul>
+				</div>			
+				<div class="related_arc">
+					<div class="sub-title">相关文章</div>
+					<div class="rearc_list clearfix">
+						<ul>   
+						
+						    
+						</ul>
+			   
+					</div>  						
+				</div>	
+				<ul>				 
+					<li style="margin-top:10px"><script src="./android Spinner控件详解 - 泡在网上的日子_files/fuckblok(2).php" language="javascript"></script></li>			
+				</ul>										
+            </div>				
+             
+            <div style="width:680px;"></div> 
+			<div class="pre_next">
+            	<div class="row"> 
+                	 <div class="col-md-6">
+					<div class="div_button">上一篇：<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2263.html">android中使用xml里的array资源</a> <div>android中使用数组有种非常简单的方式，在xml中获取，一直以来我都比较排斥这样使用，因为从来没有真正弄懂过，每次需要的时候都是在在网上找一个样板来做，今天花点时间彻底弄懂。 首先来看数组的定义。 创建数组资源 在values目录下创建arrays.xml文件 然</div></div>
+					</div>
+					 <div class="col-md-6">
+					<div class="div_button">下一篇：<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2266.html">巧用Drawable 实现Android UI 元素间距效果</a> <div>本文翻译自： Grid Spacing on Android 原文作者： Cyril Mottier 在大部分的移动UI或者Web UI都是基于网格概念而设计的。这种网格一般都是有一些对其的方块组成，然后它们组合成为一个块。使用网格这样的设计原则可以有助于对齐UI元素，提升UI的一致性，同</div></div>
+					</div>
+                </div>
+            </div>
+            <div class="dede_comment_post">
+				
+<div class="comments_body">
+	<form action="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#" method="post" name="feedback" onsubmit="return false;">
+		<input type="hidden" name="dopost" value="send">
+		<input type="hidden" name="comtype" value="comments">
+		<input type="hidden" name="arcauthor" value="1 ">
+		<input type="hidden" name="aid" value="2264">
+		<input type="hidden" name="fid" id="feedbackfid" value="0">
+		<div class="post_box clearfix">
+            <textarea cols="60" name="msg" id="cm_content" rows="5" class="ipt-txt"></textarea>	
+            <div class="post_act">
+            	<button type="button clearfix" onclick="PostComment()">发表评论</button>
+            </div>
+		</div>
+		
+		
+    </form>	
+</div>
+
+
+<!-- //评论表单区结束 -->
+<!-- //评论内容区 -->
+<a name="commettop"></a>
+
+<div id="commetcontentNew">
+
+</div>
+<div id="commetcontent">		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/member/index.php?uid=jianghejie" class="plpic"><img src="./android Spinner控件详解 - 泡在网上的日子_files/myface.png" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/member/index.php?uid=jianghejie">泡在网上的日子</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2017-06-12</span>
+					</div>
+					<div class="post_content">
+						<div class="decmt-box"><div class="decmt-ti&lt;x&gt;tle"><span class="username">VOGUE-PAPA 的原帖：</span></div><div class="decmt-content">求问楼主Android Studio的背景</div></div>what？					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb6472"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#goodfb6472" onclick="postBadGood(&#39;goodfb&#39;,6472);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>0 </span>
+							<span class="action-item" id="badfb6472"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#badfb6472" onclick="postBadGood(&#39;badfb&#39;,6472);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(6472,6472,&quot;quote&quot;);"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_6472"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/member/index.php?uid=VOGUE-PAPA" class="plpic"><img src="./android Spinner控件详解 - 泡在网上的日子_files/index(26).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/member/index.php?uid=VOGUE-PAPA">VOGUE-PAPA</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2017-06-12</span>
+					</div>
+					<div class="post_content">
+						求问楼主Android Studio的背景					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb6471"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#goodfb6471" onclick="postBadGood(&#39;goodfb&#39;,6471);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>0 </span>
+							<span class="action-item" id="badfb6471"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#badfb6471" onclick="postBadGood(&#39;badfb&#39;,6471);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(6471,6471,&quot;quote&quot;);"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_6471"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/member/index.php?uid=a0okok" class="plpic"><img src="./android Spinner控件详解 - 泡在网上的日子_files/myface(17).jpg" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/member/index.php?uid=a0okok">a0okok</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2017-04-27</span>
+					</div>
+					<div class="post_content">
+						竟然还敢要菠萝吃!~~					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb6359"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#goodfb6359" onclick="postBadGood(&#39;goodfb&#39;,6359);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>2 </span>
+							<span class="action-item" id="badfb6359"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#badfb6359" onclick="postBadGood(&#39;badfb&#39;,6359);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(6359,6359,&quot;quote&quot;);"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_6359"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#" class="plpic"><img src="./android Spinner控件详解 - 泡在网上的日子_files/index(27).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#">网友115.200.54.238</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2016-05-29</span>
+					</div>
+					<div class="post_content">
+						楼主有一个问题，因为用android studio 所以会出现一个missing st<x>yle的问题，为了解决这个问题就把Theme设置成了black，然后被背景设置成了android:background="#ffffff"，从此以后spinner的字就看不出来了。<br>
+我既想保留白色的背景又想把spinner字体的颜色改成黑色怎么办？					</x></div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb5318"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#goodfb5318" onclick="postBadGood(&#39;goodfb&#39;,5318);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>0 </span>
+							<span class="action-item" id="badfb5318"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#badfb5318" onclick="postBadGood(&#39;badfb&#39;,5318);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(5318,5318,&quot;quote&quot;);"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_5318"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#" class="plpic"><img src="./android Spinner控件详解 - 泡在网上的日子_files/index(27).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#">网友222.197.176.131</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2016-05-04</span>
+					</div>
+					<div class="post_content">
+						谢谢！很有帮助！					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb5087"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#goodfb5087" onclick="postBadGood(&#39;goodfb&#39;,5087);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>0 </span>
+							<span class="action-item" id="badfb5087"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#badfb5087" onclick="postBadGood(&#39;badfb&#39;,5087);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(5087,5087,&quot;quote&quot;);"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_5087"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#" class="plpic"><img src="./android Spinner控件详解 - 泡在网上的日子_files/index(27).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#">网友183.28.100.71</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2016-04-28</span>
+					</div>
+					<div class="post_content">
+						好文章，一看就懂。					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb5046"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#goodfb5046" onclick="postBadGood(&#39;goodfb&#39;,5046);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>1 </span>
+							<span class="action-item" id="badfb5046"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#badfb5046" onclick="postBadGood(&#39;badfb&#39;,5046);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(5046,5046,&quot;quote&quot;);"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_5046"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#" class="plpic"><img src="./android Spinner控件详解 - 泡在网上的日子_files/index(27).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#">网友182.130.185.39</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2016-04-13</span>
+					</div>
+					<div class="post_content">
+						厉害！！！！！					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb4859"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#goodfb4859" onclick="postBadGood(&#39;goodfb&#39;,4859);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>0 </span>
+							<span class="action-item" id="badfb4859"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#badfb4859" onclick="postBadGood(&#39;badfb&#39;,4859);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(4859,4859,&quot;quote&quot;);"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_4859"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/member/index.php?uid=scream" class="plpic"><img src="./android Spinner控件详解 - 泡在网上的日子_files/index(28).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/member/index.php?uid=scream">scream</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2015-12-25</span>
+					</div>
+					<div class="post_content">
+						写的很详细，谢谢你。					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb3941"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#goodfb3941" onclick="postBadGood(&#39;goodfb&#39;,3941);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>0 </span>
+							<span class="action-item" id="badfb3941"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#badfb3941" onclick="postBadGood(&#39;badfb&#39;,3941);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(3941,3941,&quot;quote&quot;);"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_3941"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/member/index.php?uid=275213508@qq.com" class="plpic"><img src="./android Spinner控件详解 - 泡在网上的日子_files/index(29).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/member/index.php?uid=275213508@qq.com">275213508@qq.com</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2015-11-17</span>
+					</div>
+					<div class="post_content">
+						什么时候发布app					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb3611"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#goodfb3611" onclick="postBadGood(&#39;goodfb&#39;,3611);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>0 </span>
+							<span class="action-item" id="badfb3611"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#badfb3611" onclick="postBadGood(&#39;badfb&#39;,3611);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(3611,3611,&quot;quote&quot;);"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_3611"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/member/index.php?uid=jianghejie" class="plpic"><img src="./android Spinner控件详解 - 泡在网上的日子_files/myface.png" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/member/index.php?uid=jianghejie">泡在网上的日子</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2015-07-27</span>
+					</div>
+					<div class="post_content">
+						<div class="decmt-box"><div class="decmt-ti&lt;x&gt;tle"><span class="username">hedgehog 的原帖：</span></div><div class="decmt-content"><div class="decmt-box"><div class="decmt-ti&lt;x&gt;tle"><span class="username">网友125.70.174.138 的原帖：</span></div><div class="decmt-content"><div class="decmt-box"><div class="decmt-ti&lt;x&gt;tle"><span class="username">hedgehog 的原帖：</span></div><div class="decmt-content">可是泡网的app什么时候出来呢？</div></div>哈哈哈，亚历山大啊</div></div>泡网要是出app，我们这些人一定是第一批种子用户</div></div>感谢你们的支持					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb2418"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#goodfb2418" onclick="postBadGood(&#39;goodfb&#39;,2418);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>3 </span>
+							<span class="action-item" id="badfb2418"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#badfb2418" onclick="postBadGood(&#39;badfb&#39;,2418);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(2418,2418,&quot;quote&quot;);"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_2418"></div>
+		</div>
+
+<div id="commetpages"><span>总: 2 页/14 条评论</span> <strong>1</strong> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#commettop" onclick="LoadCommets(2);">2</a> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0105/2264.html#commettop" onclick="LoadCommets(2);">下一页</a> </div>
+</div>
+<!--
+//由于评论载入时使用异步传输，因此必须在最后一步加载（DIGG和评论框须放在评论内容前面）
+//如果一定需要提前的把myajax.SendGet改为myajax.SendGet2，但可能会引起页面阻滞
+-->
+<script language="javascript">
+function LoadCommets(page)
+{
+		var taget_obj = document.getElementById('commetcontent');
+		var waithtml = "<div style='line-height:50px'><img src='/images/loadinglit.gif' />评论加载中...</div>";
+		var myajax = new MyAjax(taget_obj, true, true, '', 'x', waithtml);
+		myajax.SendGet2("/plus/feedback_ajax.php?dopost=getlist&aid=2264&page="+page);
+		DedeXHTTP = null;
+}
+function updatetag(){
+	var tags = $DE("tags").value;
+	var nfeedbacktype = 'feedback';
+	var taget_obj = $DE('tag_response');
+	var myajax = new MyAjax(taget_obj, false, true, '', '', "...");
+	myajax.sendlang = 'gb2312';
+	myajax.AddKeyN('dopost', 'send');
+	myajax.AddKeyN('id', '2264');
+	myajax.AddKeyN('tags', tags);
+	myajax.SendPost2('/action/update_tags.php');	
+}
+function PostComment()
+{
+		var f = document.feedback;
+		var msg = $DE("cm_content").value;
+		var nface = '6';
+		var nfeedbacktype = 'feedback';
+		var nvalidate = '';
+		var nnotuser = '';
+		var nusername = '';
+		var npwd = '';
+		var taget_obj = $DE('commetcontentNew');
+		var waithtml = "<div style='line-height:30px'><img src='/images/loadinglit.gif' />正在发送中...</div>";
+		if(msg=='')
+		{
+			alert("评论内容不能为空！");
+			return;
+		}
+		if(f.validate)
+		{
+			if(f.validate.value=='') {
+				alert("请填写验证码！");
+				return;
+			}
+			else {
+				nvalidate = f.validate.value;
+			}
+		}
+		if(msg.length > 500)
+		{
+			alert("你的评论是不是太长了？请填写500字以内的评论。");
+			return;
+		}
+		if(f.feedbacktype) {
+			for(var i=0; i < f.feedbacktype.length; i++)
+				if(f.feedbacktype[i].checked) nfeedbacktype = f.feedbacktype[i].value;
+		}
+		/*
+		if(f.face) {
+			for(var j=0; j < f.face.length; j++)
+				if(f.face[j].checked) nface = f.face[j].value;
+		}
+		*/
+
+		
+		var myajax = new MyAjax(taget_obj, false, true, '', '', waithtml);
+		myajax.sendlang = 'gb2312';
+		myajax.AddKeyN('dopost', 'send');
+		myajax.AddKeyN('aid', '2264');
+		myajax.AddKeyN('fid', f.fid.value);
+		myajax.AddKeyN('face', nface);
+		myajax.AddKeyN('feedbacktype', nfeedbacktype);
+		myajax.AddKeyN('validate', nvalidate);
+		myajax.AddKeyN('notuser', nnotuser);
+		myajax.AddKeyN('username', nusername);
+		myajax.AddKeyN('pwd', npwd);
+		myajax.AddKeyN('msg', msg);
+		myajax.AddKeyN('arcauthor', f.arcauthor.value);
+
+		myajax.SendPost2('/plus/feedback_ajax.php');
+		//msg = '';
+		CKEDITOR.instances.msg.setData('');
+		//taget_obj.removeAttribute('id');
+		f.fid.value = 0;
+		if(f.validate)
+		{
+			if($DE('validateimg')) $DE('validateimg').src = "/include/vdimgck.php?"+f.validate.value;
+			f.validate.value = '';
+		}
+		
+}
+function quoteCommet(fid)
+{
+	    document.feedback.fid.value = fid;
+}
+  
+function ajaxFeedback(aid, fid, type)
+{
+	var taget_obj = $DE('ajaxfeedback_'+fid);
+	if(taget_obj.innerHTML == '')
+	{
+		var myajax = new MyAjax(taget_obj, true, true, '', 'x');
+		myajax.SendGet2("/plus/feedback.php?aid="+aid+"&fid="+fid+"&action=quote&type=ajax");
+		eval('var result = typeof CKEDITOR.instances.msg_'+fid);
+		if(result != 'undefined')
+		{
+			// 删除实例
+			eval('var edit = CKEDITOR.instances.msg_'+fid);
+			CKEDITOR.remove(edit);
+		}
+		CKEDITOR.replace(document.getElementById('msg_'+fid) , CKEDITOR.instances.msg.config);
+		scroll(0, taget_obj.offsetTop - 120);
+		var formname = 'f = document.ajaxfeedback_'+fid;
+		eval(formname);
+		if(f.validate)
+		{
+			if($DE('vdimg_'+fid)) $DE('vdimg_'+fid).src = "/include/vdimgck.php?"+f.validate.value;
+			f.validate.value = '';
+		}
+		
+		DedeXHTTP = null;
+	}else{
+		taget_obj.innerHTML = '';
+	}
+}
+
+function postBadGood(ftype,fid)
+{
+	var taget_obj = document.getElementById(ftype+fid);
+	var saveid = GetCookie('badgoodid');
+	if(saveid != null)
+	{
+		var saveids = saveid.split(',');
+		var hasid = false;
+		saveid = '';
+		j = 1;
+		for(i=saveids.length-1;i>=0;i--)
+		{
+			if(saveids[i]==fid && hasid) continue;
+			else {
+				if(saveids[i]==fid && !hasid) hasid = true;
+				saveid += (saveid=='' ? saveids[i] : ','+saveids[i]);
+				j++;
+				if(j==10 && hasid) break;
+				if(j==9 && !hasid) break;
+			}
+		}
+		if(hasid) { alert('您刚才已表决过了喔！'); return false;}
+		else saveid += ','+fid;
+		SetCookie('badgoodid',saveid,1);
+	}
+	else
+	{
+		SetCookie('badgoodid',fid,1);
+	}
+	myajax = new MyAjax(taget_obj,false,false,'','','');
+	myajax.SendGet2("/plus/feedback.php?aid="+fid+"&action="+ftype+"&fid="+fid);
+}
+
+function ajaxQuotePost(fid)
+{
+	var formname = 'f = document.ajaxfeedback_'+fid;
+	eval(formname);
+	//var f = document.formname;
+	//var f = f[0];
+	var nvalidate = '';
+	var nnotuser = '';
+	var nusername = '';
+	var npwd = '';
+	var taget_obj = $DE('commetcontentNew');
+	var waithtml = "<div style='line-height:30px'><img src='/images/loadinglit.gif' />正在发送中...</div>";
+	eval('var msg = $DE("msg_'+fid+'").value');
+	if(f.validate)
+	{
+		if(f.validate.value=='') {
+			alert("请填写验证码！");
+			return;
+		}
+		else {
+			nvalidate = f.validate.value;
+		}
+	}
+	var myajax = new MyAjax(taget_obj, false, true, '', '', waithtml);
+	
+
+	
+	myajax.sendlang = 'gb2312';
+	myajax.AddKeyN('dopost', 'send');
+	myajax.AddKeyN('aid', '2264');
+	myajax.AddKeyN('fid', f.fid.value);
+	myajax.AddKeyN('type', 'ajax');
+	myajax.AddKeyN('comtype', f.comtype.value);
+	myajax.AddKeyN('isconfirm','yes');
+	
+	myajax.AddKeyN('typeid', f.typeid.value);
+	myajax.AddKeyN('quotemsg', f.quotemsg.value);
+	myajax.AddKeyN('validate', nvalidate);
+	myajax.AddKeyN('notuser', nnotuser);
+	myajax.AddKeyN('username', nusername);
+	myajax.AddKeyN('pwd', npwd);
+	myajax.AddKeyN('msg', msg);
+	myajax.SendPost2('/plus/feedback_ajax.php');
+	//alert(f.quotemsg.value);
+	if($DE('ajaxfeedback_'+fid).innerHTML != null)
+	{
+		$DE('ajaxfeedback_'+fid).innerHTML = '';
+	}
+	scroll(0, taget_obj.offsetTop);
+}
+LoadCommets(1);
+</script>
+<!-- //评论内容区结束 -->
+
+ 			</div>  
+ 
+                                   
+        </div>  
+        <!-- end  of  content -->
+
+        <div class="col-md-3">  
+ 
+			<div class="sub-title">推荐文章</div>
+			<ul class="sidearticle_c clearfix">                     
+				<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0317/2612.html" target="_blank">在列表滚动的时候显示或者隐藏Toolbar（第一部分）</a></li>
+<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0130/3927.html" target="_blank">在滚动列表中实现视频的播放(ListView &amp; RecyclerView)</a></li>
+<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/1214/3772.html" target="_blank">【译】Android应用架构</a></li>
+<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0216/3967.html" target="_blank">开发一流的 Android SDK： Fabric SDK 的创建经验</a></li>
+<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0911/3440.html" target="_blank">Android 主题动态切换框架：Prism</a></li>
+<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0720/3209.html" target="_blank">android网络操作I： OkHttp, Volley以及Gson</a></li>
+
+			</ul>				 
+		            
+
+			<div class="sub-title">赞助商</div>
+			 
+                                                               
+            <div id="floatbox" style="top: 0px; position: static; width: 263px;">  
+				<script src="./android Spinner控件详解 - 泡在网上的日子_files/fuckblok(3).php" language="javascript"></script><script async="" src="./android Spinner控件详解 - 泡在网上的日子_files/adsbygoogle.js.下载"></script>
+<!-- 250x250 -->
+<ins class="adsbygoogle" style="display:inline-block;width:250px;height:250px" data-ad-client="ca-pub-8583773779396897" data-ad-slot="3660827512" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:250px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:250px;background-color:transparent"><iframe width="250" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;width:250px;height:250px;" src="./android Spinner控件详解 - 泡在网上的日子_files/saved_resource(2).html"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>	
+         	</div>
+            
+        </div>        
+    
+        <div style="clear:both;"></div>
+	</div> 	
+</div> 
+<script src="./android Spinner控件详解 - 泡在网上的日子_files/jcodecraeer.js.下载"></script>
+<!-- 返回顶部 -->
+<div id="gotop" style="display: block;"></div>
+
+<script type="text/javascript">
+	backTop=function (btnId){
+		var btn=document.getElementById(btnId);
+		var d=document.documentElement;
+		var b=document.body;
+		window.onscroll=set;
+		btn.onclick=function (){
+			btn.style.display="none";
+			window.onscroll=null;
+			this.timer=setInterval(function(){
+				d.scrollTop-=Math.ceil((d.scrollTop+b.scrollTop)*0.1);
+				b.scrollTop-=Math.ceil((d.scrollTop+b.scrollTop)*0.1);
+				if((d.scrollTop+b.scrollTop)==0) clearInterval(btn.timer,window.onscroll=set);
+			},10);
+		};
+		function set(){
+			btn.style.display=(d.scrollTop+b.scrollTop>100)?'block':"none";
+		}
+	};
+	backTop('gotop');
+	
+	(new SidebarFollow()).init({
+		element: jQuery('#floatbox'),
+		distanceToTop: 0
+	});	
+	
+</script>
+
+
+<!-- 返回顶部END -->
+<style>
+#gotop {
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEMAAAANAgMAAACP9jv8AAAACVBMVEX///////8AAACO9MPsAAAAAXRSTlMAQObYZgAAAGhJREFUeF49zsEJwCAMBdBvoRfvWaJTOEIPZp+O4lEyZcn/RIl+SMJDAG2gTlfc7+k8H8Pm6cRiuFfjip3RphXUV4ghJIaQjVZQoCfkLDI7C7kgiAuRDK+YvJwLQnBPhovRw7ER5of3DyPbFp8RB9axAAAAAElFTkSuQmCC") no-repeat scroll 18px 21px #000000;
+    bottom: 200px;
+    cursor: pointer;
+    display: block;
+    height: 60px;
+    opacity: 0.5;
+    overflow: hidden;
+    transition: opacity 0.3s ease-in 0s, opacity 0.3s ease-out 0s;
+     right: 10px;
+    position: fixed;
+    top: auto;
+    width: 60px;
+    z-index: 999;
+}
+</style>
+<div class="footer">
+	<div class="container">	
+		<div class="row clearfix">
+			<div class="col-md-12">
+				<div class="copyright z">
+					<p>Copyright  2011 - 2016 jcodecraeer.com All Rights Reversed.</p>
+					<p>蜀ICP备12021840号-1</p>
+					<p>本站文章用于学习交流</p>
+				</div>
+				<div class="footer-nav y">	
+					<ul class="clearfix">
+						<li><a href="http://weibo.com/u/2711441293" target="_blank">新浪微博</a></li>
+						<li>qq群一161644793</li>
+						<li>qq群二98711210</li> 
+					</ul>
+					<ul class="clearfix">
+						<li><a href="http://www.jcodecraeer.com/sitemap/" target="_blank">网站地图</a></li>	
+						<li>				
+						<script type="text/javascript">
+						var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+						document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F2f2ac530df20294f718580cea710780e' type='text/javascript'%3E%3C/script%3E"));
+						</script><script src="./android Spinner控件详解 - 泡在网上的日子_files/h.js.下载" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=2f2ac530df20294f718580cea710780e" target="_blank">网站统计</a> 
+						</li>	 
+					</ul>			
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>
+
+<script src="./android Spinner控件详解 - 泡在网上的日子_files/prettify.js.下载"></script>
+
+
+</body></html>

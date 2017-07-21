@@ -1,0 +1,3 @@
+var OX_14d19bbc = '';
+OX_14d19bbc += "<"+"a href=\'//gg3.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3717__zoneid=594__cb=a9219e063f__oadest=http%3A%2F%2Fedu.51cto.com%2Fpx%2Ftrain%2F115%3Fwzl\' target=\'_blank\'><"+"font color=\'red\'>Linux云计算与架构师进阶<"+"/font><"+"/a><"+"div id=\'beacon_a9219e063f\' style=\'position: absolute; left: 0px; top: 0px; visibility: hidden;\'><"+"img src=\'//gg1.51cto.com/www/delivery/lg.php?bannerid=3717&amp;campaignid=779&amp;zoneid=594&amp;loc=1&amp;referer=http%3A%2F%2Fmobile.51cto.com%2Fandroid-265878.htm&amp;cb=a9219e063f\' width=\'0\' height=\'0\' alt=\'\' style=\'width: 0px; height: 0px;\' /><"+"/div>\n";
+document.write(OX_14d19bbc);

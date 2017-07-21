@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<!-- saved from url=(0521)http://cache.baiducontent.com/c?m=9f65cb4a8c8507ed4fece763105392230e54f76238d586482ec3933fc239045c163bbffd707e5619d0c4616401ac4241e9f52b71340421b290cd835ddacf9329258e20347a19845612a458f58d197bd565cd1abfa058b6faad6ccdf992c4de2444ca24127bf0a5dc1c1715ba39b75462a5fdc414025f61&p=82759a46d4c003be1aa8c7710f0dbb&newp=933bc45385cc43e908e2977c0e0097231610db2151d7d01f6b82c825d7331b001c3bbfb423241604d2c67f6707a8425eeaf335783c0021a3dda5c91d9fb4c57479ce&user=baidu&fm=sc&query=Scroller%2EgetDuration%28%29&qid=cd89ef74000081d4&p1=1 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<!--<base href="http://www.360doc.com/content/13/1219/17/11537979_338452870.shtml">--><base href=".">
+<style>
+body{position:relative}
+body,form{margin:0!important;padding:0!important}
+#bd_snap{font:13px arial;color:#000;background:#fff;text-align:left;padding:13px 0 0 20px}
+#bd_snap_txt{clear:both;padding:10px 0 2px;line-height:24px;color:#333}
+#bd_snap_note{color:#999;padding-bottom:10px}
+#bd_snap a{font:13px arial;color:#00c;text-decoration:underline}
+#bd_snap_note a{color:#999}
+#bd_snap_head{width:860px;height:44px}
+#bd_snap_logo{width:162px;height:38px;display:block;background:url(http://www.baidu.com/img/logo-snap.png) no-repeat;margin-right:15px;float:left}
+#bd_snap_search{width:680px;position:absolute;left:209px;top:17px}
+#bd_snap_kw{width:531px;margin-right: 0;height:24px;padding:4px 7px;padding:6px 7px 2px\9;font:16px arial;vertical-align:top;border: 1px solid #b6b6b6;border-color: #7b7b7b #b6b6b6 #b6b6b6 #7b7b7b;background: #fff;display:inline-block;border-right-width: 0;border-color: #b8b8b8 transparent #ccc #b8b8b8;overflow: hidden;outline:0}
+#bd_snap_kw:hover{border-color: #999 transparent #b3b3b3 #999;}
+#bd_snap_kw:focus{border-color: #4791ff transparent #4791ff #4791ff}
+#bd_snap_su{width:100px;height:34px;font-size:14px;color:#fff;padding:0;letter-spacing: 1px;background: #3385ff; border-bottom: 1px solid #2d78f4;outline: medium;-webkit-appearance: none;-webkit-border-radius: 0;cursor:pointer;border:0}
+#bd_snap_search input.bd_snap_btn_h{background: #3075dc;box-shadow: inset 1px 1px 3px #2964bb;-webkit-box-shadow: inset 1px 1px 3px #2964bb;-moz-box-shadow: inset 1px 1px 3px #2964bb;-o-box-shadow: inset 1px 1px 3px #2964bb;}
+#bd_snap_search input.btnhover{background: #317ef3;border-bottom: 1px solid #2868c8;box-shadow: 1px 1px 1px #ccc;}
+#bd_snap_btn_wr{width:97px;height:34px;display:inline-block;_top:1px;*position:relative}
+#bd_snap_ln{height:1px;border-top:1px solid #ACA899;background:#ECE9D8;overflow:hidden}
+#bd_snap_txt span a{text-decoration:none}
+</style>
+
+
+</head><body onmouseup="setDragEnd()" onclick="delAllDiv(event)"><div id="bd_snap">
+    <div id="bd_snap_head">
+        <a href="http://www.baidu.com/" id="bd_snap_logo" title="到百度首页"></a>
+    </div>
+    <div id="bd_snap_txt">您查询的关键词是：<span><a style="color:black;background-color:#ffff66;padding:0 3px;font-weight:bold" href="http://cache.baiducontent.com/c?m=9f65cb4a8c8507ed4fece763105392230e54f76238d586482ec3933fc239045c163bbffd707e5619d0c4616401ac4241e9f52b71340421b290cd835ddacf9329258e20347a19845612a458f58d197bd565cd1abfa058b6faad6ccdf992c4de2444ca24127bf0a5dc1c1715ba39b75462a5fdc414025f61&amp;p=82759a46d4c003be1aa8c7710f0dbb&amp;newp=933bc45385cc43e908e2977c0e0097231610db2151d7d01f6b82c825d7331b001c3bbfb423241604d2c67f6707a8425eeaf335783c0021a3dda5c91d9fb4c57479ce&amp;user=baidu&amp;fm=sc&amp;query=Scroller%2EgetDuration%28%29&amp;qid=cd89ef74000081d4&amp;p1=1#baidusnap0">scroller.</a><a style="color:black;background-color:#ff9999;padding:0 3px;font-weight:bold" href="http://cache.baiducontent.com/c?m=9f65cb4a8c8507ed4fece763105392230e54f76238d586482ec3933fc239045c163bbffd707e5619d0c4616401ac4241e9f52b71340421b290cd835ddacf9329258e20347a19845612a458f58d197bd565cd1abfa058b6faad6ccdf992c4de2444ca24127bf0a5dc1c1715ba39b75462a5fdc414025f61&amp;p=82759a46d4c003be1aa8c7710f0dbb&amp;newp=933bc45385cc43e908e2977c0e0097231610db2151d7d01f6b82c825d7331b001c3bbfb423241604d2c67f6707a8425eeaf335783c0021a3dda5c91d9fb4c57479ce&amp;user=baidu&amp;fm=sc&amp;query=Scroller%2EgetDuration%28%29&amp;qid=cd89ef74000081d4&amp;p1=1#baidusnap3">duration</a></span>  <span style="margin-left:5px">以下是该网页在北京时间 2017年07月11日 11:15:29 的快照；</span>
+        <p>如果打开速度慢，可以尝试<a href="http://cache.baiducontent.com/c?m=9f65cb4a8c8507ed4fece763105392230e54f76238d586482ec3933fc239045c163bbffd707e5619d0c4616401ac4241e9f52b71340421b290cd835ddacf9329258e20347a19845612a458f58d197bd565cd1abfa058b6faad6ccdf992c4de2444ca24127bf0a5dc1c1715ba39b75462a5fdc414025f61&amp;p=82759a46d4c003be1aa8c7710f0dbb&amp;newp=933bc45385cc43e908e2977c0e0097231610db2151d7d01f6b82c825d7331b001c3bbfb423241604d2c67f6707a8425eeaf335783c0021a3dda5c91d9fb4c57479ce&amp;user=baidu&amp;fm=sc&amp;query=Scroller%2EgetDuration%28%29&amp;qid=cd89ef74000081d4&amp;p1=1&amp;fast=y">快速版</a>；如果想更新或删除快照，可以<a href="http://tousu.baidu.com/webmaster/add?link=http%3A%2F%2Fcache.baiducontent.com%2Fc%3Fm%3D9f65cb4a8c8507ed4fece763105392230e54f76238d586482ec3933fc239045c163bbffd707e5619d0c4616401ac4241e9f52b71340421b290cd835ddacf9329258e20347a19845612a458f58d197bd565cd1abfa058b6faad6ccdf992c4de2444ca24127bf0a5dc1c1715ba39b75462a5fdc414025f61%26p%3D82759a46d4c003be1aa8c7710f0dbb%26newp%3D933bc45385cc43e908e2977c0e0097231610db2151d7d01f6b82c825d7331b001c3bbfb423241604d2c67f6707a8425eeaf335783c0021a3dda5c91d9fb4c57479ce%26user%3Dbaidu%26fm%3Dsc%26query%3DScroller%252EgetDuration%2528%2529%26qid%3Dcd89ef74000081d4%26p1%3D1" id="bd_tousu">投诉快照</a>。
+        </p>
+    </div>
+<script>document.getElementById("bd_tousu").href = "http://tousu.baidu.com/webmaster/add?link=" + encodeURIComponent(document.location);</script>
+    <div id="bd_snap_note">百度和网页 <a href="http://www.360doc.com/content/13/1219/17/11537979_338452870.shtml">http://www.360doc.com/content/13/1219/17/11537979_338452870.shtml</a> 的作者无关，不对其内容负责。百度快照谨为网络故障时之索引，不代表被搜索网站的即时页面。</div>
+</div>
+<div id="bd_snap_search">
+	<form action="http://www.baidu.com/s"><input name="cl" type="hidden" value="3"><input name="wd" id="bd_snap_kw" maxlength="100"><span id="bd_snap_btn_wr"><input type="submit" id="bd_snap_su" value="百度一下" class="bd_snap_btn" onmouseover="this.className=&#39;bd_snap_btn bd_snap_btn_h&#39;" onmousedown="this.className=&#39;bd_snap_btn btnhover&#39;" onmouseup="this.className=&#39;bd_snap_btn&#39;" onmouseout="this.className=&#39;bd_snap_btn&#39;"></span></form>
+</div>
+<div id="bd_snap_ln"></div>
+<div style="position:relative">
+
+
+
+
+
+
+
+<meta content="360doc" name="classification"><link rel="alternate" media="only screen and (max-width: 640px)" href="http://www.360doc.cn/article/11537979_338452870.html"><meta content="scroller,int,public" name="keywords"><meta content="Scroller使用分析和总结" name="description"><meta name="mobile-agent" content="format=html5;url=http://www.360doc.cn/article/11537979_338452870.html"><meta content="Scroller使用分析和总结。public Scroller (Context context)此函数允许当使用setFinalX(int) or setFinalY(int)时，卷动动作持续更长时间并且卷动更长距离。public voidfling (int startX, int startY, int velocityX, int velocityY, int minX, int maxX, int minY, int maxY)public voidstartScroll (int startX, int startY, int dx, int dy)public voidstartScroll (int startX, int startY, int dx, int dy, int duration)" name="360docabstract"><meta content="www.360doc.com" name="author"><title>
+Scroller使用分析和总结
+</title>
+
+
+
+<link rel="stylesheet" type="text/css" href="./Scroller使用分析和总结_files/wzhead-cleaned.css"><link rel="stylesheet" type="text/css" href="./Scroller使用分析和总结_files/newArticle20160509.css">
+
+<link href="./Scroller使用分析和总结_files/newheader.css" rel="stylesheet" type="text/css">
+
+<span id="LayerLogin"></span>
+<div style="position: fixed; width: 100%; z-index: 1000;">
+<div class="header" style="background-color: #ffffff;">
+<div class="header_1">
+<a href="http://www.360doc.com/index.html">
+<img src="./Scroller使用分析和总结_files/nlogo.jpg" class="f_left"></a>
+<div class="mylibrary">
+<a id="userInfoUrl" href="http://www.360doc.com/my360doc.aspx" class="a1">
+<div class="h_user">
+<img id="divuserinfonew" src="./Scroller使用分析和总结_files/dingtu.gif"><span></span>
+</div>
+我的图书馆
+</a>
+<ul class="hm_list hm_account" style="display: none;">
+<li><a href="http://www.360doc.com/myindex.aspx">首页</a></li>
+<li><a href="http://www.360doc.com/myfiles.aspx?app=1&amp;type=3">馆藏</a></li>
+<li><a href="http://www.360doc.com/myreadroom.aspx">阅览室</a></li>
+<li><a href="http://www.360doc.com/mycontacts.aspx">通讯录</a></li>
+<li><a href="javascript:void(0);" onclick="displaylogin();">退出帐号</a></li>
+</ul>
+</div>
+<div class="headmail f_left" style="display: none;">
+<p class="h_icon1" id="newMsg"></p>
+<span class="h_border"></span>
+<ul class="hm_list" id="msgtips">
+<li id="msgicon"><a href="http://www.360doc.com/mymsg.aspx?app=2">查看信箱</a></li>
+<li id="sysmsgicon"><a href="http://www.360doc.com/mymsg.aspx?app=9">系统消息</a></li>
+<li id="sysicon"><a href="http://www.360doc.com/mymsg.aspx?app=4">官方通知</a></li>
+<li class="hm_color2" style="background-color: #f4f4f4"><a href="http://www.360doc.com/mymsg.aspx?app=6">设置</a></li>
+</ul>
+</div>
+<div class="headtalker f_left" style="display: none;">
+<p class="h_icon1" id="newDialog"></p>
+<span class="h_border"></span>
+<ul class="hm_list">
+<li id="li1chat"><a href="javascript:void(0)" onclick="initchatnew()">开始对话</a></li>
+<li id="li2chat" style="display: none;"><a href="javascript:void(0)" style="color: #141414;">有<span>11</span>人和你对话，<span onclick="initchatnew()" style="color: #4578b4">查看</span>&nbsp;<span onclick="clearinfochat()" style="color: #4578b4">忽略</span></a></li>
+<li><a href="http://www.360doc.com/mycontacts.aspx?app=8">历史对话记录</a></li>
+<li class="hm_color2" style="background-color: #f4f4f4"><a href="http://www.360doc.com/mycontacts.aspx?app=7">通知设置</a></li>
+</ul>
+</div>
+<a href="http://www.360doc.com/advice.html" target="_blank" class="head_talk f_right">留言交流</a>
+<div class="headsearch f_right">
+<div class="zcomdiv">
+<input type="text" class="headsearch_inp f_left" value="搜文章 找馆友">
+<span class="headsearch_btn f_right" id="searchlinkid"></span>
+</div>
+<div class="headsearch_select">
+<p class="hs_title">请选择搜索范围</p>
+<a href="javascript:goSearch();" class="cur">含&nbsp;<span></span>&nbsp;的文章</a>
+<a href="javascript:goSearch();">昵称为&nbsp;<span></span>&nbsp;的馆友</a>
+<a href="javascript:goSearch();">兴趣为&nbsp;<span></span>&nbsp;的馆友</a>
+</div>
+</div>
+</div>
+</div>
+<div class="arti_type_shadow"></div>
+</div>
+<div style="height: 68px; _height: 0px; width: 100%;"></div>
+<div class="clear360doc"></div>
+<div class="doc360article_content">
+<div style="height: 90px; padding-top: 13px;">
+<ins class="adsbygoogle" style="display: inline-block; width: 970px; height: 90px" data-ad-client="ca-pub-6625678643128649" data-ad-slot="2709112222"></ins>
+</div>
+<p class="clearboth"></p>
+<div class="a_left">
+<div id="bgchange">
+<div class="fontsize_bgcolor_controler">
+<div class="a_bgcolor">
+<img src="./Scroller使用分析和总结_files/bgcolor.jpg">
+<div class="a_colorlist">
+<span class="a_color1" onclick="artStatistics(&#39;20-11-1&#39;);">
+<img src="./Scroller使用分析和总结_files/yes.gif"></span>
+<span class="a_color2" onclick="artStatistics(&#39;20-11-2&#39;);">
+<img src="./Scroller使用分析和总结_files/yes.gif"></span>
+<span class="a_color3" onclick="artStatistics(&#39;20-11-3&#39;);">
+<img src="./Scroller使用分析和总结_files/yes.gif"></span>
+<span class="a_color4" onclick="artStatistics(&#39;20-11-4&#39;);">
+<img src="./Scroller使用分析和总结_files/yes.gif"></span>
+<span class="a_color5" onclick="artStatistics(&#39;20-11-5&#39;);">
+<img src="./Scroller使用分析和总结_files/yes.gif"></span>
+<span class="a_color6 cur" onclick="artStatistics(&#39;20-11-6&#39;);">
+<img src="./Scroller使用分析和总结_files/yes.gif"></span>
+</div>
+</div>
+<div class="a_fontsize">
+<img src="./Scroller使用分析和总结_files/fontSize.jpg">
+<div class="fschange">
+<label>
+<input type="radio" name="font_Size" id="" value="18" onclick="artStatistics(&#39;20-10-1&#39;);">大
+</label>
+&nbsp;
+<label>
+<input type="radio" name="font_Size" id="" value="16" onclick="artStatistics(&#39;20-10-2&#39;);">中
+</label>
+&nbsp;
+<label>
+<input type="radio" name="font_Size" id="" value="14" onclick="artStatistics(&#39;20-10-3&#39;);">小
+</label>
+</div>
+</div>
+</div>
+<h2 id="titiletext">Scroller使用分析和总结</h2>
+<div class="article_data">
+<div class="article_data_left">
+2013-12-19
+<span class="a_username">&nbsp;<a href="http://www.360doc.com/userhome/11537979" id="savernickname" target="_blank" onclick="artStatistics(&#39;20-7-1&#39;);">清净明诲</a>
+</span>
+<span id="articleinfo">
+<span id="docsource" class="a_from"></span><span id="360doc_Readnum"></span><span id="360docResaveCount"><span onclick="ShowSaverUser();artStatistics(&#39;20-13&#39;);" id="360doc_saverNum" style="cursor: pointer;"></span>
+<span id="360doc_saverUser">
+<div style="position: absolute; height: 305px; width: 144px; left: 0px; z-index: 2;" id="sameArtOuter">
+<div onclick="event.cancelBubble=true;" style="overflow-y: auto; height: 300px; overflow-x: hidden; z-index: 100; right: 0px; margin-top: -10px;" id="sameArt">
+</div>
+</div>
+</span>
+</span>
+</span>
+</div>
+<div id="resavelayer1" class="bdsharebuttonbox article_data_right">
+</div>
+</div>
+<div id="articlecontent" class="article_container" onmousedown="newhighlight = true;" onmouseup="NewHighlight(event);">
+<table>
+<tbody>
+<tr>
+<td id="artContent" width="656">
+<div style="width: 656px; margin: 0; padding: 0; height: 0;"></div>
+<p>一、概述</p>
+<p>这个类封装了滚动操作。滚动的持续时间可以通过构造函数传递，并且可以指定滚动动作的持续的最长时间。经过这段时间，滚动会自动定位到最终位置，并且通过computeScrollOffset()会得到的返回值为false，表明滚动动作已经结束。</p>
+<p>二、构造函函数</p>
+<p><span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;; background:none repeat scroll 0% 0% silver"></span>public Scroller (Context context)<br>
+<br>
+使用缺省的持续持续时间和动画插入器创建一个Scroller。</p>
+<p><br>
+</p>
+<p>public Scroller (Context context, Interpolator interpolator)</p>
+<p>根据指定的动画插入器创建一个Scroller，如果指定的动画插入器为空，则会使用缺省的动画插入器（粘滞viscous）创建。</p>
+<p>三、公共方法</p>
+<p><span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;; background:none repeat scroll 0% 0% silver">public void
+<strong>abortAnimation</strong> () </span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体">停止动画。与</span><span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;"><a><span style="color:windowtext">forceFinished(boolean)</span></a></span><span style="font-family:宋体">相反，</span><span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;">Scroller</span><span style="font-family:宋体">滚动到最终</span><span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;">x</span><span style="font-family:宋体">与</span><span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;">y</span><span style="font-family:宋体">位置时中止动画。</span></p>
+<p align="left" style="margin-left: 21pt; text-indent: 21pt; ">　　<span style="font-family:宋体; color:#333333">参见</span></p>
+<p>　　　　　　　　<code></code><a href="http://developer.android.com/reference/android/widget/Scroller.html#forceFinished%28boolean%29"><span style="font-size:10.5pt">forceFinished(boolean)</span></a>
+</p>
+<p><br>
+</p>
+<p style="text-indent:21pt">　　<span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;; background:none repeat scroll 0% 0% silver">public boolean
+<strong>computeScrollOffset</strong> () </span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#333333">当想要知道新的位置时，调用此函数。如果返回true，表示动画还没有结束。</span><span style="font-family:宋体">位置<span style="color:#333333">改变以提供一个新的位置。</span></span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">&nbsp;</p>
+<p style="text-indent:21pt">　　<span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;; background:none repeat scroll 0% 0% silver">public void
+<strong>extendDuration</strong> (int extend) </span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#333333">延长滚动动画时间。此函数允许当使用</span><span style="font-family:&quot;;color:#007000;;Calibri&quot;,&quot;sans-serif&quot;"><a>setFinalX(int)</a></span><span style="font-family:宋体; color:#333333">
+or </span><span style="font-family:&quot;;color:#007000;;Calibri&quot;,&quot;sans-serif&quot;"><a>setFinalY(int)</a></span>
+<span style="font-family:宋体; color:#333333">时，卷动动作持续更长时间并且卷动更长距离。</span></p>
+<p align="left" style="line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">参数</span></p>
+<p align="left" style="line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:&quot;;color:#333333;;Calibri&quot;,&quot;sans-serif&quot;">extend</span><span style="font-family:宋体; color:#333333">&nbsp;</span><span style="font-family:宋体; color:#333333">卷动事件延长的时间，以毫秒为单位</span></p>
+<p align="left" style="line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">参见</span></p>
+<p align="left" style="line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="font-family:&quot;;color:#007000;;Calibri&quot;,&quot;sans-serif&quot;"><a href="http://developer.android.com/reference/android/widget/Scroller.html#setFinalX%28int%29">setFinalX(int)</a></span></p>
+<p align="left" style="line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#007000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="font-family:&quot;;color:#007000;;Calibri&quot;,&quot;sans-serif&quot;"><a href="http://developer.android.com/reference/android/widget/Scroller.html#setFinalY%28int%29">setFinalY(int)</a></span></p>
+<p align="left" style="line-height: 15.6pt; ">&nbsp;</p>
+<p style="text-indent:21pt">　　<span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;; background:none repeat scroll 0% 0% silver">public void
+<strong>fling</strong> (int startX, int startY, int velocityX, int velocityY, int minX, int maxX, int minY, int maxY)
+</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#333333">在fling（译者注：快滑，用户按下触摸屏、快速移动后松开）手势基础上开始滚动。滚动的距离取决于fling的初速度。</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">参数</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">&nbsp; startX&nbsp;</span><span style="font-family:宋体; color:#333333">滚动起始点X坐标</span></p>
+<p align="left" style="margin-left: 42pt; text-indent: 21pt; line-height: 15.6pt; ">
+<span style="font-family:宋体; color:#333333">startY&nbsp;</span><span style="font-family:宋体; color:#333333">滚动起始点Y坐标</span></p>
+<p align="left" style="margin-left: 42pt; text-indent: 21pt; line-height: 15.6pt; ">
+<span style="font-family:宋体; color:#333333">velocityX&nbsp;&nbsp; </span><span style="font-family:宋体; color:#333333">当滑动屏幕时X方向初速度，以每秒像素数计算</span></p>
+<p align="left" style="margin-left: 42pt; text-indent: 21pt; line-height: 15.6pt; ">
+<span style="font-family:宋体; color:#333333">velocityY&nbsp;&nbsp; </span><span style="font-family:宋体; color:#333333">当滑动屏幕时Y方向初速度，以每秒像素数计算</span></p>
+<p align="left" style="margin-left: 42pt; text-indent: 21pt; line-height: 15.6pt; ">
+<span style="font-family:宋体; color:#333333">minX&nbsp;&nbsp;&nbsp; X</span><span style="font-family:宋体; color:#333333">方向的最小值，</span><span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;">scroller</span><span style="font-family:宋体">不会</span><span style="font-family:宋体; color:#333333">滚过此点。</span></p>
+<p align="left" style="margin-left: 42pt; text-indent: 21pt; line-height: 15.6pt; ">
+<span style="font-family:宋体; color:#333333">maxX&nbsp;&nbsp;&nbsp; X</span><span style="font-family:宋体; color:#333333">方向的最大值，</span><span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;">scroller</span><span style="font-family:宋体">不会</span><span style="font-family:宋体; color:#333333">滚过此点。</span></p>
+<p align="left" style="margin-left: 42pt; text-indent: 21pt; line-height: 15.6pt; ">
+<span style="font-family:宋体; color:#333333">minY&nbsp;&nbsp;&nbsp; Y</span><span style="font-family:宋体; color:#333333">方向的最小值，</span><span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;">scroller</span><span style="font-family:宋体">不会</span><span style="font-family:宋体; color:#333333">滚过此点。</span></p>
+<p align="left" style="margin-left: 42pt; text-indent: 21pt; line-height: 15.6pt; ">
+<span style="font-family:宋体; color:#333333">maxY&nbsp;&nbsp;&nbsp; Y</span><span style="font-family:宋体; color:#333333">方向的最大值，</span><span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;">scroller</span><span style="font-family:宋体">不会</span><span style="font-family:宋体; color:#333333">滚过此点。</span></p>
+<p align="left"><br>
+</p>
+<p style="text-indent:21pt">　　<span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;; background:none repeat scroll 0% 0% silver">public final void
+<strong>forceFinished</strong> (boolean finished) </span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体">强制终止的字段到特定值。（译者注：立即停止滚动？）</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体">&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体">参数</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体">finished&nbsp;&nbsp;&nbsp; </span><span style="font-family:宋体">新的结束值</span></p>
+<p><br>
+</p>
+<p style="text-indent:21pt">　　<span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;; background:none repeat scroll 0% 0% silver">public final int
+<strong>getCurrX</strong> () </span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#333333">返回当前滚动X方向的偏移</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">返回值</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">距离原点X方向的绝对值</span></p>
+<p><br>
+</p>
+<p style="text-indent:21pt">　　<span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;; background:none repeat scroll 0% 0% silver">public final int
+<strong>getCurrY</strong> ()</span> </p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#333333">返回当前滚动Y方向的偏移</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">返回值</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">距离原点Y方向的绝对值</span></p>
+<p>&nbsp;</p>
+<p style="text-indent:21pt">　　<span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;; background:none repeat scroll 0% 0% silver">public final int
+<strong>getDuration</strong> () </span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#333333">返回滚动事件的持续时间，以毫秒计算。</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">返回值</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">滚动持续的毫秒数</span></p>
+<p><br>
+</p>
+<p style="text-indent:21pt">　　<span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;; background:none repeat scroll 0% 0% silver">public final int
+<strong>getFinalX</strong> () </span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#333333">返回滚动结束位置。仅针对“fling”手势有效</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">返回值</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">最终位置X方向距离原点的绝对距离</span></p>
+<p><br>
+</p>
+<p style="text-indent:21pt">　　<span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;; background:none repeat scroll 0% 0% silver">public final int
+<strong>getFinalY</strong> () </span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#333333">返回滚动结束位置。仅针对“fling”操作有效</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">返回值</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">最终位置Y方向距离原点的绝对距离</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">&nbsp;</p>
+<p style="text-indent:21pt">　　<span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;; background:none repeat scroll 0% 0% silver">public final int
+<strong>getStartX</strong> () </span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#333333">返回滚动起始点的X方向的偏移</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">返回值</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">起始点在X方向距离原点的绝对距离</span></p>
+<p><br>
+</p>
+<p style="text-indent:21pt">　　<span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;; background:none repeat scroll 0% 0% silver">public final int
+<strong>getStartY</strong> () </span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#333333">返回滚动起始点的Y方向的偏移</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">返回值</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">起始点在Y方向距离原点的绝对距离</span></p>
+<p>&nbsp;</p>
+<p style="text-indent:21pt">　　<span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;; background:none repeat scroll 0% 0% silver">public final boolean
+<strong>isFinished</strong> () </span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#333333">返回scroller是否已完成滚动。</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">返回值</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">停止滚动返回true，否则返回false</span></p>
+<p><br>
+</p>
+<p style="text-indent:21pt">　　<span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;; background:none repeat scroll 0% 0% silver">public void
+<strong>setFinalX</strong> (int newX) </span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#333333">设置scroller的X方向终止位置</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">参数</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">newX&nbsp;&nbsp;&nbsp; </span><span style="font-family:宋体; color:#333333">新位置在X方向距离原点的绝对偏移。</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">参见</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="font-family:宋体; color:#007000"><a href="http://developer.android.com/reference/android/widget/Scroller.html#extendDuration%28int%29">extendDuration(int)</a></span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#007000">&nbsp;</span>　　<span style="font-family:宋体; color:#007000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://developer.android.com/reference/android/widget/Scroller.html#setFinalY%28int%29">
+setFinalY(int)</a></span></p>
+<p><br>
+</p>
+<p style="text-indent:21pt">　　<span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;; background:none repeat scroll 0% 0% silver">public void
+<strong>setFinalY</strong> (int newY) </span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#333333">设置scroller的Y方向终止位置</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">参数</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">newY&nbsp;&nbsp;&nbsp; </span><span style="font-family:宋体; color:#333333">新位置在Y方向距离原点的绝对偏移。</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">参见</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="font-family:宋体; color:#007000"><a href="http://developer.android.com/reference/android/widget/Scroller.html#extendDuration%28int%29">extendDuration(int)</a></span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#007000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://developer.android.com/reference/android/widget/Scroller.html#setFinalY%28int%29">
+setFinalY(int)</a></span></p>
+<p>&nbsp;</p>
+<p style="text-indent:21pt">　　<span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;; background:none repeat scroll 0% 0% silver">public void
+<strong>startScroll</strong> (int startX, int startY, int dx, int dy) </span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#333333">以提供的起始点和将要滑动的距离开始滚动。滚动会使用缺省值250ms作为持续时间。</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">参数</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>　　&nbsp;&nbsp; <span style="font-family:宋体; color:#333333">startX&nbsp;</span><span style="font-family:宋体; color:#333333">水平方向滚动的偏移值，以像素为单位。正值表明滚动将向左滚动</span></p>
+<p align="left" style="margin-left: 42pt; text-indent: 21pt; line-height: 15.6pt; ">
+<span style="font-family:宋体; color:#333333">startY&nbsp;</span><span style="font-family:宋体; color:#333333">垂直方向滚动的偏移值，以像素为单位。正值表明滚动将向上滚动</span></p>
+<p align="left" style="margin-left: 42pt; text-indent: 21pt; line-height: 15.6pt; ">
+<span style="font-family:宋体; color:#333333">dx&nbsp;</span><span style="font-family:宋体; color:#333333">水平方向滑动的距离，正值会使滚动向左滚动</span></p>
+<p align="left" style="margin-left: 42pt; text-indent: 21pt; line-height: 15.6pt; ">
+<span style="font-family:宋体; color:#333333">dy&nbsp;</span><span style="font-family:宋体; color:#333333">垂直方向滑动的距离，正值会使滚动向上滚动</span></p>
+<p><br>
+</p>
+<p style="text-indent:21pt">　　<span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;; background:none repeat scroll 0% 0% silver">public void
+<strong>startScroll</strong> (int startX, int startY, int dx, int dy, int <a name="baidusnap3"></a><b style="color:black;background-color:#ff9999">duration</b>)
+</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#333333">以提供的起始点和将要滑动的距离开始滚动。</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">参数</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">&nbsp;&nbsp; startX&nbsp;</span><span style="font-family:宋体; color:#333333">水平方向滚动的偏移值，以像素为单位。正值表明滚动将向左滚动</span></p>
+<span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; startY&nbsp;</span><span style="font-family:宋体; color:#333333">垂直方向滚动的偏移值，以像素为单位。正值表明滚动将向上滚动</span>
+<p align="left" style="margin-left: 42pt; text-indent: 21pt; line-height: 15.6pt; ">
+<span style="font-family:宋体; color:#333333">dx&nbsp;</span><span style="font-family:宋体; color:#333333">水平方向滑动的距离，正值会使滚动向左滚动</span></p>
+<p align="left" style="margin-left: 42pt; text-indent: 21pt; line-height: 15.6pt; ">
+<span style="font-family:宋体; color:#333333">dy&nbsp;</span><span style="font-family:宋体; color:#333333">垂直方向滑动的距离，正值会使滚动向上滚动</span></p>
+<p>　　　　　　　<span style="font-family:宋体; color:#333333"><b style="color:black;background-color:#ff9999">duration</b>&nbsp;&nbsp;&nbsp; </span><span style="font-family:宋体; color:#333333">滚动持续时间，以毫秒计。</span><br>
+&nbsp;</p>
+<p style="text-indent:21pt">　　<span style="font-family:&quot;;;Calibri&quot;,&quot;sans-serif&quot;; background:none repeat scroll 0% 0% silver">public int
+<strong>timePassed</strong> () </span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; ">　　<span style="font-family:宋体; color:#333333">返回自滚动开始经过的时间</span></p>
+<p align="left" style="text-indent: 21pt; line-height: 15.6pt; "><span style="font-family:宋体; color:#333333">&nbsp;&nbsp;&nbsp;
+</span>　　<span style="font-family:宋体; color:#333333">返回值</span></p>
+<span style="font-family:宋体; color:#333333; font-size:10.5pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>　　　　<span style="font-family:宋体; font-size:10.5pt">经过时间以毫秒为单位</span>
+<p><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; getScrollX()的返回值为：当前View显示部分的左边到第一个View的左边的距离。</p>
+<p>举个例子，一个横向的ViewGroup，如果每个View的宽度为300，那么当前显示第一个View的时候getScrollX()返回值为0，当你向左移动第一个View，移动距离为30，那么此时getScrollX()的返回值为30，如果当前显示第二个View，那么getScrollX()的返回值为300，第二个View再向左移动一点，假如距离为20，那么此时getScrollX()的返回值为320，以此类推。</p>
+<p><br>
+</p>
+<p><br>
+</p>
+<p></p><div><div><div><b>[java]</b> <a href="http://www.360doc.com/content/13/1219/17/11537979_338452870.shtml" title="view plain">view plain</a><a href="http://www.360doc.com/content/13/1219/17/11537979_338452870.shtml" title="copy">copy</a><a href="http://www.360doc.com/content/13/1219/17/11537979_338452870.shtml" title="print">print</a><a href="http://www.360doc.com/content/13/1219/17/11537979_338452870.shtml" title="?">?</a><div style="position: absolute; left: 428px; top: 3314px; width: 29px; height: 14px; z-index: 0; "><embed src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="29" height="14" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=29&amp;height=14" wmode="transparent" style="z-index: 0; "></div></div></div><ol start="1"><li>import&nbsp;android.content.Context;&nbsp;&nbsp;</li><li>import&nbsp;android.util.AttributeSet;&nbsp;&nbsp;</li><li>import&nbsp;android.util.Log;&nbsp;&nbsp;</li><li>import&nbsp;android.view.View;&nbsp;&nbsp;</li><li>import&nbsp;android.widget.LinearLayout;&nbsp;&nbsp;</li><li>import&nbsp;android.widget.Scroller;&nbsp;&nbsp;</li><li>public&nbsp;class&nbsp;CustomView&nbsp;extends&nbsp;LinearLayout&nbsp;{&nbsp;&nbsp;</li><li>&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;static&nbsp;final&nbsp;String&nbsp;TAG&nbsp;=&nbsp;"Scroller";&nbsp;&nbsp;</li><li>&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;Scroller&nbsp;mScroller;&nbsp;&nbsp;</li><li>&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;CustomView(Context&nbsp;context,&nbsp;AttributeSet&nbsp;attrs)&nbsp;{&nbsp;&nbsp;</li><li>&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;super(context,&nbsp;attrs);&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;mScroller&nbsp;=&nbsp;new&nbsp;Scroller(context);&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li><li>&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;//调用此方法滚动到目标位置&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;smoothScrollTo(int&nbsp;fx,&nbsp;int&nbsp;fy)&nbsp;{&nbsp;&nbsp;</li><li>&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;dx&nbsp;=&nbsp;fx&nbsp;-&nbsp;mScroller.getFinalX();&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;dy&nbsp;=&nbsp;fy&nbsp;-&nbsp;mScroller.getFinalY();&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;smoothScrollBy(dx,&nbsp;dy);&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li><li>&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;//调用此方法设置滚动的相对偏移&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;smoothScrollBy(int&nbsp;dx,&nbsp;int&nbsp;dy)&nbsp;{&nbsp;&nbsp;</li><li>&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;//设置mScroller的滚动偏移量&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;mScroller.startScroll(mScroller.getFinalX(),&nbsp;mScroller.getFinalY(),&nbsp;dx,&nbsp;dy);&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;invalidate();//这里必须调用invalidate()才能保证computeScroll()会被调用，否则不一定会刷新界面，看不到滚动效果&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li><li>&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;@Override&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;computeScroll()&nbsp;{&nbsp;&nbsp;</li><li>&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;//先判断mScroller滚动是否完成&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(mScroller.computeScrollOffset())&nbsp;{&nbsp;&nbsp;</li><li>&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;//这里调用View的scrollTo()完成实际的滚动&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;scrollTo(mScroller.getCurrX(),&nbsp;mScroller.getCurrY());&nbsp;&nbsp;</li><li>&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;//必须调用该方法，否则不一定能看到滚动效果&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;postInvalidate();&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li><li>&nbsp;&nbsp;&nbsp;&nbsp;super.computeScroll();&nbsp;&nbsp;</li><li>&nbsp;&nbsp;}&nbsp;&nbsp;</li><li>}&nbsp;&nbsp;</li></ol></div><br>
+我们先来看一下，Scroller，这个对象里有startScroll方法<br>
+void android.widget.<a name="baidusnap0"></a><b style="color:black;background-color:#ffff66">Scroller.</b>startScroll(int startX, int startY, int dx, int dy, int <b style="color:black;background-color:#ff9999">duration</b>)<br>
+第一个参数是起始移动的x坐标值，第二个是起始移动的y坐标值，第三个第四个参数都是移到某点的坐标值，而<b style="color:black;background-color:#ff9999">duration</b> 当然就是执行移动的时间。这个有什么用呢。要知道有什么用还得再看一个方法<br>
+boolean android.widget.<b style="color:black;background-color:#ffff66">Scroller.</b>computeScrollOffset()<br>
+当startScroll执行过程中即在<b style="color:black;background-color:#ff9999">duration</b>时间内，computeScrollOffset&nbsp; 方法会一直返回false，但当动画执行完成后会返回返加true.<br>
+有了这两个方法还不够，我们还需要再重写viewGroup的一个方法<br>
+computeScroll 这个方法什么时候会被调用呢<p></p>
+<p><br>
+官网上这样说的<br>
+public void computeScroll ()<br>
+Since: API Level 1<br>
+Called by a parent to request that a child update its values for mScrollX and mScrollY if necessary. This will typically be done if the child is animating a scroll using a Scroller object.</p>
+<p><br>
+当我们执行ontouch或invalidate(）或postInvalidate()都会导致这个方法的执行<br>
+所以我们像下面这样调用，postInvalidate执行后，会去调computeScroll 方法，而这个方法里再去调postInvalidate，这样就可以不断地去调用scrollTo方法了，直到mScroller动画结束，当然第一次时，我们需要手动去调用一次postInvalidate才会去调用.<br>
+</p>
+<p><br>
+</p>
+<p><br>
+</p>
+<br>
+</td>
+
+</tr>
+</tbody>
+</table>
+<div id="viewerPlaceHolder" style="width: 717px; height: 700px; display: none; margin: 0 auto;">
+</div>
+</div>
+<table>
+<tbody>
+<tr>
+<td>
+<ul></ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div></div>
+<span></span>
+<a></a>
+<p style="margin: 0; padding: 0;"></p>
+<p class="clearboth"></p>
+<div class="bdsharebuttonbox bottombtn">
+<div class="zcommond" style="overflow: visible;">
+<a href="javascript:void(0);" class="btn_collect" onclick="SaveArt();artStatistics(&#39;20-3-2&#39;);">转藏到我的图书馆</a>
+<a id="flowimg3" href="javascript:void(0);" class="btn_good" onclick="Showflowerlayer(&#39;sendedLayer1&#39;);">献花（<span id="articleflowernum">0</span>）
+<span id="flowernumadd" style="display: none;">+1</span>
+</a>
+<span class="span1 f_left" onclick="setTimeout(function(){$(&#39;.bottombtn .sharelist_new&#39;).slideToggle(0);},10);artStatistics(&#39;20-8-3&#39;);" onmouseover="this.style.color=&#39;#0f659c&#39;" onmouseout="this.style.color=&#39;&#39;">分享：</span>
+<a class="sharewx f_left" href="javascript:void(0);" onclick="shareWeixin();artStatistics(&#39;20-8-6&#39;);">微信</a>
+<div class="s2 f_left" onclick="setTimeout(function(){$(&#39;.bottombtn .sharelist_new&#39;).slideToggle(0);},10);artStatistics(&#39;20-8-4&#39;);"><span></span></div>
+</div>
+<div class="sharelist_new" id="fenxiangLayer2">
+<a class="slbg1" href="javascript:void(0);" data-cmd="qzone" onclick="artStatistics(&#39;20-8-8&#39;);">QQ空间</a>
+<a class="slbg2" href="javascript:void(0);" data-cmd="sqq" onclick="artStatistics(&#39;20-8-10&#39;);">QQ好友</a>
+<a class="slbg3" href="javascript:void(0);" data-cmd="tsina" onclick="artStatistics(&#39;20-8-12&#39;);">新浪微博</a>
+<a class="slbg5" href="javascript:void(0);" onclick="showdivemail1();artStatistics(&#39;20-8-16&#39;);">推荐给朋友</a>
+</div>
+</div>
+<div class="bottom_controler">
+<p class="bottom_cleft">
+来自：
+<span class="a_username" style="width: auto;">
+<a href="http://www.360doc.com/userhome/11537979" id="savernickname2" target="_blank" onclick="artStatistics(&#39;20-7-2&#39;);">清净明诲</a>
+</span>
+&gt;
+<span id="cname" class="a_from"><a href="http://www.360doc.com/userhome.aspx?userid=11537979&amp;cid=9" target="_blank" onclick="artStatistics(&quot;20-6&quot;);">《Android开发》</a></span>
+</p>
+<div class="bottom_cright">
+<a href="https://www.baidu.com/s?wd=scroller+int+public&amp;tn=SE_hldp01010_6r0gix1f" target="_blank" class="a1" onclick="artStatistics(&#39;20-19&#39;);">以文找文</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+<a href="javascript:void(0);" class="a2" onclick="showAlertLayer1();artStatistics(&#39;20-18&#39;);">举报</a>
+</div>
+</div>
+<div class="prev_next">
+<p id="lastart" class="p1">
+</p>
+<p id="nextart" class="p2">
+</p>
+</div>
+</div>
+<p class="clearboth"></p>
+<div style="width: 676px; float: left;">
+<div class="str_border" style="border: none; position: relative; z-index: 2;">
+<strong>猜你喜欢</strong>
+</div>
+<ul class="youlike" style="margin-top: -18px; position: relative; z-index: 1;">
+<div style="width: 676px; height: 280px; border: 0;" id="divyoulikead">
+</div>
+</ul>
+<div class="zcommond" style="padding: 10px 0 5px;">
+<div class="bottom_article f_left">
+<div class="str_border">
+<strong>类似文章</strong>
+<a href="http://www.360doc.com/relevant/338452870_more.shtml" target="_blank" class="a_more f_right" onclick="artStatistics(" 20-9-8');'="">更多</a>
+</div>
+<ul class="barticle_list">
+<li><span><a href="http://www.360doc.com/content/13/1219/17/11537979_338452322.shtml" target="_blank" onclick="artStatistics(&quot;20-9-7&quot;);">Android中滑屏实现</a></span></li>
+<li><span><a href="http://www.360doc.com/content/13/0205/17/6541311_264396395.shtml" target="_blank" onclick="artStatistics(&quot;20-9-7&quot;);">Scroller分析</a></span></li>
+<li><span><a href="http://www.360doc.com/content/12/1121/14/7857928_249305566.shtml" target="_blank" onclick="artStatistics(&quot;20-9-7&quot;);">高仿launcher和墨迹左右拖动效果</a></span></li>
+<li><span><a href="http://www.360doc.com/content/14/0412/07/9200790_368189822.shtml" target="_blank" onclick="artStatistics(&quot;20-9-7&quot;);">Android开源中国客户端学习 自定义控件:...</a></span></li>
+<li><span><a href="http://www.360doc.com/content/14/0412/00/9200790_368166968.shtml" target="_blank" onclick="artStatistics(&quot;20-9-7&quot;);">android自定义View</a></span></li>
+<li><span><a href="http://www.360doc.com/content/07/0730/12/12027_642751.shtml" target="_blank" onclick="artStatistics(&quot;20-9-7&quot;);">Excel操作类C#版的</a></span></li>
+<li><span><a href="http://www.360doc.com/content/11/0810/11/18042_139342084.shtml" target="_blank" onclick="artStatistics(&quot;20-9-7&quot;);">MergeSort</a></span></li>
+<li><span><a href="http://www.360doc.com/content/14/0322/17/1317564_362733720.shtml" target="_blank" onclick="artStatistics(&quot;20-9-7&quot;);">浙江大华2012笔试题+答案解析</a></span></li>
+</ul>
+</div>
+<div class="bottom_article f_right">
+<div class="str_border">
+<strong>精选文章</strong>
+</div>
+<ul class="barticle_list">
+<li><span><a onclick="artStatistics(&#39;20-9-9&#39;);" href="http://www.360doc.com/content/13/0318/00/1454773_272057455.shtml" target="_blank">历史大剧让你看个够</a></span></li>
+<li><span><a onclick="artStatistics(&#39;20-9-9&#39;);" href="http://www.360doc.com/content/13/1004/17/3899427_318895902.shtml" target="_blank">中国茶音乐</a></span></li>
+<li><span><a onclick="artStatistics(&#39;20-9-9&#39;);" href="http://www.360doc.com/content/13/0831/06/2840683_311053813.shtml" target="_blank">男人练练俯卧撑吧 为你的性爱加分</a></span></li>
+<li><span><a onclick="artStatistics(&#39;20-9-9&#39;);" href="http://www.360doc.com/content/13/1220/13/5964710_338567107.shtml" target="_blank">硬汉必备！男人手中必不可少的几件军服！</a></span></li>
+<li><span><a onclick="artStatistics(&#39;20-9-9&#39;);" href="http://www.360doc.com/content/14/0104/02/482398_342378566.shtml" target="_blank">从头发上看命运</a></span></li>
+<li><span><a onclick="artStatistics(&#39;20-9-9&#39;);" href="http://www.360doc.com/content/14/0220/22/15275972_354196248.shtml" target="_blank">安利惊天内幕！为什么价格贵得惊人，普通人却倾其所有去买</a></span></li>
+<li><span><a onclick="artStatistics(&#39;20-9-9&#39;);" href="http://www.360doc.com/content/14/1101/19/16273306_421642017.shtml" target="_blank">水煮肉片的超鲜嫩秘方</a></span></li>
+<li><span><a onclick="artStatistics(&#39;20-9-9&#39;);" href="http://www.360doc.com/content/14/1218/18/1197594_433817001.shtml" target="_blank">9款家常宴客菜 在家招待客人更温馨</a></span></li>
+</ul>
+</div>
+</div>
+<div id="divunderad">
+</div>
+<div id="ReflectionPart">
+<div style="height: 156px; margin: 0px 0px;">
+<div class="plbox">
+<div style="padding-left: 6px;">
+<div class="titwx" style="height: 23px; font-size: 16px; font-weight: bold; margin-top: 10px;">
+发表评论
+</div>
+<textarea name="SendRefTB" id="SendRefTB" style="width: 100%; margin-top: 6px; height: 75px; border: 1px solid #e7e7e7; background-color: #fff; overflow: auto; font-size: 12px;" onfocus="testContent(1);" onblur="testContent(2)"></textarea>
+<div style="text-align: right; padding-right: 3px; padding-top: 6px;">
+<div class="huifubt">
+<a id="ImgSendPL" href="javascript:void(0);" onclick="SubmitReflection();"></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div style="padding-top: 15px; padding-left: 15px;" id="Reflction">
+</div>
+</div>
+</div>
+<div class="a_right">
+<div class="user_info">
+<div class="user_photo f_left">
+<p class="user_photopic">
+<a href="http://www.360doc.com/userhome/11537979" id="userphotourl" target="_blank" onclick="artStatistics(&#39;20-7-4&#39;);">
+<img src="./Scroller使用分析和总结_files/001.gif" id="userphoto" width="58" height="58">
+</a>
+</p>
+<a href="javascript:void(0);" onclick="docTalk();artStatistics(&#39;20-15&#39;);" class="user_talk" title="与TA对话"></a>
+</div>
+<div class="user_data f_right">
+<div class="user_data_name">
+<a href="http://www.360doc.com/userhome/11537979" id="nickname" target="_blank" onclick="artStatistics(&#39;20-7-3&#39;);">清净明诲</a>
+<img src="./Scroller使用分析和总结_files/user_name_tag.gif" alt="图书馆">
+</div>
+<p id="userdegree"><img src="./Scroller使用分析和总结_files/userstar1.gif"><img src="./Scroller使用分析和总结_files/userstar2.gif"><img src="./Scroller使用分析和总结_files/userstar3.gif"><img src="./Scroller使用分析和总结_files/userstar3.gif"><img src="./Scroller使用分析和总结_files/userstar3.gif"></p>
+<div class="user_data_num">
+<a id="spanfollowstatus" class="gz_no"></a>
+
+<span id="follownum">51</span>&nbsp;&nbsp;&nbsp;&nbsp;
+<span>馆藏</span>&nbsp;<span id="artnum">144</span>
+</div>
+</div>
+</div>
+<div class="his_her"><ul class="his_her_type"><li class="f_left curone">TA的最新馆藏</li></ul><div class="his_her_div" style="height:190px;"><ul class="his_her_list"><li><div><span></span><a href="http://www.360doc.com/content/14/0812/18/11537979_401351649.shtml" target="_blank" onclick="artStatistics(&#39;20-9-3&#39;);">加密与解密</a></div><div><span></span><a href="http://www.360doc.com/content/14/0812/18/11537979_401351400.shtml" target="_blank" onclick="artStatistics(&#39;20-9-3&#39;);">java(计算机)常见加密算法详解</a></div><div><span style="color:#b0b0b0;">[转]&nbsp;</span><a href="http://www.360doc.com/content/13/0812/13/535749_306590040.shtml" target="_blank" onclick="artStatistics(&#39;20-9-3&#39;);">花费100多万玩淘宝、天猫直通车，总结出的最实在的技术技巧</a></div><div><span style="color:#b0b0b0;">[转]&nbsp;</span><a href="http://www.360doc.com/content/11/0124/12/1671603_88673755.shtml" target="_blank" onclick="artStatistics(&#39;20-9-3&#39;);">劝读哲文十篇：读书使人优美.</a></div><div><span style="color:#b0b0b0;">[转]&nbsp;</span><a href="http://www.360doc.com/content/12/0301/17/5087210_190881395.shtml" target="_blank" onclick="artStatistics(&#39;20-9-3&#39;);">多屏幕多分辨率的支持和一些概念</a></div><div><span></span><a href="http://www.360doc.com/content/14/0515/15/11537979_377858006.shtml" target="_blank" onclick="artStatistics(&#39;20-9-3&#39;);">wallimn的博客</a></div></li></ul></div></div>
+<div class="clear360doc" style="padding-top: 10px; height: 260px;">
+<div id="divifartad1">
+
+</div>
+<div style="height: 10px;">
+</div>
+</div>
+<div class="his_her" id="recommendArt" style="margin-top: 5px;">
+<div class="str_border" style="margin: 0;">
+<span style="font-size: 14px; float: left;">推荐阅读</span>
+<a style="float: right;" class="a_more" onclick="artStatistics(&#39;20-9-4&#39;);" href="http://www.360doc.com/readroom.html" target="_blank">更多</a>
+</div>
+<div class="his_her_div" style="height: 264px;">
+<ul class="his_her_list">
+<li id="recommendArtLists"></li>
+</ul>
+</div>
+</div>
+<div class="clear360doc" style="padding-top: 10px;" id="divifartad2">
+</div>
+<br>
+<div id="divifartrightsogou">
+</div>
+<div class="clear360doc" id="divad5" style="padding-top: 11px; zoom: 1; width: 300px;">
+<div id="divad4" style="display: none;">
+<div id="divifartad">
+</div>
+<div class="ggwz">
+<a href="javascript:void(0);" onclick="closead(2);">关闭</a>
+</div>
+<div style="height: 13px;">
+</div>
+</div>
+<div style="clear: both; display: none;" id="divad6">
+<div id="adfloatbaidu">
+</div>
+<div class="ggwz" style="left: 25px;">
+<a href="javascript:void(0);" onclick="closead(3);">关闭</a>
+</div>
+<div style="height: 13px;">
+</div>
+</div>
+<div style="height: 75px;">
+</div>
+</div>
+</div>
+</div>
+<p class="clearboth"></p>
+<input type="hidden" id="artid" value="338452870">
+<input type="hidden" id="docarttitle" value="Scroller%e4%bd%bf%e7%94%a8%e5%88%86%e6%9e%90%e5%92%8c%e6%80%bb%e7%bb%93">
+<input type="hidden" id="firstartid" value="338452870">
+<input type="hidden" id="subclassid" value="-1">
+<input type="hidden" id="recommendart1" value="249305566">
+<input type="hidden" id="recommendart2" value="-1">
+<input type="hidden" id="isowner" value="False">
+<input type="hidden" id="artreadroomid" value="0">
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+</body></html>

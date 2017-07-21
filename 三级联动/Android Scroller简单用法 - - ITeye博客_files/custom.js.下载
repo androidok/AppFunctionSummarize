@@ -1,0 +1,303 @@
+
+/**
+ * @fileoverview Custom functionality to apply throughout every adsize. This
+ * has a dependency on common.js and utils.js
+ */
+var custom = (function() {
+
+  /**
+   * Classes which our JS hooks into. Add more class names as necessary.
+   * @enum
+   * @private
+   */
+  var elementClass_ = {
+    item: 'js-item',
+    itemName: 'js-item-name',
+    itemPriceS: 'js-item-prices',
+    itemPrice: 'js-item-price',
+    itemSalePrice: 'js-item-saleprice',
+    itemRegularPrice: 'js-item-regularprice',
+    itemCta: 'js-item-cta'
+  };
+var elementId_ = {
+    gpaDataProvider: 'gpa-data-provider'
+  };
+
+var ID = {
+     arrowPrevious: 'arrow-previous',
+     arrowNext: 'arrow-next'
+   };
+  /**
+   * Initialization. Called from handleAdInitialized on each page.
+   */
+  function init() {
+    utils.log('custom.init()');
+    var data = common.getAdData();
+    if (!data) return;
+
+    // If you're using the swipe gallery to display feed items.
+    initItemsUsingGallery_();
+
+    // If you're NOT using the swipe gallery to display feed items.
+    //initItemsWithoutGallery_();
+
+
+  }
+
+  /**
+   * Find all items used in the swipe gallery and initialize custom behavior.
+   * @private
+   */
+  function initItemsUsingGallery_() {
+    var gallery = common.getGallery();
+
+    // Apply settings to each item in the gallery
+    var items = gallery.querySelectorAll('.' + elementClass_.item);
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      initItemDisplay_(item);
+    }
+  }
+
+  /**
+   * Find all items used outside the gallery and initialize custom behavior.
+   * @private
+   */
+  function initItemsWithoutGallery_() {
+    // Apply settings to each item
+    var items = document.querySelectorAll('.' + elementClass_.item);
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      initItemDisplay_(item);
+    }
+  }
+
+  /**
+   * Set the display settings for each item.
+   * Add any custom functionality you need applied on load.
+   * @param {Element} item Item element.
+   * @private
+   */
+  function initItemDisplay_(item) {
+
+    // if you're using sales prices.
+    setSalePricesDisplay_(item);
+
+    // Set mouseout.
+    itemMouseOut(item);
+  }
+
+  /**
+   * Sets the 3 price elements to display correctly when using sales price.
+   * Find your price elements and set into common functionality.
+   * @param {Element} item Item element.
+   * @private
+   */
+  function setSalePricesDisplay_(item) {
+    // Get reference to each price element.
+    var itemPrice = item.querySelector('.' + elementClass_.itemPrice);
+    var itemSalePrice = item.querySelector('.' + elementClass_.itemSalePrice);
+    var itemRegularPrice = item.querySelector('.' + elementClass_.itemRegularPrice);
+
+    // Sets each item to display correct prices.
+    common.displayCorrectPrices(itemPrice, itemSalePrice, itemRegularPrice);
+  }
+
+  /**
+   * Custom Item Mouse Interactions. Add your own behavior.
+   */
+
+  /**
+   * Custom Mouseover interaction functionality.
+   * @param {Element} item
+   */
+
+   function galleryFrameShown(event) {
+    var index = common.getCurrentItemIndex();
+    updateArrowDisplay (index);
+  }
+
+  /**
+   * Custom Mouseover interaction functionality.
+   * @param {index} current index (zero based)
+   */
+  function updateArrowDisplay (index) {
+    var itemsLenght = gallery.querySelectorAll('.' + elementClass_.item).length-1;
+    var arrowPrevious = utils.getElement(ID.arrowPrevious);
+    var arrowNext = utils.getElement(ID.arrowNext);
+    if (index <=0) {
+      arrowPrevious.style.display = "none";
+      arrowNext.style.display = "block";
+      if(index >= itemsLenght) utils.showElement(arrowNext, false);
+    } else if (index >= itemsLenght) {
+      arrowPrevious.style.display = "block";
+      arrowNext.style.display = "none";
+    } else {
+     arrowPrevious.style.display = "block";
+      arrowNext.style.display = "block";
+    }
+    utils.log ('itemsLenght: ' + itemsLenght);
+  }
+
+
+  function itemMouseOver(item) {
+    // Show Item Name:
+    //var itemName = item.querySelector('.' + elementClass_.itemName);
+   // var nameText = itemName.children[1].textContent;
+    // if (! utils.isEmptyString(nameText)) {
+    //   utils.showElement(itemName, true);
+    // }
+
+    // Show Item CTA button:
+    var cta = item.querySelector('.' + elementClass_.itemCta);
+    if (cta) {
+       var ctaOn = cta.children[1];
+      if (ctaOn) utils.showElement(ctaOn, true);
+    }
+  }
+
+  /**
+   * Custom Mouseout interaction functionality.
+   * @param {Element} item
+   */
+  function itemMouseOut(item) {
+    // Hide Item Name:
+    //var itemName = item.querySelector('.' + elementClass_.itemName);
+    //utils.showElement(itemName, false);
+
+    // Hide Item CTA button:
+    var cta = item.querySelector('.' + elementClass_.itemCta);
+    if (cta) {
+      var ctaOn = cta.children[1];
+      if (ctaOn) utils.showElement(ctaOn, false);
+    }
+  }
+  /*
+  * Custom transform dynamic data for data validation.
+  */
+  function transformDynamicData (nameLength, desLength, priceLength,ctaLength) {
+    var dataProvider = document.querySelector('#' + elementId_.gpaDataProvider);
+    dataProvider.addDataTransformer(function(dynamicData) {
+
+        /**
+        * Convert Japanese fullspace to ASCII halfspace.
+        */
+        console.log(nameLength, desLength, priceLength,ctaLength)
+        if(dynamicData.Headline){
+          convertLongNameToShortName(dynamicData.Headline, "cta", ctaLength);
+        }
+        if(dynamicData.Product){
+          totalCount = dynamicData.Product.length;
+          for (var i = 0, l = dynamicData.Product.length; i < l; i++) {
+            convertLongNameToShortName(dynamicData.Product[i], "name", nameLength);
+            var st1 = dynamicData.Product[i]["description"];
+            
+            var stn1;
+            var cst = "#";
+            if(st1 && st1!="" && st1!=null ){
+              if(cst && cst!="" && cst!=null ){
+                if(st1.indexOf(cst)>-1) stn1 = st1.indexOf(cst);
+                else stn1 = st1.length;
+              }else stn1 = st1.length;
+              //str1 = st1.indexOf(" To ")>st1.indexOf(" to ")?st1.indexOf(" To "):st1.indexOf(" to ");
+              
+              if(stn1!=st1.length){
+                dynamicData.Product[i]['description'] = st1.substring(0,stn1);
+                dynamicData.Product[i]['price'] = st1.substring(stn1+cst.length,st1.length);
+              } 
+            }
+
+            convertLongNameToShortName(dynamicData.Product[i], "price", priceLength);
+            convertLongNameToShortName(dynamicData.Product[i], "description", desLength);
+            priceFormat(dynamicData.Product[i]);
+            //convertLongNameToShortName(dynamicData.Product[i], "price", priceLength);
+            //convertLongNameToShortName(dynamicData.Product[i], "description", desLength);
+          }
+        } 
+    });
+  }
+function priceFormat (product) {
+    if(!product.price) return;
+    console.log(1111)
+    product.price = replaceChineseYenSign(product.price);
+    product.price = removeCents(product.price);
+  }
+
+  /**
+   * Replace double byte Chinese Yen sign (￥) to single byte Yen sign (¥).
+   * @param {string} price Price attribute pottencially contains Yen sign.
+   */
+  function replaceChineseYenSign (price) {
+    if(!price) return;
+
+    if(price.indexOf("￥") != -1) {
+      // Replacing Full Width Yen Sign (\uffe5) with Half Width Yen Sign (\u00a5).
+      price = price.replace("\uffe5", "\u00a5");
+    }
+
+    return price;
+  };
+
+  /**
+   * Remove cents where cents = '00'
+   * @return {string} with cents removed
+   */
+  function removeCents (price) {
+    if(! price) return;
+    var matcher = /(\.|\,)0{2}(?![\d])/;
+    return price.replace(matcher, '');
+  };
+
+  /**
+   * Convert fullspace to ASCII halfspace.
+   * @param {Object} item Item whose attributes are checked.
+   * @param {Array} attrs Item attributes to check.
+   */
+  function convertFullspaceToHalfspace (item, attrs) {
+    for (var i = 0; i < attrs.length; i++) {
+      var attr = attrs[i];
+      if(item && item[attr]) {
+        item[attr] = convert(item[attr]);
+      }
+    }
+
+    function convert (text) {
+      if(text && text.indexOf("　") != -1) {
+        text = text.replace(/　/g," ");
+      }
+      return text;
+    }
+  };
+
+  function convertLongNameToShortName (item, attr, charaLength) {
+   
+        item[attr] = convertLongText(item[attr], charaLength);
+
+      
+    }
+
+  function convertLongText(text, length) {
+    var newText;
+    if(text && text.length > length) {
+      newText = text.slice(0,length)+'...';
+    }
+    else {
+      newText = text;
+    }
+    
+    return newText;
+  }
+
+  function getDataCount() {
+    
+    return totalCount;
+  }
+  return {
+    init: init,
+    itemMouseOver: itemMouseOver,
+    itemMouseOut: itemMouseOut,
+    transformDynamicData: transformDynamicData,
+    galleryFrameShown: galleryFrameShown,
+  };
+
+})();
