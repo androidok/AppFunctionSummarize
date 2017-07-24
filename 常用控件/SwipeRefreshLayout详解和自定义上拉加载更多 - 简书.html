@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.jianshu.com/p/d23b42b6360b -->
+<html><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+
+  <!-- Start of Baidu Transcode -->
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="MobileOptimized" content="width">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="mobile-agent" content="format=html5;url=http://www.jianshu.com/p/d23b42b6360b">
+  <!-- End of Baidu Transcode -->
+
+    <meta name="description" content="个人主页演示Demo下载 本文重点介绍了SwipeRefreshLayout的使用和自定View继承SwipeRefreshLayout添加上拉加载更多的功能。 介绍之前，先来看一下SwipeRefreshLayout实现的下拉刷新效果图。从图中可以看到，下拉到了一定的高度才会进行刷新，高度不够就会回收上去，正在刷新过程中，继续下拉没反应，说明刷新时屏蔽掉了下拉事件。上拉刷新效果图 一、Sw...">
+
+  <meta name="360-site-verification" content="604a14b53c6b871206001285921e81d8">
+  <meta property="wb:webmaster" content="294ec9de89e7fadb">
+  <meta property="qc:admins" content="104102651453316562112116375">
+  <meta property="qc:admins" content="11635613706305617">
+  <meta property="qc:admins" content="1163561616621163056375">
+  <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4">
+  <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI">
+  <meta http-equiv="mobile-agent" content="format=html5; url=http://www.jianshu.com/p/d23b42b6360b">
+
+  <!-- Apple -->
+  <meta name="apple-mobile-web-app-title" content="简书">
+
+    <!--  Meta for Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=888237539, app-argument=jianshu://notes/6006204">
+  <!-- End -->
+
+  <!--  Meta for Twitter Card -->
+  <meta content="summary" property="twitter:card">
+  <meta content="@jianshucom" property="twitter:site">
+  <meta content="SwipeRefreshLayout详解和自定义上拉加载更多" property="twitter:title">
+  <meta content="个人主页演示Demo下载 本文重点介绍了SwipeRefreshLayout的使用和自定View继承SwipeRefreshLayout添加上拉加载更多的功能。 介绍之前，先来看一下SwipeRefreshLayout实现的下拉刷新效果图。从图中可以看到，下拉到了一定的高度才会进行刷新，高度不够就会回收上去，正在刷新过程中，继续下拉没反应，说明刷新时屏蔽掉了下拉事件。上拉刷新效果图 一、SwipeRefreshLayout简单介绍 先看以下官方文档，已有了很详细的描述了。官方文档说明 这里我再大概解释一下：在竖直滑动时想要刷新页面可以用SwipeRefreshLayout来实现。它通过设..." property="twitter:description">
+  <meta content="http://www.jianshu.com/p/d23b42b6360b" property="twitter:url">
+  <!-- End -->
+
+  <!--  Meta for OpenGraph -->
+  <meta property="fb:app_id" content="865829053512461">
+  <meta property="og:site_name" content="简书">
+  <meta property="og:title" content="SwipeRefreshLayout详解和自定义上拉加载更多">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://www.jianshu.com/p/d23b42b6360b">
+  <meta property="og:description" content="个人主页演示Demo下载 本文重点介绍了SwipeRefreshLayout的使用和自定View继承SwipeRefreshLayout添加上拉加载更多的功能。 介绍之前，先来看一下SwipeR...">
+  <!-- End -->
+
+  <!--  Meta for Facebook Applinks -->
+  <meta property="al:ios:url" content="jianshu://notes/6006204">
+  <meta property="al:ios:app_store_id" content="888237539">
+  <meta property="al:ios:app_name" content="简书">
+
+  <meta property="al:android:url" content="jianshu://notes/6006204">
+  <meta property="al:android:package" content="com.jianshu.haruki">
+  <meta property="al:android:app_name" content="简书">
+  <!-- End -->
+
+
+    <title>SwipeRefreshLayout详解和自定义上拉加载更多 - 简书</title>
+
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="uuv/Z+wH4LQsicLTFnxy7qyX049h77n/2wLp5zAJfu22RscyZFTUear4bB8cbZI547VYH4nAgYKjBzOqoKfDGA==">
+
+  <link rel="stylesheet" media="all" href="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/web-1e5054a5d8733cfec67f.css">
+  
+  <link rel="stylesheet" media="all" href="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/entry-1e5054a5d8733cfec67f.css">
+
+  <link href="http://cdn2.jianshu.io/assets/favicons/favicon-783beb88ed621ceab614de960376ac0c.ico" rel="icon">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/57-47624b2e2161e8eb144462c85db0a5ff.png" sizes="57x57">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/72-c00cde7cf98fc49e50cbb3ee1dcd5804.png" sizes="72x72">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/76-e8af0bdeaf1ba31e303b1fde8b5e66c4.png" sizes="76x76">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/114-f4c78569bbf1977e8382a5fd90c9237a.png" sizes="114x114">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/120-cf10c3711dba269522743729efe66bbc.png" sizes="120x120">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/152-7bd60457b5f3ecbf1343f0e6241be4f8.png" sizes="152x152">
+<link rel="stylesheet" href="blob:http://www.jianshu.com/a70d82fd-bff0-418f-9c3a-6377c0b1ac2f"><link rel="stylesheet" href="blob:http://www.jianshu.com/9fa02fe9-7461-4d61-b627-f4a85ae9c53c"></head>
+
+  <body lang="zh-CN" class="reader-black-font">
+    <!-- 全局顶部导航栏 -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="width-limit">
+    <!-- 左上方 Logo -->
+    <a class="logo" href="http://www.jianshu.com/"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo"></a>
+
+    <!-- 右上角 -->
+      <!-- 未登录显示登录/注册/写文章 -->
+      <a class="btn write-btn" target="_blank" href="http://www.jianshu.com/writer#/">
+        <i class="iconfont ic-write"></i>写文章
+</a>      <a class="btn sign-up" href="http://www.jianshu.com/sign_up">注册</a>
+      <a class="btn log-in" href="http://www.jianshu.com/sign_in">登录</a>
+
+    <!-- 如果用户登录，显示下拉菜单 -->
+
+    <div class="style-mode"><a class="style-mode-btn"><i class="iconfont ic-navigation-mode"></i></a> <div class="popover-modal" style="left: 0px; display: none;"><div class="meta"><i class="iconfont ic-navigation-night"></i><span>夜间模式</span></div> <div class="switch day-night-group"><a class="switch-btn">开</a> <a class="switch-btn active">关</a></div> <hr> <div class="switch font-family-group"><a class="switch-btn font-song">宋体</a> <a class="switch-btn font-hei active">黑体</a></div> <div class="switch"><a class="switch-btn active">简</a> <a class="switch-btn">繁</a></div></div></div>
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="nav navbar-nav">
+            <li class="">
+              <a href="http://www.jianshu.com/">
+                <span class="menu-text">首页</span><i class="iconfont ic-navigation-discover menu-icon"></i>
+</a>            </li>
+            <li class="">
+              <a class="app-download-btn" href="http://www.jianshu.com/apps"><span class="menu-text">下载App</span><i class="iconfont ic-navigation-download menu-icon"></i></a>
+            </li>
+          <li class="search">
+            <form target="_blank" action="http://www.jianshu.com/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+              <input type="text" name="q" id="q" value="" placeholder="搜索" class="search-input">
+              <a class="search-btn" href="javascript:void(null)"><i class="iconfont ic-search"></i></a>
+              <!-- <div id="navbar-trending-search"></div> -->
+</form>          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+    
+<div class="note">
+  <div class="post">
+    <div class="article">
+        <h1 class="title">SwipeRefreshLayout详解和自定义上拉加载更多</h1>
+
+        <!-- 作者区域 -->
+        <div class="author">
+          <a class="avatar" href="http://www.jianshu.com/u/64f479a1cef7">
+            <img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/30cfa6ddf60b.png" alt="144">
+</a>          <div class="info">
+            <span class="tag">作者</span>
+            <span class="name"><a href="http://www.jianshu.com/u/64f479a1cef7">PingerOne</a></span>
+            <!-- 关注用户按钮 -->
+            <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+            <!-- 文章数据信息 -->
+            <div class="meta">
+              <!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
+                <span class="publish-time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="最后编辑于 2016.09.30 15:04">2016.09.26 19:02*</span>
+              <span class="wordage">字数 2340</span>
+            <span class="views-count">阅读 25214</span><span class="comments-count">评论 45</span><span class="likes-count">喜欢 131</span><span class="rewards-count ">赞赏 2</span></div>
+          </div>
+          <!-- 如果是当前作者，加入编辑按钮 -->
+        </div>
+        <!-- -->
+
+        <!-- 文章内容 -->
+        <div data-note-content="" class="show-content">
+          <p><a href="http://www.jianshu.com/users/64f479a1cef7/latest_articles" target="_blank">个人主页</a><br><a href="https://github.com/PingerWan/SwipeRefreshDemo" target="_blank">演示Demo下载</a></p>
+<hr>
+<blockquote><p>本文重点介绍了SwipeRefreshLayout的使用和自定View继承SwipeRefreshLayout添加上拉加载更多的功能。</p></blockquote>
+<ul>
+<li>介绍之前，先来看一下SwipeRefreshLayout实现的下拉刷新效果图。从图中可以看到，下拉到了一定的高度才会进行刷新，高度不够就会回收上去，正在刷新过程中，继续下拉没反应，说明刷新时屏蔽掉了下拉事件。<br><div class="image-package">
+<img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/2786991-c76615c24918e04d.gif" data-original-src="http://upload-images.jianshu.io/upload_images/2786991-c76615c24918e04d.gif?imageMogr2/auto-orient/strip" style="cursor: zoom-in;"><br><div class="image-caption">上拉刷新效果图</div>
+</div>
+</li>
+</ul>
+<h3>一、SwipeRefreshLayout简单介绍</h3>
+<ul>
+<li>
+<p>先看以下官方文档，已有了很详细的描述了。<br></p>
+<div class="image-package">
+<img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/2786991-a718fcc3c94bd13e.png" data-original-src="http://upload-images.jianshu.io/upload_images/2786991-a718fcc3c94bd13e.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">官方文档说明</div>
+</div>
+</li>
+<li>
+<p>这里我再大概解释一下：</p>
+<ul>
+<li>
+<p>在竖直滑动时想要刷新页面可以用SwipeRefreshLayout来实现。它通过设置OnRefreshListener来监听界面的滑动从而实现刷新。也可以通过一些方法来设置SwipeRefreshLayout是否可以刷新。如：setRefreshing(true)，展开刷新动画。<br>setRefreshing(false)，取消刷新动画。setEnable(true)下拉刷新将不可用。</p>
+</li>
+<li>
+<p>使用这个布局要想达到刷新的目的，需要在这个布局里包裹可以滑动的子控件，如ListView等，并且只能有一个子控件。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>介绍总结：使用SwipeRefreshLayout可以实现下拉刷新，前提是布局里需要包裹一个可以滑动的子控件，然后在代码里设置OnRefreshListener设置监听，最后在监听里设置刷新时的数据获取就可以了。由于是新出来的东西，所以要想使用，先把support library的版本升级到19.1或更新。</p>
+</li>
+</ul>
+<h3>二、SwipeRefreshLayout主要方法介绍</h3>
+<blockquote><p>翻看官方的文档，可以看到方法有很多，这里只介绍五个经常用到的方法。</p></blockquote>
+<ul>
+<li>
+<p>isRefreshing()</p>
+<ul>
+<li>判断当前的状态是否是刷新状态。</li>
+</ul>
+</li>
+<li>
+<p>setColorSchemeResources(int... colorResIds)</p>
+<ul>
+<li>设置下拉进度条的颜色主题，参数为可变参数，并且是资源id，可以设置多种不同的颜色，每转一圈就显示一种颜色。</li>
+</ul>
+</li>
+<li>
+<p>setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener listener)</p>
+<ul>
+<li>设置监听，需要重写onRefresh()方法，顶部下拉时会调用这个方法，在里面实现请求数据的逻辑，设置下拉进度条消失等等。</li>
+</ul>
+</li>
+<li>
+<p>setProgressBackgroundColorSchemeResource(int colorRes)</p>
+<ul>
+<li>设置下拉进度条的背景颜色，默认白色。</li>
+</ul>
+</li>
+<li>
+<p>setRefreshing(boolean refreshing)</p>
+<ul>
+<li>设置刷新状态，true表示正在刷新，false表示取消刷新。</li>
+</ul>
+</li>
+</ul>
+<h3>三、SwipeRefreshLayout的基本使用</h3>
+<ul>
+<li>介绍了SwipeRefreshLayout，主要的方法也讲了，接下来就是实战，其实使用起来非常的简单。</li>
+</ul>
+<h4>3.1 设置布局</h4>
+<ul>
+<li>
+<p>官方文档已经说明，SwipeRefreshLayout只能有一个孩子，当然我们不般也不会往里面放其他的布局。我们只需要在容器里包裹一个ListView就好了。</p>
+<pre class="hljs xml"><code class="xml">  <span class="hljs-comment">&lt;!--使用谷歌官方的下拉刷新组件,只有下拉刷新功能--&gt;</span>
+  <span class="hljs-comment">&lt;!--
+      &lt;android.support.v4.widget.SwipeRefreshLayout
+          android:id="@+id/srl"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"&gt;
+
+          &lt;ListView
+              android:id="@+id/lv"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"/&gt;
+
+      &lt;/android.support.v4.widget.SwipeRefreshLayout&gt;
+  --&gt;</span></code></pre>
+</li>
+</ul>
+<h4>3.2 在代码中使用</h4>
+<ul>
+<li>
+<p>在该布局文件对应的Activity或其他类中获取布局id，先设置ListView显示的适配器，然后再设置SwipeRefreshLayout。</p>
+<pre class="hljs processing"><code class="processing">  <span class="hljs-comment">// 不能在onCreate中设置，这个表示当前是刷新状态，如果一进来就是刷新状态，SwipeRefreshLayout会屏蔽掉下拉事件</span>
+  <span class="hljs-comment">//swipeRefreshLayout.setRefreshing(true);</span>
+
+  <span class="hljs-comment">// 设置颜色属性的时候一定要注意是引用了资源文件还是直接设置16进制的颜色，因为都是int值容易搞混</span>
+  <span class="hljs-comment">// 设置下拉进度的背景颜色，默认就是白色的</span>
+  swipeRefreshView.setProgressBackgroundColorSchemeResource(android.R.<span class="hljs-built_in">color</span>.white);
+  <span class="hljs-comment">// 设置下拉进度的主题颜色</span>
+  swipeRefreshView.setColorSchemeResources(R.<span class="hljs-built_in">color</span>.colorAccent, R.<span class="hljs-built_in">color</span>.colorPrimary, R.<span class="hljs-built_in">color</span>.colorPrimaryDark);
+
+  <span class="hljs-comment">// 下拉时触发SwipeRefreshLayout的下拉动画，动画完毕之后就会回调这个方法</span>
+  swipeRefreshView.setOnRefreshListener(<span class="hljs-keyword">new</span> SwipeRefreshLayout.OnRefreshListener() {
+      @Override
+      <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> onRefresh() {
+
+          <span class="hljs-comment">// 开始刷新，设置当前为刷新状态</span>
+          <span class="hljs-comment">//swipeRefreshLayout.setRefreshing(true);</span>
+
+          <span class="hljs-comment">// 这里是主线程</span>
+          <span class="hljs-comment">// 一些比较耗时的操作，比如联网获取数据，需要放到子线程去执行</span>
+          <span class="hljs-comment">// TODO 获取数据</span>
+          <span class="hljs-keyword">final</span> Random <span class="hljs-built_in">random</span> = <span class="hljs-keyword">new</span> Random();
+          <span class="hljs-keyword">new</span> Handler().postDelayed(<span class="hljs-keyword">new</span> Runnable() {
+              @Override
+              <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> run() {
+                  mList.<span class="hljs-built_in">add</span>(<span class="hljs-number">0</span>, <span class="hljs-string">"我是天才"</span> + <span class="hljs-built_in">random</span>.nextInt(<span class="hljs-number">100</span>) + <span class="hljs-string">"号"</span>);
+                  mAdapter.notifyDataSetChanged();
+
+                  Toast.makeText(MainActivity.<span class="hljs-keyword">this</span>, <span class="hljs-string">"刷新了一条数据"</span>, Toast.LENGTH_SHORT).show();
+
+                  <span class="hljs-comment">// 加载完数据设置为不刷新状态，将下拉进度收起来</span>
+                  swipeRefreshView.setRefreshing(<span class="hljs-keyword">false</span>);
+              }
+          }, <span class="hljs-number">1200</span>);
+
+          <span class="hljs-comment">// System.out.println(Thread.currentThread().getName());</span>
+
+          <span class="hljs-comment">// 这个不能写在外边，不然会直接收起来</span>
+          <span class="hljs-comment">//swipeRefreshLayout.setRefreshing(false);</span>
+      }
+  });</code></pre>
+</li>
+<li>
+<p>经过以上两步简单的设置就能使用SwipeRefreshLayout了。</p>
+</li>
+</ul>
+<h3>四、自定义View继承SwipeRefreshLayout，添加上拉加载更多功能</h3>
+<blockquote>
+<p>由于谷歌并没有提供上拉加载更多的布局，所以我们只能自己去定义布局实现这个功能。</p>
+<p>这里通过自定义View继承SwipeRefreshLayout容器，然后添加上拉加载更多的功能。</p>
+</blockquote>
+<ul>
+<li>先来看一下上拉加载更多的效果图<br><div class="image-package">
+<img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/2786991-9e4901396efc72b1.gif" data-original-src="http://upload-images.jianshu.io/upload_images/2786991-9e4901396efc72b1.gif?imageMogr2/auto-orient/strip" style="cursor: zoom-in;"><br><div class="image-caption">上拉加载更多效果图</div>
+</div>
+</li>
+</ul>
+<h4>4.1 定义View继承SwipeRefreshLayout，添加上拉加载功能</h4>
+<blockquote><p>代码中的注释比较详细，这里就不一一解释了，说一下大概的实现思路，主要分为四步。</p></blockquote>
+<h4>4.1.1 获取子控件ListView</h4>
+<ul>
+<li>
+<p>在布局使用中，这里和SwipeRefreshLayout一样，ListView是SwipeRefreshView的子控件，所以需要在onLayout()方法中获取子控件ListView。</p>
+<pre class="hljs actionscript"><code class="actionscript">  <span class="hljs-comment">// 获取ListView,设置ListView的布局位置</span>
+  <span class="hljs-keyword">if</span> (mListView == <span class="hljs-literal">null</span>) {
+      <span class="hljs-comment">// 判断容器有多少个孩子</span>
+      <span class="hljs-keyword">if</span> (getChildCount() &gt; <span class="hljs-number">0</span>) {
+          <span class="hljs-comment">// 判断第一个孩子是不是ListView</span>
+          <span class="hljs-keyword">if</span> (getChildAt(<span class="hljs-number">0</span>) <span class="hljs-keyword">instanceof</span> ListView) {
+              <span class="hljs-comment">// 创建ListView对象</span>
+              mListView = (ListView) getChildAt(<span class="hljs-number">0</span>);
+
+              <span class="hljs-comment">// 设置ListView的滑动监听</span>
+              setListViewOnScroll();
+          }
+      }
+  }</code></pre>
+</li>
+</ul>
+<h4>4.1.2 对ListView设置滑动监听</h4>
+<ul>
+<li>
+<p>监听ListView的滑动事件，当滑动到底部，并且当前可见页的最后一个条目等于adapter的getCount数目-1，就满足加载数据的条件。</p>
+<pre class="hljs aspectj"><code class="aspectj"> <span class="hljs-comment">/**
+   * 设置ListView的滑动监听
+   */</span>
+  <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setListViewOnScroll</span><span class="hljs-params">()</span> </span>{
+
+      mListView.setOnScrollListener(<span class="hljs-keyword">new</span> AbsListView.OnScrollListener() {
+          <span class="hljs-meta">@Override</span>
+          <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onScrollStateChanged</span><span class="hljs-params">(AbsListView view, <span class="hljs-keyword">int</span> scrollState)</span> </span>{
+              <span class="hljs-comment">// 移动过程中判断时候能下拉加载更多</span>
+              <span class="hljs-keyword">if</span> (canLoadMore()) {
+                  <span class="hljs-comment">// 加载数据</span>
+                  loadData();
+              }
+          }
+
+          <span class="hljs-meta">@Override</span>
+          <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onScroll</span><span class="hljs-params">(AbsListView view, <span class="hljs-keyword">int</span> firstVisibleItem, <span class="hljs-keyword">int</span> visibleItemCount, <span class="hljs-keyword">int</span> totalItemCount)</span> </span>{
+
+          }
+      });
+  }</code></pre>
+</li>
+</ul>
+<h4>4.1.3 处理SwipeRefreshView容器的分发事件</h4>
+<ul>
+<li>
+<p>由于ListView是SwipeRefreshView的子控件，所以这里要进行事件的分发处理，判断用户的滑动距离是否满足条件。</p>
+<pre class="hljs groovy"><code class="groovy">   <span class="hljs-comment">/**
+   * 在分发事件的时候处理子控件的触摸事件
+   *
+   * <span class="hljs-doctag">@param</span> ev
+   * <span class="hljs-doctag">@return</span>
+   */</span>
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> mDownY, mUpY;
+  <span class="hljs-meta">@Override</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> dispatchTouchEvent(MotionEvent ev) {
+
+      <span class="hljs-keyword">switch</span> (ev.getAction()) {
+          <span class="hljs-keyword">case</span> MotionEvent.<span class="hljs-string">ACTION_DOWN:</span>
+              <span class="hljs-comment">// 移动的起点</span>
+              mDownY = ev.getY();
+              <span class="hljs-keyword">break</span>;
+          <span class="hljs-keyword">case</span> MotionEvent.<span class="hljs-string">ACTION_MOVE:</span>
+              <span class="hljs-comment">// 移动过程中判断时候能下拉加载更多</span>
+              <span class="hljs-keyword">if</span> (canLoadMore()) {
+                  <span class="hljs-comment">// 加载数据</span>
+                  loadData();
+              }
+
+              <span class="hljs-keyword">break</span>;
+          <span class="hljs-keyword">case</span> MotionEvent.<span class="hljs-string">ACTION_UP:</span>
+              <span class="hljs-comment">// 移动的终点</span>
+              mUpY = getY();
+              <span class="hljs-keyword">break</span>;
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.dispatchTouchEvent(ev);
+  }</code></pre>
+</li>
+</ul>
+<h4>4.1.4 判断条件，满足就用回调去加载数据</h4>
+<ul>
+<li>
+<p>当满足了需要判断的所有的条件之后，就可以去调用加载数据的方法，这里提供一个设置上拉布局显示和隐藏的方法，通过传入当前的状态，是true就显示加载，是false就隐藏。     </p>
+<pre class="hljs gradle"><code class="gradle">  <span class="hljs-comment">/**
+   * 判断是否满足加载更多条件
+   *
+   * @return
+   */</span>
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> canLoadMore() {
+      <span class="hljs-comment">// 1. 是上拉状态</span>
+      <span class="hljs-keyword">boolean</span> condition1 = (mDownY - mUpY) &gt;= mScaledTouchSlop;
+      <span class="hljs-keyword">if</span> (condition1) {
+          System.out.<span class="hljs-keyword">println</span>(<span class="hljs-string">"是上拉状态"</span>);
+      }
+
+      <span class="hljs-comment">// 2. 当前页面可见的item是最后一个条目</span>
+      <span class="hljs-keyword">boolean</span> condition2 = <span class="hljs-keyword">false</span>;
+      <span class="hljs-keyword">if</span> (mListView != <span class="hljs-keyword">null</span> &amp;&amp; mListView.getAdapter() != <span class="hljs-keyword">null</span>) {
+          condition2 = mListView.getLastVisiblePosition() == (mListView.getAdapter().getCount() - <span class="hljs-number">1</span>);
+      }
+
+      <span class="hljs-keyword">if</span> (condition2) {
+          System.out.<span class="hljs-keyword">println</span>(<span class="hljs-string">"是最后一个条目"</span>);
+      }
+      <span class="hljs-comment">// 3. 正在加载状态</span>
+      <span class="hljs-keyword">boolean</span> condition3 = !isLoading;
+      <span class="hljs-keyword">if</span> (condition3) {
+          System.out.<span class="hljs-keyword">println</span>(<span class="hljs-string">"不是正在加载状态"</span>);
+      }
+      <span class="hljs-keyword">return</span> condition1 &amp;&amp; condition2 &amp;&amp; condition3;
+  }
+
+  <span class="hljs-comment">/**
+   * 处理加载数据的逻辑
+   */</span>
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> loadData() {
+      System.out.<span class="hljs-keyword">println</span>(<span class="hljs-string">"加载数据..."</span>);
+      <span class="hljs-keyword">if</span> (mOnLoadListener != <span class="hljs-keyword">null</span>) {
+          <span class="hljs-comment">// 设置加载状态，让布局显示出来</span>
+          setLoading(<span class="hljs-keyword">true</span>);
+          mOnLoadListener.onLoad();
+      }
+
+  }
+
+  <span class="hljs-comment">/**
+   * 设置加载状态，是否加载传入boolean值进行判断
+   *
+   * @param loading
+   */</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> setLoading(<span class="hljs-keyword">boolean</span> loading) {
+      <span class="hljs-comment">// 修改当前的状态</span>
+      isLoading = loading;
+      <span class="hljs-keyword">if</span> (isLoading) {
+          <span class="hljs-comment">// 显示布局</span>
+          mListView.addFooterView(mFooterView);
+      } <span class="hljs-keyword">else</span> {
+          <span class="hljs-comment">// 隐藏布局</span>
+          mListView.removeFooterView(mFooterView);
+
+          <span class="hljs-comment">// 重置滑动的坐标</span>
+          mDownY = <span class="hljs-number">0</span>;
+          mUpY = <span class="hljs-number">0</span>;
+      }
+  }</code></pre>
+</li>
+</ul>
+<h3>4.2 使用自定义View</h3>
+<h4>4.2.1. 书写布局</h4>
+<ul>
+<li>
+<p>因为是继承自SwipeRefreshLayout，所以SwipeRefreshView也只能有一个孩子</p>
+<pre class="hljs xml"><code class="xml">  <span class="hljs-comment">&lt;!--自定义View实现SwipeRefreshLayout，添加上拉加载更多的功能--&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">com.pinger.swiperefreshdemo.view.SwipeRefreshView</span>
+      <span class="hljs-attr">android:id</span>=<span class="hljs-string">"@+id/srl"</span>
+      <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span>
+      <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"match_parent"</span>&gt;</span>
+
+      <span class="hljs-tag">&lt;<span class="hljs-name">ListView</span>
+          <span class="hljs-attr">android:id</span>=<span class="hljs-string">"@+id/lv"</span>
+          <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span>
+          <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"match_parent"</span>/&gt;</span>
+
+  <span class="hljs-tag">&lt;/<span class="hljs-name">com.pinger.swiperefreshdemo.view.SwipeRefreshView</span>&gt;</span></code></pre>
+</li>
+</ul>
+<h4>4.2.2. 在代码中使用</h4>
+<ul>
+<li>
+<p>在代码中使用更加的简单，只需要设置监听重写onLoad()方法，在里面加载数据，加载完数据然后设置为不加载状态就可以了。</p>
+<pre class="hljs aspectj"><code class="aspectj">  <span class="hljs-comment">// 设置下拉加载更多</span>
+  swipeRefreshView.setOnLoadListener(<span class="hljs-keyword">new</span> SwipeRefreshView.OnLoadListener() {
+      <span class="hljs-meta">@Override</span>
+      <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onLoad</span><span class="hljs-params">()</span> </span>{
+          <span class="hljs-keyword">new</span> Handler().postDelayed(<span class="hljs-keyword">new</span> Runnable() {
+              <span class="hljs-meta">@Override</span>
+              <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+
+                  <span class="hljs-comment">// 添加数据</span>
+                  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">30</span>; i &lt; <span class="hljs-number">35</span>; i++) {
+                      mList.add(<span class="hljs-string">"我是天才"</span> + i+ <span class="hljs-string">"号"</span>);
+                      <span class="hljs-comment">// 这里要放在里面刷新，放在外面会导致刷新的进度条卡住</span>
+                      mAdapter.notifyDataSetChanged();
+                  }
+
+                  Toast.makeText(MainActivity.<span class="hljs-keyword">this</span>, <span class="hljs-string">"加载了"</span> + <span class="hljs-number">5</span> + <span class="hljs-string">"条数据"</span>, Toast.LENGTH_SHORT).show();
+
+                  <span class="hljs-comment">// 加载完数据设置为不加载状态，将加载进度收起来</span>
+                  swipeRefreshView.setLoading(<span class="hljs-keyword">false</span>);
+              }
+          }, <span class="hljs-number">1200</span>);
+      }
+  });</code></pre>
+</li>
+</ul>
+<hr>
+<p><a href="http://www.jianshu.com/users/64f479a1cef7/latest_articles" target="_blank">个人主页</a><br><a href="https://github.com/PingerWan/SwipeRefreshDemo" target="_blank">演示Demo下载</a></p>
+<h4>以上纯属于个人平时工作和学习的一些总结分享，如果有什么错误欢迎随时指出，大家可以讨论一起进步。</h4>
+
+        </div>
+        <!--  -->
+
+        <div class="show-foot">
+          <a class="notebook" href="http://www.jianshu.com/nb/5761863">
+            <i class="iconfont ic-search-notebook"></i> <span>Android开发进阶</span>
+</a>          <div class="copyright" data-toggle="tooltip" data-html="true" data-original-title="转载请联系作者获得授权，并标注“简书作者”。">
+            © 著作权归作者所有
+          </div>
+          <div class="modal-wrap" data-report-note="">
+            <a id="report-modal">举报文章</a>
+          </div>
+        </div>
+    </div>
+
+    <!-- 文章底部作者信息 -->
+      <div class="follow-detail">
+        <div class="info">
+          <a class="avatar" href="http://www.jianshu.com/u/64f479a1cef7">
+            <img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/30cfa6ddf60b.png" alt="144">
+</a>          <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+          <a class="title" href="http://www.jianshu.com/u/64f479a1cef7">PingerOne</a>
+        <p>写了 24582 字，被 333 人关注，获得了 657 个喜欢</p></div>
+          <div class="signature">所有的苦，以后都会笑着说出来！</div>
+      </div>
+
+      <div class="support-author"><p>如果觉得我的文章对您有用，请随意赞赏。您的支持将鼓励我继续创作！</p> <div class="btn btn-pay">赞赏支持</div> <div class="supporter"><ul class="support-list"><li><a target="_blank" href="http://www.jianshu.com/u/7ca90649bbfd" class="avatar"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/65cebffa-0c74-4f84-b5ab-c6fb65a11c46.jpg"></a></li><li><a target="_blank" href="javascript:void(0)" class="avatar"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/wechat-771371d5741b0c32cd805caeb48ad6c0.png"></a></li></ul> <!----></div> <!----> <!----></div>
+
+    <div class="meta-bottom">
+      <div class="like"><div class="btn like-group"><div class="btn-like"><a href="http://www.jianshu.com/sign_in"><i class="iconfont ic-like"></i>喜欢</a></div> <div class="modal-wrap"><a>131</a></div></div> <!----></div>
+      <div class="share-group">
+        <a class="share-circle" data-action="weixin-share" data-toggle="tooltip" data-original-title="分享到微信">
+          <i class="iconfont ic-wechat"></i>
+        </a>
+        <a class="share-circle" data-toggle="tooltip" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/6006204/weibo/image_daaa7624962e.jpg&#39;, &#39;推荐 PingerOne 的文章《SwipeRefreshLayout详解和自定义上拉加载更多》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/d23b42b6360b?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));" data-original-title="分享到微博">
+          <i class="iconfont ic-weibo"></i>
+        </a>
+          <a class="share-circle" data-toggle="tooltip" href="http://cwb.assets.jianshu.io/notes/images/6006204/weibo/image_daaa7624962e.jpg" target="_blank" data-original-title="下载长微博图片">
+            <i class="iconfont ic-picture"></i>
+          </a>
+        <a class="share-circle more-share" tabindex="0" data-toggle="popover" data-placement="top" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="
+          &lt;ul class=&quot;share-list&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/d23b42b6360b?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 PingerOne 的文章《SwipeRefreshLayout详解和自定义上拉加载更多》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-zone&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/d23b42b6360b?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 PingerOne 的文章《SwipeRefreshLayout详解和自定义上拉加载更多》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-twitter&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/d23b42b6360b?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-facebook&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/d23b42b6360b?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-google&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/d23b42b6360b?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;SwipeRefreshLayout详解和自定义上拉加载更多&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-douban&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        " data-original-title="" title="">更多分享</a>
+      </div>
+    </div>
+    <div><div id="comment-list" class="comment-list"><div><form class="new-comment"><a class="avatar"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/avatar_default-78d4d1f68984cd6d4379508dd94b4210.png"></a> <div class="sign-container"><a href="http://www.jianshu.com/sign_in" class="btn btn-sign">登录</a> <span>后发表评论</span></div></form></div> <div id="normal-comment-list" class="normal-comment-list"><div><div><div class="top"><span>45条评论</span> <a class="author-only">只看作者</a> <a class="close-btn" style="display: none;">关闭评论</a> <div class="pull-right"><a class="active">按喜欢排序</a><a class="">按时间正序</a><a class="">按时间倒序</a></div></div></div> <!----> <!----> <div class="comments-placeholder" style="display: none;"><div class="author"><div class="avatar"></div> <div class="info"><div class="name"></div> <div class="meta"></div></div></div> <div class="text"></div> <div class="text animation-delay"></div> <div class="tool-group"><i class="iconfont ic-zan-active"></i><div class="zan"></div> <i class="iconfont ic-list-comments"></i><div class="zan"></div></div></div> <div id="comment-9561797" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/e7e08b45d4c3" target="_blank" class="avatar"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/a7b9ce50-1c70-49c6-8bf7-82584d98bf87"></a> <div class="info"><a href="http://www.jianshu.com/u/e7e08b45d4c3" target="_blank" class="name">熟人_75b1</a> <!----> <div class="meta"><span>11楼 · 2017.03.30 22:19</span></div></div></div> <div class="comment-wrap"><p>首先感谢博主给出思路<br>仔细看完博主的代码后，我认为还有些地方可以做小的修改。<br>首先我认为onScrollStateChanged这个回调函数中，可以不写<br>if (canLoadMore()) {<br>                  // 加载数据<br>                  loadData();<br>              }<br>而是可以增加一个全局变量private boolean mIsLastItem; 并且onScrollStateChanged中改为<br> if (i == (mListView.getAdapter().getCount() - 1)) {<br>                    mIsLastItem = true;<br>                }else {<br>                    mIsLastItem = false;<br>                }<br>然后在dispatchTouchEvent()函数判断事件外部加上一个判断<br>if (mIsLastItem &amp;&amp; !mIsLoad) {事件判断}<br>这样就保证，每次进入事件判断，都是有意义的，不会出现当前在加载，或者还未到list view的最底部就开始一直的去做touch事件判断和处理。<br>最后，能够进入到事件判断的话，那么当前是否正在加载，和当前是否已经到底部这两个判断就可以省略了。 <br>然后就是还有一件事有疑问，现在我们假设开始加载有两种情况，第一种，只要向上滑动的距离超过了阈值，就直接开始加载，不管最后手离开屏幕的时候向上滑动的距离是多少，<br>case MotionEvent.ACTION_MOVE:<br>              // 移动过程中判断时候能下拉加载更多<br>              if (canLoadMore()) {<br>                  // 加载数据<br>                  loadData();<br>              }<br><br>              break;<br>博主的这里符合这种情况。<br>第二种情况是，不管中间是怎么滑动的，只管最后手离开屏幕的时候的向上滑动的距离是多少，case MotionEvent.ACTION_UP:<br>              // 移动的终点<br>              mUpY = getY();<br>              break;<br>      }<br>博主的这里是符合第二种情况。<br>但是这么写，就感觉有点问题了，因为mUpY是最后离开屏幕才记录的，但是离开了屏幕后ACTION_MOVE又进不去了，好像会出现问题。所以我依据第一种情况，判断touch事件做了如下处理<br>if (mIsLastItem &amp;&amp; !mIsLoad) {<br>            switch (ev.getAction()) {<br>                case MotionEvent.ACTION_DOWN:<br>                    mStartY = ev.getY();<br>                    break;<br>                case MotionEvent.ACTION_MOVE:<br>                    mEndY = ev.getY();<br>                    if ((mEndY - mStartY) &gt;= SCALED_TOUCH_SLOP) {<br>                        loadData();<br>                    }<br>                    break;<br>                case MotionEvent.ACTION_UP:<br>                    break;<br>            }<br>        }<br><br>这样符合我开始说的第一种情况。 当然我是刚刚看完，还没有自己仔细的去测试来验证自己的猜想，如果有不对的地方，还请多指证。</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>1人赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-12795056" class="sub-comment"><p><a href="http://www.jianshu.com/u/64f479a1cef7" target="_blank">PingerOne</a>：
+          <span>看了下，很赞</span></p> <div class="sub-tool-group"><span>2017.07.13 12:53</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <!----> <!----> <!----></div> <!----></div></div><div id="comment-4463614" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/f07458c1a8f3" target="_blank" class="avatar"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/5938e463299e.jpeg"></a> <div class="info"><a href="http://www.jianshu.com/u/f07458c1a8f3" target="_blank" class="name">dongjunkun</a> <!----> <div class="meta"><span>2楼 · 2016.09.28 08:57</span></div></div></div> <div class="comment-wrap"><p>仅仅支持ListView吗？</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-4464443" class="sub-comment"><p><a href="http://www.jianshu.com/u/64f479a1cef7" target="_blank">PingerOne</a>：
+          <span> <a href="http://www.jianshu.com/users/f07458c1a8f3" class="maleskine-author" target="_blank" data-user-slug="f07458c1a8f3">@dongjunkun</a> 目前自定义view里只做个listview的处理，你可以自己去研究一下做其他的，不过一般用到的都是listview</span></p> <div class="sub-tool-group"><span>2016.09.28 09:33</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-4464572" class="sub-comment"><p><a href="http://www.jianshu.com/u/f07458c1a8f3" target="_blank">dongjunkun</a>：
+          <span><a href="http://www.jianshu.com/users/64f479a1cef7" class="maleskine-author" target="_blank" data-user-slug="64f479a1cef7">@敲代码的大圣</a> 现在RecyclerView用的特别多，ListView几乎不用了</span></p> <div class="sub-tool-group"><span>2016.09.28 09:39</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-4465692" class="sub-comment"><p><a href="http://www.jianshu.com/u/64f479a1cef7" target="_blank">PingerOne</a>：
+          <span> <a href="http://www.jianshu.com/users/f07458c1a8f3" class="maleskine-author" target="_blank" data-user-slug="f07458c1a8f3">@dongjunkun</a> 就是加强版的listview，一样</span></p> <div class="sub-tool-group"><span>2016.09.28 10:32</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <!----> <!----> <!----></div> <!----></div></div><div id="comment-4464168" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/8291130e59ac" target="_blank" class="avatar"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/f1d7f06c0fb7.jpg"></a> <div class="info"><a href="http://www.jianshu.com/u/8291130e59ac" target="_blank" class="name">AmatorLee</a> <!----> <div class="meta"><span>3楼 · 2016.09.28 09:23</span></div></div></div> <div class="comment-wrap"><p>楼主我想问问假如listview为空会不会有冲突？等我下载demo认真学习一下🌞</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-4464503" class="sub-comment"><p><a href="http://www.jianshu.com/u/64f479a1cef7" target="_blank">PingerOne</a>：
+          <span> <a href="http://www.jianshu.com/users/8291130e59ac" class="maleskine-author" target="_blank" data-user-slug="8291130e59ac">@AmatorLee</a> 获取容器的孩子时已经判断过listview的各种状态，如果真的是空的话就没有上拉加载的效果，但是下拉刷新的效果不会变的</span></p> <div class="sub-tool-group"><span>2016.09.28 09:35</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <!----> <!----> <!----></div> <!----></div></div><div id="comment-4509551" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/5ffe9ada44b0" target="_blank" class="avatar"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/8-a356878e44b45ab268a3b0bbaaadeeb7.jpg"></a> <div class="info"><a href="http://www.jianshu.com/u/5ffe9ada44b0" target="_blank" class="name">梦想编织者灬小楠</a> <!----> <div class="meta"><span>4楼 · 2016.09.30 13:21</span></div></div></div> <div class="comment-wrap"><p>setColorSchemeResources(int... colorResIds)<br>不止支持四种颜色，刚刚试过5种、6种都没问题... <img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/cupid.png" alt=":cupid:" title=":cupid:" class="emoji" width="20" height="20"> </p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-4511121" class="sub-comment"><p><a href="http://www.jianshu.com/u/64f479a1cef7" target="_blank">PingerOne</a>：
+          <span> <a href="http://www.jianshu.com/users/5ffe9ada44b0" class="maleskine-author" target="_blank" data-user-slug="5ffe9ada44b0">@梦想编制者灬小楠</a> 我自己试了一下确实可以，网上都是瞎说的，我自己也没测试，惭愧，谢谢提醒</span></p> <div class="sub-tool-group"><span>2016.09.30 15:03</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-11951257" class="sub-comment"><p><a href="http://www.jianshu.com/u/40f614d9bb95" target="_blank">Amanduzhuojiang</a>：
+          <span><a href="http://www.jianshu.com/users/64f479a1cef7" class="maleskine-author" target="_blank" data-user-slug="64f479a1cef7">@PingerOne</a> setColorSchemeResources他这个属性设置一个参数就变成圆形图标刷新，设置4个参数就变成进度条刷新的吗？感觉很好奇！</span></p> <div class="sub-tool-group"><span>2017.06.19 11:59</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-11951856" class="sub-comment"><p><a href="http://www.jianshu.com/u/64f479a1cef7" target="_blank">PingerOne</a>：
+          <span> <a href="http://www.jianshu.com/users/40f614d9bb95" class="maleskine-author" target="_blank" data-user-slug="40f614d9bb95">@Amanduzhuojiang</a> 不会吧，这个方法只是设置圆圈的颜色的</span></p> <div class="sub-tool-group"><span>2017.06.19 12:20</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <span class="line-warp">
+          还有1条评论，
+          <a>展开查看</a></span> <!----> <!----></div> <!----></div></div><div id="comment-6381428" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/5c0f7e3b85b1" target="_blank" class="avatar"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/153e3b6e0c24"></a> <div class="info"><a href="http://www.jianshu.com/u/5c0f7e3b85b1" target="_blank" class="name">冰楓紫憶</a> <!----> <div class="meta"><span>5楼 · 2016.12.13 11:24</span></div></div></div> <div class="comment-wrap"><p>为什么下拉刷新的时候，也会触发上拉加载。。只想下拉刷新的时候，只有刷新，上拉的时候只有加载 <img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/cry.png" alt=":cry:" title=":cry:" class="emoji" width="20" height="20"> </p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-6382488" class="sub-comment"><p><a href="http://www.jianshu.com/u/64f479a1cef7" target="_blank">PingerOne</a>：
+          <span> <a href="http://www.jianshu.com/users/5c0f7e3b85b1" class="maleskine-author" target="_blank" data-user-slug="5c0f7e3b85b1">@冰楓紫憶</a> 下拉的逻辑跟上拉是分开的啊😂</span></p> <div class="sub-tool-group"><span>2016.12.13 12:11</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-6521994" class="sub-comment"><p><a href="http://www.jianshu.com/u/9675bfee63f4" target="_blank">啃骨头的猫</a>：
+          <span><a href="http://www.jianshu.com/users/5c0f7e3b85b1" class="maleskine-author" target="_blank" data-user-slug="5c0f7e3b85b1">@冰楓紫憶</a> 同问  只有第一次的时候是这样子的<br></span></p> <div class="sub-tool-group"><span>2016.12.19 10:09</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-6521998" class="sub-comment"><p><a href="http://www.jianshu.com/u/9675bfee63f4" target="_blank">啃骨头的猫</a>：
+          <span><a href="http://www.jianshu.com/users/64f479a1cef7" class="maleskine-author" target="_blank" data-user-slug="64f479a1cef7">@敲代码的大圣</a> 你有没有解决办法？<br></span></p> <div class="sub-tool-group"><span>2016.12.19 10:09</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <span class="line-warp">
+          还有3条评论，
+          <a>展开查看</a></span> <!----> <!----></div> <!----></div></div><div id="comment-6550974" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/4907b921040d" target="_blank" class="avatar"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/7a722f2e333d.jpg"></a> <div class="info"><a href="http://www.jianshu.com/u/4907b921040d" target="_blank" class="name">沈敏杰</a> <!----> <div class="meta"><span>6楼 · 2016.12.20 13:38</span></div></div></div> <div class="comment-wrap"><p>这个demo用listview做例子，不太好，listView不兼容NestedScrolled机制滚动，文章还是很不错的</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-6559730" class="sub-comment"><p><a href="http://www.jianshu.com/u/64f479a1cef7" target="_blank">PingerOne</a>：
+          <span><a href="http://www.jianshu.com/users/4907b921040d" class="maleskine-author" target="_blank" data-user-slug="4907b921040d">@沈敏杰</a> 这是之前做上拉加载和下拉刷新的时候写的，没做那么多的兼容什么的</span></p> <div class="sub-tool-group"><span>2016.12.20 20:01</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-7781236" class="sub-comment"><p><a href="http://www.jianshu.com/u/6b19a3ddc2f2" target="_blank">送你一碗大麦茶</a>：
+          <span>老哥6666啊，你的博客里全是干货</span></p> <div class="sub-tool-group"><span>2017.02.07 13:27</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-8246818" class="sub-comment"><p><a href="http://www.jianshu.com/u/3012af36244a" target="_blank">漫步星空下</a>：
+          <span>当ListView的Item没有多到将手机屏幕填满时（Item只有两三条），上拉会触发上拉加载导致footview出现在底部，如何在ListView的Item没有将屏幕填满时并且执行上拉操作屏蔽掉上拉加载事件？<br></span></p> <div class="sub-tool-group"><span>2017.02.22 17:09</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <span class="line-warp">
+          还有6条评论，
+          <a>展开查看</a></span> <!----> <!----></div> <!----></div></div><div id="comment-8547446" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/11a9bbd37966" target="_blank" class="avatar"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/2a06e107-2a63-4c06-bcc1-4e76c179f5a1"></a> <div class="info"><a href="http://www.jianshu.com/u/11a9bbd37966" target="_blank" class="name">浮生若梦_aa6e</a> <!----> <div class="meta"><span>7楼 · 2017.03.03 15:25</span></div></div></div> <div class="comment-wrap"><p>代码有两个问题：<br>1.第一个孩子不一定是ListView <br>修改如下： for (int i = 0; i &lt; size; i++) {<br>                    View view = getChildAt(i);<br>                    if (view instanceof ListView) {<br>                        // 创建ListView对象<br>                        mListView = (ListView) view;<br>                        // 设置ListView的滑动监听<br>                        setListViewOnScroll();<br>                        return;<br>                    }<br>                }<br>2.单击事件也当成了下拉事件用，canLoadMore中增加判断mUpY&gt;0 才能继续下面的逻辑</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-8572577" class="sub-comment"><p><a href="http://www.jianshu.com/u/64f479a1cef7" target="_blank">PingerOne</a>：
+          <span> <a href="http://www.jianshu.com/users/11a9bbd37966" class="maleskine-author" target="_blank" data-user-slug="11a9bbd37966">@浮生若梦_aa6e</a> 厉害，赞一个😂</span></p> <div class="sub-tool-group"><span>2017.03.04 10:46</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-9042440" class="sub-comment"><p><a href="http://www.jianshu.com/u/a8226df68910" target="_blank">贾亦真亦贾</a>：
+          <span>应该是把 mUpY的取值方式也写成 ev.getY()  源码里写的是 getY() 永远是0 </span></p> <div class="sub-tool-group"><span>2017.03.16 13:52</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <!----> <!----> <!----></div> <!----></div></div><div id="comment-8729025" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/30301c6f35d7" target="_blank" class="avatar"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/816e5841-c17a-4e5a-8906-c8b1725578c9"></a> <div class="info"><a href="http://www.jianshu.com/u/30301c6f35d7" target="_blank" class="name">怀旧的NiceBoy</a> <!----> <div class="meta"><span>8楼 · 2017.03.08 17:25</span></div></div></div> <div class="comment-wrap"><p>请问我上滑加载以后再点击ListView中的ViewPager会报错，是我哪里写错了吗<img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/joy.png" alt=":joy:" title=":joy:" class="emoji" width="20" height="20"> </p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-8787118" class="sub-comment"><p><a href="http://www.jianshu.com/u/64f479a1cef7" target="_blank">PingerOne</a>：
+          <span> <a href="http://www.jianshu.com/users/30301c6f35d7" class="maleskine-author" target="_blank" data-user-slug="30301c6f35d7">@怀旧的NiceBoy</a> 那你得看你报什么错了，看错误日志。。。</span></p> <div class="sub-tool-group"><span>2017.03.10 08:44</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <!----> <!----> <!----></div> <!----></div></div><div id="comment-9276308" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/a101bcb6ccce" target="_blank" class="avatar"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/b57cd150-fc02-412b-8480-2c525b639b1e"></a> <div class="info"><a href="http://www.jianshu.com/u/a101bcb6ccce" target="_blank" class="name">最不6</a> <!----> <div class="meta"><span>9楼 · 2017.03.22 17:22</span></div></div></div> <div class="comment-wrap"><p>请问楼主，为什么这个上拉加载更多我换了一个手机，就不好使了，报类型转换异常的错误怎么解决啊？<br> mListView.removeFooterView(mFooterView);源代码中的这句话，报转换异常：<br><br> java.lang.ClassCastException: ccbnet.unicom114.fragment.Fragment1$MyOrderOutAdapter cannot be cast to android.widget.HeaderViewListAdapter<br>                                                                      at android.widget.ListView.removeFooterView(ListView.java:397)<br>                                                                      at ccbnet.unicom114.ui.SwipeRefreshView.setLoading(SwipeRefreshView.java:152)<br>                                                                      at ccbnet.unicom114.fragment.Fragment1$2$1.run(Fragment1.java:142)</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-9283450" class="sub-comment"><p><a href="http://www.jianshu.com/u/64f479a1cef7" target="_blank">PingerOne</a>：
+          <span> <a href="http://www.jianshu.com/users/a101bcb6ccce" class="maleskine-author" target="_blank" data-user-slug="a101bcb6ccce">@a101bcb6ccce</a> 你看一下xml中包含的子布局是不是ListView，类型转换异常你看一下哪个类型有问题啊，看日志解bug</span></p> <div class="sub-tool-group"><span>2017.03.22 21:11</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <!----> <!----> <!----></div> <!----></div></div><div id="comment-9501607" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/39c96b4d389c" target="_blank" class="avatar"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/12f5058b2985"></a> <div class="info"><a href="http://www.jianshu.com/u/39c96b4d389c" target="_blank" class="name">孤独的追寻着</a> <!----> <div class="meta"><span>10楼 · 2017.03.29 08:32</span></div></div></div> <div class="comment-wrap"><p>不实用</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-9502442" class="sub-comment"><p><a href="http://www.jianshu.com/u/64f479a1cef7" target="_blank">PingerOne</a>：
+          <span> <a href="http://www.jianshu.com/users/39c96b4d389c" class="maleskine-author" target="_blank" data-user-slug="39c96b4d389c">@孤独的追寻着</a> 这只是个Demo，不实用也没让你看！</span></p> <div class="sub-tool-group"><span>2017.03.29 08:58</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <!----> <!----> <!----></div> <!----></div></div><div id="comment-11902745" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/0e93f2ab41d4" target="_blank" class="avatar"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/dd6e0d2f-47eb-45fb-bb5a-3503472af7a2"></a> <div class="info"><a href="http://www.jianshu.com/u/0e93f2ab41d4" target="_blank" class="name">水点冰</a> <!----> <div class="meta"><span>12楼 · 2017.06.17 19:36</span></div></div></div> <div class="comment-wrap"><p>报错了大神！</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-11951867" class="sub-comment"><p><a href="http://www.jianshu.com/u/64f479a1cef7" target="_blank">PingerOne</a>：
+          <span> <a href="http://www.jianshu.com/users/0e93f2ab41d4" class="maleskine-author" target="_blank" data-user-slug="0e93f2ab41d4">@水点冰</a> 报什么错，你根据日志调试呗</span></p> <div class="sub-tool-group"><span>2017.06.19 12:21</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <!----> <!----> <!----></div> <!----></div></div><div id="comment-12229155" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/eb3d4963ee34" target="_blank" class="avatar"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/563a9b6b-6070-4232-871e-dce899a63bb9"></a> <div class="info"><a href="http://www.jianshu.com/u/eb3d4963ee34" target="_blank" class="name">小爷18956100462</a> <!----> <div class="meta"><span>13楼 · 2017.06.27 15:07</span></div></div></div> <div class="comment-wrap"><p>楼主，下面人给你提的这些问题，你demo里面改了没？</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-12362748" class="sub-comment"><p><a href="http://www.jianshu.com/u/64f479a1cef7" target="_blank">PingerOne</a>：
+          <span><a href="http://www.jianshu.com/users/eb3d4963ee34" class="maleskine-author" target="_blank" data-user-slug="eb3d4963ee34">@小爷18956100462</a> 最近太忙了没时间，不好意思，这两天看看</span></p> <div class="sub-tool-group"><span>2017.07.01 10:09</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-12694945" class="sub-comment"><p><a href="http://www.jianshu.com/u/eb3d4963ee34" target="_blank">小爷18956100462</a>：
+          <span><a href="http://www.jianshu.com/users/64f479a1cef7" class="maleskine-author" target="_blank" data-user-slug="64f479a1cef7">@PingerOne</a> 过了十天了，你看了么？我觉得有很多问题。。。</span></p> <div class="sub-tool-group"><span>2017.07.10 17:01</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-12726904" class="sub-comment"><p><a href="http://www.jianshu.com/u/64f479a1cef7" target="_blank">PingerOne</a>：
+          <span><a href="http://www.jianshu.com/users/eb3d4963ee34" class="maleskine-author" target="_blank" data-user-slug="eb3d4963ee34">@小爷18956100462</a> 这个只是当时练习的Demo，肯定会有肯多问题的，有时间我一定看好吧，都是程序员，加班情况你又不是不知道</span></p> <div class="sub-tool-group"><span>2017.07.11 14:29</span> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <!----> <!----> <!----></div> <!----></div></div></div></div> <!----> <div><!----></div></div></div>
+  </div>
+
+  <div class="side-tool"><ul><li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="回到顶部"><a class="function-button"><i class="iconfont ic-backtop"></i></a></li> <!----> <!----> <li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="分享文章"><a tabindex="0" role="button" data-toggle="popover" data-placement="left" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="&lt;ul class=&#39;share-list&#39;&gt;
+                &lt;li&gt;&lt;a class=&quot;weixin-share&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-weixin&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到微信&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/6006204/weibo/image_daaa7624962e.jpg&#39;, &#39;推荐 PingerOne 的文章《SwipeRefreshLayout详解和自定义上拉加载更多》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/d23b42b6360b?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-weibo&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到微博&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;http://cwb.assets.jianshu.io/notes/images/6006204/weibo/image_daaa7624962e.jpg&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-picture&quot;&gt;&lt;/i&gt;&lt;span&gt;下载长微博图片&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/d23b42b6360b?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 PingerOne 的文章《SwipeRefreshLayout详解和自定义上拉加载更多》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-zone&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/d23b42b6360b?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 PingerOne 的文章《SwipeRefreshLayout详解和自定义上拉加载更多》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-twitter&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/d23b42b6360b?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-facebook&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/d23b42b6360b?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-google&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/d23b42b6360b?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;SwipeRefreshLayout详解和自定义上拉加载更多&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-douban&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;" data-original-title="" title="" class="function-button"><i class="iconfont ic-share"></i></a> <!----></li></ul></div>
+</div>
+<div class="note-bottom">
+  <div><div class="main"><div class="title">被以下专题收入，发现更多相似内容</div> <!----> <div class="include-collection"><!----> <a href="http://www.jianshu.com/c/d1591c322c89?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/android.graphics.Bitmap_15f127c2.jpeg"><div class="name">Android开发</div></a><a href="http://www.jianshu.com/c/3fde3b545a35?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/android.graphics.Bitmap_3d178cba.jpeg"><div class="name">Android知识</div></a><a href="http://www.jianshu.com/c/bDHhpK?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/首页投稿.png"><div class="name">首页投稿</div></a><a href="http://www.jianshu.com/c/NEt52a?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/computer_guy.jpg"><div class="name">程序员</div></a><a href="http://www.jianshu.com/c/f4602d2abaa4?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/1474691507.jpg"><div class="name">android控件</div></a><a href="http://www.jianshu.com/c/b1fa46ec3b08?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/android.graphics.Bitmap_20c9506b.jpeg"><div class="name">Android...</div></a><a href="http://www.jianshu.com/c/2bfdca5f4e82?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/c.jpg"><div class="name">swipeRe...</div></a> <a class="show-more">
+        展开更多
+        <i class="iconfont ic-show"></i></a></div></div> <!----> <!----></div>
+  <div data-vcomp="recommended-notes" data-note-id="6006204"></div>
+</div>
+
+    <script src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/push.js.下载"></script><script src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/hm.js.下载"></script><script async="" src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/analytics.js.下载"></script><script type="application/json" data-name="page-data">{"user_signed_in":false,"locale":"zh-CN","os":"windows","read_mode":"day","read_font":"font2","note_show":{"is_author":false,"is_following_author":false,"is_liked_note":false,"uuid":"659abf15-361b-450d-8781-c4581b72f7a9"},"note":{"id":6006204,"slug":"d23b42b6360b","user_id":2786991,"notebook_id":5761863,"commentable":true,"likes_count":131,"views_count":25214,"public_wordage":2340,"comments_count":45,"total_rewards_count":2,"is_author":false,"author":{"nickname":"PingerOne","total_wordage":24582,"followers_count":333,"total_likes_count":657}}}</script>
+    
+    <script src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/babel-polyfill-a9ca93d3a83b3a1f92da.js.下载"></script>
+    <script src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/web-base-1e5054a5d8733cfec67f.js.下载"></script>
+<script src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/web-0773ed4b5a6b652bd765.js.下载"></script>
+    
+    <script src="./SwipeRefreshLayout详解和自定义上拉加载更多 - 简书_files/entry-cc051170909eea2bebb4.js.下载"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35169517-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?0c0e9d9b1e7d617b3e6842e85b9fb068";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+  
+
+<!----><!----></body></html>

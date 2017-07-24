@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)http://www.cnblogs.com/huanyou/p/5087044.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/bundle-red_autumnal_leaves.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/bundle-red_autumnal_leaves-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/huanyou/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/huanyou/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/huanyou/wlwmanifest.xml">
+<script async="" src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/analytics.js.下载"></script><script type="text/javascript" src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/encoder.js.下载"></script><script src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'huanyou', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/huanyou/"><img id="blogLogo" src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/huanyou/">环游世界</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/huanyou/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E7%8E%AF%E6%B8%B8%E4%B8%96%E7%95%8C">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/huanyou/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/huanyou/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 88&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 1</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/huanyou/p/5087044.html">Android DatePickerDialog和TimePickerDialog显示样式</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>&nbsp;</p>
+<p>　　可以用DatePickerDialog显示选取日期的对话框。可以设置显示的样式</p>
+<p><span style="line-height: 1.5;">&nbsp;</span></p>
+<p>1、通过构造方法设置显示样式。</p>
+<p>　　可以<span style="line-height: 1.5;">通过</span><span class="sympad" style="line-height: 1.5;">DatePickerDialog(Context&nbsp;context, int theme,&nbsp;DatePickerDialog.OnDateSetListener&nbsp;callBack, int year, int monthOfYear, int dayOfMonth)这个构造方法的第二个参数来设置显示样式。</span></p>
+<p>　　这个theme参数对应的值，可以使用AlertDialog中的theme值。</p>
+<p>　　AlertDialog.THEME_TRADITIONAL</p>
+<p>　　　　<img src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/854167-20151229203048620-821325642.png" alt=""></p>
+<p>　　AlertDialog.THEME_HOLO_DARK</p>
+<p>　　　　<img src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/854167-20151229203144307-1398771865.png" alt=""></p>
+<p>　　AlertDialog.THEME_HOLO_LIGHT</p>
+<p>　　　　<img src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/854167-20151229203328167-150280678.png" alt=""></p>
+<p>　　AlertDialog.THEME_DEVICE_DEFAULT_DARK</p>
+<p>　　　　<img src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/854167-20151229203453276-1521326469.png" alt=""></p>
+<p>　　AlertDialog.THEME_DEVICE_DEFAULT_LIGHT</p>
+<p>　　　　<img src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/854167-20151229203603260-1693557514.png" alt=""></p>
+<p>&nbsp;</p>
+<p>2、通过DatePicker设置显示样式</p>
+<p>　　首先获取DatePicker，然后使用DatePicker.setCalendarViewShow(boolean)和DatePicker.setSpinnersShow(boolean)来设置。</p>
+<p>　　CalendarView和Spinners的值分别为true和false</p>
+<p>　　　　<img src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/854167-20151229203915854-1332890190.png" alt=""></p>
+<p>　　CalendarView和Spinners的值分别为false和true</p>
+<p>　　　　<img src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/854167-20151229204045620-1817214983.png" alt=""></p>
+<p>　　CalendarView和Spinners的值都是false</p>
+<p>　　　　<img src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/854167-20151229204155042-228886545.png" alt=""></p>
+<p>　　CalendarView和Spinners的值都是true</p>
+<p>　　　　<img src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/854167-20151229204304464-1199761398.png" alt=""></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>对于TimePickerDialog而言，它的样式设置，只有构造函数一种方式，对应的theme参数和DatePickerDialog相同。它内部定义了一个TimePicker，但是没有提供获取的方式。</strong></p>
+<p>&nbsp;</p>
+<p><strong>在构造TimePickerDialog和DatePickerDialog的时候最好使用DialogFragment来进行构造。</strong></p>
+<p>帮助文档中例子：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">class</span> TimePickerFragment <span style="color: #0000ff;">extends</span><span style="color: #000000;"> DialogFragment
+                            </span><span style="color: #0000ff;">implements</span><span style="color: #000000;"> TimePickerDialog.OnTimeSetListener {
+
+    @Override
+    </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> Dialog onCreateDialog(Bundle savedInstanceState) {
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> Use the current time as the default values for the picker</span>
+        <span style="color: #0000ff;">final</span> Calendar c =<span style="color: #000000;"> Calendar.getInstance();
+        </span><span style="color: #0000ff;">int</span> hour =<span style="color: #000000;"> c.get(Calendar.HOUR_OF_DAY);
+        </span><span style="color: #0000ff;">int</span> minute =<span style="color: #000000;"> c.get(Calendar.MINUTE);
+
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> Create a new instance of TimePickerDialog and return it</span>
+        <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">new</span> TimePickerDialog(getActivity(), <span style="color: #0000ff;">this</span><span style="color: #000000;">, hour, minute,
+                DateFormat.is24HourFormat(getActivity()));
+    }
+
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> onTimeSet(TimePicker view, <span style="color: #0000ff;">int</span> hourOfDay, <span style="color: #0000ff;">int</span><span style="color: #000000;"> minute) {
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> Do something with the time chosen by the user</span>
+<span style="color: #000000;">    }
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> showTimePickerDialog(View v) {
+    DialogFragment newFragment </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> TimePickerFragment();
+    newFragment.show(getSupportFragmentManager(), </span>"timePicker"<span style="color: #000000;">);
+}</span></pre>
+</div>
+<p>&nbsp;</p>
+<p><strong>对于DialogFragment可以参考文档：&nbsp;<a href="http://blog.csdn.net/lmj623565791/article/details/37815413">Android 官方推荐 : DialogFragment 创建对话框</a></strong></p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/huanyou/category/791883.html" target="_blank">Android</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/huanyou/tag/Android/">Android</a>, <a href="http://www.cnblogs.com/huanyou/tag/DatePicker/">DatePicker</a>, <a href="http://www.cnblogs.com/huanyou/tag/TimePicker/">TimePicker</a>, <a href="http://www.cnblogs.com/huanyou/tag/%E6%98%BE%E7%A4%BA%E6%A0%B7%E5%BC%8F/">显示样式</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5087044,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;d90e2611-219e-e511-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/huanyou/" target="_blank"><img src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/20151209111646.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/huanyou/">环游世界</a><br>
+            <a href="http://home.cnblogs.com/u/huanyou/followees">关注 - 8</a><br>
+            <a href="http://home.cnblogs.com/u/huanyou/followers">粉丝 - 3</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;d90e2611-219e-e511-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5087044,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">1</span>
+    </div>
+    <div class="buryit" onclick="votePost(5087044,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/huanyou/p/5082846.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/huanyou/p/5082846.html" title="发布于2015-12-28 19:37">Android ListView</a><br><a href="http://www.cnblogs.com/huanyou/p/5088018.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/huanyou/p/5088018.html" title="发布于2015-12-30 10:38">转帖：Android 官方推荐 : DialogFragment 创建对话框</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2015-12-29 21:00</span> <a href="http://www.cnblogs.com/huanyou/">环游世界</a> 阅读(<span id="post_view_count">764</span>) 评论(<span id="post_comment_count">1</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5087044" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/huanyou/p/5087044.html#" onclick="AddToWz(5087044);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=257931,cb_entryId=5087044,cb_blogApp=currentBlogApp,cb_blogUserGuid='d90e2611-219e-e511-9fc1-ac853d9f53cc',cb_entryCreatedDate='2015/12/29 21:00:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/huanyou/p/5087044.html#3676430" class="layer">#1楼</a><a name="3676430" id="comment_anchor_3676430"></a><span id="comment-maxId" style="display:none;">3676430</span><span id="comment-maxDate" style="display:none;">2017/4/25 10:30:49</span>  <span class="comment_date">2017-04-25 10:30</span> <a id="a_comment_author_3676430" href="http://www.cnblogs.com/ybloging/" target="_blank">分享时刻到啦</a> <a href="http://msg.cnblogs.com/send/%E5%88%86%E4%BA%AB%E6%97%B6%E5%88%BB%E5%88%B0%E5%95%A6" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3676430" class="blog_comment_body">非常感谢，困扰我一天的问题解决了，百度搜了半天没有一条是我想要的，google第一条就是。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3676430,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3676430,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3676430_avatar" style="display:none;">http://pic.cnblogs.com/face/1041799/20170316214403.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/huanyou/p/5087044.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/huanyou/p/5087044.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://console.upyun.com/register/?invite=H124C2iMZ?utm_source=cnblogs&amp;utm_medium=referral" target="_blank">【推荐】现在注册又拍云，首月可享 200G CDN流量，还可免费申请 SSL 证书</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://cn.udacity.com/course/deep-learning-nanodegree-foundation--nd101/?utm_source=cnblog&amp;utm_medium=referral&amp;utm_campaign=DAND04" target="_blank"><img width="300" height="250" src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/24442-20170720103913224-1587456811.jpg" alt="AI工程师"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/574380/" target="_blank">马云公益基金会将出资1000万美元成立非洲青年创业基金</a><br> ·  <a href="http://news.cnblogs.com/n/574379/" target="_blank">腾讯研发总监王辉：十亿级视频播放技术优化揭秘</a><br> ·  <a href="http://news.cnblogs.com/n/574378/" target="_blank">华为将向非洲1亿多个用户推出国际转账服务</a><br> ·  <a href="http://news.cnblogs.com/n/574377/" target="_blank">只要1488！微软Surface秒变台式机：生产力暴增</a><br> ·  <a href="http://news.cnblogs.com/n/574376/" target="_blank">比之Windows 10，微软聊天机器人Zo更喜欢Linux</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice?source=bky&amp;hmsr=%E5%8D%9A%E5%AE%A2%E5%9B%AD&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank"><img width="468" height="60" src="./Android DatePickerDialog和TimePickerDialog显示样式 - 环游世界 - 博客园_files/24442-20170629165247758-2056260207.png" alt="极光推广_0701"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/570194/" target="_blank">小printf的故事：什么是真正的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/569992/" target="_blank">程序员的工作、学习与绩效</a><br> ·  <a href="http://kb.cnblogs.com/page/569056/" target="_blank">软件开发为什么很难</a><br> ·  <a href="http://kb.cnblogs.com/page/565901/" target="_blank">唱吧DevOps的落地，微服务CI/CD的范本技术解读</a><br> ·  <a href="http://kb.cnblogs.com/page/566523/" target="_blank">程序员，如何从平庸走向理想？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/huanyou/">环游世界</a><br>园龄：<a href="http://home.cnblogs.com/u/huanyou/" title="入园时间：2015-12-09">1年7个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/huanyou/followers/">3</a><br>关注：<a href="http://home.cnblogs.com/u/huanyou/followees/">8</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;d90e2611-219e-e511-9fc1-ac853d9f53cc&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="日历">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/06/01&#39;);return false;">&lt;</a></td><td align="center">2017年7月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/08/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalWeekendDay" align="center">1</td></tr><tr><td class="CalWeekendDay" align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td class="CalWeekendDay" align="center">8</td></tr><tr><td class="CalWeekendDay" align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td class="CalWeekendDay" align="center">15</td></tr><tr><td class="CalWeekendDay" align="center">16</td><td align="center">17</td><td align="center"><a href="http://www.cnblogs.com/huanyou/archive/2017/07/18.html"><u>18</u></a></td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td class="CalTodayDay" align="center">22</td></tr><tr><td class="CalWeekendDay" align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalWeekendDay" align="center">29</td></tr><tr><td class="CalWeekendDay" align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/huanyou/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/huanyou/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/huanyou/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/huanyou/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/huanyou/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/huanyou/tag/Android/">Android</a>(29)</li><li><a href="http://www.cnblogs.com/huanyou/tag/linux/">linux</a>(13)</li><li><a href="http://www.cnblogs.com/huanyou/tag/C%23/">C#</a>(2)</li><li><a href="http://www.cnblogs.com/huanyou/tag/Intent/">Intent</a>(2)</li><li><a href="http://www.cnblogs.com/huanyou/tag/Service/">Service</a>(2)</li><li><a href="http://www.cnblogs.com/huanyou/tag/%E5%B8%83%E5%B1%80/">布局</a>(2)</li><li><a href="http://www.cnblogs.com/huanyou/tag/%E6%93%8D%E4%BD%9CService%E9%A1%BA%E5%BA%8F/">操作Service顺序</a>(1)</li><li><a href="http://www.cnblogs.com/huanyou/tag/%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4/">查找命令</a>(1)</li><li><a href="http://www.cnblogs.com/huanyou/tag/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">常用命令</a>(1)</li><li><a href="http://www.cnblogs.com/huanyou/tag/%E4%BC%A0%E6%84%9F%E5%99%A8/">传感器</a>(1)</li><li><a href="http://www.cnblogs.com/huanyou/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/huanyou/category/791883.html">Android(53)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/huanyou/category/878787.html">Android Studio</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/huanyou/category/934949.html">BigData</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/huanyou/category/791882.html">C#(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/huanyou/category/793918.html">dotTrace(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/huanyou/category/975818.html">Dubbo</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/huanyou/category/791905.html">Eclipse(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/huanyou/category/944806.html">Hadoop</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/huanyou/category/842510.html">Java(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/huanyou/category/791884.html">linux(14)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/huanyou/category/1037932.html">maven</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/huanyou/category/1015218.html">mybatis(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/huanyou/category/1003635.html">mysql</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/huanyou/category/1015269.html">Redis</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/huanyou/category/982338.html">Spring(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/huanyou/category/793919.html">工具(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/huanyou/category/841237.html">面试(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/huanyou/category/1029161.html">前端(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/huanyou/category/892268.html">算法(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/huanyou/category/841066.html">网络(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/huanyou/category/1006448.html">微服务</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/huanyou/category/822258.html">问题解决(9)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/huanyou/archive/2017/07.html">2017年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/huanyou/archive/2017/05.html">2017年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/huanyou/archive/2017/04.html">2017年4月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/huanyou/archive/2017/03.html">2017年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/huanyou/archive/2017/02.html">2017年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/huanyou/archive/2017/01.html">2017年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/huanyou/archive/2016/12.html">2016年12月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/huanyou/archive/2016/11.html">2016年11月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/huanyou/archive/2016/10.html">2016年10月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/huanyou/archive/2016/09.html">2016年9月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/huanyou/archive/2016/08.html">2016年8月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/huanyou/archive/2016/07.html">2016年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/huanyou/archive/2016/06.html">2016年6月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/huanyou/archive/2016/05.html">2016年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/huanyou/archive/2016/04.html">2016年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/huanyou/archive/2016/03.html">2016年3月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/huanyou/archive/2016/02.html">2016年2月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/huanyou/archive/2016/01.html">2016年1月 (21)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/huanyou/archive/2015/12.html">2015年12月 (21)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_articlecategory" class="catListArticleCategory sidebar-block">
+<h3 class="catListTitle">文章分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/huanyou/category/878786.html">Android Studio</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	25481
+	</li>
+	<li class="liRank">
+		排名 -	12077
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/huanyou/p/5087044.html#3676430">1. Re:Android DatePickerDialog和TimePickerDialog显示样式</a></li>
+        <li class="recent_comment_body">非常感谢，困扰我一天的问题解决了，百度搜了半天没有一条是我想要的，google第一条就是。</li>
+        <li class="recent_comment_author">--分享时刻到啦</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/huanyou/p/5138934.html">1. linux 开机直接进入命令行(4704)</a></li><li><a href="http://www.cnblogs.com/huanyou/p/5443106.html">2. 解决“配置系统未能初始化”问题(2569)</a></li><li><a href="http://www.cnblogs.com/huanyou/p/5133737.html">3. ADB命令详解(1984)</a></li><li><a href="http://www.cnblogs.com/huanyou/p/5775965.html">4. 数据库死锁的检查和解决方法(1837)</a></li><li><a href="http://www.cnblogs.com/huanyou/p/5130791.html">5. Android Handler 异步调用修改界面与主线程(1639)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/huanyou/p/5087044.html">1. Android DatePickerDialog和TimePickerDialog显示样式(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/huanyou/p/5787939.html">1. Java和Android的Lru缓存，及其实现原理(3)</a></li><li><a href="http://www.cnblogs.com/huanyou/p/5087044.html">2. Android DatePickerDialog和TimePickerDialog显示样式(1)</a></li><li><a href="http://www.cnblogs.com/huanyou/p/5145037.html">3. Linux关机命令(1)</a></li><li><a href="http://www.cnblogs.com/huanyou/p/7201480.html">4. MyBatis是如何解决Sql注入的(1)</a></li><li><a href="http://www.cnblogs.com/huanyou/p/5811033.html">5. 属性动画总结（Property Animation）(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 环游世界
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

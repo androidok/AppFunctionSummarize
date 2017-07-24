@@ -1,0 +1,1121 @@
+/* Minification failed. Returning unminified contents.
+(1020,42): run-time error CSS1062: Expected semicolon or closing curly-brace, found ')'
+ */
+/**
+*   作者:sevennight
+*   邮箱:huc_sevennight@163.com
+*   博客地址：http://www.cnblogs.com/cnsevennight
+*/
+/**************************************************
+第一部分
+**************************************************/
+#EntryTag {
+    margin-top: 20px;
+    font-size: 9pt;
+    color: gray;
+}
+
+.topicListFooter {
+    text-align: right;
+    margin-right: 10px;
+    margin-top: 10px;
+    color: #000000;
+}
+
+    .topicListFooter a {
+        border: 0px;
+        padding: 5px 10px;
+        color: #999;
+        background: #ddd;
+    }
+
+        .topicListFooter a:hover {
+            background: #F60;
+            color: #fff;
+            text-decoration: none;
+        }
+
+#divRefreshComments {
+    text-align: right;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    font-size: 9pt;
+}
+/*****第一部分结束*******************************/
+
+/**************************************************
+第二部：公共样式（全局样式）
+**************************************************/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    color: #000;
+    background: #eee;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 9pt;
+    min-height: 101%;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+fieldset, img {
+    border: 0;
+}
+
+ul {
+    word-break: break-all;
+}
+
+li {
+    list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+a:link {
+    color: black;
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #F60;
+    text-decoration: underline;
+}
+
+a:active {
+    color: black;
+    text-decoration: none;
+}
+
+.clear {
+    clear: both;
+}
+/*****第二部分结束*******************************/
+
+/**************************************************
+第三部分：
+**************************************************/
+/*****home和头部开始**************************/
+#home {
+    margin: 0 auto;
+    width: 95%;
+    min-width: 930px;
+    background-attachment: scroll;
+    background: url(images/bg1.png) no-repeat;
+    background-position: 50% 0%;
+}
+
+#header {
+    padding-bottom: 5px;
+}
+
+    #header h1 {
+        font-weight: normal;
+        font-size: 30px;
+        line-height: 1;
+    }
+
+        #header h1 a {
+            font-family: "Comic Sans MS";
+        }
+
+            #header h1 a:hover {
+                color: #F60;
+                text-decoration: none;
+            }
+
+#blogTitle h2 {
+    font-weight: normal;
+    font-size: 13px;
+    color: #999;
+    line-height: 1.5em;
+    margin-top: 10px;
+    margin-left: 30px;
+    width: 50%;
+    margin-left: 10em;
+    float: left;
+}
+
+#blogTitle {
+    height: 60px;
+    clear: both;
+}
+
+    #blogTitle h1 {
+        font-size: 30px;
+        font-weight: bold;
+        line-height: 1.5em;
+        margin-left: 1em;
+        margin-top: 10px;
+        width: 50%;
+        float: left;
+    }
+
+#blogLogo {
+    float: right;
+}
+
+#navigator {
+    margin-top: 30px;
+    height: 30px;
+    clear: both;
+    position: relative;
+}
+
+#navList {
+    min-height: 30px;
+    float: right;
+}
+
+    #navList li {
+        float: left;
+    }
+
+    #navList a {
+        display: block;
+        width: 5em;
+        height: 22px;
+        float: left;
+        text-align: center;
+        padding-top: 8px;
+    }
+
+        #navList a:link, #navList a:visited, #navList a:active {
+            color: #540404;
+            font-weight: bold;
+        }
+
+        #navList a:hover {
+            text-decoration: underline;
+        }
+
+.blogStats {
+    float: right;
+    color: #999;
+    margin-top: 5px;
+    margin-right: 2px;
+    position: absolute;
+    right: 5px;
+    top: 35px;
+}
+/*****home和头部结束**************************/
+
+/*****主页文章列表开始**************************/
+#main {
+    width: 100%;
+    min-width: 950px;
+    margin-top: 40px;
+    text-align: left;
+}
+
+#mainContent .forFlow {
+    margin-left: 22em;
+    float: none;
+    width: auto;
+}
+
+#mainContent {
+    min-height: 200px;
+    padding: 0px 0px 10px 0;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-all;
+    float: left;
+    margin-left: -22em;
+    width: 100%;
+}
+
+.day {
+    background: url("images/tp.png");
+    min-height: 10px;
+    _height: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    -webkit-box-shadow: 1px 2px 3px #ddd;
+    box-shadow: 1px 2px 3px #ddd;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.dayTitle {
+    width: 100%;
+    color: #666;
+    height: 40px;
+    font-weight: bold;
+    line-height: 1.5em;
+    font-size: 115%;
+    margin-top: 10px;
+    clear: both;
+    text-align: center;
+}
+
+.postTitle {
+    font-size: 130%;
+    font-weight: bold;
+    margin-top: 10px;
+    float: right;
+    line-height: 1.5em;
+    width: 100%;
+    clear: both;
+}
+
+    .postTitle a {
+        background: url("images/titlebg.png") no-repeat;
+        padding-left: 50px;
+        padding-bottom: 10px;
+        padding-top: 2px;
+    }
+
+        .postTitle a:link, .postTitle a:visited, .postTitle a:active {
+            color: #444;
+        }
+
+        .postTitle a:hover {
+            color: #F60;
+            text-decoration: none;
+        }
+
+.postCon {
+    margin-left: 20px;
+    line-height: 1.5em;
+    color: #757575;
+    width: 96%;
+    clear: both;
+    padding: 10px 0;
+}
+
+.postDesc {
+    width: 96%;
+    clear: both;
+    text-align: right;
+    padding-right: 5px;
+    color: #666;
+    margin-top: 5px;
+    border-top: 1px solid #ddd;
+    padding-top: 1.6em;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+    .postDesc a:link, .postDesc a:visited, .postDesc a:active {
+        color: #666;
+    }
+
+    .postDesc a:hover {
+        color: #F60;
+        text-decoration: none;
+    }
+
+.postSeparator {
+    clear: both;
+    height: 1px;
+    width: 100%;
+    clear: both;
+    float: right;
+    margin: 0 auto 15px auto;
+}
+/*****主页文章列表开始**************************/
+
+/*****侧边栏开始********************************/
+#sideBar {
+    width: 230px;
+    min-height: 200px;
+    padding: 0px 0 0px 20px;
+    float: left;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-all;
+}
+
+.newsItem {
+    margin-bottom: 8px;
+}
+/*侧边栏标题*/
+.newsItem, .catListEssay, .catListLink, .catListNoteBook, .catListTag, .catListPostCategory, .catListPostArchive, .catListImageCategory, .catListArticleArchive, .catListView, .catListFeedback, .mySearch, .catListComment, .catListBlogRank, .catList, .catListArticleCategory {
+    background: #fff;
+    -webkit-box-shadow: 1px 2px 3px #ddd;
+    box-shadow: 1px 2px 3px #ddd;
+    margin-bottom: 30px;
+    word-wrap: break-word;
+}
+
+
+    #sideBarMain h3, .newsItem h3 {
+        padding: 15px 20px;
+        font-size: 9pt;
+        border-bottom: 1px solid #ddd;
+        font-weight: normal;
+    }
+
+    #sideBarMain ul, .newsItem #blog-news {
+        font-size: 9pt;
+        padding: 15px 20px;
+    }
+/**日历控件样式开始**/
+#calendar {
+    width: 229px;
+    background: white;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    *padding-right: 20px;
+}
+
+    #calendar td {
+        font-size: 12px;
+    }
+
+.CalDayHeader {
+    font-size: 12px;
+}
+
+#calendar .Cal {
+    width: 100%;
+    line-height: 1.5em;
+}
+
+.Cal { /**日历容器table**/
+    border: none;
+    color: #666;
+}
+
+#calendar table a:link, #calendar table a:visited, #calendar table a:active {
+    font-weight: bold;
+}
+
+#calendar table a:hover {
+    color: white;
+    text-decoration: none;
+    background-color: #F60;
+}
+
+.CalTodayDay { /**今天日期样式**/
+    color: #f60;
+}
+
+#calendar .CalNextPrev a:link, #calendar .CalNextPrev a:visited, #calendar .CalNextPrev a:active { /**上个月、下个月箭头样式**/
+    font-size: 12px;
+    font-weight: bold;
+    background-color: white;
+}
+
+#calendar .CalNextPrev {
+    padding: 10px;
+}
+
+.CalTitle { /**日历年月头部样式**/
+    width: 100%;
+    background: white;
+    color: black;
+    border-bottom: 1px solid #ddd;
+}
+/**日历控件样式结束**/
+
+/*********************************************************************
+*       博客园日历的id和下载下来的静态文件ID不一样（做另外处理）     *
+**********************************************************************/
+#blog-calendar {
+    width: 229px;
+    background: white;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    *padding-right: 20px;
+}
+
+    #blog-calendar td {
+        font-size: 12px; /*test*/
+    }
+
+.CalDayHeader {
+    font-size: 12px; /*test*/
+}
+
+#blog-calendar .Cal {
+    width: 100%;
+    line-height: 1.5em;
+}
+
+.Cal { /**日历容器table**/
+    border: none;
+    color: #666;
+}
+
+#blog-calendar table a:link, #blog-calendar table a:visited, #blog-calendar table a:active {
+    font-weight: bold;
+}
+
+#blog-calendar table a:hover {
+    color: white;
+    text-decoration: none;
+    background-color: #F60;
+}
+
+.CalTodayDay { /**今天日期样式**/
+    color: #f60;
+}
+
+#blog-calendar .CalNextPrev a:link, #blog-calendar .CalNextPrev a:visited, #blog-calendar .CalNextPrev a:active { /**上个月、下个月箭头样式**/
+    font-size: 12px;
+    font-weight: bold;
+    background-color: white;
+}
+
+#blog-calendar .CalNextPrev {
+    padding: 10px;
+}
+
+.CalTitle { /**日历年月头部样式**/
+    width: 100%;
+    background: white;
+    color: black;
+    border-bottom: 1px solid #ddd;
+}
+/******************************************************************
+*                      日历结束                                   *
+******************************************************************/
+.catListTitle {
+    font-weight: bold;
+    line-height: 1.5em;
+    font-size: 12px;
+    border-bottom: 1px solid black;
+}
+
+.catListComment {
+    line-height: 1.5em;
+}
+
+.divRecentComment {
+    text-indent: 2em;
+    color: #666;
+}
+
+#sideBarMain ul {
+    line-height: 1.5em;
+}
+/*****侧边栏结束********************************/
+
+
+/****查看文章页面开始*************************/
+#topics {
+    background: url("images/tp.png");
+    width: 100%;
+    min-height: 200px;
+    padding: 0px 0px 10px 0;
+    margin-bottom: 10px;
+    float: left;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-all;
+}
+
+    #topics .postTitle {
+        margin-top: 20px;
+        padding-bottom: 20px;
+        font-size: 130%;
+        font-weight: bold;
+        border-bottom: 1px solid #ddd;
+        float: left;
+        line-height: 1.5em;
+        width: 100%;
+        padding-left: 5px;
+    }
+
+.postBody {
+    padding: 10px 20px 20px 20px;
+    line-height: 1.5;
+    color: #000;
+}
+/*标签*/
+#EntryTag {
+    color: #000000;
+}
+
+    #EntryTag a {
+        background: #ddd;
+        padding: 3px 5px;
+        margin-left: 5px;
+        text-decoration: none;
+    }
+
+        #EntryTag a:link, #EntryTag a:visited, #EntryTag a:active {
+            color: #000000;
+        }
+
+        #EntryTag a:hover {
+            background: #F60;
+            color: #fff;
+            text-decoration: none;
+        }
+/*分类*/
+#BlogPostCategory {
+    color: #000000;
+}
+
+    #BlogPostCategory a {
+        background: #ddd;
+        padding: 3px 5px;
+        margin-left: 5px;
+        text-decoration: none;
+    }
+
+        #BlogPostCategory a:link, #BlogPostCategory a:visited, #BlogPostCategory a:active {
+            color: #000000;
+        }
+
+        #BlogPostCategory a:hover {
+            background: #F60;
+            color: #fff;
+            text-decoration: none;
+        }
+
+#topics .postDesc {
+    float: right;
+    width: 100%;
+    text-align: right;
+    padding-right: 5px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.feedback_area_title {
+    font-weight: bold;
+    border-top: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding-left: 8px;
+    font-size: 20px;
+}
+
+.louzhu {
+    background: transparent url('/images/icoLouZhu.gif') no-repeat scroll right top;
+    padding-right: 16px;
+}
+
+.feedbackListSubtitle {
+    color: #666;
+    padding: 10px;
+}
+
+    .feedbackListSubtitle a:link, .feedbackListSubtitle a:visited, .feedbackListSubtitle a:active {
+        color: #666;
+        font-weight: normal;
+    }
+
+    .feedbackListSubtitle a:hover {
+        color: #f60;
+        text-decoration: none;
+    }
+
+.feedbackManage {
+    width: 200px;
+    text-align: right;
+    float: right;
+}
+
+.feedbackCon {
+    border-bottom: 1px solid #ccc;
+    background: url('images/comment.gif') no-repeat 5px 0px;
+    padding: 15px 18px 10px 40px;
+    min-height: 35px;
+    _height: 35px;
+    margin-bottom: 1em;
+    line-height: 1.5em;
+    width: 100%;
+}
+
+    .feedbackCon div {
+        padding-right: 45px;
+    }
+
+#divRefreshComments {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.commenttb {
+    width: 320px;
+}
+/****查看文章页面开始*************************/
+
+/****列表页面开始******************************/
+.entrylistTitle, .PostListTitle, .thumbTitle { /**几个分类列表的标题样式**/
+    background: url("images/tp.png");
+    font-size: 15px;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.entrylistDescription {
+    background: url("images/tp.png");
+    color: #666;
+    text-align: right;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+
+.entrylistItem {
+    background: url("images/tp.png");
+    min-height: 20px;
+    _height: 20px;
+    margin-bottom: 30px;
+    padding-bottom: 5px;
+    width: 100%;
+}
+
+.entrylistPosttitle {
+    font-size: 130%;
+    font-weight: bold;
+    line-height: 1.5em;
+    width: 100%;
+    padding-left: 15px;
+    padding-top: 10px;
+}
+
+    .entrylistPosttitle a {
+        background: url("images/titlebg.png") no-repeat;
+        padding-left: 50px;
+        padding-bottom: 10px;
+        padding-top: 5px;
+    }
+
+        .entrylistPosttitle a:hover {
+            text-decoration: none;
+        }
+
+.entrylistPostSummary {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.entrylistItemPostDesc {
+    width: 96%;
+    clear: both;
+    text-align: right;
+    padding-right: 5px;
+    color: #666;
+    margin-top: 5px;
+    border-top: 1px solid #ddd;
+    padding-top: 1.6em;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+    .entrylistItemPostDesc a:link, .entrylistItemPostDesc a:visited, .entrylistItemPostDesc a:active {
+        color: #666;
+    }
+
+    .entrylistItemPostDesc a:hover {
+        color: #f60;
+    }
+
+.entrylist .postSeparator {
+    clear: both;
+    width: 100%;
+    font-size: 0;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+    height: 0;
+    border: none;
+}
+
+.pager {
+    text-align: right;
+    margin-right: 10px;
+}
+
+.PostList {
+    border-bottom: 1px solid #ddd;
+    clear: both;
+    min-height: 1.5em;
+    _height: 1.5em;
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+.postTitl2 {
+    float: left;
+    padding-bottom: 10px;
+}
+
+.postDesc2 {
+    color: #666;
+    float: right;
+}
+
+.postText2 {
+    clear: both;
+    color: #666;
+    padding-bottom: 10px;
+}
+
+#myposts {
+    background: url("images/tp.png");
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.mySearch {
+    padding-bottom: 20px;
+}
+
+    .mySearch #q {
+        width: 100px;
+        vertical-align: middle;
+        height: 20px;
+    }
+
+    .mySearch input {
+        vertical-align: middle;
+        height: 22px;
+        font-size: 12px;
+        padding-left: 5px;
+        padding-right: 5px;
+        border: 1px solid #ccc;
+        background: white;
+    }
+
+        .mySearch input:focus[type=text] {
+            outline: 0;
+            border: 1px solid #F60;
+        }
+
+    .mySearch > div {
+        padding-top: 5px;
+    }
+
+    .mySearch div {
+        padding-left: 15px;
+    }
+/****列表页面结束******************************/
+
+
+/*留言样式开始*/
+/*留言查看页面的个人信息*/
+.personInfo {
+    margin-bottom: 20px;
+}
+
+    .personInfo td {
+        padding-top: 15px;
+        padding-left: 15px;
+    }
+/*留言分页区域*/
+.pages {
+    text-align: right;
+    padding-right: 15px;
+}
+
+#profile {
+    background: url("images/tp.png");
+}
+
+.pfl_feedback_area_title {
+    text-align: right;
+    line-height: 1.5em;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+    .pfl_feedback_area_title a {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+.pfl_feedbackItem {
+    border-radius: 3px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 40px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 40px;
+    border: 1px dashed #ddd;
+    padding: 10px;
+}
+
+.feedbackItem {
+    background-color: white;
+}
+
+.pfl_feedbacksubtitle {
+    width: 100%;
+    height: 1.5em;
+}
+
+.pfl_feedbackname {
+    float: left;
+}
+
+.pfl_feedbackManage {
+    float: right;
+}
+
+.pfl_feedbackCon {
+    color: black;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.pfl_feedbackAnswer {
+    color: #F40;
+    text-indent: 2em;
+}
+
+.tdSentMessage {
+    text-align: right;
+}
+
+.errorMessage {
+    width: 300px;
+    float: left;
+}
+
+#Profile1_panelAdd td {
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#Profile1_panelAdd input {
+    border: 1px solid #ccc;
+    padding: 5px 5px;
+}
+
+    #Profile1_panelAdd input:focus[type=text] {
+        outline: 0;
+        border: 1px solid #F60;
+    }
+
+#Profile1_panelAdd textarea {
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+    #Profile1_panelAdd textarea:focus {
+        outline: 0;
+        border: 1px solid #F60;
+    }
+/*****留言页面结束*****************************/
+
+/****相册页面开始******************************/
+.divPhoto {
+    border: 1px solid #ccc;
+    padding: 2px;
+    margin-right: 10px;
+}
+
+.thumbDescription {
+    background: url("images/tp.png");
+    color: #666;
+    text-align: right;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+/****相册页面开始******************************/
+
+
+/*****留言页面开始*****************************/
+#footer {
+    color: #999;
+    text-align: center;
+    min-height: 15px;
+    _height: 15px;
+    margin-top: 10px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    height: 41px;
+    margin-top: 10px;
+    background: url('images/fo.png') no-repeat 220px 0;
+    padding-top: 40px;
+}
+
+/*****第三部分结束*******************************/
+
+/**************************************************
+第四部分：文章内容常用标签格式
+**************************************************/
+/*文章内部常用标签格式*/
+.postBody {
+    line-height: 1.5;
+}
+
+    .postBody p, .postCon p {
+        text-indent: 2em;
+        margin: 0 auto 1em auto;
+    }
+
+    .postBody h2 {
+        font-size: 150%;
+        margin: 15px auto 2px auto;
+        font-weight: bold;
+    }
+
+    .postBody h3 {
+        font-size: 120%;
+        margin: 15px auto 2px auto;
+        font-weight: bold;
+    }
+
+    .postBody h4 {
+        font-size: 110%;
+        margin: 15px auto 2px auto;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .postBody h5 {
+        font-size: 100%;
+        margin: 15px auto 2px auto;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .postBody a:link, .postBody a:visited, .postBody a:active {
+        text-decoration: underline;
+    }
+
+.postCon a:link, .postCon a:visited, .postCon a:active {
+    text-decoration: underline;
+}
+
+.postBody ul, .postCon ul {
+    margin-left: 2em;
+}
+
+.postBody li, .postCon li {
+    list-style-type: disc;
+    margin-bottom: 1em;
+}
+
+.postBody blockquote {
+    background: url('images/comment.gif')) no-repeat 25px 0px;
+    min-height: 35px;
+    _height: 35px;
+    line-height: 1.6em;
+    color: #333;
+}
+/*****第四部分结束*******************************/
+
+/*评论*/
+#comment_form_container {
+    background: white;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+    #comment_form_container input {
+        background-color: white;
+        outline: 0;
+    }
+
+        #comment_form_container input[type=button] {
+            color: #000;
+            background: #ddd;
+            border: 0;
+        }
+
+        #comment_form_container input:hover[type=button] {
+            cursor: pointer;
+            background: #F60;
+            color: #fff;
+            text-decoration: none;
+        }
+
+    #comment_form_container p {
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    #comment_form_container textarea:focus {
+        outline: 0;
+        border: 1px solid #F60;
+    }
+
+/*静态页面调试的那一个评论框*/
+#AjaxHolder_PostComment_divCommnentArea {
+    background: white;
+    padding: 15px;
+}
+
+    #AjaxHolder_PostComment_divCommnentArea td {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    #AjaxHolder_PostComment_divCommnentArea input[type=text] {
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+    }
+
+    #AjaxHolder_PostComment_divCommnentArea input:focus {
+        outline: 0;
+        border: 1px solid #F60;
+        text-decoration: none;
+    }
+
+    #AjaxHolder_PostComment_divCommnentArea textarea:focus {
+        outline: 0;
+        border: 1px solid #F60;
+    }
+
+    #AjaxHolder_PostComment_divCommnentArea input[type=submit] {
+        cursor: pointer;
+        border: 0;
+        padding: 5px 10px;
+    }
+
+    #AjaxHolder_PostComment_divCommnentArea input:hover[type=submit] {
+        border: 0;
+        outline: 0;
+        background: #F60;
+        color: white;
+    }
+
+#myposts .myposts_title {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.blog_comment_body a{ text-decoration:underline; }
+
+#cnblogs_post_body { font-size: 14px;}
+
+@media only screen and (max-width: 767px) {
+    .postCon{width: auto;}
+    .postDesc{width: auto;}
+    #topics .postDesc{width: auto;}
+    pre>code{white-space: pre-wrap!important;}
+}

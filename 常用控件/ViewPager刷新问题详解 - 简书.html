@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.jianshu.com/p/266861496508 -->
+<html><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+
+  <!-- Start of Baidu Transcode -->
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="MobileOptimized" content="width">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="mobile-agent" content="format=html5;url=http://www.jianshu.com/p/266861496508">
+  <!-- End of Baidu Transcode -->
+
+    <meta name="description" content="ViewPager刷新问题详解作者：李旺成时间：2016年5月3日一、PagerAdapter介绍先看效果图PageAdapter使用示例PagerAdapter简介ListView大家应该都很熟悉吧！ListView一般都需要一个Adapter来填充数据，如ArrayAdapter、SimpleAdapter。PagerAdapter就是ViewPager的Adapter，与ListVie...">
+
+  <meta name="360-site-verification" content="604a14b53c6b871206001285921e81d8">
+  <meta property="wb:webmaster" content="294ec9de89e7fadb">
+  <meta property="qc:admins" content="104102651453316562112116375">
+  <meta property="qc:admins" content="11635613706305617">
+  <meta property="qc:admins" content="1163561616621163056375">
+  <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4">
+  <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI">
+  <meta http-equiv="mobile-agent" content="format=html5; url=http://www.jianshu.com/p/266861496508">
+
+  <!-- Apple -->
+  <meta name="apple-mobile-web-app-title" content="简书">
+
+    <!--  Meta for Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=888237539, app-argument=jianshu://notes/3797536">
+  <!-- End -->
+
+  <!--  Meta for Twitter Card -->
+  <meta content="summary" property="twitter:card">
+  <meta content="@jianshucom" property="twitter:site">
+  <meta content="ViewPager刷新问题详解" property="twitter:title">
+  <meta content="ViewPager刷新问题详解作者：李旺成时间：2016年5月3日一、PagerAdapter介绍先看效果图PageAdapter使用示例PagerAdapter简介ListView大家应该都很熟悉吧！ListView一般都需要一个Adapter来填充数据，如ArrayAdapter、SimpleAdapter。PagerAdapter就是ViewPager的Adapter，与ListView的Adapter作用一样。ViewPager-&amp;gt;PageAdapter==ListV..." property="twitter:description">
+  <meta content="http://www.jianshu.com/p/266861496508" property="twitter:url">
+  <!-- End -->
+
+  <!--  Meta for OpenGraph -->
+  <meta property="fb:app_id" content="865829053512461">
+  <meta property="og:site_name" content="简书">
+  <meta property="og:title" content="ViewPager刷新问题详解">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://www.jianshu.com/p/266861496508">
+  <meta property="og:description" content="ViewPager刷新问题详解作者：李旺成时间：2016年5月3日一、PagerAdapter介绍先看效果图PageAdapter使用示例PagerAdapter简介ListView大家应该都很...">
+  <!-- End -->
+
+  <!--  Meta for Facebook Applinks -->
+  <meta property="al:ios:url" content="jianshu://notes/3797536">
+  <meta property="al:ios:app_store_id" content="888237539">
+  <meta property="al:ios:app_name" content="简书">
+
+  <meta property="al:android:url" content="jianshu://notes/3797536">
+  <meta property="al:android:package" content="com.jianshu.haruki">
+  <meta property="al:android:app_name" content="简书">
+  <!-- End -->
+
+
+    <title>ViewPager刷新问题详解 - 简书</title>
+
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="3/g5vdQy06/Sb1ZKf0jTvKi8yuiEPGxfh6Y4QaR5tj/TVQHoXGHnYlQe+IZ1WTNr555BeGwTVCL/o+IMNNcLyg==">
+
+  <link rel="stylesheet" media="all" href="./ViewPager刷新问题详解 - 简书_files/web-1e5054a5d8733cfec67f.css">
+  
+  <link rel="stylesheet" media="all" href="./ViewPager刷新问题详解 - 简书_files/entry-1e5054a5d8733cfec67f.css">
+
+  <link href="http://cdn2.jianshu.io/assets/favicons/favicon-783beb88ed621ceab614de960376ac0c.ico" rel="icon">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/57-47624b2e2161e8eb144462c85db0a5ff.png" sizes="57x57">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/72-c00cde7cf98fc49e50cbb3ee1dcd5804.png" sizes="72x72">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/76-e8af0bdeaf1ba31e303b1fde8b5e66c4.png" sizes="76x76">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/114-f4c78569bbf1977e8382a5fd90c9237a.png" sizes="114x114">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/120-cf10c3711dba269522743729efe66bbc.png" sizes="120x120">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/152-7bd60457b5f3ecbf1343f0e6241be4f8.png" sizes="152x152">
+<link rel="stylesheet" href="blob:http://www.jianshu.com/3e3170f4-9c62-4ebc-baa9-4e2b98588164"><link rel="stylesheet" href="blob:http://www.jianshu.com/4d75e17f-04ef-4226-a9f0-2b7d5488b96d"></head>
+
+  <body lang="zh-CN" class="reader-black-font">
+    <!-- 全局顶部导航栏 -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="width-limit">
+    <!-- 左上方 Logo -->
+    <a class="logo" href="http://www.jianshu.com/"><img src="./ViewPager刷新问题详解 - 简书_files/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo"></a>
+
+    <!-- 右上角 -->
+      <!-- 未登录显示登录/注册/写文章 -->
+      <a class="btn write-btn" target="_blank" href="http://www.jianshu.com/writer#/">
+        <i class="iconfont ic-write"></i>写文章
+</a>      <a class="btn sign-up" href="http://www.jianshu.com/sign_up">注册</a>
+      <a class="btn log-in" href="http://www.jianshu.com/sign_in">登录</a>
+
+    <!-- 如果用户登录，显示下拉菜单 -->
+
+    <div class="style-mode"><a class="style-mode-btn"><i class="iconfont ic-navigation-mode"></i></a> <div class="popover-modal" style="left: 0px; display: none;"><div class="meta"><i class="iconfont ic-navigation-night"></i><span>夜间模式</span></div> <div class="switch day-night-group"><a class="switch-btn">开</a> <a class="switch-btn active">关</a></div> <hr> <div class="switch font-family-group"><a class="switch-btn font-song">宋体</a> <a class="switch-btn font-hei active">黑体</a></div> <div class="switch"><a class="switch-btn active">简</a> <a class="switch-btn">繁</a></div></div></div>
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="nav navbar-nav">
+            <li class="">
+              <a href="http://www.jianshu.com/">
+                <span class="menu-text">首页</span><i class="iconfont ic-navigation-discover menu-icon"></i>
+</a>            </li>
+            <li class="">
+              <a class="app-download-btn" href="http://www.jianshu.com/apps"><span class="menu-text">下载App</span><i class="iconfont ic-navigation-download menu-icon"></i></a>
+            </li>
+          <li class="search">
+            <form target="_blank" action="http://www.jianshu.com/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+              <input type="text" name="q" id="q" value="" placeholder="搜索" class="search-input">
+              <a class="search-btn" href="javascript:void(null)"><i class="iconfont ic-search"></i></a>
+              <!-- <div id="navbar-trending-search"></div> -->
+</form>          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+    
+<div class="note">
+  <div class="post">
+    <div class="article">
+        <h1 class="title">ViewPager刷新问题详解</h1>
+
+        <!-- 作者区域 -->
+        <div class="author">
+          <a class="avatar" href="http://www.jianshu.com/u/0ad0a0afc409">
+            <img src="./ViewPager刷新问题详解 - 简书_files/175b7d6fe557.jpg" alt="144">
+</a>          <div class="info">
+            <span class="tag">作者</span>
+            <span class="name"><a href="http://www.jianshu.com/u/0ad0a0afc409">diygreen</a></span>
+            <!-- 关注用户按钮 -->
+            <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+            <!-- 文章数据信息 -->
+            <div class="meta">
+              <!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
+                <span class="publish-time">2016.05.05 19:02</span>
+              <span class="wordage">字数 5639</span>
+            <span class="views-count">阅读 14085</span><span class="comments-count">评论 31</span><span class="likes-count">喜欢 173</span><span class="rewards-count ">赞赏 4</span></div>
+          </div>
+          <!-- 如果是当前作者，加入编辑按钮 -->
+        </div>
+        <!-- -->
+
+        <!-- 文章内容 -->
+        <div data-note-content="" class="show-content">
+          <div class="image-package">
+<img src="./ViewPager刷新问题详解 - 简书_files/1233754-35d5a3a03915128a.png" alt="ViewPager%u5237%u65B0%u95EE%u9898%u8BE6%u89E3" data-original-src="http://upload-images.jianshu.io/upload_images/1233754-35d5a3a03915128a.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">ViewPager刷新问题详解</div>
+</div>
+<h3>作者：<a href="https://github.com/DIY-green/" target="_blank">李旺成</a>
+</h3>
+<h3>时间：2016年5月3日</h3>
+<hr>
+<h1>一、PagerAdapter介绍</h1>
+<p>先看效果图</p>
+<div class="image-package">
+<img src="./ViewPager刷新问题详解 - 简书_files/1233754-1948d0b3d08847a6.png" alt="PageAdapter%20%u4F7F%u7528%u793A%u4F8B" data-original-src="http://upload-images.jianshu.io/upload_images/1233754-1948d0b3d08847a6.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">PageAdapter 使用示例</div>
+</div>
+<h2>PagerAdapter简介</h2>
+<p>ListView 大家应该都很熟悉吧！ListView 一般都需要一个 Adapter 来填充数据，如 ArrayAdapter、SimpleAdapter。PagerAdapter 就是 ViewPager 的 Adapter，与 ListView 的 Adapter 作用一样。</p>
+<p><strong>ViewPager-&gt;PageAdapter == ListView-&gt;BaseAdapter</strong></p>
+<p>先看下<strong>官方介绍</strong></p>
+<h3>官方介绍</h3>
+<div class="image-package">
+<img src="./ViewPager刷新问题详解 - 简书_files/1233754-0612d6428ca2b6f3.png" alt="PageAdapter%20%u7C7B" data-original-src="http://upload-images.jianshu.io/upload_images/1233754-0612d6428ca2b6f3.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">PageAdapter 类</div>
+</div>
+<p>PageAdapter 继承自 Object，继承结构参考意义不大，那老实看文档。文档上没有提供示例代码，只是说了下要自定义 PageAdapter 需要实现下面四个方法：</p>
+<ul>
+<li>
+<strong>instantiateItem(ViewGroup container, int position)：</strong>该方法的功能是创建指定位置的页面视图。适配器有责任增加即将创建的 View 视图到这里给定的 container 中，这是为了确保在 finishUpdate(viewGroup) 返回时 this is be done!<br>返回值：返回一个代表新增视图页面的 Object（Key），这里没必要非要返回视图本身，也可以这个页面的其它容器。其实我的理解是可以代表当前页面的任意值，只要你可以与你增加的 View 一一对应即可，比如 position 变量也可以做为 Key</li>
+<li>
+<strong>destroyItem(ViewGroup container, int position, Object object)：</strong>该方法的功能是移除一个给定位置的页面。适配器有责任从容器中删除这个视图，这是为了确保在 finishUpdate(viewGroup) 返回时视图能够被移除</li>
+<li>
+<strong>getCount()：</strong>返回当前有效视图的数量</li>
+<li>
+<strong>isViewFromObject(View view, Object object)：</strong>该函数用来判断 instantiateItem() 函数所返回来的 Key 与一个页面视图是否是代表的同一个视图(即它俩是否是对应的，对应的表示同一个 View)<br>返回值：如果对应的是同一个View，返回 true，否则返回 false</li>
+</ul>
+<p>上面对 PageAdapter 的四个抽象方法做了简要说明，下面看看如何使用</p>
+<h3>简单使用</h3>
+<pre class="hljs java"><code class="java">mContentVP.setAdapter(<span class="hljs-keyword">new</span> PagerAdapter() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getCount</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> dataList.size();
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isViewFromObject</span><span class="hljs-params">(View view, Object object)</span> </span>{
+        <span class="hljs-keyword">return</span> view == object;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">instantiateItem</span><span class="hljs-params">(ViewGroup container, <span class="hljs-keyword">int</span> position)</span> </span>{
+        View view = View.inflate(SimpleDemoActivity.<span class="hljs-keyword">this</span>, R.layout.item_vp_demopageradapter, <span class="hljs-keyword">null</span>);
+        TextView pageNumTV = (TextView) view.findViewById(R.id.tv_pagenum);
+        pageNumTV.setText(<span class="hljs-string">"DIY-PageNum-"</span> + dataList.get(position));
+        container.addView(view);
+        <span class="hljs-keyword">return</span> view;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">destroyItem</span><span class="hljs-params">(ViewGroup container, <span class="hljs-keyword">int</span> position, Object object)</span> </span>{
+        container.removeView((View) object);
+    }
+
+});</code></pre>
+<p>可以看到实现 PagerAdapter 与 BaseAdapter 很类似，只是 PagerAdapter 的 isViewFromObject() 与 instantiateItem() 方法需要好好理解下。这里为了简化 PagerAdapter 的使用，我做了个简单的封装：</p>
+<pre class="hljs java"><code class="java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">APagerAdapter</span>&lt;<span class="hljs-title">T</span>&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title">PagerAdapter</span> </span>{
+
+    <span class="hljs-keyword">protected</span> LayoutInflater mInflater;
+    <span class="hljs-keyword">protected</span> List&lt;T&gt; mDataList;
+    <span class="hljs-keyword">private</span> SparseArray&lt;View&gt; mViewSparseArray;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">APagerAdapter</span><span class="hljs-params">(Context context, List&lt;T&gt; dataList)</span> </span>{
+        mInflater = LayoutInflater.from(context);
+        mDataList = dataList;
+        mViewSparseArray = <span class="hljs-keyword">new</span> SparseArray&lt;View&gt;(dataList.size());
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getCount</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">if</span> (mDataList == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">return</span> mDataList.size();
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isViewFromObject</span><span class="hljs-params">(View view, Object object)</span> </span>{
+        <span class="hljs-keyword">return</span> view == object;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">instantiateItem</span><span class="hljs-params">(ViewGroup container, <span class="hljs-keyword">int</span> position)</span> </span>{
+        View view = mViewSparseArray.get(position);
+        <span class="hljs-keyword">if</span> (view == <span class="hljs-keyword">null</span>) {
+            view = getView(position);
+            mViewSparseArray.put(position, view);
+        }
+        container.addView(view);
+        <span class="hljs-keyword">return</span> view;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">destroyItem</span><span class="hljs-params">(ViewGroup container, <span class="hljs-keyword">int</span> position, Object object)</span> </span>{
+        container.removeView(mViewSparseArray.get(position));
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> View <span class="hljs-title">getView</span><span class="hljs-params">(<span class="hljs-keyword">int</span> position)</span></span>;
+
+}</code></pre>
+<p>APagerAdapter 类模仿 ListView 的 BaseAdapter，抽象出一个 getView() 方法，在内部使用 SparesArray 缓存所有显示过的 View。这样使用就很简单了，继承 APagerAdapter，实现 getView() 方法即可（可以参考：DemoPagerAdapter.java）。</p>
+<h2>PagerAdapter 刷新的问题</h2>
+<h3>提出问题</h3>
+<p>在使用 ListView 的时候，我们往往习惯了更新 Adapter 的数据源，然后调用 Adapter 的 notifyDataSetChanged() 方法来刷新列表（有没有点 MVC 的感觉）。</p>
+<p>PagerAdapter 也有 notifyDataSetChanged() 方法，那我们按照这个流程来试试，看有没有什么问题。（ListView 的示例就不在这里演示了，感兴趣的可以自己去试试，非常简单）</p>
+<p>那么我的问题是：“<strong>ViewPager 的 PagerAdapter 在数据源更新后，能否自动刷新视图？</strong>”</p>
+<p>带着问题，我们做一些实验，下面实验的思路是：修改数据源，然后通知 PagerAdapter 更新，查看视图的变化。</p>
+<h3>实验环境准备</h3>
+<p>看看实验环境，上代码：</p>
+<pre class="hljs java"><code class="java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initData</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// 数据源</span>
+    mDataList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;(<span class="hljs-number">5</span>);
+    mDataList.add(<span class="hljs-string">"Java"</span>);
+    mDataList.add(<span class="hljs-string">"Android"</span>);
+    mDataList.add(<span class="hljs-string">"C&amp;C++"</span>);
+    mDataList.add(<span class="hljs-string">"OC"</span>);
+    mDataList.add(<span class="hljs-string">"Swift"</span>);
+
+    <span class="hljs-comment">// 很简单的一个 PagerAdapter</span>
+    <span class="hljs-keyword">this</span>.mContentVP.setAdapter(mPagerAdapter = <span class="hljs-keyword">new</span> PagerAdapter() {
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getCount</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> mDataList.size();
+        }
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isViewFromObject</span><span class="hljs-params">(View view, Object object)</span> </span>{
+            <span class="hljs-keyword">return</span> view == object;
+        }
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">instantiateItem</span><span class="hljs-params">(ViewGroup container, <span class="hljs-keyword">int</span> position)</span> </span>{
+            View view = View.inflate(SimpleDemoActivity.<span class="hljs-keyword">this</span>, R.layout.item_vp_demopageradapter, <span class="hljs-keyword">null</span>);
+            TextView pageNumTV = (TextView) view.findViewById(R.id.tv_pagenum);
+            pageNumTV.setText(<span class="hljs-string">"DIY-PageNum-"</span> + mDataList.get(position));
+            container.addView(view);
+            <span class="hljs-keyword">return</span> view;
+        }
+
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">destroyItem</span><span class="hljs-params">(ViewGroup container, <span class="hljs-keyword">int</span> position, Object object)</span> </span>{
+            container.removeView((View) object);
+        }
+
+    });
+}</code></pre>
+<p>ViewPager 的 Item：item_vp_demopageradapter.xml</p>
+<pre class="hljs java"><code class="java">&lt;?xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"utf-8"</span>?&gt;
+&lt;LinearLayout xmlns:android=<span class="hljs-string">"http://schemas.android.com/apk/res/android"</span>
+    android:layout_width=<span class="hljs-string">"match_parent"</span>
+    android:layout_height=<span class="hljs-string">"match_parent"</span>
+    android:orientation=<span class="hljs-string">"vertical"</span>
+    android:gravity=<span class="hljs-string">"center"</span>&gt;
+    &lt;ImageView
+        android:id=<span class="hljs-string">"@+id/iv_img"</span>
+        android:layout_width=<span class="hljs-string">"wrap_content"</span>
+        android:layout_height=<span class="hljs-string">"wrap_content"</span>
+        android:layout_margin=<span class="hljs-string">"@dimen/activity_horizontal_margin"</span>
+        android:src=<span class="hljs-string">"@mipmap/ic_launcher"</span> /&gt;
+    &lt;!-- 用于显示文本，数据更新体现在这里 --&gt;
+    &lt;TextView
+        android:id=<span class="hljs-string">"@+id/tv_pagenum"</span>
+        android:layout_width=<span class="hljs-string">"wrap_content"</span>
+        android:layout_height=<span class="hljs-string">"wrap_content"</span>
+        android:layout_margin=<span class="hljs-string">"@dimen/activity_horizontal_margin"</span>
+        android:textAppearance=<span class="hljs-string">"?android:attr/textAppearanceLarge"</span>
+        android:text=<span class="hljs-string">"DIY-Page-"</span> /&gt;
+&lt;/LinearLayout&gt;</code></pre>
+<p>很简单的代码，并且加了注释，直接往下看实验。</p>
+<h3>PagerAdapter 刷新实验</h3>
+<p><strong>1、更新数据源中的某项</strong></p>
+<div class="image-package">
+<img src="./ViewPager刷新问题详解 - 简书_files/1233754-c0f4aa6f56a04621.gif" alt="%u66F4%u65B0%u6570%u636E%u6D4B%u8BD5" data-original-src="http://upload-images.jianshu.io/upload_images/1233754-c0f4aa6f56a04621.gif?imageMogr2/auto-orient/strip" style="cursor: zoom-in;"><br><div class="image-caption">更新数据测试</div>
+</div>
+<p>对应代码：</p>
+<pre class="hljs java"><code class="java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">refresh</span><span class="hljs-params">()</span> </span>{
+    mDataList.set(<span class="hljs-number">0</span>, <span class="hljs-string">"更新数据源测试"</span>);
+    mPagerAdapter.notifyDataSetChanged();
+}</code></pre>
+<p><strong>问题描述：</strong>在演示动画中可以看到，更新数据源之后视图并没有立即刷新，多滑动几次再次回到更新的 Item 时才更新（这里先看问题，下面会细说）。</p>
+<p><strong>2、往数据源中添加数据</strong></p>
+<div class="image-package">
+<img src="./ViewPager刷新问题详解 - 简书_files/1233754-b0077d673b581238.gif" alt="%u6DFB%u52A0%u6570%u636E%u6D4B%u8BD5" data-original-src="http://upload-images.jianshu.io/upload_images/1233754-b0077d673b581238.gif?imageMogr2/auto-orient/strip" style="cursor: zoom-in;"><br><div class="image-caption">添加数据测试</div>
+</div>
+<p>对应代码：</p>
+<pre class="hljs java"><code class="java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">()</span> </span>{
+    mDataList.add(<span class="hljs-string">"这是新添加的Item"</span>);
+    mPagerAdapter.notifyDataSetChanged();
+}</code></pre>
+<p><strong>问题描述：</strong>没什么问题，数据源添加数据后通知 PagerAdapter 刷新，ViewPager 中就多了一个 Item。</p>
+<p><strong>3、从数据源中删除数据</strong></p>
+<div class="image-package">
+<img src="./ViewPager刷新问题详解 - 简书_files/1233754-7221be0e86e9ea8d.gif" alt="%u5220%u9664%u6570%u636E%u6D4B%u8BD5" data-original-src="http://upload-images.jianshu.io/upload_images/1233754-7221be0e86e9ea8d.gif?imageMogr2/auto-orient/strip" style="cursor: zoom-in;"><br><div class="image-caption">删除数据测试</div>
+</div>
+<pre class="hljs java"><code class="java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">()</span> </span>{
+    mDataList.remove(<span class="hljs-number">0</span>);
+    mPagerAdapter.notifyDataSetChanged();
+}</code></pre>
+<p><strong>问题描述：</strong>这个问题就较多了，<strong>首先，</strong>如果是删除当前 Item，那么会看到没有任何反应；<strong>其次，</strong>如果删除的不是当前 Item，会发现出现了数据错乱，并且后面有 Item 滑不过去，但是按住往后滑的时候可以看到后面的 Item。</p>
+<p><strong>4、将数据源清空</strong></p>
+<div class="image-package">
+<img src="./ViewPager刷新问题详解 - 简书_files/1233754-45de0d5ed5af8dba.gif" alt="%u6E05%u7A7A%u6570%u636E" data-original-src="http://upload-images.jianshu.io/upload_images/1233754-45de0d5ed5af8dba.gif?imageMogr2/auto-orient/strip" style="cursor: zoom-in;"><br><div class="image-caption">清空数据</div>
+</div>
+<pre class="hljs java"><code class="java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">clean</span><span class="hljs-params">()</span> </span>{
+    mDataList.clear();
+    mPagerAdapter.notifyDataSetChanged();
+}</code></pre>
+<p><strong>问题描述：</strong>从上面的动图可以看到，清空数据源之后，会残留一个 Item。</p>
+<p><strong>说明：</strong>先不要计较上面所写的 PagerAdapter 是否有问题，这里只是想引出问题来，下面会针对 PagerAdapter、FragmentPagerAdapter 以及 FragmentStatePagerAdapter 来分析问题原因和给出解决方案。</p>
+<h1>二、PagerAdapter</h1>
+<p>从上面的实验可以看出 ViewPager 不同于 ListView，如果单纯的调用 ViewPager.getAdapter().notifyDataSetChanged() 方法（即 PagerAdapter 的 notifyDataSetChanged()方法）页面并没有刷新。</p>
+<p>PagerAdapter 用于 ViewPager 的 Item 为普通 View的情况，这个相对简单，所以最先介绍。 </p>
+<p>相信很多同学都搜过类似的问题 —— “PagerAdapter 的 notifyDataSetChanged() 不刷新？”。有的说这是 bug，有的则认为 Google 是特意这样设计的，个人倾向后一种观点（我觉得这是 Google 为了 ViewPager 性能考虑而设计的，毕竟 ViewPager 需要显示“很多<strong>大</strong>的”视图，而且要防止用户滑动时觉得卡顿）。</p>
+<h2>ViewPager 刷新分析</h2>
+<p>先来了解下 ViewPager 的刷新过程：<br><strong>1、刷新的起始</strong><br>ViewPager 的刷新是从调用其 PagerAdapter 的 notifyDataSetChanged() 方法开始的，那先看看该方法的源码（在源码面前一切无所遁形...）：</p>
+<pre class="hljs java"><code class="java"><span class="hljs-comment">/**
+ * This method should be called by the application if the data backing this adapter has changed
+ * and associated views should update.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">notifyDataSetChanged</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">synchronized</span> (<span class="hljs-keyword">this</span>) {
+        <span class="hljs-keyword">if</span> (mViewPagerObserver != <span class="hljs-keyword">null</span>) {
+            mViewPagerObserver.onChanged();
+        }
+    }
+    mObservable.notifyChanged();
+}</code></pre>
+<p><strong>2、DataSetObservable 的 notifyChanged()</strong><br>上面的方法中出现了两个关键的成员变量：</p>
+<pre class="hljs java"><code class="java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> DataSetObservable mObservable = <span class="hljs-keyword">new</span> DataSetObservable();
+<span class="hljs-keyword">private</span> DataSetObserver mViewPagerObserver;</code></pre>
+<p>观察者模式，有没有？先不着急分析这个是不是观察者模式，来看看 mObservable.notifyChanged() 做了些什么工作：</p>
+<pre class="hljs java"><code class="java"><span class="hljs-comment">/**
+ * Invokes {<span class="hljs-doctag">@link</span> DataSetObserver#onChanged} on each observer.
+ * Called when the contents of the data set have changed.  The recipient
+ * will obtain the new contents the next time it queries the data set.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">notifyChanged</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">synchronized</span>(mObservers) {
+        <span class="hljs-comment">// since onChanged() is implemented by the app, it could do anything, including</span>
+        <span class="hljs-comment">// removing itself from {@link mObservers} - and that could cause problems if</span>
+        <span class="hljs-comment">// an iterator is used on the ArrayList {@link mObservers}.</span>
+        <span class="hljs-comment">// to avoid such problems, just march thru the list in the reverse order.</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = mObservers.size() - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+            mObservers.get(i).onChanged(); 
+        }
+    }
+}</code></pre>
+<p>notifyChanged() 方法中是很典型的观察者模式中遍历所有的 Observer，通知 变化发生了的代码。代码很简单，那关键是这个 mObservers 包含哪些 Observer 呢？</p>
+<p><strong>3、DataSetObserver</strong><br>直接从 mObservers 点进去你会发现这个：</p>
+<pre class="hljs java"><code class="java"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">final</span> ArrayList&lt;T&gt; mObservers = <span class="hljs-keyword">new</span> ArrayList&lt;T&gt;();</code></pre>
+<p>-_-'，这是个泛型，坑了！还好 DataSetObservable 的 notifyChanged() 的注释中写了这些 Observer 是 DataSetObserver。那去看看 DataSetObserver：</p>
+<pre class="hljs java"><code class="java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DataSetObserver</span> </span>{
+    <span class="hljs-comment">/**
+     * This method is called when the entire data set has changed,
+     * most likely through a call to {<span class="hljs-doctag">@link</span> Cursor#requery()} on a {<span class="hljs-doctag">@link</span> Cursor}.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onChanged</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">// Do nothing</span>
+    }
+
+    <span class="hljs-comment">/**
+     * This method is called when the entire data becomes invalid,
+     * most likely through a call to {<span class="hljs-doctag">@link</span> Cursor#deactivate()} or {<span class="hljs-doctag">@link</span> Cursor#close()} on a
+     * {<span class="hljs-doctag">@link</span> Cursor}.
+     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onInvalidated</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">// Do nothing</span>
+    }
+}</code></pre>
+<p>一个抽象类，里面两个空方法，这个好办，找他的子类（AndroidStudio 中 将光标放到类名上，按 F4）：</p>
+<div class="image-package">
+<img src="./ViewPager刷新问题详解 - 简书_files/1233754-7bf9fb60c74364d7.png" alt="DataSetObserver%u7EE7%u627F%u7ED3%u6784" data-original-src="http://upload-images.jianshu.io/upload_images/1233754-7bf9fb60c74364d7.png?imageMogr2/auto-orient/strip%7CimageView2/2" style="cursor: zoom-in;"><br><div class="image-caption">DataSetObserver继承结构</div>
+</div>
+<p>总算找到你了，就是用红线框出来的那条，双击，定位过去。</p>
+<p><strong>4、PagerObserver 内部类</strong><br>PagerObserver 是 ViewPager 中的一个内部类，实现也很简单，就是调用了 ViewPager 中的 dataSetChanged() 方法，真正的关键来了。</p>
+<pre class="hljs java"><code class="java"><span class="hljs-keyword">private</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PagerObserver</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">DataSetObserver</span> </span>{
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onChanged</span><span class="hljs-params">()</span> </span>{
+        dataSetChanged();
+    }
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onInvalidated</span><span class="hljs-params">()</span> </span>{
+        dataSetChanged();
+    }
+}</code></pre>
+<p><strong>5、ViewPager 的 dataSetChanged()</strong><br>这个方法的实现较长，里面的逻辑看上去挺复杂的，这里就不展示全部的源码了，列下关键点：</p>
+<pre class="hljs java"><code class="java">...
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; mItems.size(); i++) {
+    <span class="hljs-keyword">final</span> ItemInfo ii = mItems.get(i);
+    <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> newPos = mAdapter.getItemPosition(ii.object);
+
+    <span class="hljs-keyword">if</span> (newPos == PagerAdapter.POSITION_UNCHANGED) {
+        <span class="hljs-keyword">continue</span>;
+    }
+
+    <span class="hljs-keyword">if</span> (newPos == PagerAdapter.POSITION_NONE) {
+        ...
+        <span class="hljs-keyword">continue</span>;
+    }
+    ...
+}
+...</code></pre>
+<p>上面截取的代码中 for 循环里面有两个 continue 语句，这可能是比较关键的代码，幸好不用我们继续深入了，官方给出了解释：</p>
+<p>Called when the host view is attempting to determine if an item's position has changed. Returns POSITION_UNCHANGED if the position of the given item has not changed or POSITION_NONE if the item is no longer present in the adapter.The default implementation assumes that items will never change position and always returns POSITION_UNCHANGED.</p>
+<p><strong>大致的意思是：</strong><br>如果 Item 的位置如果没有发生变化，则返回 POSITION_UNCHANGED。如果返回了 POSITION_NONE，表示该位置的 Item 已经不存在了。默认的实现是假设 Item 的位置永远不会发生变化，而返回 POSITION_UNCHANGED。（参考自：<a href="http://www.educity.cn/wenda/179816.html" target="_blank">追溯源码解决android疑难有关问题1-Viewpager之notifyDataSetChanged无刷新</a>）</p>
+<p>上面在源码里面跟了一大圈是不是还是感觉没有明朗，因为还有一个很关键的类 —— PagerAdapter 没有介绍，再给点耐心，继续。</p>
+<p><strong>6、PagerAdapter 的工作流程</strong><br>其实就是 PagerAdapter 中方法的执行顺序，来看看 <a href="http://my.csdn.net/leo8573" target="_blank">Leo8573</a> 的分析（个人感觉基本说到位了，所以直接拷过来了）：</p>
+<p>PagerAdapter 作为 ViewPager 的适配器，无论 ViewPager 有多少页，PagerAdapter 在初始化时也只初始化开始的2个 View，即调用2次instantiateItem 方法。而接下来每当 ViewPager 滑动时，PagerAdapter 都会调用 destroyItem 方法将距离该页2个步幅以上的那个 View 销毁，以此保证 PagerAdapter 最多只管辖3个 View，且当前 View 是3个中的中间一个，如果当前 View 缺少两边的 View，那么就 instantiateItem，如里有超过2个步幅的就 destroyItem。</p>
+<p>简易图示：</p>
+<pre class="hljs java"><code class="java">                 *
+   ------+---+---+---+------
+     ... <span class="hljs-number">0</span> | <span class="hljs-number">1</span> | <span class="hljs-number">2</span> | <span class="hljs-number">3</span> | <span class="hljs-number">4</span> ...
+   ------+---+---+---+------</code></pre>
+<p>当前 View 为2号 View，所以 PagerAdapter 管辖1、2、3三个 View，接下来向左滑动--&gt;</p>
+<pre class="hljs java"><code class="java">                 *
+   ------+---+---+---+------
+     ... <span class="hljs-number">1</span> | <span class="hljs-number">2</span> | <span class="hljs-number">3</span> | <span class="hljs-number">4</span> | <span class="hljs-number">5</span> ...
+   ------+---+---+---+------</code></pre>
+<p>滑动后，当前 View 变为3号 View，PagerAdapter 会 destroyItem 0号View，instantiateItem 5号 View，所以 PagerAdapter 管辖2、3、4三个 View。（参考自：<a href="http://blog.csdn.net/leo8573/article/details/7893841" target="_blank">关于ViewPager的数据更新问题小结</a>）</p>
+<p><strong>总结一下：</strong> Viewpager 的刷新过程是这样的，在每次调用 PagerAdapter 的 notifyDataSetChanged() 方法时，都会激活 getItemPosition(Object object) 方法，该方法会遍历 ViewPager 的所有 Item（由缓存的 Item 数量决定，默认为当前页和其左右加起来共3页，这个可以自行设定，但是至少会缓存2页），为每个 Item 返回一个状态值（POSITION_NONE/POSITION_UNCHANGED），如果是 POSITION_NONE，那么该 Item 会被 destroyItem(ViewGroup container, int position, Object object) 方法 remove 掉，然后重新加载，如果是 POSITION_UNCHANGED，就不会重新加载，默认是 POSITION_UNCHANGED，所以如果不重写 getItemPosition(Object object)，修改返回值，就无法看到 notifyDataSetChanged() 的刷新效果。</p>
+<h2>最简单的解决方案</h2>
+<p>那就是直接一刀切：重写 PagerAdapter 的 getItemPosition(Object object) 方法，将返回值固定为 POSITION_NONE。</p>
+<p>先看看效果：</p>
+<div class="image-package">
+<img src="./ViewPager刷新问题详解 - 简书_files/1233754-0071612440ec3200.gif" data-original-src="http://upload-images.jianshu.io/upload_images/1233754-0071612440ec3200.gif?imageMogr2/auto-orient/strip%20%E2%80%9D%E6%9C%80%E7%AE%80%E5%8D%95%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E7%A4%BA%E4%BE%8B%E2%80%9C" style="cursor: zoom-in;"><br><div class="image-caption">最简单解决方案示例</div>
+</div>
+<p>上代码（PagerAdapterActivity.java）：</p>
+<pre class="hljs java"><code class="java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getItemPosition</span><span class="hljs-params">(Object object)</span> </span>{
+    <span class="hljs-comment">// 最简单解决 notifyDataSetChanged() 页面不刷新问题的方法</span>
+    <span class="hljs-keyword">return</span> POSITION_NONE;
+}</code></pre>
+<p><strong>该方案的缺点：</strong>有个很明显的缺陷，那就是会刷新所有的 Item，这将导致系统资源的浪费，所以这种方式不适合数据量较大的场景。</p>
+<p><strong>注意：</strong><br>这种方式还有一个需要注意的地方，就是重写 destoryItem() 方法：</p>
+<pre class="hljs java"><code class="java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">destroyItem</span><span class="hljs-params">(ViewGroup container, <span class="hljs-keyword">int</span> position, Object object)</span> </span>{
+    <span class="hljs-comment">// 把 Object 强转为 View，然后将 view 从 ViewGroup 中清除</span>
+    container.removeView((View) object);
+}</code></pre>
+<h2>最简方案的优化</h2>
+<p>这里提供一个思路，毕竟场景太多，相信大家理解了思路要实现就很简单了，闲话不多说。</p>
+<p><strong>思路：</strong>在 instantiateItem() 方法中给每个 View 添加 tag（使用 setTag() 方法），然后在 getItemPosition() 方法中通过 View.getTag() 来判断是否是需要刷新的页面，是就返回 POSITION_NONE，否就返回 POSITION_UNCHANGED。 （参考自：<a href="http://lovelease.iteye.com/blog/2107296" target="_blank">ViewPager刷新单个页面的方法</a>）</p>
+<p><strong>注意：</strong>这里有一点要注意的是，当清空数据源的时候需要返回 POSITION_NONE，可用如下代码：</p>
+<pre class="hljs java"><code class="java"><span class="hljs-keyword">if</span> (mDataList != <span class="hljs-keyword">null</span> &amp;&amp; mDataList.size()==<span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> POSITION_NONE;
+}</code></pre>
+<p>关于 PagerAdapter 的介绍就到这里了，虽然 FragmentPagerAdapter 与 FragmentStatePagerAdapter 都是继承自 PagerAdapter。但是，这两个是专门为以 Fragment 为 Item 的 ViewPager 所准备的，所以有其特殊性。且看下面的介绍。</p>
+<h1>三、FragmentPagerAdapter</h1>
+<h2>简介</h2>
+<p>上面通过使 getItemPosition() 方法返回 POSITION_NONE 到达数据源变化（也就是调用  notifyDataSetChanged()）时，刷新视图的目的。但是当我们使用 Fragment 作为 ViewPager 的 Item 时，就需要多考虑一些了，而且一般是使用  FragmentPagerAdapter 或者 FragmentStatePagerAdapter。</p>
+<p>这里不展开讨论 FragmentPagerAdapter 与 FragmentStatePagerAdapter 的异同和使用场景了，感兴趣的可以看看这篇文章：<a href="http://www.cnblogs.com/lianghui66/p/3607091.html" target="_blank">FragmentPagerAdapter与FragmentStatePagerAdapter区别</a>。</p>
+<p>下面先来看看使用 FragmentPagerAdapter 时，如何在数据源发生变化时，刷新 Fragment 或者动态改变 Items 的数量。</p>
+<h2>方案：清除 FragmentManager 中缓存的 Fragment</h2>
+<p>先看效果：</p>
+<div class="image-package">
+<img src="./ViewPager刷新问题详解 - 简书_files/1233754-2116ad752d0ea8f0.gif" alt="FragmentPagerAdapter%u6570%u636E%u6E90%u5237%u65B0%u6F14%u793A1" data-original-src="http://upload-images.jianshu.io/upload_images/1233754-2116ad752d0ea8f0.gif?imageMogr2/auto-orient/strip" style="cursor: zoom-in;"><br><div class="image-caption">FragmentPagerAdapter数据源刷新演示1</div>
+</div>
+<p>实现上图效果的关键代码：<br><strong>1、FPagerAdapter1Activity.java</strong></p>
+<pre class="hljs java"><code class="java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">refresh</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span> (checkData()) <span class="hljs-keyword">return</span>;
+    mDataList.set(<span class="hljs-number">0</span>, <span class="hljs-number">7</span>); <span class="hljs-comment">// 修改数据源</span>
+    mPagerAdapter.updateData(mDataList); <span class="hljs-comment">// 通知 Adapter 更新</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">()</span> </span>{
+    mDataList.add(<span class="hljs-number">7</span>);
+    mPagerAdapter.updateData(mDataList);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span> (checkData()) <span class="hljs-keyword">return</span>;
+    mDataList.remove(<span class="hljs-number">0</span>);
+    mPagerAdapter.updateData(mDataList);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">clear</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span> (checkData()) <span class="hljs-keyword">return</span>;
+    mDataList.clear();
+    mPagerAdapter.updateData(mDataList);
+}</code></pre>
+<p><strong>2、FPagerAdapter1.java</strong></p>
+<pre class="hljs java"><code class="java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FPagerAdapter1</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentPagerAdapter</span> </span>{
+
+    <span class="hljs-keyword">private</span> ArrayList&lt;Fragment&gt; mFragmentList;
+    <span class="hljs-keyword">private</span> FragmentManager mFragmentManager;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">FPagerAdapter1</span><span class="hljs-params">(FragmentManager fm, List&lt;Integer&gt; types)</span> </span>{
+        <span class="hljs-keyword">super</span>(fm);
+        <span class="hljs-keyword">this</span>.mFragmentManager = fm;
+        mFragmentList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, size = types.size(); i &lt; size; i++) {
+            mFragmentList.add(FragmentTest.instance(i));
+        }
+        setFragments(mFragmentList);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateData</span><span class="hljs-params">(List&lt;Integer&gt; dataList)</span> </span>{
+        ArrayList&lt;Fragment&gt; fragments = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, size = dataList.size(); i &lt; size; i++) {
+            Log.e(<span class="hljs-string">"FPagerAdapter1"</span>, dataList.get(i).toString());
+            fragments.add(FragmentTest.instance(dataList.get(i)));
+        }
+        setFragments(fragments);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setFragments</span><span class="hljs-params">(ArrayList&lt;Fragment&gt; mFragmentList)</span> </span>{
+        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.mFragmentList != <span class="hljs-keyword">null</span>){
+            FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+            <span class="hljs-keyword">for</span>(Fragment f:<span class="hljs-keyword">this</span>.mFragmentList){
+                fragmentTransaction.remove(f);
+            }
+            fragmentTransaction.commit();
+            mFragmentManager.executePendingTransactions();
+        }
+        <span class="hljs-keyword">this</span>.mFragmentList = mFragmentList;
+        notifyDataSetChanged();
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getCount</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.mFragmentList.size();
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getItemPosition</span><span class="hljs-params">(Object object)</span> </span>{
+        <span class="hljs-keyword">return</span> POSITION_NONE;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Fragment <span class="hljs-title">getItem</span><span class="hljs-params">(<span class="hljs-keyword">int</span> position)</span> </span>{
+        <span class="hljs-keyword">return</span> mFragmentList.get(position);
+    }
+}</code></pre>
+<p><strong>3、思路分析</strong><br>上面的代码思路很简单，就是当数据源发生变化时，先将 FragmentManger 里面所有缓存的 Fragment 全部清除，然后重新创建，这样达到刷新视图的目的。</p>
+<p>但是，这样做有一个缺点，那就是会造成不必要的浪费，会影响性能。还有就是必须使用一个 List 缓存所有的 Fragment，这也得占用不少内存...</p>
+<p>思路挺简单，这里不再赘述，那看看有没有什么可以优化的。</p>
+<h2>优化：通过 Tag 获取缓存的 Fragment</h2>
+<p>先看效果：</p>
+<div class="image-package">
+<img src="./ViewPager刷新问题详解 - 简书_files/1233754-716892b521db8b1e.gif" alt="FragmentPagerAdapter%u6570%u636E%u6E90%u5237%u65B0%u6F14%u793A2" data-original-src="http://upload-images.jianshu.io/upload_images/1233754-716892b521db8b1e.gif?imageMogr2/auto-orient/strip" style="cursor: zoom-in;"><br><div class="image-caption">FragmentPagerAdapter数据源刷新演示2</div>
+</div>
+<p>从上面的动图上可以看到，更新某一个 Fragment 没有问题，清空数据源的时候也没有，添加当然也没什么问题；请注意删除的效果，虽然，目的 Fragment 确实从 ViewPager 中移除了，但是滑动后面的页面会发现出现了数据错乱。</p>
+<p>分析一下<strong>优化的思路</strong>：</p>
+<p>先来了解 FragmentPagerAdapter 中是如何管理 Fragment 的，这里涉及到 FragmentPagerAdapter 中的 instantiateItem() 方法：</p>
+<pre class="hljs java"><code class="java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">instantiateItem</span><span class="hljs-params">(ViewGroup container, <span class="hljs-keyword">int</span> position)</span> </span>{
+    <span class="hljs-keyword">if</span> (mCurTransaction == <span class="hljs-keyword">null</span>) {
+        mCurTransaction = mFragmentManager.beginTransaction();
+    }
+
+    <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> itemId = getItemId(position);
+
+    <span class="hljs-comment">// Do we already have this fragment?</span>
+    String name = makeFragmentName(container.getId(), itemId);
+    Fragment fragment = mFragmentManager.findFragmentByTag(name);
+    <span class="hljs-keyword">if</span> (fragment != <span class="hljs-keyword">null</span>) {
+        <span class="hljs-keyword">if</span> (DEBUG) Log.v(TAG, <span class="hljs-string">"Attaching item #"</span> + itemId + <span class="hljs-string">": f="</span> + fragment);
+        mCurTransaction.attach(fragment);
+    } <span class="hljs-keyword">else</span> {
+        fragment = getItem(position);
+        <span class="hljs-keyword">if</span> (DEBUG) Log.v(TAG, <span class="hljs-string">"Adding item #"</span> + itemId + <span class="hljs-string">": f="</span> + fragment);
+        mCurTransaction.add(container.getId(), fragment,
+                makeFragmentName(container.getId(), itemId));
+    }
+    <span class="hljs-keyword">if</span> (fragment != mCurrentPrimaryItem) {
+        fragment.setMenuVisibility(<span class="hljs-keyword">false</span>);
+        fragment.setUserVisibleHint(<span class="hljs-keyword">false</span>);
+    }
+
+    <span class="hljs-keyword">return</span> fragment;
+}</code></pre>
+<p>从源码中可以看到在从 FragmentManager 中取出 Fragment 时调用了 findFragmentByTag() 方法，而这个 Tag 是由 makeFragmentName() 方法生成的。继续往下可以看到每一个 Fragment 都打上了一个标签（在 mCurTransaction.add() 方法中）。</p>
+<p>也就是说是 FragmentManager 通过 Tag 找相应的 Fragment，从而达到缓存 Fragment 的目的。如果可以找到，就不会创建新的 Fragment，Fragment 的 onCreate()、onCreateView() 等方法都不会再次调用。</p>
+<p>那<strong>优化的思路</strong>就有了：<br><strong>首先，</strong>需要缓存所有 Fragment 的 Tag，代码如下：</p>
+<pre class="hljs java"><code class="java"><span class="hljs-keyword">private</span> List&lt;String&gt; mTagList; <span class="hljs-comment">// 用来存放所有的 Tag</span>
+
+<span class="hljs-comment">// 生成 Tag</span>
+<span class="hljs-comment">// 直接从 FragmentPageAdapter 源码里拷贝 Fragment 生成 Tag 的方法</span>
+<span class="hljs-function"><span class="hljs-keyword">private</span> String <span class="hljs-title">makeFragmentName</span><span class="hljs-params">(<span class="hljs-keyword">int</span> viewId, <span class="hljs-keyword">int</span> index)</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"android:switcher:"</span> + viewId + <span class="hljs-string">":"</span> + index;
+}
+
+<span class="hljs-comment">// 将 Tag 缓存到 List 中</span>
+<span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">instantiateItem</span><span class="hljs-params">(ViewGroup container, <span class="hljs-keyword">int</span> position)</span> </span>{
+    mTagList.add(position, makeFragmentName(container.getId(),
+            (<span class="hljs-keyword">int</span>) getItemId(position)));
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.instantiateItem(container, position);
+}</code></pre>
+<p><strong>其次，</strong>在更新 Fragment 时，使用相应的 Tag 去 FragmentManamager 中找相应的 Fragment，如果存在，就直接更新，代码如下：</p>
+<pre class="hljs java"><code class="java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-keyword">int</span> position, String str)</span> </span>{
+    Fragment fragment = mFragmentManager.findFragmentByTag(mTagList.get(position));
+    <span class="hljs-keyword">if</span> (fragment == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">return</span>;
+    <span class="hljs-keyword">if</span> (fragment <span class="hljs-keyword">instanceof</span> FragmentTest) {
+        ((FragmentTest)fragment).update(str);
+    }
+    notifyDataSetChanged();
+}</code></pre>
+<p>该方法需要自行在 Fragment 中提供。</p>
+<p><strong>最后，</strong>对于动态改变 ViewPager 中 Fragment 的数量，如果是添加，那没什么要注意的；但是删除有点棘手。</p>
+<p>在上面的动态上看到，删除一个 Fragment 后会出现混乱，这里没有进一步去研究了，这里仅提供一个示例供参考（这个示例代码有问题，仅供参考）</p>
+<pre class="hljs java"><code class="java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">remove</span><span class="hljs-params">(<span class="hljs-keyword">int</span> position)</span> </span>{
+    mDataList.remove(position);
+    isDataSetChange = <span class="hljs-keyword">true</span>;
+    Fragment fragment = mFragmentManager.findFragmentByTag(mTagList.get(position));
+    mTagList.remove(position);
+    <span class="hljs-keyword">if</span> (fragment == <span class="hljs-keyword">null</span>) {
+        notifyDataSetChanged();
+        <span class="hljs-keyword">return</span>;
+    }
+    FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+    fragmentTransaction.remove(fragment);
+    fragmentTransaction.commit();
+    mFragmentManager.executePendingTransactions();
+    notifyDataSetChanged();
+}</code></pre>
+<p><strong>注意：</strong><br>这个”优化“示例，仅仅适用于在只需要更新某个 Fragment 的场景，关于动态删除 Fragment，该”优化“方案并不适用，也不推荐使用。</p>
+<h1>四、FragmentStatePagerAdapter</h1>
+<p>先看效果：</p>
+<div class="image-package">
+<img src="./ViewPager刷新问题详解 - 简书_files/1233754-cb6bf82c7debda0e.gif" alt="FragmentStatePagerAdapter%u6570%u636E%u6E90%u5237%u65B0%u6F14%u793A" data-original-src="http://upload-images.jianshu.io/upload_images/1233754-cb6bf82c7debda0e.gif?imageMogr2/auto-orient/strip" style="cursor: zoom-in;"><br><div class="image-caption">FragmentStatePagerAdapter数据源刷新演示</div>
+</div>
+<h2>简介</h2>
+<p><a href="http://developer.android.com/reference/android/support/v4/app/FragmentStatePagerAdapter.html" target="_blank">FragmentStatePagerAdapter</a>  与  FragmentPagerAdapter 类似，这两个类都继承自 PagerAdapter。但是，和 FragmentPagerAdapter 不一样的是，FragmentStatePagerAdapter 只保留当前页面，当页面离开视线后，就会被消除，释放其资源；而在页面需要显示时，生成新的页面(这和 ListView 的实现一样)。这种方式的好处就是当拥有大量的页面时，不必在内存中占用大量的内存。（参考自：<a href="http://www.cnblogs.com/lianghui66/p/3607091.html" target="_blank">FragmentPagerAdapter与FragmentStatePagerAdapter区别</a>）</p>
+<p>FragmentStatePagerAdapter 的实现与 FragmentPagerAdapter 有很大区别，如果照搬上述 FragmentPagerAdapter 刷新数据的方式，你会发现没有什么问题（可以使用 FPagerAdapter11.java 测试）。</p>
+<h2>另一种思路</h2>
+<p>但是，我在项目中实际应用的时候（Fragment 比较复杂，里面有网络任务等）出现了 IllegalStateException，发生在 ”fragmentTransaction.remove(f);“ 时。当时找了一些文章没有解决该问题，考虑到项目中的 Fragment 里面逻辑过多，就换思路，没有在这个上面继续深究了。</p>
+<p>如果，你也是这样使用 FragmentStatePagerAdapter 来动态改变 ViewPager 中 Fragment，并且在 remove Fragment 时遇到了 IllegalStateException。那么，你可以考虑使用下面的方式，先看代码（FSPagerAdapter .java）：</p>
+<pre class="hljs java"><code class="java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FSPagerAdapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentStatePagerAdapter</span> </span>{
+
+    <span class="hljs-keyword">private</span> ArrayList&lt;Fragment&gt; mFragmentList;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">FSPagerAdapter</span><span class="hljs-params">(FragmentManager fm, List&lt;Integer&gt; types)</span> </span>{
+        <span class="hljs-keyword">super</span>(fm);
+        updateData(types);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateData</span><span class="hljs-params">(List&lt;Integer&gt; dataList)</span> </span>{
+        ArrayList&lt;Fragment&gt; fragments = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, size = dataList.size(); i &lt; size; i++) {
+            Log.e(<span class="hljs-string">"FPagerAdapter1"</span>, dataList.get(i).toString());
+            fragments.add(FragmentTest.instance(dataList.get(i)));
+        }
+        setFragmentList(fragments);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setFragmentList</span><span class="hljs-params">(ArrayList&lt;Fragment&gt; fragmentList)</span> </span>{
+        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.mFragmentList != <span class="hljs-keyword">null</span>){
+            mFragmentList.clear();
+        }
+        <span class="hljs-keyword">this</span>.mFragmentList = fragmentList;
+        notifyDataSetChanged();
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getCount</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.mFragmentList.size();
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getItemPosition</span><span class="hljs-params">(Object object)</span> </span>{
+        <span class="hljs-keyword">return</span> POSITION_NONE;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Fragment <span class="hljs-title">getItem</span><span class="hljs-params">(<span class="hljs-keyword">int</span> position)</span> </span>{
+        <span class="hljs-keyword">return</span> mFragmentList.get(position);
+    }
+}</code></pre>
+<p>对应的测试 Activity 见 <strong>FSPagerAdapterActivity.java</strong>。</p>
+<p>上面的代码挺简单，稍微解释一下实现思路：<br><strong>1、缓存所有的 Fragment</strong><br>使用一个 List 将数据源对应的 Fragment 都缓存起来</p>
+<p><strong>2、更新数据源，刷新 Fragment</strong><br>当有数据源更新的时候，从 List 中取出相应的 Fragment，然后刷新 Adapter</p>
+<p><strong>3、删除数据时，删除 List 中对应的 Fragment</strong><br>当数据源中删除某项时，将 List 中对应的 Fragment 也删除，然后刷新 Adapter</p>
+<h1>小结</h1>
+<p>关于 ViewPager 数据源刷新比较麻烦的地方是从数据源中删除数据的情况，这和 ViewPager 的实现方式有关，我们在解决该问题的时候要分具体情况来采取不同的方案。</p>
+<p>上面提供的方案也不是完美的，还有很多不足，如果你在应用的过程中遇到了问题，那么请反馈给我，大家一起完善。</p>
+<p>这里主要是探讨关于 ViewPager 数据源刷新的问题，关于 ViewPager 的详细使用不是本文重点，这里就不涉及了。</p>
+<h1>项目地址</h1>
+<p><a href="https://github.com/DIY-green/PagerAdapterRefresh" target="_blank">GitHub</a><br><a href="http://diy-green.github.io/" target="_blank">个人博客</a></p>
+<h1>参考</h1>
+<p><a href="http://blog.csdn.net/harvic880925/article/details/38487149" target="_blank">ViewPager 详解（二）---详解四大函数</a><br><a href="http://www.360doc.com/content/14/0506/09/7559693_375104104.shtml" target="_blank">pagerAdapter arrayList 数据清空,Item 不销毁的bug解决</a><br><a href="http://lovelease.iteye.com/blog/2107296" target="_blank">ViewPager刷新单个页面的方法</a><br><a href="http://blog.sina.com.cn/s/blog_9ac333de0102uzbi.html" target="_blank">ViewPager动态加载、删除页面</a><br><a href="http://blog.csdn.net/q445697127/article/details/18352033" target="_blank">ViewPager+Fragment滑动界面，并做延迟加载【新版】</a><br><a href="http://blog.csdn.net/leo8573/article/details/7893841" target="_blank">关于ViewPager的数据更新问题小结</a><br><a href="http://www.tuicool.com/articles/eua2mm" target="_blank">Viewpager+fragment数据更新问题解析</a><br><a href="http://www.educity.cn/wenda/179816.html" target="_blank">追溯源码解决android疑难有关问题1-Viewpager之notifyDataSetChanged无刷新</a><br><a href="http://blog.csdn.net/henry121212/article/details/23496913" target="_blank">解决fragment+viewpager第二次进入的时候没有数据的问题</a><br> <a href="http://blog.csdn.net/z13759561330/article/details/40737381" target="_blank">FragmentPagerAdapter刷新fragment最完美解决方案</a><br><a href="http://www.tuicool.com/articles/eua2mm" target="_blank">Viewpager+fragment数据更新问题解析</a><br><a href="http://www.cnblogs.com/lianghui66/p/3607091.html" target="_blank">FragmentPagerAdapter与FragmentStatePagerAdapter区别</a></p>
+
+        </div>
+        <!--  -->
+
+        <div class="show-foot">
+          <a class="notebook" href="http://www.jianshu.com/nb/2512589">
+            <i class="iconfont ic-search-notebook"></i> <span>Android干货[原创]</span>
+</a>          <div class="copyright" data-toggle="tooltip" data-html="true" data-original-title="转载请联系作者获得授权，并标注“简书作者”。">
+            © 著作权归作者所有
+          </div>
+          <div class="modal-wrap" data-report-note="">
+            <a id="report-modal">举报文章</a>
+          </div>
+        </div>
+    </div>
+
+    <!-- 文章底部作者信息 -->
+      <div class="follow-detail">
+        <div class="info">
+          <a class="avatar" href="http://www.jianshu.com/u/0ad0a0afc409">
+            <img src="./ViewPager刷新问题详解 - 简书_files/175b7d6fe557.jpg" alt="144">
+</a>          <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+          <a class="title" href="http://www.jianshu.com/u/0ad0a0afc409">diygreen</a>
+        <p>写了 122768 字，被 2073 人关注，获得了 3820 个喜欢</p></div>
+          <div class="signature">男子千年志，吾生未有涯。心随朗月高，志与秋霜洁。</div>
+      </div>
+
+      <div class="support-author"></div>
+
+    <div class="meta-bottom">
+      <div class="like"><div class="btn like-group"><div class="btn-like"><a href="http://www.jianshu.com/sign_in"><i class="iconfont ic-like"></i>喜欢</a></div> <div class="modal-wrap"><a>173</a></div></div> <!----></div>
+      <div class="share-group">
+        <a class="share-circle" data-action="weixin-share" data-toggle="tooltip" data-original-title="分享到微信">
+          <i class="iconfont ic-wechat"></i>
+        </a>
+        <a class="share-circle" data-toggle="tooltip" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/3797536/weibo/image_59f66716a930.jpg&#39;, &#39;推荐 diygreen 的文章《ViewPager刷新问题详解》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/266861496508?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));" data-original-title="分享到微博">
+          <i class="iconfont ic-weibo"></i>
+        </a>
+          <a class="share-circle" data-toggle="tooltip" href="http://cwb.assets.jianshu.io/notes/images/3797536/weibo/image_59f66716a930.jpg" target="_blank" data-original-title="下载长微博图片">
+            <i class="iconfont ic-picture"></i>
+          </a>
+        <a class="share-circle more-share" tabindex="0" data-toggle="popover" data-placement="top" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="
+          &lt;ul class=&quot;share-list&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/266861496508?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 diygreen 的文章《ViewPager刷新问题详解》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-zone&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/266861496508?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 diygreen 的文章《ViewPager刷新问题详解》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-twitter&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/266861496508?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-facebook&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/266861496508?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-google&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/266861496508?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;ViewPager刷新问题详解&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-douban&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        " data-original-title="" title="">更多分享</a>
+      </div>
+    </div>
+    <div id="vue_comment"></div>
+  </div>
+
+  <div class="side-tool"><ul><li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="回到顶部"><a class="function-button"><i class="iconfont ic-backtop"></i></a></li> <!----> <!----> <li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="分享文章"><a tabindex="0" role="button" data-toggle="popover" data-placement="left" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="&lt;ul class=&#39;share-list&#39;&gt;
+                &lt;li&gt;&lt;a class=&quot;weixin-share&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-weixin&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到微信&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/3797536/weibo/image_59f66716a930.jpg&#39;, &#39;推薦 diygreen 的文章《ViewPager刷新问题详解》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/266861496508?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-weibo&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到微博&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;http://cwb.assets.jianshu.io/notes/images/3797536/weibo/image_59f66716a930.jpg&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-picture&quot;&gt;&lt;/i&gt;&lt;span&gt;下载长微博图片&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/266861496508?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推薦 diygreen 的文章《ViewPager刷新问题详解》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-zone&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/266861496508?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推薦 diygreen 的文章《ViewPager刷新问题详解》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-twitter&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/266861496508?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-facebook&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/266861496508?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-google&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/266861496508?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;ViewPager刷新问题详解&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-douban&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;" data-original-title="" title="" class="function-button"><i class="iconfont ic-share"></i></a> <!----></li></ul></div>
+</div>
+<div class="note-bottom">
+  <div><div class="main"><div class="title">被以下专题收入，发现更多相似内容</div> <!----> <div class="include-collection"><!----> <a href="http://www.jianshu.com/c/bDHhpK?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./ViewPager刷新问题详解 - 简书_files/首页投稿.png"><div class="name">首页投稿</div></a><a href="http://www.jianshu.com/c/35155aeb4a7c?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./ViewPager刷新问题详解 - 简书_files/android.graphics.Bitmap_e108308.jpeg"><div class="name">安卓知识</div></a><a href="http://www.jianshu.com/c/e448668fb253?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./ViewPager刷新问题详解 - 简书_files/我的Logo5.png"><div class="name">Android 精华</div></a><a href="http://www.jianshu.com/c/58b4c20abf2f?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./ViewPager刷新问题详解 - 简书_files/android.graphics.Bitmap_1329dce8.jpeg"><div class="name">Android...</div></a><a href="http://www.jianshu.com/c/d1591c322c89?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./ViewPager刷新问题详解 - 简书_files/android.graphics.Bitmap_15f127c2.jpeg"><div class="name">Android开发</div></a><a href="http://www.jianshu.com/c/0fa9fcc74b75?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./ViewPager刷新问题详解 - 简书_files/android.graphics.Bitmap_f6a17b9.jpeg"><div class="name">Android...</div></a><a href="http://www.jianshu.com/c/a9458bfe4dac?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./ViewPager刷新问题详解 - 简书_files/85904ab451b65fcede334b5df9b35de9.jpeg"><div class="name">Android那些事</div></a> <a class="show-more">
+        展开更多
+        <i class="iconfont ic-show"></i></a></div></div> <!----> <!----></div>
+  <div data-vcomp="recommended-notes" data-note-id="3797536"></div>
+</div>
+
+    <script src="./ViewPager刷新问题详解 - 简书_files/push.js.下载"></script><script src="./ViewPager刷新问题详解 - 简书_files/hm.js.下载"></script><script async="" src="./ViewPager刷新问题详解 - 简书_files/analytics.js.下载"></script><script type="application/json" data-name="page-data">{"user_signed_in":false,"locale":"zh-CN","os":"windows","read_mode":"day","read_font":"font2","note_show":{"is_author":false,"is_following_author":false,"is_liked_note":false,"uuid":"45c247c5-f69f-45c0-90f4-cce01f9f64f1"},"note":{"id":3797536,"slug":"266861496508","user_id":1233754,"notebook_id":2512589,"commentable":true,"likes_count":173,"views_count":14085,"public_wordage":5639,"comments_count":31,"total_rewards_count":4,"is_author":false,"author":{"nickname":"diygreen","total_wordage":122768,"followers_count":2073,"total_likes_count":3820}}}</script>
+    
+    <script src="./ViewPager刷新问题详解 - 简书_files/babel-polyfill-a9ca93d3a83b3a1f92da.js.下载"></script>
+    <script src="./ViewPager刷新问题详解 - 简书_files/web-base-1e5054a5d8733cfec67f.js.下载"></script>
+<script src="./ViewPager刷新问题详解 - 简书_files/web-0773ed4b5a6b652bd765.js.下载"></script>
+    
+    <script src="./ViewPager刷新问题详解 - 简书_files/entry-cc051170909eea2bebb4.js.下载"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35169517-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?0c0e9d9b1e7d617b3e6842e85b9fb068";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+  
+
+<!----><!----></body></html>

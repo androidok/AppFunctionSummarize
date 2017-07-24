@@ -1,0 +1,30 @@
+/*------CSS Code-----------------------------------*/
+#navigator { background:#CCFF99;}
+#navList { font-size: 25px; }
+.blogStats { font-size: 16px; }
+#sideBar { width: 20%; border: none; padding: 0; }
+    #sideBar h3 { padding-left: 12px; background-color:#CCFF99; }
+#sideBarMain { padding-left: 8px; }
+body { background-color:#CCFF99; color: #fff; font-size: 14px; }
+h1, h2, h3, h4, h5, h6, th, .feedbackCon, .blogStats { color: #fff; }
+#main { border: 1px solid #e5e5e5; }
+.day { widht:100%; }
+.postTitle { padding-left: 10px; font-size: 16px;
+             border-bottom-color: #666; }
+.postBody, .postCon { padding: 0px 20px 10px; 
+                      border-bottom: 1px solid #666; }
+.postDesc { padding-right: 20px; }
+a, .postCon a, .postBody a, .feedbackCon a { color: #0dd; }
+    a:hover, a:active, a:focus { color: red; text-decoration: none; }
+#navigator, #MySignature, .day, .post { border: 1px solid #e5e5e5; 
+    border-radius: 8px; box-shadow: 2px 2px 10px #aaa; }
+#navigator { border-radius: 8px 8px 0px 0px;}
+.post { border-right: none; border-top: none; 
+        border-radius: 0px 0px 8px 8px; padding-top: 1px; }
+.cnblogs_code, .cnblogs_code div { 
+    color: #000; font-family: consolas, monospace, sans-serif; }
+.c_b_p_desc{width:90%}
+.postCon{width:94%}
+.topicListFooter{width:95%}
+p{width:90%}
+.postTitle2{padding-left: 50px;}

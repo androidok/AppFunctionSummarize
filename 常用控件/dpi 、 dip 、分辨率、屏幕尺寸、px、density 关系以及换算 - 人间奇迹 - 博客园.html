@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/bundle-Valentine.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/bundle-Valentine-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/yaozhongxiao/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/yaozhongxiao/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/yaozhongxiao/wlwmanifest.xml">
+<script async="" src="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/analytics.js.下载"></script><script type="text/javascript" src="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/encoder.js.下载"></script><script src="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'yaozhongxiao', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<table cellpadding="0" cellspacing="0" border="0" align="center" width="100%">
+<tbody><tr>
+	<td width="184" background="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/banner1.gif"></td>
+	<td background="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/banner.gif">
+<!--done-->
+<div class="header">
+	<div class="headerText">
+		<a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/yaozhongxiao/">追逐理想</a><br>
+		<span style="font-size:12px;color:#4371A6;padding-left:20;">如果你了解我，你就会喜欢我</span>
+	</div>
+</div>
+</td>
+	<td width="295" background="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/banner2.gif"></td>
+</tr>
+</tbody></table>
+<div id="mylinks">
+<!--done-->
+<a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a>&nbsp;&nbsp;&nbsp;<a id="blog_nav_myhome" class="mainmenu" href="http://www.cnblogs.com/yaozhongxiao/">首页</a>&nbsp;&nbsp;&nbsp;<a id="blog_nav_newpost" class="mainmenu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a>&nbsp;&nbsp;&nbsp;<a id="MyLinks1_NewArticleLink" class="mainmenu" href="http://www.cnblogs.com/EnterMyBlog.aspx?NewArticle=1">新文章</a>&nbsp;&nbsp;&nbsp;<a id="blog_nav_contact" accesskey="9" class="mainmenu" rel="nofollow" href="https://msg.cnblogs.com/send/%E4%BA%BA%E9%97%B4%E5%A5%87%E8%BF%B9">联系</a>&nbsp;&nbsp;&nbsp;<a id="blog_nav_rss" class="mainmenu" href="http://www.cnblogs.com/yaozhongxiao/rss">订阅</a><a id="blog_nav_rss_image" href="http://www.cnblogs.com/yaozhongxiao/rss"><img src="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/xml.gif" alt="订阅"></a>&nbsp;&nbsp;&nbsp;<a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a>
+</div>
+<div id="mytopmenu">
+	
+		<div id="mystats">
+			<div id="blog_stats">
+<!--done-->
+<div class="blogStats">
+posts - 151,comments - 52,trackbacks - 0
+
+</div></div></div>
+	
+</div>
+<div id="leftcontent">
+	
+		<div id="leftcontentcontainer">
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="日历">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/06/01&#39;);return false;">&lt;</a></td><td align="center">2017年7月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/08/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalWeekendDay" align="center">1</td></tr><tr><td class="CalWeekendDay" align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td class="CalWeekendDay" align="center">8</td></tr><tr><td class="CalWeekendDay" align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td class="CalWeekendDay" align="center">15</td></tr><tr><td class="CalWeekendDay" align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td class="CalTodayDay" align="center">22</td></tr><tr><td class="CalWeekendDay" align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalWeekendDay" align="center">29</td></tr><tr><td class="CalWeekendDay" align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script><br>
+			
+<!--done-->
+<div class="newsItem">
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/yaozhongxiao/">人间奇迹</a><br>园龄：<a href="http://home.cnblogs.com/u/yaozhongxiao/" title="入园时间：2009-05-21">8年2个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/yaozhongxiao/followers/">93</a><br>关注：<a href="http://home.cnblogs.com/u/yaozhongxiao/followees/">0</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;2c676f59-0546-de11-9510-001cf0cd104b&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/yaozhongxiao/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/yaozhongxiao/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/yaozhongxiao/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/yaozhongxiao/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/yaozhongxiao/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+<!--done-->
+
+		<h1 class="catListTitle">随笔分类</h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_0" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/category/192276.html">Algorithm(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_1" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/category/192278.html">Android(34)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_2" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/category/533060.html">browser(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_3" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/category/192281.html">C &amp;&amp; C++(39)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_4" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/category/212645.html">Java(9)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_5" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/category/192287.html">Linux(6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_6" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/category/348151.html">OpenGL(9)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_7" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/category/256838.html">Skia(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_8" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/category/211774.html">ToolKit(13)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_9" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/category/261755.html">visual studio系列(VS2010 2008) 学习(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_10" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/category/315380.html">VM(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_11" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/category/211603.html">笔试&amp;面试(8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_12" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/category/193291.html">常用公式&amp;&amp;图表(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_13" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/category/192540.html">计算机相关阅读(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_14" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/category/201596.html">领域会议汇总(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_15" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/category/194781.html">趣味数学(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_16" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/category/217890.html">软件工程 与 测试(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_17" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/category/261997.html">数字图像处理 及 编程(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_18" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/category/456244.html">网络通信(2)</a></li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">随笔档案</h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_0" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2016/12.html">2016年12月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_1" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2016/03.html">2016年3月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_2" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2016/01.html">2016年1月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_3" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2015/11.html">2015年11月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_4" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2015/09.html">2015年9月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_5" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2015/07.html">2015年7月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_6" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2015/05.html">2015年5月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_7" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2015/04.html">2015年4月 (7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_8" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2015/03.html">2015年3月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_9" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2015/02.html">2015年2月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_10" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2015/01.html">2015年1月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_11" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2014/12.html">2014年12月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_12" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2014/11.html">2014年11月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_13" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2014/10.html">2014年10月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_14" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2014/09.html">2014年9月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_15" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2014/08.html">2014年8月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_16" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07.html">2014年7月 (6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_17" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2014/06.html">2014年6月 (6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_18" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2014/02.html">2014年2月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_19" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2014/01.html">2014年1月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_20" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2013/12.html">2013年12月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_21" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2013/11.html">2013年11月 (5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_22" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2013/10.html">2013年10月 (6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_23" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2013/08.html">2013年8月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_24" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2013/07.html">2013年7月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_25" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2013/06.html">2013年6月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_26" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2013/05.html">2013年5月 (12)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_27" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2013/04.html">2013年4月 (11)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_28" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2013/03.html">2013年3月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_29" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2012/07.html">2012年7月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_30" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2012/06.html">2012年6月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_31" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2012/05.html">2012年5月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_32" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2012/04.html">2012年4月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_33" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2012/03.html">2012年3月 (8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_34" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2012/02.html">2012年2月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_35" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2011/12.html">2011年12月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_36" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2011/11.html">2011年11月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_37" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2011/08.html">2011年8月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_38" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2011/03.html">2011年3月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_39" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2010/11.html">2010年11月 (4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_40" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2010/10.html">2010年10月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_41" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2010/09.html">2010年9月 (9)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_42" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2010/08.html">2010年8月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_43" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2009/12.html">2009年12月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_44" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2009/11.html">2009年11月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_45" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2009/10.html">2009年10月 (6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_46" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2009/09.html">2009年9月 (3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_47" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2009/08.html">2009年8月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_48" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2009/07.html">2009年7月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_49" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2009/06.html">2009年6月 (4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_50" class="listitem" href="http://www.cnblogs.com/yaozhongxiao/archive/2009/05.html">2009年5月 (7)</a></li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">BLOG</h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_2_Link_0" class="listitem" href="http://blog.csdn.net/yusiguyuan/article/category/2171081">linux内核&amp;网络</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_2_Link_1" class="listitem" href="http://www.matrix67.com/blog/" rel="nofollow" target="_blank">Matrix67</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_2_Link_2" class="listitem" href="http://mindhacks.cn/" rel="nofollow" target="_blank">刘未鹏 | Mind Hacks 思维改变生活 </a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_2_Link_3" class="listitem" href="http://www.cnblogs.com/chengxuyuancc/category/473494.html">在于思考</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_2_Link_4" class="listitem" href="http://blog.sina.com.cn/s/articlelist_1269141610_3_1.html" rel="nofollow">邹博伟的blog--笔试面试题集</a></li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">E-BOOK</h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_3_Link_0" class="listitem" href="http://book.51cto.com/art/200904/120986.htm" rel="nofollow" target="_blank">程序员的自我修养：链接、装载与库</a></li>
+			
+				</ul>
+			
+	
+		<h1 class="catListTitle">资源链接</h1>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_4_Link_0" class="listitem" href="http://www.extension.harvard.edu/openlearning/" rel="nofollow">Harvard Extension School's</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_4_Link_1" class="listitem" href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/" rel="nofollow">MIT 开放课程</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_4_Link_2" class="listitem" href="http://xxjs.ayyz.cn/usaco_solution/starforever.blog.hexun.com/5066405_d.html" rel="nofollow" target="_blank">USACO 解题报告</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_4_Link_3" class="listitem" href="http://v.youku.com/v_show/id_XMzMwOTYxMjA=.html" rel="nofollow" target="_blank">北外名师讲座: 如何提高口语流利程度</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_4_Link_4" class="listitem" href="http://oyc.yale.edu/" rel="nofollow">耶鲁大学开放课程 主页</a></li>
+			<li class="c_b_p_link_desc">如果下载视频有问题，可以在youku下搜索课程名</li>
+				</ul>
+			
+	
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yaozhongxiao/p/3842908.html#3674602">1. Re:dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算</a></li>
+        <li class="recent_comment_body">@输入不可为空你理解错使用场景了:现在我对一个控件设定长度为100dp,我需要在代码中写出实际的px值.因为代码中是以px为单位.xml中直接写是因为系统帮你自动转换了.所以,才用上面的公式.160d......</li>
+        <li class="recent_comment_author">--放纵的卡尔</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yaozhongxiao/p/3842908.html#3571062">2. Re:dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算</a></li>
+        <li class="recent_comment_body">@timmy_wang是的，其实你的言论是对的，我虽然后面回复你是对的，但是我最初的评论是错的。而且技术上的讨论太激动很正常的，我有时候也会这样。...</li>
+        <li class="recent_comment_author">--cyh41</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yaozhongxiao/p/3842908.html#3571060">3. Re:dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算</a></li>
+        <li class="recent_comment_body">@timmy_wangiphone3gs下dpi=160,dpr=1,320px =320dp，物理像素=独立像素px = dp * (dpi / 160) iphone4下dpi=320,dpr=2......</li>
+        <li class="recent_comment_author">--cyh41</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yaozhongxiao/p/3842908.html#3571035">4. Re:dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算</a></li>
+        <li class="recent_comment_body">@timmy_wang我现在有点晕，在理一下思路，感觉又错了...</li>
+        <li class="recent_comment_author">--cyh41</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/yaozhongxiao/p/3842908.html#3570971">5. Re:dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算</a></li>
+        <li class="recent_comment_body">@cyh41引用独立像素怎么可能是物理像素的两倍，楼主你说反了。那你的意思是独立像是物理下你告诉的二分一？那么100dip的图片在160dpi的屏幕上是100px，在320dpi的屏幕上就是50px？......</li>
+        <li class="recent_comment_author">--timmy_wang</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/yaozhongxiao/p/3842908.html">1. dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算(132275)</a></li><li><a href="http://www.cnblogs.com/yaozhongxiao/p/3523061.html">2. Ant自动编译打包&amp;发布 android项目(43563)</a></li><li><a href="http://www.cnblogs.com/yaozhongxiao/archive/2013/04/14/3020353.html">3. Linux时间操作(time、gettimeofday)(25175)</a></li><li><a href="http://www.cnblogs.com/yaozhongxiao/p/3521428.html">4. android大项目运行中出现问题汇总(23927)</a></li><li><a href="http://www.cnblogs.com/yaozhongxiao/p/3368706.html">5. activity的android:name 设置问题(21945)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/yaozhongxiao/p/3842908.html">1. dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算(22)</a></li><li><a href="http://www.cnblogs.com/yaozhongxiao/p/3523061.html">2. Ant自动编译打包&amp;发布 android项目(6)</a></li><li><a href="http://www.cnblogs.com/yaozhongxiao/archive/2009/06/10/1500834.html">3. 数学知多少(4)</a></li><li><a href="http://www.cnblogs.com/yaozhongxiao/p/3433797.html">4. Ubuntu12.04安装java6(3)</a></li><li><a href="http://www.cnblogs.com/yaozhongxiao/p/3408948.html">5. android + javascript 相互通信实例分析(2)</a></li></ul></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/yaozhongxiao/p/3842908.html">1. dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算(12)</a></li><li><a href="http://www.cnblogs.com/yaozhongxiao/p/3523061.html">2. Ant自动编译打包&amp;发布 android项目(3)</a></li><li><a href="http://www.cnblogs.com/yaozhongxiao/p/3194765.html">3. android手机自带浏览器无法识别apk文件(2)</a></li><li><a href="http://www.cnblogs.com/yaozhongxiao/archive/2013/05/21/3091353.html">4. Java 类反射机制分析(2)</a></li><li><a href="http://www.cnblogs.com/yaozhongxiao/archive/2013/04/14/3020353.html">5. Linux时间操作(time、gettimeofday)(2)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script></div>
+	
+</div>
+<div id="centercontent">
+	
+<div id="post_detail">
+<!--done-->
+<div class="post">
+	<div class="postTitle">
+		<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/yaozhongxiao/p/3842908.html">dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算</a>
+	</div>
+	<div id="cnblogs_post_body"><h1><span style="font-size: 16px; line-height: 1.5;">一、基本概念</span></h1>
+<ul>
+<li>dip &nbsp; &nbsp; &nbsp; &nbsp;： Density&nbsp;independent pixels ，设备无关像素。<span style="background-color: #ffcc00; color: #ff0000;"><br></span></li>
+<li>dp &nbsp; &nbsp; &nbsp; &nbsp;：就是dip</li>
+<li>px &nbsp; &nbsp; &nbsp; &nbsp;： 像素</li>
+<li><strong><span style="background-color: #ffcc00;"><span style="color: #ff0000;">dpi</span> &nbsp; &nbsp; &nbsp; </span></strong>：dots per inch ， 直接来说就是一英寸多少个像素点。常见取值 120，160，240。我一般称作像素密度，简称密度</li>
+<li><strong><span style="background-color: #ffcc00; color: #ff0000;">density </span></strong>： 直接翻译的话貌似叫 密度。常见取值 1.5 ， 1.0 。和标准dpi的比例（160px/inc）</li>
+<li>分辨率 &nbsp; ： 横纵2个方向的像素点的数量，常见取值 480X800 ，320X480</li>
+<li>屏幕尺寸： 屏幕对角线的长度。电脑电视同理。</li>
+<li>屏幕比例的问题。因为只确定了对角线长，2边长度还不一定。所以有了4：3、16：9这种，这样就可以算出屏幕边长了。</li>
+
+
+
+
+</ul>
+<h1><span style="font-size: 16px; line-height: 1.5;">二、应用</span></h1>
+<p>　　在android里面，获取一个窗口的metrics，里面有这么几个值</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;"> 　　　　metrics.density; 
+　　　　 metrics.densityDpi;</span></pre>
+</div>
+<p><span style="line-height: 1.5;">　　densityDpi ： 就是我们常说的dpi。</span></p>
+<p>　　density &nbsp; &nbsp; &nbsp;： &nbsp;其实是 DPI / (160像素/英寸) 后得到的值。是不是有点奇怪，因为我带了单位。。。这个涉及到后面一个比较重要的东西，后面再说。</p>
+<p>　　从上面就看得出了，DPI本身的单位也是 像素/英寸，所以density其实是没单位的，他就是一个比例值。</p>
+<p>　　而dpi的单位是 像素/英寸，比较符合物理上面的密度定义，密度不都是单位度量的值么，所以我更喜欢把dpi叫像素密度，简称密度，density还是就叫density。</p>
+<p>&nbsp;</p>
+<h1><span style="font-size: 16px;">三、各单位间转换</span></h1>
+<h2><span style="font-size: 15px;">1. 计算dpi</span>　</h2>
+<p>　　比如一个机器，屏幕4寸，分辨率480X800，他的dpi能算么。<br>　　因为不知道边长，肯定不能分开算，4是对角线长度，那直接用勾股定理算对角线像素，除以4，算出来大概是 dpi = 233 像素/英寸。<br>　　那么density就是  （233 px/inch）/（160 px/inch）=1.46 左右</p>
+<p>　　顺带说下，android默认的只有3个dpi，low、medium和high，对应 120、160、240，如果没有特别设置，所有的dpi都会被算成这3个，具体可以参考下这个帖子<br>　　http://android.tgbus.com/Android/tutorial/201103/347176.shtml<br>　　其中的default就是160。</p>
+<h2><span style="font-size: 15px;">2. 计算&nbsp;dp 与 px</span></h2>
+<p>　　我们写布局的时候，肯定还是要知道1个dp到底有多少px的。</p>
+<p>　　换算公式如下：    dp = （DPI/（160像素/英寸））px  =  density px<br>        </p>
+<p>　　注意，这里都是带单位的。px是单位，dp是单位，density没单位。</p>
+<p>　　为了方便，假设dpi是240 像素/英寸 ， 那么density就是1.5</p>
+<p>　　那么就是   dp=1.5px ，注意这是带了单位的，也就是 设备无关像素 = density 像素</p>
+<p>　　那么转换为数值计算的话，应该是下面这个式子</p>
+<p>　　PX = density * DP</p>
+<p>也就是 <br>　　像素值 = density * 设备无关像素值  ，请注意这里有个值字。</p>
+<h2><span style="font-size: 15px;">&nbsp;3. 为啥 标准dpi = 160</span></h2>
+<p>　　（1）Android Design [1] 里把主流设备的 dpi 归成了四个档次，120 dpi、160 dpi、240 dpi、320 dpi</p>
+<p>　　实际开发当中，我们经常需要对这几个尺寸进行相互转换（比如先在某个分辨率下完成设计，然后缩放到其他尺寸微调后输出），一般按照 dpi 之间的比例即 2:1.5:1:0.75 　　来给界面中的元素来进行尺寸定义。</p>
+<p>　　也就是说如果以 160 dpi 作为基准的话，只要尺寸的 DP 是 4 的公倍数，XHDPI 下乘以 2，HDPI 下乘以 1.5，LDPI 下乘以 0.75 即可满足所有尺寸下都是整数 pixel 。</p>
+<p>　　但假设以 240 dpi 作为标准，那需要 DP 是 3 的公倍数，XHDPI 下乘以 1.333，MDPI 下乘以 0.666 ，LDPI 下除以 2</p>
+<p>　　而以 LDPI 和 XHDPI 为基准就更复杂了，所以选择 160 dpi</p>
+<p>&nbsp; &nbsp; &nbsp;（2）这个在Google的官方文档中有给出了解释，因为第一款Android设备（HTC的T-Mobile G1）是<strong>属于</strong>160dpi的。</p>
+<p>&nbsp;</p>
+<h1><span style="font-size: 16px; line-height: 1.5;">四、 示例分析</span></h1>
+<h2><span style="font-size: 15px; line-height: 1.5;">1. 屏幕尺寸(screen size)</span></h2>
+<p>　　就是我们平常讲的手机屏幕大小，是屏幕的对角线长度，一般讲的大小单位都是英寸。<br>　　比如iPhone5S的屏幕尺寸是4英寸。Samsung Note3是5.7英寸。</p>
+<p>　　<img style="display: block; margin-left: auto; margin-right: auto;" src="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/141706005841167.png" alt="" width="140" height="215"></p>
+<p style="text-align: center;">图 1</p>
+<h2><span style="font-size: 15px;">2.像素(pixel)</span></h2>
+<p><span style="font-size: 15px;">　　</span>想像把屏幕放大再放大，对！看到的那一个个小点或者小方块就是像素了。</p>
+<p style="text-align: center;"><img src="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/141707201789451.png" alt="" width="305" height="211"></p>
+<p style="text-align: center;">图 2</p>
+<h2><span style="font-size: 15px;">3.分辨率(Resolution)</span></h2>
+<p>　　是指屏幕上垂直方向和水平方向上的像素个数。<br>　　比如iPhone5S的分辨率是1136*640；Samsung Note3的分辨率是1920*1080；</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/141708360064652.png" alt="" width="267" height="271"></p>
+<p style="text-align: center;">图 3&nbsp;</p>
+<h2><span style="font-size: 15px;">4.dpi</span></h2>
+<p>　　是dot per inch的缩写，就是每英寸的像素数，也叫做屏幕密度。这个值越大，屏幕就越清晰。<br>　　iPhone5S的dpi是326；&nbsp;Samsung Note3 的dpi是386</p>
+<p style="text-align: center;"><img src="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/141710104744625.png" alt="" width="296" height="255"></p>
+<p style="text-align: center;">图 4</p>
+<p><strong><span style="font-size: 15px; background-color: #ff9900; color: #ff0000;">5.dip</span></strong></p>
+<p><span style="font-size: 15px;">　　</span>是Density independent pixel的缩写，指的是抽象意义上的像素。跟设备的屏幕密度有关系。</p>
+<p>　　它是Android里的一个单位，dip和dp是一样的。</p>
+<p>Google的官方说明是这样的：<br>　　Density-independent pixel (dp) <br>　　A virtual pixel unit that you should use when defining UI layout, to express layout dimensions or position in a density-independent way. <br>The density-independent pixel is equivalent to one physical pixel on a 160 dpi screen, which is the baseline density assumed by the system for a "medium" density screen. At runtime, the system transparently handles any scaling of the dp units, as necessary, based on the actual density of the screen in use. The conversion of dp units to screen pixels is simple: px = dp * (dpi / 160). For example, on a 240 dpi screen, 1 dp equals 1.5 physical pixels. You should always use dp units when defining your application's UI, to ensure proper display of your UI on screens with different densities. </p>
+<p>　　就是说在160dpi的屏幕上，1dip=1px。<br>　　它跟屏幕密度有关，如果屏幕密度大，1dip代表的px就多，比如在320dpi的屏幕上，1dip=2px。</p>
+<h2><span style="line-height: 1.5; font-size: 15px;">为什么我们在布局的时候最好要用dip，不要用px？</span></h2>
+<p>&nbsp;　 是因为这个世界上存在着很多不同屏幕密度的手机，屏幕密度是什么？就是dpi，就是单位长度里的像素数量。</p>
+<p>　　想象一下，如果这些手机的尺寸一样，屏幕密度相差很大，那么是不是说一个手机水平方向上像素很少，另一个手机水平方向上像素很多？那我们画同样pix数量的时候，它显</p>
+<p>　　示的长度不就会不一样了？</p>
+<p><span style="line-height: 1.5;">　　比如下面图中的两个手机，同时设置2px长度的Button，在屏幕密度较高的手机里就会显示的比较小。</span></p>
+<p><span style="line-height: 1.5;">　　而同时设置的2dip长度的Button，在两个手机上显示的大小是一样的。</span></p>
+<p><span style="line-height: 1.5;"><img style="display: block; margin-left: auto; margin-right: auto;" src="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/141715402871566.png" alt="" width="334" height="300"></span></p>
+<p>&nbsp;</p>
+<p style="text-align: center;"><span style="font-size: 16px; line-height: 1.5;">图 5</span></p>
+<p>　　所以如果你在App布局中都用的px作为单位，那么你的App跑在各个设备上就会出现奇奇怪怪的现象了。&nbsp;</p>
+<p>　　来看一下emulator上的效果，我定义了两个Button，分别用px和dip做单位。</p>
+<p>　　布局文件里这样写</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>&lt;Button android:layout_width=<span style="color: #800000;">"</span><span style="color: #800000;">100px</span><span style="color: #800000;">"</span><span style="color: #000000;">
+    android:layout_height</span>=<span style="color: #800000;">"</span><span style="color: #800000;">100px</span><span style="color: #800000;">"</span><span style="color: #000000;">
+    android:text</span>=<span style="color: #800000;">"</span><span style="color: #800000;">@string/str_button1</span><span style="color: #800000;">"</span>/&gt;
+ 
+    &lt;Button android:layout_width=<span style="color: #800000;">"</span><span style="color: #800000;">100dip</span><span style="color: #800000;">"</span><span style="color: #000000;">
+    android:layout_height</span>=<span style="color: #800000;">"</span><span style="color: #800000;">100dip</span><span style="color: #800000;">"</span><span style="color: #000000;"> 
+    android:text</span>=<span style="color: #800000;">"</span><span style="color: #800000;">@string/str_button1</span><span style="color: #800000;">"</span>/&gt;</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>显示的界面是这样的：</p>
+<p>　　<img style="display: block; margin-left: auto; margin-right: auto;" src="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/141718273495326.jpg" alt="" width="321" height="244"></p>
+<p style="text-align: center;">图 6&nbsp;</p>
+<p>　　getResources().getDisplayMetrics().densityDpi 就是屏幕密度。<br>　　getResources().getDisplayMetrics().density  也可以理解为1dip相当于多少个px啦。<br>　　上面的dpi是240，1dip=1.5px<br>　　你看，100dip的Button是100pxButton的1.5倍长吧。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/yaozhongxiao/category/192278.html" target="_blank">Android</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(3842908,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;2c676f59-0546-de11-9510-001cf0cd104b&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/yaozhongxiao/" target="_blank"><img src="./dpi 、 dip 、分辨率、屏幕尺寸、px、density 关系以及换算 - 人间奇迹 - 博客园_files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/yaozhongxiao/">人间奇迹</a><br>
+            <a href="http://home.cnblogs.com/u/yaozhongxiao/followees">关注 - 0</a><br>
+            <a href="http://home.cnblogs.com/u/yaozhongxiao/followers">粉丝 - 93</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;2c676f59-0546-de11-9510-001cf0cd104b&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(3842908,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">12</span>
+    </div>
+    <div class="buryit" onclick="votePost(3842908,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/yaozhongxiao/p/3833116.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/yaozhongxiao/p/3833116.html" title="发布于2014-07-09 10:56">gdb 调试</a><br><a href="http://www.cnblogs.com/yaozhongxiao/p/3864868.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/yaozhongxiao/p/3864868.html" title="发布于2014-07-24 09:55">webview渲染流程</a><br></div>
+</div>
+
+
+	<div class="postDesc">posted on <span id="post-date">2014-07-14 16:06</span> <a href="http://www.cnblogs.com/yaozhongxiao/">人间奇迹</a> 阅读(<span id="post_view_count">132274</span>) 评论(<span id="post_comment_count">22</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=3842908" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#" onclick="AddToWz(3842908);return false;">收藏</a></div>
+</div>
+<script type="text/javascript">var allowComments=true,cb_blogId=56651,cb_entryId=3842908,cb_blogApp=currentBlogApp,cb_blogUserGuid='2c676f59-0546-de11-9510-001cf0cd104b',cb_entryCreatedDate='2014/7/14 16:06:00';loadViewCount(cb_entryId);</script>
+
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<br>
+<b>FeedBack:</b>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3168693" class="layer">#1楼</a><a name="3168693" id="comment_anchor_3168693"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2015-04-23 09:46</span> | <a id="a_comment_author_3168693" href="http://www.cnblogs.com/gagarinwjj/" target="_blank">凌晨风</a> <a href="http://msg.cnblogs.com/send/%E5%87%8C%E6%99%A8%E9%A3%8E" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3168693" class="blog_comment_body">精简扼要，言简意赅！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3168693,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3168693,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3168693_avatar" style="display:none;">http://pic.cnblogs.com/face/486719/20140312140300.png</span>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3200453" class="layer">#2楼</a><a name="3200453" id="comment_anchor_3200453"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2015-06-04 15:37</span> | <a id="a_comment_author_3200453" href="http://home.cnblogs.com/u/765704/" target="_blank">写神码</a> <a href="http://msg.cnblogs.com/send/%E5%86%99%E7%A5%9E%E7%A0%81" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3200453" class="blog_comment_body">搜遍百度也就作者这篇博文分析的比较到位了，阅读过程中能感受到博主的认真与用心，特意注册个博客园的账号来此评论。另，我把该博文转载至我的csdn了，博主不会介意吧？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3200453,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3200453,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3201700" class="layer">#3楼</a><a name="3201700" id="comment_anchor_3201700"></a>[<span class="louzhu">楼主</span>]</div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2015-06-05 21:20</span> | <a id="a_comment_author_3201700" href="http://www.cnblogs.com/yaozhongxiao/" target="_blank">人间奇迹</a> <a href="http://msg.cnblogs.com/send/%E4%BA%BA%E9%97%B4%E5%A5%87%E8%BF%B9" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3201700" class="blog_comment_body"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3200453" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3200453);">@</a>
+写神码<br>注明出去哦 ^_^</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3201700,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3201700,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3201701" class="layer">#4楼</a><a name="3201701" id="comment_anchor_3201701"></a>[<span class="louzhu">楼主</span>]</div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2015-06-05 21:20</span> | <a id="a_comment_author_3201701" href="http://www.cnblogs.com/yaozhongxiao/" target="_blank">人间奇迹</a> <a href="http://msg.cnblogs.com/send/%E4%BA%BA%E9%97%B4%E5%A5%87%E8%BF%B9" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3201701" class="blog_comment_body"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3200453" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3200453);">@</a>
+写神码<br>多多交流</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3201701,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3201701,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3245493" class="layer">#5楼</a><a name="3245493" id="comment_anchor_3245493"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2015-08-11 14:04</span> | <a id="a_comment_author_3245493" href="http://home.cnblogs.com/u/636697/" target="_blank">suxue</a> <a href="http://msg.cnblogs.com/send/suxue" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3245493" class="blog_comment_body">写得真好 简单 明了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3245493,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3245493,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3259485" class="layer">#6楼</a><a name="3259485" id="comment_anchor_3259485"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2015-09-03 16:38</span> | <a id="a_comment_author_3259485" href="http://www.cnblogs.com/yc3120/" target="_blank">输入不可为空</a> <a href="http://msg.cnblogs.com/send/%E8%BE%93%E5%85%A5%E4%B8%8D%E5%8F%AF%E4%B8%BA%E7%A9%BA" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3259485" class="blog_comment_body">由 px = dp * (dpi / 160)<br>你的出：<br>就是说在160dpi的屏幕上，1dip=1px。<br>　　它跟屏幕密度有关，如果屏幕密度大，1dip代表的px就多，比如在320dpi的屏幕上，1dip=2px。<br><br>不应该是：<br>就是说在160dpi的屏幕上，1dip=1px。<br>　　它跟屏幕密度有关，如果屏幕密度大，1dip代表的px就多，比如在320dpi的屏幕上，1px=2dp即：1dip=1/2px吗？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3259485,&#39;Digg&#39;,this)">支持(4)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3259485,&#39;Bury&#39;,this)">反对(3)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3274811" class="layer">#7楼</a><a name="3274811" id="comment_anchor_3274811"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2015-09-25 19:40</span> | <a id="a_comment_author_3274811" href="http://home.cnblogs.com/u/816305/" target="_blank">welcometoken</a> <a href="http://msg.cnblogs.com/send/welcometoken" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3274811" class="blog_comment_body">老师您好！“比如一个机器，屏幕4寸，分辨率480X800，他的dpi能算么。”应该是4英寸，寸是中国古代采用的。还有在印刷中一般用DPI，电子一般用PPI。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3274811,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3274811,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3423860" class="layer">#8楼</a><a name="3423860" id="comment_anchor_3423860"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2016-05-05 21:58</span> | <a id="a_comment_author_3423860" href="http://home.cnblogs.com/u/631642/" target="_blank">wliuxingxingyu</a> <a href="http://msg.cnblogs.com/send/wliuxingxingyu" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3423860" class="blog_comment_body">超赞~~</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3423860,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3423860,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3427807" class="layer">#9楼</a><a name="3427807" id="comment_anchor_3427807"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2016-05-10 16:33</span> | <a id="a_comment_author_3427807" href="http://home.cnblogs.com/u/953699/" target="_blank">dsaw</a> <a href="http://msg.cnblogs.com/send/dsaw" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3427807" class="blog_comment_body">前面写的不错，后面完全是误导人</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3427807,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3427807,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3427815" class="layer">#10楼</a><a name="3427815" id="comment_anchor_3427815"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2016-05-10 16:34</span> | <a id="a_comment_author_3427815" href="http://home.cnblogs.com/u/953699/" target="_blank">dsaw</a> <a href="http://msg.cnblogs.com/send/dsaw" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3427815" class="blog_comment_body"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3259485" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3259485);">@</a>
+输入不可为空<br>我也这么觉得，说写的好的再仔细想下</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3427815,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3427815,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3437471" class="layer">#11楼</a><a name="3437471" id="comment_anchor_3437471"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2016-05-23 16:41</span> | <a id="a_comment_author_3437471" href="http://www.cnblogs.com/lordrobert/" target="_blank">罗伯特大人</a> <a href="http://msg.cnblogs.com/send/%E7%BD%97%E4%BC%AF%E7%89%B9%E5%A4%A7%E4%BA%BA" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3437471" class="blog_comment_body">后面dpi和dip混用。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3437471,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3437471,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3442625" class="layer">#12楼</a><a name="3442625" id="comment_anchor_3442625"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2016-05-31 10:29</span> | <a id="a_comment_author_3442625" href="http://www.cnblogs.com/jfei/" target="_blank">hanrong</a> <a href="http://msg.cnblogs.com/send/hanrong" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3442625" class="blog_comment_body"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3259485" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3259485);">@</a>
+输入不可为空<br>当dpi=320（像素/英寸）时，1dp=2px。<br>value_px=value_dp*(value_dpi/160)。<br><br>类比：<br>1m=100cm。<br>value_cm=value_m*100。<br>你以为这条表达式表达的是1厘米等于100米，其实他表达的是...不知道怎么说。就是用这两个单位表示同一个长度，使用m作为单位它前面需要放的数量的100倍等于使用cm作为单位它前面需要放的数量。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3442625,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3442625,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3442639" class="layer">#13楼</a><a name="3442639" id="comment_anchor_3442639"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2016-05-31 10:43</span> | <a id="a_comment_author_3442639" href="http://www.cnblogs.com/jfei/" target="_blank">hanrong</a> <a href="http://msg.cnblogs.com/send/hanrong" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3442639" class="blog_comment_body"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3427815" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3427815);">@</a>
+dsaw<br>当dpi=320（像素/英寸）时，1dp=2px。<br>value_px=value_dp*(value_dpi/160)。<br><br>类比：<br>1m=100cm。<br>value_cm=value_m*100。<br>你以为这条表达式表达的是1厘米等于100米，其实他表达的是...不知道怎么说。就是用这两个单位表示同一个长度，使用m作为单位它前面需要放的数量的100倍等于使用cm作为单位它前面需要放的数量。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3442639,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3442639,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3456369" class="layer">#14楼</a><a name="3456369" id="comment_anchor_3456369"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2016-06-21 18:22</span> | <a id="a_comment_author_3456369" href="http://www.cnblogs.com/vieri122/" target="_blank">vieri122</a> <a href="http://msg.cnblogs.com/send/vieri122" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3456369" class="blog_comment_body">无意中看到这篇文章，楼主后面写的确实有问题。google的原文： px = dp * (dpi / 160).<br>如果设备是320dpi的话，px=2dp。语义上应该这么理解：一个px可以容纳更多的dp，从而显示更加细腻。楼主后面正好说反了。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3456369,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3456369,&#39;Bury&#39;,this)">反对(2)</a></div><span id="comment_3456369_avatar" style="display:none;">http://pic.cnblogs.com/face/u47059.jpg</span>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3505542" class="layer">#15楼</a><a name="3505542" id="comment_anchor_3505542"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2016-09-07 20:19</span> | <a id="a_comment_author_3505542" href="http://home.cnblogs.com/u/1022700/" target="_blank">liujikai</a> <a href="http://msg.cnblogs.com/send/liujikai" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3505542" class="blog_comment_body">请看hanrong的回答，我觉得谷歌   px = dp * (dpi / 160)  的意思是：给dp的值乘以(dpi/160)就是px的值。 类比：相同的长度，以厘米做单位时的数值是以米作单位的100倍。<br>楼上说楼主说的有问题的请看楼主引用的google文档：<br>The conversion of dp units to screen pixels is simple: px = dp * (dpi / 160). For example, on a 240 dpi screen, 1 dp equals 1.5 physical pixels.   <br>后面说的很清楚：在240dpi的屏幕上，1dp等于1.5px<br><br>上面是我的理解，与hanrong的相同，有不同理解的朋友可以再讨论。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3505542,&#39;Digg&#39;,this)">支持(2)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3505542,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3550431" class="layer">#16楼</a><a name="3550431" id="comment_anchor_3550431"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2016-11-07 19:20</span> | <a id="a_comment_author_3550431" href="http://home.cnblogs.com/u/812288/" target="_blank">起风</a> <a href="http://msg.cnblogs.com/send/%E8%B5%B7%E9%A3%8E" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3550431" class="blog_comment_body">看了评论，又认真想了下，认为楼主写的没错。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3550431,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3550431,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3570966" class="layer">#17楼</a><a name="3570966" id="comment_anchor_3570966"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2016-12-02 16:00</span> | <a id="a_comment_author_3570966" href="http://home.cnblogs.com/u/1074058/" target="_blank">timmy_wang</a> <a href="http://msg.cnblogs.com/send/timmy_wang" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3570966" class="blog_comment_body"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3259485" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3259485);">@</a>
+输入不可为空<br><fieldset class="comment_quote"><legend><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3259485" title="查看引用原文">引用</a></legend>由 px = dp * (dpi / 160)<br>你的出：<br>就是说在160dpi的屏幕上，1dip=1px。<br>　　它跟屏幕密度有关，如果屏幕密度大，1dip代表的px就多，比如在320dpi的屏幕上，1dip=2px。<br><br>不应该是：<br>就是说在160dpi的屏幕上，1dip=1px。<br>　　它跟屏幕密度有关，如果屏幕密度大，1dip代表的px就多，比如在320dpi的屏幕上，1px=2dp即：1dip=1/2px吗？</fieldset><br><br><br>这个谷歌公式你理解吗？ 左边的px是计算结果，表示对应分辨率（dpi）屏幕上多少dip等于多少px，你最后直接1px=2dp？ 这个1px你凭空造出来的吗？ dpi与屏幕分辨率成正比</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3570966,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3570966,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3570971" class="layer">#18楼</a><a name="3570971" id="comment_anchor_3570971"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2016-12-02 16:05</span> | <a id="a_comment_author_3570971" href="http://home.cnblogs.com/u/1074058/" target="_blank">timmy_wang</a> <a href="http://msg.cnblogs.com/send/timmy_wang" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3570971" class="blog_comment_body"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3568855" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3568855);">@</a>
+cyh41<br><fieldset class="comment_quote"><legend><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3568855" title="查看引用原文">引用</a></legend>独立像素怎么可能是物理像素的两倍，楼主你说反了。</fieldset><br>那你的意思是独立像是物理下你告诉的二分一？<br>那么100dip的图片在160dpi的屏幕上是100px，在320dpi的屏幕上就是50px？<br>也就是说这张图在160dpi屏幕实际大小是100/160英尺，在320dpi屏幕上是50/320英尺？ 100/160 50/320 比一下即低分辨率屏幕上的实际入眼尺寸是高分辨率屏幕上的4倍？那这个独立像素存在意义是什么？<br><br><br>把我搞蒙圈了，又看了一下，在320dpi上的屏幕上独立像素是物理像素的两倍<br>这么一看，我最初的言论没啥问题。我当时看完贴主的文章，本来是明白的，看了下面的评论又被绕晕乎了，于是就又看了几遍。发现有几个评论并不正确，一时气急，言语不逊，真是不好意思了。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3570971,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3570971,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3571035" class="layer">#19楼</a><a name="3571035" id="comment_anchor_3571035"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2016-12-02 17:11</span> | <a id="a_comment_author_3571035" href="http://home.cnblogs.com/u/1045138/" target="_blank">cyh41</a> <a href="http://msg.cnblogs.com/send/cyh41" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3571035" class="blog_comment_body"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3570971" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3570971);">@</a>
+timmy_wang<br>我现在有点晕，在理一下思路，感觉又错了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3571035,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3571035,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3571060" class="layer">#20楼</a><a name="3571060" id="comment_anchor_3571060"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2016-12-02 17:40</span> | <a id="a_comment_author_3571060" href="http://home.cnblogs.com/u/1045138/" target="_blank">cyh41</a> <a href="http://msg.cnblogs.com/send/cyh41" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3571060" class="blog_comment_body"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3570971" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3570971);">@</a>
+timmy_wang<br><br>iphone3gs下dpi=160,dpr=1,320px =320dp，物理像素=独立像素<br>px = dp * (dpi / 160) <br>iphone4下dpi=320,dpr=2,640px=320dp即2px=1dp，独立像素确实是物理像素的两倍。所以楼主还是没错的，是我回复错了，感觉自己数学严重不过关，而且刚刚不应该拿4跟5比。<br>这次应该没问题，太晕了。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3571060,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3571060,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3571062" class="layer">#21楼</a><a name="3571062" id="comment_anchor_3571062"></a></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2016-12-02 17:41</span> | <a id="a_comment_author_3571062" href="http://home.cnblogs.com/u/1045138/" target="_blank">cyh41</a> <a href="http://msg.cnblogs.com/send/cyh41" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3571062" class="blog_comment_body"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3570971" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3570971);">@</a>
+timmy_wang<br>是的，其实你的言论是对的，我虽然后面回复你是对的，但是我最初的评论是错的。而且技术上的讨论太激动很正常的，我有时候也会这样。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3571062,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3571062,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListTitle"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3674602" class="layer">#22楼</a><a name="3674602" id="comment_anchor_3674602"></a><span id="comment-maxId" style="display:none;">3674602</span><span id="comment-maxDate" style="display:none;">2017/4/23 0:16:22</span></div>
+			<div class="feedbackListSubtitle">
+				 <span class="comment_date">2017-04-23 00:16</span> | <a id="a_comment_author_3674602" href="http://www.cnblogs.com/tinyclear/" target="_blank">放纵的卡尔</a> <a href="http://msg.cnblogs.com/send/%E6%94%BE%E7%BA%B5%E7%9A%84%E5%8D%A1%E5%B0%94" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3674602" class="blog_comment_body"><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#3259485" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3259485);">@</a>
+输入不可为空<br>你理解错使用场景了:<br>现在我对一个控件设定长度为100dp,我需要在代码中写出实际的px值.因为代码中是以px为单位.xml中直接写是因为系统帮你自动转换了.所以,才用上面的公式.<br>160dpi的设备上是100px,320的是200px.</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3674602,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3674602,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3674602_avatar" style="display:none;">http://pic.cnblogs.com/face/871277/20161119130546.png</span>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+
+
+
+<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/yaozhongxiao/archive/2014/07/14/3842908.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/574365/" target="_blank">资不抵债，是什么造成了Pepper机器人的困窘？</a><br> ·  <a href="http://news.cnblogs.com/n/574364/" target="_blank">摩拜推出新福利：2元月卡、5元季卡</a><br> ·  <a href="http://news.cnblogs.com/n/574363/" target="_blank">支付宝铂金会员出国旅游有特权：可享受更优汇率</a><br> ·  <a href="http://news.cnblogs.com/n/574362/" target="_blank">哈罗单车进军景区市场 盈利将与景区分成</a><br> ·  <a href="http://news.cnblogs.com/n/574361/" target="_blank">陆金所企鹅问答发声明回应传闻：运营一切正常</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/570194/" target="_blank">小printf的故事：什么是真正的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/569992/" target="_blank">程序员的工作、学习与绩效</a><br> ·  <a href="http://kb.cnblogs.com/page/569056/" target="_blank">软件开发为什么很难</a><br> ·  <a href="http://kb.cnblogs.com/page/565901/" target="_blank">唱吧DevOps的落地，微服务CI/CD的范本技术解读</a><br> ·  <a href="http://kb.cnblogs.com/page/566523/" target="_blank">程序员，如何从平庸走向理想？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+</div>
+
+<!--done-->
+<div class="footer">
+	
+	Copyright ©2017 人间奇迹 Powered By<a href="http://www.cnblogs.com/">博客园</a> 模板提供：<a href="http://blog.hjenglish.com/">沪江博客</a>
+</div>
+
+
+</body></html>

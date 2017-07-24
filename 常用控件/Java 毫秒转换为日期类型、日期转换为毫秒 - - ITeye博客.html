@@ -1,0 +1,513 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0043)http://king123654789.iteye.com/blog/1038862 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Java 毫秒转换为日期类型、日期转换为毫秒 -  - ITeye博客</title>
+    <meta name="description" content="//毫秒转换为日期   public static void main(String[] args) {      DateFormat formatter = new SimpleDateFormat(&quot;yyyy-MM-dd hh:mm:ss&quot;);        long now = System.currentTimeMillis();        Calendar cal ...">
+    <meta name="keywords" content="Java Java 毫秒转换为日期类型、日期转换为毫秒">
+    <link rel="shortcut icon" href="http://king123654789.iteye.com/images/favicon.ico" type="image/x-icon">
+    <link rel="search" type="application/opensearchdescription+xml" href="http://king123654789.iteye.com/open_search.xml" title="ITeye">
+    <link href="http://king123654789.iteye.com/rss" rel="alternate" title="" type="application/rss+xml">
+    <link href="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/blog.css" media="screen" rel="stylesheet" type="text/css">
+<link href="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/blue.css" media="screen" rel="stylesheet" type="text/css">
+    <script type="text/javascript" async="" src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/dcvm"></script><script src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/ca-pub-8990951720398508.js.下载"></script><script type="text/javascript" async="" src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/dcvm(1)"></script><script src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/hm.js.下载"></script><script src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/application.js.下载" type="text/javascript"></script>    
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?e19a8b00cf63f716d774540875007664";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+      <link href="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/SyntaxHighlighter.css" media="screen" rel="stylesheet" type="text/css">
+  <script src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/shCoreCommon.js.下载" type="text/javascript"></script>
+<script src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/hotkey.js.下载" type="text/javascript"></script>
+  <script src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/code_favorites.js.下载" type="text/javascript"></script>
+<script src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/weiboshare.js.下载" type="text/javascript"></script>
+
+    
+  </head>
+  <body>
+    <div id="header">
+	      <div id="blog_site_nav">
+  <a href="http://www.iteye.com/" class="homepage">首页</a>
+  <a href="http://www.iteye.com/news">资讯</a>
+  <a href="http://www.iteye.com/magazines">精华</a>
+  <a href="http://www.iteye.com/forums">论坛</a>
+  <a href="http://www.iteye.com/ask">问答</a>
+  <a href="http://www.iteye.com/blogs">博客</a>
+  <a href="http://www.iteye.com/blogs/subjects">专栏</a>
+  <a href="http://www.iteye.com/groups">群组</a>
+  <a href="http://king123654789.iteye.com/blog/1038862#" onclick="return false;" id="msna"><u>更多</u> <small>▼</small></a>
+  <div class="quick_menu" style="display:none;">
+    <a target="_blank" href="http://job.iteye.com/iteye">知识库</a>
+    <a href="http://www.iteye.com/search">搜索</a>
+  </div>
+</div>
+
+	      <div id="user_nav">
+  <span style="color:red;">因系统升级，暂停注册。稍后将全面支持使用CSDN帐号进行注册及登录</span>
+  
+      <a href="http://king123654789.iteye.com/login" class="welcome" title="登录">您还未登录 !</a>
+    <a href="http://king123654789.iteye.com/login">登录</a>
+  </div>
+
+	    
+    </div>
+
+    <div id="page">
+        <div id="branding" class="clearfix" style="overflow: hidden;background: none;padding:0 0 2px;">
+          <script type="text/javascript">
+            /*Iteye博客内页顶部通栏-960*90，创建于 2016-08-01*/
+            var cpro_id = "u2720131";
+          </script>
+          <script type="text/javascript" src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/c.js.下载"></script><div id="BAIDU_SSP__wrapper_u2720131_0"></div>
+        </div>
+      <div id="branding" class="clearfix">
+        <div id="blog_name">
+          <h1><a href="http://king123654789.iteye.com/">king123654789</a></h1>
+        </div>
+        <div id="fd"></div>
+        <div id="blog_navbar">
+          <ul>
+            <li class="blog_navbar_for"><a href="http://king123654789.iteye.com/"><strong>博客</strong></a></li>
+            <li><a href="http://king123654789.iteye.com/weibo">微博</a></li>
+            <li><a href="http://king123654789.iteye.com/album">相册</a></li>
+            <li><a href="http://king123654789.iteye.com/link">收藏</a></li>
+            <li><a href="http://king123654789.iteye.com/blog/guest_book">留言</a></li>
+            <li><a href="http://king123654789.iteye.com/blog/profile">关于我</a></li>
+          </ul>
+    
+          <div class="search">
+            <form action="http://king123654789.iteye.com/blog/search" method="get">
+              <input class="search_text" id="query" name="query" style="margin-left: 10px;width: 110px;" type="text" value="">
+              <input class="submit_search" type="submit" value="">
+            </form>
+          </div> 
+          <div id="fd"></div>         
+        </div>
+      </div>
+      
+      <div id="content" class="clearfix">
+        <div id="main">
+          
+
+
+
+          
+
+
+<div class="h-entry" style="display:none">
+  <a href="http://king123654789.iteye.com/" class="p-author" target="_blank">king123654789</a>
+</div>
+
+
+<div class="blog_main">
+  <div class="blog_title">
+    <h3>
+      <a href="http://king123654789.iteye.com/blog/1038862">Java 毫秒转换为日期类型、日期转换为毫秒</a>
+      <em class="actions">      </em>
+    </h3>
+    <ul class="blog_categories"><strong>博客分类：</strong> <li><a href="http://king123654789.iteye.com/category/229170">Java</a></li> </ul>
+        <div class="news_tag"><a href="http://www.iteye.com/blogs/tag/Java">Java</a>&nbsp;</div>
+    	  
+    	
+    	
+  		
+      </div>
+
+  <div id="blog_content" class="blog_content">
+    <p>//毫秒转换为日期</p>
+<p> public static void main(String[] args) {<br>      DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");</p>
+<p>      long now = System.currentTimeMillis();</p>
+<p>      Calendar calendar = Calendar.getInstance();<br>      calendar.setTimeInMillis(now);</p>
+<p>      System.out.println(now + " = " + formatter.format(calendar.getTime()));</p>
+<p>  // 日期转换为毫秒 两个日期想减得到天数</p>
+<p>     SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");<br>     String start="2011-09-20 12:30:45";<br>     String end ="2011-10-20 6:30:00";<br>     //得到毫秒数<br>     long timeStart=sdf.parse(start).getTime();<br>     long timeEnd =sdf.parse(end).getTime();<br>     //两个日期想减得到天数<br>     long dayCount= (timeEnd-timeStart)/(24*3600*1000);<br>     System.out.println(dayCount);</p>
+<p>  }</p>
+  </div>
+
+  
+
+  
+      <script type="text/javascript"><!--
+      google_ad_client = "ca-pub-8990951720398508";
+      /* iteye博客内页Banner-728*90 */
+      google_ad_slot = "8267689356/1918544322";
+      google_ad_width = 728;
+      google_ad_height = 90;
+      //-->
+      </script>
+      <script type="text/javascript" src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/show_ads.js.下载">
+      </script><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;width:728px;height:90px;" src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/saved_resource.html"></iframe></ins></ins>
+  
+
+  <div id="bottoms" class="clearfix">
+    
+    <div id="share_weibo">分享到：
+      <a data-type="sina" href="javascript:;" title="分享到新浪微博"><img src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/sina.jpg"></a>
+      <a data-type="qq" href="javascript:;" title="分享到腾讯微博"><img src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/tec.jpg"></a>
+    </div>
+  </div>
+
+  <div class="blog_nav">
+    <div class="pre_next">
+      <a href="http://king123654789.iteye.com/blog/1130420" class="next" title="多库SQL union 查询">多库SQL union 查询</a>
+      |
+      <a href="http://king123654789.iteye.com/blog/1013213" class="pre" title="JSTL 分页">JSTL 分页</a>
+    </div>
+  </div>
+  <div class="blog_bottom">
+    <ul>
+      <li>2011-05-10 12:50</li>
+      <li>浏览 59256</li>
+      <li><a href="http://king123654789.iteye.com/blog/1038862#comments">评论(0)</a></li>
+      
+      
+      <li>分类:<a href="http://www.iteye.com/blogs/category/language">编程语言</a></li>      
+      <li class="last"><a href="http://www.iteye.com/wiki/blog/1038862" target="_blank" class="more">相关推荐</a></li>
+    </ul>    
+  </div>
+  
+		    
+		
+<div class="boutique-curr-box blog_comment">
+	  <div class="boutique-curr clearfix">
+	    <h5 class="h3titles">参考知识库</h5>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/javase"><img src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/1453169124297_297.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/javase" classs="title">Java SE知识库</a>
+              <span>
+                 <em>27443</em>&nbsp;&nbsp;关注 <i>|</i> <em>578</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/java"><img src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/1453701371636_636.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/java" classs="title">Java 知识库</a>
+              <span>
+                 <em>30583</em>&nbsp;&nbsp;关注 <i>|</i> <em>3746</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/javaee"><img src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/1456818035722_722.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/javaee" classs="title">Java EE知识库</a>
+              <span>
+                 <em>20433</em>&nbsp;&nbsp;关注 <i>|</i> <em>1414</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/javascript"><img src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/1458106113412_412.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/javascript" classs="title">JavaScript知识库</a>
+              <span>
+                 <em>15938</em>&nbsp;&nbsp;关注 <i>|</i> <em>1517</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/jquery"><img src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/1459143634568_568.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/jquery" classs="title">jQuery知识库</a>
+              <span>
+                 <em>9772</em>&nbsp;&nbsp;关注 <i>|</i> <em>948</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/angularjs"><img src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/1458526868366_366.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/angularjs" classs="title">AngularJS知识库</a>
+              <span>
+                 <em>5172</em>&nbsp;&nbsp;关注 <i>|</i> <em>586</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	  </div>
+</div>
+ 		
+      
+  <div class="blog_comment">
+    <h5>评论</h5>
+    <a id="comments" name="comments"></a>
+    
+    
+    
+  </div>
+
+  <div class="blog_comment">
+    <h5>发表评论</h5>
+            <p style="text-align:center; margin-top:30px;margin-bottom:0px;"><a href="http://king123654789.iteye.com/login" style="background-color:white;"> <img src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/login_icon.png" style="vertical-align:middle; margin-right: 10px;"></a><a href="http://king123654789.iteye.com/login">  您还没有登录,请您登录后再发表评论 </a></p>
+      </div>
+</div>
+
+
+<script type="text/javascript">
+  dp.SyntaxHighlighter.HighlightAll('code', true, true);
+
+  $$('#main .blog_content pre[name=code]').each(function(pre, index){ // blog content
+    var post_id = 1038862;
+    var location = window.location;
+    source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+    pre.writeAttribute('codeable_id', post_id);
+    pre.writeAttribute('codeable_type', "Blog");
+    pre.writeAttribute('source_url', source_url);
+    pre.writeAttribute('pre_index', index);
+    pre.writeAttribute('title', 'Java 毫秒转换为日期类型、日期转换为毫秒');
+  });
+
+  fix_image_size($$('div.blog_content img'), 700);
+
+  function processComment() {
+    $$('#main .blog_comment > div').each(function(comment){// comment
+      var post_id = comment.id.substr(2);
+      $$("#"+comment.id+" pre[name=code]").each(function(pre, index){
+        var location = window.location;
+        source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+        source_url += "#" + comment.id;
+        pre.writeAttribute('codeable_id', post_id);
+        pre.writeAttribute('codeable_type', "BlogComment");
+        pre.writeAttribute('source_url', source_url);
+        pre.writeAttribute('pre_index', index);
+        pre.writeAttribute('title', 'Java 毫秒转换为日期类型、日期转换为毫秒');
+      });
+    });
+  }
+
+  function quote_comment(id) {
+    new Ajax.Request('/editor/quote', {
+      parameters: {'id':id, 'type':'BlogComment'},
+      onSuccess:function(response){editor.bbcode_editor.textarea.insertAfterSelection(response.responseText);
+        Element.scrollTo(editor.bbcode_editor.textarea.element);}
+    });
+  }
+
+  code_favorites_init();
+  processComment();
+  new WeiboShare({share_buttons: $('share_weibo'), img_scope: $('blog_content')});
+</script>
+
+
+
+
+        </div>
+
+        <div id="local">
+          <div class="local_top"></div>
+          <div id="blog_owner">
+  <div id="blog_owner_logo"><a href="http://king123654789.iteye.com/"><img alt="king123654789的博客" class="logo" src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/a495d554-59ad-3317-8055-f57d1f4c549d.jpg" title="king123654789的博客: " width=""></a></div>
+  <div id="blog_owner_name">king123654789</div>
+</div>
+
+          <div id="blog_actions">
+            <ul>
+              <li>浏览: 182255 次</li>
+              <li>性别: <img alt="Icon_minigender_1" src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/icon_minigender_1.gif" title="男"></li>
+              <li>来自: 北京</li>
+              <li><img src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/offline.gif"></li>
+              
+            </ul>
+          </div>
+          <div id="user_visits" class="clearfix">
+            <h5>最近访客 <span style="font-weight:normal;font-size:12px;padding-left:30px;"><a href="http://king123654789.iteye.com/blog/user_visits">更多访客&gt;&gt;</a></span></h5>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://zhongwencool.iteye.com/" target="_blank"><img alt="zhongwencool的博客" class="logo" src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/5452e67f-a33a-31b0-aba2-a353f8ebe6ec-thumb.png" title="zhongwencool的博客: 一个人的村庄" width="48px"></a></div>
+                <div class="left"><a href="http://zhongwencool.iteye.com/" target="_blank" title="zhongwencool">zhongwencool</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://wwy0612.iteye.com/" target="_blank"><img alt="勇敢的心Y的博客" class="logo" src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/4eea41e8-681b-313f-a4d8-4bf7c3663c65-thumb.jpg" title="勇敢的心Y的博客: 勇敢的心Y" width="48px"></a></div>
+                <div class="left"><a href="http://wwy0612.iteye.com/" target="_blank" title="勇敢的心Y">勇敢的心Y</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://wjohnltj.iteye.com/" target="_blank"><img alt="wjohnltj的博客" class="logo" src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/user-logo-thumb.gif" title="wjohnltj的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://wjohnltj.iteye.com/" target="_blank" title="wjohnltj">wjohnltj</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://huangskery.iteye.com/" target="_blank"><img alt="huangskery的博客" class="logo" src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/user-logo-thumb.gif" title="huangskery的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://huangskery.iteye.com/" target="_blank" title="huangskery">huangskery</a></div>
+              </div>
+            
+          </div>
+
+          
+
+                      <div id="blog_menu">
+              <h5>文章分类</h5>
+              <ul>
+                <li><a href="http://king123654789.iteye.com/">全部博客 (61)</a></li>
+                
+                  <li><a href="http://king123654789.iteye.com/category/171863">oracle 数据库 (7)</a></li>
+                
+                  <li><a href="http://king123654789.iteye.com/category/192888">db2 (3)</a></li>
+                
+                  <li><a href="http://king123654789.iteye.com/category/192889">mysql (6)</a></li>
+                
+                  <li><a href="http://king123654789.iteye.com/category/192890">SSO (2)</a></li>
+                
+                  <li><a href="http://king123654789.iteye.com/category/197203">jstl (4)</a></li>
+                
+                  <li><a href="http://king123654789.iteye.com/category/211822">Json (1)</a></li>
+                
+                  <li><a href="http://king123654789.iteye.com/category/229170">Java (12)</a></li>
+                
+                  <li><a href="http://king123654789.iteye.com/category/229894">JS (3)</a></li>
+                
+                  <li><a href="http://king123654789.iteye.com/category/231081">Linux (4)</a></li>
+                
+                  <li><a href="http://king123654789.iteye.com/category/236519">开发软件 (4)</a></li>
+                
+                  <li><a href="http://king123654789.iteye.com/category/236521">Jquery (3)</a></li>
+                
+                  <li><a href="http://king123654789.iteye.com/category/236522">其他 (6)</a></li>
+                
+                  <li><a href="http://king123654789.iteye.com/category/236524">XML (1)</a></li>
+                
+                  <li><a href="http://king123654789.iteye.com/category/243517">jfreechart (1)</a></li>
+                
+                  <li><a href="http://king123654789.iteye.com/category/267743">JSP (1)</a></li>
+                
+                  <li><a href="http://king123654789.iteye.com/category/294090">学习网站 (1)</a></li>
+                
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>社区版块</h5>
+              <ul>
+                <li><a href="http://king123654789.iteye.com/blog/news">我的资讯</a> (0)</li>
+                <li>
+                  <a href="http://king123654789.iteye.com/blog/post">我的论坛</a> (1)
+                </li>
+                <li><a href="http://king123654789.iteye.com/blog/answered_problems">我的问答</a> (0)</li>
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>存档分类</h5>
+              <ul>
+                
+                  <li><a href="http://king123654789.iteye.com/blog/monthblog/2016-07">2016-07</a> (1)</li>
+                
+                  <li><a href="http://king123654789.iteye.com/blog/monthblog/2016-01">2016-01</a> (1)</li>
+                
+                  <li><a href="http://king123654789.iteye.com/blog/monthblog/2015-05">2015-05</a> (1)</li>
+                
+                <li><a href="http://king123654789.iteye.com/blog/monthblog_more">更多存档...</a></li>
+              </ul>
+            </div>
+            
+            
+
+            <div id="guest_books">
+              <h5>最新评论</h5>
+              <ul>
+                
+                <li>
+                  <a href="http://zkshun12.iteye.com/" target="_blank" title="zkshun12">zkshun12</a>： 
+                  请问cas登录成功后返回更多信息的那块儿可不可以配置成多个查询 ...<br>
+                  <a href="http://king123654789.iteye.com/blog/1172378#bc2332109">SSO与CAS</a>
+                </li>
+                
+                <li>
+                  <a href="http://killer-jok.iteye.com/" target="_blank" title="KillEr_Jok">KillEr_Jok</a>： 
+                  写的很好！明白了。谢谢LZ<br>
+                  <a href="http://king123654789.iteye.com/blog/1296492#bc2296818">DB2 Catalog使用及浅析</a>
+                </li>
+                
+                <li>
+                  <a href="http://bgolovelc.iteye.com/" target="_blank" title="bgolovelc">bgolovelc</a>： 
+                  &nbsp;&nbsp;<br>
+                  <a href="http://king123654789.iteye.com/blog/1197317#bc2236338">struts 利用Jdom 生成xml字符串</a>
+                </li>
+                
+                <li>
+                  <a href="http://bgolovelc.iteye.com/" target="_blank" title="bgolovelc">bgolovelc</a>： 
+                  &nbsp;<br>
+                  <a href="http://king123654789.iteye.com/blog/1197317#bc2236337">struts 利用Jdom 生成xml字符串</a>
+                </li>
+                
+              </ul>
+            </div>
+
+            <div class="local_bottom"></div>
+          
+        </div>
+        <div style="margin-top: 10px;float: left;clear: left;">
+          <script type="text/javascript">
+            /*iteye博客内页左侧Button-200*200，创建于2016-08-01*/
+            var cpro_id = "u2720202";
+          </script>
+          <script type="text/javascript" src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/c.js.下载"></script><div id="BAIDU_SSP__wrapper_u2720202_0"></div>
+				</div>
+      </div>    
+
+      <div id="footer" class="clearfix">
+        <div id="copyright">
+          <hr>
+          声明：ITeye文章版权属于作者，受法律保护。没有作者书面许可不得转载。若作者同意转载，必须以超链接形式标明文章原始出处和作者。<br>
+          © 2003-2017 ITeye.com.   All rights reserved.  [ 京ICP证110151号  京公网安备110105010620 ]
+        </div>
+        <div style="position: fixed;bottom:0px;right:0px;line-height:0px;z-index:1000;">
+          <script type="text/javascript"><!--
+          google_ad_client = "ca-pub-8990951720398508";
+          /* iteye博客内页弹窗-300*250 */
+          google_ad_slot = "8267689356/5752063962";
+          google_ad_width = 300;
+          google_ad_height = 250;
+          //-->
+          </script>
+          <script type="text/javascript" src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/show_ads.js.下载">
+          </script><ins id="aswift_1_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe width="300" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;width:300px;height:250px;" src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/saved_resource(1).html"></iframe></ins></ins>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+  document.write("<img src='http://stat.iteye.com/?url="+ encodeURIComponent(document.location.href) + "&referrer=" + encodeURIComponent(document.referrer) + "&user_id=' width='0' height='0' />");
+</script><img src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/saved_resource" width="0" height="0">
+
+<script src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/tracking.js.下载" type="text/javascript"></script>
+
+    
+    
+    <script language="javascript" type="text/javascript" src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/async_new.js.下载"></script>
+<script src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/jquery-1.11.1.min.js.下载" type="text/javascript"></script>
+<script type="text/javascript">var $csdn_iteye_jq = jQuery.noConflict();// 解决jq与prototype.js命名空间冲突的问题</script>
+<script src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/tracking.js(1).下载" type="text/javascript"></script>
+    
+	    
+	    <script src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/web-storage-cache.min.js.下载" type="text/javascript"></script>
+	    <script src="./Java 毫秒转换为日期类型、日期转换为毫秒 - - ITeye博客_files/replace.min.js.下载" type="text/javascript"></script>
+    
+    
+  
+
+</body></html>
