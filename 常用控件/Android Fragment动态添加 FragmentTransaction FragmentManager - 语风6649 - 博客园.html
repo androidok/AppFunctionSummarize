@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://www.cnblogs.com/Claire6649/p/5997632.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/bundle-AnotherEon001.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/bundle-AnotherEon001-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/Claire6649/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/Claire6649/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/Claire6649/wlwmanifest.xml">
+<script async="" src="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/analytics.js.下载"></script><script type="text/javascript" src="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/encoder.js.下载"></script><script src="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'Claire6649', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<div id="wrapper">
+<div id="header">
+
+<div id="top">
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/Claire6649/">语风6649</a></h1>
+<div id="subtitle"></div>
+</div>
+<div id="sub"><div id="blog_stats">
+<div class="BlogStats">随笔 - 95, 文章 - 0, 评论 - 1, 引用 - 0</div>
+</div></div>
+
+
+
+</div>
+<div id="main_container">
+<div id="main_content">
+<div id="content">
+	
+<div id="post_detail">
+	<div class="post">
+		<h2>
+			<a id="cb_post_title_url" href="http://www.cnblogs.com/Claire6649/p/5997632.html">Android Fragment动态添加 FragmentTransaction FragmentManager</a>
+		</h2>
+		<div class="postbody">
+		<div id="cnblogs_post_body"><p>Fragment常用的三个类：<br>android.app.Fragment 主要用于定义Fragment<br>android.app.FragmentManager 主要用于在Activity中操作Fragment<br>android.app.FragmentTransaction 保证一些列Fragment操作的原子性<br><br></p>
+<p>获取FragmentManage的方式：　　</p>
+<p>　　getFragmentManager()<br>　　getSupportFragmentManager //v4中FragmentActivity<br><br></p>
+<p>主要的操作都是FragmentTransaction的方法</p>
+<p>　　FragmentTransaction transaction = fm.benginTransatcion();//开启一个事务</p>
+<p>　　transaction.add() //往Activity中添加一个Fragment</p>
+<p>　　transaction.remove() //从Activity中移除一个Fragment，如果被移除的Fragment没有添加到回退栈（回退栈后面会详细说），这个Fragment实例将会被销毁。</p>
+<p>　　transaction.replace()//使用另一个Fragment替换当前的，实际上就是remove()然后add()的合体~</p>
+<p>　　transaction.hide() //当你的fragment数量固定很少时隐藏当前的Fragment，仅仅是设为不可见，并不会销毁，多的时候可能出现OOM异常,</p>
+<p>　　transaction.show()//显示之前隐藏的Fragment</p>
+<p>　　detach()会将view从UI中移除,和remove()不同,此时fragment的状态依然由FragmentManager维护。</p>
+<p>　　attach()重建view视图，附加到UI上并显示。</p>
+<p>　　transatcion.commit()//提交一个事务</p>
+<p>&nbsp;</p>
+<p>如果你喜欢使用Fragment，一定要清楚这些方法，哪个会销毁视图，哪个会销毁实例，哪个仅仅只是隐藏，这样才能更好的使用它们。</p>
+<p>　　a、比如：我在FragmentA中的EditText填了一些数据，当切换到FragmentB时，如果希望会到A还能看到数据，则适合你的就是hide和show；</p>
+<p>　　　　也就是说，希望保留用户操作的面板，你可以使用hide和show，当然了不要使劲在那new实例，进行下非null判断。</p>
+<p>　　b、再比如：我不希望保留用户操作，你可以使用remove()，然后add()；或者使用replace()这个和remove,add是相同的效果。</p>
+<p>　　c、remove和detach有一点细微的区别，在不考虑回退栈的情况下，remove会销毁整个Fragment实例，而detach则只是销毁其视图结构，实例并不会被销毁。</p>
+<p>　　　　那么二者怎么取舍使用呢？如果你的当前Activity一直存在，那么在不希望保留用户操作的时候，你可以优先使用detach。</p>
+<p>&nbsp;</p>
+<p><img src="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/803469-20161025175242875-169950891.png" alt=""></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><img id="code_img_closed_500ec706-fc61-4bbb-b143-7d2e8dc6a3b6" class="code_img_closed" src="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/ContractedBlock.gif" alt=""><img id="code_img_opened_500ec706-fc61-4bbb-b143-7d2e8dc6a3b6" class="code_img_opened" style="display: none;" src="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_500ec706-fc61-4bbb-b143-7d2e8dc6a3b6" class="cnblogs_code_hide">
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">&lt;</span><span style="color: #800000">LinearLayout </span><span style="color: #ff0000">xmlns:android</span><span style="color: #0000ff">="http://schemas.android.com/apk/res/android"</span>
+<span style="color: #008080"> 2</span> <span style="color: #ff0000">    xmlns:tools</span><span style="color: #0000ff">="http://schemas.android.com/tools"</span>
+<span style="color: #008080"> 3</span> <span style="color: #ff0000">    android:id</span><span style="color: #0000ff">="@+id/activity_main"</span>
+<span style="color: #008080"> 4</span> <span style="color: #ff0000">    android:layout_width</span><span style="color: #0000ff">="match_parent"</span>
+<span style="color: #008080"> 5</span> <span style="color: #ff0000">    android:layout_height</span><span style="color: #0000ff">="match_parent"</span>
+<span style="color: #008080"> 6</span> <span style="color: #ff0000">    android:orientation</span><span style="color: #0000ff">="vertical"</span>
+<span style="color: #008080"> 7</span> <span style="color: #ff0000">    tools:context</span><span style="color: #0000ff">="com.example.lesson10_fragment2.MainActivity"</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080"> 8</span> 
+<span style="color: #008080"> 9</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">Button
+</span><span style="color: #008080">10</span>         <span style="color: #ff0000">android:id</span><span style="color: #0000ff">="@+id/btn_add"</span>
+<span style="color: #008080">11</span> <span style="color: #ff0000">        android:layout_width</span><span style="color: #0000ff">="match_parent"</span>
+<span style="color: #008080">12</span> <span style="color: #ff0000">        android:layout_height</span><span style="color: #0000ff">="wrap_content"</span>
+<span style="color: #008080">13</span> <span style="color: #ff0000">        android:onClick</span><span style="color: #0000ff">="add"</span>
+<span style="color: #008080">14</span> <span style="color: #ff0000">        android:text</span><span style="color: #0000ff">="添加Fragment"</span>
+<span style="color: #008080">15</span> <span style="color: #ff0000">        android:textAllCaps</span><span style="color: #0000ff">="false"</span> <span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080">16</span> 
+<span style="color: #008080">17</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">Button
+</span><span style="color: #008080">18</span>         <span style="color: #ff0000">android:id</span><span style="color: #0000ff">="@+id/btn_remove"</span>
+<span style="color: #008080">19</span> <span style="color: #ff0000">        android:layout_width</span><span style="color: #0000ff">="match_parent"</span>
+<span style="color: #008080">20</span> <span style="color: #ff0000">        android:layout_height</span><span style="color: #0000ff">="wrap_content"</span>
+<span style="color: #008080">21</span> <span style="color: #ff0000">        android:onClick</span><span style="color: #0000ff">="remove"</span>
+<span style="color: #008080">22</span> <span style="color: #ff0000">        android:text</span><span style="color: #0000ff">="移除Fragment"</span>
+<span style="color: #008080">23</span> <span style="color: #ff0000">        android:textAllCaps</span><span style="color: #0000ff">="false"</span> <span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080">24</span> 
+<span style="color: #008080">25</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">Button
+</span><span style="color: #008080">26</span>         <span style="color: #ff0000">android:layout_width</span><span style="color: #0000ff">="match_parent"</span>
+<span style="color: #008080">27</span> <span style="color: #ff0000">        android:layout_height</span><span style="color: #0000ff">="wrap_content"</span>
+<span style="color: #008080">28</span> <span style="color: #ff0000">        android:onClick</span><span style="color: #0000ff">="replace"</span>
+<span style="color: #008080">29</span> <span style="color: #ff0000">        android:text</span><span style="color: #0000ff">="替换Fragment"</span>
+<span style="color: #008080">30</span> <span style="color: #ff0000">        android:textAllCaps</span><span style="color: #0000ff">="false"</span> <span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080">31</span> 
+<span style="color: #008080">32</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">Button
+</span><span style="color: #008080">33</span>         <span style="color: #ff0000">android:id</span><span style="color: #0000ff">="@+id/btn_attach"</span>
+<span style="color: #008080">34</span> <span style="color: #ff0000">        android:layout_width</span><span style="color: #0000ff">="match_parent"</span>
+<span style="color: #008080">35</span> <span style="color: #ff0000">        android:layout_height</span><span style="color: #0000ff">="wrap_content"</span>
+<span style="color: #008080">36</span> <span style="color: #ff0000">        android:onClick</span><span style="color: #0000ff">="attach"</span>
+<span style="color: #008080">37</span> <span style="color: #ff0000">        android:text</span><span style="color: #0000ff">="附加Fragment"</span>
+<span style="color: #008080">38</span> <span style="color: #ff0000">        android:textAllCaps</span><span style="color: #0000ff">="false"</span> <span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080">39</span> 
+<span style="color: #008080">40</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">Button
+</span><span style="color: #008080">41</span>         <span style="color: #ff0000">android:id</span><span style="color: #0000ff">="@+id/btn_detach"</span>
+<span style="color: #008080">42</span> <span style="color: #ff0000">        android:layout_width</span><span style="color: #0000ff">="match_parent"</span>
+<span style="color: #008080">43</span> <span style="color: #ff0000">        android:layout_height</span><span style="color: #0000ff">="wrap_content"</span>
+<span style="color: #008080">44</span> <span style="color: #ff0000">        android:onClick</span><span style="color: #0000ff">="detach"</span>
+<span style="color: #008080">45</span> <span style="color: #ff0000">        android:text</span><span style="color: #0000ff">="移除附加Fragment"</span>
+<span style="color: #008080">46</span> <span style="color: #ff0000">        android:textAllCaps</span><span style="color: #0000ff">="false"</span> <span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080">47</span> 
+<span style="color: #008080">48</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">Button
+</span><span style="color: #008080">49</span>         <span style="color: #ff0000">android:id</span><span style="color: #0000ff">="@+id/btn_show"</span>
+<span style="color: #008080">50</span> <span style="color: #ff0000">        android:layout_width</span><span style="color: #0000ff">="match_parent"</span>
+<span style="color: #008080">51</span> <span style="color: #ff0000">        android:layout_height</span><span style="color: #0000ff">="wrap_content"</span>
+<span style="color: #008080">52</span> <span style="color: #ff0000">        android:onClick</span><span style="color: #0000ff">="show"</span>
+<span style="color: #008080">53</span> <span style="color: #ff0000">        android:text</span><span style="color: #0000ff">="显示Fragment"</span>
+<span style="color: #008080">54</span> <span style="color: #ff0000">        android:textAllCaps</span><span style="color: #0000ff">="false"</span> <span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080">55</span> 
+<span style="color: #008080">56</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">Button
+</span><span style="color: #008080">57</span>         <span style="color: #ff0000">android:id</span><span style="color: #0000ff">="@+id/btn_hide"</span>
+<span style="color: #008080">58</span> <span style="color: #ff0000">        android:layout_width</span><span style="color: #0000ff">="match_parent"</span>
+<span style="color: #008080">59</span> <span style="color: #ff0000">        android:layout_height</span><span style="color: #0000ff">="wrap_content"</span>
+<span style="color: #008080">60</span> <span style="color: #ff0000">        android:onClick</span><span style="color: #0000ff">="hide"</span>
+<span style="color: #008080">61</span> <span style="color: #ff0000">        android:text</span><span style="color: #0000ff">="隐藏Fragment"</span>
+<span style="color: #008080">62</span> <span style="color: #ff0000">        android:textAllCaps</span><span style="color: #0000ff">="false"</span> <span style="color: #0000ff">/&gt;</span>
+<span style="color: #008080">63</span> 
+<span style="color: #008080">64</span>     <span style="color: #008000">&lt;!--</span><span style="color: #008000">动态加载，必须要给定一个空间用来加载Fragment 必须是一个FrameLayout !</span><span style="color: #008000">--&gt;</span>
+<span style="color: #008080">65</span>     <span style="color: #0000ff">&lt;</span><span style="color: #800000">FrameLayout
+</span><span style="color: #008080">66</span>         <span style="color: #ff0000">android:id</span><span style="color: #0000ff">="@+id/fl_content"</span>
+<span style="color: #008080">67</span> <span style="color: #ff0000">        android:layout_width</span><span style="color: #0000ff">="match_parent"</span>
+<span style="color: #008080">68</span> <span style="color: #ff0000">        android:layout_height</span><span style="color: #0000ff">="wrap_content"</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">69</span> 
+<span style="color: #008080">70</span>     <span style="color: #0000ff">&lt;/</span><span style="color: #800000">FrameLayout</span><span style="color: #0000ff">&gt;</span>
+<span style="color: #008080">71</span> <span style="color: #0000ff">&lt;/</span><span style="color: #800000">LinearLayout</span><span style="color: #0000ff">&gt;</span></pre>
+</div>
+<span class="cnblogs_code_collapse">activity_main.xml</span></div>
+<div class="cnblogs_code"><img id="code_img_closed_6a618158-218f-4d44-84e2-7462ed3d9bc3" class="code_img_closed" src="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/ContractedBlock.gif" alt=""><img id="code_img_opened_6a618158-218f-4d44-84e2-7462ed3d9bc3" class="code_img_opened" style="display: none;" src="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_6a618158-218f-4d44-84e2-7462ed3d9bc3" class="cnblogs_code_hide">
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> TextFragment <span style="color: #0000ff">extends</span><span style="color: #000000"> Fragment {
+</span><span style="color: #008080"> 2</span> 
+<span style="color: #008080"> 3</span> <span style="color: #000000">    @Override
+</span><span style="color: #008080"> 4</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> onAttach(Context context) {
+</span><span style="color: #008080"> 5</span>         <span style="color: #0000ff">super</span><span style="color: #000000">.onAttach(context);
+</span><span style="color: #008080"> 6</span>         Log.e("TAG","----TextFragment-----onAttach"<span style="color: #000000">);
+</span><span style="color: #008080"> 7</span> <span style="color: #000000">    }
+</span><span style="color: #008080"> 8</span> 
+<span style="color: #008080"> 9</span> <span style="color: #000000">    @Override
+</span><span style="color: #008080">10</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> onCreate(@Nullable Bundle savedInstanceState) {
+</span><span style="color: #008080">11</span>         <span style="color: #0000ff">super</span><span style="color: #000000">.onCreate(savedInstanceState);
+</span><span style="color: #008080">12</span>         Log.e("TAG","----TextFragment-----onCreate"<span style="color: #000000">);
+</span><span style="color: #008080">13</span> <span style="color: #000000">    }
+</span><span style="color: #008080">14</span> 
+<span style="color: #008080">15</span> <span style="color: #000000">    @Nullable
+</span><span style="color: #008080">16</span> <span style="color: #000000">    @Override
+</span><span style="color: #008080">17</span>     <span style="color: #0000ff">public</span><span style="color: #000000"> View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+</span><span style="color: #008080">18</span>         Log.e("TAG","----TextFragment-----onCreateView"<span style="color: #000000">);
+</span><span style="color: #008080">19</span>         EditText et = <span style="color: #0000ff">new</span><span style="color: #000000"> EditText(getActivity());
+</span><span style="color: #008080">20</span>         et.setHint("动态加载的text"<span style="color: #000000">);
+</span><span style="color: #008080">21</span>         <span style="color: #0000ff">return</span><span style="color: #000000"> et;
+</span><span style="color: #008080">22</span> <span style="color: #000000">    }
+</span><span style="color: #008080">23</span> 
+<span style="color: #008080">24</span> <span style="color: #000000">    @Override
+</span><span style="color: #008080">25</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> onStart() {
+</span><span style="color: #008080">26</span>         <span style="color: #0000ff">super</span><span style="color: #000000">.onStart();
+</span><span style="color: #008080">27</span>         Log.e("TAG","----TextFragment-----onStart"<span style="color: #000000">);
+</span><span style="color: #008080">28</span> <span style="color: #000000">    }
+</span><span style="color: #008080">29</span> 
+<span style="color: #008080">30</span> <span style="color: #000000">    @Override
+</span><span style="color: #008080">31</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> onActivityCreated(@Nullable Bundle savedInstanceState) {
+</span><span style="color: #008080">32</span>         <span style="color: #0000ff">super</span><span style="color: #000000">.onActivityCreated(savedInstanceState);
+</span><span style="color: #008080">33</span>         Log.e("TAG","----TextFragment-----onActivityCreated"<span style="color: #000000">);
+</span><span style="color: #008080">34</span> <span style="color: #000000">    }
+</span><span style="color: #008080">35</span> 
+<span style="color: #008080">36</span> <span style="color: #000000">    @Override
+</span><span style="color: #008080">37</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> onResume() {
+</span><span style="color: #008080">38</span>         <span style="color: #0000ff">super</span><span style="color: #000000">.onResume();
+</span><span style="color: #008080">39</span>         Log.e("TAG","----TextFragment-----onResume"<span style="color: #000000">);
+</span><span style="color: #008080">40</span> <span style="color: #000000">    }
+</span><span style="color: #008080">41</span> 
+<span style="color: #008080">42</span> <span style="color: #000000">    @Override
+</span><span style="color: #008080">43</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> onPause() {
+</span><span style="color: #008080">44</span>         <span style="color: #0000ff">super</span><span style="color: #000000">.onPause();
+</span><span style="color: #008080">45</span>         Log.e("TAG","----TextFragment-----onPause"<span style="color: #000000">);
+</span><span style="color: #008080">46</span> <span style="color: #000000">    }
+</span><span style="color: #008080">47</span> 
+<span style="color: #008080">48</span> <span style="color: #000000">    @Override
+</span><span style="color: #008080">49</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> onStop() {
+</span><span style="color: #008080">50</span>         <span style="color: #0000ff">super</span><span style="color: #000000">.onStop();
+</span><span style="color: #008080">51</span>         Log.e("TAG","----TextFragment-----onStop"<span style="color: #000000">);
+</span><span style="color: #008080">52</span> <span style="color: #000000">    }
+</span><span style="color: #008080">53</span> 
+<span style="color: #008080">54</span> <span style="color: #000000">    @Override
+</span><span style="color: #008080">55</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> onDestroyView() {
+</span><span style="color: #008080">56</span>         <span style="color: #0000ff">super</span><span style="color: #000000">.onDestroyView();
+</span><span style="color: #008080">57</span>         Log.e("TAG","----TextFragment-----onDestroyView"<span style="color: #000000">);
+</span><span style="color: #008080">58</span> <span style="color: #000000">    }
+</span><span style="color: #008080">59</span> 
+<span style="color: #008080">60</span> <span style="color: #000000">    @Override
+</span><span style="color: #008080">61</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> onDestroy() {
+</span><span style="color: #008080">62</span>         <span style="color: #0000ff">super</span><span style="color: #000000">.onDestroy();
+</span><span style="color: #008080">63</span>         Log.e("TAG","----TextFragment-----onDestroy"<span style="color: #000000">);
+</span><span style="color: #008080">64</span> <span style="color: #000000">    }
+</span><span style="color: #008080">65</span> 
+<span style="color: #008080">66</span> <span style="color: #000000">    @Override
+</span><span style="color: #008080">67</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> onDetach() {
+</span><span style="color: #008080">68</span>         <span style="color: #0000ff">super</span><span style="color: #000000">.onDetach();
+</span><span style="color: #008080">69</span>         Log.e("TAG","----TextFragment-----onDetach"<span style="color: #000000">);
+</span><span style="color: #008080">70</span> <span style="color: #000000">    }
+</span><span style="color: #008080">71</span> }</pre>
+</div>
+<span class="cnblogs_code_collapse">TextFragment.java</span></div>
+<div class="cnblogs_code"><img id="code_img_closed_5e23797d-1880-4986-84ba-589f6db8fda7" class="code_img_closed" src="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/ContractedBlock.gif" alt=""><img id="code_img_opened_5e23797d-1880-4986-84ba-589f6db8fda7" class="code_img_opened" style="display: none;" src="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_5e23797d-1880-4986-84ba-589f6db8fda7" class="cnblogs_code_hide">
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> ImageFragment <span style="color: #0000ff">extends</span><span style="color: #000000"> Fragment{
+</span><span style="color: #008080"> 2</span> 
+<span style="color: #008080"> 3</span> <span style="color: #000000">    @Nullable
+</span><span style="color: #008080"> 4</span> <span style="color: #000000">    @Override
+</span><span style="color: #008080"> 5</span>     <span style="color: #0000ff">public</span><span style="color: #000000"> View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+</span><span style="color: #008080"> 6</span>         ImageView img = <span style="color: #0000ff">new</span><span style="color: #000000"> ImageView(getActivity());
+</span><span style="color: #008080"> 7</span> <span style="color: #000000">        img.setImageResource(R.mipmap.ic_launcher);
+</span><span style="color: #008080"> 8</span>         <span style="color: #0000ff">return</span><span style="color: #000000"> img;
+</span><span style="color: #008080"> 9</span> <span style="color: #000000">    }
+</span><span style="color: #008080">10</span> }</pre>
+</div>
+<span class="cnblogs_code_collapse">ImageFragment.java</span></div>
+<div class="cnblogs_code"><img id="code_img_closed_46fc7eb0-d189-475e-928a-111b4d4326df" class="code_img_closed" src="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/ContractedBlock.gif" alt=""><img id="code_img_opened_46fc7eb0-d189-475e-928a-111b4d4326df" class="code_img_opened" style="display: none;" src="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_46fc7eb0-d189-475e-928a-111b4d4326df" class="cnblogs_code_hide">
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> MainActivity <span style="color: #0000ff">extends</span><span style="color: #000000"> AppCompatActivity {
+</span><span style="color: #008080"> 2</span> 
+<span style="color: #008080"> 3</span> <span style="color: #000000">    TextFragment textFragment;
+</span><span style="color: #008080"> 4</span> <span style="color: #000000">    ImageFragment imgFragment;
+</span><span style="color: #008080"> 5</span> <span style="color: #000000">    @Override
+</span><span style="color: #008080"> 6</span>     <span style="color: #0000ff">protected</span> <span style="color: #0000ff">void</span><span style="color: #000000"> onCreate(Bundle savedInstanceState) {
+</span><span style="color: #008080"> 7</span>         <span style="color: #0000ff">super</span><span style="color: #000000">.onCreate(savedInstanceState);
+</span><span style="color: #008080"> 8</span> <span style="color: #000000">        setContentView(R.layout.activity_main);
+</span><span style="color: #008080"> 9</span> 
+<span style="color: #008080">10</span>         textFragment = <span style="color: #0000ff">new</span><span style="color: #000000"> TextFragment();
+</span><span style="color: #008080">11</span>         imgFragment = <span style="color: #0000ff">new</span><span style="color: #000000"> ImageFragment();
+</span><span style="color: #008080">12</span> <span style="color: #000000">    }
+</span><span style="color: #008080">13</span> 
+<span style="color: #008080">14</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> add(View v){
+</span><span style="color: #008080">15</span>         <span style="color: #008000">//</span><span style="color: #008000">创建事务</span>
+<span style="color: #008080">16</span>         FragmentTransaction ft =<span style="color: #000000"> getSupportFragmentManager().beginTransaction();
+</span><span style="color: #008080">17</span>         <span style="color: #008000">//</span><span style="color: #008000">操作指令</span>
+<span style="color: #008080">18</span> <span style="color: #000000">        ft.add(R.id.fl_content,textFragment);
+</span><span style="color: #008080">19</span>         <span style="color: #008000">//</span><span style="color: #008000">提交事务</span>
+<span style="color: #008080">20</span> <span style="color: #000000">        ft.commit();
+</span><span style="color: #008080">21</span> <span style="color: #000000">    }
+</span><span style="color: #008080">22</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> remove(View v){
+</span><span style="color: #008080">23</span>         FragmentTransaction ft =<span style="color: #000000"> getSupportFragmentManager().beginTransaction();
+</span><span style="color: #008080">24</span>         <span style="color: #008000">//</span><span style="color: #008000">从Activity中移除一个Fragment，如果被移除的Fragment没有添加到回退栈（回退栈后面会详细说），这个Fragment实例将会被销毁。</span>
+<span style="color: #008080">25</span> <span style="color: #000000">        ft.remove(textFragment);
+</span><span style="color: #008080">26</span> <span style="color: #000000">        ft.commit();
+</span><span style="color: #008080">27</span> <span style="color: #000000">    }
+</span><span style="color: #008080">28</span> 
+<span style="color: #008080">29</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> replace(View v){
+</span><span style="color: #008080">30</span>         FragmentTransaction ft =<span style="color: #000000"> getSupportFragmentManager().beginTransaction();
+</span><span style="color: #008080">31</span>         <span style="color: #008000">//</span><span style="color: #008000">使用另一个Fragment替换当前的，实际上就是remove()然后add()的合体</span>
+<span style="color: #008080">32</span> <span style="color: #000000">        ft.replace(R.id.fl_content,imgFragment);
+</span><span style="color: #008080">33</span> <span style="color: #000000">        ft.commit();
+</span><span style="color: #008080">34</span> <span style="color: #000000">    }
+</span><span style="color: #008080">35</span> 
+<span style="color: #008080">36</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> attach(View v){
+</span><span style="color: #008080">37</span>         FragmentTransaction ft =<span style="color: #000000"> getSupportFragmentManager().beginTransaction();
+</span><span style="color: #008080">38</span>         <span style="color: #008000">//</span><span style="color: #008000">重建视图，附件到UI上并显示</span>
+<span style="color: #008080">39</span> <span style="color: #000000">        ft.attach(textFragment);
+</span><span style="color: #008080">40</span> <span style="color: #000000">        ft.commit();
+</span><span style="color: #008080">41</span> <span style="color: #000000">    }
+</span><span style="color: #008080">42</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> detach(View v){
+</span><span style="color: #008080">43</span>         FragmentTransaction ft =<span style="color: #000000"> getSupportFragmentManager().beginTransaction();
+</span><span style="color: #008080">44</span>         <span style="color: #008000">//</span><span style="color: #008000">会将view从UI中移除,和remove()不同,此时fragment的状态依然由FragmentManager维护</span>
+<span style="color: #008080">45</span> <span style="color: #000000">        ft.detach(textFragment);
+</span><span style="color: #008080">46</span> <span style="color: #000000">        ft.commit();
+</span><span style="color: #008080">47</span> <span style="color: #000000">    }
+</span><span style="color: #008080">48</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> show(View v){
+</span><span style="color: #008080">49</span>         FragmentTransaction ft =<span style="color: #000000"> getSupportFragmentManager().beginTransaction();
+</span><span style="color: #008080">50</span>         <span style="color: #008000">//</span><span style="color: #008000">显示之前隐藏的Fragment</span>
+<span style="color: #008080">51</span> <span style="color: #000000">        ft.show(textFragment);
+</span><span style="color: #008080">52</span> <span style="color: #000000">        ft.commit();
+</span><span style="color: #008080">53</span> <span style="color: #000000">    }
+</span><span style="color: #008080">54</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> hide(View v){
+</span><span style="color: #008080">55</span>         FragmentTransaction ft =<span style="color: #000000"> getSupportFragmentManager().beginTransaction();
+</span><span style="color: #008080">56</span>         <span style="color: #008000">//</span><span style="color: #008000">当你的fragment数量固定很少时隐藏当前的Fragment，仅仅是设为不可见，并不会销毁</span>
+<span style="color: #008080">57</span> <span style="color: #000000">        ft.hide(textFragment);
+</span><span style="color: #008080">58</span> <span style="color: #000000">        ft.commit();
+</span><span style="color: #008080">59</span> <span style="color: #000000">    }
+</span><span style="color: #008080">60</span> }</pre>
+</div>
+<span class="cnblogs_code_collapse">MainActivity.java</span></div>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/Claire6649/category/884127.html" target="_blank">Android</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/Claire6649/tag/Fragment%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD/">Fragment动态加载</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5997632,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;dc59462b-f24b-e511-b908-9dcfd8948a71&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/Claire6649/" target="_blank"><img src="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/Claire6649/">语风6649</a><br>
+            <a href="http://home.cnblogs.com/u/Claire6649/followees">关注 - 4</a><br>
+            <a href="http://home.cnblogs.com/u/Claire6649/followers">粉丝 - 1</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;dc59462b-f24b-e511-b908-9dcfd8948a71&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5997632,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(5997632,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/Claire6649/p/5997601.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/Claire6649/p/5997601.html" title="发布于2016-10-25 17:51">Android Fragment生命周期及静态加载</a><br><a href="http://www.cnblogs.com/Claire6649/p/5997746.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/Claire6649/p/5997746.html" title="发布于2016-10-25 18:17">Fragment 回退栈 传递参数，点击切换图片使用Fragment ListView</a><br></div>
+</div>
+
+
+		</div>
+		<p class="postfoot">
+			posted on <span id="post-date">2016-10-25 18:00</span> <a href="http://www.cnblogs.com/Claire6649/">语风6649</a> 阅读(<span id="post_view_count">1948</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5997632" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/Claire6649/p/5997632.html#" onclick="AddToWz(5997632);return false;">收藏</a>
+		</p>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=244824,cb_entryId=5997632,cb_blogApp=currentBlogApp,cb_blogUserGuid='dc59462b-f24b-e511-b908-9dcfd8948a71',cb_entryCreatedDate='2016/10/25 18:00:00';loadViewCount(cb_entryId);</script>
+	
+	</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/Claire6649/p/5997632.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/Claire6649/p/5997632.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://cloud.tencent.com/developer/labs?fromSource=gwzcw.241259.241259.241259" target="_blank">【免费】从零开始学编程，开发者专属实验平台免费实践！</a><br><a href="https://console.upyun.com/register/?invite=H124C2iMZ?utm_source=cnblogs&amp;utm_medium=referral" target="_blank">【推荐】现在注册又拍云，首月可享 200G CDN流量，还可免费申请 SSL 证书</a><br><a href="http://click.aliyun.com/m/18488/" target="_blank">【推荐】阿里云“全民云计算”优惠升级</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://cn.udacity.com/course/machine-learning-engineer-nanodegree--nd009-cn-basic/?utm_source=cnblogs&amp;utm_medium=banner&amp;utm_campaign=MLND05" target="_blank"><img width="300" height="250" src="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/24442-20170724151534762-1370821036.png" alt="google 机器学习"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/574608/" target="_blank">傅盛：创业公司最大的瓶颈就是CEO</a><br> ·  <a href="http://news.cnblogs.com/n/574625/" target="_blank">长续航＋打电话！Apple Watch 3九月发：广达代工</a><br> ·  <a href="http://news.cnblogs.com/n/574624/" target="_blank">诺基亚2现身跑分网站：配置竟还不如红米4A</a><br> ·  <a href="http://news.cnblogs.com/n/574623/" target="_blank">想做AI时代的安卓 百度DuerOS正加速开放、研发与收购</a><br> ·  <a href="http://news.cnblogs.com/n/574622/" target="_blank">亚马逊“算法动态定价”被曝光：商品被报道自动涨价</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice?source=bky&amp;hmsr=%E5%8D%9A%E5%AE%A2%E5%9B%AD&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank"><img width="468" height="60" src="./Android Fragment动态添加 FragmentTransaction FragmentManager - 语风6649 - 博客园_files/24442-20170629165247758-2056260207.png" alt="极光推广_0701"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/570194/" target="_blank">小printf的故事：什么是真正的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/569992/" target="_blank">程序员的工作、学习与绩效</a><br> ·  <a href="http://kb.cnblogs.com/page/569056/" target="_blank">软件开发为什么很难</a><br> ·  <a href="http://kb.cnblogs.com/page/565901/" target="_blank">唱吧DevOps的落地，微服务CI/CD的范本技术解读</a><br> ·  <a href="http://kb.cnblogs.com/page/566523/" target="_blank">程序员，如何从平庸走向理想？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+</div>
+</div>
+<div id="leftmenu">
+
+
+<h3>导航</h3>
+<ul>
+<li>
+<a id="blog_nav_sitehome" href="http://www.cnblogs.com/">博客园</a></li>
+<li>
+<a id="blog_nav_myhome" class="two_words" href="http://www.cnblogs.com/Claire6649/">首页</a></li>
+<li>
+<a id="blog_nav_newpost" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li>
+<a id="blog_nav_contact" accesskey="9" class="two_words" rel="nofollow" href="https://msg.cnblogs.com/send/%E8%AF%AD%E9%A3%8E6649">联系</a></li>
+<li>
+
+
+</li>
+<li>
+<a id="blog_nav_admin" class="two_words" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+
+<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/06/01&#39;);return false;">&lt;</a></td><td align="center">2017年7月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/08/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalWeekendDay" align="center">1</td></tr><tr><td class="CalWeekendDay" align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td class="CalWeekendDay" align="center">8</td></tr><tr><td class="CalWeekendDay" align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td class="CalWeekendDay" align="center">15</td></tr><tr><td class="CalWeekendDay" align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td class="CalWeekendDay" align="center">22</td></tr><tr><td class="CalWeekendDay" align="center">23</td><td align="center">24</td><td align="center">25</td><td class="CalTodayDay" align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalWeekendDay" align="center">29</td></tr><tr><td class="CalWeekendDay" align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+<meta name="vs_showGrid" content="False">
+
+<h3>公告</h3>
+<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/Claire6649/">语风6649</a><br>园龄：<a href="http://home.cnblogs.com/u/Claire6649/" title="入园时间：2015-08-26">1年11个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/Claire6649/followers/">1</a><br>关注：<a href="http://home.cnblogs.com/u/Claire6649/followees/">4</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;dc59462b-f24b-e511-b908-9dcfd8948a71&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+
+<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block"></div><div id="sidebar_toptags" class="sidebar-block">
+<h3 class="catListTitle">我的标签</h3>
+<div id="MyTag">
+<ul>
+<li><a href="http://www.cnblogs.com/Claire6649/tag/Android/">Android</a>(7)</li><li><a href="http://www.cnblogs.com/Claire6649/tag/Android%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6/">Android网络框架</a>(3)</li><li><a href="http://www.cnblogs.com/Claire6649/tag/BaseAdapter/">BaseAdapter</a>(2)</li><li><a href="http://www.cnblogs.com/Claire6649/tag/SVN/">SVN</a>(2)</li><li><a href="http://www.cnblogs.com/Claire6649/tag/%E5%8F%8D%E5%B0%84/">反射</a>(2)</li><li><a href="http://www.cnblogs.com/Claire6649/tag/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">工厂模式</a>(2)</li><li><a href="http://www.cnblogs.com/Claire6649/tag/ViewPage%20FragmentPagerAdapter/">ViewPage FragmentPagerAdapter</a>(2)</li><li><a href="http://www.cnblogs.com/Claire6649/tag/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">线程池</a>(2)</li><li><a href="http://www.cnblogs.com/Claire6649/tag/ConstraintLayout/">ConstraintLayout</a>(2)</li><li><a href="http://www.cnblogs.com/Claire6649/tag/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>(2)</li><li><a href="http://www.cnblogs.com/Claire6649/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+		<h3>随笔分类</h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/Claire6649/category/884127.html">Android(79)</a></li>
+			
+				<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/Claire6649/category/735075.html">C/C++(2)</a></li>
+			
+				<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/Claire6649/category/779479.html">JAVA(8)</a></li>
+			
+				<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/Claire6649/category/735076.html">安全技术  (1)</a></li>
+			
+				<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/Claire6649/category/884121.html">设计模式(2)</a></li>
+			
+				<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/Claire6649/category/1004172.html">数据库(1)</a></li>
+			
+				<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/Claire6649/category/770960.html">心得(1)</a></li>
+			
+				</ul>
+			
+	
+		<h3>随笔档案</h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/Claire6649/archive/2017/06.html">2017年6月 (2)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/Claire6649/archive/2017/05.html">2017年5月 (7)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/Claire6649/archive/2016/12.html">2016年12月 (25)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/Claire6649/archive/2016/11.html">2016年11月 (4)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/Claire6649/archive/2016/10.html">2016年10月 (43)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/Claire6649/archive/2016/09.html">2016年9月 (9)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/Claire6649/archive/2016/01.html">2016年1月 (1)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/Claire6649/archive/2015/12.html">2015年12月 (1)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/Claire6649/archive/2015/09.html">2015年9月 (3)</a></li>
+			
+				</ul>
+			
+	
+		<h3>关注</h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_2_Link_0" href="https://github.com/open-android/Android" rel="nofollow">Github开源项目的配套视频</a></li>
+			<li class="c_b_p_link_desc">Github开源项目的配套视频
+</li>
+				<li><a id="CatList_LinkList_2_Link_1" href="http://blog.csdn.net/guolin_blog" rel="nofollow">郭霖</a></li>
+			<li class="c_b_p_link_desc">博客专家
+第一行代码
+第二行代码</li>
+				<li><a id="CatList_LinkList_2_Link_2" href="http://www.jcodecraeer.com/plus/list.php?tid=16" rel="nofollow">泡在网上的日子</a></li>
+			<li class="c_b_p_link_desc">安卓开发网</li>
+				<li><a id="CatList_LinkList_2_Link_3" href="http://blog.csdn.net/xiaanming" rel="nofollow">夏安明</a></li>
+			<li class="c_b_p_link_desc">博客专家</li>
+				<li><a id="CatList_LinkList_2_Link_4" href="http://blog.csdn.net/lmj623565791" rel="nofollow">张鸿洋</a></li>
+			<li class="c_b_p_link_desc">博客专家</li>
+				</ul>
+			
+	</div><div id="sidebar_scorerank" class="sidebar-block">
+<h3>积分与排名</h3>
+<ul>
+	<li>
+		积分 -
+		27056
+	</li><li>
+		排名 -
+		11459
+	</li>
+</ul>
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/Claire6649/p/6090745.html#3600084">1. Re:【转】SVN:Android Studio设置忽略文件</a></li>
+        <li class="recent_comment_body">Mask:build表示忽略所有build文件夹，包括所有Module的build文件夹；<br>Mask:*.iml表示忽略所有iml格式的文件。</li>
+        <li class="recent_comment_author">--simplebam</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/Claire6649/p/6235916.html">1. Java  实现字符串反转(8593)</a></li><li><a href="http://www.cnblogs.com/Claire6649/p/6090745.html">2. 【转】SVN:Android Studio设置忽略文件(6986)</a></li><li><a href="http://www.cnblogs.com/Claire6649/p/5941145.html">3. Android 自定义CheckBox样式(5950)</a></li><li><a href="http://www.cnblogs.com/Claire6649/p/5947139.html">4. 【转】Android onTouch()和onTouchEvent()区别(1980)</a></li><li><a href="http://www.cnblogs.com/Claire6649/p/5997632.html">5. Android Fragment动态添加 FragmentTransaction FragmentManager(1948)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/Claire6649/p/6090745.html">1. 【转】SVN:Android Studio设置忽略文件(1)</a></li></ul></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap" style="display: none;">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+
+</div>
+</div>
+<div class="clear"></div>
+<div id="footer">
+
+<p id="footer">
+	Powered by: 
+	<br>
+	
+	<a id="Footer1_Hyperlink3" name="Hyperlink1" href="http://www.cnblogs.com/" style="font-family:Verdana;font-size:12px;">博客园</a>
+	<br>
+	Copyright © 语风6649
+</p>
+</div>
+</div>
+
+
+
+</body></html>

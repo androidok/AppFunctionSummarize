@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://www.cnblogs.com/huolongluo/p/6214065.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/bundle-MoonlightInk.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/bundle-MoonlightInk-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/huolongluo/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/huolongluo/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/huolongluo/wlwmanifest.xml">
+<script async="" src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/analytics.js.下载"></script><script type="text/javascript" src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/encoder.js.下载"></script><script src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'huolongluo', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/huolongluo/"><img id="blogLogo" src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/huolongluo/">火龙裸先生</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/huolongluo/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E7%81%AB%E9%BE%99%E8%A3%B8%E5%85%88%E7%94%9F">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/huolongluo/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/huolongluo/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 147&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 0</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/huolongluo/p/6214065.html">使用 CoordinatorLayout 实现复杂联动效果</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><blockquote>
+<p><strong>GitHub 地址已更新：</strong> <a href="https://github.com/unixzii/" target="_blank">unixzii</a> / <a href="https://github.com/unixzii/android-FancyBehaviorDemo" target="_blank"><strong>android-FancyBehaviorDemo</strong></a></p>
+</blockquote>
+<p><code>CoordinatorLayout</code> 是 Google 在 Design Support 包中提供的一个十分强大的布局视图，它本质是一个 FrameLayout，然而它允许开发者通过制定 Behavior 从而实现各种复杂的 UI 效果。</p>
+<p>本文就通过一个具体的例子来讲解一下 Behavior 的开发思路，首先我们看效果（GIF 图效果一般，大家就看看大概意思吧）：</p>
+<div class="image-package imagebubble">
+<div class="image-caption"><iframe id="iframe_0.0021776751059645605" src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/saved_resource.html" style="border: none; width: 288px; height: 512px;" frameborder="0" scrolling="no"></iframe></div>
+<div class="image-caption">效果图</div>
+</div>
+<p>我们先归纳一下整个效果的细节：</p>
+<ul>
+<li>界面分为上下两部分，上部分随列表滑动而折叠与展开；</li>
+<li>头部视图背景随折叠状态而缩放和渐变；</li>
+<li>浮动搜索框随折叠状态改变位置和 margins；</li>
+<li>滑动结束前会根据滑动速度动画到相应的状态：
+<ul>
+<li>如果速度达到一定阈值，则按速度方向切换状态</li>
+<li>如果速度未达到阈值，则切换到距离当前状态最近的状态；</li>
+</ul>
+</li>
+</ul>
+<p>主要的细节就是这些，下面我们来一步步实现它！</p>
+<h2>编写布局文件</h2>
+<p>首先我们将所有的控件在 xml 写好，由于是 Demo，我这里就用一些很简单的控件了。</p>
+<p>&nbsp;</p>
+<p><em style="text-align: justify; color: #2f2f2f; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; white-space: normal; widows: 1; background-color: #ffffff">activity_main.xml:</em></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> &lt;?xml version="1.0" encoding="utf-8"?&gt;
+<span style="color: #008080"> 2</span> &lt;android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<span style="color: #008080"> 3</span>     xmlns:app="http://schemas.android.com/apk/res-auto"
+<span style="color: #008080"> 4</span>     xmlns:tools="http://schemas.android.com/tools"
+<span style="color: #008080"> 5</span>     android:layout_width="match_parent"
+<span style="color: #008080"> 6</span>     android:layout_height="match_parent"
+<span style="color: #008080"> 7</span>     android:fitsSystemWindows="false"
+<span style="color: #008080"> 8</span>     android:background="#fff"
+<span style="color: #008080"> 9</span>     tools:context="com.example.cyandev.androidplayground.ScrollingActivity"&gt;
+<span style="color: #008080">10</span> 
+<span style="color: #008080">11</span>     &lt;<span style="color: #000000">ImageView
+</span><span style="color: #008080">12</span>         android:id="@+id/scrolling_header"
+<span style="color: #008080">13</span>         android:layout_width="match_parent"
+<span style="color: #008080">14</span>         android:layout_height="200dp"
+<span style="color: #008080">15</span>         android:scaleType="centerCrop"
+<span style="color: #008080">16</span>         android:background="@drawable/bg_header" /&gt;
+<span style="color: #008080">17</span> 
+<span style="color: #008080">18</span>     &lt;<span style="color: #000000">LinearLayout
+</span><span style="color: #008080">19</span>         android:id="@+id/edit_search"
+<span style="color: #008080">20</span>         android:layout_width="match_parent"
+<span style="color: #008080">21</span>         android:layout_height="40dp"
+<span style="color: #008080">22</span>         android:background="@color/colorInitFloatBackground"
+<span style="color: #008080">23</span>         app:layout_behavior="@string/header_float_behavior"&gt;
+<span style="color: #008080">24</span>         &lt;<span style="color: #000000">TextView
+</span><span style="color: #008080">25</span>             android:layout_width="wrap_content"
+<span style="color: #008080">26</span>             android:layout_height="wrap_content"
+<span style="color: #008080">27</span>             android:layout_gravity="center_vertical"
+<span style="color: #008080">28</span>             android:layout_marginStart="20dp"
+<span style="color: #008080">29</span>             android:textColor="#90000000"
+<span style="color: #008080">30</span>             android:text="搜索关键字" /&gt;
+<span style="color: #008080">31</span>     &lt;/LinearLayout&gt;
+<span style="color: #008080">32</span> 
+<span style="color: #008080">33</span>     &lt;<span style="color: #000000">android.support.v7.widget.RecyclerView
+</span><span style="color: #008080">34</span>         android:id="@+id/rv"
+<span style="color: #008080">35</span>         android:layout_width="match_parent"
+<span style="color: #008080">36</span>         android:layout_height="match_parent"
+<span style="color: #008080">37</span>         android:background="#fff"
+<span style="color: #008080">38</span>         app:layout_behavior="@string/header_scrolling_behavior"
+<span style="color: #008080">39</span>         app:layoutManager="LinearLayoutManager" /&gt;
+<span style="color: #008080">40</span> 
+<span style="color: #008080">41</span> &lt;/android.support.design.widget.CoordinatorLayout&gt;</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>这里需要注意的是 <code>CoordinatorLayout</code> 子视图的层级关系，如果想在子视图中使用 Behavior 进行控制，那么这个子视图一定是 <code>CoordinatorLayout</code> 的直接孩子，间接子视图是不具有 behavior 属性的，原因当然也很简单，behavior 是 <code>LayoutParams</code> 的一个属性，而间接子视图的 LayoutParams 根本不是 <code>CoordinatorLayout</code> 类型的。</p>
+<p>通过分解整个效果，我们可以将 Behavior 分为两个，分别应用于 <code>RecyclerView</code> （或者其他支持 <strong>Nested Scrolling</strong> 的滚动视图）和搜索框。</p>
+<h2>Behavior 基本概念</h2>
+<p>不要其被表面吓到了，Behavior 实际就是将一些布局的过程以及 <strong>Nested Scrolling </strong> 的过程暴露了出来，利用代理和组合模式，可以让开发者为 <code>CoordinatorLayout</code> 添加各种效果插件。</p>
+<h4>依赖视图</h4>
+<p>一个 Behavior 能够将指定的视图作为一个依赖项，并且监听这个依赖项的一切布局信息，一旦依赖项发生变化，Behavior 就可以做出适当的响应。很简单的例子就是 <strong>FAB</strong> 和 <strong>SnackBar</strong> 的联动，具体表现就是 FAB 会随 SnackBar 的弹出而上移，从而不会被 SnackBar 遮挡，这就是依赖视图的最简单的一个用法。</p>
+<h4>Nested Scrolling</h4>
+<p>这是 Google 开发的一种全新嵌套滚动方案，由 <code>NestedScrollingParent</code> 和 <code>NestedScrollingChild</code> 组成，一般来讲我们都会围绕&nbsp; <code>NestedScrollingParent</code> 来进行开发，而 <code>NestedScrollingChild</code> 相比来说较为复杂，本文也不赘述其具体用法了。<code>NestedScrollingParent</code>（下文简称 <em>NSP</em>） 和 <code>NestedScrollingChild</code>（下文简称 <em>NSC</em>） 有一组相互配对的事件方法，<em>NSC</em> 负责派发这些方法到 <em>NSP</em>，<em>NSP</em> 可以对这些方法做出响应。同时 Google 也提供了一组 Helper 类来帮助开发者使用 <em>NSP</em> 和 <em>NSC</em>，其中 <code>NestedScrollingParentHelper</code> 较为简单，仅是记录一下滚动的方向。对于 <strong>Nested Scrolling</strong> 的具体用法，我在下文中会详细讲解。</p>
+<h2>案例 Behavior 实现思路</h2>
+<p>我们最终需要实现两个 Behavior 类： <code>HeaderScrollingBehavior</code> 负责协调 RecyclerView 与 Header View 的关系，同时它依赖于 Header View，因为它要根据 Header View 的位移调整自己的位置。 <code>HeaderFloatBehavior</code> 负责协调搜索框与 Header View 的关系，也是依赖于 Header View，相对比较简单。</p>
+<p>可以看到，整个视图体系都是围绕 Header View 展开的，Recycler View 通过 <strong>Nested Scrolling</strong> 机制调整 Header View 的位置，进而因 Header View 的改变而影响自身的位置。搜索框也是随 Header View 的位置变化而改变自己的位置、大小与背景颜色，这里只需要依赖视图这一个概念就可以完成。</p>
+<h2>实现 HeaderScrollingBehavior</h2>
+<p>首先继承自 Behavior，这是一个范型类，范型类型为被 Behavior 控制的视图类型：</p>
+<div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> HeaderScrollingBehavior <span style="color: #0000ff">extends</span> CoordinatorLayout.Behavior&lt;RecyclerView&gt;<span style="color: #000000"> {
+</span><span style="color: #008080"> 2</span> 
+<span style="color: #008080"> 3</span>     <span style="color: #0000ff">private</span> <span style="color: #0000ff">boolean</span> isExpanded = <span style="color: #0000ff">false</span><span style="color: #000000">;
+</span><span style="color: #008080"> 4</span>     <span style="color: #0000ff">private</span> <span style="color: #0000ff">boolean</span> isScrolling = <span style="color: #0000ff">false</span><span style="color: #000000">;
+</span><span style="color: #008080"> 5</span> 
+<span style="color: #008080"> 6</span>     <span style="color: #0000ff">private</span> WeakReference&lt;View&gt;<span style="color: #000000"> dependentView;
+</span><span style="color: #008080"> 7</span>     <span style="color: #0000ff">private</span><span style="color: #000000"> Scroller scroller;
+</span><span style="color: #008080"> 8</span>     <span style="color: #0000ff">private</span><span style="color: #000000"> Handler handler;
+</span><span style="color: #008080"> 9</span> 
+<span style="color: #008080">10</span>     <span style="color: #0000ff">public</span><span style="color: #000000"> HeaderScrollingBehavior(Context context, AttributeSet attrs) {
+</span><span style="color: #008080">11</span>         <span style="color: #0000ff">super</span><span style="color: #000000">(context, attrs);
+</span><span style="color: #008080">12</span>         scroller = <span style="color: #0000ff">new</span><span style="color: #000000"> Scroller(context);
+</span><span style="color: #008080">13</span>         handler = <span style="color: #0000ff">new</span><span style="color: #000000"> Handler();
+</span><span style="color: #008080">14</span> <span style="color: #000000">    }
+</span><span style="color: #008080">15</span> 
+<span style="color: #008080">16</span> <span style="color: #000000">    ...
+</span><span style="color: #008080">17</span> 
+<span style="color: #008080">18</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>解释一下这几个实例变量的作用，<code>Scroller</code> 用来实现用户释放手指后的滑动动画，<code>Handler</code> 用来驱动 <code>Scroller</code> 的运行，而&nbsp; <code>dependentView</code> 是依赖视图的一个弱引用，方便我们后面的操作。剩下的是几个状态变量，不多解释了。</p>
+<p>我们先看这几个方法：</p>
+<div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080">1</span> <span style="color: #000000">@Override
+</span><span style="color: #008080">2</span> <span style="color: #0000ff">public</span> <span style="color: #0000ff">boolean</span><span style="color: #000000"> layoutDependsOn(CoordinatorLayout parent, RecyclerView child, View dependency) {
+</span><span style="color: #008080">3</span>     <span style="color: #0000ff">if</span> (dependency != <span style="color: #0000ff">null</span> &amp;&amp; dependency.getId() ==<span style="color: #000000"> R.id.scrolling_header) {        
+</span><span style="color: #008080">4</span>         dependentView = <span style="color: #0000ff">new</span> WeakReference&lt;&gt;<span style="color: #000000">(dependency);
+</span><span style="color: #008080">5</span>         <span style="color: #0000ff">return</span> <span style="color: #0000ff">true</span><span style="color: #000000">;
+</span><span style="color: #008080">6</span> <span style="color: #000000">    }
+</span><span style="color: #008080">7</span>     <span style="color: #0000ff">return</span> <span style="color: #0000ff">false</span><span style="color: #000000">;
+</span><span style="color: #008080">8</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="text-align: justify; color: #2f2f2f; text-transform: none; text-indent: 0px; letter-spacing: normal; word-spacing: 0px; float: none; display: inline !important; white-space: normal; widows: 1; background-color: #ffffff">负责查询该 Behavior 是否依赖于某个视图，我们在这里判读视图是否为 Header View，如果是则返回 true，那么之后其他操作就会围绕这个依赖视图而进行了。</span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080">1</span> <span style="color: #000000">@Override
+</span><span style="color: #008080">2</span> <span style="color: #0000ff">public</span> <span style="color: #0000ff">boolean</span> onLayoutChild(CoordinatorLayout parent, RecyclerView child, <span style="color: #0000ff">int</span><span style="color: #000000"> layoutDirection) {
+</span><span style="color: #008080">3</span>     CoordinatorLayout.LayoutParams lp =<span style="color: #000000"> (CoordinatorLayout.LayoutParams) child.getLayoutParams();
+</span><span style="color: #008080">4</span>     <span style="color: #0000ff">if</span> (lp.height ==<span style="color: #000000"> CoordinatorLayout.LayoutParams.MATCH_PARENT) {
+</span><span style="color: #008080">5</span>         child.layout(0, 0, parent.getWidth(), (<span style="color: #0000ff">int</span>) (parent.getHeight() -<span style="color: #000000"> getDependentViewCollapsedHeight()));
+</span><span style="color: #008080">6</span>         <span style="color: #0000ff">return</span> <span style="color: #0000ff">true</span><span style="color: #000000">;
+</span><span style="color: #008080">7</span> <span style="color: #000000">    }
+</span><span style="color: #008080">8</span>     <span style="color: #0000ff">return</span> <span style="color: #0000ff">super</span><span style="color: #000000">.onLayoutChild(parent, child, layoutDirection);
+</span><span style="color: #008080">9</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>负责对被 Behavior 控制的视图进行布局，就是将 <code>ViewGroup</code> 的 <code>onLayout</code> 针对该视图的部分抽出来给 Behavior 处理。我们判断一下如果目标视图高度要填充父视图，我们就自己将其高度减去 Header View 折叠后的高度。为什么要这么做呢？因为 <code>CoodinatorLayout</code> 就是一个 <code>FrameLayout</code>，不像 <code>LinearLayout</code> 一样能自动分配各个 View 的高度，因此我们要自己实现大小控制。</p>
+<div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #000000">@Override
+</span><span style="color: #008080"> 2</span> <span style="color: #0000ff">public</span> <span style="color: #0000ff">boolean</span><span style="color: #000000"> onDependentViewChanged(CoordinatorLayout parent, RecyclerView child, View dependency)
+</span><span style="color: #008080"> 3</span> <span style="color: #000000"> {
+</span><span style="color: #008080"> 4</span>     Resources resources =<span style="color: #000000"> getDependentView().getResources();
+</span><span style="color: #008080"> 5</span>     <span style="color: #0000ff">final</span> <span style="color: #0000ff">float</span> progress = 1.f -
+<span style="color: #008080"> 6</span>             Math.abs(dependency.getTranslationY() / (dependency.getHeight() -<span style="color: #000000"> resources.getDimension(R.dimen.collapsed_header_height)));
+</span><span style="color: #008080"> 7</span> 
+<span style="color: #008080"> 8</span>     child.setTranslationY(dependency.getHeight() +<span style="color: #000000"> dependency.getTranslationY());
+</span><span style="color: #008080"> 9</span> 
+<span style="color: #008080">10</span>     <span style="color: #0000ff">float</span> scale = 1 + 0.4f * (1.f -<span style="color: #000000"> progress);
+</span><span style="color: #008080">11</span> <span style="color: #000000">    dependency.setScaleX(scale);
+</span><span style="color: #008080">12</span> <span style="color: #000000">    dependency.setScaleY(scale);
+</span><span style="color: #008080">13</span> 
+<span style="color: #008080">14</span> <span style="color: #000000">    dependency.setAlpha(progress);
+</span><span style="color: #008080">15</span> 
+<span style="color: #008080">16</span>     <span style="color: #0000ff">return</span> <span style="color: #0000ff">true</span><span style="color: #000000">;
+</span><span style="color: #008080">17</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>这段就是根据依赖视图进行调整的方法，当依赖视图发生变化时，这个方法就会被调用。这里我把相关的尺寸数据写到了 <em>dimens.xml</em> 中，通过当前依赖视图的位移，计算出一个位移因数（取值 0 - 1），对应到依赖视图的缩放和透明度。</p>
+<p>在这个例子中，依赖视图的属性影响到了依赖视图自己的属性，这也是可以的，因为我们主要依赖的就是 <code>translateY</code> 这个属性，其他依赖视图属性本质就是一个 <strong>Computed Property</strong>。最后别忘了设置目标视图的位移，让其始终跟在 Header View 下面。<br>还有两个便利函数，比较简单：</p>
+<div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080">1</span> <span style="color: #0000ff">private</span> <span style="color: #0000ff">float</span><span style="color: #000000"> getDependentViewCollapsedHeight() {
+</span><span style="color: #008080">2</span>     <span style="color: #0000ff">return</span><span style="color: #000000"> getDependentView().getResources().getDimension(R.dimen.collapsed_header_height);
+</span><span style="color: #008080">3</span> <span style="color: #000000">}
+</span><span style="color: #008080">4</span> 
+<span style="color: #008080">5</span> <span style="color: #0000ff">private</span><span style="color: #000000"> View getDependentView() {
+</span><span style="color: #008080">6</span>     <span style="color: #0000ff">return</span><span style="color: #000000"> dependentView.get();
+</span><span style="color: #008080">7</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>下面我们主要来看看 <strong>Nested Scrolling</strong> 怎么实现。</p>
+<p>本例子中我们需要 <em>NSP</em> （Behavior 就是 <em>NSP</em> 的一个代理） 的这几个回调方法：</p>
+<ul>
+<li>onStartNestedScroll</li>
+<li>onNestedScrollAccepted</li>
+<li>onNestedPreScroll</li>
+<li>onNestedScroll</li>
+<li>onNestedPreFling</li>
+<li>onStopNestedScroll</li>
+</ul>
+<h4>onStartNestedScroll</h4>
+<p>用户按下手指时触发，询问 <em>NSP</em> 是否要处理这次滑动操作，如果返回 <code>true</code> 则表示“我要处理这次滑动”，如果返回 <code>false</code> 则表示“我不 care 你的滑动，你想咋滑就咋滑”，后面的一系列回调函数就不会被调用了。它有一个关键的参数，就是滑动方向，表明了用户是垂直滑动还是水平滑动，本例子只需考虑垂直滑动，因此判断滑动方向为垂直时就处理这次滑动，否则就不 care。</p>
+<h4>onNestedScrollAccepted</h4>
+<p>当 <em>NSP</em> 接受要处理本次滑动后，这个回调被调用，我们可以做一些准备工作，比如让之前的滑动动画结束。</p>
+<h4>onNestedPreScroll</h4>
+<p>当 <em>NSC</em> 即将被滑动时调用，在这里你可以做一些处理。值得注意的是，这个方法有一个参数 <code>int[] consumed</code>，你可以修改这个数组来表示你到底处理掉了多少像素。假设用户滑动了 100px，你做了 90px 的位移，那么就需要把 <code>consumed[1]</code> 改成 90（下标 0、1 分别对应 x、y 轴），这样 <em>NSC</em> 就能知道，然后继续处理剩下的 10px。</p>
+<h4>onNestedScroll</h4>
+<p>上一个方法结束后，<em>NSC</em> 处理剩下的距离。比如上面还剩 10px，这里 <em>NSC</em> 滚动 2px 后发现已经到头了，于是 <em>NSC</em> 结束其滚动，调用该方法，并将 <em>NSC</em> 处理剩下的像素数作为参数（<code>dxUnconsumed</code>、<code>dyUnconsumed</code>）传过来，这里传过来的就是 8px。参数中还会有 <em>NSC</em> 处理过的像素数（<code>dxConsumed</code>、<code>dyConsumed</code>）。这个方法主要处理一些越界后的滚动。</p>
+<h4>onNestedPreFling</h4>
+<p>用户松开手指并且会发生惯性滚动之前调用。参数提供了速度信息，我们这里可以根据速度，决定最终的状态是展开还是折叠，并且启动滑动动画。通过返回值我们可以通知 <em>NSC</em> 是否自己还要进行滑动滚动，一般情况如果面板处于中间态，我们就不让 <em>NSC</em> 接着滚了，因为我们还要用动画把面板完全展开或者完全折叠。</p>
+<h4>onStopNestedScroll</h4>
+<p>一切滚动停止后调用，如果不会发生惯性滚动，fling 相关方法不会调用，直接执行到这里。这里我们做一些清理工作，当然有时也要处理中间态问题。</p>
+<p>思路有了，我们直接看代码就很容易理解了：</p>
+<div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #000000">@Override
+</span><span style="color: #008080"> 2</span> <span style="color: #0000ff">public</span> <span style="color: #0000ff">boolean</span> onStartNestedScroll(CoordinatorLayout coordinatorLayout, RecyclerView child, View directTargetChild, View target, <span style="color: #0000ff">int</span><span style="color: #000000"> nestedScrollAxes) {
+</span><span style="color: #008080"> 3</span>     <span style="color: #0000ff">return</span> (nestedScrollAxes &amp; ViewCompat.SCROLL_AXIS_VERTICAL) != 0<span style="color: #000000">;
+</span><span style="color: #008080"> 4</span> <span style="color: #000000">}
+</span><span style="color: #008080"> 5</span> 
+<span style="color: #008080"> 6</span> <span style="color: #000000">@Override
+</span><span style="color: #008080"> 7</span> <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> onNestedScrollAccepted(CoordinatorLayout coordinatorLayout, RecyclerView child, View directTargetChild, View target, <span style="color: #0000ff">int</span><span style="color: #000000"> nestedScrollAxes) {
+</span><span style="color: #008080"> 8</span> <span style="color: #000000">    scroller.abortAnimation();
+</span><span style="color: #008080"> 9</span>     isScrolling = <span style="color: #0000ff">false</span><span style="color: #000000">;
+</span><span style="color: #008080">10</span>     <span style="color: #0000ff">super</span><span style="color: #000000">.onNestedScrollAccepted(coordinatorLayout, child, directTargetChild, target, nestedScrollAxes);
+</span><span style="color: #008080">11</span> <span style="color: #000000">}
+</span><span style="color: #008080">12</span> 
+<span style="color: #008080">13</span> <span style="color: #000000">@Override
+</span><span style="color: #008080">14</span> <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> onNestedPreScroll(CoordinatorLayout coordinatorLayout, RecyclerView child, View target, <span style="color: #0000ff">int</span> dx, <span style="color: #0000ff">int</span> dy, <span style="color: #0000ff">int</span><span style="color: #000000">[] consumed) {
+</span><span style="color: #008080">15</span>     <span style="color: #0000ff">if</span> (dy &lt; 0<span style="color: #000000">) {
+</span><span style="color: #008080">16</span>         <span style="color: #0000ff">return</span><span style="color: #000000">;
+</span><span style="color: #008080">17</span> <span style="color: #000000">    }
+</span><span style="color: #008080">18</span>     View dependentView =<span style="color: #000000"> getDependentView();
+</span><span style="color: #008080">19</span>     <span style="color: #0000ff">float</span> newTranslateY = dependentView.getTranslationY() -<span style="color: #000000"> dy;
+</span><span style="color: #008080">20</span>     <span style="color: #0000ff">float</span> minHeaderTranslate = -(dependentView.getHeight() -<span style="color: #000000"> getDependentViewCollapsedHeight());
+</span><span style="color: #008080">21</span>     <span style="color: #0000ff">if</span> (newTranslateY &gt;<span style="color: #000000"> minHeaderTranslate) {
+</span><span style="color: #008080">22</span> <span style="color: #000000">        dependentView.setTranslationY(newTranslateY);
+</span><span style="color: #008080">23</span>         consumed[1] =<span style="color: #000000"> dy;
+</span><span style="color: #008080">24</span> <span style="color: #000000">    }
+</span><span style="color: #008080">25</span> <span style="color: #000000">}
+</span><span style="color: #008080">26</span> 
+<span style="color: #008080">27</span> <span style="color: #000000">@Override
+</span><span style="color: #008080">28</span> <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> onNestedScroll(CoordinatorLayout coordinatorLayout, RecyclerView child, View target, <span style="color: #0000ff">int</span> dxConsumed, <span style="color: #0000ff">int</span> dyConsumed, <span style="color: #0000ff">int</span> dxUnconsumed, <span style="color: #0000ff">int</span><span style="color: #000000"> dyUnconsumed) {
+</span><span style="color: #008080">29</span>     <span style="color: #0000ff">if</span> (dyUnconsumed &gt; 0<span style="color: #000000">) {
+</span><span style="color: #008080">30</span>         <span style="color: #0000ff">return</span><span style="color: #000000">;
+</span><span style="color: #008080">31</span> <span style="color: #000000">    }
+</span><span style="color: #008080">32</span>     View dependentView =<span style="color: #000000"> getDependentView();
+</span><span style="color: #008080">33</span>     <span style="color: #0000ff">float</span> newTranslateY = dependentView.getTranslationY() -<span style="color: #000000"> dyUnconsumed;
+</span><span style="color: #008080">34</span>     <span style="color: #0000ff">final</span> <span style="color: #0000ff">float</span> maxHeaderTranslate = 0<span style="color: #000000">;
+</span><span style="color: #008080">35</span>     <span style="color: #0000ff">if</span> (newTranslateY &lt;<span style="color: #000000"> maxHeaderTranslate) {
+</span><span style="color: #008080">36</span> <span style="color: #000000">        dependentView.setTranslationY(newTranslateY);
+</span><span style="color: #008080">37</span> <span style="color: #000000">    }
+</span><span style="color: #008080">38</span> <span style="color: #000000">}
+</span><span style="color: #008080">39</span> 
+<span style="color: #008080">40</span> <span style="color: #000000">@Override
+</span><span style="color: #008080">41</span> <span style="color: #0000ff">public</span> <span style="color: #0000ff">boolean</span> onNestedPreFling(CoordinatorLayout coordinatorLayout, RecyclerView child, View target, <span style="color: #0000ff">float</span> velocityX, <span style="color: #0000ff">float</span><span style="color: #000000"> velocityY) {
+</span><span style="color: #008080">42</span>     <span style="color: #0000ff">return</span><span style="color: #000000"> onUserStopDragging(velocityY);
+</span><span style="color: #008080">43</span> <span style="color: #000000">}
+</span><span style="color: #008080">44</span> 
+<span style="color: #008080">45</span> <span style="color: #000000">@Override
+</span><span style="color: #008080">46</span> <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> onStopNestedScroll(CoordinatorLayout coordinatorLayout, RecyclerView child, View target) {
+</span><span style="color: #008080">47</span>     <span style="color: #0000ff">if</span> (!<span style="color: #000000">isScrolling) {
+</span><span style="color: #008080">48</span>         onUserStopDragging(800<span style="color: #000000">);
+</span><span style="color: #008080">49</span> <span style="color: #000000">    }
+</span><span style="color: #008080">50</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>值得注意的是展开和折叠两个动作我分别分配到 <code>onNestedPreScroll</code> 和 <code>onNestedScroll</code> 中处理了，为什么这么做呢。我来解释一下，当 Header 完全展开时，用户只能向上滑动，此时 <code>onNestedPreScroll</code> 会先调用，我们判断滚动方向，如果是向上滚动，我们再看面板的位置，如果可以被折叠，那么我们就改变 Header 的 translateY，并且消耗掉相应的像素数。如果 Header 完全折叠了，<em>NSC</em> 就可以继续滚动了。</p>
+<p>任何情况下用户向下滑动都不会走 <code>onNestedPreScroll</code>，因为我们在这个方法一开始就短路掉了，因此直接到 <code>onNestedScroll</code>，如果 <em>NSC</em> 还可以滚动，那么 <code>dyUnconsumed</code> 就是 0，我们就什么都不需要做了，此时用户要滚动 <em>NSC</em>，一旦 <code>dyUnconsumed</code> 有数值了，则说明 <em>NSC</em> 滚到头了，而如果此时正向下滚动，我们就有机会再处理 Header 位移了。这里为什么不放到 <code>onNestedPreScroll</code> 处理呢？因为如果 Header 完全折叠了，RecyclerView 又可以向下滚动，这时我们就不能决定是让 Header 位移还是 RecyclerView 滚动了，只有让 RecyclerView 向下滚动到头才能保证唯一性。</p>
+<p>这里比较绕，大家要结合效果好好理解一下。</p>
+<p>最后这个类还有一个方法：</p>
+<div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">private</span> <span style="color: #0000ff">boolean</span> onUserStopDragging(<span style="color: #0000ff">float</span><span style="color: #000000"> velocity) {
+</span><span style="color: #008080"> 2</span>     View dependentView =<span style="color: #000000"> getDependentView();
+</span><span style="color: #008080"> 3</span>     <span style="color: #0000ff">float</span> translateY =<span style="color: #000000"> dependentView.getTranslationY();
+</span><span style="color: #008080"> 4</span>     <span style="color: #0000ff">float</span> minHeaderTranslate = -(dependentView.getHeight() -<span style="color: #000000"> getDependentViewCollapsedHeight());
+</span><span style="color: #008080"> 5</span> 
+<span style="color: #008080"> 6</span>     <span style="color: #0000ff">if</span> (translateY == 0 || translateY ==<span style="color: #000000"> minHeaderTranslate) {
+</span><span style="color: #008080"> 7</span>         <span style="color: #0000ff">return</span> <span style="color: #0000ff">false</span><span style="color: #000000">;
+</span><span style="color: #008080"> 8</span> <span style="color: #000000">    }
+</span><span style="color: #008080"> 9</span> 
+<span style="color: #008080">10</span>     <span style="color: #0000ff">boolean</span> targetState; <span style="color: #008000">//</span><span style="color: #008000"> Flag indicates whether to expand the content.</span>
+<span style="color: #008080">11</span>     <span style="color: #0000ff">if</span> (Math.abs(velocity) &lt;= 800<span style="color: #000000">) {
+</span><span style="color: #008080">12</span>         <span style="color: #0000ff">if</span> (Math.abs(translateY) &lt; Math.abs(translateY -<span style="color: #000000"> minHeaderTranslate)) {
+</span><span style="color: #008080">13</span>             targetState = <span style="color: #0000ff">false</span><span style="color: #000000">;
+</span><span style="color: #008080">14</span>         } <span style="color: #0000ff">else</span><span style="color: #000000"> {
+</span><span style="color: #008080">15</span>             targetState = <span style="color: #0000ff">true</span><span style="color: #000000">;
+</span><span style="color: #008080">16</span> <span style="color: #000000">        }
+</span><span style="color: #008080">17</span>         velocity = 800; <span style="color: #008000">//</span><span style="color: #008000"> Limit velocity's minimum value.</span>
+<span style="color: #008080">18</span>     } <span style="color: #0000ff">else</span><span style="color: #000000"> {
+</span><span style="color: #008080">19</span>         <span style="color: #0000ff">if</span> (velocity &gt; 0<span style="color: #000000">) {
+</span><span style="color: #008080">20</span>             targetState = <span style="color: #0000ff">true</span><span style="color: #000000">;
+</span><span style="color: #008080">21</span>         } <span style="color: #0000ff">else</span><span style="color: #000000"> {
+</span><span style="color: #008080">22</span>             targetState = <span style="color: #0000ff">false</span><span style="color: #000000">;
+</span><span style="color: #008080">23</span> <span style="color: #000000">        }
+</span><span style="color: #008080">24</span> <span style="color: #000000">    }
+</span><span style="color: #008080">25</span> 
+<span style="color: #008080">26</span>     <span style="color: #0000ff">float</span> targetTranslateY = targetState ? minHeaderTranslate : 0<span style="color: #000000">;
+</span><span style="color: #008080">27</span>     scroller.startScroll(0, (<span style="color: #0000ff">int</span>) translateY, 0, (<span style="color: #0000ff">int</span>) (targetTranslateY - translateY), (<span style="color: #0000ff">int</span>) (1000000 /<span style="color: #000000"> Math.abs(velocity)));
+</span><span style="color: #008080">28</span> <span style="color: #000000">    handler.post(flingRunnable);
+</span><span style="color: #008080">29</span>     isScrolling = <span style="color: #0000ff">true</span><span style="color: #000000">;
+</span><span style="color: #008080">30</span> 
+<span style="color: #008080">31</span>     <span style="color: #0000ff">return</span> <span style="color: #0000ff">true</span><span style="color: #000000">;
+</span><span style="color: #008080">32</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>用来判断是否处于中间态，如果处于中间态，我们需要根据滑动速度决定最终切换到哪个状态，这里滚动我们使用 <code>Scroller</code> 配合 <code>Handler</code> 来实现。这个函数的返回值将会被作为 <code>onNestedPreFling</code> 的返回值。</p>
+<p>方法中向 <code>Handler</code> 添加的 <code>Runnable</code> 如下：</p>
+<div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">private</span> Runnable flingRunnable = <span style="color: #0000ff">new</span><span style="color: #000000"> Runnable() {
+</span><span style="color: #008080"> 2</span> <span style="color: #000000">    @Override
+</span><span style="color: #008080"> 3</span>     <span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span><span style="color: #000000"> run() {
+</span><span style="color: #008080"> 4</span>         <span style="color: #0000ff">if</span><span style="color: #000000"> (scroller.computeScrollOffset()) {
+</span><span style="color: #008080"> 5</span> <span style="color: #000000">            getDependentView().setTranslationY(scroller.getCurrY());
+</span><span style="color: #008080"> 6</span>             handler.post(<span style="color: #0000ff">this</span><span style="color: #000000">);
+</span><span style="color: #008080"> 7</span>         } <span style="color: #0000ff">else</span><span style="color: #000000"> {
+</span><span style="color: #008080"> 8</span>             isExpanded = getDependentView().getTranslationY() != 0<span style="color: #000000">;
+</span><span style="color: #008080"> 9</span>             isScrolling = <span style="color: #0000ff">false</span><span style="color: #000000">;
+</span><span style="color: #008080">10</span> <span style="color: #000000">        }
+</span><span style="color: #008080">11</span> <span style="color: #000000">    }
+</span><span style="color: #008080">12</span> };</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>很简单就不解释了。</p>
+<hr>
+<p>OK，以上就是 <code>HeaderScrollingBehavior</code> 的全部内容了。</p>
+<h2>实现 HeaderFloatBehavior</h2>
+<p>相信大家有了上面的经验，这个类写起来就很简单了。我们只需要实现 <code>layoutDependsOn</code> 和 <code>onDependentViewChanged</code> 就行了。 下面是 <code>onDependentViewChanged</code> 的代码：</p>
+<div><iframe id="iframe_0.9125004898003595" src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/saved_resource(1).html" style="border: none; width: 690px; height: 359px;" frameborder="0" scrolling="no"></iframe></div>
+<div>
+<p>到这里两个 Behavior 就都写完了，直接在布局 xml 中引用就可以了，Activity 或 Fragment 中不需要做任何设置，是不是很方便。</p>
+<h2>总结</h2>
+<p><code>CoordinatorLayout</code> 和 <code>Behavior</code> 结合可以做出十分复杂的界面效果，本文也只是介绍了冰山一角，很难想象没有它，这些效果的实现将是一件多么复杂的事情 :-)</p>
+<p><strong>- EOF -</strong></p>
+<div>&nbsp;</div>
+</div>
+&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>
+</div>
+</div>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/huolongluo/category/961689.html" target="_blank">Android动画</a>,<a href="http://www.cnblogs.com/huolongluo/category/974803.html" target="_blank">自定义控件</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6214065,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;02c5c914-5b08-e611-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/huolongluo/" target="_blank"><img src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/20160422155033.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/huolongluo/">火龙裸先生</a><br>
+            <a href="http://home.cnblogs.com/u/huolongluo/followees">关注 - 1</a><br>
+            <a href="http://home.cnblogs.com/u/huolongluo/followers">粉丝 - 3</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;02c5c914-5b08-e611-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(6214065,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(6214065,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/huolongluo/p/6214011.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/huolongluo/p/6214011.html" title="发布于2016-12-23 11:01">这交互炸了(三) :不看后悔！你一定没见过这样的闪屏</a><br><a href="http://www.cnblogs.com/huolongluo/p/6214172.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/huolongluo/p/6214172.html" title="发布于2016-12-23 11:28">一行实现QQ群组头像,微信群组,圆角等效果. 并支持url直接加载图片</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-12-23 11:10</span> <a href="http://www.cnblogs.com/huolongluo/">火龙裸先生</a> 阅读(<span id="post_view_count">1467</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6214065" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/huolongluo/p/6214065.html#" onclick="AddToWz(6214065);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=281362,cb_entryId=6214065,cb_blogApp=currentBlogApp,cb_blogUserGuid='02c5c914-5b08-e611-9fc1-ac853d9f53cc',cb_entryCreatedDate='2016/12/23 11:10:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/huolongluo/p/6214065.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/huolongluo/p/6214065.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://cloud.tencent.com/developer/labs?fromSource=gwzcw.241259.241259.241259" target="_blank">【免费】从零开始学编程，开发者专属实验平台免费实践！</a><br><a href="https://console.upyun.com/register/?invite=H124C2iMZ?utm_source=cnblogs&amp;utm_medium=referral" target="_blank">【推荐】现在注册又拍云，首月可享 200G CDN流量，还可免费申请 SSL 证书</a><br><a href="http://click.aliyun.com/m/18488/" target="_blank">【推荐】阿里云“全民云计算”优惠升级</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://cn.udacity.com/course/machine-learning-engineer-nanodegree--nd009-cn-basic/?utm_source=cnblogs&amp;utm_medium=banner&amp;utm_campaign=MLND05" target="_blank"><img width="300" height="250" src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/24442-20170724151534762-1370821036.png" alt="google 机器学习"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/574637/" target="_blank">Android O预览版4来了，O还会远吗？</a><br> ·  <a href="http://news.cnblogs.com/n/574636/" target="_blank">眼红苹果iPhone大热？三星疑似开发Banana手机</a><br> ·  <a href="http://news.cnblogs.com/n/574635/" target="_blank">黑客大会将举行：UPS商店紧急叫停U盘和网页打印服务</a><br> ·  <a href="http://news.cnblogs.com/n/574634/" target="_blank">惠普宣布推出新版Pavilion一体机</a><br> ·  <a href="http://news.cnblogs.com/n/574633/" target="_blank">macOS版Google Chrome 60发布 支持Touch Bar</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice?source=bky&amp;hmsr=%E5%8D%9A%E5%AE%A2%E5%9B%AD&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank"><img width="468" height="60" src="./使用 CoordinatorLayout 实现复杂联动效果 - 火龙裸先生 - 博客园_files/24442-20170629165247758-2056260207.png" alt="极光推广_0701"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/570194/" target="_blank">小printf的故事：什么是真正的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/569992/" target="_blank">程序员的工作、学习与绩效</a><br> ·  <a href="http://kb.cnblogs.com/page/569056/" target="_blank">软件开发为什么很难</a><br> ·  <a href="http://kb.cnblogs.com/page/565901/" target="_blank">唱吧DevOps的落地，微服务CI/CD的范本技术解读</a><br> ·  <a href="http://kb.cnblogs.com/page/566523/" target="_blank">程序员，如何从平庸走向理想？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/huolongluo/">火龙裸先生</a><br>园龄：<a href="http://home.cnblogs.com/u/huolongluo/" title="入园时间：2016-04-22">1年3个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/huolongluo/followers/">3</a><br>关注：<a href="http://home.cnblogs.com/u/huolongluo/followees/">1</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;02c5c914-5b08-e611-9fc1-ac853d9f53cc&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="日历">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/06/01&#39;);return false;">&lt;</a></td><td align="center">2017年7月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/08/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalWeekendDay" align="center">1</td></tr><tr><td class="CalWeekendDay" align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td class="CalWeekendDay" align="center">8</td></tr><tr><td class="CalWeekendDay" align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td class="CalWeekendDay" align="center">15</td></tr><tr><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/huolongluo/archive/2017/07/16.html"><u>16</u></a></td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td class="CalWeekendDay" align="center">22</td></tr><tr><td class="CalWeekendDay" align="center">23</td><td align="center">24</td><td align="center">25</td><td class="CalTodayDay" align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalWeekendDay" align="center">29</td></tr><tr><td class="CalWeekendDay" align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/huolongluo/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/huolongluo/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/huolongluo/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/huolongluo/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/huolongluo/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/huolongluo/tag/android/">android</a>(1)</li><li><a href="http://www.cnblogs.com/huolongluo/tag/%E8%87%AA%E5%AE%9A%E4%B9%89View/">自定义View</a>(1)</li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/huolongluo/category/911313.html">Andriod之activity栈管理(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/huolongluo/category/961689.html">Android动画(15)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/huolongluo/category/971562.html">Android多媒体(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/huolongluo/category/1035666.html">Android基础(35)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/huolongluo/category/974828.html">Android屏幕适配(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/huolongluo/category/911315.html">App主界面Tab实现方法 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/huolongluo/category/1035663.html">EventBus(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/huolongluo/category/996294.html">Fragment(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/huolongluo/category/969263.html">Java和Android架构(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/huolongluo/category/912856.html">MPAndroidChart 教程(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/huolongluo/category/1015187.html">PopupWindow(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/huolongluo/category/911312.html">RecyclerView(17)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/huolongluo/category/918377.html">常用工具类(16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/huolongluo/category/911314.html">仿微信之国际化语言切换</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/huolongluo/category/968009.html">数据库(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/huolongluo/category/913399.html">图片加载库(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/huolongluo/category/911310.html">网络数据请求(20)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/huolongluo/category/974803.html">自定义控件(32)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/huolongluo/archive/2017/07.html">2017年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/huolongluo/archive/2017/06.html">2017年6月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/huolongluo/archive/2017/05.html">2017年5月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/huolongluo/archive/2017/04.html">2017年4月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/huolongluo/archive/2017/03.html">2017年3月 (25)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/huolongluo/archive/2017/02.html">2017年2月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/huolongluo/archive/2017/01.html">2017年1月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/huolongluo/archive/2016/12.html">2016年12月 (20)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/huolongluo/archive/2016/11.html">2016年11月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/huolongluo/archive/2016/10.html">2016年10月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/huolongluo/archive/2016/09.html">2016年9月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/huolongluo/archive/2016/08.html">2016年8月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/huolongluo/archive/2016/07.html">2016年7月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/huolongluo/archive/2016/06.html">2016年6月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/huolongluo/archive/2016/05.html">2016年5月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/huolongluo/archive/2016/04.html">2016年4月 (6)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_imagecategory" class="catListImageCategory sidebar-block">
+<h3 class="catListTitle">相册</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/huolongluo/gallery/932599.html" rel="nofollow">Google Play 应用成 功宝典</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap" style="display: none;">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"></div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/huolongluo/p/5879292.html">1. RecyclerView的万能分割线(9836)</a></li><li><a href="http://www.cnblogs.com/huolongluo/p/5988644.html">2. 手把手教你实现折线图之------安卓最好用的图表库hellocharts之最详细的使用介绍(4328)</a></li><li><a href="http://www.cnblogs.com/huolongluo/p/6109475.html">3. Android屏幕适配dp、px两套解决办法(1833)</a></li><li><a href="http://www.cnblogs.com/huolongluo/p/6607877.html">4. Android可伸缩布局－FlexboxLayout(支持RecyclerView集成)(1478)</a></li><li><a href="http://www.cnblogs.com/huolongluo/p/6214065.html">5. 使用 CoordinatorLayout 实现复杂联动效果(1468)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap" style="display: none;">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/huolongluo/p/6607877.html">1. Android可伸缩布局－FlexboxLayout(支持RecyclerView集成)(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 火龙裸先生
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

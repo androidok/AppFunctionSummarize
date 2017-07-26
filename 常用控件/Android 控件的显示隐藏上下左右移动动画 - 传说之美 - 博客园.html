@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)http://www.cnblogs.com/liqw/p/4602876.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./Android 控件的显示隐藏上下左右移动动画 - 传说之美 - 博客园_files/analytics.js.下载"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Android 控件的显示隐藏上下左右移动动画 - 传说之美 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Android 控件的显示隐藏上下左右移动动画 - 传说之美 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Android 控件的显示隐藏上下左右移动动画 - 传说之美 - 博客园_files/bundle-coffee.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./Android 控件的显示隐藏上下左右移动动画 - 传说之美 - 博客园_files/bundle-coffee-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/liqw/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/liqw/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/liqw/wlwmanifest.xml">
+<script src="./Android 控件的显示隐藏上下左右移动动画 - 传说之美 - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'liqw', cb_enable_mathjax=true;var isLogined=false;</script>
+<script src="./Android 控件的显示隐藏上下左右移动动画 - 传说之美 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+<script type="text/x-mathjax-config;executed=true">MathJax.Hub.Config({
+  tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] },
+  TeX: { equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, extensions: ['extpfeil.js'] },
+  'HTML-CSS': { linebreaks: { automatic: true } },
+  SVG: { linebreaks: { automatic: true } }});</script><script type="text/javascript" src="./Android 控件的显示隐藏上下左右移动动画 - 传说之美 - 博客园_files/MathJax.js.下载"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/liqw/"><img id="blogLogo" src="./Android 控件的显示隐藏上下左右移动动画 - 传说之美 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/liqw/"><font size="30">传说之美</font></a></h1>
+<h2>分享快乐 记录生活  学习探索</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="navigator">
+			
+<ul id="navList">
+	<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+	<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/liqw/">首页</a></li>
+	<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E4%BC%A0%E8%AF%B4%E4%B9%8B%E7%BE%8E">联系</a></li>
+	<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+	<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/liqw/rss">订阅</a>
+	<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/liqw/rss"><img src="./Android 控件的显示隐藏上下左右移动动画 - 传说之美 - 博客园_files/xml.gif" alt="订阅"></a></li>
+</ul>
+
+
+			<div class="blogStats">
+				
+				<div id="blog_stats">
+<!--done-->
+随笔- 75&nbsp;
+文章- 0&nbsp;
+评论- 19&nbsp;
+</div>
+				
+			</div><!--end: blogStats -->
+		</div><!--end: navigator 博客导航栏 -->
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/liqw/p/4602876.html">Android 控件的显示隐藏上下左右移动动画</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>一、利用Android提供的左右移动工具类：AnimationUtils</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_79765" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://www.cnblogs.com/liqw/p/4602876.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java plain">LinearLayout ll_first = (LinearLayout) findViewById(R.id.ll_first);</code></div><div class="line number2 index1 alt1"><code class="java plain">LinearLayout ll_second = (LinearLayout) findViewById(R.id.ll_second);</code></div><div class="line number3 index2 alt2"><code class="java plain">ll_first.setVisibility(View.GONE);</code></div><div class="line number4 index3 alt1"><code class="java plain">ll_second.setVisibility(View.VISIBLE);</code></div><div class="line number5 index4 alt2"><code class="java comments">// 向右边移出</code></div><div class="line number6 index5 alt1"><code class="java plain">ll_first.setAnimation(AnimationUtils.makeOutAnimation(</code><code class="java keyword">this</code><code class="java plain">, </code><code class="java keyword">true</code><code class="java plain">));</code></div><div class="line number7 index6 alt2"><code class="java comments">// 向右边移入</code></div><div class="line number8 index7 alt1"><code class="java plain">ll_second.setAnimation(AnimationUtils.makeInAnimation(</code><code class="java keyword">this</code><code class="java plain">, </code><code class="java keyword">true</code><code class="java plain">));</code></div><div class="line number9 index8 alt2">&nbsp;</div><div class="line number10 index9 alt1">&nbsp;</div><div class="line number11 index10 alt2">&nbsp;</div><div class="line number12 index11 alt1">&nbsp;</div><div class="line number13 index12 alt2"><code class="java plain">ll_first.setVisibility(View.VISIBLE);</code></div><div class="line number14 index13 alt1"><code class="java plain">ll_second.setVisibility(View.GONE);</code></div><div class="line number15 index14 alt2"><code class="java comments">// 向左边移入</code></div><div class="line number16 index15 alt1"><code class="java plain">ll_first.setAnimation(AnimationUtils.makeInAnimation(</code><code class="java keyword">this</code><code class="java plain">, </code><code class="java keyword">false</code><code class="java plain">));</code></div><div class="line number17 index16 alt2"><code class="java comments">// 向左边移出</code></div><div class="line number18 index17 alt1"><code class="java plain">ll_second.setAnimation(AnimationUtils.makeOutAnimation(</code><code class="java keyword">this</code><code class="java plain">, </code><code class="java keyword">false</code><code class="java plain">));</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>二、用TranslateAnimation添加动画</p>
+<p>先写一个AnimationUtil工具类：这里仅提供上下移动效果</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_857661" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://www.cnblogs.com/liqw/p/4602876.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java keyword">public</code> <code class="java keyword">class</code> <code class="java plain">AnimationUtil {</code></div><div class="line number2 index1 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">private</code> <code class="java keyword">static</code> <code class="java keyword">final</code> <code class="java plain">String TAG = AnimationUtil.</code><code class="java keyword">class</code><code class="java plain">.getSimpleName();</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java preprocessor">/**</code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java preprocessor">* 从控件所在位置移动到控件的底部</code></div><div class="line number6 index5 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java preprocessor">*</code></div><div class="line number7 index6 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java preprocessor">* @return</code></div><div class="line number8 index7 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java preprocessor">*/</code></div><div class="line number9 index8 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">static</code> <code class="java plain">TranslateAnimation moveToViewBottom() {</code></div><div class="line number10 index9 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">TranslateAnimation mHiddenAction = </code><code class="java keyword">new</code> <code class="java plain">TranslateAnimation(Animation.RELATIVE_TO_SELF, </code><code class="java value">0</code><code class="java plain">.0f,</code></div><div class="line number11 index10 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Animation.RELATIVE_TO_SELF, </code><code class="java value">0</code><code class="java plain">.0f, Animation.RELATIVE_TO_SELF,</code></div><div class="line number12 index11 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java value">0</code><code class="java plain">.0f, Animation.RELATIVE_TO_SELF, </code><code class="java value">1</code><code class="java plain">.0f);</code></div><div class="line number13 index12 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">mHiddenAction.setDuration(</code><code class="java value">500</code><code class="java plain">);</code></div><div class="line number14 index13 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">return</code> <code class="java plain">mHiddenAction;</code></div><div class="line number15 index14 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number16 index15 alt1">&nbsp;</div><div class="line number17 index16 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java preprocessor">/**</code></div><div class="line number18 index17 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java preprocessor">* 从控件的底部移动到控件所在位置</code></div><div class="line number19 index18 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java preprocessor">*</code></div><div class="line number20 index19 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java preprocessor">* @return</code></div><div class="line number21 index20 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java preprocessor">*/</code></div><div class="line number22 index21 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">public</code> <code class="java keyword">static</code> <code class="java plain">TranslateAnimation moveToViewLocation() {</code></div><div class="line number23 index22 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">TranslateAnimation mHiddenAction = </code><code class="java keyword">new</code> <code class="java plain">TranslateAnimation(Animation.RELATIVE_TO_SELF, </code><code class="java value">0</code><code class="java plain">.0f,</code></div><div class="line number24 index23 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">Animation.RELATIVE_TO_SELF, </code><code class="java value">0</code><code class="java plain">.0f, Animation.RELATIVE_TO_SELF,</code></div><div class="line number25 index24 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java value">1</code><code class="java plain">.0f, Animation.RELATIVE_TO_SELF, </code><code class="java value">0</code><code class="java plain">.0f);</code></div><div class="line number26 index25 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">mHiddenAction.setDuration(</code><code class="java value">500</code><code class="java plain">);</code></div><div class="line number27 index26 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java keyword">return</code> <code class="java plain">mHiddenAction;</code></div><div class="line number28 index27 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">}</code></div><div class="line number29 index28 alt2"><code class="java plain">}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>隐藏的时候设置下动画就可以了</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_598196" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://www.cnblogs.com/liqw/p/4602876.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java plain">ll_first.setVisibility(View.GONE);</code></div><div class="line number2 index1 alt1"><code class="java plain">ll_second.setVisibility(View.VISIBLE);</code></div><div class="line number3 index2 alt2"><code class="java plain">ll_first.setAnimation(AnimationUtil.moveToViewBottom());</code></div><div class="line number4 index3 alt1"><code class="java plain">ll_second.setAnimation(AnimationUtil.moveToViewLocation());</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>博客原文地址：<a href="http://www.cnblogs.com/liqw/p/4602876.html" target="_blank">http://www.cnblogs.com/liqw/p/4602876.html</a></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/liqw/category/517231.html" target="_blank">android</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(4602876,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;86e9f58e-1319-e311-8d02-90b11c0b17d6&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Android 控件的显示隐藏上下左右移动动画 - 传说之美 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Android 控件的显示隐藏上下左右移动动画 - 传说之美 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/liqw/" target="_blank"><img src="./Android 控件的显示隐藏上下左右移动动画 - 传说之美 - 博客园_files/20140827084006.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/liqw/">传说之美</a><br>
+            <a href="http://home.cnblogs.com/u/liqw/followees">关注 - 4</a><br>
+            <a href="http://home.cnblogs.com/u/liqw/followers">粉丝 - 29</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;86e9f58e-1319-e311-8d02-90b11c0b17d6&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(4602876,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(4602876,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/liqw/p/4339950.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/liqw/p/4339950.html" title="发布于2015-06-14 10:15">Android Studio 一些使用经验</a><br><a href="http://www.cnblogs.com/liqw/p/4867657.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/liqw/p/4867657.html" title="发布于2015-10-10 22:49">Android UDP</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2015-06-26 18:32</span> <a href="http://www.cnblogs.com/liqw/">传说之美</a> 阅读(<span id="post_view_count">10730</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=4602876" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/liqw/p/4602876.html#" onclick="AddToWz(4602876);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=162891,cb_entryId=4602876,cb_blogApp=currentBlogApp,cb_blogUserGuid='86e9f58e-1319-e311-8d02-90b11c0b17d6',cb_entryCreatedDate='2015/6/26 18:32:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/liqw/p/4602876.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/liqw/p/4602876.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://cloud.tencent.com/developer/labs?fromSource=gwzcw.241259.241259.241259" target="_blank">【免费】从零开始学编程，开发者专属实验平台免费实践！</a><br><a href="https://console.upyun.com/register/?invite=H124C2iMZ?utm_source=cnblogs&amp;utm_medium=referral" target="_blank">【推荐】现在注册又拍云，首月可享 200G CDN流量，还可免费申请 SSL 证书</a><br><a href="http://click.aliyun.com/m/18488/" target="_blank">【推荐】阿里云“全民云计算”优惠升级</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://click.aliyun.com/m/26126/" target="_blank"><img width="300" height="250" src="./Android 控件的显示隐藏上下左右移动动画 - 传说之美 - 博客园_files/24442-20170718132533661-166801094.jpg" alt="阿里云0718"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/574629/" target="_blank">比黄金更热门？比特币交易量超越全球最大黄金ETF</a><br> ·  <a href="http://news.cnblogs.com/n/574628/" target="_blank">USB 3.2标准公布 - 使用现有线缆 速率提升一倍</a><br> ·  <a href="http://news.cnblogs.com/n/574626/" target="_blank">马上交付Model 3了 图说特斯拉电动汽车的前世今生</a><br> ·  <a href="http://news.cnblogs.com/n/574608/" target="_blank">傅盛：创业公司最大的瓶颈就是CEO</a><br> ·  <a href="http://news.cnblogs.com/n/574625/" target="_blank">长续航＋打电话！Apple Watch 3九月发：广达代工</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice?source=bky&amp;hmsr=%E5%8D%9A%E5%AE%A2%E5%9B%AD&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank"><img width="468" height="60" src="./Android 控件的显示隐藏上下左右移动动画 - 传说之美 - 博客园_files/24442-20170629165247758-2056260207.png" alt="极光推广_0701"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/570194/" target="_blank">小printf的故事：什么是真正的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/569992/" target="_blank">程序员的工作、学习与绩效</a><br> ·  <a href="http://kb.cnblogs.com/page/569056/" target="_blank">软件开发为什么很难</a><br> ·  <a href="http://kb.cnblogs.com/page/565901/" target="_blank">唱吧DevOps的落地，微服务CI/CD的范本技术解读</a><br> ·  <a href="http://kb.cnblogs.com/page/566523/" target="_blank">程序员，如何从平庸走向理想？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="160" height="70" id="honehoneclock" align="middle"><param name="allowScriptAccess" value="always"><param name="movie" value="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf"><param name="quality" value="high"><param name="bgcolor" value="#ffffff"><param name="wmode" value="transparent"><embed wmode="transparent" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf" quality="high" bgcolor="#ffffff" width="160" height="70" name="honehoneclock" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"></object><p><span style="color: red;"></span></p>
+<div></div>
+<!-- 
+<p><strong><span style="color: red;">Android 学习交流Q群</span><span style="color: red;">：</span><span style="color: red;">224565225</span></strong></p>
+<p>&nbsp;</p>
+ --><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/liqw/">传说之美</a><br>园龄：<a href="http://home.cnblogs.com/u/liqw/" title="入园时间：2013-09-09">3年10个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/liqw/followers/">29</a><br>关注：<a href="http://home.cnblogs.com/u/liqw/followees/">4</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;86e9f58e-1319-e311-8d02-90b11c0b17d6&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/06/01&#39;);return false;">&lt;</a></td><td align="center">2017年7月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/08/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalWeekendDay" align="center">1</td></tr><tr><td class="CalWeekendDay" align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td class="CalWeekendDay" align="center">8</td></tr><tr><td class="CalWeekendDay" align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td class="CalWeekendDay" align="center">15</td></tr><tr><td class="CalWeekendDay" align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td class="CalWeekendDay" align="center">22</td></tr><tr><td class="CalWeekendDay" align="center">23</td><td align="center">24</td><td align="center">25</td><td class="CalTodayDay" align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalWeekendDay" align="center">29</td></tr><tr><td class="CalWeekendDay" align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/liqw/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/liqw/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/liqw/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/liqw/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/liqw/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="http://www.cnblogs.com/liqw/p/4602876.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_recentposts" class="sidebar-block">
+<div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/liqw/p/6765054.html">1. 读《重构手册》-重构之姊妹篇有感</a></li><li><a href="http://www.cnblogs.com/liqw/p/5138774.html">2. Android 用adb pull或push 拷贝手机文件到到电脑上，拷贝手机数据库到电脑上，拷贝电脑数据库到手机上</a></li><li><a href="http://www.cnblogs.com/liqw/p/4867657.html">3. Android UDP</a></li><li><a href="http://www.cnblogs.com/liqw/p/4602876.html">4. Android 控件的显示隐藏上下左右移动动画</a></li><li><a href="http://www.cnblogs.com/liqw/p/4339950.html">5. Android Studio 一些使用经验</a></li><li><a href="http://www.cnblogs.com/liqw/p/4469082.html">6. Android WebView访问SSL证书网页（onReceivedSslError）</a></li><li><a href="http://www.cnblogs.com/liqw/p/4266209.html">7. Android 利用Gson生成或解析json</a></li><li><a href="http://www.cnblogs.com/liqw/p/4267461.html">8. Android 生成和Pull解析xml</a></li><li><a href="http://www.cnblogs.com/liqw/p/4264925.html">9. Android SQLite数据库版本升级原理解析</a></li><li><a href="http://www.cnblogs.com/liqw/p/4263418.html">10. Android 启动APP时黑屏白屏的三个解决方案</a></li>
+</ul>
+</div>
+</div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/liqw/tag/%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%9B%E5%BA%A6%E6%9D%A1/">自定义进度条</a>(2)</li><li><a href="http://www.cnblogs.com/liqw/tag/Andriod%20%E8%87%AA%E5%AE%9A%E4%B9%89%E7%94%B5%E9%87%8F%E8%BF%9B%E5%BA%A6%E6%9D%A1/">Andriod 自定义电量进度条</a>(1)</li><li><a href="http://www.cnblogs.com/liqw/tag/Android/">Android</a>(1)</li><li><a href="http://www.cnblogs.com/liqw/tag/Android%20Studio/">Android Studio</a>(1)</li><li><a href="http://www.cnblogs.com/liqw/tag/Android%E5%86%99%E5%85%A5%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9/">Android写入文本文件内容</a>(1)</li><li><a href="http://www.cnblogs.com/liqw/tag/app%E5%90%AF%E5%8A%A8app/">app启动app</a>(1)</li><li><a href="http://www.cnblogs.com/liqw/tag/app%E5%90%AF%E5%8A%A8%E9%BB%91%E5%B1%8F%E7%99%BD%E5%B1%8F/">app启动黑屏白屏</a>(1)</li><li><a href="http://www.cnblogs.com/liqw/tag/Eclipse%E8%87%AA%E5%8A%A8%E6%8D%A2%E8%A1%8C/">Eclipse自动换行</a>(1)</li><li><a href="http://www.cnblogs.com/liqw/tag/SQLite%E6%95%B0%E6%8D%AE%E5%BA%93%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7/">SQLite数据库版本升级</a>(1)</li><li><a href="http://www.cnblogs.com/liqw/tag/WordWrap/">WordWrap</a>(1)</li><li><a href="http://www.cnblogs.com/liqw/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(65)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/liqw/category/780135.html">adb shell(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/liqw/category/517231.html">android(46)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/liqw/category/656433.html">android之SQLite数据库(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/liqw/category/627371.html">android之蓝牙4.3(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/liqw/category/517438.html">doc(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/liqw/category/520238.html">java(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/liqw/category/519641.html">mysql(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/liqw/category/517230.html">php(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/liqw/category/517229.html">python(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/liqw/category/991363.html">读书笔记(1)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(75)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/liqw/archive/2017/04.html">2017年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/liqw/archive/2016/01.html">2016年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/liqw/archive/2015/10.html">2015年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/liqw/archive/2015/06.html">2015年6月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/liqw/archive/2015/04.html">2015年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/liqw/archive/2015/03.html">2015年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/liqw/archive/2015/02.html">2015年2月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/liqw/archive/2015/01.html">2015年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/liqw/archive/2014/12.html">2014年12月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/liqw/archive/2014/11.html">2014年11月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/liqw/archive/2014/10.html">2014年10月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/liqw/archive/2014/09.html">2014年9月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/liqw/archive/2014/08.html">2014年8月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/liqw/archive/2014/07.html">2014年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/liqw/archive/2014/06.html">2014年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/liqw/archive/2014/05.html">2014年5月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/liqw/archive/2014/04.html">2014年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/liqw/archive/2014/03.html">2014年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/liqw/archive/2014/01.html">2014年1月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/liqw/archive/2013/12.html">2013年12月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/liqw/archive/2013/11.html">2013年11月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/liqw/archive/2013/10.html">2013年10月 (22)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/liqw/archive/2013/09.html">2013年9月 (9)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	63176
+	</li><li class="liRank">
+		排名 -	4590
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/liqw/p/4264925.html#3562795">1. Re:Android SQLite数据库版本升级原理解析</a></li>
+        <li class="recent_comment_body">onCreate直接是当前对应版本需要的字段，没必要现1.0，然后在升级，这样麻烦了点吧？</li>
+        <li class="recent_comment_author">--xizhao88</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/liqw/p/4264925.html#3409728">2. Re:Android SQLite数据库版本升级原理解析</a></li>
+        <li class="recent_comment_body">看了你写的，懂了很多。写了例子，可以用。很不错。</li>
+        <li class="recent_comment_author">--张益达2037</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/liqw/p/4263418.html#3369612">3. Re:Android 启动APP时黑屏白屏的三个解决方案</a></li>
+        <li class="recent_comment_body">方法没问题，但是个人认为理解有些问题。不应该是在setContentView之前都是显示window的背景，而是第一个activity的onCreate之前都显示window的背景。你可以在onCre......</li>
+        <li class="recent_comment_author">--Exception369</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/liqw/p/4867657.html#3309304">4. Re:Android UDP</a></li>
+        <li class="recent_comment_body">@平常心，平常心查看UDPActivity和UDPServerActivity在...</li>
+        <li class="recent_comment_author">--传说之美</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/liqw/p/4867657.html#3307563">5. Re:Android UDP</a></li>
+        <li class="recent_comment_body">@平常心，平常心手机可以做udp服务器，InetAddress.getByName("192.168.1.103")这里的IP填写手机IP地址即可，已经写了2个手机在局域网互相发送的demo，整理好再......</li>
+        <li class="recent_comment_author">--传说之美</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/liqw/p/4867657.html#3306265">6. Re:Android UDP</a></li>
+        <li class="recent_comment_body">权限是不是加太多了，并且楼主我如果用手机做udp服务器可以吗？</li>
+        <li class="recent_comment_author">--平常心，平常心</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/liqw/p/3995794.html#3122411">7. Re:Android loading进度条使用简单总结</a></li>
+        <li class="recent_comment_body">好文章，mark</li>
+        <li class="recent_comment_author">--jxwolf_tcl</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/liqw/p/4267461.html#3121876">8. Re:Android 生成和PULL解析xml</a></li>
+        <li class="recent_comment_body">大家可以加QQ群java技术交流群 232267681 ，<br>在此等候大家，为新人不知道如何学习java排忧解难</li>
+        <li class="recent_comment_author">--115889198</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/liqw/p/3995794.html#3121520">9. Re:Android loading进度条使用简单总结</a></li>
+        <li class="recent_comment_body">@安卓菜鸟成长记已发，另外可到这里下载...</li>
+        <li class="recent_comment_author">--传说之美</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/liqw/p/3995794.html#3121497">10. Re:Android loading进度条使用简单总结</a></li>
+        <li class="recent_comment_body">发一下，2535413032@qq.com。谢谢</li>
+        <li class="recent_comment_author">--安卓菜鸟成长记</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/liqw/p/5138774.html">1. Android 用adb pull或push 拷贝手机文件到到电脑上，拷贝手机数据库到电脑上，拷贝电脑数据库到手机上(17076)</a></li><li><a href="http://www.cnblogs.com/liqw/p/4263418.html">2. Android 启动APP时黑屏白屏的三个解决方案(13126)</a></li><li><a href="http://www.cnblogs.com/liqw/p/4175325.html">3. Android 设计模式之MVC模式(12031)</a></li><li><a href="http://www.cnblogs.com/liqw/p/4602876.html">4. Android 控件的显示隐藏上下左右移动动画(10728)</a></li><li><a href="http://www.cnblogs.com/liqw/p/4264925.html">5. Android SQLite数据库版本升级原理解析(9663)</a></li><li><a href="http://www.cnblogs.com/liqw/p/4014760.html">6. Android  建立文件夹、生成文件并写入文本文件内容(8504)</a></li><li><a href="http://www.cnblogs.com/liqw/p/4031437.html">7. Android ble 蓝牙4.0 总结一(5855)</a></li><li><a href="http://www.cnblogs.com/liqw/p/4339950.html">8. Android Studio 一些使用经验(5731)</a></li><li><a href="http://www.cnblogs.com/liqw/p/4084282.html">9. Android 在布局容器中动态添加控件(5555)</a></li><li><a href="http://www.cnblogs.com/liqw/p/3696309.html">10. mac  安装protobuf,并编译为java,c++,python(4872)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/liqw/p/3995794.html">1. Android loading进度条使用简单总结(5)</a></li><li><a href="http://www.cnblogs.com/liqw/p/4263418.html">2. Android 启动APP时黑屏白屏的三个解决方案(5)</a></li><li><a href="http://www.cnblogs.com/liqw/p/4264925.html">3. Android SQLite数据库版本升级原理解析(3)</a></li><li><a href="http://www.cnblogs.com/liqw/p/4867657.html">4. Android UDP(3)</a></li><li><a href="http://www.cnblogs.com/liqw/p/3968340.html">5. Android  一个app启动另一个app(2)</a></li><li><a href="http://www.cnblogs.com/liqw/p/4267461.html">6. Android 生成和Pull解析xml(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/liqw/p/3968340.html">1. Android  一个app启动另一个app(6)</a></li><li><a href="http://www.cnblogs.com/liqw/p/4263418.html">2. Android 启动APP时黑屏白屏的三个解决方案(4)</a></li><li><a href="http://www.cnblogs.com/liqw/p/4266209.html">3. Android 利用Gson生成或解析json(2)</a></li><li><a href="http://www.cnblogs.com/liqw/p/4264925.html">4. Android SQLite数据库版本升级原理解析(2)</a></li><li><a href="http://www.cnblogs.com/liqw/p/6765054.html">5. 读《重构手册》-重构之姊妹篇有感(1)</a></li><li><a href="http://www.cnblogs.com/liqw/p/4175325.html">6. Android 设计模式之MVC模式(1)</a></li><li><a href="http://www.cnblogs.com/liqw/p/4031437.html">7. Android ble 蓝牙4.0 总结一(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 传说之美
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<div id="footer">我的github:<a href="https://github.com/libill" target="_blank">https://github.com/libill</a>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253991276'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1253991276%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script><span id="cnzz_stat_icon_1253991276"><a href="http://www.cnzz.com/stat/website.php?web_id=1253991276" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./Android 控件的显示隐藏上下左右移动动画 - 传说之美 - 博客园_files/pic1.gif"></a></span><script src="./Android 控件的显示隐藏上下左右移动动画 - 传说之美 - 博客园_files/z_stat.php" type="text/javascript"></script><script src="./Android 控件的显示隐藏上下左右移动动画 - 传说之美 - 博客园_files/core.php" charset="utf-8" type="text/javascript"></script>
+</div>
+<!--PageEndHtml Block End-->
+
+
+</body></html>
