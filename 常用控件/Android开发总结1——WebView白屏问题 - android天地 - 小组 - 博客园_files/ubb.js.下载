@@ -1,0 +1,179 @@
+﻿// -----------------------------------------------
+// jQuery版UBB编辑器(ie&ff)
+// by 博客园 孙红军(andyran#gmail.com)
+// 2007/5/10 19:13
+// -----------------------------------------------
+
+$(function () {
+
+    $('#ubb_bold').click(function () { insertUBB('b'); });
+    $('#ubb_italic').click(function () { insertUBB('i'); });
+    $('#ubb_underline').click(function () { insertUBB('u'); });
+    $('#ubb_alignleft').click(function () { insertUBB('align=left'); });
+    $('#ubb_aligncenter').click(function () { insertUBB('align=center'); });
+    $('#ubb_alignright').click(function () { insertUBB('align=right'); });
+    $('#ubb_quote').click(function () { insertUBB('QUOTE'); });
+    $('#ubb_font').change(function () { insertUBB('font=' + $(this).val()); });
+    $('#ubb_size').change(function () { insertUBB('size=' + $(this).val()); });
+    $('#ubb_color').change(function () { insertUBB('color=' + $(this).val()); });
+    $('#ubb_indent').click(function () { insertIndent(); });
+
+    $('#ubb_url').click(function () {
+        var p1 = prompt("显示链接的文本.\n如果为空，那么将只显示超级链接地址", "");
+        if (p1 != null) {
+            var p2 = prompt("http:// 超级链接", "http://");
+            if (p2 != '' && p2 != 'http://') {
+                if (p1 != '') {
+                    $('#txtContent').parseHtml('[url=' + p2 + ']' + p1 + '[/url]');
+                }
+                else {
+                    $('#txtContent').parseHtml('[url]' + p2 + '[/url]');
+                }
+            }
+        }
+    });
+
+    $('#ubb_mail').click(function () {
+        var p1 = prompt("显示链接的文本.\n如果为空，那么将只显示你的 Email 地址", "");
+        if (p1 != null) {
+            var p2 = prompt("email 电子邮件地址", "xxx@domain.com");
+            if (p2 != '') {
+                if (p1 != '') {
+                    $('#txtContent').parseHtml('[email=' + p2 + ']' + p1 + '[/email]');
+                }
+                else {
+                    $('#txtContent').parseHtml('[email]' + p2 + '[/email]');
+                }
+            }
+        }
+    });
+
+
+    $('#ubb_img').click(function () {
+        var uploadUrl = location.protocol + '//upload.cnblogs' + location.hostname.substring(location.hostname.lastIndexOf(".")) + '/imageuploader/upload?host=' + location.hostname + '&editor=0#txtContent';
+        OpenWindow(uploadUrl, 500, 120, 200);
+    });
+
+    $('#ubb_flash').click(function () {
+        var p = prompt("flash 动画文件的地址", "http://");
+        if (p == null || $.trim(p) == '' || p.toLowerCase() == 'http://')
+            return;
+        $('#txtContent').parseHtml('[flash=420,300]' + p + '[/flash]');
+    });
+
+    $('#ubb_mov').click(function () {
+        var p = prompt("视频文件的地址", "http://");
+        if (p == null || $.trim(p) == '' || p.toLowerCase() == 'http://')
+            return;
+        $('#txtContent').parseHtml('[mp=380,330]' + p + '[/mp]');
+    });
+
+    /*$('body').append($(face));
+
+    
+    $('#ubb_face').click(function() {
+    $(face).show(); 
+    });*/
+
+});
+
+var insertUBB = function (html) {
+    var val = $('#txtContent').selection();
+    if (val == '') {
+        alert('请选择文字');
+        return false;
+    }
+    else {
+        var end = html;
+        if (html.indexOf('=') >= 0)
+            end = html.substring(0, html.indexOf('='));
+        $('#txtContent').parseHtml('[' + html + ']' + val + '[/' + end + ']');
+    }
+}
+
+function hideText() {
+    var val = $('#txtContent').selection();
+    if (val == '') {
+        alert('请选择文字');
+        return false;
+    }
+    else {
+        $('#txtContent').parseHtml('[hide]' + val + '[/hide]');
+    }
+}
+
+function insertFace(id) {
+    $('#txtContent').parseHtml('[face src=face' + id + '.gif][/face]');
+    $(face).hide();
+}
+
+function InsertImgUBB(id, url) {
+    $("#" + id).parseHtml('[img]' + url + '[/img]');
+}
+
+function insertIndent() {
+    var val = $('#txtContent').selection();
+    if (val == '') {
+        $('#txtContent').parseHtml("　　");
+    }
+    else {
+        $('#txtContent').parseHtml("　　" + val);
+    }
+}
+
+/*var face = document.createElement('div');
+$(face)
+.attr('id', 'ubb_face_img')
+.css( {
+display : 'none',
+position: 'absolute',
+visibility: 'visible',
+top: '90px',
+left: '470px',
+border: '1px solid #666'
+});
+
+for (var i=0 ; i < 30 ; i++) {
+img = '<img onclick="insertFace('+i+')" border="0" src="face/face' + i + '.gif">';
+if (i%6 == 5)
+$(face).append(img+'<br />');
+else
+$(face).append(img);		
+}*/
+
+
+$.fn.extend({
+    selection: function () {
+        var txt = '';
+        var doc = this.get(0).document;
+        if (doc) {
+            var sel = doc.selection.createRange();
+            if (sel.text.length > 0)
+                txt = sel.text;
+        }
+        else if (this.get(0).selectionStart || this.get(0).selectionStart == '0') {
+            var s = this.get(0).selectionStart;
+            var e = this.get(0).selectionEnd;
+            if (s != e) {
+                txt = this.get(0).value.substring(s, e);
+            }
+        }
+        return $.trim(txt);
+    },
+    parseHtml: function (t) {
+        var doc = this.get(0).document;
+        if (doc) {
+            this.get(0).focus();
+            doc.selection.createRange().collapse;
+            this.get(0).document.selection.createRange().text = t;
+        }
+        else if (this.get(0).selectionStart || this.get(0).selectionStart == '0') {
+            var s = this.get(0).selectionStart;
+            var e = this.get(0).selectionEnd;
+            var val = this.get(0).value;
+            var start = val.substring(0, s);
+            var end = val.substring(e);
+            this.get(0).value = start + t + end;
+        }
+    }
+})

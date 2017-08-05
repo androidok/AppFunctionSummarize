@@ -1,0 +1,1 @@
+jQuery.timeago.settings.strings={prefixAgo:null,prefixFromNow:"从现在开始",suffixAgo:"",suffixFromNow:null,seconds:"刚刚",minute:"1分钟前",minutes:"%d分钟前",hour:"1小时前",hours:"%d小时前",day:"1天前",days:"%d天前",month:"1月前",months:"%d月前",year:"1年前",years:"%d年前",numbers:[],wordSeparator:""};

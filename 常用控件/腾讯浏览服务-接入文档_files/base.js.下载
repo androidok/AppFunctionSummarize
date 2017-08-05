@@ -1,0 +1,394 @@
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Common = __webpack_require__(1);
+	__webpack_require__(2);
+	__webpack_require__(5);
+
+	var setup = new Vue({
+		el: '#base',
+		data: {
+			list: []
+		},
+		methods: {
+		},
+		mounted: function(){
+		}
+	});
+
+
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	/**
+	  * 公共方法
+	  */
+	module.exports = exports = {
+		baseUrl: '/tbs'
+	}
+
+
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var headerTmpl = __webpack_require__(3);
+	var cookie = __webpack_require__(4);
+
+	module.exports = exports = Vue.component('header-panel', {
+	  	template: headerTmpl,
+	  	data: function(){
+	  		return {
+	  			loginUrl: '',
+	  			userInfo: {},
+	        pathname: '/tbs/index.html'
+	  		}
+	  	},
+	  	methods: {
+	  		// 获取登陆链接
+	  		getLoginUrl: function(){
+	  			var href = location.protocol+'//'+location.hostname+location.pathname;
+		  		// var domain = document.domain.indexOf('qq.com')>-1 ? 'qq.com' : 'tencent.com';
+	  			if(/Mobile/gi.test(navigator.userAgent)){
+	  				location.href = 'https://ui.ptlogin2.qq.com/cgi-bin/login?appid=728024712&daid=1&hide_close_icon=0&s_url='+encodeURIComponent(href)+'';
+	  			}else{
+		  			var loginUrl = 'https://ui.ptlogin2.qq.com/cgi-bin/login?appid=728024712&daid=1&hide_close_icon=0&s_url='+encodeURIComponent(href)+'&jumpname=jump';
+		  			Vue.set(this, 'loginUrl', loginUrl);
+	  			}
+	  		},
+	  		// 登录
+	  		loginFun: function(){
+	        $('#loginFrameWrapper').show();
+	        this.getLoginUrl();
+
+	        window.ptlogin2_onResize = function(width, height) {
+	          //获得浮动Div对象
+	        }
+	        window.ptlogin2_onClose = function(){
+	          $('#loginFrameWrapper').hide();
+	          if(location.href.indexOf('server.html')>-1){
+	            location.href = '/tbs/#login';
+	          }
+	        }
+
+	        if (typeof window.postMessage !== 'undefined') {
+	          window.onmessage = function(event) {
+	            var msg = event || window.event; // 兼容IE8
+	            var data;
+	            if (typeof  JSON !== 'undefined') // IE7兼容模式不存在JSON对象
+	              data = JSON.parse(msg.data);
+	            else
+	              data = str2JSON(msg.data);
+
+	            switch (data.action) {
+	              case 'close':
+	              ptlogin2_onClose();
+	              break;
+
+	              case 'resize':
+	              ptlogin2_onResize(data.width, data.height);
+	              break;
+
+	              default: //什么也不做，便于我们扩展接口
+	              break;
+	            }
+	            // 考虑到ptlogin接口的扩展性，希望业务在对于data.action的条件处理也要保持一定的可扩展性
+	            // 如不要采用：data.action == 'resize' ? ptlogin2_onResize(data.width, data.height) : ptlogin2_onClose()
+	            // 一旦ptlogin支持了新的接口，那么该代码将会无法正常工作，影响业务正常使用
+	          }
+	        } else { //不支持postMessage的IE6，7 hack方法
+	          navigator.ptlogin_callback = function(msg) {
+	            var data = str2JSON(msg);
+	            switch (data.action) {
+	              case 'close':
+	                ptlogin2_onClose();
+	                break;
+	              case 'resize':
+	                ptlogin2_onResize(data.width, data.height);
+	                break;
+
+	              default: //什么也不做，便于我们扩展接口
+	                break;
+	            }
+	          }
+	        }
+	        /**
+	         * [str2JSON 降字符串转换成json对象（供业务参考）]
+	         * @param  {String} str [json字符串]
+	         * @return {Object}
+	         */
+	        function str2JSON(msg) {
+	          // borrow from jquery
+	          var rvalidchars = /^[\],:{}\s]*$/,
+	          rvalidbraces = /(?:^|:|,)(?:\s*\[)+/g,
+	          rvalidescape = /\\(?:["\\\/bfnrt]|u[\da-fA-F]{4})/g,
+	          rvalidtokens = /"[^"\\\r\n]*"|true|false|null|-?(?:\d+\.|)\d+(?:[eE][+-]?\d+|)/g;
+
+	          if (rvalidchars.test(msg.replace(rvalidescape, "@")
+	                  .replace(rvalidtokens, "]")
+	                  .replace(rvalidbraces, "")) ) {
+	            return (new Function("return " + msg))();
+	          }
+	          return {};
+	        }
+	                        
+	  		},
+	  		// 退出
+	  		logoutFun: function(){
+	        if(!window.pt_logout){
+	          var loginscript = document.createElement('script');
+	          loginscript.src = 'https://ui.ptlogin2.qq.com/js/ptloginout.js';
+	          document.body.append(loginscript);
+	        }
+
+	        setTimeout(function(){
+	          if(!window.pt_logout){
+	            setTimeout(arguments.callee, 100);
+	          }else{
+	            pt_logout.logout(function(){
+	              cookie.clear('uin');
+	              cookie.clear('skey');
+	              location.href = '/tbs/';
+	            });
+	          }
+	        }, 100);
+	  		},
+	  		// 获取用户信息
+	  		getUserInfo: function(){
+	  			var _self = this;
+	  			$.ajax({
+	  				url: '/user?action=getUserInfo',
+	  				dataType: 'json',
+	  				success: function(res){
+	  					var data = res.sData || [];
+	  					if(res.iRet === 0){
+	  						Vue.set(_self, 'userInfo', res.sData);
+	  					}
+
+	            // 后台需要登陆
+	            // if(location.href.indexOf('server.html')>-1 && !res.sData){
+	            //   location.href = '/tbs/#login';
+	            // }
+
+	            if(location.hash == '#login' && !res.sData){
+	              _self.loginFun();
+	            }
+	            
+	  				},error: function(err){
+
+	          }
+	  			});
+	  		},
+	      loginServer: function(){
+	        console.log('login');
+	        var _self = this;
+	        if(!_self.userInfo.sNickName){
+	          _self.loginFun();
+	        }else{
+	          location.href = '/tbs/server.html';
+	        }
+	      }
+	  	},
+	    created: function(){
+	      this.pathname = location.pathname;
+	    },
+	    mounted: function(){
+
+	      this.getUserInfo();
+
+	      $('.navbar').css('background','#007be3');
+
+	      $(window).scroll(function(){
+	        if(location.pathname === '/tbs/index.html'){
+	          var wintop=document.documentElement.scrollTop || document.body.scrollTop;
+	          if(wintop<1){
+	              $('.navbar').css('background','rgba(0,0,0,0)');
+	          }else if(wintop<40){
+	              $('.navbar').css('background','rgba(0,0,0,0.2)');
+	          }else if(wintop<80){
+	              $('.navbar').css('background','rgba(0,0,0,0.4)');
+	          }else if(wintop<120){
+	              $('.navbar').css('background','rgba(0,0,0,0.6)');
+	          }else if(wintop<160){
+	              $('.navbar').css('background','rgba(0,0,0,0.7)');
+	          }else{
+	              $('.navbar').css('background','rgba(0,0,0,0.8)');
+	          }
+	        }
+	      });
+
+	      $('body').delegate('.navbar-toggle', 'click', function(e){
+	        if($('.navbar-collapse').hasClass('in')){
+	          $(this).removeClass('navbar-close');
+	          setTimeout(function(){
+	            $('.navbar').removeClass('black');
+	            $('body').removeClass('ofhide');
+	          },400);
+	        }else{
+	          $('body').addClass('ofhide');
+	          $('.navbar').addClass('black');
+	          $(this).addClass('navbar-close');
+	        }
+	        e.preventDefault();
+	      });
+
+	      $('body')[0].addEventListener('touchmove', function(e){
+	        if($('body').attr('class') && $('body').attr('class').indexOf('ofhide')>-1){
+	          e.preventDefault();
+	          return false;
+	        }
+
+	        if(location.pathname === '/tbs/index.html'){
+	          var wintop=document.documentElement.scrollTop || document.body.scrollTop;
+	          if(wintop<1){
+	              $('.navbar').css('background','rgba(0,0,0,0)');
+	          }else if(wintop<40){
+	              $('.navbar').css('background','rgba(0,0,0,0.2)');
+	          }else if(wintop<80){
+	              $('.navbar').css('background','rgba(0,0,0,0.4)');
+	          }else if(wintop<120){
+	              $('.navbar').css('background','rgba(0,0,0,0.6)');
+	          }else if(wintop<160){
+	              $('.navbar').css('background','rgba(0,0,0,0.7)');
+	          }else{
+	              $('.navbar').css('background','rgba(0,0,0,0.8)');
+	          }
+	        }
+	      });
+
+	  	}
+	});
+
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"navbar navbar-inverse navbar-fixed-top\" id=\"header\">\r\n  \r\n  <div class=\"container\">\r\n    <div class=\"navbar-header\">\r\n      <button class=\"navbar-toggle collapsed\" type=\"button\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\r\n        <span class=\"sr-only\">Toggle navigation</span>\r\n        <span class=\"icon-bar\"></span>\r\n        <span class=\"icon-bar\"></span>\r\n        <span class=\"icon-bar\"></span>\r\n      </button>\r\n      <a class=\"navbar-brand\" href=\"#\"><i class=\"logo\"></i></a>\r\n    </div>\r\n    <div class=\"navbar-collapse collapse\" role=\"navigation\">\r\n     \r\n      <ul class=\"nav navbar-nav ml240 fz18\">\r\n        <li><a href=\"/tbs/index.html\" v-bind:class=\"{active: pathname == '/tbs/index.html'}\" >首页</a></li>\r\n        <li><a href=\"/tbs/guide.html\" v-bind:class=\"{active: pathname == '/tbs/guide.html'}\">技术指南</a></li>\r\n        <li id=\"developLink\"><a href=\"javascript:void(0)\" @click=\"loginServer()\" v-bind:class=\"{active: pathname == '/tbs/server.html'}\">开发者后台</a></li>\r\n        <li><a href=\"/tbs/faq.html\" v-bind:class=\"{active: pathname == '/tbs/faq.html'}\">我要反馈</a></li>\r\n      </ul>\r\n       <ul class=\"nav navbar-nav navbar-right fz18\" id=\"loginPanel\">\r\n        <li><a href=\"javascript:;\" v-show=\"!userInfo.sNickName\" @click=\"loginFun()\" id=\"loginLink\">登录</a></li>\r\n        <!-- <li><a href=\"https://ssl.zc.qq.com/chs/index.html\" v-show=\"!userInfo.sNickName\">注册</a></li> -->\r\n        <li><a href=\"javascript:;\" v-show=\"userInfo.sNickName\">{{userInfo.sNickName}} </a></li>\r\n        <li><a href=\"javascript:;\" v-show=\"userInfo.sNickName\" @click=\"logoutFun()\">退出</a></li>\r\n      </ul>\r\n\r\n    </div>\r\n  </div>\r\n\r\n  <!-- 登录弹框 -->\r\n  <div class=\"global_pop\" id=\"loginFrameWrapper\" style=\"display: none;\">\r\n    <div class=\"global_pop_bg\" @click=\"loginFrame = false\"></div>\r\n    <div class=\"global_pop_box iframeBox\">\r\n      <iframe frameborder=\"none\" :src=\"loginUrl\"></iframe>\r\n    </div>\r\n  </div>\r\n\r\n</div>";
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	/**
+	 * cookie处理相关
+	 * @type {Object}
+	 */
+	module.exports = {
+	    set: function(name, value, days) {
+	        var Days = 1000;
+	        if (days) {
+	            Days = days;
+	        }
+	        var exp = new Date();
+	        exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+	        escapeValue = escape(value);
+	        var domain = document.domain.indexOf('qq.com')>-1 ? '.qq.com' : '.tencent.com';
+	        document.cookie = name + "=" + escapeValue + ";domain="+domain+";path=/;expires=" + exp.toGMTString();
+	    },
+	    get: function(name) {
+	        var search = name + "=";
+	        if (document.cookie.length > 0) {
+	            var offset = document.cookie.indexOf(search);
+	            if (offset != -1) {
+	                offset += search.length;
+	                var end = document.cookie.indexOf(";", offset);
+	                if (end == -1)
+	                    end = document.cookie.length;
+	                return unescape(document.cookie.substring(offset, end));
+	            } else
+	                return "";
+	        }
+	        return "";
+	    },
+	    clear: function(name) {
+	        var expdate = new Date();
+	        expdate.setTime(expdate.getTime() - (86400 * 1000 * 1));
+	        this.set(name, "", expdate);
+	    }
+	};
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var footerTmpl = __webpack_require__(6);
+
+	module.exports = exports = Vue.component('footer-panel', {
+	  	template: footerTmpl,
+	  	mounted: function(){
+	  		$('.project-img').html('<div class="container jumbotron-text"><h1>产品介绍</h1><p class="fz16">腾讯浏览服务，拥有领先的技术能力，丰富的基础能力，强大的业务能力</p><p class="fz16">为用户提供最优秀的浏览体验，为移动行业提供更专业、更全面、更深入的服务</p><div class="fz14">为移动行业提供更专业、更全面、更深入的服务</div><div class="fz14">为用户提供最优秀的浏览体验</div></div>');
+			$('.guide-img').html('<div class="container jumbotron-text"><h1>技术指南</h1><p class="fz16">X5内核，解决系统webview兼容性差、加载速度慢、功能缺陷等问题</p><p class="fz16">解决一切令开发者们头疼的问题，让开发者快速而轻松地开启开发之旅</p><div class="fz14">解决系统webview兼容性差、加载速度慢等问题</div><div class="fz14">让开发者快速而轻松地开启开发之旅</div></div>');
+			$('.technical-img').html('<div class="container jumbotron-text"><h1>开发者后台</h1><p class="fz16">让开发者快速而轻松地开启开发之旅更灵活、更快速、更方便管理应用</p><div class="fz14">让开发者快速而轻松地开启开发之旅</div><div class="fz14">更灵活、更快速、更方便管理应用</div></div>			');
+			$('.news-img').html('<div class="container jumbotron-text"><h1>新闻介绍</h1><p class="fz16">一览腾讯浏览服务最新动态</p><div class="fz14">一览腾讯浏览服务最新动态</div></div>');
+
+		  	var offset = window.innerHeight - $('.footer')[0].offsetTop - 50;
+		  	if(offset>0){
+		  		$('.footer').css({'position': 'relative', 'margin-top': offset});
+		  	}
+
+		  	if(/mobile/gi.test(navigator.userAgent)){
+		  		$('#developLink, #loginPanel').hide();
+		  	}
+
+		  	$('#thisyear').text(new Date().getFullYear());
+	  	}
+	});
+
+
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	module.exports = "<footer class=\"footer \">\r\n  <div class=\"container\">\r\n    <div class=\"row footer-top\">\r\n      <div class=\"col-sm-6 col-lg-6\">\r\n        <p class=\"fz14\">Copyright © 1998 - <span id=\"thisyear\">2016</span> Tencent. All Rights Reserved.</p>\r\n      </div>\r\n      <div class=\"col-sm-6  col-lg-5 col-lg-offset-1 fz14\">\r\n        <div class=\"row about\">\r\n          <div class=\"col-xs-3\">\r\n            <a href=\"/tbs/contact.html\" target=\"_blank\">联系我们</a>\r\n          </div>\r\n          <div class=\"col-xs-3\">\r\n            <a href=\"http://bbs.mb.qq.com/forum-112-1.html\" target=\"_blank\">开发者论坛</a>\r\n          </div>\r\n          <div class=\"col-xs-3\">\r\n            <a href=\"/tbs/policy.html\" target=\"_blank\">政策与规范</a>\r\n          </div>\r\n          <div class=\"col-xs-3\">\r\n            <a href=\"http://mb.qq.com/\" target=\"_blank\">QQ浏览器</a>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</footer>";
+
+/***/ }
+/******/ ]);

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)http://www.cnblogs.com/helinzi/p/5056869.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>armeabi-v7a armeabi arm64-v8a - 何林子 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./armeabi-v7a armeabi arm64-v8a - 何林子 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./armeabi-v7a armeabi arm64-v8a - 何林子 - 博客园_files/bundle-AnotherEon001.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./armeabi-v7a armeabi arm64-v8a - 何林子 - 博客园_files/bundle-AnotherEon001-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/helinzi/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/helinzi/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/helinzi/wlwmanifest.xml">
+<script async="" src="./armeabi-v7a armeabi arm64-v8a - 何林子 - 博客园_files/analytics.js.下载"></script><script src="./armeabi-v7a armeabi arm64-v8a - 何林子 - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'helinzi', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./armeabi-v7a armeabi arm64-v8a - 何林子 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<div id="wrapper">
+<div id="header">
+
+<div id="top">
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/helinzi/">何林子</a></h1>
+<div id="subtitle"></div>
+</div>
+<div id="sub"><div id="blog_stats">
+<div class="BlogStats">随笔 - 78, 文章 - 51, 评论 - 0, 引用 - 0</div>
+</div></div>
+
+
+
+</div>
+<div id="main_container">
+<div id="main_content">
+<div id="content">
+	
+<div id="post_detail">
+	<div class="post">
+		<h2>
+			<a id="cb_post_title_url" href="http://www.cnblogs.com/helinzi/p/5056869.html">armeabi-v7a armeabi arm64-v8a</a>
+		</h2>
+		<div class="postbody">
+		<div id="cnblogs_post_body"><p>armeabi就是针对普通的或旧的arm v5 cpu，armeabi-v7a是针对有浮点运算或高级扩展功能的arm v7 cpu。</p>
+<p>armeabi-v7a（32位ARM设备），arm64-v8a（64位ARM设备）</p>
+<p>&nbsp;</p>
+<p>在2011年11月，ARM公司发布了新一代处理器64位架构ARMv8的部分技术细节（也就是我们常说的Cortex-A57A53），代表着未来移动处理器迈入64位行列。我们得明确一点，ARM公司自己本身并没有64位芯片设计技术，他是通过了收购MIPS64处理器架构的部分技术使用权，再结合ARM的一些特性设计出来的。也就是说：MIPS、ARM、X86三大架构中，唯一没有64位技术的ARM，通过收购MIPS的形式得到了64位。<br>&nbsp;<br>所谓的ARMv8架构，就是在MIPS64架构上增加了ARMv7架构中已经拥有的的TrustZone技术、虚拟化技术及NEON&nbsp;advanced&nbsp;SIMD技术等特性，研发成的。</p>
+<p>&nbsp;</p>
+<p>64位ARMv8架构中包含两个执行状态：AArch32（也就是我们常说的ARMv7）和AArch64（ARMv8）。AArch64执行状态针对64位处理技术，引入了一个全新指令集A64（也就是基于收购的MIPS64架构），而AArch32执行状态将支持现有的ARM指令集。所以64位的ARM处理器中同时包含着32位的ARMv7和64位的ARMv8两种架构。因此：</p>
+<p>看到这里，你一定明白了，ARM64位处理器和电脑的64位处理器是两个截然不容的概念，他并不是64位就能原生向下兼容32位程序，而是通过64位处理器中集成的32位架构来运行32位程序。说得通俗点，它不是以64位形态来运行32位程序，却是以32位的形态运行32位程序的。</p>
+<p>&nbsp;</p>
+<p>由于目前新出的64位处理器包含两个架构，而且制程技术没有提升（28nm），同时在手机与平板上，芯片面积有着严格的限定，不能过分增加，这导致64位ARM处理器平均分配到每个架构的晶体管数量锐减，也就是说从64位处理器中的32位架构方面，对于同规格的32位处理器而言，不但没有提高，性能反而是一定规模下降的。但处理器厂家又必须给消费者一个交代，以更好的推广64位，所以厂家就必须在其他方面提升性能，以弥补CPU的晶体管数量减少带来的损失。比如：更换性能更强的GPU、提升内存带宽、多核心虚拟单颗核心提升单核性能、联合跑分软件商修改跑分权重（提升GPU分数，降低CPU分数的权重）等等。这样，扬长避短，最终到达消费者手里，用跑分软件一跑，确实有提升，用户开心，厂家腰包也鼓了。</p>
+<p>综上所述，ARM64位处理器从严格意义来说，叫它ARM32+64更加贴切，他相对于ARM32位处理器，有倒退的地方，也有进步的余地，但正因为倒退激起了ARM进取的决心，让它大刀阔斧的向前变革，不得不说也算一种进步。但ARM64在的手机上真的有用吗？我只能说，目前确实没啥用，但今后或许有。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>真正的64位手机并不止单纯停留在处理器上，如果只因为它的处理器是64位，就称其为64位手机的话，我们可以毫不犹疑的说这可能是虚假宣传，好在联想很聪明，在发布A678t和A805e宣传的时候，只说64位处理器手机。<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“64位处理器手机”与“64位手机”是两种天壤之别的概念：只要是处理器包含64架构位的，就可以称“64位处理器手机”，这种手机也许还运行不了64位程序，只是用来抢占市场，和32位手机比起来优势并不明显。<br>&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“64位手机”就不同了：它包含着64位处理器、64位标准系统、64位安卓虚拟机、以及64位程序，这才是真正意义上的64位手机！</p>
+<p>&nbsp;</p>
+<p>听我细细解说：谷歌官方曾说，安卓很早前就支持64位了，这话不假，从Android4.0到Android4.4，安卓系统都支持64位的硬件，但是这仅仅表示底层驱动支持64位，能运行在64位的硬件之上，仅此而已。然而，上层运行软件的，无论是Dalvik的虚拟机，还是ART虚拟机都是32位的。也就是说，只要你的手机系统是Android4.0—4.4，即便你的处理器是64位，也只能在32位虚拟机下运行32位程序，就算真的64位程序摆在你眼前，也无法安装。</p>
+<p>&nbsp;</p>
+<p>Android&nbsp;L开始才真正支持32位和64位的ART虚拟机，配合上64位处理器，名正言顺的运行64位软件。但是问题又来了，没有软件商愿意开发64位程序。我有几个搞安卓开发的朋友，都明确表示永远不涉足64位安卓程序开发，这又是为什么呢？</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>ARMv8是一套不错的指令集，它既支持未来的64位程序，也向下兼容现有32位程序。有了ARMv8的支撑，以后的64位手机操作系统，如Android L 64bit都可以简单、高效地支持现有的32位App，你不用担心兼容性问题。</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5056869,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;0f6ecd68-7fe1-e411-b908-9dcfd8948a71&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./armeabi-v7a armeabi arm64-v8a - 何林子 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./armeabi-v7a armeabi arm64-v8a - 何林子 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/helinzi/" target="_blank"><img src="./armeabi-v7a armeabi arm64-v8a - 何林子 - 博客园_files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/helinzi/">何林子</a><br>
+            <a href="http://home.cnblogs.com/u/helinzi/followees">关注 - 0</a><br>
+            <a href="http://home.cnblogs.com/u/helinzi/followers">粉丝 - 1</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;0f6ecd68-7fe1-e411-b908-9dcfd8948a71&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5056869,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(5056869,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/helinzi/p/5050789.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/helinzi/p/5050789.html" title="发布于2015-12-16 12:31">基于 Android NDK 的学习之旅----- C调用Java(附源码)</a><br><a href="http://www.cnblogs.com/helinzi/p/5056902.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/helinzi/p/5056902.html" title="发布于2015-12-18 14:10">关于Android的.so文件你所需要知道的</a><br></div>
+</div>
+
+
+		</div>
+		<p class="postfoot">
+			posted on <span id="post-date">2015-12-18 14:02</span> <a href="http://www.cnblogs.com/helinzi/">何林子</a> 阅读(<span id="post_view_count">828</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5056869" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/helinzi/p/5056869.html#" onclick="AddToWz(5056869);return false;">收藏</a>
+		</p>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=222844,cb_entryId=5056869,cb_blogApp=currentBlogApp,cb_blogUserGuid='0f6ecd68-7fe1-e411-b908-9dcfd8948a71',cb_entryCreatedDate='2015/12/18 14:02:00';loadViewCount(cb_entryId);</script>
+	
+	</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/helinzi/p/5056869.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/helinzi/p/5056869.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://cloud.tencent.com/developer/labs?fromSource=gwzcw.241259.241259.241259" target="_blank">【免费】从零开始学编程，开发者专属实验平台免费实践！</a><br><a href="https://console.upyun.com/register/?invite=H124C2iMZ" target="_blank">【推荐】现在注册又拍云，首月可享 200G CDN流量，还可免费申请 SSL 证书</a><br><a href="http://click.aliyun.com/m/18488/" target="_blank">【推荐】阿里云“全民云计算”优惠升级</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://click.aliyun.com/m/26126/" target="_blank"><img width="300" height="250" src="./armeabi-v7a armeabi arm64-v8a - 何林子 - 博客园_files/24442-20170718132533661-166801094.jpg" alt="阿里云0718"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/574975/" target="_blank">淘宝、天猫会员统一！合并为“88会员” 快看你等级福利</a><br> ·  <a href="http://news.cnblogs.com/n/574974/" target="_blank">支付宝无现金城市周明天开始：分黄金18888克</a><br> ·  <a href="http://news.cnblogs.com/n/574973/" target="_blank">明日起异地取现手续费、银行卡年费全免</a><br> ·  <a href="http://news.cnblogs.com/n/574972/" target="_blank">ofo宣布明日进入泰国市场 首批投放6000辆</a><br> ·  <a href="http://news.cnblogs.com/n/574971/" target="_blank">苹果扶持LG为其OLED显示屏供应商 解决三星供应瓶颈</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice?source=bky&amp;hmsr=%E5%8D%9A%E5%AE%A2%E5%9B%AD&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank"><img width="468" height="60" src="./armeabi-v7a armeabi arm64-v8a - 何林子 - 博客园_files/24442-20170629165247758-2056260207.png" alt="极光推广_0701"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/570194/" target="_blank">小printf的故事：什么是真正的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/569992/" target="_blank">程序员的工作、学习与绩效</a><br> ·  <a href="http://kb.cnblogs.com/page/569056/" target="_blank">软件开发为什么很难</a><br> ·  <a href="http://kb.cnblogs.com/page/565901/" target="_blank">唱吧DevOps的落地，微服务CI/CD的范本技术解读</a><br> ·  <a href="http://kb.cnblogs.com/page/566523/" target="_blank">程序员，如何从平庸走向理想？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+</div>
+</div>
+<div id="leftmenu">
+
+
+<h3>导航</h3>
+<ul>
+<li>
+<a id="blog_nav_sitehome" href="http://www.cnblogs.com/">博客园</a></li>
+<li>
+<a id="blog_nav_myhome" class="two_words" href="http://www.cnblogs.com/helinzi/">首页</a></li>
+<li>
+<a id="blog_nav_newpost" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li>
+<a id="blog_nav_contact" accesskey="9" class="two_words" rel="nofollow" href="https://msg.cnblogs.com/send/%E4%BD%95%E6%9E%97%E5%AD%90">联系</a></li>
+<li>
+<a id="blog_nav_rss" class="two_words" href="http://www.cnblogs.com/helinzi/rss">订阅</a>
+<a id="blog_nav_rss_image" href="http://www.cnblogs.com/helinzi/rss"><img src="./armeabi-v7a armeabi arm64-v8a - 何林子 - 博客园_files/xml.gif" alt="订阅"></a>
+</li>
+<li>
+<a id="blog_nav_admin" class="two_words" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+
+<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/06/01&#39;);return false;">&lt;</a></td><td align="center">2017年7月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/08/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalWeekendDay" align="center">1</td></tr><tr><td class="CalWeekendDay" align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td class="CalWeekendDay" align="center">8</td></tr><tr><td class="CalWeekendDay" align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td class="CalWeekendDay" align="center">15</td></tr><tr><td class="CalWeekendDay" align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td class="CalWeekendDay" align="center">22</td></tr><tr><td class="CalWeekendDay" align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalWeekendDay" align="center">29</td></tr><tr><td class="CalWeekendDay" align="center">30</td><td class="CalTodayDay" align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+<meta name="vs_showGrid" content="False">
+
+<h3>公告</h3>
+<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/helinzi/">何林子</a><br>园龄：<a href="http://home.cnblogs.com/u/helinzi/" title="入园时间：2015-04-13">2年3个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/helinzi/followers/">1</a><br>关注：<a href="http://home.cnblogs.com/u/helinzi/followees/">0</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;0f6ecd68-7fe1-e411-b908-9dcfd8948a71&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+
+<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/helinzi/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/helinzi/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/helinzi/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/helinzi/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/helinzi/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+		<h3>随笔分类</h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/helinzi/category/679028.html">Android(33)</a></li>
+			
+				<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/helinzi/category/681917.html">Game(1)</a></li>
+			
+				<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/helinzi/category/678080.html">Swift(6)</a></li>
+			
+				<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/helinzi/category/679438.html">行业(10)</a></li>
+			
+				<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/helinzi/category/689237.html">综合</a></li>
+			
+				</ul>
+			
+	
+		<h3>随笔档案</h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/helinzi/archive/2016/01.html">2016年1月 (2)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/helinzi/archive/2015/12.html">2015年12月 (22)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/helinzi/archive/2015/11.html">2015年11月 (1)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/helinzi/archive/2015/10.html">2015年10月 (4)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/helinzi/archive/2015/08.html">2015年8月 (1)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/helinzi/archive/2015/06.html">2015年6月 (1)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/helinzi/archive/2015/05.html">2015年5月 (5)</a></li>
+			
+				<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/helinzi/archive/2015/04.html">2015年4月 (42)</a></li>
+			
+				</ul>
+			
+	
+		<h3>文章分类</h3>
+		
+				<ul>
+			
+				<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/helinzi/category/678079.html">Swift(1)</a></li>
+			
+				<li><a id="CatList_LinkList_2_Link_1" href="http://www.cnblogs.com/helinzi/category/679439.html">行业(7)</a></li>
+			
+				<li><a id="CatList_LinkList_2_Link_2" href="http://www.cnblogs.com/helinzi/category/689236.html">综合(10)</a></li>
+			
+				</ul>
+			
+	</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap" style="display: none;">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"></div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/helinzi/p/5056902.html">1. 关于Android的.so文件你所需要知道的(847)</a></li><li><a href="http://www.cnblogs.com/helinzi/p/4443587.html">2. OmegaT(837)</a></li><li><a href="http://www.cnblogs.com/helinzi/p/5056869.html">3. armeabi-v7a armeabi arm64-v8a(828)</a></li><li><a href="http://www.cnblogs.com/helinzi/p/5019588.html">4. Android 获得view的宽和高(609)</a></li><li><a href="http://www.cnblogs.com/helinzi/p/4443520.html">5. 机器翻译技术的现状(450)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap" style="display: none;">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap" style="display: none;">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+
+</div>
+</div>
+<div class="clear"></div>
+<div id="footer">
+
+<p id="footer">
+	Powered by: 
+	<br>
+	
+	<a id="Footer1_Hyperlink3" name="Hyperlink1" href="http://www.cnblogs.com/" style="font-family:Verdana;font-size:12px;">博客园</a>
+	<br>
+	Copyright © 何林子
+</p>
+</div>
+</div>
+
+
+
+</body></html>

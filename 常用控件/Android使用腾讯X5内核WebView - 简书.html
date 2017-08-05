@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.jianshu.com/p/0c4cd08bd4cd -->
+<html><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+
+  <!-- Start of Baidu Transcode -->
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="MobileOptimized" content="width">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="mobile-agent" content="format=html5;url=http://www.jianshu.com/p/0c4cd08bd4cd">
+  <!-- End of Baidu Transcode -->
+
+    <meta name="description" content="版权声明：本文为博主原创文章，未经博主允许不得转载。 第一步：下载jar包添加到项目 需要去腾讯浏览服务官网下载X5内核jar包 第二步：添加权限 第三步：直接使用 很多文章中说要用到application，其实不用也是可以的。在application中做设置只是增加了预先加载的功能。MainActivity.java:    public class MainActivity extend...">
+
+  <meta name="360-site-verification" content="604a14b53c6b871206001285921e81d8">
+  <meta property="wb:webmaster" content="294ec9de89e7fadb">
+  <meta property="qc:admins" content="104102651453316562112116375">
+  <meta property="qc:admins" content="11635613706305617">
+  <meta property="qc:admins" content="1163561616621163056375">
+  <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4">
+  <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI">
+  <meta http-equiv="mobile-agent" content="format=html5; url=http://www.jianshu.com/p/0c4cd08bd4cd">
+
+  <!-- Apple -->
+  <meta name="apple-mobile-web-app-title" content="简书">
+
+    <!--  Meta for Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=888237539, app-argument=jianshu://notes/9262204">
+  <!-- End -->
+
+  <!--  Meta for Twitter Card -->
+  <meta content="summary" property="twitter:card">
+  <meta content="@jianshucom" property="twitter:site">
+  <meta content="Android使用腾讯X5内核WebView" property="twitter:title">
+  <meta content="版权声明：本文为博主原创文章，未经博主允许不得转载。 第一步：下载jar包添加到项目 需要去腾讯浏览服务官网下载X5内核jar包 第二步：添加权限 第三步：直接使用 很多文章中说要用到application，其实不用也是可以的。在application中做设置只是增加了预先加载的功能。MainActivity.java:    public class MainActivity extends Activity { 代码十分简单，也很容易理解。在这个我加了个跳转类来实现访问其他网页，其实就是想测测X5的性能" property="twitter:description">
+  <meta content="http://www.jianshu.com/p/0c4cd08bd4cd" property="twitter:url">
+  <!-- End -->
+
+  <!--  Meta for OpenGraph -->
+  <meta property="fb:app_id" content="865829053512461">
+  <meta property="og:site_name" content="简书">
+  <meta property="og:title" content="Android使用腾讯X5内核WebView">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://www.jianshu.com/p/0c4cd08bd4cd">
+  <meta property="og:description" content="版权声明：本文为博主原创文章，未经博主允许不得转载。 第一步：下载jar包添加到项目 需要去腾讯浏览服务官网下载X5内核jar包 第二步：添加权限 第三步：直接使用 很多文章中说要用到appli...">
+  <!-- End -->
+
+  <!--  Meta for Facebook Applinks -->
+  <meta property="al:ios:url" content="jianshu://notes/9262204">
+  <meta property="al:ios:app_store_id" content="888237539">
+  <meta property="al:ios:app_name" content="简书">
+
+  <meta property="al:android:url" content="jianshu://notes/9262204">
+  <meta property="al:android:package" content="com.jianshu.haruki">
+  <meta property="al:android:app_name" content="简书">
+  <!-- End -->
+
+
+    <title>Android使用腾讯X5内核WebView - 简书</title>
+
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="LKmAKcmuQGsP5HlLqHzsbYK/1YnxgZx18rVr4uqR74Rt317X8SMpJlAcNPoNWcTRhQU+LD5DeE+wgvZhnNYvNQ==">
+
+  <link rel="stylesheet" media="all" href="./Android使用腾讯X5内核WebView - 简书_files/web-04d0b3d33adf1549e566.css">
+  
+  <link rel="stylesheet" media="all" href="./Android使用腾讯X5内核WebView - 简书_files/entry-04d0b3d33adf1549e566.css">
+
+  <link href="http://cdn2.jianshu.io/assets/favicons/favicon-783beb88ed621ceab614de960376ac0c.ico" rel="icon">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/57-47624b2e2161e8eb144462c85db0a5ff.png" sizes="57x57">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/72-c00cde7cf98fc49e50cbb3ee1dcd5804.png" sizes="72x72">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/76-e8af0bdeaf1ba31e303b1fde8b5e66c4.png" sizes="76x76">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/114-f4c78569bbf1977e8382a5fd90c9237a.png" sizes="114x114">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/120-cf10c3711dba269522743729efe66bbc.png" sizes="120x120">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/152-7bd60457b5f3ecbf1343f0e6241be4f8.png" sizes="152x152">
+<link rel="stylesheet" href="blob:http://www.jianshu.com/47c6e40c-ddfb-434d-863f-a3d4309bb242"><link rel="stylesheet" href="blob:http://www.jianshu.com/90b6f80c-c856-418e-9a94-9ef78c768ac0"></head>
+
+  <body lang="zh-CN" class="reader-black-font">
+    <!-- 全局顶部导航栏 -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="width-limit">
+    <!-- 左上方 Logo -->
+    <a class="logo" href="http://www.jianshu.com/"><img src="./Android使用腾讯X5内核WebView - 简书_files/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo"></a>
+
+    <!-- 右上角 -->
+      <!-- 未登录显示登录/注册/写文章 -->
+      <a class="btn write-btn" target="_blank" href="http://www.jianshu.com/writer#/">
+        <i class="iconfont ic-write"></i>写文章
+</a>      <a class="btn sign-up" href="http://www.jianshu.com/sign_up">注册</a>
+      <a class="btn log-in" href="http://www.jianshu.com/sign_in">登录</a>
+
+    <!-- 如果用户登录，显示下拉菜单 -->
+
+    <div class="style-mode"><a class="style-mode-btn"><i class="iconfont ic-navigation-mode"></i></a> <div class="popover-modal" style="left: 0px; display: none;"><div class="meta"><i class="iconfont ic-navigation-night"></i><span>夜间模式</span></div> <div class="switch day-night-group"><a class="switch-btn">开</a> <a class="switch-btn active">关</a></div> <hr> <div class="switch font-family-group"><a class="switch-btn font-song">宋体</a> <a class="switch-btn font-hei active">黑体</a></div> <div class="switch"><a class="switch-btn active">简</a> <a class="switch-btn">繁</a></div></div></div>
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="nav navbar-nav">
+            <li class="">
+              <a href="http://www.jianshu.com/">
+                <span class="menu-text">首页</span><i class="iconfont ic-navigation-discover menu-icon"></i>
+</a>            </li>
+            <li class="">
+              <a class="app-download-btn" href="http://www.jianshu.com/apps"><span class="menu-text">下载App</span><i class="iconfont ic-navigation-download menu-icon"></i></a>
+            </li>
+          <li class="search">
+            <form target="_blank" action="http://www.jianshu.com/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+              <input type="text" name="q" id="q" value="" placeholder="搜索" class="search-input">
+              <a class="search-btn" href="javascript:void(null)"><i class="iconfont ic-search"></i></a>
+              <!-- <div id="navbar-trending-search"></div> -->
+</form>          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+    
+<div class="note">
+  <div class="post">
+    <div class="article">
+        <h1 class="title">Android使用腾讯X5内核WebView</h1>
+
+        <!-- 作者区域 -->
+        <div class="author">
+          <a class="avatar" href="http://www.jianshu.com/u/aa3cfa0ba6b4">
+            <img src="./Android使用腾讯X5内核WebView - 简书_files/2a385abc2c4f.jpg" alt="144">
+</a>          <div class="info">
+            <span class="tag">作者</span>
+            <span class="name"><a href="http://www.jianshu.com/u/aa3cfa0ba6b4">BRYANB</a></span>
+            <!-- 关注用户按钮 -->
+            <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+            <!-- 文章数据信息 -->
+            <div class="meta">
+              <!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
+                <span class="publish-time">2017.02.17 13:49</span>
+              <span class="wordage">字数 166</span>
+            <span class="views-count">阅读 1500</span><span class="comments-count">评论 5</span><span class="likes-count">喜欢 15</span></div>
+          </div>
+          <!-- 如果是当前作者，加入编辑按钮 -->
+        </div>
+        <!-- -->
+
+        <!-- 文章内容 -->
+        <div data-note-content="" class="show-content">
+          <p>版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+<h1>第一步：下载jar包添加到项目</h1>
+<p>需要去腾讯浏览服务官网下载X5内核jar包</p>
+<h1>第二步：添加权限</h1>
+<pre class="hljs applescript"><code class="applescript">&lt;uses-permission android:<span class="hljs-built_in">name</span>=<span class="hljs-string">"android.permission.WRITE_EXTERNAL_STORAGE"</span> /&gt;  
+&lt;uses-permission android:<span class="hljs-built_in">name</span>=<span class="hljs-string">"android.permission.ACCESS_NETWORK_STATE"</span> /&gt;  
+&lt;uses-permission android:<span class="hljs-built_in">name</span>=<span class="hljs-string">"android.permission.ACCESS_WIFI_STATE"</span> /&gt;  
+&lt;uses-permission android:<span class="hljs-built_in">name</span>=<span class="hljs-string">"android.permission.INTERNET"</span> /&gt;  
+&lt;uses-permission android:<span class="hljs-built_in">name</span>=<span class="hljs-string">"android.permission.READ_PHONE_STATE"</span> /&gt;</code></pre>
+<h1>第三步：直接使用</h1>
+<p>很多文章中说要用到application，其实不用也是可以的。在application中做设置只是增加了预先加载的功能。<br>MainActivity.java:<br>    public class MainActivity extends Activity {</p>
+<pre class="hljs aspectj"><code class="aspectj"><span class="hljs-keyword">private</span> X5WebView mWebView;
+
+<span class="hljs-keyword">private</span> String mUrl = <span class="hljs-string">"http://www.baidu.com/"</span>;
+
+<span class="hljs-keyword">private</span> RelativeLayout rlMore;
+
+<span class="hljs-meta">@Override</span>
+<span class="hljs-keyword">protected</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
+    <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    rlMore = (RelativeLayout) <span class="hljs-keyword">this</span>.findViewById(R.id.rl_more);
+    rlMore.setOnLongClickListener(<span class="hljs-keyword">new</span> View.OnLongClickListener() {
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">onLongClick</span><span class="hljs-params">(View v)</span>
+        </span>{
+            Intent intent = <span class="hljs-keyword">new</span> Intent(MainActivity.<span class="hljs-keyword">this</span>,UrlSetActivity.class);
+            MainActivity.<span class="hljs-keyword">this</span>.startActivityForResult(intent,<span class="hljs-number">1</span>);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+    });
+
+    rlMore.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() {
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span>
+        </span>{
+            loadWebUrl();
+        }
+    });
+
+    mWebView = (X5WebView) <span class="hljs-keyword">this</span>.findViewById(R.id.awwt_webview);
+    mWebView.setWebViewClient(client);
+
+}
+
+
+<span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">loadWebUrl</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">null</span> != mUrl &amp;&amp; mUrl.length() &gt; <span class="hljs-number">0</span>)
+    {
+        mWebView.loadUrl(mUrl);
+    }
+
+}
+
+<span class="hljs-meta">@Override</span>
+<span class="hljs-keyword">protected</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onResume</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">super</span>.onResume();
+    String preferUrl = SharePreferUtils.getSharePreferValue(<span class="hljs-keyword">this</span>,<span class="hljs-string">"WEB_URL"</span>, <span class="hljs-string">"main_page"</span>);
+    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">null</span> != preferUrl &amp;&amp; preferUrl.length() &gt; <span class="hljs-number">0</span>)
+    {
+        mUrl = preferUrl;
+    }
+    mWebView.loadUrl(mUrl);
+}
+
+<span class="hljs-keyword">private</span> WebViewClient client = <span class="hljs-keyword">new</span> WebViewClient() {
+    <span class="hljs-comment">/**
+     * 防止加载网页时调起系统浏览器
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">shouldOverrideUrlLoading</span><span class="hljs-params">(WebView view, String url)</span>
+    </span>{
+        view.loadUrl(url);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onReceivedHttpAuthRequest</span><span class="hljs-params">(WebView webview,
+                                          com.tencent.smtt.export.external.interfaces.HttpAuthHandler httpAuthHandlerhost, String host,
+                                          String realm)</span> </span>{
+        <span class="hljs-keyword">boolean</span> flag = httpAuthHandlerhost.useHttpAuthUsernamePassword();
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onPageFinished</span><span class="hljs-params">(WebView webView, String s)</span>
+    </span>{
+        <span class="hljs-keyword">super</span>.onPageFinished(webView, s);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onReceivedError</span><span class="hljs-params">(WebView webView, <span class="hljs-keyword">int</span> i, String s, String s1)</span>
+    </span>{
+        System.out.println(<span class="hljs-string">"***********onReceivedError ************"</span> );
+        <span class="hljs-keyword">super</span>.onReceivedError(webView, i, s, s1);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onReceivedHttpError</span><span class="hljs-params">(WebView webView, WebResourceRequest webResourceRequest, WebResourceResponse webResourceResponse)</span> </span>{
+        System.out.println(<span class="hljs-string">"***********onReceivedHttpError ************"</span> );
+        <span class="hljs-keyword">super</span>.onReceivedHttpError(webView, webResourceRequest, webResourceResponse);
+    }
+};
+
+
+<span class="hljs-meta">@Override</span>
+<span class="hljs-keyword">protected</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onActivityResult</span><span class="hljs-params">(<span class="hljs-keyword">int</span> requestCode, <span class="hljs-keyword">int</span> resultCode, Intent data)</span>
+</span>{
+    <span class="hljs-keyword">if</span>(resultCode == RESULT_OK)
+    {
+        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">null</span> != data)
+        {
+           String tUrl = data.getStringExtra(<span class="hljs-string">"WEB_URL"</span>);
+            <span class="hljs-keyword">if</span>(<span class="hljs-keyword">null</span> != tUrl &amp;&amp; tUrl.length() &gt; <span class="hljs-number">0</span>)
+            {
+                mUrl = tUrl;
+                mWebView.loadUrl(mUrl);
+                SharePreferUtils.setSharePreferValue(<span class="hljs-keyword">this</span>,<span class="hljs-string">"WEB_URL"</span>, <span class="hljs-string">"main_page"</span>,mUrl);
+            }
+        }
+    }
+    <span class="hljs-keyword">super</span>.onActivityResult(requestCode, resultCode, data);
+}
+
+<span class="hljs-meta">@Override</span>
+<span class="hljs-keyword">protected</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onDestroy</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">if</span> (mWebView != <span class="hljs-keyword">null</span>)
+    {
+        mWebView.destroy();
+    }
+    <span class="hljs-keyword">super</span>.onDestroy();
+}
+}</code></pre>
+<p>代码十分简单，也很容易理解。在这个我加了个跳转类来实现访问其他网页，其实就是想测测X5的性能</p>
+<pre class="hljs aspectj"><code class="aspectj"> <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UrlSetActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> </span>{
+<span class="hljs-keyword">private</span> ImageView ivBack;
+<span class="hljs-keyword">private</span> EditText edContent;
+<span class="hljs-meta">@Override</span>
+<span class="hljs-keyword">protected</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span>
+</span>{
+    <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_url_set);
+    edContent = (EditText) <span class="hljs-keyword">this</span>.findViewById(R.id.ampf_et_content);
+    findViewById(R.id.rl_more).setVisibility(View.GONE);
+    ivBack = (ImageView) <span class="hljs-keyword">this</span>.findViewById(R.id.iv_back);
+    ivBack.setVisibility(View.VISIBLE);
+    ivBack.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() {
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span>
+        </span>{
+            doBack();
+        }
+    });
+
+    findViewById(R.id.ampf_button).setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() {
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span> </span>{
+            <span class="hljs-keyword">if</span>(edContent.getText().toString().length() &gt; <span class="hljs-number">0</span>) {
+                Intent intent = UrlSetActivity.<span class="hljs-keyword">this</span>.getIntent();
+                intent.putExtra(<span class="hljs-string">"WEB_URL"</span>,edContent.getText().toString());
+                UrlSetActivity.<span class="hljs-keyword">this</span>.setResult(RESULT_OK, intent);
+                UrlSetActivity.<span class="hljs-keyword">this</span>.finish();
+            }<span class="hljs-keyword">else</span>{
+                Toast.makeText(UrlSetActivity.<span class="hljs-keyword">this</span>,<span class="hljs-string">"网址不能为空"</span>,Toast.LENGTH_SHORT).show();
+            }
+        }
+    });
+
+}
+
+
+<span class="hljs-meta">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">onBackPressed</span><span class="hljs-params">()</span>
+</span>{
+    doBack();
+}
+
+<span class="hljs-meta">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">onKeyDown</span><span class="hljs-params">(<span class="hljs-keyword">int</span> keyCode, KeyEvent event)</span>
+</span>{
+    <span class="hljs-keyword">if</span> (keyCode == KeyEvent.KEYCODE_BACK &amp;&amp; event.getRepeatCount() == <span class="hljs-number">0</span>)
+    {
+        doBack();
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.<span class="hljs-title">onKeyDown</span><span class="hljs-params">(keyCode, event)</span></span>;
+}
+
+<span class="hljs-keyword">protected</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">doBack</span><span class="hljs-params">()</span>
+</span>{
+    UrlSetActivity.<span class="hljs-keyword">this</span>.setResult(RESULT_OK, <span class="hljs-keyword">null</span>);
+    finish();
+}
+}</code></pre>
+
+        </div>
+        <!--  -->
+
+        <div class="show-foot">
+          <a class="notebook" href="http://www.jianshu.com/nb/2133407">
+            <i class="iconfont ic-search-notebook"></i> <span>日记本</span>
+</a>          <div class="copyright" data-toggle="tooltip" data-html="true" data-original-title="转载请联系作者获得授权，并标注“简书作者”。">
+            © 著作权归作者所有
+          </div>
+          <div class="modal-wrap" data-report-note="">
+            <a id="report-modal">举报文章</a>
+          </div>
+        </div>
+    </div>
+
+    <!-- 文章底部作者信息 -->
+      <div class="follow-detail">
+        <div class="info">
+          <a class="avatar" href="http://www.jianshu.com/u/aa3cfa0ba6b4">
+            <img src="./Android使用腾讯X5内核WebView - 简书_files/2a385abc2c4f.jpg" alt="144">
+</a>          <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+          <a class="title" href="http://www.jianshu.com/u/aa3cfa0ba6b4">BRYANB</a>
+        <p>写了 3533 字，被 27 人关注，获得了 69 个喜欢</p></div>
+      </div>
+
+      <div class="support-author"><p>如果觉得我的文章对您有用，请随意赞赏。您的支持将鼓励我继续创作！</p> <div class="btn btn-pay">赞赏支持</div> <!----> <!----> <!----></div>
+
+    <div class="meta-bottom">
+      <div class="like"><div class="btn like-group"><div class="btn-like"><a href="http://www.jianshu.com/sign_in"><i class="iconfont ic-like"></i>喜欢</a></div> <div class="modal-wrap"><a>15</a></div></div> <!----></div>
+      <div class="share-group">
+        <a class="share-circle" data-action="weixin-share" data-toggle="tooltip" data-original-title="分享到微信">
+          <i class="iconfont ic-wechat"></i>
+        </a>
+        <a class="share-circle" data-toggle="tooltip" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/9262204/weibo/image_b98b348a46cf.jpg&#39;, &#39;推荐 BRYANB 的文章《Android使用腾讯X5内核WebView》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/0c4cd08bd4cd?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));" data-original-title="分享到微博">
+          <i class="iconfont ic-weibo"></i>
+        </a>
+          <a class="share-circle" data-toggle="tooltip" href="http://cwb.assets.jianshu.io/notes/images/9262204/weibo/image_b98b348a46cf.jpg" target="_blank" data-original-title="下载长微博图片">
+            <i class="iconfont ic-picture"></i>
+          </a>
+        <a class="share-circle more-share" tabindex="0" data-toggle="popover" data-placement="top" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="
+          &lt;ul class=&quot;share-list&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/0c4cd08bd4cd?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 BRYANB 的文章《Android使用腾讯X5内核WebView》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-zone&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/0c4cd08bd4cd?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 BRYANB 的文章《Android使用腾讯X5内核WebView》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-twitter&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/0c4cd08bd4cd?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-facebook&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/0c4cd08bd4cd?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-google&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/0c4cd08bd4cd?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;Android使用腾讯X5内核WebView&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-douban&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        " data-original-title="" title="">更多分享</a>
+      </div>
+    </div>
+    <div><div id="comment-list" class="comment-list"><div><form class="new-comment"><a class="avatar"><img src="./Android使用腾讯X5内核WebView - 简书_files/avatar_default-78d4d1f68984cd6d4379508dd94b4210.png"></a> <div class="sign-container"><a href="http://www.jianshu.com/sign_in" class="btn btn-sign">登录</a> <span>后发表评论</span></div></form></div> <div id="normal-comment-list" class="normal-comment-list"><div><div><div class="top"><span>5条评论</span> <a class="author-only">只看作者</a> <a class="close-btn" style="display: none;">关闭评论</a> <div class="pull-right"><a class="active">按喜欢排序</a><a class="">按时间正序</a><a class="">按时间倒序</a></div></div></div> <!----> <!----> <div class="comments-placeholder" style="display: none;"><div class="author"><div class="avatar"></div> <div class="info"><div class="name"></div> <div class="meta"></div></div></div> <div class="text"></div> <div class="text animation-delay"></div> <div class="tool-group"><i class="iconfont ic-zan-active"></i><div class="zan"></div> <i class="iconfont ic-list-comments"></i><div class="zan"></div></div></div> <div id="comment-8090657" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/6360ad743e7d" target="_blank" class="avatar"><img src="./Android使用腾讯X5内核WebView - 简书_files/51eb502b342a.jpg"></a> <div class="info"><a href="http://www.jianshu.com/u/6360ad743e7d" target="_blank" class="name">Blazer</a> <!----> <div class="meta"><span>2楼 · 2017.02.17 17:52</span></div></div></div> <div class="comment-wrap"><p>不错不错<br></p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list hide"><!----> <!----></div></div><div id="comment-8196782" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/7fa88c1ed9c1" target="_blank" class="avatar"><img src="./Android使用腾讯X5内核WebView - 简书_files/f58b8034fd61.jpg"></a> <div class="info"><a href="http://www.jianshu.com/u/7fa88c1ed9c1" target="_blank" class="name">罗健平</a> <!----> <div class="meta"><span>3楼 · 2017.02.21 09:24</span></div></div></div> <div class="comment-wrap"><p>受益匪浅</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list hide"><!----> <!----></div></div><div id="comment-8208034" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/e33c5563de5c" target="_blank" class="avatar"><img src="./Android使用腾讯X5内核WebView - 简书_files/1dd7e9f9-67c7-4b36-a386-4f6647a8fcdc"></a> <div class="info"><a href="http://www.jianshu.com/u/e33c5563de5c" target="_blank" class="name">Blacoo</a> <!----> <div class="meta"><span>4楼 · 2017.02.21 15:17</span></div></div></div> <div class="comment-wrap"><p>对我的大项目很有用</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list hide"><!----> <!----></div></div><div id="comment-8299856" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/6e3ced9db766" target="_blank" class="avatar"><img src="./Android使用腾讯X5内核WebView - 简书_files/c7fecd7ef977"></a> <div class="info"><a href="http://www.jianshu.com/u/6e3ced9db766" target="_blank" class="name">KKiCC</a> <!----> <div class="meta"><span>5楼 · 2017.02.24 07:36</span></div></div></div> <div class="comment-wrap"><p>x5</p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list hide"><!----> <!----></div></div><div id="comment-13299313" class="comment"><div><div class="author"><a href="http://www.jianshu.com/u/2a3ae53c85b6" target="_blank" class="avatar"><img src="./Android使用腾讯X5内核WebView - 简书_files/31f754a3-4feb-42bc-97bb-84afd3503240.jpg"></a> <div class="info"><a href="http://www.jianshu.com/u/2a3ae53c85b6" target="_blank" class="name">做一只会思考的piger</a> <!----> <div class="meta"><span>6楼 · 2017.07.27 19:18</span></div></div></div> <div class="comment-wrap"><p>activity_main.xml里面是怎么写的？<br></p> <div class="tool-group"><a><i class="iconfont ic-zan"></i> <span>赞</span></a> <a><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list hide"><!----> <!----></div></div></div></div> <!----> <div><!----></div></div></div>
+  </div>
+
+  <div class="side-tool"><ul><li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="回到顶部"><a class="function-button"><i class="iconfont ic-backtop"></i></a></li> <!----> <!----> <li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="分享文章"><a tabindex="0" role="button" data-toggle="popover" data-placement="left" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="&lt;ul class=&#39;share-list&#39;&gt;
+                &lt;li&gt;&lt;a class=&quot;weixin-share&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-weixin&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到微信&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/9262204/weibo/image_b98b348a46cf.jpg&#39;, &#39;推荐 BRYANB 的文章《Android使用腾讯X5内核WebView》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/0c4cd08bd4cd?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-weibo&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到微博&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;http://cwb.assets.jianshu.io/notes/images/9262204/weibo/image_b98b348a46cf.jpg&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-picture&quot;&gt;&lt;/i&gt;&lt;span&gt;下载长微博图片&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/0c4cd08bd4cd?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 BRYANB 的文章《Android使用腾讯X5内核WebView》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-zone&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/0c4cd08bd4cd?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 BRYANB 的文章《Android使用腾讯X5内核WebView》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-twitter&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/0c4cd08bd4cd?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-facebook&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/0c4cd08bd4cd?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-google&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/0c4cd08bd4cd?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;Android使用腾讯X5内核WebView&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-douban&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;" data-original-title="" title="" class="function-button"><i class="iconfont ic-share"></i></a> <!----></li></ul></div>
+</div>
+<div class="note-bottom">
+  <div><div class="main"><div class="title">被以下专题收入，发现更多相似内容</div> <!----> <div class="include-collection"><!----> <a href="http://www.jianshu.com/c/3fde3b545a35?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android使用腾讯X5内核WebView - 简书_files/android.graphics.Bitmap_3d178cba.jpeg"><div class="name">Android知识</div></a><a href="http://www.jianshu.com/c/d1591c322c89?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android使用腾讯X5内核WebView - 简书_files/android.graphics.Bitmap_15f127c2.jpeg"><div class="name">Android开发</div></a><a href="http://www.jianshu.com/c/58b4c20abf2f?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android使用腾讯X5内核WebView - 简书_files/android.graphics.Bitmap_1329dce8.jpeg"><div class="name">Android...</div></a><a href="http://www.jianshu.com/c/75d2dabf19aa?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android使用腾讯X5内核WebView - 简书_files/android.graphics.Bitmap_3bfbf7b4.jpeg"><div class="name">WebView相关</div></a><a href="http://www.jianshu.com/c/4688bad2bca2?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android使用腾讯X5内核WebView - 简书_files/android.graphics.Bitmap_d4acfdc.jpeg"><div class="name">Android...</div></a><a href="http://www.jianshu.com/c/b9bbba7783c5?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android使用腾讯X5内核WebView - 简书_files/android.graphics.Bitmap_291c5a9.jpeg"><div class="name">Android</div></a><a href="http://www.jianshu.com/c/1f96ba26d395?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android使用腾讯X5内核WebView - 简书_files/android.graphics.Bitmap_5dd119c.jpeg"><div class="name">WebView相关</div></a> <!----></div></div> <!----> <!----></div>
+  <div data-vcomp="recommended-notes" data-note-id="9262204"></div>
+</div>
+
+    <script src="./Android使用腾讯X5内核WebView - 简书_files/push.js.下载"></script><script src="./Android使用腾讯X5内核WebView - 简书_files/hm.js.下载"></script><script async="" src="./Android使用腾讯X5内核WebView - 简书_files/analytics.js.下载"></script><script type="application/json" data-name="page-data">{"user_signed_in":false,"locale":"zh-CN","os":"windows","read_mode":"day","read_font":"font2","note_show":{"is_author":false,"is_following_author":false,"is_liked_note":false,"uuid":"f9f9598c-fbc0-488d-8167-ff05d3c6c75a"},"note":{"id":9262204,"slug":"0c4cd08bd4cd","user_id":1048792,"notebook_id":2133407,"commentable":true,"likes_count":15,"views_count":1500,"public_wordage":166,"comments_count":5,"total_rewards_count":0,"is_author":false,"author":{"nickname":"BRYANB","total_wordage":3533,"followers_count":27,"total_likes_count":69}}}</script>
+    
+    <script src="./Android使用腾讯X5内核WebView - 简书_files/babel-polyfill-d0c2732d002a471ed287.js.下载"></script>
+    <script src="./Android使用腾讯X5内核WebView - 简书_files/web-base-04d0b3d33adf1549e566.js.下载"></script>
+<script src="./Android使用腾讯X5内核WebView - 简书_files/web-1bc6f25d67ffa58ce876.js.下载"></script>
+    
+    <script src="./Android使用腾讯X5内核WebView - 简书_files/entry-6f034d43d24e8ff141af.js.下载"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35169517-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?0c0e9d9b1e7d617b3e6842e85b9fb068";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+  
+
+<!----><!----></body></html>

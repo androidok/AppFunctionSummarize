@@ -1,0 +1,1391 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0053)http://blog.csdn.net/tkwxty/article/details/34474501/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+        <script src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/hm.js.下载"></script><script type="text/javascript" src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/tingyun-rum.js.下载"></script>
+            <link rel="canonical" href="http://blog.csdn.net/tkwxty/article/details/34474501/"> 
+ <meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://blog.csdn.net/tkwxty/article/details/34474501/#">
+
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848"> 
+       
+    <title>使用Gson解析复杂的json数据 - tkwxty的专栏
+        - CSDN博客</title>
+    
+    <meta name="description" content="Gson解析复杂的json数据">
+
+    <meta name="keywords" content="">
+
+   
+    <script src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/blog_static_head.min.js.下载" type="text/javascript"></script>
+
+    
+        <!--new top-->
+       
+       
+        <!--new top-->
+    
+      <!-- ad begin -->
+         
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/style.css">
+
+    
+
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/tkwxty/rss/list">
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/default.css">
+ 
+
+
+
+    <link href="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/csdn_public_blog_detail.min.css" type="text/css" rel="stylesheet">
+     
+         <link rel="stylesheet" href="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/csdn_blog_detail.min.css">
+
+  
+
+
+    <!-- 请置于所有广告位代码之前 --> 
+            <script src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/ds.js.下载"></script>
+
+<script src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/share.js.下载"></script><link href="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/bdsstyle.css" rel="stylesheet" type="text/css"><link rel="stylesheet" type="text/css" href="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/style(1).css"><link rel="stylesheet" type="text/css" href="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/style(2).css"><script src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/logger.js.下载"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><link rel="stylesheet" href="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/share_style0_16.css"></head>
+
+
+<body><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div><div id="MathJax_Message" style="display: none;"></div><iframe frameborder="0" style="display: none;" src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/saved_resource.html"></iframe><div class="csdn-toolbar csdn-toolbar-skin-black ">        <div class="container row center-block ">          <div class="col-md-3 pull-left logo clearfix"><a href="http://www.csdn.net/?ref=toolbar" title="CSDN首页" target="_blank" class="icon"></a><a title="频道首页" href="http://blog.csdn.net/?ref=toolbar_logo" class="img blog-icon"></a></div>          <div class="pull-right login-wrap ">            <ul class="btns">              <li class="loginlink"><a href="https://passport.csdn.net/account/login?ref=toolbar" target="_top">登录&nbsp;</a>|<a target="_top" href="http://passport.csdn.net/account/mobileregister?ref=toolbar&amp;action=mobileRegister">&nbsp;注册</a></li>              <li class="search">                <div class="icon on-search-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <form action="http://so.csdn.net/search" id="toolbar_search" method="get" target="_blank">                      <input type="hidden" value="toolbar" name="ref" accesskey="2">                      <div class="border">                        <input placeholder="搜索" type="text" value="" name="q" accesskey="2"><span class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li class="favor">                <div class="icon on-favor-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div style="display:none;" class="favor-success"><span class="msg">收藏成功</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <div style="display:none;" class="favor-failed"><span class="icon-danger-lg"></span><span class="msg">收藏失败，请重新收藏</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <form role="form" class="form-horizontal favor-form">                      <div class="form-group">                        <div class="clearfix">                          <label for="input-title" class="col-sm-2 control-label"><span class="red_txt">*</span>标题</label>                          <div class="col-sm-10">                            <input id="inputTitle" type="text" placeholder="" class="title form-control">                          </div>                        </div>                        <div class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div class="form-group" style="display:none;">                        <label for="input-url" class="col-sm-2 control-label">网址</label>                        <div class="col-sm-10">                          <input id="input-url" type="text" placeholder="" class="url form-control">                        </div>                      </div>                      <div class="form-group">                        <label for="input-tag" class="col-sm-2 tag control-label">标签</label>                        <div class="col-sm-10">                          <input id="input-tag" type="text" class="form-control tag">                        </div>                      </div>                      <div class="form-group">                        <label for="input-description" class="description col-sm-2 control-label">位置</label>                        <div class="col-sm-10">                          <div class="my_lib_box">                            个人主页&nbsp;-&nbsp;<a href="http://my.csdn.net/" target="_blank">我的知识</a>                          </div>                          <div class="checkbox">                            <div class="pull-left">                              <label>                                <input type="checkbox" name="share" class="save_lib_map" checked="checked">同时保存至：                              </label>                            </div>                            <div class="pull-left">                              <div class="dropdown">                                <button id="toolbar_sele_map" type="button">                                  选择知识图谱                                  <i class="fa fa-chevron-down"></i>                                </button>                                <div class="top_arr"></div>                                <div class="outside">                                  <ul class="dropdown-menu" id="toolbar_Design_knowledge"><li>选择知识图谱</li></ul>                                </div>                              </div>                            </div>                            <div class="pull-left new_txt">                              <a href="http://lib.csdn.net/my/create/structure" target="_blank">新建？</a>                            </div>                          </div>                        </div>                      </div>                      <div class="form-group">                        <div class="col-sm-offset-2 col-sm-10 ft">                          <div class="col-sm-4 pull-left" style="display:none">                            <div class="checkbox">                              <label>                                <input type="checkbox" name="share" checked="checked" class="share">公开                              </label>                            </div>                          </div>                          <div class="col-sm-8 pull-right favor-btns">                            <button type="button" class="cancel btn btn-default">取消</button>                            <button type="submit" class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li class="notify">                <div style="display:none" class="number"></div>                <div style="" class="icon-hasnotes-sm"></div>                <div id="header_notice_num"><div class="icon-hasnotes" style=""></div></div>                <div class="icon on-notify-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div id="note1" class="csdn_note" style="left: -212px; top: 5925px; display: none;">                      <div class="box"><div class="notifications notice_list_con curr">  <div class="menu_title">    <span class="title"><a href="http://msg.csdn.net/letters" target="_blank" class="read_all">查看所有私信</a><a href="http://msg.csdn.net/" target="_blank" class="go_all">查看所有通知</a></span>  </div>  <div class="loading"></div>  <div class="empty">暂没有新通知</div>  <div class="notice_content" style="overflow-y: auto; max-height: 270px;"></div></div><div class="notifications detail_con" style="display: none">  <div class="menu_title">    <span class="title">      <a class="go_back" href="javascript:void 0;">返回通知列表</a>      <a class="notifications_page_none nextnote" href="javascript:void 0;">下一条</a>      <a class="notifications_page prvnote" href="javascript:void 0;">上一条</a>    </span>  </div>  <div class="notice_content" style="overflow-y: scroll; height: 250px;"></div></div><div class="error"></div></div>                    <iframe src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/saved_resource(1).html" frameborder="0" allowtransparency="true" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li class="ugc">                <div class="icon on-ugc-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <dl>                      <dt><a href="http://geek.csdn.net/news/expert?ref=toolbar" target="_blank" class="p-news clearfix" style="display:none;"><em class="icon"></em><span>分享资讯</span></a></dt>                      <dt style="border: none;"><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-doc clearfix"><em class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a href="http://bbs.csdn.net/topics/new?ref=toolbar" target="_blank" class="p-ask clearfix"><em class="icon"></em><span>提问题</span></a></dt>                      <dt><a href="http://write.blog.csdn.net/postedit?ref=toolbar" target="_blank" class="p-blog clearfix"><em class="icon"></em><span>写博客</span></a></dt>                      <dt><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-src clearfix"><em class="icon"></em><span>传资源</span></a></dt>                      <dt><a href="https://code.csdn.net/projects/new?ref=toolbar" target="_blank" class="c-obj clearfix"><em class="icon"></em><span>创建项目</span></a></dt>                      <dt><a href="https://code.csdn.net/snippets/new?ref=toolbar" target="_blank" class="c-code clearfix"><em class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li class="profile">                <div class="icon on-profile-icon"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/2_qq_38284915.jpg" class="curr-icon-img">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div class="bd">                      <dl class="clearfix">                        <dt class="pull-left img"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="avatar"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/2_qq_38284915.jpg"></a></dt>                        <dd class="info" style="border: none;"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="nickname">qq_38284915</a><span class="dec">android开发技术成熟</span></dd>                      </dl>                    </div>                    <div class="ft clearfix"><a target="_blank" href="http://my.csdn.net/my/account/changepwd?ref=toolbar" class="pull-left"><span class="icon-cog"></span>帐号设置</a><a href="https://passport.csdn.net/account/logout?ref=toolbar" target="_top" class="pull-left" style="margin-left:132px; width:18px; height:27px; white-space:nowrap; overflow:hidden;"><span class="icon-signout"></span><span class="out">退出</span></a></div>                  </div>                </div>              </li>              <li class="apps">                <div id="chasnew123" class="hasnew" style="display: none;"></div>                <div id="cappsarea123" class="icon on-apps-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a href="http://blog.csdn.net/?ref=toolbar" target="_blank">博客</a></dd>                      <dd> <a href="http://bbs.csdn.net/?ref=toolbar" target="_blank">论坛</a></dd>                      <dd> <a href="http://download.csdn.net/?ref=toolbar" target="_blank">下载</a></dd>                      <dd> <a href="http://lib.csdn.net/?ref=toolbar" target="_blank">知识库</a></dd>                      <dd><a href="http://ask.csdn.net/?ref=toolbar" target="_blank">技术问答</a></dd>                      <dd><a href="http://geek.csdn.net/?ref=toolbar" target="_blank">极客头条</a></dd>                      <dd style="display:none"> <a href="http://hero.csdn.net/?ref=toolbar" target="_blank">英雄会</a></dd>                    </dl>                  </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd style="display:none"> <a href="http://job.csdn.net/?ref=toolbar" target="_blank">JOB<img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="http://edu.csdn.net/?ref=toolbar" target="_blank">学院<img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="https://code.csdn.net/?ref=toolbar" target="_blank">CODE</a></dd>                      <dd> <a href="http://huiyi.csdn.net/?ref=toolbar" target="_blank">活动</a></dd>                      <dd> <a href="http://www.csto.com/?ref=toolbar" target="_blank">CSTO</a></dd>                      <dd> <a href="http://mall.csdn.net/?ref=toolbar" target="_blank">C币兑换<img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                    </dl>                  </div>                  <div class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a href="http://cto.csdn.net/?ref=toolbar" target="_blank">CTO俱乐部</a></dd>                      <dd> <a href="http://student.csdn.net/?ref=toolbar" target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+     
+        <div class="tracking-ad" data-view="true" data-mod="ad_popu_72" data-mtp="62" data-order="40" data-con="ad_content_2072">
+                     <script id="popuLayer_js_q" src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/popuLayer.js.下载" defer="defer" type="text/javascript"></script>
+                <div id="layerd" style="position: fixed; bottom: 0px; right: 0px; line-height: 0px; z-index: 1000; width: 300px; height: 278px; display: none;">
+    	                <div class="J_close layer_close" style="display:;background-color:#efefef;padding:0px;color:#333;font:12px/24px Helvetica,Tahoma,Arial,sans-serif;text-align:right;">关闭</div><!-- 广告占位容器 --><div id="cpro_u2895327"><iframe id="iframeu2895327_0" src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/ycym.html" width="300" height="250" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:300px;height:250px" allowtransparency="true"></iframe></div></div>
+                <script>  document.getElementById("popuLayer_js_q").onload = function () { var styObjd = styObj = { width: "300px", "height": parseInt(250) + 28 }; window.CSDN.Layer.PopuLayer("#layerd", { storageName: "layerd", styleObj: styObjd, total: 50, expoire: 1000 * 60 }); }</script><!-- 投放代码 --><script type="text/javascript">                    /*服务器频道首页置顶Banner960*90，创建于2014-7-3*/    (window.cproArray = window.cproArray || []).push({ id: "u2895327" });  </script>  <script src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/c.js.下载" type="text/javascript"></script>
+     
+        </div>
+
+    <!-- 广告位开始 -->
+        
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/html.js.下载" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/tkwxty">tkwxty的专栏</a></h2>
+            <h3></h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+     
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/tkwxty?viewmode=contents"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_mulu&#39;])">
+                    <img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/tkwxty?viewmode=list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_zhaiyao&#39;])">
+                    <img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/tkwxty/rss/list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_RSS&#39;])">
+                    <img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "tkwxty";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/tkwxty";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "qq_38284915";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod="popu_3"> 
+
+
+<a href="http://blog.csdn.net/turingbooks/article/details/76034232" target="_blank">
+<font color="red"><strong>评论送书 | 7月书讯：众多畅销书升级！ </strong></font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/76215994" target="_blank">
+<font color="blue"><strong>CSDN日报20170727——《想提高团队技术，来试试这个套路！》 </strong></font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="http://blog.csdn.net/broadview2006/article/details/76145481" target="_blank">
+<font color="red"><strong>评论送书 | 机器学习、Java虚拟机、微信开发</strong></font></a>
+
+</div>                        </div>
+
+                        
+
+
+
+  
+
+
+
+
+
+
+<script type="text/javascript" src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/category.js.下载"></script>
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+      var isBole = false; 
+      var fasrc="http://my.csdn.net/my/favorite/miniadd?t=%e4%bd%bf%e7%94%a8Gson%e8%a7%a3%e6%9e%90%e5%a4%8d%e6%9d%82%e7%9a%84json%e6%95%b0%e6%8d%ae&u=http://blog.csdn.net/tkwxty/article/details/34474501/"
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+    <h1>
+        <span class="link_title"><a href="http://blog.csdn.net/tkwxty/article/details/34474501">
+        使用Gson解析复杂的json数据        
+           
+        </a>
+        </span>
+
+         
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_r">
+            <span class="link_postdate">2014-06-25 18:48</span>
+            <span class="link_view" title="阅读次数">145789人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#comments" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_pinglun&#39;])">评论</a>(60)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;%e4%bd%bf%e7%94%a8Gson%e8%a7%a3%e6%9e%90%e5%a4%8d%e6%9d%82%e7%9a%84json%e6%95%b0%e6%8d%ae&#39;,&#39;34474501&#39;);return false;" title="收藏" target="_blank">收藏</a></span>
+             <span class="link_report"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" onclick="javascript:report(34474501,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label onclick="GetCategoryArticles(&#39;2870775&#39;,&#39;tkwxty&#39;,&#39;top&#39;,&#39;34474501&#39;);">
+                        <span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_fenlei&#39;]);">Android系统<em>（12）</em></span>
+                      <img class="arrow-down" src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a href="http://blog.csdn.net/tkwxty/article/category/2870775" target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_2870775">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+        <div class="bog_copyright">         
+            <p class="copyright_p">版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+        </div>
+
+  
+
+  
+  
+     
+
+
+<div id="article_content" class="article_content tracking-ad" data-mod="popu_307" data-dsm="post">
+
+<h1 align="center"><span style="font-family:FangSong_GB2312; font-size:18px; color:#333333">Gson解析复杂的json数据</span></h1>
+<p><span style="font-family:FangSong_GB2312"><span style="font-size:18px"><span style="color:#333333">&nbsp;&nbsp;<strong></strong></span>最近在给公司做一个直播APK的项目，主要就是通过解析网络服务器上的json数据，然后将频道地址下载下来再调用<a href="http://lib.csdn.net/base/android" class="replace_word" title="Android知识库" target="_blank" style="color:#df3434; font-weight:bold;">Android</a>的播放器进行播放，原先本来打算使用普通的json解析方法即JsonObject和JsonArray的配合使用，这对于解析小数据的json数据还是比较实用，但是当解析json数据比较复杂的时候这种方法就显得比较吃力也比较麻烦了，如果大家感兴趣的话网上有大量的实例可以到网上去看看。</span></span></p>
+<p><span style="font-family:FangSong_GB2312; font-size:18px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在这里我将介绍解析json数据的另外一种方法就是通过Gson解析，对于解析比较简单的json数据我就不介绍了来一个比较复杂一点的json数据，如下面我们要解析的一个json数据：</span></p>
+<div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;" target="_blank">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;" target="_blank">copy</a><div style="position: absolute; left: 680px; top: 735px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_1" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;" target="_blank">print</a></span><a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;" target="_blank">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span>String&nbsp;json&nbsp;=&nbsp;{</span><span class="string">"a"</span><span>:</span><span class="string">"100"</span><span>,</span><span class="string">"b"</span><span>:[{</span><span class="string">"b1"</span><span>:</span><span class="string">"b_value1"</span><span>,</span><span class="string">"b2"</span><span>:</span><span class="string">"b_value2"</span><span>},&nbsp;{</span><span class="string">"b1"</span><span>:</span><span class="string">"b_value1"</span><span>,</span><span class="string">"b2"</span><span>:</span><span class="string">"b_value2"</span><span>}]，</span><span class="string">"c"</span><span>:&nbsp;{</span><span class="string">"c1"</span><span>:</span><span class="string">"c_value1"</span><span>,</span><span class="string">"c2"</span><span>:</span><span class="string">"c_value2"</span><span>}}&nbsp;&nbsp;</span></span></li></ol></div><pre class="java" name="code" style="display: none;">String json = {"a":"100","b":[{"b1":"b_value1","b2":"b_value2"}, {"b1":"b_value1","b2":"b_value2"}]，"c": {"c1":"c_value1","c2":"c_value2"}}</pre><br>
+<p><span style="font-family:FangSong_GB2312; font-size:18px">如果使用JsonObject和JsonArray的配合起来使用也是可以解析的但是解析起来就比较麻烦了，如果使用Gson解析就比较简单了，首先我们需要定义一个序列化的Bean，这里采用内部类的形式，这样比较容易看得清晰些</span></p>
+<div style="line-height:normal; text-transform:none; font-variant:normal; font-style:normal; text-indent:0px; white-space:normal; letter-spacing:normal; font-size:14px; font-weight:normal; word-spacing:0px">
+<p style="margin:5px 0px"><span style="font-family:FangSong_GB2312; font-size:18px">首先我们需要定义一个序列化的Bean，这里采用内部类的形式，看起来会比较清晰一些：<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; </span></p>
+</div>
+<div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;" target="_blank">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;" target="_blank">copy</a><div style="position: absolute; left: 680px; top: 1061px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_2" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_2" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;" target="_blank">print</a></span><a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;" target="_blank">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;JsonBean&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;a;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;List&lt;B&gt;&nbsp;b;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;C&nbsp;c;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;B&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;b1;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;b2;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">static</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;C&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;c1;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;c2;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li></ol></div><pre class="java" name="code" style="display: none;">public class JsonBean {
+                         public String a;
+                         public List&lt;B&gt; b;
+                         public C c;
+
+                         public static class B {
+
+                                      public String b1;
+
+                                  public String b2;
+                        }
+    
+                        public static class C {
+                                 public String c1;
+                                 public String c2;
+                       }
+              }</pre><br>
+<br>
+<div style="line-height:normal; text-transform:none; font-variant:normal; font-style:normal; text-indent:0px; white-space:normal; letter-spacing:normal; color:rgb(0,0,0); font-size:14px; font-weight:normal; word-spacing:0px">
+<p style="margin:5px 0px"><br>
+<span style="font-family:FangSong_GB2312; font-size:18px">&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 很多时候大家都是不知道这个Bean是该怎么定义，这里面需要注意几点：<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 1、内部嵌套的类必须是static的，要不然解析会出错；<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 2、类里面的属性名必须跟Json字段里面的Key是一模一样的；<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 3、内部嵌套的用[]括起来的部分是一个List，所以定义为 public List&lt;B&gt; b，而只用{}嵌套的就定义为 public C c，<br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;具体的大家对照Json字符串看看就明白了，不明白的我们可以互相交流，本人也是开发新手！<br>
+&nbsp;</span></p>
+<div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;" target="_blank">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;" target="_blank">copy</a><div style="position: absolute; left: 680px; top: 1701px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_3" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_3" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=3&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;" target="_blank">print</a></span><a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;" target="_blank">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span>Gson&nbsp;gson&nbsp;=&nbsp;</span><span class="keyword">new</span><span>&nbsp;Gson();&nbsp;&nbsp;</span></span></li><li class=""><span>java.lang.reflect.Type&nbsp;type&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;TypeToken&lt;JsonBean&gt;()&nbsp;{}.getType();&nbsp;&nbsp;</span></span></li><li class="alt"><span>JsonBean&nbsp;jsonBean&nbsp;=&nbsp;gson.fromJson(json,&nbsp;type);&lt;/span&gt;&nbsp;&nbsp;</span></li></ol></div><pre class="java" name="code" style="display: none;">             Gson gson = new Gson();
+             java.lang.reflect.Type type = new TypeToken&lt;JsonBean&gt;() {}.getType();
+             JsonBean jsonBean = gson.fromJson(json, type);&lt;/span&gt;</pre><br>
+<br>
+<span style="font-family:FangSong_GB2312; font-size:18px">&nbsp; &nbsp;&nbsp; &nbsp; 然后想拿数据就很简单啦，直接在jsonBean里面取就可以了！<br>
+&nbsp; &nbsp;&nbsp; &nbsp; 如果需要解析的Json嵌套了很多层，同样可以可以定义一个嵌套很多层内部类的Bean，需要细心的对照Json字段来定义哦。<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 下面我将以一个具体的列子来说明通过Gson方式解析复杂的json数据<br>
+1.将要解析的数据如下面的格式<br>
+<br>
+{<br>
+&nbsp;&nbsp;&nbsp; "error": 0,<br>
+&nbsp;&nbsp;&nbsp; "status": "success",<br>
+&nbsp;&nbsp;&nbsp; "date": "2014-05-10",<br>
+&nbsp;&nbsp;&nbsp; "results": [<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "currentCity": "南京",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "weather_data": [<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "date": "周六(今天, 实时：19℃)",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "dayPictureUrl": "http://api.map.baidu.com/images/weather/day/dayu.png",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "nightPictureUrl": "http://api.map.baidu.com/images/weather/night/dayu.png",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "weather": "大雨",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "wind": "东南风5-6级",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "temperature": "18℃"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; },<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "date": "周日",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "dayPictureUrl": "http://api.map.baidu.com/images/weather/day/zhenyu.png",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "nightPictureUrl": "http://api.map.baidu.com/images/weather/night/duoyun.png",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "weather": "阵雨转多云",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "wind": "西北风4-5级",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "temperature": "21 ~ 14℃"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; ]<br>
+}<br>
+2.必须定义如下一些的javaBean数据<br>
+Status.java<br>
+</span><div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;" target="_blank">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;" target="_blank">copy</a><div style="position: absolute; left: 680px; top: 2840px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_4" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_4" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=4&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;" target="_blank">print</a></span><a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;" target="_blank">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;Status&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;String&nbsp;error;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;String&nbsp;status;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;String&nbsp;date;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;List&lt;Results&gt;&nbsp;results;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;getError()&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;error;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;setError(String&nbsp;error)&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>.error&nbsp;=&nbsp;error;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;getStatus()&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;status;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;setStatus(String&nbsp;status)&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>.status&nbsp;=&nbsp;status;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;getDate()&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;date;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;setDate(String&nbsp;date)&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>.date&nbsp;=&nbsp;date;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;List&lt;Results&gt;&nbsp;getResults()&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;results;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;setResults(List&lt;Results&gt;&nbsp;results)&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>.results&nbsp;=&nbsp;results;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;toString()&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="string">"Status&nbsp;[error="</span><span>&nbsp;+&nbsp;error&nbsp;+&nbsp;</span><span class="string">",&nbsp;status="</span><span>&nbsp;+&nbsp;status&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;<span class="string">",&nbsp;date="</span><span>&nbsp;+&nbsp;date&nbsp;+&nbsp;</span><span class="string">",&nbsp;results="</span><span>&nbsp;+&nbsp;results&nbsp;+&nbsp;</span><span class="string">"]"</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&lt;/span&gt;&nbsp;&nbsp;</span></li></ol></div><pre class="java" name="code" style="display: none;">public class Status 
+{
+        private String error;
+        private String status;
+        private String date;
+        private List&lt;Results&gt; results;
+		public String getError() 
+		{
+			return error;
+		}
+		public void setError(String error) 
+		{
+			this.error = error;
+		}
+		
+		public String getStatus() 
+		{
+			return status;
+		}
+		public void setStatus(String status) 
+		{
+			this.status = status;
+		}
+		public String getDate() 
+		{
+			return date;
+		}
+		public void setDate(String date) 
+		{
+			this.date = date;
+		}
+		public List&lt;Results&gt; getResults() 
+		{
+			return results;
+		}
+		public void setResults(List&lt;Results&gt; results) 
+		{
+			this.results = results;
+		}
+		@Override
+		public String toString() 
+		{
+			return "Status [error=" + error + ", status=" + status
+					+ ", date=" + date + ", results=" + results + "]";
+		}
+&lt;/span&gt;</pre><span style="font-family:FangSong_GB2312; font-size:18px">Results.java<br>
+</span><div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;" target="_blank">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;" target="_blank">copy</a><div style="position: absolute; left: 680px; top: 3761px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_5" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_5" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=5&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;" target="_blank">print</a></span><a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;" target="_blank">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;Results&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;String&nbsp;currentCity;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;List&lt;Weather&gt;&nbsp;weather_data;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;getCurrentCity()&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;currentCity;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;setCurrentCity(String&nbsp;currentCity)&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>.currentCity&nbsp;=&nbsp;currentCity;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;List&lt;Weather&gt;&nbsp;getWeather_data()&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;weather_data;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;setWeather_data(List&lt;Weather&gt;&nbsp;weather_data)&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>.weather_data&nbsp;=&nbsp;weather_data;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;toString()&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="string">"Results&nbsp;[currentCity="</span><span>&nbsp;+&nbsp;currentCity&nbsp;+&nbsp;</span><span class="string">",&nbsp;weather_data="</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;weather_data&nbsp;+&nbsp;<span class="string">"]"</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li></ol></div><pre class="java" name="code" style="display: none;">public class Results 
+{	
+	private String currentCity;
+	private List&lt;Weather&gt; weather_data;
+	public String getCurrentCity() 
+	{
+		return currentCity;
+	}
+	public void setCurrentCity(String currentCity) 
+	{
+		this.currentCity = currentCity;
+	}
+	public List&lt;Weather&gt; getWeather_data() 
+	{
+		return weather_data;
+	}
+	public void setWeather_data(List&lt;Weather&gt; weather_data) 
+	{
+		this.weather_data = weather_data;
+	}
+	@Override
+	public String toString() 
+	{
+		return "Results [currentCity=" + currentCity + ", weather_data="
+				+ weather_data + "]";
+	}</pre><br>
+<span style="font-family:FangSong_GB2312; font-size:18px">Weather.java<br>
+</span><div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;" target="_blank">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;" target="_blank">copy</a><div style="position: absolute; left: 680px; top: 4338px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_6" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_6" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=6&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;" target="_blank">print</a></span><a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;" target="_blank">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;Weather&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;String&nbsp;date;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;String&nbsp;dayPictureUrl;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;String&nbsp;nightPictureUrl;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;String&nbsp;weather;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;String&nbsp;wind;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;String&nbsp;temperature;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;getDate()&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;date;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;setDate(String&nbsp;date)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>.date&nbsp;=&nbsp;date;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;getDayPictureUrl()&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;dayPictureUrl;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;setDayPictureUrl(String&nbsp;dayPictureUrl)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>.dayPictureUrl&nbsp;=&nbsp;dayPictureUrl;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;getNightPictureUrl()&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;nightPictureUrl;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;setNightPictureUrl(String&nbsp;nightPictureUrl)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>.nightPictureUrl&nbsp;=&nbsp;nightPictureUrl;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;getWeather()&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;weather;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;setWeather(String&nbsp;weather)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>.weather&nbsp;=&nbsp;weather;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;getWind()&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;wind;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;setWind(String&nbsp;wind)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>.wind&nbsp;=&nbsp;wind;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;getTemperature()&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;temperature;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;setTemperature(String&nbsp;temperature)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>.temperature&nbsp;=&nbsp;temperature;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;toString()&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="string">"Weather&nbsp;[date="</span><span>&nbsp;+&nbsp;date&nbsp;+&nbsp;</span><span class="string">",&nbsp;dayPictureUrl="</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;dayPictureUrl&nbsp;+&nbsp;<span class="string">",&nbsp;nightPictureUrl="</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;nightPictureUrl&nbsp;+&nbsp;<span class="string">",&nbsp;weather="</span><span>&nbsp;+&nbsp;weather&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;<span class="string">",&nbsp;wind="</span><span>&nbsp;+&nbsp;wind&nbsp;+&nbsp;</span><span class="string">",&nbsp;temperature="</span><span>&nbsp;+&nbsp;temperature&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;<span class="string">"]"</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li></ol></div><pre class="java" name="code" style="display: none;">public class Weather {
+	private String date;
+		        private String dayPictureUrl;
+		        private String nightPictureUrl;
+		        private String weather;
+		        private String wind;
+		        private String temperature;
+				public String getDate() {
+					return date;
+				}
+				public void setDate(String date) {
+					this.date = date;
+				}
+				public String getDayPictureUrl() {
+					return dayPictureUrl;
+				}
+				public void setDayPictureUrl(String dayPictureUrl) {
+					this.dayPictureUrl = dayPictureUrl;
+				}
+				public String getNightPictureUrl() {
+					return nightPictureUrl;
+				}
+				public void setNightPictureUrl(String nightPictureUrl) {
+					this.nightPictureUrl = nightPictureUrl;
+				}
+				public String getWeather() {
+					return weather;
+				}
+				public void setWeather(String weather) {
+					this.weather = weather;
+				}
+				public String getWind() {
+					return wind;
+				}
+				public void setWind(String wind) {
+					this.wind = wind;
+				}
+				public String getTemperature() {
+					return temperature;
+				}
+				public void setTemperature(String temperature) {
+					this.temperature = temperature;
+				}
+				@Override
+				public String toString() {
+					return "Weather [date=" + date + ", dayPictureUrl="
+							+ dayPictureUrl + ", nightPictureUrl="
+							+ nightPictureUrl + ", weather=" + weather
+							+ ", wind=" + wind + ", temperature=" + temperature
+							+ "]";
+				} 
+		      </pre><span style="font-family:FangSong_GB2312; font-size:18px">然后具体的javabean定义好了就将解析数据了，下面就是我的解析数据类<br>
+</span><div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;" target="_blank">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;" target="_blank">copy</a><div style="position: absolute; left: 680px; top: 5367px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_7" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_7" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=7&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;" target="_blank">print</a></span><a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;" target="_blank">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;MainActivity&nbsp;</span><span class="keyword">extends</span><span>&nbsp;Activity&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;Button&nbsp;tojson;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;RequestQueue&nbsp;mQueue;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;StringRequest&nbsp;stringRequest;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;Gson&nbsp;gson;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;str;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">protected</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;onCreate(Bundle&nbsp;savedInstanceState)&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">super</span><span>.onCreate(savedInstanceState);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setContentView(R.layout.activity_main);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tojson&nbsp;=&nbsp;(Button)findViewById(R.id.tojson);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gson&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;Gson();&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;mQueue&nbsp;=&nbsp;Volley.newRequestQueue(MainActivity.<span class="keyword">this</span><span>);&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//http://10.19.20.12/upgrade/test.txt是测试使用的json数据</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stringRequest&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;StringRequest(</span><span class="string">"http://10.19.20.12/upgrade/test.txt"</span><span>,&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">new</span><span>&nbsp;Response.Listener&lt;String&gt;()&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;onResponse(String&nbsp;response)&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log.d(<span class="string">"TAG"</span><span>,&nbsp;response);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"response="</span><span>+response);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status&nbsp;status&nbsp;=&nbsp;gson.fromJson(response,&nbsp;Status.<span class="keyword">class</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"status="</span><span>+status);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"-------------------------------------"</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List&lt;Results&gt;&nbsp;result&nbsp;=&nbsp;status.getResults();&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<span class="string">"result="</span><span>+result);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">new</span><span>&nbsp;Response.ErrorListener()&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;onErrorResponse(VolleyError&nbsp;error)&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Log.e(<span class="string">"TAG"</span><span>,&nbsp;error.getMessage(),&nbsp;error);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tojson.setOnClickListener(<span class="keyword">new</span><span>&nbsp;OnClickListener()&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;onClick(View&nbsp;v)&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mQueue.add(stringRequest);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>}&nbsp;&nbsp;</span></li></ol></div><pre class="java" name="code" style="display: none;">public class MainActivity extends Activity 
+{
+	private Button tojson;	
+	RequestQueue mQueue;	
+	StringRequest stringRequest;	
+	Gson gson;
+	String str;
+
+&nbsp;   @Override
+    protected void onCreate(Bundle savedInstanceState) 
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        tojson = (Button)findViewById(R.id.tojson);
+        gson = new Gson();
+
+	mQueue = Volley.newRequestQueue(MainActivity.this); 
+         //http://10.19.20.12/upgrade/test.txt是测试使用的json数据
+        stringRequest = new StringRequest("http://10.19.20.12/upgrade/test.txt",
+				new Response.Listener&lt;String&gt;() 
+				{
+					@Override
+					public void onResponse(String response) 
+					{
+						Log.d("TAG", response);
+						System.out.println("response="+response);
+						Status status = gson.fromJson(response, Status.class);
+						System.out.println("status="+status);
+						System.out.println("-------------------------------------");
+						List&lt;Results&gt; result = status.getResults();
+						System.out.println("result="+result);
+						
+					}
+				}, 
+				new Response.ErrorListener() 
+				{
+					@Override
+					public void onErrorResponse(VolleyError error) 
+					{
+						Log.e("TAG", error.getMessage(), error);
+					}
+
+				});
+  
+        tojson.setOnClickListener(new OnClickListener() 
+        {		
+			@Override
+			public void onClick(View v) 
+			{
+				mQueue.add(stringRequest);
+			}
+		});     
+    }
+
+    
+ 
+}
+</pre><span style="font-family:FangSong_GB2312; font-size:18px">其中上面的RequestQueue是开源网络库Volley的使用，如果你对该库的使用还不熟悉的话可以参考</span><a target="_blank" href="http://blog.csdn.net/guolin_blog/article/details/17482095"><span style="font-family:FangSong_GB2312; font-size:18px">http://blog.csdn.net/guolin_blog/article/details/17482095</span></a><span style="font-family:FangSong_GB2312; font-size:18px">，该作者对Volley库的使用讲解得非常的细致和深入<br>
+大家可以仔细的去拜读。<br>
+，</span><strong><br>
+</strong></div>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad bdshare-button-style0-16" style="float: right;" data-mod="popu_172" data-bd-bind="1501155796807">
+<a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important" target="_blank"></a>
+<a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" style="background-position:0 -52px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" style="background-position:0 -104px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博" style="background-position:0 -260px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="bds_renren" data-cmd="renren" title="分享到人人网" style="background-position:0 -208px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" class="bds_weixin" data-cmd="weixin" title="分享到微信" style="background-position:0 -1612px !important" target="_blank"></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   
+
+<!--172.16.140.14-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/bds_s_v2.js.下载"></script>
+
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+
+
+ 
+
+
+        <div id="digg" articleid="34474501">
+            <dl id="btnDigg" class="digg digg_enable" onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>63</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_enable" onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>9</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" target="_blank">&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" target="_blank">&nbsp;</a></div>
+    <script type="text/javascript">
+                function btndigga() {
+                    $(".tracking-ad[data-mod='popu_222'] a").click();
+                }
+                function btnburya() {
+                    $(".tracking-ad[data-mod='popu_223'] a").click();
+                }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="next_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;]);location.href=&#39;http://blog.csdn.net/tkwxty/article/details/34491199&#39;;">下一篇</span><a href="http://blog.csdn.net/tkwxty/article/details/34491199" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;])">关于DLNA开发Cling开源库的使用</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+            <div class="similar_article">
+                    <h4></h4>
+                    <div class="similar_c" style="margin:20px 0px 0px 0px">
+                        <div class="similar_c_t">
+                          &nbsp;&nbsp;相关文章推荐
+                        </div>
+                   
+                        <div class="similar_wrap tracking-ad" data-mod="popu_36">                       
+                            <ul class="similar_list fl">    
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/zzp_403184692/article/details/8266575" title="Android:Gson通过借助TypeToken获取泛型参数的类型的方法" strategy="BlogCommendFromBaidu" target="_blank">Android:Gson通过借助TypeToken获取泛型参数的类型的方法</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/frankcheng5143/article/details/50163615" title="微信公众号开发--微信JS-SDK扫一扫功能" strategy="BlogCommendFromBaidu" target="_blank">微信公众号开发--微信JS-SDK扫一扫功能</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/DQ1005/article/details/51658587" title="GSON解析json数据详解" strategy="BlogCommendFromBaidu" target="_blank">GSON解析json数据详解</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/sinyu890807/article/details/17482095" title="Android Volley完全解析(一)，初识Volley的基本用法" strategy="BlogCommendFromBaidu" target="_blank">Android Volley完全解析(一)，初识Volley的基本用法</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/wyb112233/article/details/50179659" title="使用Gson解析json格式的字符串的正确方式" strategy="BlogCommendFromBaidu" target="_blank">使用Gson解析json格式的字符串的正确方式</a>
+                                   </li>
+                            </ul>
+                              <ul class="similar_list fr">      
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/itachi85/article/details/45172205" title="Gson解析json数据" strategy="BlogCommendFromBaidu" target="_blank">Gson解析json数据</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/axi295309066/article/details/53334086" title="使用Gson解析复杂的JSON数据" strategy="BlogCommendFromBaidu" target="_blank">使用Gson解析复杂的JSON数据</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/zgf1991/article/details/8836994" title="Android 中 使用 Gson解析json" strategy="BlogCommendFromBaidu" target="_blank">Android 中 使用 Gson解析json</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/mockingbirds/article/details/41019919" title="利用gson解析和生成json数据(一)" strategy="BlogCommendFromBaidu" target="_blank">利用gson解析和生成json数据(一)</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/u010870518/article/details/44237787" title="Android 使用Gson解析json案例详解" strategy="BlogCommendFromBaidu" target="_blank">Android 使用Gson解析json案例详解</a>
+                                   </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>   
+      
+</div>
+
+    <div>
+        
+
+        <script type="text/javascript">
+            /*博客内容页下方Banner1-728*90，创建于2016-12-13*/
+            var cpro_id = "u2843949";
+        </script>
+        <script type="text/javascript" src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/c.js.下载"></script><div id="BAIDU_SSP__wrapper_u2843949_0"><iframe id="iframeu2843949_0" src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/ycym(1).html" width="728" height="90" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:728px;height:90px" allowtransparency="true"></iframe></div>
+
+     </div>
+
+<div id="suggest">
+
+</div>
+         <script language="javascript" type="text/javascript">     
+             $(function(){
+                 $.get("/tkwxty/svc/GetSuggestContent/34474501",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+        <dl class="blog-ass-articl tracking-ad" id="res-relatived" data-mod="popu_84"> 
+             <dt><span>猜你在找</span></dt>    
+           
+    
+           
+
+             
+
+                            <img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/700x160.jpg" style="width:700px;height:160px;">
+              
+                 
+        </dl>
+
+
+
+
+            
+                                    
+            
+                                    
+
+        <!-- 广告位开始 -->
+        <!-- 广告位结束 -->
+
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list"><dl class="comment_item comment_topic" id="comment_item_6622384"><dt class="comment_head" floor="47">47楼 <span class="user"><a class="username" href="http://blog.csdn.net/Bing_ka" target="_blank">Bing_ka</a> <span class="ptime">2017-02-24 14:45发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6622384" username="Bing_ka"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/Bing_ka" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_bing_ka.jpg" width="40" height="40"></a></dd><dd class="comment_body">android Studio导入gson.jar包，GsonFormat一键搞定Bean的定义，你值得拥有。。。。</dd></dl><dl class="comment_item comment_topic" id="comment_item_6404519"><dt class="comment_head" floor="46">46楼 <span class="user"><a class="username" href="http://blog.csdn.net/Xx_o_xX" target="_blank">lopez66</a> <span class="ptime">2016-11-11 15:58发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6404519" username="Xx_o_xX"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/Xx_o_xX" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_xx_o_xx.jpg" width="40" height="40"></a></dd><dd class="comment_body">谢谢</dd></dl><dl class="comment_item comment_topic" id="comment_item_6316227"><dt class="comment_head" floor="45">45楼 <span class="user"><a class="username" href="http://blog.csdn.net/Zheng548" target="_blank">小风筝0010</a> <span class="ptime">2016-10-06 12:26发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6316227" username="Zheng548"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/Zheng548" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_zheng548.jpg" width="40" height="40"></a></dd><dd class="comment_body">但是我发现就算内部嵌套的类不是static的，也没有出现什么问题。况且，为什么要用static呢？想不出什么原因呀？</dd></dl><dl class="comment_item comment_topic" id="comment_item_6316213"><dt class="comment_head" floor="44">44楼 <span class="user"><a class="username" href="http://blog.csdn.net/Zheng548" target="_blank">小风筝0010</a> <span class="ptime">2016-10-06 12:15发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6316213" username="Zheng548"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/Zheng548" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_zheng548.jpg" width="40" height="40"></a></dd><dd class="comment_body">您好！您例子中的内部类Results 和 Weather 没有使用static 呀？为什么一定要是static的呢？还烦请博主解答，谢谢您了</dd></dl><dl class="comment_item comment_topic" id="comment_item_6298088"><dt class="comment_head" floor="43">43楼 <span class="user"><a class="username" href="http://blog.csdn.net/qq_34603555" target="_blank">qq_34603555</a> <span class="ptime">2016-09-29 09:52发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6298088" username="qq_34603555"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_34603555" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_qq_34603555.jpg" width="40" height="40"></a></dd><dd class="comment_body">你这个解出来什么都没有啊？这是为什么</dd></dl><dl class="comment_item comment_topic" id="comment_item_6237321"><dt class="comment_head" floor="42">42楼 <span class="user"><a class="username" href="http://blog.csdn.net/j7a2son" target="_blank">宝杰X7</a> <span class="ptime">2016-08-29 11:02发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6237321" username="j7a2son"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/j7a2son" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_j7a2son.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主是缺乏 解析weather的bean了吧,</dd></dl><dl class="comment_item comment_topic" id="comment_item_6220009"><dt class="comment_head" floor="41">41楼 <span class="user"><a class="username" href="http://blog.csdn.net/dc1998dc1998" target="_blank">dc1998dc1998</a> <span class="ptime">2016-08-19 20:54发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6220009" username="dc1998dc1998"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/dc1998dc1998" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_dc1998dc1998.jpg" width="40" height="40"></a></dd><dd class="comment_body">请问楼主，第一个例子用的typetoken，第二个直接用的 .class<br><br>什么情况下，才用TypeToken 呢<br>Re: Johnson9090 2015-08-30 19:40发表 [回复]<br><br>回复idea_zxj：如果JSON最外层数据是单个Bean，直接用class，如果最外层是集合Bean，就要用TypeToken。<br><br>----------------------------------------<br><br>还是没明白，最外层的意思是？</dd></dl><dl class="comment_item comment_topic" id="comment_item_6212332"><dt class="comment_head" floor="40">40楼 <span class="user"><a class="username" href="http://blog.csdn.net/j844808402" target="_blank">油炸电视剧</a> <span class="ptime">2016-08-15 19:25发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6212332" username="j844808402"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/j844808402" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_j844808402.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主，你有没有发现，然后后台给你返回的数据为空的时候，你的程序就会崩溃，不知道你有没有遇到过这样的情况。</dd></dl><dl class="comment_item comment_topic" id="comment_item_6208003"><dt class="comment_head" floor="39">39楼 <span class="user"><a class="username" href="http://blog.csdn.net/Charon1997" target="_blank">Charon1997</a> <span class="ptime">2016-08-12 12:40发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6208003" username="Charon1997"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/Charon1997" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_charon1997.jpg" width="40" height="40"></a></dd><dd class="comment_body">怎么把List里的数据解析出来，或者怎么获取[  ]里面的数据</dd></dl><dl class="comment_item comment_topic" id="comment_item_6204655"><dt class="comment_head" floor="38">38楼 <span class="user"><a class="username" href="http://blog.csdn.net/qq_35119468" target="_blank">qq_35119468</a> <span class="ptime">2016-08-11 00:05发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6204655" username="qq_35119468"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_35119468" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_qq_35119468.jpg" width="40" height="40"></a></dd><dd class="comment_body">然而我就报这个错误了com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected a string but was BEGIN_OBJECT at line 1 column 34 path $.result<br>  这个怎么解决啊？？？</dd><dl class="comment_item comment_reply" id="comment_item_6212328"><dt class="comment_head" floor="38">Re: <span class="user"><a class="username" href="http://blog.csdn.net/j844808402" target="_blank">油炸电视剧</a> <span class="ptime">2016-08-15 19:24发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6212328" username="j844808402"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/j844808402" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_j844808402.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复qq_35119468：你的问题在于后台给你返回了空的数据，这时候的JSON格式和原来的不一样了。</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_6131485"><dt class="comment_head" floor="37">37楼 <span class="user"><a class="username" href="http://blog.csdn.net/qq_33311110" target="_blank">qq_33311110</a> <span class="ptime">2016-07-16 20:13发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6131485" username="qq_33311110"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_33311110" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_qq_33311110.jpg" width="40" height="40"></a></dd><dd class="comment_body">例子也得不错  我看解析问题懂了，我也准备写一个我项目中遇到的json</dd></dl><dl class="comment_item comment_topic" id="comment_item_6120187"><dt class="comment_head" floor="36">36楼 <span class="user"><a class="username" href="http://blog.csdn.net/u013606974" target="_blank">小威少威</a> <span class="ptime">2016-07-07 16:52发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6120187" username="u013606974"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u013606974" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_u013606974.jpg" width="40" height="40"></a></dd><dd class="comment_body">关于Volley的使用还有乱码的解决，可以看这篇博文：<br>http://blog.csdn.net/u013606974/article/details/51802756</dd></dl><dl class="comment_item comment_topic" id="comment_item_6076307"><dt class="comment_head" floor="35">35楼 <span class="user"><a class="username" href="http://blog.csdn.net/aini520vsa" target="_blank">aini520vsa</a> <span class="ptime">2016-06-07 11:14发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6076307" username="aini520vsa"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/aini520vsa" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_aini520vsa.jpg" width="40" height="40"></a></dd><dd class="comment_body">真赞，一看就明白，感谢</dd></dl><dl class="comment_item comment_topic" id="comment_item_5946731"><dt class="comment_head" floor="34">34楼 <span class="user"><a class="username" href="http://blog.csdn.net/xiaoCong2015" target="_blank">xiaoCong2015</a> <span class="ptime">2016-03-25 09:13发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5946731" username="xiaoCong2015"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xiaoCong2015" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_xiaocong2015.jpg" width="40" height="40"></a></dd><dd class="comment_body">第一个例子中的JSON数据有问题, 里面的"c"结点前的 ","符号是中文字符, 应该要是英文的才对, 不然解析起来应该会报错.</dd></dl><dl class="comment_item comment_topic" id="comment_item_5933131"><dt class="comment_head" floor="33">33楼 <span class="user"><a class="username" href="http://blog.csdn.net/qianqian12a" target="_blank">qianqian12a</a> <span class="ptime">2016-03-15 16:35发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5933131" username="qianqian12a"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qianqian12a" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_qianqian12a.jpg" width="40" height="40"></a></dd><dd class="comment_body">public class MainActivity extends Activity这个类继承的Activity是从哪来的呀  能告诉我吗？</dd><dl class="comment_item comment_reply" id="comment_item_6085063"><dt class="comment_head" floor="33">Re: <span class="user"><a class="username" href="http://blog.csdn.net/qq_24552637" target="_blank">会敲代码的兔八哥</a> <span class="ptime">2016-06-16 09:45发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6085063" username="qq_24552637"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_24552637" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_qq_24552637.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复qianqian12a：你确定你是搞android开发的？</dd><dl class="comment_item comment_reply" id="comment_item_6474544"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/IT_fighter" target="_blank">用指尖改变世界</a> <span class="ptime">2016-12-10 14:29发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6474544" username="IT_fighter"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/IT_fighter" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_it_fighter.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复qq_24552637：阿哈哈哈哈哈哈哈</dd></dl></dl></dl><dl class="comment_item comment_topic" id="comment_item_5925016"><dt class="comment_head" floor="32">32楼 <span class="user"><a class="username" href="http://blog.csdn.net/qq_27977255" target="_blank">qq_27977255</a> <span class="ptime">2016-03-09 14:37发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5925016" username="qq_27977255"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_27977255" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_qq_27977255.jpg" width="40" height="40"></a></dd><dd class="comment_body">好东西</dd></dl><dl class="comment_item comment_topic" id="comment_item_5918360"><dt class="comment_head" floor="31">31楼 <span class="user"><a class="username" href="http://blog.csdn.net/xxlsss" target="_blank">树下小男孩</a> <span class="ptime">2016-03-04 10:13发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5918360" username="xxlsss"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xxlsss" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_xxlsss.jpg" width="40" height="40"></a></dd><dd class="comment_body">写的很好，谢谢楼主。</dd></dl><dl class="comment_item comment_topic" id="comment_item_5915597"><dt class="comment_head" floor="30">30楼 <span class="user"><a class="username" href="http://blog.csdn.net/sinat_27365289" target="_blank">sinat_27365289</a> <span class="ptime">2016-03-02 10:29发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5915597" username="sinat_27365289"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/sinat_27365289" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_sinat_27365289.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主讲的真详细，例子也很好，解决了我的困惑，多谢！</dd></dl><dl class="comment_item comment_topic" id="comment_item_5876724"><dt class="comment_head" floor="29">29楼 <span class="user"><a class="username" href="http://blog.csdn.net/u012733519" target="_blank">DongBin8888888</a> <span class="ptime">2016-02-03 10:43发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5876724" username="u012733519"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u012733519" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_u012733519.jpg" width="40" height="40"></a></dd><dd class="comment_body">易理解的google json.jar库文件使用理解，谢谢分享，让更多的开发者入门</dd></dl><dl class="comment_item comment_topic" id="comment_item_5876720"><dt class="comment_head" floor="28">28楼 <span class="user"><a class="username" href="http://blog.csdn.net/u012733519" target="_blank">DongBin8888888</a> <span class="ptime">2016-02-03 10:41发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5876720" username="u012733519"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u012733519" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_u012733519.jpg" width="40" height="40"></a></dd><dd class="comment_body">例子简单实用易理解，不错的文章分享，希望可以让更多的开发者学习入门google json库的实用！</dd></dl><dl class="comment_item comment_topic" id="comment_item_5876719"><dt class="comment_head" floor="27">27楼 <span class="user"><a class="username" href="http://blog.csdn.net/u012733519" target="_blank">DongBin8888888</a> <span class="ptime">2016-02-03 10:42发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5876719" username="u012733519"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u012733519" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_u012733519.jpg" width="40" height="40"></a></dd><dd class="comment_body">123</dd></dl><dl class="comment_item comment_topic" id="comment_item_5759266"><dt class="comment_head" floor="26">26楼 <span class="user"><a class="username" href="http://blog.csdn.net/u011752948" target="_blank">瓶子-</a> <span class="ptime">2015-12-31 17:09发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5759266" username="u011752948"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u011752948" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_u011752948.jpg" width="40" height="40"></a></dd><dd class="comment_body">请问，假如JsonArray里面的内容个数不定怎么用GSON解析？</dd></dl><dl class="comment_item comment_topic" id="comment_item_5667353"><dt class="comment_head" floor="25">25楼 <span class="user"><a class="username" href="http://blog.csdn.net/haihai88884444" target="_blank">HAIHAIHAIHAIHAIWNA</a> <span class="ptime">2015-11-30 14:56发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5667353" username="haihai88884444"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/haihai88884444" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_haihai88884444.jpg" width="40" height="40"></a></dd><dd class="comment_body">好东西，感谢分享</dd></dl><dl class="comment_item comment_topic" id="comment_item_5592407"><dt class="comment_head" floor="24">24楼 <span class="user"><a class="username" href="http://blog.csdn.net/guchuanhang" target="_blank">guchuanhang</a> <span class="ptime">2015-11-05 13:18发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5592407" username="guchuanhang"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/guchuanhang" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_guchuanhang.jpg" width="40" height="40"></a></dd><dd class="comment_body">2、类里面的属性名必须跟Json字段里面的Key是一模一样的；,这句话是错误的。使用	@SerializedName()可以进行修改</dd></dl><dl class="comment_item comment_topic" id="comment_item_5558195"><dt class="comment_head" floor="23">23楼 <span class="user"><a class="username" href="http://blog.csdn.net/u013358301" target="_blank">风行天涯sky</a> <span class="ptime">2015-10-29 11:23发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5558195" username="u013358301"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u013358301" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_u013358301.jpg" width="40" height="40"></a></dd><dd class="comment_body">String json = {"a":"100",“b”:{"b":[{"b1":"b_value1","b2":"b_value2"}, {"b1":"b_value1","b2":"b_value2"}]}，"c": {"c1":"c_value1","c2":"c_value2"}}  此种类型的怎么解析</dd></dl><dl class="comment_item comment_topic" id="comment_item_5524347"><dt class="comment_head" floor="22">22楼 <span class="user"><a class="username" href="http://blog.csdn.net/kaim2015" target="_blank">kaimZhou</a> <span class="ptime">2015-10-21 22:57发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5524347" username="kaim2015"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/kaim2015" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_kaim2015.jpg" width="40" height="40"></a></dd><dd class="comment_body">都没人顶么,看你的文章,问题解决了,谢谢!</dd></dl><dl class="comment_item comment_topic" id="comment_item_5420355"><dt class="comment_head" floor="21">21楼 <span class="user"><a class="username" href="http://blog.csdn.net/woxinfeixiang12" target="_blank">我心飞翔allen</a> <span class="ptime">2015-09-17 18:52发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5420355" username="woxinfeixiang12"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/woxinfeixiang12" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_woxinfeixiang12.jpg" width="40" height="40"></a></dd><dd class="comment_body">好东西，谢谢楼主分享。</dd></dl><dl class="comment_item comment_topic" id="comment_item_5415655"><dt class="comment_head" floor="20">20楼 <span class="user"><a class="username" href="http://blog.csdn.net/sun00743" target="_blank">sun00743</a> <span class="ptime">2015-09-15 21:51发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5415655" username="sun00743"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/sun00743" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_sun00743.jpg" width="40" height="40"></a></dd><dd class="comment_body">请问一下，解析出现中文乱码怎么办，像这样的。<br><br>Results{currentCity='ÄÏ¾©', weather_data=[Weather{date='ÖÜÁù(½ñÌì, ÊµÊ±£º19¡æ)'</dd></dl><dl class="comment_item comment_topic" id="comment_item_5383081"><dt class="comment_head" floor="19">19楼 <span class="user"><a class="username" href="http://blog.csdn.net/czdxzy" target="_blank">czdxzy</a> <span class="ptime">2015-09-01 12:16发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5383081" username="czdxzy"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/czdxzy" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_czdxzy.jpg" width="40" height="40"></a></dd><dd class="comment_body">子节点解析不了数据</dd></dl><dl class="comment_item comment_topic" id="comment_item_5204551"><dt class="comment_head" floor="18">18楼 <span class="user"><a class="username" href="http://blog.csdn.net/lucheng0522" target="_blank">lucheng0522</a> <span class="ptime">2015-07-15 17:02发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5204551" username="lucheng0522"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/lucheng0522" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_lucheng0522.jpg" width="40" height="40"></a></dd><dd class="comment_body">棒，非常好，收益了</dd></dl><dl class="comment_item comment_topic" id="comment_item_5159403"><dt class="comment_head" floor="17">17楼 <span class="user"><a class="username" href="http://blog.csdn.net/u013569809" target="_blank">齐天大圣要努力</a> <span class="ptime">2015-06-24 16:51发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5159403" username="u013569809"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u013569809" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_u013569809.jpg" width="40" height="40"></a></dd><dd class="comment_body">请问楼主，第一个例子用的typetoken，第二个直接用的 .class<br><br>什么情况下，才用TypeToken 呢</dd><dl class="comment_item comment_reply" id="comment_item_5363081"><dt class="comment_head" floor="17">Re: <span class="user"><a class="username" href="http://blog.csdn.net/Johnson9090" target="_blank">Johnson9090</a> <span class="ptime">2015-08-30 19:40发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5363081" username="Johnson9090"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/Johnson9090" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_johnson9090.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复u013569809：如果JSON最外层数据是单个Bean，直接用class，如果最外层是集合Bean，就要用TypeToken。</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_5058369"><dt class="comment_head" floor="16">16楼 <span class="user"><a class="username" href="http://blog.csdn.net/yayun0516" target="_blank">yayun0516</a> <span class="ptime">2015-05-18 14:43发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5058369" username="yayun0516"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/yayun0516" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_yayun0516.jpg" width="40" height="40"></a></dd><dd class="comment_body">"http://10.19.20.12/upgrade/test.txt", 是哪儿</dd></dl><dl class="comment_item comment_topic" id="comment_item_4885391"><dt class="comment_head" floor="15">15楼 <span class="user"><a class="username" href="http://blog.csdn.net/tmacsky" target="_blank">tmacsky</a> <span class="ptime">2015-03-28 15:39发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4885391" username="tmacsky"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/tmacsky" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_tmacsky.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主这个解析的子节点是无数据的！</dd></dl><dl class="comment_item comment_topic" id="comment_item_4861627"><dt class="comment_head" floor="14">14楼 <span class="user"><a class="username" href="http://blog.csdn.net/whoyuhui" target="_blank">whoyuhui</a> <span class="ptime">2015-03-19 14:39发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4861627" username="whoyuhui"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/whoyuhui" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_whoyuhui.jpg" width="40" height="40"></a></dd><dd class="comment_body">有个问题,如果项目里面的接口API很多，这种方法势必会产生很多javabean的class文件，而且json的数据的修改，会直接影响到java对象的结构，程序员对代码的管理变得很复杂。我的建议是，如果只是作为界面显示的数据，直接用递归的方式将json解析成key=value形式存放到MAP中，这个可以支持多层嵌套。使用数据时，直接在map中按key取字段值。这样的好处是，json结构的任意修改，对客户端的数据处理没有任何影响。<br>不过这个它的缺点，程序结构化不清醒，后期维护会更复杂一点。</dd><dl class="comment_item comment_reply" id="comment_item_4863703"><dt class="comment_head" floor="14">Re: <span class="user"><a class="username" href="http://blog.csdn.net/tkwxty" target="_blank">tkwxty</a> <span class="ptime">2015-03-20 10:08发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4863703" username="tkwxty"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/tkwxty" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_tkwxty.jpg" width="40" height="40"></a></dd><dd class="comment_body">你好，用gson解析json数据的使用场合比较多的是对于json数据信息量比较大且字段不会经常变动的的时候。使用什么方式解析json数据需要根据不同场合来。</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_4679161"><dt class="comment_head" floor="13">13楼 <span class="user"><a class="username" href="http://blog.csdn.net/qq_24667193" target="_blank">信仰圣光吧</a> <span class="ptime">2015-01-04 09:35发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4679161" username="qq_24667193"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_24667193" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_qq_24667193.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主你好,你这是把全部字段都取了,如果返回的字符串包含的字段很多,我只需求其中一些字段,每个字段都要定义到实体类里吗?</dd><dl class="comment_item comment_reply" id="comment_item_5009211"><dt class="comment_head" floor="13">Re: <span class="user"><a class="username" href="http://blog.csdn.net/imxilife" target="_blank">imxilife</a> <span class="ptime">2015-05-03 12:32发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5009211" username="imxilife"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/imxilife" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_imxilife.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复qq_24667193：应该是需要定义的，只是如果你需要这个字段可以不取</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_4630669"><dt class="comment_head" floor="12">12楼 <span class="user"><a class="username" href="http://blog.csdn.net/Opticalix" target="_blank">Opticalix</a> <span class="ptime">2014-12-23 15:47发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4630669" username="Opticalix"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/Opticalix" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_opticalix.jpg" width="40" height="40"></a></dd><dd class="comment_body">有用 谢谢~</dd></dl><dl class="comment_item comment_topic" id="comment_item_4574643"><dt class="comment_head" floor="11">11楼 <span class="user"><a class="username" href="http://blog.csdn.net/qq_21265709" target="_blank">qq_21265709</a> <span class="ptime">2014-12-01 16:27发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4574643" username="qq_21265709"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_21265709" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_qq_21265709.jpg" width="40" height="40"></a></dd><dd class="comment_body">不错的东西  学习了</dd></dl><dl class="comment_item comment_topic" id="comment_item_4496073"><dt class="comment_head" floor="10">10楼 <span class="user"><a class="username" href="http://blog.csdn.net/abc1026582128" target="_blank">abc1026582128</a> <span class="ptime">2014-11-07 17:16发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4496073" username="abc1026582128"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/abc1026582128" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_abc1026582128.jpg" width="40" height="40"></a></dd><dd class="comment_body">好东西啊，太厉害了</dd></dl><dl class="comment_item comment_topic" id="comment_item_4488569"><dt class="comment_head" floor="9">9楼 <span class="user"><a class="username" href="http://blog.csdn.net/you_can_you_up" target="_blank">you_can_you_up</a> <span class="ptime">2014-11-05 16:56发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4488569" username="you_can_you_up"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/you_can_you_up" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_you_can_you_up.jpg" width="40" height="40"></a></dd><dd class="comment_body">乱码已解决，是volley的原因，百度volley乱码可解</dd></dl><dl class="comment_item comment_topic" id="comment_item_4488149"><dt class="comment_head" floor="8">8楼 <span class="user"><a class="username" href="http://blog.csdn.net/you_can_you_up" target="_blank">you_can_you_up</a> <span class="ptime">2014-11-05 15:29发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4488149" username="you_can_you_up"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/you_can_you_up" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_you_can_you_up.jpg" width="40" height="40"></a></dd><dd class="comment_body">有乱码，怎么办</dd></dl><dl class="comment_item comment_topic" id="comment_item_4451333"><dt class="comment_head" floor="7">7楼 <span class="user"><a class="username" href="http://blog.csdn.net/qq_20314105" target="_blank">qq_20314105</a> <span class="ptime">2014-10-29 10:52发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4451333" username="qq_20314105"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qq_20314105" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_qq_20314105.jpg" width="40" height="40"></a></dd><dd class="comment_body">{"count":1,"records":[{"DepartMent":"运控中心","DepartMentID":"2014-10-19-07d65e08-4cc1-48cc-a5ae-c2a05ef0a50b","Permission":"上轮挡 ","UserID":"yk","UserName":"123"}],"k":"GetUser"}<br><br><br>用你的方法解析出来   子节点（records）是没有数据</dd><dl class="comment_item comment_reply" id="comment_item_5058509"><dt class="comment_head" floor="7">Re: <span class="user"><a class="username" href="http://blog.csdn.net/yayun0516" target="_blank">yayun0516</a> <span class="ptime">2015-05-18 15:32发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5058509" username="yayun0516"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/yayun0516" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_yayun0516.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复qq_20314105：是的，他的方法在解析第二节点的时候有问题</dd></dl><dl class="comment_item comment_reply" id="comment_item_4678627"><dt class="comment_head" floor="7">Re: <span class="user"><a class="username" href="http://blog.csdn.net/c2466081069" target="_blank">c2466081069</a> <span class="ptime">2015-01-03 22:45发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4678627" username="c2466081069"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/c2466081069" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_c2466081069.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复qq_20314105：同样的问题啊</dd><dl class="comment_item comment_reply" id="comment_item_4684423"><dt class="comment_head" floor="2">Re: <span class="user"><a class="username" href="http://blog.csdn.net/lig15666" target="_blank">lig15666</a> <span class="ptime">2015-01-05 15:27发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4684423" username="lig15666"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/lig15666" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_lig15666.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复c2466081069：我这子节点也没有数据</dd></dl></dl><dl class="comment_item comment_reply" id="comment_item_4480883"><dt class="comment_head" floor="7">Re: <span class="user"><a class="username" href="http://blog.csdn.net/luolinxi777" target="_blank">luolinxi777</a> <span class="ptime">2014-11-03 18:47发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4480883" username="luolinxi777"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/luolinxi777" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_luolinxi777.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复qq_20314105：你测试过了吗，楼主分享的方法是否可行？</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_4445303"><dt class="comment_head" floor="6">6楼 <span class="user"><a class="username" href="http://blog.csdn.net/u012908106" target="_blank">AJI大侠</a> <span class="ptime">2014-10-28 11:22发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4445303" username="u012908106"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u012908106" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_u012908106.jpg" width="40" height="40"></a></dd><dd class="comment_body">已经收藏楼主帮了我大忙</dd></dl><dl class="comment_item comment_topic" id="comment_item_4429367"><dt class="comment_head" floor="5">5楼 <span class="user"><a class="username" href="http://blog.csdn.net/ufexs" target="_blank">ufexs</a> <span class="ptime">2014-10-23 17:23发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4429367" username="ufexs"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/ufexs" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_ufexs.jpg" width="40" height="40"></a></dd><dd class="comment_body">我也正在做百度天气json解析，看到这篇文章，很受启发！</dd></dl><dl class="comment_item comment_topic" id="comment_item_4376885"><dt class="comment_head" floor="4">4楼 <span class="user"><a class="username" href="http://blog.csdn.net/u012908106" target="_blank">AJI大侠</a> <span class="ptime">2014-10-08 17:57发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4376885" username="u012908106"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u012908106" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_u012908106.jpg" width="40" height="40"></a></dd><dd class="comment_body">解决了我的困惑，谢谢楼主啊</dd></dl><dl class="comment_item comment_topic" id="comment_item_4211151"><dt class="comment_head" floor="3">3楼 <span class="user"><a class="username" href="http://blog.csdn.net/ssy_neo" target="_blank">ssy_neo</a> <span class="ptime">2014-08-25 18:03发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4211151" username="ssy_neo"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/ssy_neo" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_ssy_neo.jpg" width="40" height="40"></a></dd><dd class="comment_body">多谢，帮到我了!</dd></dl><dl class="comment_item comment_topic" id="comment_item_4210107"><dt class="comment_head" floor="2">2楼 <span class="user"><a class="username" href="http://blog.csdn.net/awu515" target="_blank">无网_12</a> <span class="ptime">2014-08-25 14:30发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4210107" username="awu515"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/awu515" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_awu515.jpg" width="40" height="40"></a></dd><dd class="comment_body">好东西 感谢楼主分享</dd></dl><dl class="comment_item comment_topic" id="comment_item_4210089"><dt class="comment_head" floor="1">1楼 <span class="user"><a class="username" href="http://blog.csdn.net/awu515" target="_blank">无网_12</a> <span class="ptime">2014-08-25 14:29发表</span>  <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4210089" username="awu515"> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/tkwxty/article/details/34474501/#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/awu515" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/3_awu515.jpg" width="40" height="40"></a></dd><dd class="comment_body">好东西，感谢楼主分享</dd></dl><div class="clear"></div></div>
+    <div id="comment_bar" style="display: none;">
+    </div>
+    <div id="comment_form"><a name="commentbox"></a><a name="reply"></a><a name="quote"></a><form action="http://blog.csdn.net/tkwxty/comment/submit?id=34474501" method="post" onsubmit="return subform(this);"><div class="commentform"><div class="panel_head">发表评论</div><ul><li class="left">用 户 名：</li><li class="right">qq_38284915</li></ul><ul><li class="left">评论内容：</li><li class="right" style="position:relative;"><div id="ubbtools"><a href="http://blog.csdn.net/tkwxty/article/details/34474501/#insertcode" code="code"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/code.gif" border="0" alt="插入代码" title="插入代码"></a></div><div id="lang_list" style="position: absolute; top: 28px; left: 0px; display: none;"><a class="long_name" href="http://blog.csdn.net/tkwxty/article/details/34474501/#html">HTML/XML</a><a class="long_name" href="http://blog.csdn.net/tkwxty/article/details/34474501/#objc">objective-c</a><a class="zhong_name" href="http://blog.csdn.net/tkwxty/article/details/34474501/#delphi">Delphi</a><a class="zhong_name" href="http://blog.csdn.net/tkwxty/article/details/34474501/#ruby">Ruby</a><a href="http://blog.csdn.net/tkwxty/article/details/34474501/#php">PHP</a><a class="duan_name" href="http://blog.csdn.net/tkwxty/article/details/34474501/#csharp">C#</a><a style=" border-right: none;" class="duan_name" href="http://blog.csdn.net/tkwxty/article/details/34474501/#cpp">C++</a><a style=" border-bottom:none;" class="long_name" href="http://blog.csdn.net/tkwxty/article/details/34474501/#javascript">JavaScript</a><a style=" border-bottom:none;" class="long_name" href="http://blog.csdn.net/tkwxty/article/details/34474501/#vb">Visual Basic</a><a style=" border-bottom:none;" class="zhong_name" href="http://blog.csdn.net/tkwxty/article/details/34474501/#python">Python</a><a style=" border-bottom:none;" class="zhong_name" href="http://blog.csdn.net/tkwxty/article/details/34474501/#java">Java</a><a style="border-bottom:none;" class="duan_name" href="http://blog.csdn.net/tkwxty/article/details/34474501/#css">CSS</a><a style="border-bottom:none;" class="duan_name" href="http://blog.csdn.net/tkwxty/article/details/34474501/#sql">SQL</a><a style="border:none;" class="duan_name" href="http://blog.csdn.net/tkwxty/article/details/34474501/#plain">其它</a></div><textarea class="comment_content" name="comment_content" id="comment_content" style="width: 400px; height: 200px;"></textarea></li></ul><ul><input type="hidden" id="comment_replyId" name="comment_replyId"><input type="hidden" id="comment_userId" name="comment_userId" value="521203"><input type="hidden" id="commentId" name="commentId" value=""><input type="submit" class="comment_btn" value="提交">&nbsp;&nbsp;<span id="tip_comment" style="color: Red; display: none;"></span></ul></div></form></div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '34474501';
+    var commentscount = 60;
+    var islock = false
+</script>
+
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top" style="bottom:60px;">
+
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/blog-icon-reply.png" alt="快速回复">
+        </a>    
+    <a id="d-top-a" class="btn btn-top backtop" style="display: none;" title="返回顶部" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_huidaodingbu&#39;])">         
+         <img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){        
+        
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+    var articletitle='使用Gson解析复杂的json数据';
+
+</script>
+
+
+
+
+
+
+
+
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+               
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/tkwxty" target="_blank">
+    <img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/1_tkwxty.jpg" title="访问我的空间" style="max-width:90%">
+    </a>
+    <br>
+    <span><a href="http://my.csdn.net/tkwxty" class="user_name" target="_blank">tkwxty</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter" title="[发私信]" onclick="window.open(&#39;http://msg.csdn.net/letters/model?receiver=tkwxty&#39;,&#39;_blank&#39;,&#39;height=350,width=700&#39;);_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_sixin&#39;])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+                                            <a target="_blank">
+                                                    <img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/chizhiyiheng.png" onmouseover="m_over_m(this,4)" onmouseout="m_out_m()" alt="2">
+                                            </a>
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>217921次</span></li>
+    <li>积分：<span>1038</span> </li>    
+    <li>等级： <span style="position:relative;display:inline-block;z-index:1">
+            <img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/blog4.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：1038 </div>
+        </span>  </li>
+    <li>排名：<span>千里之外</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>18篇</span></li>
+    <li>转载：<span>11篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>88条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search csdn-tracking-statistics" target="_blank" data-mod="popu_306">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+   
+    $(function () {
+        $("#btnSubmit").unbind("click");
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {           
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            if ($("#inputSearch").val() == "") {               
+                alert("请录入搜索关键词！");                         
+                return false;
+            }
+            //var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";           
+            var url = "https://www.baidu.com/s?wd=" + encodeURIComponent($("#inputSearch").val()) + "%20site%3Ablog.csdn.net"
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="http://blog.csdn.net/tkwxty/article/category/2870775" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android系统</a><span>(13)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/tkwxty/article/category/2871085" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android下DLNA开发</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/tkwxty/article/category/5622269" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">DLNA</a><span>(1)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list"><li><a href="http://blog.csdn.net/tkwxty/article/month/2016/09">2016年09月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/tkwxty/article/month/2015/07">2015年07月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/tkwxty/article/month/2015/02">2015年02月</a><span>(14)</span></li><li><a href="http://blog.csdn.net/tkwxty/article/month/2015/01">2015年01月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/tkwxty/article/month/2014/12">2014年12月</a><span>(1)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/tkwxty/article/month/2014/11">2014年11月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/tkwxty/article/month/2014/06">2014年06月</a><span>(2)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+</ul>
+</div>
+<div id="hotarticls" class="panel tracking-ad" data-mod="popu_340">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/tkwxty/article/details/34474501" title="使用Gson解析复杂的json数据" target="_blank">使用Gson解析复杂的json数据</a><span>(145631)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tkwxty/article/details/43342595" title="Android下DLNA开发简介" target="_blank">Android下DLNA开发简介</a><span>(15222)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tkwxty/article/details/43338921" title="Android下添加新的自定义键值和按键处理流程" target="_blank">Android下添加新的自定义键值和按键处理流程</a><span>(12195)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tkwxty/article/details/34491199" title="关于DLNA开发Cling开源库的使用" target="_blank">关于DLNA开发Cling开源库的使用</a><span>(9056)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tkwxty/article/details/41018553" title="android应用怎么获取系统权限" target="_blank">android应用怎么获取系统权限</a><span>(5972)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tkwxty/article/details/43524255" title="Android系统设置通用接口的编写" target="_blank">Android系统设置通用接口的编写</a><span>(3567)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tkwxty/article/details/43560621" title="Android平台Overlay机制" target="_blank">Android平台Overlay机制</a><span>(3566)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tkwxty/article/details/41023491" title="说说android下TV版本UC浏览器模拟鼠标的实现" target="_blank">说说android下TV版本UC浏览器模拟鼠标的实现</a><span>(2483)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tkwxty/article/details/43459365" title="Android4.0应用开发中添加系统权限无法访问SD卡" target="_blank">Android4.0应用开发中添加系统权限无法访问SD卡</a><span>(2044)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tkwxty/article/details/43341217" title="Android源码下各种Android.mk的编写" target="_blank">Android源码下各种Android.mk的编写</a><span>(1643)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel tracking-ad" data-mod="popu_341">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/tkwxty/article/details/34474501" title="使用Gson解析复杂的json数据" target="_blank">使用Gson解析复杂的json数据</a><span>(60)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tkwxty/article/details/34491199" title="关于DLNA开发Cling开源库的使用" target="_blank">关于DLNA开发Cling开源库的使用</a><span>(21)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tkwxty/article/details/43342595" title="Android下DLNA开发简介" target="_blank">Android下DLNA开发简介</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tkwxty/article/details/43524255" title="Android系统设置通用接口的编写" target="_blank">Android系统设置通用接口的编写</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tkwxty/article/details/43703553" title="Android系统开发中添加系统后门键" target="_blank">Android系统开发中添加系统后门键</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tkwxty/article/details/41018553" title="android应用怎么获取系统权限" target="_blank">android应用怎么获取系统权限</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tkwxty/article/details/41023491" title="说说android下TV版本UC浏览器模拟鼠标的实现" target="_blank">说说android下TV版本UC浏览器模拟鼠标的实现</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tkwxty/article/details/52473622" title="在android中，编译的项目使用到第三方jar的导入方法 终极版！" target="_blank">在android中，编译的项目使用到第三方jar的导入方法 终极版！</a><span>(0)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tkwxty/article/details/41016173" title="Android系统预置flash插件" target="_blank">Android系统预置flash插件</a><span>(0)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/tkwxty/article/details/17039145" title="Android打包so文件到apk" target="_blank">Android打包so文件到apk</a><span>(0)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/blogdevteam/article/details/76092129" target="_blank">* CSDN日报20170725——《新的开始，从研究生到入职亚马逊》</a></li>
+<li><a href="http://blog.csdn.net/javazejian/article/details/75043422" target="_blank">* 深入剖析基于并发AQS的重入锁(ReetrantLock)及其Condition实现原理</a></li>
+<li><a href="http://blog.csdn.net/jiangwei0910410003/article/details/75512732" target="_blank">* Android版本的"Wannacry"文件加密病毒样本分析(附带锁机)</a></li>
+<li><a href="http://blog.csdn.net/mindfloating/article/details/75948781" target="_blank">* 工作与生活真的可以平衡吗？</a></li>
+<li><a href="http://blog.csdn.net/poem_qianmo/article/details/75943714" target="_blank">* 《Real-Time Rendering 3rd》 提炼总结——高级着色：BRDF及相关技术</a></li>
+<li><a href="http://blog.csdn.net/dog250/article/details/75735806" target="_blank">* 《三体》读后思考-泰勒展开/维度打击/黑暗森林</a></li>
+
+</ul></ul>
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="http://blog.csdn.net/tkwxty/article/details/43703553#comments">Android系统开发中添加系统后门键</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/wuqingyidongren" class="user_name">wuqingyidongren</a>:
+存在bug,比如先按4次黄，然后按三次红
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/tkwxty/article/details/43524255#comments">Android系统设置通用接口的编写</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/look_up_at" class="user_name">吃撑的鹦鹉</a>:
+真是一篇好文!
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/tkwxty/article/details/34474501#comments">使用Gson解析复杂的json数据</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/Bing_ka" class="user_name">Bing_ka</a>:
+android Studio导入gson.jar包，GsonFormat一键搞定Bean的定义，你值...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/tkwxty/article/details/34474501#comments">使用Gson解析复杂的json数据</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/IT_fighter" class="user_name">用指尖改变世界</a>:
+@qq_24552637:阿哈哈哈哈哈哈哈
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/tkwxty/article/details/34474501#comments">使用Gson解析复杂的json数据</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/Xx_o_xX" class="user_name">lopez66</a>:
+谢谢
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/tkwxty/article/details/41023491#comments">说说android下TV版本UC浏览器模拟鼠标的实现</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/json_Gson" class="user_name">json_Gson</a>:
+看不懂
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/tkwxty/article/details/41023491#comments">使用Gson解析复杂的json数据</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/Zheng548" class="user_name">小风筝0010</a>:
+但是我发现就算内部嵌套的类不是static的，也没有出现什么问题。况且，为什么要用static呢？想...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/tkwxty/article/details/41023491#comments">使用Gson解析复杂的json数据</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/Zheng548" class="user_name">小风筝0010</a>:
+您好！您例子中的内部类Results 和 Weather 没有使用static 呀？为什么一定要是s...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/tkwxty/article/details/41023491#comments">使用Gson解析复杂的json数据</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_34603555" class="user_name">qq_34603555</a>:
+你这个解出来什么都没有啊？这是为什么
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/tkwxty/article/details/41023491#comments">使用Gson解析复杂的json数据</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/j7a2son" class="user_name">宝杰X7</a>:
+楼主是缺乏 解析weather的bean了吧,
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+
+                   <!-- 广告位开始 -->                    <!-- 广告位结束 -->
+                   <div class="tracking-ad" data-view="true" data-mtp="63" data-order="40" data-con="ad_content_1260" style="width: 200px; height: 500px;">
+                         <div id="nav_show_top_stop" style="width: 200px; height: 500px; z-index: 1000; position: fixed; top: 0px;"><div id="cpro_u2734128"><iframe id="iframeu2734128_0" src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/ycym(2).html" width="200" height="200" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:200px;height:200px" allowtransparency="true"></iframe></div>
+                             <div id="cpro_u3031287"><iframe id="iframeu3031287_0" src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/ycym(3).html" width="200" height="200" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:200px;height:200px" allowtransparency="true"></iframe></div></div>
+                   </div>
+    <script type="text/javascript">
+        setTimeout(function () {
+            var naviga_offsetTop = 0;
+            function naviga_stay_top() { var scrollTop = jQuery(document).scrollTop(); if (scrollTop > naviga_offsetTop) { jQuery("#nav_show_top_stop").css({ "position": "fixed" }); jQuery("#nav_show_top_stop").css({ "top": "0px" }); } else { jQuery("#nav_show_top_stop").css({ "position": "fixed" }); jQuery("#nav_show_top_stop").css({ "top": naviga_offsetTop - scrollTop + "px" }); } }
+            function onload_function() { naviga_offsetTop = jQuery("#nav_show_top_stop").position().top; jQuery(window).bind("scroll", naviga_stay_top); jQuery(window).bind("mousewheel", naviga_stay_top); jQuery(document).bind("scroll", naviga_stay_top); jQuery(document).bind("mousewheel", naviga_stay_top); } jQuery(document).ready(onload_function);
+
+        }, 200);
+    </script>
+<script type="text/javascript">(window.cproArray = window.cproArray || []).push({ id: "u2734128" });  </script> 
+                    <script src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/c.js.下载" type="text/javascript"></script> 
+                   <script type="text/javascript">
+                       /*PC端-博客内容页左侧Button2-200*200-2017/7/10*/
+                       (window.cproArray = window.cproArray || []).push({ id: "u3031287" });
+</script>
+<script type="text/javascript" src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/c.js.下载"></script>
+
+           </div>   
+
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div>
+      <!--new top-->
+    
+
+     
+
+   
+   
+     <!--new top-->
+   
+   
+
+    
+    
+    
+   
+
+   
+
+
+       <script type="text/javascript" src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/MathJax.js.下载"></script>
+          <script type="text/javascript">
+              //$(function () {
+              //    setTimeout(function () {
+              //        var searchtitletags = articletitle + ',' + $("#tags").html();
+              //        searchService({
+              //            index: 'blog',
+              //            query: searchtitletags,
+              //            from: 5,
+              //            size: 5,
+              //            appendTo: '#res',
+              //            url: 'recommend',
+              //            his: 2,
+              //            client: "blog_cf_enhance",
+              //            tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+              //        });
+              //    }, 1000);
+              //});
+
+         </script>
+    
+    <script src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/csdn_blog_detail.min.js.下载" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/pub_footer_2014.css"><div class="pub_fo"><div id="pub_footerall" class="pub_footer_new"><dl><dt></dt> <dd class="foot_sub_menu"><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a><span>|</span><a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a><span>|</span><a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a><span>|</span><a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a><span>|</span><a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a><span>|</span><a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a><span>|</span><a href="mailto:webmaster@csdn.net">问题报告</a><span>|</span><a target="_blank" href="http://www.csdn.net/friendlink.html">合作伙伴</a><span>|</span><a href="http://bbs.csdn.net/forums/Service" target="_blank">论坛反馈</a></dd><dd class="foot_contact"><a href="javascript:void(0);" target="_blank" class="qq">网站客服</a><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2251809102&amp;site=qq&amp;menu=yes" target="_blank" class="qq">杂志客服</a><a href="http://e.weibo.com/csdnsupport/profile" target="_blank" class="weibo">微博客服</a><a href="mailto:webmaster@csdn.net" class="email" title="联系邮箱">webmaster@csdn.net</a><span class="phone" title="服务热线">400-660-0108</span><span class="interval">|</span><span>北京创新乐知信息技术有限公司 版权所有</span><span class="interval">|</span><span>江苏知之为计算机有限公司</span><span class="interval">|</span><span>江苏乐知网络技术有限公司</span></dd><dd class="foot_copyright"><span>京&nbsp;ICP&nbsp;证&nbsp;09002463&nbsp;号</span><span class="interval">|</span><span>Copyright © 1999-2017, CSDN.NET, All Rights Reserved&nbsp;</span><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div></div><div id="note1" class="csdn_note" style="display:none; position:absolute; z-index:9999; width:440px">  <span class="notice_top_arrow"><span class="inner"></span></span>  <div class="box"></div></div><div class="csdn_notice_tip" style="position: absolute; z-index: 9990; width: 170px; left: -72px; top: 5918px; display: block;">  <iframe src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/saved_resource(2).html" frameborder="0" scrolling="no" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div class="tip_text">您有<strong>5</strong>条新通知</div>  <a href="javascript:void 0" class="close2"></a></div><script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/notify.js.下载"></script><input type="hidden" id="aa_g_data_ids">
+        
+    <script type="text/javascript" src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/csdn_public_blog_detail.min.js.下载"></script>
+
+    <script type="text/javascript" src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/showblogmedal.ashx"></script>
+
+     
+    
+
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334" src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/52b5334.js.下载"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+
+    
+    
+        
+     
+
+    
+          
+    <div class="pop_CA_cover" style="display:none"></div>
+    <div class="pop pop_CA" style="display:none">
+          <div class="CA_header">
+            收藏助手
+            <span class="cancel_icon" id="fapancle" onclick="$(&#39;.pop_CA&#39;).hide();$(&#39;.pop_CA_cover&#39;).hide();"></span>
+          </div>
+          <iframe src="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/saved_resource(3).html" id="fa" frameborder="0" width="100%" height="360" scrolling="no"></iframe>
+    </div>
+
+
+        <script type="text/javascript">
+
+            $(function () {
+                var fromjs = $("#fromjs");
+                if (fromjs.length > 0) {
+                    $("#fromjs .markdown_views pre").addClass("prettyprint");
+                    prettyPrint();
+
+                    $('pre.prettyprint code').each(function () {
+                        var lines = $(this).text().split('\n').length;
+                        var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                        $(this).addClass('has-numbering').parent().append($numbering);
+                        for (i = 1; i <= lines; i++) {
+                            $numbering.append($('<li/>').text(i));
+                        };
+                        $numbering.fadeIn(1700);
+                    });
+
+                    $('.pre-numbering li').css("color", "#999");
+                }
+            });
+
+            $(".markdown_views a[target!='_blank']").attr("target", "_blank");
+
+            //$(".toc a[target='_blank']").attr("target", "");
+
+            setTimeout(function () {
+                $(".toc a[target='_blank']").attr("target", "");
+            }, 500);
+
+        </script>
+    
+
+   
+<div id="mask_code"></div><div class="gist_edit"><div class="save_snippets clearfix"><div class="tit"><h3>保存代码片</h3><span>整理和分享保存的代码片，请访问<a href="https://code.csdn.net/snippets_manage" target="_blank">代码笔记</a></span></div><div class="con_form"><ul class="gist_edit_list clearfix"><li><span class="red">*</span><span class="txt">标题</span><input id="form_title" class="form-input" placeholder="使用Gson解析复杂的json数据" type="text"></li><li><span class="red">*</span><span class="txt">描述</span><textarea id="form-textarea" class="form-textarea" placeholder="使用Gson解析复杂的json数据： http://blog.csdn.net/tkwxty/article/details/34474501/"></textarea></li><li><span class="red">&nbsp;</span><span class="txt">标签</span><div id="divSearchTags"><input id="insertTag" class="insertTag" placeholder="请输入标签，按Enter生成(最多5项)" type="text" value="" name="insertTag" maxlength="21" style="color: rgb(51, 51, 51);"><input id="OrganTag" class="OrganTag" type="hidden" name="OrganTag" value=""><input id="OldOrganTag" class="OldOrganTag" type="hidden" name="OldOrganTag" value=""><input type="hidden" name="txtSearchTags"></div></li></ul></div><div class="bottom-bar"><a href="javascript:;" class="btn-submit btn-cancel">取消</a><span class="tracking-ad" data-mod="popu_250"><a class="btn-submit btn-confirm" href="javascript:;" target="_blank">确定</a></span></div></div></div><div id="tag-suggest-pop">
+  <div class="relative">
+    <div class="close"></div>
+    <div class="content"></div>
+  </div>
+</div><link rel="stylesheet" type="text/css" media="screen" href="./使用Gson解析复杂的json数据 - tkwxty的专栏 - CSDN博客_files/ask_float_fonts_css-6b30a53970eb5c3a2a045e3df585b475.css"><div data-mod="popu_64" class="csdn-tracking-statistics" chg-blk="0"><a id="com-quick-QRcode" class="QRcodebg1" title="扫描二维码" style="top:227px"><span class="closeQR"></span></a><a id="com-quick-reply" title="快速回复" style="top:361px"></a><a id="com-quick-collect" title="我要收藏" style="top:399px"></a><a id="com-d-top-a" style="top: 437px; display: block;" title="返回顶部" onclick=""></a></div><div class="pop_edit ask_second comm_ask_second"><h3>提问</h3><span class="ask_float_span">您的问题将会被发布在“<a class="ask_float_channel" href="http://ask.csdn.net/" target="_blank" style="cursor:pointer">技术问答</a>”频道</span><a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" nodetype="close" class="close">×</a><div class="context"><div class="err_div"><span class="err_ico"></span><span class="err_txt">该问题已存在，请勿重复提问</span></div><div class="input_div"><input id="askInputSecond" type="text" style="font-size:14px;" placeholder="问题标题"></div><div class="cm_box"><div class="cm_dialog"></div> <div class="pop_cm cm_add_link"><input type="text" placeholder="链接内容" id="af_cm_link_txt"><input type="text" placeholder="链接地址" id="af_cm_link_url"><input type="text" placeholder="链接提示" id="af_cm_link_tit"><div class="text-right"><span class="btn btn-default btn-sm" id="add_link_btn">插入链接</span> </div> </div><div class="pop_cm cm_add_img"><div class="nav-tabs"><a class="img_tab active" href="http://blog.csdn.net/tkwxty/article/details/34474501/#tab_upload">本地上传</a><a class="img_tab" href="http://blog.csdn.net/tkwxty/article/details/34474501/#tab_weburl">网络图片</a></div><div class="tab_panel active" id="tab_upload"><div class="set_img"></div></div><div class="tab_panel" id="tab_weburl"><input type="text" placeholder="图片地址" id="af_cm_img_url"><input type="text" placeholder="图片说明" id="af_cm_img_alt"><div class="text-right"><span class="btn btn-default btn-sm" id="add_img_btn">插入图片</span> </div></div> </div></div> <textarea id="editor_all" rows="8" style="display: none;"></textarea><div class="editor-toolbar"><i class="separator">|</i><a class="icon-headline" title="标题一（Ctrl+Alt+1）"></a><a class="icon-heading" title="标题二（Ctrl+Alt+2）"></a><a class="icon-bold" title="粗体（Ctrl+B）"></a><a class="icon-italic" title="斜体（Ctrl+I）"></a><i class="separator">|</i><a class="icon-quote-left" title="引用（Ctrl+’）"></a><a class="icon-code" title="插入代码片（Ctrl+,）"></a><a class="icon-list-ul" title="无序列表（Ctrl+L）"></a><a class="icon-list-ol" title="有序列表（Ctrl+Alt+L）"></a><i class="separator">|</i><a class="icon-link" title="添加链接（Ctrl+K）"></a><a class="icon-picture" title="添加图片（Ctrl+Alt+I）"></a><i class="separator">|</i><a class="icon-reply" title="撤退（Ctrl+Z）"></a><a class="icon-share-alt" title="前进（Ctrl+Shift+Z）"></a><i class="separator">|</i><a class="icon-info" href="http://ask.csdn.net/pages/markdown" target="_blank" title="markdown语法参考"></a><a class="icon-preview" title="预览"></a><i class="separator">|</i></div><div class="CodeMirror cm-s-paper CodeMirror-focused"><div style="overflow: hidden; position: relative; width: 3px; height: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none; font-size: 4px;" tabindex="0"></textarea></div><div class="CodeMirror-hscrollbar"><div style="height: 1px;"></div></div><div class="CodeMirror-vscrollbar"><div style="width: 1px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="min-width: 33px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>&nbsp;<span style="display: inline-block; width: 1px; margin-right: -1px;">&nbsp;</span></pre></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code"></div><div class="CodeMirror-cursor" style="visibility: hidden;">&nbsp;</div><div class="CodeMirror-cursor CodeMirror-secondarycursor" style="visibility: hidden;">&nbsp;</div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px;"></div><div class="CodeMirror-gutters" style="display: none;"></div></div></div><div class="editor-statusbar"><span class="lines">0</span><span class="words">0</span><span class="cursor">0:0</span></div><div class="div_tags clearfix"><div id="divSearchTags" class="tags_con"><input type="text"></div><input type="hidden" name="txtSearchTags"></div><div id="ask2_tagRecomm_div" class="drt_tagRecomm tracking-ad" data-mod="popu_73"><span class="drt_tit">推荐标签：</span></div></div><div class="success"><div class="left_area"><input id="chk_cb" type="checkbox"><span class="wyxs">我要悬赏</span><input id="cb_num" class="cb_num" readonly="true"><span class="phib_rii"><span> 币</span></span></div><a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" nodetype="cancel" class="cancel">取消</a><a href="http://blog.csdn.net/tkwxty/article/details/34474501/#" nodetype="ok" class="ok">发布</a></div></div><div id="common_ask_div_sc" class="searchContainer"><div class="sTitle">可能存在类似的问题：</div><div class="sFooter"><a class="sFirstNewAsk">我想提一个新问题</a></div></div><div style="position:fixed; top:0; left:0; overflow:hidden;"><input style="position:absolute; left:-300px;" type="text" value="" id="focus_retriever" readonly="true"></div></body></html>

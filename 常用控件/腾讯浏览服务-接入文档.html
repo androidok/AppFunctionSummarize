@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)https://x5.tencent.com/tbs/guide/sdkInit.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>腾讯浏览服务-接入文档</title>
+    <link rel="stylesheet" href="./腾讯浏览服务-接入文档_files/bootstrap.css">
+    <link rel="stylesheet" href="./腾讯浏览服务-接入文档_files/g.css">
+    <link rel="stylesheet" href="./腾讯浏览服务-接入文档_files/swiper.min.css">
+    <link rel="stylesheet" href="./腾讯浏览服务-接入文档_files/style.css">
+</head>
+<body>
+<div class="wrap" id="base">
+    <header-panel></header-panel>
+    <div class="jumbotron masthead guide-img">
+      <div class="container jumbotron-text">
+          <h1>技术指南</h1>
+          <p class="fz16">X5内核，解决系统webview兼容性差、加载速度慢、功能缺陷等问题</p>
+          <p class="fz16">解决一切令开发者们头疼的问题，让开发者快速而轻松地开启开发之旅</p>
+          <div class="fz14">解决系统webview兼容性差、加载速度慢等问题</div>
+          <div class="fz14">让开发者快速而轻松地开启开发之旅</div>
+      </div>
+    </div>
+
+    <!-- 导航 -->
+    <!-- 导航 -->
+    <div class="mod-navigation container fz22">
+      <a href="https://x5.tencent.com/tbs/guide.html">技术指南 &gt;</a>
+      <span>接入文档</span>
+    </div>
+
+    <!-- 开发者服务协议  -->
+    <div class="container news technical question mg25">
+        <h2 class="fz34">接入文档</h2>
+
+
+        <div class="question-detail fz16">
+          <h4 class="fz22">一、联系方式</h4>
+          <p class="tid">1.  官网地址</p>
+          <p class="tid"><a href="https://x5.tencent.com/">https://x5.tencent.com</a></p>
+          <p class="tid">2.  微信公众号：腾讯浏览服务</p>
+          <p class="tid">公众号二维码</p>
+          <p class="tid"><img src="./腾讯浏览服务-接入文档_files/x5_code.png" alt="" style="width: 200px;"></p>
+          <p class="tid">论坛：<a href="http://bbs.mb.qq.com/forum-112-1.html" target="_blank">http://bbs.mb.qq.com/forum-112-1.html ( 开发者反馈论坛 )</a></p>
+          <p class="tid">反馈：<a href="http://bbs.mb.qq.com/newthread?fid=110" target="_blank">http://bbs.mb.qq.com/newthread?fid=112</a></p>
+        </div>
+
+        <div class="question-detail fz16 debug-detail">
+          <h4 class="fz22">二、背景知识</h4>
+          <p>1.  TBS(腾讯浏览服务)的优势</p>
+          <div class="sub-content">
+            <p class="tid">1) 速度快：相比系统webview的网页打开速度有30+%的提升；</p>
+            <p class="tid">2) 省流量：使用云端优化技术使流量节省20+%；</p>
+            <p class="tid">3) 更安全：安全问题可以在24小时内修复；</p>
+            <p class="tid">4) 更稳定：经过亿级用户的使用考验，CRASH率低于0.15%；</p>
+            <p class="tid">5) 兼容好：无系统内核的碎片化问题，更少的兼容性问题；</p>
+            <p class="tid">6) 体验优：支持夜间模式、适屏排版、字体设置等浏览增强功能；</p>
+            <p class="tid">7) 功能全：在Html5、ES6上有更完整支持；</p>
+            <p class="tid">8) 更强大：集成强大的视频播放器，支持视频格式远多于系统webview；</p>
+            <p class="tid">9) 视频和文件格式的支持x5内核多于系统内核</p>
+            <p class="tid">10) 防劫持是x5内核的一大亮点</p>
+          </div>
+  
+          <p>2.  运行环境</p>
+          <div class="sub-content">
+            <p class="tid">1)手机ROM版本高于或等于2.2版本</p>
+            <p class="tid">2)手机RAM大于500M，该RAM值通过手机 /proc/meminfo 文件的MemTotal动态获取</p>
+            <p class="tid">注：如果不满足上述条件，SDK会自动切换到系统WebView，SDK使用者不用关心该切换过程。</p>
+          </div>
+
+          <p>3.  SDK尺寸指标</p>
+          <div class="sub-content">
+            <p class="tid">1)SDK提供的JAR包约250K</p>
+          </div>
+        </div>
+
+        <div class="question-detail fz16 debug-detail">
+          <h4 class="fz22">三、SDK集成步骤</h4>
+          <h5 class="fz18">1.  第一步</h5>
+          <p class="">下载 SDK jar 包放到工程的libs目录下，将源码和XML里的系统包和类替换为SDK里的包和类，具体对应如下：</p>
+
+          <div class="mod-table">
+            <table class="table">
+              <thead class="fz22">
+                <tr><th>系统内核</th><th>SDK内核</th></tr>
+              </thead>
+              <tbody class="fz16">
+                <tr><td>android.webkit.ConsoleMessage</td><td>com.tencent.smtt.export.external.interfaces.ConsoleMessage</td></tr>
+                <tr><td>android.webkit.CacheManager</td><td>com.tencent.smtt.sdk.CacheManager(deprecated)</td></tr>
+                <tr><td>android.webkit.CookieManager</td><td>com.tencent.smtt.sdk.CookieManager</td></tr>
+                <tr><td>android.webkit.CookieSyncManager</td><td>com.tencent.smtt.sdk.CookieSyncManager</td></tr>
+                <tr><td>android.webkit.CustomViewCallback</td><td>com.tencent.smtt.export.external.interfaces.IX5WebChromeClient.CustomViewCallback</td></tr>
+                <tr><td>android.webkit.DownloadListener</td><td>com.tencent.smtt.sdk.DownloadListener</td></tr>
+                <tr><td>android.webkit.GeolocationPermissions</td><td>com.tencent.smtt.export.external.interfaces.GeolocationPermissionsCallback</td></tr>
+                <tr><td>android.webkit.HttpAuthHandler</td><td>com.tencent.smtt.export.external.interfaces.HttpAuthHandler</td></tr>
+                <tr><td>android.webkit.JsPromptResult</td><td>com.tencent.smtt.export.external.interfaces.JsPromptResult</td></tr>
+                <tr><td>android.webkit.JsResult</td><td>com.tencent.smtt.export.external.interfaces.JsResult</td></tr>
+                <tr><td>android.webkit.SslErrorHandler</td><td>com.tencent.smtt.export.external.interfaces.SslErrorHandler</td></tr>
+                <tr><td>android.webkit.ValueCallback</td><td>com.tencent.smtt.sdk.ValueCallback</td></tr>
+                <tr><td>android.webkit.WebBackForwardList</td><td>com.tencent.smtt.sdk.WebBackForwardList</td></tr>
+                <tr><td>android.webkit.WebChromeClient</td><td>com.tencent.smtt.sdk.WebChromeClient</td></tr>
+                <tr><td>android.webkit.WebHistoryItem</td><td>com.tencent.smtt.sdk.WebHistoryItem</td></tr>
+                <tr><td>android.webkit.WebIconDatabase</td><td>com.tencent.smtt.sdk.WebIconDatabase</td></tr>
+                <tr><td>android.webkit.WebResourceResponse</td><td>com.tencent.smtt.export.external.interfaces.WebResourceResponse</td></tr>
+                <tr><td>android.webkit.WebSettings</td><td>com.tencent.smtt.sdk.WebSettings</td></tr>
+                <tr><td>android.webkit.WebSettings.LayoutAlgorithm</td><td>com.tencent.smtt.sdk.WebSettings.LayoutAlgorithm</td></tr>
+                <tr><td>android.webkit.WebStorage</td><td>com.tencent.smtt.sdk.WebStorage</td></tr>
+                <tr><td>android.webkit.WebView</td><td>com.tencent.smtt.sdk.WebView</td></tr>
+                <tr><td>android.webkit.WebViewClient</td><td>com.tencent.smtt.sdk.WebViewClient</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="">需要注意的是:</p>
+          <p class="">1)请不要在代码里使用下述写法：</p>
+          <div class="question-intr fz16">
+            <div class="paragraph">
+              <p>import android.*;</p>
+              <p>import android.webkit.*;</p>
+              <p>import android.webkit.WebStorage.*;</p>
+              <p>import android.net.*;</p>
+              <p>import android.net.http.*;</p>
+            </div>
+          </div>
+          <p class="">2)除了源码里需要把相关的包名和类名进行替换，布局xml里的声明也需要替换，例如：</p>
+          <div class="question-intr fz16">
+            <div class="paragraph">
+              <p>&lt;com.tencent.smtt.sdk.WebView</p>
+              <p>android:id="@+id/forum_context"</p>
+              <p>android:layout_width="fill_parent"</p>
+              <p>android:layout_height="fill_parent"</p>
+              <p>android:paddingLeft="5dp"</p>
+              <p>android:paddingRight="5dp" /&gt;</p>
+            </div>
+          </div>
+
+          <p class="">为了确保替换的完整，可以使用脚本checkqbsdk.sh <a href="http://res.imtt.qq.com/TES/checkqbsdk.zip">点击下载</a> 进行扫描，windows 上使用TBSSdk接入扫描工具.exe <a href="http://res.imtt.qq.com/TES/TBSSdk_windows.zip">点击下载</a> 进行扫描。脚本放在所有源码的顶级目录下运行即可。后续的版本发布前尽量都运行一遍扫描，以免上次扫描后新提交的代码有未替换的情况发生。替换不完全时，可能发生的问题是关于cookie的身份错误、类转换时的crash等。cookie问题产生的原理是:一段代码把cookie塞给了系统内核，另外一段代码尝试从x5的内核里读取cookie就失败了。类转换的错误产生的原理是：比如xml里指定的是系统的webview，java的代码里把它当作x5的webview使用。</p>
+
+  
+          <h5 class="fz18">2.  第二步</h5>
+          <p>x5暂时不提供64位so文件，为了保证64位手机能正常加载x5内核，请参照如下链接修改相关配置<a href="https://x5.tencent.com/tbs/technical.html#/detail/sdk/1/34cf1488-7dc2-41ca-a77f-0014112bcab7" target="_blank">https://x5.tencent.com/tbs/technical.html#/detail/sdk/1/34cf1488-7dc2-41ca-a77f-0014112bcab7</a></p>
+
+          <h5 class="fz18">3.  第三步</h5>
+          
+          <p class="">AndroidManifest.xml里加入权限声明：</p>
+          <div class="question-intr fz16">
+            <div class="paragraph">
+              <p>&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt;</p>
+              <p>&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;</p>
+              <p>&lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /&gt;</p>
+              <p>&lt;uses-permission android:name="android.permission.INTERNET" /&gt;</p>
+              <p>&lt;uses-permission android:name="android.permission.READ_PHONE_STATE" /&gt;</p>
+            </div>
+          </div>
+
+          <h5 class="fz18">4.  第四步</h5>
+          <p class="">优化异常上报：</p>
+          <p class="">为了提高合作方的webview场景稳定性，及时发现并解决x5相关问题，当客户端发生crash等异常情况并上报给服务器时请务必带上x5内核相关信息。x5内核异常信息获取接口为：com.tencent.smtt.sdk.WebView.getCrashExtraMessage(context)。以bugly日志上报为例：</p>
+          <div class="question-intr fz16">
+            <div class="paragraph">
+              <p>　　UserStrategy strategy = new UserStrategy(appContext);</p>
+              <p>　　strategy.setCrashHandleCallback(new CrashReport.CrashHandleCallback() {</p>
+              <p>　　　　public Map<string, string=""> onCrashHandleStart(int crashType, String errorType, String errorMessage, String errorStack) {</string,></p>
+              <p>　　　　　　LinkedHashMap<string, string=""> map = new LinkedHashMap<string, string="">();</string,></string,></p>
+              <p>　　　　　　String x5CrashInfo = com.tencent.smtt.sdk.WebView.getCrashExtraMessage(appContext);</p>
+              <p>　　　　　　map.put("x5crashInfo", x5CrashInfo);</p>
+              <p>　　　　　　return map;</p>
+              <p>　　　　}</p>
+              <p></p>
+
+              <p>　　　　@Override</p>
+              <p>　　　　public byte[] onCrashHandleStart2GetExtraDatas(int crashType, String errorType, String errorMessage, String errorStack) {</p>
+              <p>　　　　　　try {</p>
+              <p>　　　　　　　　return "Extra data.".getBytes("UTF-8");</p>
+              <p>　　　　　　} catch (Exception e) {</p>
+              <p>　　　　　　　　return null;</p>
+              <p>　　　　　　}</p>
+              <p>　　　　}</p>
+              <p>　　});</p>
+              <p></p>
+              <p>　　CrashReport.initCrashReport(appContext, APPID, true, strategy);</p>
+            </div>
+          </div>
+
+          <h5 class="fz18">5.  第五步</h5>
+          <p class="">适配修改：</p>
+          <p class="">1) App 首次就可以加载 x5 内核</p>
+          <p class="">App 在启动后（例如在 Application 的 onCreate 中）立刻调用 QbSdk 的预加载接口 initX5Environment ，可参考接入示例，第一个参数传入 context，第二个参数传入 callback，不需要 callback 的可以传入 null，initX5Environment 内部会创建一个线程向后台查询当前可用内核版本号，这个函数内是异步执行所以不会阻塞 App 主线程，这个函数内是轻量级执行所以对 App 启动性能没有影响，当 App 后续创建 webview 时就可以首次加载 x5 内核了</p>
+          <p class="">2) 目前，由于SDK WebView所提供的WebView类，是对系统WebView的聚合包装，所以：获取系统内核的WebView或者 x5内核的WebView的宽高</p>
+          <div class="question-intr fz16">
+            <div class="paragraph">
+              <p>android.webkit.WebView webView = new android.webkit.WebView(this);</p>
+              <p>int width = webView.getWidth();</p>
+            </div>
+          </div>
+          <p class="">需要采用下面的方式进行</p>
+          <div class="question-intr fz16">
+            <div class="paragraph">
+              <p>com.tencent.smtt.sdk.WebView webView = new com.tencent.smtt.sdk.WebView(this);</p>
+              <p>int width = webView.getView().getWidth();</p>
+            </div>
+          </div>
+
+          <h5 class="fz18">6.  第六步</h5>
+          <p class="">调整cookie的使用：</p>
+          <p class="">com.tencent.smtt.sdk.CookieManager和com.tencent.smtt.sdk.CookieSyncManager的相关接口的调用，在接入SDK后，需要放到创建X5的WebView之后（也就是X5内核加载完成）进行；否则，cookie的相关操作只能影响系统内核。</p>
+
+          <h5 class="fz18">7.  第七步</h5>
+          <p class="">兼容视频播放：</p>
+          <p class="">1)享受页面视频的完整播放体验需要做如下声明：</p>
+          <div class="question-intr fz16">
+            <div class="paragraph">
+              <p>页面的Activity需要声明android:configChanges="orientation|screenSize|keyboardHidden"</p>
+            </div>
+          </div>
+
+          <p class="">2)视频为了避免闪屏和透明问题，需要如下设置</p>
+          <p class="">a)网页中的视频，上屏幕的时候，可能出现闪烁的情况，需要如下设置：Activity在onCreate时需要设置:</p>
+          <div class="question-intr fz16">
+            <div class="paragraph">
+              <p>getWindow().setFormat(PixelFormat.TRANSLUCENT);（这个对宿主没什么影响，建议声明）</p>
+            </div>
+          </div>
+          <p class="">b)在非硬绘手机和声明需要controller的网页上，视频切换全屏和全屏切换回页面内会出现视频窗口透明问题，需要如下设置</p>
+          <div class="question-intr fz16">
+            <div class="paragraph">
+              <p>声明当前&lt;item name="android:windowIsTranslucent"&gt;false为不透明。</p>
+              <p>特别说明：这个视各app情况所需，不强制需求，如果声明了，对体验更有利</p>
+            </div>
+          </div>
+          <p class="">c)以下接口禁止(直接或反射)调用，避免视频画面无法显示：</p>
+          <div class="question-intr fz16">
+            <div class="paragraph">
+              <p>webview.setLayerType()</p>
+              <p>webview.setDrawingCacheEnabled(true);</p>
+            </div>
+          </div>
+
+          <h5 class="fz18">8.  第八步</h5>
+          <p class="">输入法设置</p>
+          <p class="">避免输入法界面弹出后遮挡输入光标的问题</p>
+          <p class="">方法一：在AndroidManifest.xml中设置</p>
+          <div class="question-intr fz16">
+            <div class="paragraph">
+              <p>android:windowSoftInputMode="stateHidden|adjustResize"</p>
+            </div>
+          </div>
+          <p class="">方法二：在代码中动态设置：</p>
+          <div class="question-intr fz16">
+            <div class="paragraph">
+              <p>getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE | WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);</p>
+            </div>
+          </div>
+
+          <h5 class="fz18">9.  第九步</h5>
+          <p class="">app 自定义 UA 的说明</p>
+          <p class="">如果 app 需要自定义 UA，建议采取在 SDK 默认UA 后追加 app UA 的方式示例：</p>
+          <div class="question-intr fz16">
+            <div class="paragraph">
+              <p>webSetting.setUserAgentString(webSetting.getUserAgentString() + APP_NAME_UA);</p>
+              <p>其中 APP_NAME_UA 是 app 自定义 UA</p>
+            </div>
+          </div>
+
+          <h5 class="fz18">10.  第十步</h5>
+          <p class="">app混淆时的处理</p>
+          <p class="">由于我们提供的 TBS jar 已经混淆过，所以 App 混淆时可以不再混淆我们的 TBS jar，或者也可以把我们的混淆策略 proguard <a href="http://res.imtt.qq.com/TES/proguard_20160822.zip">点击下载</a> 加入 App 的混淆策略里注意：如果 App没有按照该规则混淆了 TBS jar，可能导致无法使用 x5内核</p>
+        </div>
+
+        <div class="question-detail fz16 debug-detail">
+          <h4 class="fz22">四、Tbs视频播放器接入说明</h4>
+          <p class="">TBS不仅提供了强大的网页浏览功能，更提供了强大的页面H5视频播放支持，播放器同时支持页面，小窗，全屏播放体验，强大的解码能力，包括mp4，rmvb，flv，avi等26种视频格式支持。</p>
+          <p class="">TBS播放器的播放场景不仅局限于H5页面播放，也可以接入一般的视频流链接，比如本地文件，网络的视频流链接。开发者如果想播放一个视频链接，在不自己开发播放器的前提下，一般做法是将视频的播放链接放到一个Intent里面，抛给系统的播放器进行播放，那么当你集成了TBS后，你只需要通过简单的方式接入视频播放调用接口，这样你不需要写任何一句关于播放器的代码，就可以享受一个本地播放器体验，播放视频再不需要Intent来跨App、跨进程的调用了。</p>
+          <p class="">下面是视频播放接入的步骤：</p>
+
+          <h5 class="fz18">1.  第一步</h5>
+          <p class="">AndroidManifest需要如下的注册：</p>
+          <div class="question-intr fz16">
+            <div class="paragraph">
+              <p>&lt;activity</p>
+              <p>   android:name="com.tencent.smtt.sdk.VideoActivity"</p>
+              <p>   android:configChanges="orientation|screenSize|keyboardHidden"</p>
+              <p>   android:exported="false"</p>
+              <p>   android:launchMode="singleTask"</p>
+              <p>   android:alwaysRetainTaskState="true"&gt;</p>
+              <p>   &lt;intent-filter&gt;</p>
+              <p>      &lt;action android:name="com.tencent.smtt.tbs.video.PLAY" /&gt;</p>
+              <p>      &lt;category android:name="android.intent.category.DEFAULT" /&gt;</p>
+              <p>   &lt;/intent-filter&gt;</p>
+              <p>&lt;/activity&gt;</p>
+            </div>
+          </div>
+          <p class="">说明：VideoActivity是TBS自带的组件，需要App如上配置</p>
+
+          <h5 class="fz18">2.  第二步</h5>
+          <p class="">播放视频的调用接口</p>
+          <p class="">通过TbsVideo的静态方法，如下：</p>
+          <div class="question-intr fz16">
+            <div class="paragraph">
+              <p>public static boolean canUseTbsPlayer(Context context)</p>
+              <p>//判断当前Tbs播放器是否已经可以使用。</p>
+              <p>public static void openVideo(Context context, String videoUrl)</p>
+              <p>//直接调用播放接口，传入视频流的url</p>
+              <p>public static void openVideo(Context context, String videoUrl, Bundle extraData)</p>
+              <p>//extraData对象是根据定制需要传入约定的信息，没有需要可以传如null</p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="question-detail fz16 debug-detail">
+          <h4 class="fz22">五、加载 x5内核的操作方法</h4>
+          <p class="">1) 下载安装TBSDemo到手机 <a href="http://res.imtt.qq.com/TES/TBSDemo_036217.zip">点击下载</a>；</p>
+          <p class="">2) 启动 TBSDemo，等待几秒钟后看到提示框“x5内核安装成功，是否重启”，此时点击“重启”；</p>
+          <p class="">3) TBSDemo重启后，当看到左上角显示“x5 core：”，然后可进行下一步，否则请联系我们；</p>
+          <p class="">4) 卸载重装您的App，保持手机网络畅通，进入您的App的网页场景，等待3秒后在手机设置里杀掉您的App，然后再次启动您的App 进入网页场景，此时您的App就可以使用x5内核了；备注说明：</p>
+          <p class="">由于微信手Q下载X5内核会碰到流控等限制，操作门槛较高，所以通过前三步可以快速实现将TBSDemo中携带的X5内核部署到手机上。步骤四中判断X5内核是否启用，可以通过长按观察弹出菜单或文字选择的水滴效果确认已使用了 x5 内核</p>
+          <p class="">辨别是否使用x5webview的方法：</p>
+          <p class="">显示网页文字时，可通过长按选择文字的标识判断，如下水滴状选择效果是x5webview 的标志：</p>
+          <p class=""><img src="./腾讯浏览服务-接入文档_files/pic_qa_01.jpg" alt=""></p>
+        </div>
+
+        <div class="question-detail fz16 debug-detail">
+          <h4 class="fz22">六、常见问题</h4>
+          <p class="">常见问题见</p>
+          <p class=""><a href="https://x5.tencent.com/tbs/technical.html#/sdk">https://x5.tencent.com/tbs/technical.html#/sdk</a></p>
+        </div>
+
+             
+    </div>
+
+    <!-- footer -->
+    <footer-panel></footer-panel>
+
+</div>
+<script src="./腾讯浏览服务-接入文档_files/jquery.js.下载"></script>
+<script src="./腾讯浏览服务-接入文档_files/bootstrap.min.js.下载"></script>
+<script src="./腾讯浏览服务-接入文档_files/swiper.min.js.下载"></script>
+<script src="./腾讯浏览服务-接入文档_files/vue.js.下载"></script>
+<script src="./腾讯浏览服务-接入文档_files/vue-router-2.0.3.js.下载"></script>
+<script src="./腾讯浏览服务-接入文档_files/base.js.下载"></script>
+<script type="text/javascript" src="./腾讯浏览服务-接入文档_files/stats" charset="UTF-8"></script>
+
+
+
+</body></html>

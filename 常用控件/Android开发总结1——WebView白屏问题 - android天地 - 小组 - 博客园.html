@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://group.cnblogs.com/topic/71013.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Android开发总结1——WebView白屏问题 - android天地 - 小组 - 博客园</title>
+    
+    
+    <link href="https://common.cnblogs.com/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="./Android开发总结1——WebView白屏问题 - android天地 - 小组 - 博客园_files/home_group.css" asp-append-version="true">
+    
+    <style type="text/css">
+        #main {
+            width: 800px;
+        }
+
+        .feed_block {
+            margin-top: 0px;
+        }
+    </style>
+
+    <link rel="stylesheet" media="only screen and (max-device-width: 992px)" href="./Android开发总结1——WebView白屏问题 - android天地 - 小组 - 博客园_files/mobile.css" asp-append-version="true">
+    <script type="text/javascript" src="./Android开发总结1——WebView白屏问题 - android天地 - 小组 - 博客园_files/jquery.js.下载"></script>
+    <script type="text/javascript" src="./Android开发总结1——WebView白屏问题 - android天地 - 小组 - 博客园_files/common.js.下载"></script>
+    <script type="text/javascript" src="./Android开发总结1——WebView白屏问题 - android天地 - 小组 - 博客园_files/home_group.js.下载" asp-append-version="true"></script>
+    
+    <script src="./Android开发总结1——WebView白屏问题 - android天地 - 小组 - 博客园_files/jquery.json-1.3.min.js.下载" type="text/javascript"></script>
+    <script type="text/javascript" src="./Android开发总结1——WebView白屏问题 - android天地 - 小组 - 博客园_files/ubb.js.下载"></script>
+    <script type="text/javascript">
+        $(function () {
+            var firstPageUrl = $('.pager .p_1').attr('href');
+            $('.pager .p_1').attr('href', firstPageUrl + '?page=1');
+            if ($('.pager .p_2').hasClass('current')) {
+                $('.pager a:first-child').attr('href', $('.pager .p_1').attr('href'));
+            }
+
+            setTimeout(function() {
+                 incrementViewCount(71013);
+            }, 200);
+        });
+        function incrementViewCount(postId) {
+            if (postId) {
+                $.ajax({
+                    url: location.protocol + '//counter.cnblogs.com/group/thread/' + postId,
+                    type: 'get', dataType: 'script', cache: true
+                });
+            }
+        }
+    </script>
+
+</head>
+<body>
+    <div id="top">
+        <div id="top_left">
+            <a href="http://www.cnblogs.com/">首页</a><a href="https://news.cnblogs.com/">新闻</a><a href="https://job.cnblogs.com/">招聘</a><a href="http://zzk.cnblogs.com/">找找看</a><a href="https://kb.cnblogs.com/">知识库</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="wrapper">
+        <div id="header">
+            <div id="logo">
+                <a href="http://www.cnblogs.com/" title="返回博客园首页"><img src="./Android开发总结1——WebView白屏问题 - android天地 - 小组 - 博客园_files/logo_home.gif" alt="logo"></a>
+            </div>
+            <div id="nav_block">
+				<a href="https://home.cnblogs.com/">园子</a> · <a href="https://home.cnblogs.com/followees/">关注</a> · <a href="https://home.cnblogs.com/followers/">粉丝</a> · <a href="https://home.cnblogs.com/feed/all/">随便看看</a> · <a href="https://msg.cnblogs.com/" target="_blank">消息<span id="msg_count"></span></a>
+            </div>
+            <div class="clear"></div>
+            <div id="header_user"><h1 id="header_user_left">
+        欢迎，请先 <a href="javascript:void;" onclick="return login();">登录</a> 或者 <a href="javascript:void;" onclick="return register();">注册</a> 。
+</h1>
+<div id="header_user_right">
+        <a href="javascript:void;" onclick="return login();">登录</a> / <a href="javascript:void;" onclick="return register();">注册</a>
+</div>
+
+</div>
+            <script>
+                loadCurrentUserInfo();
+            </script>
+            <div class="clear"></div>
+        </div>
+        <div id="container">
+            <div id="app_bar">
+	<p class="app_r_3"></p><p class="app_r_2"></p><p class="app_r_1"></p>
+	<div id="app_list_wrapper">
+        <ul class="app_list">
+            <li>
+                <img src="./Android开发总结1——WebView白屏问题 - android天地 - 小组 - 博客园_files/ico_ing.gif" alt=""><a id="app_ing" href="https://ing.cnblogs.com/">闪存</a><div class="clear"></div>
+            </li>
+            <li>
+                <em><a href="https://i.cnblogs.com/" target="_blank">写博</a></em><img src="./Android开发总结1——WebView白屏问题 - android天地 - 小组 - 博客园_files/ico_blog.gif" alt=""><a id="app_blog" href="https://home.cnblogs.com/blog/">博客</a>
+            </li>
+            <li>
+                <em><a href="https://group.cnblogs.com/newpost/">发言</a></em><img src="./Android开发总结1——WebView白屏问题 - android天地 - 小组 - 博客园_files/ico_group.gif" alt=""><a id="app_group" href="https://group.cnblogs.com/" class="current">小组</a>
+            </li>
+            <li>
+                <em><a href="https://news.cnblogs.com/n/publish" target="_blank">投递</a></em><img src="./Android开发总结1——WebView白屏问题 - android天地 - 小组 - 博客园_files/ico_news.gif" alt=""><a id="app_news" href="https://home.cnblogs.com/news/">新闻</a>
+            </li>
+            <li>
+                <em><a href="https://q.cnblogs.com/q/new" target="_self">提问</a></em><img src="./Android开发总结1——WebView白屏问题 - android天地 - 小组 - 博客园_files/ico_question.gif" alt=""><a id="app_q" href="https://q.cnblogs.com/">博问</a>
+            </li>
+            <li>
+                <em><a href="https://group.cnblogs.com/topic/71013.html#" target="_blank" onclick="AddToWz();return false;">添加</a></em><img src="./Android开发总结1——WebView白屏问题 - android天地 - 小组 - 博客园_files/ico_bookmark.gif" alt=""><a id="app_wz" href="https://wz.cnblogs.com/">网摘</a>
+            </li>
+            <li>
+                <em><a href="https://job.cnblogs.com/admin/" target="_blank">发布</a></em><img src="./Android开发总结1——WebView白屏问题 - android天地 - 小组 - 博客园_files/ico_job.gif" alt=""><a id="app_job" href="https://home.cnblogs.com/job/">招聘</a>
+            </li>
+            <li>
+                <img src="./Android开发总结1——WebView白屏问题 - android天地 - 小组 - 博客园_files/ico_kb.gif" alt=""><a id="app_kb" href="https://home.cnblogs.com/kb/">文库</a>
+            </li>
+        </ul>
+		<div class="app_setting">
+			<a href="https://group.cnblogs.com/forum/public/" class="flag_edit" target="_blank">问题反馈</a>
+		</div>
+	</div>
+	<p class="app_r_1"></p><p class="app_r_2"></p><p class="app_r_3"></p>
+</div> 
+            <div id="container_content">
+                
+                <div id="main">
+                    <div id="main">
+    <div class="feed_block">
+        <div class="postion_nav"><a href="https://group.cnblogs.com/">小组</a> / <a href="https://group.cnblogs.com/android_sky/">android天地</a><span class="quick_link_right">» <a href="https://group.cnblogs.com/newpost/android_sky/">新建话题</a></span></div>
+        <ul class="thread_item">
+            <li>
+                <div class="thread_block">
+                    <a href="https://home.cnblogs.com/u/yzyeilin/" class="avatar48 thread_item_avatar">
+                        <img src="./Android开发总结1——WebView白屏问题 - android天地 - 小组 - 博客园_files/20150701095030.png">
+                    </a>
+                    <div class="thread_author_block">
+                        <span class="text_gray" style="float: right; padding-right: 5px;">
+                            浏览:10224
+                        </span>
+                        <div class="thread_title"><a href="https://group.cnblogs.com/topic/71013/" class="black" id="thread_title">Android开发总结1——WebView白屏问题</a></div>
+                        <span class="text_green">2014-09-02 15:02</span> 来自 <b><a href="https://home.cnblogs.com/u/yzyeilin/">安林__yzyeilin</a></b>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="thread_content" id="thread_body">
+                        <p>最近在使用WebView的时候，发现了一个小问题，很多初学者应该会注意不到！</p>
+<p>WebView的layerType属性有三个值。</p>
+<p>1.none，默认值，</p>
+<p>2.software，软件加速，</p>
+<p>3.hardware，硬件加速。</p>
+<p>当设置为第三个值得时候，在某些手机上WebView加载完会出现白屏现象，可能是因为某些手机不支持硬件加速导致的，把WebView 的layerType值设为software，把WebView父容器的layerType值设为hardware就可以了。</p>
+<p>&nbsp;还有一些其他的控件也通用</p>
+<p>&nbsp;具体解析参见这篇文章：</p>
+<p>http://blog.csdn.net/a345017062/article/details/7478667</p>
+                    </div>
+                    <div class="thread_bottom">
+                        
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul class="thread_item" id="thread_comment_list">
+        </ul>
+                <div id="thread_bottom_ad">
+            <script type="text/javascript">
+                var replyCount = 0;
+            </script>
+        </div>
+            <div id="panel_unLogin">
+                <div class="group_topic_block text_gray group_empty_tip" id="thread_login_tip">
+                    登录后才能评论，请先<a href="javascript:;" onclick="login();return false;">登录</a>或<a href="javascript:;" onclick="register();return false;">注册</a>。
+                    <br><br><br>
+                </div>
+            </div>
+    </div>
+</div>
+                </div>
+                <div id="right_sidebar">
+                    
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="footer">
+            <a href="https://www.cnblogs.com/AboutUS.aspx">关于博客园</a><a href="https://www.cnblogs.com/ContactUs.aspx">联系我们</a><a href="https://www.cnblogs.com/ad.aspx">广告服务</a>© 2004-2017 <a href="http://www.cnblogs.com/">博客园</a> Powered by ASP.NET Core on Linux<span id="profiler_footer"></span>
+        </div>
+    </div>	
+
+
+</body></html>

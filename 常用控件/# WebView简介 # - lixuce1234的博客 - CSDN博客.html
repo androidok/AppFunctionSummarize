@@ -1,0 +1,1967 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0056)http://blog.csdn.net/lixuce1234/article/details/54667908 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+        <script src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/hm.js.下载"></script><script type="text/javascript" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/tingyun-rum.js.下载"></script>
+            <link rel="canonical" href="http://blog.csdn.net/lixuce1234/article/details/54667908"> 
+ <meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://blog.csdn.net/lixuce1234/article/details/54667908#">
+
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848"> 
+       
+    <title># WebView简介 # - lixuce1234的博客
+        - CSDN博客</title><script>window._ty_rum&&window._ty_rum.server||function(t){function e(t){J&&(W.e[t]||(W.e[t]=[])).push(u())}function r(){var t=tt(it);return t||(t=nt(),et(it,t)),t}function n(){var t=a(ot);return t||(t=nt(),i(ot,t)),t}function a(t){if("string"!=typeof t)return null;var e=B.cookie;if(!e)return null;var r=null,n=e.split(";");return X.each(n,function(e){var n=e.split("=");if(X.trim(n[0])===X.trim(t))return r=n[1],!0}),r}function i(t,e,r){var n=t+"="+e;if(r){var a=new Date;a.setTime(a.getTime()+1e3*r),n+=";expires="+a.toGMTString()}B.cookie=n}function o(t){switch(typeof t){case"object":if(!t)return"null";if(t instanceof Array){for(var e="[",r=0;r<t.length;r++)e+=(r>0?",":"")+o(t[r]);return e+"]"}if(t instanceof Date)return t.getTime().toString();var e="{",r=0;for(var n in t)if("function"!=typeof t[n]){var a=o(t[n]);e+=(r>0?",":"")+o(n)+":"+a,r++}return e+"}";case"string":return'"'+t.replace(/([\"\\])/g,"\\$1").replace(/\n/g,"\\n")+'"';case"number":return t.toString();case"boolean":return t?"true":"false";case"function":return o(t.toString());case"undefined":default:return'"undefined"'}}function s(t){return z?z(t):t}function u(){return Date.now?Date.now():(new Date).valueOf()}function c(t,e,r){function n(){var t=X.args.apply(this,arguments);return e(i,t,r)}var a,i=t[t.length-1];if("function"==typeof i){switch(i.length){case 0:a=function(){return n.apply(this,arguments)};break;case 1:a=function(t){return n.apply(this,arguments)};break;case 2:a=function(t,e){return n.apply(this,arguments)};break;case 3:a=function(t,e,r){return n.apply(this,arguments)};break;case 4:a=function(t,e,r,a){return n.apply(this,arguments)};break;case 5:a=function(t,e,r,a,i){return n.apply(this,arguments)};break;default:for(var o=[],s=0,u=i.length;s<u;s++)o.push("_"+s);a=eval("(function(){return function("+o.join(",")+"){var args = [].slice.call(arguments, 0);return e(i, args, r);};})();")}t[t.length-1]=a}return t}function f(t,e){return t&&e&&(t.moduleName=e),t}function l(t,e,r){return function(){try{q=e,r&&d(e),t.apply(this,arguments),r&&p()}catch(n){throw r&&p(),f(n,e)}}}function d(e){X.each(["setTimeout","setInterval"],function(r){X.wrap(!0,t,r,function(t){return function(){var r,n=X.args.apply(this,arguments),a=n[0];return"function"==typeof a&&(r=l(a,e,!0)),r&&(n[0]=r),t.apply?t.apply(this,n):Function.prototype.apply.apply(t,[t,n])}})})}function p(){X.each(["setTimeout","setInterval"],function(e){X.unwrap(t,e)})}function h(t){H&&X.wrap(!1,H.prototype,"addEventListener",function(e){return function(){var r,n=X.args.apply(this,arguments),a=n[1];return"function"==typeof a&&(r=l(a,t,!0)),r&&(n[1]=r),e.apply(this,n)}}),d(t)}function v(){H&&X.unwrap(H.prototype,"addEventListener"),p()}function y(t){return function(t,e){}}function m(){return ft&&ft.indexOf("1")>-1}function g(){var t=0;if(G.firstPaint)t=G.firstPaint;else if(ct){var e=ct.timing;t=e.domLoading,ct.getEntriesByName&&X.each(B.querySelectorAll("head>link, head>script"),function(r){var n;if("LINK"==r.tagName?n=r.href:"SCRIPT"==r.tagName&&(r.defer||(n=r.src)),n){var a=ct.getEntriesByName(n);if(1==a.length){var i=a[0].responseEnd+e.navigationStart;i>t&&(t=i)}}}),t-=e.navigationStart,G.firstPaint=Math.round(t)}return t}function _(){if(G.fs)return G.fs;G.firstPaint||g();var e=G.firstPaint,r=t.innerHeight;if(ct&&ct.getEntriesByName){var n=[];X.each(B.querySelectorAll("img"),function(t){"none"!=t.style.display&&""!=t.src&&t.offsetTop<=r&&n.push(t.src)}),X.each(n,function(t){var r=ct.getEntriesByName(t);if(r.length){var n=r[0].responseEnd;n>e&&(e=n)}})}return G.fs=Math.round(e),e}function S(){var t=ct.timing&&ct.timing.navigationStart||G.st,e=G.end_time-t;return G.dr=e,e}function w(){if(this.errors.length){var t=function(t){var e=[],r={};X.each(t,function(t){var e=N(t[1],t[2],t[3],t[6]);r[e]?r[e][4]+=1:r[e]=[t[1],t[2],t[3],"#"==t[4]?B.URL:t[4],1,t[5],t[6],t[7]]});for(var n in r)e.push(r[n]);return e}(this.errors),e=this;X.POST(X.mkurl(G.server.beacon,"err",{fu:U?U:U++,os:parseInt((u()-(F||G.st))/1e3)}),X.stringify({datas:t}),{},function(t,r){t||(e.errors=[])})}}function T(){e("DOMContentLoaded"),lt.initend()}function b(){"complete"===B.readyState&&(e("readyStateComplete"),lt.initend())}function E(t){function e(){lt.send()}return!!G.load_time||(lt.initend(),G.load_time=u(),J&&(W.load=G.load_time),void(9===t?e():setTimeout(e,0)))}function k(){dt||E(9),X.bind(w,lt)(),dt=1}function x(){lt.touch||(lt.touch=u())}function P(t){if(t[6]){var e=t[4],r=t[5];if(r&&"string"==typeof r&&e){r=r.split(/\n/);var n=$.exec(r[0]);n||(n=$.exec(r[1])),n&&n[1]!=e&&(t[4]=n[1]||e,t[2]=n[2]||t[2],t[3]=n[3]||t[3])}}}function N(t,e,r,n){return String(t)+String(e)+String(r)+String(n)}function L(e){var r=arguments,n="unknown",a=[u()];if(0!=r.length){if("string"==typeof e){var i=r.length<4?r.length:4;a[1]=r[0],i>2&&(a[2]=r[2],a[3]=0,a[4]=r[1]),i>3&&r[3]&&(a[3]=r[3])}else if(e instanceof Event||t.ErrorEvent&&e instanceof ErrorEvent){if(a[1]=e.message||(e.error&&e.error.constructor.name)+(e.error&&e.error.message)||"",a[2]=e.lineno?e.lineno:0,a[3]=e.colno?e.colno:0,a[4]=e.filename||e.error&&e.error.fileName||e.target&&e.target.baseURI||"",!a[4]&&Q)return;a[4]==B.URL&&(a[4]="#"),e.error?(a[5]=e.error.stack,a[6]=e.error.moduleName):(a[5]=null,a[6]=null);var o=N(a[1],a[2],a[3],a[6]);if(a[7]=pt[o]?0:1,pt[o]=!0,a[1]===n&&a[4]===n)return;P(a)}lt.errors.push(a)}}function R(t){return function(){var e=arguments;if(!this._ty_wrap){var r=X.args.apply(this,e);this._ty_rum={method:r[0],url:r[1],start:u()}}try{return t.apply(this,e)}catch(n){return Function.prototype.apply.call(t,this,e)}}}function C(e){return"string"==typeof e?e.length:t.ArrayBuffer&&e instanceof ArrayBuffer?e.byteLength:t.Blob&&e instanceof Blob?e.size:e&&e.length?e.length:0}function I(e){return function(){function r(t){var e,r,n=c._ty_rum;if(n){if(4!==n.readyState&&(n.end=u()),n.s=c.status,""==c.responseType||"text"==c.responseType)n.res=C(c.responseText);else if(c.response)n.res=C(c.response);else try{n.res=C(c.responseText)}catch(i){n.res=0}if(n.readyState=c.readyState,n.cb_time=l,e=[n.method+" "+n.url,n.s>0?n.end-n.start:0,l,n.s,n.s>0?0:t,n.res,n.req],n.r&&(r=a(c),r&&(r=r.xData)&&(e.push(r.id),e.push(r.action),e.push(r.time&&r.time.duration),e.push(r.time&&r.time.qu))),G.aa.push(e),G.server.custom_urls&&G.server.custom_urls.length&&!lt.ct){if(!G.pattern){G.pattern=[];for(var o=0;o<G.server.custom_urls.length;o++)G.pattern.push(new RegExp(G.server.custom_urls[o]))}for(var o=0;o<G.pattern.length;o++)if(n.url.match(G.pattern[o])){lt.ct=n.end+l;break}}lt.sa(),c._ty_rum=null}}function n(){4==c.readyState&&r(0)}function a(e){var r;if(e.getResponseHeader){var n=X.parseJSON(e.getResponseHeader("X-Tingyun-Tx-Data"));n&&n.r&&e._ty_rum&&n.r+""==e._ty_rum.r+""&&(r={name:e._ty_rum.url,xData:n},ct&&t._ty_rum.c_ra.push(r))}return r}function i(t){return function(){var e,r;4==c.readyState&&c._ty_rum&&(c._ty_rum.end=e=u(),c._ty_rum.readyState=4);try{q&&d(q),r=t.apply(this,arguments),q&&p()}catch(a){throw a=f(a,q),q&&p(),q=null,a}return 4==c.readyState&&(l=u()-e),n(),r}}function o(t){return function(){var e=c._ty_rum;return!e||("progress"==t||("abort"==t?r(905):"loadstart"==t?e.start=u():"error"==t?r(990):"timeout"==t&&r(903),!0))}}function s(t,e){e instanceof Array||(e=[e]);for(var r=0;r<e.length;r++){var n=e[r];X.sh(t,n,o(n),!1)}}if(!this._ty_wrap){this._ty_rum.start=u(),this._ty_rum.req=arguments[0]?C(arguments[0]):0;var c=this,l=0,h=X.wrap(!1,this,"onreadystatechange",i);h||X.sh(this,"readystatechange",n,!1),s(this,["error","progress","abort","load","loadstart","loadend","timeout"]),h||setTimeout(function(){X.wrap(!1,c,"onreadystatechange",i)},0)}var v=function(){function t(t){var e={},r=/^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?/.exec(t);return r&&(e.protocol=r[1]?r[1]+":":"http:",e.hostname=r[3],e.port=r[4]||""),e}return function(e){var r=location;if(e=X.trim(e)){if(e=e.toLowerCase(),e.startsWith("//")&&(e=r.protocol+e),!e.startsWith("http"))return!0;var n=t(e),a=n.protocol===r.protocol&&n.hostname===r.hostname;return a&&(a=n.port===r.port||!r.port&&("http:"===r.protocol&&"80"===n.port||"https:"===r.protocol&&"443"===n.port)),a}return!1}}(),y=arguments;try{var m=G.server;m&&m.id&&this._ty_rum&&v(this._ty_rum.url)&&(this._ty_rum.r=(new Date).getTime()%1e8,this.setRequestHeader&&this.setRequestHeader("X-Tingyun-Id",m.id+";r="+this._ty_rum.r))}catch(g){}try{return e.apply(this,y)}catch(_){return Function.prototype.apply.call(e,this,y)}}}function O(){var e="TINGYUN_DATA";if(G.agent)return G.agent;var r=a(e);if(r){try{r=r.replace(/^"/,"").replace(/"$/,""),r=G.agent=X.parseJSON(decodeURIComponent(r))}catch(n){}i(e,"",-1e3)}else r=t._ty_rum&&t._ty_rum.agent;return r}var q,D=t.XMLHttpRequest,B=document,M=Object.defineProperty,A=t.define,H=t.EventTarget,U=0,$=new RegExp("([a-z]+:/{2,3}.*):(\\d+):(\\d+)"),z=t.encodeURIComponent,F=null,X={wrap:function(t,e,r,n,a){try{var i=e[r]}catch(o){if(!t)return!1}if(!i&&!t)return!1;if(i&&i._ty_wrap)return!1;try{e[r]=n(i,a)}catch(o){return!1}return e[r]._ty_wrap=[i],!0},unwrap:function(t,e){try{var r=t[e]._ty_wrap;r&&(t[e]=r[0])}catch(n){}},each:function(t,e){if(t){var r;for(r=0;r<t.length&&(!t[r]||!e(t[r],r,t));r+=1);}},mkurl:function(t,e){var a=arguments,i=/^https/i.test(B.URL)?"https":"http";if(i=i+"://"+t+"/"+e+"?av=1.6.2&v=1.6.0&key="+s(G.server.key)+"&ref="+s(B.URL)+"&rand="+u()+"&pvid="+at+"&did="+s(r())+"&sid="+s(n()),"pf"!==e&&G&&(G.agent=O(),G.agent&&(G.agent.n&&(i+="&n="+s(G.agent.n)),G.agent.user_label&&(i+="&user_label="+s(G.agent.user_label)))),a.length>2){var o=a[2];for(var c in o)i+="&"+c+"="+o[c]}return j.host&&(i+="&cshst="+s(j.host)),j.url&&(i+="&csurl="+s(j.url)),i},GET:function(t,e){function r(){e&&e.apply(this,arguments),n.parentNode&&n.parentNode.removeChild(n)}if(navigator&&navigator.sendBeacon&&rt.test(t))return navigator.sendBeacon(t,null);var n=B.createElement("img");return n.setAttribute("src",t),n.setAttribute("style","display:none"),this.sh(n,"readystatechange",function(){"loaded"!=n.readyState&&4!=n.readyState||r("loaded")},!1),this.sh(n,"load",function(){return r("load"),!0},!1),this.sh(n,"error",function(){return r("error"),!0},!1),B.body.appendChild(n)},fpt:function(t,e,r){function n(t,e,r){var n=B.createElement(t);try{for(var a in e)n[a]=e[a]}catch(i){var o="<"+t;for(var a in e)o+=" "+a+'="'+e[a]+'"';o+=">",r||(o+="</"+t+">"),n=B.createElement(o)}return n}var a=n("div",{style:"display:none"},!1),i=n("iframe",{name:"_ty_rum_frm",width:0,height:0,style:"display:none"},!1),o=n("form",{style:"display:none",action:t,enctype:"application/x-www-form-urlencoded",method:"post",target:"_ty_rum_frm"},!1),s=n("input",{name:"data",type:"hidden"},!0);return s.value=e,o.appendChild(s),a.appendChild(i),a.appendChild(o),B.body.appendChild(a),o.submit(),i.onreadystatechange=function(){"complete"!==i.readyState&&4!==i.readyState||(r(null,i.innerHTML),B.body.removeChild(a))},!0},POST:function(e,r,n,a){if(this.ie)return this.fpt(e,r,a);if(navigator&&navigator.sendBeacon&&rt.test(e)){var i=navigator.sendBeacon(e,r);return a(!i),i}var o;if(t.XDomainRequest)return o=new XDomainRequest,o.open("POST",e),o.onload=function(){a(null,o.responseText)},this.sh(o,"load",function(){a(null,o.responseText)},!1),this.sh(o,"error",function(){a("POST("+e+")error")},!1),this.wrap(!0,o,"onerror",function(t){return function(){return a&&a("post error",o.responseText),!0}}),o.send(r),!0;if(!D)return!1;o=new D,o.overrideMimeType&&o.overrideMimeType("text/html");try{o._ty_wrap=1}catch(s){}var u=0;o.onreadystatechange=function(){4==o.readyState&&200==o.status&&(0==u&&a(null,o.responseText),u++)},o.onerror&&this.wrap(!0,o,"onerror",function(t){return function(){return a("post error",o.responseText),"function"!=typeof t||t.apply(this,arguments)}});try{o.open("POST",e,!0)}catch(s){return this.fpt(e,r,a)}for(var c in n)o.setRequestHeader(c,n[c]);return o.send(r),!0},sh:function(t,e,r,n){return t.addEventListener?t.addEventListener(e,r,n):!!t.attachEvent&&t.attachEvent("on"+e,r)},args:function(){for(var t=[],e=0;e<arguments.length;e++)t.push(arguments[e]);return t},stringify:o,parseJSON:function(e){if(e&&"string"==typeof e){var r=t.JSON?t.JSON.parse:function(t){return new Function("return "+t)()};return r(e)}return null},trim:V?function(t){return null==t?"":V.call(t)}:function(t){return null==t?"":t.toString().replace(/^\s+/,"").replace(/\s+$/,"")},extend:function(t,e){if(t&&e)for(var r in e)e.hasOwnProperty(r)&&(t[r]=e[r]);return t},bind:function(t,e){return function(){return t.apply(e,arguments)}}},j={},G=t._ty_rum=t.TINGYUN=X.extend({st:u(),ra:[],c_ra:[],aa:[],snd_du:function(){return this.server.adu?1e3*this.server.adu:1e4},cc:function(){return this.server.ac?this.server.ac:10},config:function(t,e){var r;if("object"==typeof t)r=t;else{if("string"!=typeof t||void 0===e)throw new Error("illegal arguments");r={},r[t]=e}for(var n in r)j[n]=r[n];return this},setUserLabel:function(t){t&&((this.agent||(this.agent={})).user_label="string"==typeof t?t:X.stringify(t))}},t._ty_rum||{});var ty_rum=G;ty_rum.server = {beacon:"beacon.tingyun.com",beacon_err:"beacon-err.tingyun.com",key:"heTre0seWW0",trace_threshold:7000,ignore_err:false,fp_threshold:2000,fs_threshold:4000,dr_threshold:4000,id:"wl4EtIR_7Is"};if(G.server&&!(G.server.sr&&Math.random()>=G.server.sr)){var J=!("debug"in G.server)||G.server.debug,W={start:G.st,e:{},an:{count:0},visible:[]};!function(){if(J){var t,e;"undefined"!=typeof B.hidden?(t="hidden",e="visibilitychange"):"undefined"!=typeof B.msHidden?(t="msHidden",e="msvisibilitychange"):"undefined"!=typeof B.webkitHidden&&(t="webkitHidden",e="webkitvisibilitychange"),"undefined"==typeof B.addEventListener||"undefined"==typeof B[t]||X.sh(B,e,function(){J&&W.visible.push([B[t],u()])})}}();var Y={fp_threshold:2e3,fs_threshold:4e3,dr_threshold:4e3},Z=X.extend(Y,G.server),K="ignore_err",Q=!(K in G.server)||G.server[K],V=String.prototype.trim;String.prototype.startsWith||(String.prototype.startsWith=function(t,e){return e=e||0,this.indexOf(t,e)===e});var tt,et,rt=/^http/i,nt=function(){function t(t){return t<0?NaN:t<=30?0|Math.random()*(1<<t):t<=53?(0|Math.random()*(1<<30))+(0|Math.random()*(1<<t-30))*(1<<30):NaN}function e(t,e){for(var r=t.toString(16),n=e-r.length,a="0";n>0;n>>>=1,a+=a)1&n&&(r=a+r);return r}return function(){return e(t(32),8)+"-"+e(t(16),4)+"-"+e(16384|t(12),4)+"-"+e(32768|t(14),4)+"-"+e(t(48),12)}}(),at=nt(),it="TY_DISTINCT_ID",ot="TY_SESSION_ID",st=function(){try{return localStorage.setItem(at,at),localStorage.removeItem(at),!0}catch(t){return!1}}();st?(tt=X.bind(localStorage.getItem,localStorage),et=X.bind(localStorage.setItem,localStorage)):(tt=a,et=i);try{M&&M(t,"define",{get:function(){return A},set:function(t){"function"==typeof t&&(t.amd||t.cmd)?(A=function(){var e=X.args.apply(this,arguments);if(3!==e.length)return t.apply(this,e);var r="string"==typeof e[0]?e[0]:"anonymous";return t.apply(this,c(e,function(t,e,r){var n;try{q=r,h(r),n=t.apply(this,e),v()}catch(a){throw v(),f(a,r)}return n},r))},X.extend(A,t)):A=t},configurable:!0})}catch(ut){}var ct=t.performance?t.performance:t.Performance;ct&&(X.sh(ct,"resourcetimingbufferfull",function(){var t=ct.getEntriesByType("resource");t&&(G.ra=G.ra.concat(t),ct.clearResourceTimings())},!1),X.sh(ct,"webkitresourcetimingbufferfull",function(){var t=ct.getEntriesByType("resource");t&&(G.ra=G.ra.concat(t),ct.webkitClearResourceTimings())},!1));for(var ft="",lt=G.metric={ready:function(){return G.load_time},initend:function(){function t(){lt.sa()}G.end_time||(G.end_time=u(),J&&(W.end=G.end_time),this._h=setInterval(t,2e3))},send:function(){function e(){function e(t){return n[t]>0?n[t]-a:0}var r={};if(ct&&ct.timing){var n=ct.timing;if(J){var i=W.t={};for(var o in n){var u=n[o];"function"!=typeof u&&(i[o]=u)}}a=n.navigationStart;var c=e("domainLookupStart"),f=e("domainLookupEnd"),l=e("redirectStart"),d=e("redirectEnd"),p=e("connectStart"),h=e("connectEnd");r={f:e("fetchStart"),qs:e("requestStart"),rs:e("responseStart"),re:e("responseEnd"),os:e("domContentLoadedEventStart"),oe:e("domContentLoadedEventEnd"),oi:e("domInteractive"),oc:e("domComplete"),ls:e("loadEventStart"),le:e("loadEventEnd"),tus:e("unloadEventStart"),tue:e("unloadEventEnd"),ressize:!0},h-p>0&&(r.cs=p,r.ce=h),f-c>0&&(r.ds=c,r.de=f),(d-l>0||d>0)&&(r.es=l,r.ee=d),0==r.le&&(r.ue=G.load_time-a);var v;if(n.msFirstPaint)v=n.msFirstPaint,J&&(W.fp="m_"+v);else if(t.chrome&&chrome.loadTimes){var y=chrome.loadTimes();y&&(y.firstPaintTime&&(v=1e3*y.firstPaintTime),J&&(W.fp="c_"+y.firstPaintTime))}else G.firstPaint&&(v=G.firstPaint,J&&(W.fp=G.firstPaint));v&&(r.fp=Math.round(v-a),G.firstPaint=r.fp),n.secureConnectionStart&&(r.sl=e("secureConnectionStart"))}else r={t:a,os:G.end_time-a,ls:G.load_time-a,ressize:!1};r.je=lt.errors.length,lt.ct&&(r.ct=lt.ct-a),lt.touch&&(r.fi=lt.touch-a);var m=O();return m&&(r.id=s(m.id),r.a=m.a,r.q=m.q,r.tid=s(m.tid),r.n=s(m.n)),r.sh=t.screen&&t.screen.height,r.sw=t.screen&&t.screen.width,r}function r(e){var r=t._ty_rum.c_ra;if(e)for(var n=r.length-1;n>=0;n--)if(e.indexOf(r[n].name)>-1)return r[n].xData;return null}function n(t){function e(t){return d[t]>0?d[t]:0}var n="1",i="0";if(ft+=g()>=Z.fp_threshold?n:i,ft+=_()>=Z.fs_threshold?n:i,ft+=S()>=Z.dr_threshold?n:i,ft+=t>=G.server.trace_threshold?n:i,!m())return null;var o=ct;if(o&&o.getEntriesByType){var u={tr:!0,tt:s(B.title),charset:B.characterSet},c=G.ra,f=o.getEntriesByType("resource");f&&(c=c.concat(f),o.clearResourceTimings?o.clearResourceTimings():o.webkitClearResourceTimings&&o.webkitClearResourceTimings()),u.res=[];for(var l=0;l<c.length;l++){var d=c[l],p={o:e("startTime"),rt:d.initiatorType,n:d.name,f:e("fetchStart"),ds:e("domainLookupStart"),de:e("domainLookupEnd"),cs:e("connectStart"),ce:e("connectEnd"),sl:e("secureConnectionStart"),qs:e("requestStart"),rs:e("responseStart"),re:e("responseEnd"),ts:d.transferSize||0,es:d.encodedBodySize||0},h=r(d.name);h&&(p.aid=h.id,p.atd=h.trId,p.an=h.action,p.aq=h.time&&h.time.qu,p.as=h.time&&h.time.duration),u.res.push(p)}if(lt.errors.length){u.err=[];for(var l=0,v=lt.errors,y=v.length;l<y;l++)u.err.push({o:Math.round(v[l][0]-a),e:v[l][1]&&v[l][1].replace(/([\"\\])/g,"\\$1").replace(/\n/g,"\\n"),l:v[l][2],c:v[l][3],r:v[l][4],ec:y,s:v[l][5],m:v[l][6],ep:v[l][7]})}return u}return null}if(this.sended)return!1;if(!this.ready())return!1;var a=G.st,i={};try{var o=e();i=n(o.ls>0?o.ls:G.load_time-a);var c={trflag:ft||"0000",fp:G.firstPaint,fs:G.fs,dr:G.dr};X.extend(o,c)}catch(f){}i?(J&&(i.debug=W),i=X.stringify(i)):i="",J=!1;var l=X.mkurl(G.server.beacon,"pf",o);F=u(),0!=i.length&&X.POST(l,i,{},y("POST"))||X.GET(l);var d=X.bind(w,this);return d(),setInterval(d,1e4),this.sended=!0,this.sa(1),!0},sa:function(t){(this.ready()||t)&&(t||(t=!this._last_send||u()-this._last_send>G.snd_du()||G.aa.length>=G.cc()),G.aa.length>0&&t&&(this._last_send=u(),X.POST(X.mkurl(G.server.beacon,"xhr"),X.stringify({xhr:G.aa}),{},y("POST")),G.aa=[]))},errors:[]},dt=null,pt={},ht=[["load",E],["beforeunload",k],["pagehide",k],["unload",k],["pageshow",function(){}]],vt=0;vt<ht.length;vt++){var yt=null;J&&(yt=function(t,r){return function(n){return e(t),r.apply(this,arguments)}}(ht[vt][0],ht[vt][1])),X.sh(t,ht[vt][0],yt||ht[vt][1],!1)}t.addEventListener?X.sh(t,"error",L,!1):t.onerror=function(t,e,r,n,a){if(e||!Q){var i=[u(),t,r,n,e==B.URL?"#":e],o=N(t,r,n,a&&a.moduleName);i=i.concat([a&&a.stack,a&&a.moduleName,pt[o]?0:1]),pt[o]=!0,P(i),lt.errors.push(i)}};for(var mt=[["scroll",x],["keypress",x],["click",x],["DOMContentLoaded",T],["readystatechange",b]],vt=0;vt<mt.length;vt++)X.sh(B,mt[vt][0],mt[vt][1],!1);if(X.wrap(!1,t,"requestAnimationFrame",function(e){return function(){var r=u();return J&&(W.an.count++,W.an.t=r),G.firstPaint=r,t.requestAnimationFrame=e,e.apply(this,arguments)}}),D)if(D.prototype)X.wrap(!1,D.prototype,"open",R),X.wrap(!1,D.prototype,"send",I);else{X.ie=7;var gt=D;t.XMLHttpRequest=function(){var t=new gt;return X.wrap(!1,t,"open",R),X.wrap(!1,t,"send",I),t}}else t.ActiveXObject&&(X.ie=6)}ty_rum.agent={id:'boy5mtpvRsQ#vLgNgZ_Nb2U',n:'WebAction/MVC/Article%2Fdetails',tid:'67547d88a47927bcf96e',q:0,a:359};}(window);</script>
+    
+    <meta name="description" content="为了方便开发者实现在app内展示网页并与网页交互的需求，Android SDK提供了WebView组件。 它继承自AbsoluteLayout，展示网页的同时，也可以在其中放入其他的子View。 现如今，Hybrid应用似乎占据的APP的主流类型，那么关于WebView的使用就变得越发的重要。 从Android 4.4（KitKat）开始，原本基于WebKit的WebView开始基于Chrom">
+
+    <meta name="keywords" content="android,webview">
+
+   
+    <script src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/blog_static_head.min.js.下载" type="text/javascript"></script>
+
+    
+        <!--new top-->
+       
+       
+        <!--new top-->
+    
+      <!-- ad begin -->
+         
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/style.css">
+
+    
+
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/lixuce1234/rss/list">
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/default.css">
+ 
+
+
+
+    <link href="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/csdn_public_blog_detail.min.css" type="text/css" rel="stylesheet">
+     
+         <link rel="stylesheet" href="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/csdn_blog_detail.min.css">
+
+  
+
+
+    <!-- 请置于所有广告位代码之前 --> 
+            <script src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/ds.js.下载"></script>
+
+<script src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/share.js.下载"></script><link href="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/bdsstyle.css" rel="stylesheet" type="text/css"><script src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/wxLogin.js.下载"></script><link rel="stylesheet" type="text/css" href="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/style(1).css"><link type="text/css" rel="stylesheet" href="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/style(2).css"><script src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/logger.js.下载"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><link rel="stylesheet" href="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/share_style0_16.css"></head>
+
+
+<body><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div><div id="MathJax_Message" style="display: none;"></div><iframe frameborder="0" style="display: none;" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/saved_resource.html"></iframe><div class="csdn-toolbar csdn-toolbar-skin-black ">        <div class="container row center-block ">          <div class="col-md-3 pull-left logo clearfix"><a href="http://www.csdn.net/?ref=toolbar" title="CSDN首页" target="_blank" class="icon"></a><a title="频道首页" href="http://blog.csdn.net/?ref=toolbar_logo" class="img blog-icon"></a></div>          <div class="pull-right login-wrap unlogin">            <ul class="btns">              <li class="loginlink"><a href="https://passport.csdn.net/account/login?ref=toolbar" target="_top">登录&nbsp;</a>|<a target="_top" href="http://passport.csdn.net/account/mobileregister?ref=toolbar&amp;action=mobileRegister">&nbsp;注册</a></li>              <li class="search">                <div class="icon on-search-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <form action="http://so.csdn.net/search" id="toolbar_search" method="get" target="_blank">                      <input type="hidden" value="toolbar" name="ref" accesskey="2">                      <div class="border">                        <input placeholder="搜索" type="text" value="" name="q" accesskey="2"><span class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li class="favor">                <div class="icon on-favor-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div style="display:none;" class="favor-success"><span class="msg">收藏成功</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <div style="display:none;" class="favor-failed"><span class="icon-danger-lg"></span><span class="msg">收藏失败，请重新收藏</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <form role="form" class="form-horizontal favor-form">                      <div class="form-group">                        <div class="clearfix">                          <label for="input-title" class="col-sm-2 control-label"><span class="red_txt">*</span>标题</label>                          <div class="col-sm-10">                            <input id="inputTitle" type="text" placeholder="" class="title form-control">                          </div>                        </div>                        <div class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div class="form-group" style="display:none;">                        <label for="input-url" class="col-sm-2 control-label">网址</label>                        <div class="col-sm-10">                          <input id="input-url" type="text" placeholder="" class="url form-control">                        </div>                      </div>                      <div class="form-group">                        <label for="input-tag" class="col-sm-2 tag control-label">标签</label>                        <div class="col-sm-10">                          <input id="input-tag" type="text" class="form-control tag">                        </div>                      </div>                      <div class="form-group">                        <label for="input-description" class="description col-sm-2 control-label">位置</label>                        <div class="col-sm-10">                          <div class="my_lib_box">                            个人主页&nbsp;-&nbsp;<a href="http://my.csdn.net/" target="_blank">我的知识</a>                          </div>                          <div class="checkbox">                            <div class="pull-left">                              <label>                                <input type="checkbox" name="share" class="save_lib_map" checked="checked">同时保存至：                              </label>                            </div>                            <div class="pull-left">                              <div class="dropdown">                                <button id="toolbar_sele_map" type="button">                                  选择知识图谱                                  <i class="fa fa-chevron-down"></i>                                </button>                                <div class="top_arr"></div>                                <div class="outside">                                  <ul class="dropdown-menu" id="toolbar_Design_knowledge"><li>选择知识图谱</li></ul>                                </div>                              </div>                            </div>                            <div class="pull-left new_txt">                              <a href="http://lib.csdn.net/my/create/structure" target="_blank">新建？</a>                            </div>                          </div>                        </div>                      </div>                      <div class="form-group">                        <div class="col-sm-offset-2 col-sm-10 ft">                          <div class="col-sm-4 pull-left" style="display:none">                            <div class="checkbox">                              <label>                                <input type="checkbox" name="share" checked="checked" class="share">公开                              </label>                            </div>                          </div>                          <div class="col-sm-8 pull-right favor-btns">                            <button type="button" class="cancel btn btn-default">取消</button>                            <button type="submit" class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li class="notify">                <div style="display:none" class="number"></div>                <div style="display:none" class="icon-hasnotes-sm"></div>                <div id="header_notice_num"></div>                <div class="icon on-notify-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div id="note1" class="csdn_note">                      <div class="box"></div>                    <iframe src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/saved_resource(1).html" frameborder="0" allowtransparency="true" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li class="ugc">                <div class="icon on-ugc-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <dl>                      <dt><a href="http://geek.csdn.net/news/expert?ref=toolbar" target="_blank" class="p-news clearfix" style="display:none;"><em class="icon"></em><span>分享资讯</span></a></dt>                      <dt style="border: none;"><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-doc clearfix"><em class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a href="http://bbs.csdn.net/topics/new?ref=toolbar" target="_blank" class="p-ask clearfix"><em class="icon"></em><span>提问题</span></a></dt>                      <dt><a href="http://write.blog.csdn.net/postedit?ref=toolbar" target="_blank" class="p-blog clearfix"><em class="icon"></em><span>写博客</span></a></dt>                      <dt><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-src clearfix"><em class="icon"></em><span>传资源</span></a></dt>                      <dt><a href="https://code.csdn.net/projects/new?ref=toolbar" target="_blank" class="c-obj clearfix"><em class="icon"></em><span>创建项目</span></a></dt>                      <dt><a href="https://code.csdn.net/snippets/new?ref=toolbar" target="_blank" class="c-code clearfix"><em class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li class="profile">                <div class="icon on-profile-icon"><img src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/100x100.jpg" class="curr-icon-img">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div class="bd">                      <dl class="clearfix">                        <dt class="pull-left img"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="avatar"><img src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/100x100.jpg"></a></dt>                        <dd class="info" style="border: none;"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="nickname"></a><a class="set-nick" href="https://passport.csdn.net/account/profile">设置昵称<span class="write-icon"></span></a><span class="dec"><a class="fill-dec" href="http://my.csdn.net/" target="_blank">编辑自我介绍，让更多人了解你<span class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div class="ft clearfix"><a target="_blank" href="http://my.csdn.net/my/account/changepwd?ref=toolbar" class="pull-left"><span class="icon-cog"></span>帐号设置</a><a href="https://passport.csdn.net/account/logout?ref=toolbar" target="_top" class="pull-left" style="margin-left:132px; width:18px; height:27px; white-space:nowrap; overflow:hidden;"><span class="icon-signout"></span><span class="out">退出</span></a></div>                  </div>                </div>              </li>              <li class="apps">                <div id="chasnew123" class="hasnew" style="display: none;"></div>                <div id="cappsarea123" class="icon on-apps-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a href="http://blog.csdn.net/?ref=toolbar" target="_blank">博客</a></dd>                      <dd> <a href="http://bbs.csdn.net/?ref=toolbar" target="_blank">论坛</a></dd>                      <dd> <a href="http://download.csdn.net/?ref=toolbar" target="_blank">下载</a></dd>                      <dd> <a href="http://lib.csdn.net/?ref=toolbar" target="_blank">知识库</a></dd>                      <dd><a href="http://ask.csdn.net/?ref=toolbar" target="_blank">技术问答</a></dd>                      <dd><a href="http://geek.csdn.net/?ref=toolbar" target="_blank">极客头条</a></dd>                      <dd style="display:none"> <a href="http://hero.csdn.net/?ref=toolbar" target="_blank">英雄会</a></dd>                    </dl>                  </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd style="display:none"> <a href="http://job.csdn.net/?ref=toolbar" target="_blank">JOB<img src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="http://edu.csdn.net/?ref=toolbar" target="_blank">学院<img src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="https://code.csdn.net/?ref=toolbar" target="_blank">CODE</a></dd>                      <dd> <a href="http://huiyi.csdn.net/?ref=toolbar" target="_blank">活动</a></dd>                      <dd> <a href="http://www.csto.com/?ref=toolbar" target="_blank">CSTO</a></dd>                      <dd> <a href="http://mall.csdn.net/?ref=toolbar" target="_blank">C币兑换<img src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                    </dl>                  </div>                  <div class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a href="http://cto.csdn.net/?ref=toolbar" target="_blank">CTO俱乐部</a></dd>                      <dd> <a href="http://student.csdn.net/?ref=toolbar" target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+     
+        <div class="tracking-ad" data-view="true" data-mod="ad_popu_72" data-mtp="62" data-order="40" data-con="ad_content_2072">
+                     <script id="popuLayer_js_q" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/popuLayer.js.下载" defer="defer" type="text/javascript"></script>
+                <div id="layerd" style="position: fixed; bottom: 0px; right: 0px; line-height: 0px; z-index: 1000; width: 300px; height: 278px;">
+    	                <div class="J_close layer_close" style="display:;background-color:#efefef;padding:0px;color:#333;font:12px/24px Helvetica,Tahoma,Arial,sans-serif;text-align:right;">关闭</div><!-- 广告占位容器 --><div id="cpro_u2895327"><iframe id="iframeu2895327_0" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/icim.html" width="300" height="250" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:300px;height:250px" allowtransparency="true"></iframe></div></div>
+                <script>  document.getElementById("popuLayer_js_q").onload = function () { var styObjd = styObj = { width: "300px", "height": parseInt(250) + 28 }; window.CSDN.Layer.PopuLayer("#layerd", { storageName: "layerd", styleObj: styObjd, total: 50, expoire: 1000 * 60 }); }</script><!-- 投放代码 --><script type="text/javascript">                    /*服务器频道首页置顶Banner960*90，创建于2014-7-3*/    (window.cproArray = window.cproArray || []).push({ id: "u2895327" });  </script>  <script src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/c.js.下载" type="text/javascript"></script>
+     
+        </div>
+
+    <!-- 广告位开始 -->
+        
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/html.js.下载" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/lixuce1234">lixuce1234的博客</a></h2>
+            <h3></h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+     
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/lixuce1234?viewmode=contents"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_mulu&#39;])">
+                    <img src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/lixuce1234?viewmode=list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_zhaiyao&#39;])">
+                    <img src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/lixuce1234/rss/list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_RSS&#39;])">
+                    <img src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "lixuce1234";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/lixuce1234";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod="popu_3"> 
+
+
+<a href="http://blog.csdn.net/turingbooks/article/details/76034232" target="_blank">
+<font color="red"><strong>评论送书 | 7月书讯：众多畅销书升级！ </strong></font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/76215994" target="_blank">
+<font color="blue"><strong>CSDN日报20170727——《想提高团队技术，来试试这个套路！》 </strong></font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="http://blog.csdn.net/broadview2006/article/details/76145481" target="_blank">
+<font color="red"><strong>评论送书 | 机器学习、Java虚拟机、微信开发</strong></font></a>
+
+</div>                        </div>
+
+                        
+
+
+
+  
+
+
+
+
+
+
+<script type="text/javascript" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/category.js.下载"></script>
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+      var isBole = false; 
+      var fasrc="http://my.csdn.net/my/favorite/miniadd?t=%23+WebView%e7%ae%80%e4%bb%8b+%23&u=http://blog.csdn.net/lixuce1234/article/details/54667908"
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+    <h1>
+        <span class="link_title"><a href="http://blog.csdn.net/lixuce1234/article/details/54667908">
+        # WebView简介 #        
+           
+        </a>
+        </span>
+
+         
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_l">
+            <span class="link_categories">
+            标签：
+              <a href="http://www.csdn.net/tag/android" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">android</a><a href="http://www.csdn.net/tag/webview" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">webview</a>
+            </span>
+        </div>
+        <div class="article_r">
+            <span class="link_postdate">2017-01-22 13:04</span>
+            <span class="link_view" title="阅读次数">294人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="http://blog.csdn.net/lixuce1234/article/details/54667908#comments" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_pinglun&#39;])">评论</a>(1)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;%23+WebView%e7%ae%80%e4%bb%8b+%23&#39;,&#39;54667908&#39;);return false;" title="收藏" target="_blank">收藏</a></span>
+             <span class="link_report"> <a href="http://blog.csdn.net/lixuce1234/article/details/54667908#report" onclick="javascript:report(54667908,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label onclick="GetCategoryArticles(&#39;6539319&#39;,&#39;lixuce1234&#39;,&#39;top&#39;,&#39;54667908&#39;);">
+                        <span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_fenlei&#39;]);">安卓开发<em>（88）</em></span>
+                      <img class="arrow-down" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a href="http://blog.csdn.net/lixuce1234/article/category/6539319" target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_6539319">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+        <div class="bog_copyright">         
+            <p class="copyright_p">版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+        </div>
+
+  
+
+  
+  
+     
+
+
+<div style="clear:both"></div><div style="border:solid 1px #ccc; background:#eee; float:left; min-width:200px;padding:4px 10px;"><p style="text-align:right;margin:0;"><span style="float:left;">目录<a href="http://blog.csdn.net/lixuce1234/article/details/54667908#" title="系统根据文章中H1到H6标签自动生成文章目录">(?)</a></span><a href="http://blog.csdn.net/lixuce1234/article/details/54667908#" onclick="javascript:return openct(this);" title="展开">[+]</a></p><ol style="display:none;margin-left:14px;padding-left:14px;line-height:160%;"><li><a href="http://blog.csdn.net/lixuce1234/article/details/54667908#t0">WebView基本使用</a></li><ol><li><a href="http://blog.csdn.net/lixuce1234/article/details/54667908#t1">WebView常见方法介绍</a></li></ol><li><a href="http://blog.csdn.net/lixuce1234/article/details/54667908#t2">WebSettings</a></li><ol><li><a href="http://blog.csdn.net/lixuce1234/article/details/54667908#t3">获取WebSettings对象</a></li><li><a href="http://blog.csdn.net/lixuce1234/article/details/54667908#t4">WebSettings常用方法</a></li></ol><li><a href="http://blog.csdn.net/lixuce1234/article/details/54667908#t5">WebViewClient</a></li><li><a href="http://blog.csdn.net/lixuce1234/article/details/54667908#t6">WebChromeClient</a></li><li><a href="http://blog.csdn.net/lixuce1234/article/details/54667908#t7">Js与WebView交互</a></li><ol><li><a href="http://blog.csdn.net/lixuce1234/article/details/54667908#t8">JavaScript通过WebView调用Java代码</a></li><li><a href="http://blog.csdn.net/lixuce1234/article/details/54667908#t9">演示一 JavaScript 调用 Android Toast 方法</a></li><li><a href="http://blog.csdn.net/lixuce1234/article/details/54667908#t10">演示二 JavaScript调用有返回值的Java方法</a></li></ol><li><a href="http://blog.csdn.net/lixuce1234/article/details/54667908#t11">WebView加载优化</a></li><li><a href="http://blog.csdn.net/lixuce1234/article/details/54667908#t12">实战</a></li><ol><li><a href="http://blog.csdn.net/lixuce1234/article/details/54667908#t13">xml代码</a></li><li><a href="http://blog.csdn.net/lixuce1234/article/details/54667908#t14">Java代码</a></li></ol><li><a href="http://blog.csdn.net/lixuce1234/article/details/54667908#t15">感谢</a></li></ol></div><div style="clear:both"></div><div id="article_content" class="article_content tracking-ad" data-mod="popu_307" data-dsm="post">
+        <div class="markdown_views"><p>为了方便开发者实现在app内展示网页并与网页交互的需求，<a href="http://lib.csdn.net/base/android" class="replace_word" title="Android知识库" target="_blank" style="color:#df3434; font-weight:bold;">Android</a> SDK提供了WebView组件。 <br>
+它继承自AbsoluteLayout，展示网页的同时，也可以在其中放入其他的子View。 <br>
+现如今，Hybrid应用似乎占据的APP的主流类型，那么关于WebView的使用就变得越发的重要。 <br>
+从<a href="http://lib.csdn.net/base/android" class="replace_word" title="Android知识库" target="_blank" style="color:#df3434; font-weight:bold;">android</a> 4.4（KitKat）开始，原本基于WebKit的WebView开始基于Chromium内核，这一改动大大提升了WebView组件的性能以及对<a href="http://lib.csdn.net/base/html5" class="replace_word" title="HTML5知识库" target="_blank" style="color:#df3434; font-weight:bold;">HTML5</a>,<a href="http://lib.csdn.net/base/css3" class="replace_word" title="CSS3知识库" target="_blank" style="color:#df3434; font-weight:bold;">CSS3</a>,<a href="http://lib.csdn.net/base/javascript" class="replace_word" title="JavaScript知识库" target="_blank" style="color:#df3434; font-weight:bold;">JavaScript</a>的支持。不过它的API却没有很大的改动，在兼容低版本的同时只引进了少部分新的API，并不需要你做很大的改动。 <br>
+在WebView中，有几个地方是我们可以使用来定制我们的WebView各种行为的，分别是：WebSettings、JavaScriptInterface、WebViewClient以及WebChromeClient。</p>
+
+
+
+<h1 id="webview基本使用"><a name="t0" target="_blank"></a>WebView基本使用</h1>
+
+<p>首先新建一个工程，在layout文件里放入一个WebView控件（当然也可以通过<a href="http://lib.csdn.net/base/java" class="replace_word" title="Java 知识库" target="_blank" style="color:#df3434; font-weight:bold;">Java</a>代码动态放入，这里不演示了）</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"&gt;
+
+    &lt;WebView
+        android:id="@+id/web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/&gt;
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>然后在Activity的onCreate方法里写入如下代码：</p>
+
+<pre><code>String url = "https://www.baidu.com";
+WebView webView = (WebView) findViewById(R.id.web_view);
+webView.loadUrl(url);
+</code></pre>
+
+<p>接着在AndroidManifest声明访问网络的权限：</p>
+
+<pre><code>&lt;uses-permission android:name="android.permission.INTERNET"/&gt;
+</code></pre>
+
+<p>就，完事了~</p>
+
+<p>这时运行app，它已经可以访问指定地址的网页了。</p>
+
+<p>上面提到了WebView继承自AbsoluteLayout，可以在其中放入一些子View，那也顺手来一下。</p>
+
+<p>Layout文件改为：</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"&gt;
+
+  &lt;WebView
+      android:id="@+id/web_view"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"&gt;
+
+      &lt;Button
+          android:id="@+id/button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_x="170dp"
+          android:layout_y="400dp"
+          android:background="@color/colorAccent"
+          android:text="@string/app_name" /&gt;
+  &lt;/WebView&gt;
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Activity里加上：</p>
+
+<pre><code>mButton = (Button) findViewById(R.id.button);
+mButton.setOnClickListener(this);
+
+
+    @Override public void onClick(View v) {
+    switch (v.getId()) {
+      case R.id.button:
+        Toast.makeText(getApplicationContext(), "系好安全带!", Toast.LENGTH_SHORT).show();
+        break;
+    }
+  }
+</code></pre>
+
+<p>这时，运行app，里面就会多出一个Button~ 但如果你真的运行的话，你就会发现，app会自动跳到浏览器并打开指定的网页，而并非在app内展示网页，那这就与我们的初衷背道而驰了，那么要如何实现网页在App内打开呢?这就引出了下面的章节会提到的东西：WebViewClient。我先将代码贴出，具体实现原理留到下节说明。</p>
+
+<p>最终XML布局就如上面那样，Java代码（最终）如下：</p>
+
+<pre><code>public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        String url = "https://www.google.com";
+        WebView webView = (WebView) findViewById(R.id.web_view);
+        webView.loadUrl(url);
+
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                view.loadUrl(request.toString());
+                return true;
+            }
+        });
+
+        Button button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "系好安全带!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}
+</code></pre>
+
+
+
+<h2 id="webview常见方法介绍"><a name="t1" target="_blank"></a>WebView常见方法介绍</h2>
+
+<p>接下来再介绍一些WebView的常用方法，具体演示会在后面章节的代码里统一展示。</p>
+
+<p>String getUrl()：获取当前页面的URL。</p>
+
+<p>reload()：重新reload当前的URL，即刷新。</p>
+
+<p>boolean canGoBack()：用来确认WebView里是否还有可回退的历史记录。通常我们会在WebView里重写返回键的点击事件，通过该方法判断WebView里是否还有历史记录，若有则返回上一页。</p>
+
+<p>boolean canGoForward()：用来确认WebView是否还有可向前的历史记录。</p>
+
+<p>boolean canGoBackOrForward(int steps)：以当前的页面为起始点，用来确认WebView的历史记录是否足以后退或前进给定的步数，正数为前进，负数为后退。</p>
+
+<p>goBack()：在WebView历史记录后退到上一项。</p>
+
+<p>goForward()：在WebView历史记录里前进到下一项。</p>
+
+<p>goBackOrForward(int steps)：以当前页面为起始点，前进或后退历史记录中指定的步数，正数为前进，负数为后退。</p>
+
+<p>clearCache(boolean includeDiskFiles)：清空网页访问留下的缓存数据。需要注意的时，由于缓存是全局的，所以只要是WebView用到的缓存都会被清空，即便其他地方也会使用到。该方法接受一个参数，从命名即可看出作用。若设为false，则只清空内存里的资源缓存，而不清空磁盘里的。</p>
+
+<p>clearHistory()：清除当前webview访问的历史记录。</p>
+
+<p>clearFormData()：清除自动完成填充的表单数据。需要注意的是，该方法仅仅清除当前表单域自动完成填充的表单数据，并不会清除WebView存储到本地的数据。</p>
+
+<p>onPause()：当页面被失去焦点被切换到后台不可见状态，需要执行onPause操作，该操作会通知内核安全地暂停所有动作，比如动画的执行或定位的获取等。需要注意的是该方法并不会暂停<a href="http://lib.csdn.net/base/javascript" class="replace_word" title="JavaScript知识库" target="_blank" style="color:#df3434; font-weight:bold;">javascript</a>的执行，若要暂停JavaScript的执行请使用接下来的这个方法。</p>
+
+<p>onResume()：在先前调用onPause()后，我们可以调用该方法来恢复WebView的运行。</p>
+
+<p>pauseTimers()：该方法面向全局整个应用程序的webview，它会暂停所有webview的layout，parsing，JavaScript Timer。当程序进入后台时，该方法的调用可以降低CPU功耗。</p>
+
+<p>resumeTimers()：恢复pauseTimers时的所有操作。</p>
+
+<p>destroy()：销毁WebView。需要注意的是：这个方法的调用应在WebView从父容器中被remove掉之后。我们可以手动地调用</p>
+
+<p>用例如下：</p>
+
+<pre><code>rootLayout.removeView(webView);
+webView.destroy();
+</code></pre>
+
+<p>getScrollY()：该方法返回的当前可见区域的顶端距整个页面顶端的距离，也就是当前内容滚动的距离。</p>
+
+<p>getHeight()：方法都返回当前WebView这个容器的高度。其实以上两个方法都属于View。</p>
+
+<p>getContentHeight()：该方法返回整个HTML页面的高度，但该高度值并不等同于当前整个页面的高度，因为WebView有缩放功能， 所以当前整个页面的高度实际上应该是原始HTML的高度再乘上缩放比例。因此，准确的判断方法应该是：</p>
+
+<pre><code>if (webView.getContentHeight() * webView.getScale() == (webView.getHeight() + webView.getScrollY())) {
+    //已经处于底端
+}
+
+if(webView.getScrollY() == 0){
+    //处于顶端
+}
+</code></pre>
+
+<p>pageUp(boolean top)：将WebView展示的页面滑动至顶部。</p>
+
+<p>pageDown(boolean bottom)：将WebView展示的页面滑动至底部。</p>
+
+
+
+<h1 id="websettings"><a name="t2" target="_blank"></a>WebSettings</h1>
+
+<p>WebSettings是用来管理WebView配置的类。当WebView第一次创建时，内部会包含一个默认配置的集合。若我们想更改这些配置，便可以通过WebSettings里的方法来进行设置。</p>
+
+<p>WebSettings对象可以通过WebView.getSettings()获得，它的生命周期是与它的WebView本身息息相关的，如果WebView被销毁了，那么任何由WebSettings调用的方法也同样不能使用。</p>
+
+
+
+<h2 id="获取websettings对象"><a name="t3" target="_blank"></a>获取WebSettings对象</h2>
+
+<pre><code>WebSettings webSettings = webView.getSettings();
+</code></pre>
+
+
+
+<h2 id="websettings常用方法"><a name="t4" target="_blank"></a>WebSettings常用方法</h2>
+
+<p>（几乎所有的set方法都有相应的get方法，这里就只介绍set了。另，所有未写方法返回值类型的皆为空类型） <br>
+setJavaScriptEnabled(boolean flag)：设置WebView是否可以运行JavaScript。</p>
+
+<p>setJavaScriptCanOpenWindowsAutomatically(boolean flag)：设置WebView是否可以由JavaScript自动打开窗口，默认为false，通常与JavaScript的window.open()配合使用。</p>
+
+<p>setAllowFileAccess(boolean allow)：启用或禁用WebView访问文件数据。</p>
+
+<p>setBlockNetworkImage(boolean flag)：禁止或允许WebView从网络上加载图片。需要注意的是，如果设置是从禁止到允许的转变的话，图片数据并不会在设置改变后立刻去获取，而是在WebView调用reload()的时候才会生效。 <br>
+这个时候，需要确保这个app拥有访问Internet的权限，否则会抛出安全异常。 <br>
+通常没有禁止图片加载的需求的时候，完全不用管这个方法，因为当我们的app拥有访问Internet的权限时，这个flag的默认值就是false。</p>
+
+<p>setSupportZoom(boolean support)：设置是否支持缩放。</p>
+
+<p>setBuiltInZoomControls(boolean enabled)：显示或不显示缩放按钮（wap网页不支持）。</p>
+
+<p>setSupportMultipleWindows(boolean support)：设置WebView是否支持多窗口。</p>
+
+<p>setLayoutAlgorithm(WebSettings.LayoutAlgorithm l)：指定WebView的页面布局显示形式，调用该方法会引起页面重绘。默认值为LayoutAlgorithm#NARROW_COLUMNS。</p>
+
+<p>setNeedInitialFocus(boolean flag)：通知WebView是否需要设置一个节点获取焦点当WebView#requestFocus(int,android.graphics.Rect)被调用时，默认为true。</p>
+
+<p>setAppCacheEnabled(boolean flag)：启用或禁用应用缓存。</p>
+
+<p>setAppCachePath(String appCachePath)：设置应用缓存路径，这个路径必须是可以让app写入文件的。该方法应该只被调用一次，重复调用会被无视~</p>
+
+<p>setCacheMode(int mode)：用来设置WebView的缓存模式。当我们加载页面或从上一个页面返回的时候，会按照设置的缓存模式去检查并使用（或不使用）缓存。</p>
+
+<p>缓存模式有四种：</p>
+
+<ol>
+<li><p>LOAD_DEFAULT：默认的缓存使用模式。在进行页面前进或后退的操作时，如果缓存可用并未过期就优先加载缓存，否则从网络上加载数据。这样可以减少页面的网络请求次数。</p></li>
+<li><p>LOAD_CACHE_ELSE_NETWORK：只要缓存可用就加载缓存，哪怕它们已经过期失效。如果缓存不可用就从网络上加载数据。</p></li>
+<li><p>LOAD_NO_CACHE：不加载缓存，只从网络加载数据。</p></li>
+<li><p>LOAD_CACHE_ONLY：不从网络加载数据，只从缓存加载数据。</p></li>
+</ol>
+
+<p>通常我们可以根据网络情况将这几种模式结合使用，比如有网的时候使用LOAD_DEFAULT，离线时使用LOAD_CACHE_ONLY、LOAD_CACHE_ELSE_NETWORK，让用户不至于在离线时啥都看不到。</p>
+
+<p>setDatabaseEnabled(boolean flag)：启用或禁用<a href="http://lib.csdn.net/base/mysql" class="replace_word" title="MySQL知识库" target="_blank" style="color:#df3434; font-weight:bold;">数据库</a>缓存。</p>
+
+<p>setDomStorageEnabled(boolean flag)：启用或禁用DOM缓存。</p>
+
+<p>setUserAgentString(String ua)：设置WebView的UserAgent值。</p>
+
+<p>setDefaultEncodingName(String encoding)：设置编码格式，通常都设为“UTF-8”。</p>
+
+<p>setStandardFontFamily(String font)：设置标准的字体族，默认“sans-serif”。</p>
+
+<p>setCursiveFontFamily：设置草书字体族，默认“cursive”。</p>
+
+<p>setFantasyFontFamily：设置CursiveFont字体族，默认“cursive”。</p>
+
+<p>setFixedFontFamily：设置混合字体族，默认“monospace”。</p>
+
+<p>setSansSerifFontFamily：设置梵文字体族，默认“sans-serif”。</p>
+
+<p>setSerifFontFamily：设置衬线字体族，默认“sans-serif”</p>
+
+<p>setDefaultFixedFontSize(int size)：设置默认填充字体大小，默认16，取值区间为[1-72]，超过范围，使用其上限值。</p>
+
+<p>setDefaultFontSize(int size)：设置默认字体大小，默认16，取值区间[1-72]，超过范围，使用其上限值。</p>
+
+<p>setMinimumFontSize：设置最小字体，默认8. 取值区间[1-72]，超过范围，使用其上限值。</p>
+
+<p>setMinimumLogicalFontSize：设置最小逻辑字体，默认8. 取值区间[1-72]，超过范围，使用其上限值。</p>
+
+<p>以上就是一些WebSettings的常用方法，具体的使用以及一些缓存的问题会在接下来的代码以及文章中有更加直观的说明。</p>
+
+
+
+<h1 id="webviewclient"><a name="t5" target="_blank"></a>WebViewClient</h1>
+
+<p>从名字上不难理解，这个类就像WebView的委托人一样，是帮助WebView处理各种通知和请求事件的，我们可以称他为WebView的“内政大臣”。</p>
+
+<ul>
+<li><p>onLoadResource(WebView view, String url)：该方法在加载页面资源时会回调，每一个资源（比如图片）的加载都会调用一次。</p></li>
+<li><p>onPageStarted(WebView view, String url, Bitmap favicon)：该方法在WebView开始加载页面且仅在Main frame loading（即整页加载）时回调，一次Main frame的加载只会回调该方法一次。我们可以在这个方法里设定开启一个加载的动画，告诉用户程序在等待网络的响应。</p></li>
+<li><p>onPageFinished(WebView view, String url)：该方法只在WebView完成一个页面加载时调用一次（同样也只在Main frame loading时调用），我们可以可以在此时关闭加载动画，进行其他操作。</p></li>
+<li><p>onReceivedError(WebView view, WebResourceRequest request, WebResourceError error)：该方法在web页面加载错误时回调，这些错误通常都是由无法与服务器正常连接引起的，最常见的就是网络问题。 这个方法有两个地方需要注意：</p>
+
+<ol><li><p>这个方法只在与服务器无法正常连接时调用，类似于服务器返回错误码的那种错误（即HTTP ERROR），该方法是不会回调的，因为你已经和服务器正常连接上了（全怪官方文档(︶^︶)）；</p></li>
+<li><p>这个方法是新版本的onReceivedError()方法，从API23开始引进，与旧方法onReceivedError(WebView view,int errorCode,String description,String failingUrl)不同的是，新方法在页面局部加载发生错误时也会被调用（比如页面里两个子Tab或者一张图片）。这就意味着该方法的调用频率可能会更加频繁，所以我们应该在该方法里执行尽量少的操作。</p></li></ol></li>
+<li><p>onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse)：上一个方法提到onReceivedError并不会在服务器返回错误码时被回调，那么当我们需要捕捉HTTP ERROR并进行相应操作时应该怎么办呢？API23便引入了该方法。当服务器返回一个HTTP ERROR并且它的status code&gt;=400时，该方法便会回调。这个方法的作用域并不局限于Main Frame，任何资源的加载引发HTTP ERROR都会引起该方法的回调，所以我们也应该在该方法里执行尽量少的操作，只进行非常必要的错误处理等。</p></li>
+<li><p>onReceivedSslError(WebView view, SslErrorHandler handler, SslError error)：当WebView加载某个资源引发SSL错误时会回调该方法，这时WebView要么执行handler.cancel()取消加载，要么执行handler.proceed()方法继续加载（默认为cancel）。需要注意的是，这个决定可能会被保留并在将来再次遇到SSL错误时执行同样的操作。</p></li>
+<li><p>WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request)：当WebView需要请求某个数据时，这个方法可以拦截该请求来告知app并且允许app本身返回一个数据来替代我们原本要加载的数据。</p></li>
+</ul>
+
+<p>比如你对web的某个<a href="http://lib.csdn.net/base/javascript" class="replace_word" title="JavaScript知识库" target="_blank" style="color:#df3434; font-weight:bold;">js</a>做了本地缓存，希望在加载该js时不再去请求服务器而是可以直接读取本地缓存的js，这个方法就可以帮助你完成这个需求。你可以写一些逻辑检测这个request，并返回相应的数据，你返回的数据就会被WebView使用，如果你返回null，WebView会继续向服务器请求。</p>
+
+<ul>
+<li><p>boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request)：哈~ 终于到了这个方法，在最开始的基础演示时我们用到了这个方法。从实践中我们知道，当我们没有给WebView提供WebViewClient时，WebView如果要加载一个url会向ActivityManager寻求一个适合的处理者来加载该url（比如系统自带的浏览器），这通常是我们不想看到的。于是我们需要给WebView提供一个WebViewClient，并重写该方法返回true来告知WebView url的加载就在app中进行。这时便可以实现在app内访问网页。</p></li>
+<li><p>onScaleChanged(WebView view, float oldScale, float newScale)：当WebView得页面Scale值发生改变时回调。</p></li>
+<li><p>boolean shouldOverrideKeyEvent(WebView view, KeyEvent event)：默认值为false，重写此方法并return true可以让我们在WebView内处理按键事件。</p></li>
+</ul>
+
+
+
+<h1 id="webchromeclient"><a name="t6" target="_blank"></a>WebChromeClient</h1>
+
+<p>如果说WebViewClient是帮助WebView处理各种通知、请求事件的“内政大臣”的话，那么WebChromeClient就是辅助WebView处理Javascript的对话框，网站图标，网站title，加载进度等偏外部事件的“外交大臣”。</p>
+
+<ul>
+<li><p>onProgressChanged(WebView view, int newProgress)：当页面加载的进度发生改变时回调，用来告知主程序当前页面的加载进度。</p></li>
+<li><p>onReceivedIcon(WebView view, Bitmap icon)：用来接收web页面的icon，我们可以在这里将该页面的icon设置到Toolbar。</p></li>
+<li><p>onReceivedTitle(WebView view, String title)：用来接收web页面的title，我们可以在这里将页面的title设置到Toolbar。</p></li>
+</ul>
+
+<p>以下两个方法是为了支持web页面进入全屏模式而存在的（比如播放视频），如果不实现这两个方法，该web上的内容便不能进入全屏模式。</p>
+
+<ul>
+<li><p>onShowCustomView(View view, WebChromeClient.CustomViewCallback callback)：该方法在当前页面进入全屏模式时回调，主程序必须提供一个包含当前web内容（视频 or Something）的自定义的View。</p></li>
+<li><p>onHideCustomView()：该方法在当前页面退出全屏模式时回调，主程序应在这时隐藏之前show出来的View。</p></li>
+<li><p>Bitmap getDefaultVideoPoster()：当我们的Web页面包含视频时，我们可以在HTML里为它设置一个预览图，WebView会在绘制页面时根据它的宽高为它布局。而当我们处于弱网状态下时，我们没有比较快的获取该图片，那WebView绘制页面时的gitWidth()方法就会报出空指针异常~ 于是app就crash了。。</p></li>
+</ul>
+
+<p><b>这时我们就需要重写该方法，在我们尚未获取web页面上的video预览图时，给予它一个本地的图片，避免空指针的发生。</b></p>
+
+<ul>
+<li><p>View getVideoLoadingProgressView()：重写该方法可以在视频loading时给予一个自定义的View，可以是加载圆环 or something。</p></li>
+<li><p>boolean onJsAlert(WebView view, String url, String message, JsResult result)：处理Javascript中的Alert对话框。</p></li>
+<li><p>boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result)：处理Javascript中的Prompt对话框。</p></li>
+<li><p>boolean onJsConfirm(WebView view, String url, String message, JsResult result)：处理Javascript中的Confirm对话框</p></li>
+<li><p>boolean onShowFileChooser(WebView webView, ValueCallback filePathCallback, WebChromeClient.FileChooserParams fileChooserParams)：该方法在用户进行了web上某个需要上传文件的操作时回调。我们应该在这里打开一个文件选择器，如果要取消这个请求我们可以调用filePathCallback.onReceiveValue(null)并返回true。</p></li>
+<li><p>onPermissionRequest(PermissionRequest request)：该方法在web页面请求某个尚未被允许或拒绝的权限时回调，主程序在此时调用grant(String [])或deny()方法。如果该方法没有被重写，则默认拒绝web页面请求的权限。</p></li>
+<li><p>onPermissionRequestCanceled(PermissionRequest request)：该方法在web权限申请权限被取消时回调，这时应该隐藏任何与之相关的UI界面。</p></li>
+</ul>
+
+
+
+<h1 id="js与webview交互"><a name="t7" target="_blank"></a>Js与WebView交互</h1>
+
+<p>既然嗨鸟应用大行其道，那么毫无疑问Android与JavaScript的交互我们也必须了解清楚，下面来介绍一下JavaScript与Android是如何互相调用的。</p>
+
+<p>利用WebView调用网页上的JavaScript代码</p>
+
+<p>在WebView中调用Js的基本格式为webView.loadUrl(“javascript:methodName(parameterValues)”);</p>
+
+<p>现有以下这段JavaScript代码</p>
+
+<pre><code>  function readyToGo() {
+      alert("Hello")
+  }
+
+  function alertMessage(message) {
+      alert(message)
+  }
+
+  function getYourCar(){
+      return "Car";
+  }
+</code></pre>
+
+<ol>
+<li><p>WebView调用JavaScript无参无返回值函数</p>
+
+<pre><code>String call = "javascript:readyToGo()";
+webView.loadUrl(call);
+</code></pre></li>
+<li><p>WebView调用JavScript有参无返回值函数</p>
+
+<pre><code>String call = "javascript:alertMessage(\"" + "content" + "\")";
+webView.loadUrl(call);
+</code></pre></li>
+<li><p>WebView调用JavaScript有参数有返回值的函数</p>
+
+<pre><code>  @TargetApi(Build.VERSION_CODES.KITKAT) private void evaluateJavaScript(WebView webView) {
+    webView.evaluateJavascript("getYourCar()", new ValueCallback&lt;String&gt;() {
+      @Override public void onReceiveValue(String s) {
+        Log.d("findCar", s);
+      }
+    });
+  }
+</code></pre></li>
+</ol>
+
+
+
+<h2 id="javascript通过webview调用java代码"><a name="t8" target="_blank"></a>JavaScript通过WebView调用Java代码</h2>
+
+<p>从API19开始，Android提供了 @JavascriptInterface 对象注解的方式来建立起 Javascript 对象和 Android 原生对象的绑定，提供给JavScript调用的函数必须带有 @JavascriptInterface。</p>
+
+
+
+<h2 id="演示一-javascript-调用-android-toast-方法"><a name="t9" target="_blank"></a>演示一 JavaScript 调用 Android Toast 方法</h2>
+
+<ol>
+<li><p>编写Java原生方法并用使用 @JavascriptInterface 注解</p>
+
+<pre><code>@JavascriptInterface
+public void show(String s){
+    Toast.makeText(getApplication(), s, Toast.LENGTH_SHORT).show();
+}
+</code></pre></li>
+<li><p>注册JavaScriptInterface</p>
+
+<pre><code>webView.addJavascriptInterface(this, "android");
+</code></pre>
+
+<p>addJavascriptInterface 的作用是把 this 所代表的类映射为 JavaScript 中的 android 对象。</p></li>
+<li><p>编写JavaScript代码</p>
+
+<pre><code>function toastClick(){
+    window.android.show("JavaScript called~!");
+}
+</code></pre></li>
+</ol>
+
+
+
+<h2 id="演示二-javascript调用有返回值的java方法"><a name="t10" target="_blank"></a>演示二 JavaScript调用有返回值的Java方法</h2>
+
+<ol>
+<li><p>定义一个带返回值的Java方法，并使用 @JavaInterface：</p>
+
+<pre><code>  @JavaInterface
+  public String getMessage(){
+    return "Hello,boy~";
+  }
+</code></pre></li>
+<li><p>添加JavaScript的映射</p>
+
+<pre><code>webView.addJavaScriptInterface(this,"Android");
+</code></pre></li>
+<li><p>通过JavaScript调用Java方法</p>
+
+<pre><code>function showHello(){
+    var str=window.Android.getMessage();
+    console.log(str);
+}
+</code></pre></li>
+</ol>
+
+<p>以上就是Js与WebView交互的一些介绍，希望能对你有帮助。</p>
+
+
+
+<h1 id="webview加载优化"><a name="t11" target="_blank"></a>WebView加载优化</h1>
+
+<p>当WebView的使用频率变得频繁的时候，对于其各方面的优化就变得逐渐重要了起来。可以知道的是，我们每加载一个 H5页面，都会有很多的请求。除了HTML主URL自身的请求外，HTML外部引用的 JS、CSS、字体文件、图片都是一个个独立的HTTP 请求，虽然请求是并发的，但当网页整体数量达到一定程度的时候，再加上浏览器解析、渲染的时间，Web整体的加载时间变得很长。同时请求文件越多，消耗的流量也会越多。那么对于加载的优化就变得非常重要，这方面的经验我也没有什么别的，大概三个方面：</p>
+
+<p><b>一个，就是资源本地化的问题</b></p>
+
+<p>首先可以明确的是，以目前的网络条件，通过网络去服务器获取资源的速度是远远比不上从本地读取的。<strong>谈论各种优化策略其实恰恰忽略了“需要加载”才是阻挡速度提升的最大绊脚石</strong>。所以我们的思路一，就是将一些较重的资源比如js、css、图片甚至HTML本身进行本地化处理，在每次加载到这些资源的时候，从本地读取进行加载，可以简单记忆为“存·取·更”。</p>
+
+<p>具体实现思路为：</p>
+
+<ol>
+<li><p>“<strong>存</strong>”——将上述重量级资源打包进apk文件，每次加载相应文件时时从本地取即可。也可不打包，在第一次加载时以及接下来的若干间隔时间里动态下载存储，将所有的资源文件都存在Android的asset目录下；</p></li>
+<li><p>“<strong>取</strong>”——重写WebViewClient的WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request)方法，通过一定的判别方法（例如正则表达式）拦截相应的请求，从本地读取相应资源并返回；</p></li>
+<li><p>“<strong>更</strong>”——建立起Cache Control机制，定期或使用API通知的形式控制本地资源的更新，保证本地资源是最新和可用的。</p></li>
+</ol>
+
+<p><strong>第二个，就是缓存的问题</strong></p>
+
+<p>倘若你不采用或不完全采用第一条资源本地化的思路，那么你的WebView缓存是必须要开启的（虽然这一思路和第一条有重合的地方）。</p>
+
+<pre><code>WebSettings settings = webView.getSettings();
+settings.setAppCacheEnabled(true);
+settings.setDatabaseEnabled(true);
+settings.setDomStorageEnabled(true);//开启DOM缓存
+settings.setCacheMode(WebSettings.LOAD_DEFAULT);
+</code></pre>
+
+<p>在网络正常时，采用默认缓存策略，在缓存可获取并且没有过期的情况下加载缓存，否则通过网络获取资源以减少页面的网络请求次数。</p>
+
+<p>这里值得提起的是，我们经常在app里用WebView展示页面时，并不想让用户觉得他是在访问一个网页。因为倘若我们的app里网页非常多，而我们给用户的感觉又都像在访问网页的话，我们的app便失去了意义。（我的意思是为什么用户不直接使用浏览器呢？）</p>
+
+<p>所以这时，离线缓存的问题就值得我们注意。我们需要让用户在没有网的时候，依然能够操作我们的app，而不是面对一个和浏览器里的网络错误一样的页面，哪怕他能进行的操作十分有限。</p>
+
+<p>这里我的思路是，在开启缓存的前提下，WebView在加载页面时检测网络变化，倘若在加载页面时用户的网络突然断掉，我们应当更改WebView的缓存策略。</p>
+
+<pre><code>ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+if(networkInfo.isAvailable()) {
+    settings.setCacheMode(WebSettings.LOAD_DEFAULT);//网络正常时使用默认缓存策略
+} else {
+    settings.setCacheMode(WebSettings.LOAD_CACHE_ONLY);//网络不可用时只使用缓存
+}
+</code></pre>
+
+<p>既然有缓存，就要有缓存控制，与一相似的是我们也要建立缓存控制机制，定期或接受服务器通知来进行缓存的清空或更新。</p>
+
+<p><strong>第三个，就是延迟加载和执行js</strong></p>
+
+<p>在WebView中，onPageFinished()的回调意味着页面加载的完成。但该方法会在JavScript脚本执行完成后才会触发，倘若我们要加载的页面使用了<a href="http://lib.csdn.net/base/jquery" class="replace_word" title="jQuery知识库" target="_blank" style="color:#df3434; font-weight:bold;">jQuery</a>，会在处理完DOM对象，执行完$(document).ready(function() {})后才会渲染并显示页面。这是不可接受的，所以我们需要对Js进行延迟加载，当然这部分是Web前端的工作。</p>
+
+<p><strong>如果说还有什么</strong></p>
+
+<p>那就是 JsBridge 一律不得滥用，这个对页面加载的完成速度是有很大影响的，倘若一个页面很多操作都通过 JSbridge 来控制，再怎么优化也无济于事（因为毕竟有那么多操作要实际执行）。同时要注意的是，不管你是否对资源进行缓存，都请将资源在服务器端进行压缩。因为无论是资源的获取和更新，都是要从服务器获取的，所以对于资源文件的压缩其实是最直接也最应该做的事情之一，但是一般服务器端都会做好，所以主要就是上面这三件事。</p>
+
+
+
+<h1 id="实战"><a name="t12" target="_blank"></a>实战</h1>
+
+<p>介绍了这么多，希望能对你有点帮助。接下来时纯实战时间，我会将上面所介绍的很多知识点在接下来的代码里实际应用一遍，希望能够带给你更加直观的使用感受。</p>
+
+
+
+<h2 id="xml代码"><a name="t13" target="_blank"></a>xml代码</h2>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    &gt;
+  &lt;android.support.design.widget.AppBarLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      &gt;
+    &lt;android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:theme="@style/ThemeOverlay.AppCompat.Light"
+        &gt;
+    &lt;/android.support.v7.widget.Toolbar&gt;
+  &lt;/android.support.design.widget.AppBarLayout&gt;
+
+  &lt;LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      &gt;
+    &lt;Button
+        android:id="@+id/btn_up"
+        android:text="向上"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        /&gt;
+    &lt;Button
+        android:id="@+id/btn_down"
+        android:text="向下"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        /&gt;
+    &lt;Button
+        android:id="@+id/btn_refresh"
+        android:text="刷新"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        /&gt;
+  &lt;/LinearLayout&gt;
+
+  &lt;FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      &gt;
+    &lt;WebView
+        android:id="@+id/web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        &gt;
+    &lt;/WebView&gt;
+    &lt;ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        /&gt;
+  &lt;/FrameLayout&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+
+
+<h2 id="java代码"><a name="t14" target="_blank"></a>Java代码</h2>
+
+<pre><code>public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+  private WebView mWebView;
+  private Toolbar mToolbar;
+  private ProgressBar mProgressBar;
+  private Button mBtnUp;
+  private Button mBtnDown;
+  private Button mBtnRefresh;
+
+  @Override protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    initView();
+
+    //初始化Toolbar
+    initAppBar();
+
+    //初始化WebView
+    initWebView();
+
+    //初始化WebSettings
+    initWebSettings();
+
+    //初始化WebViewClient
+    initWebViewClient();
+
+    //初始化WebChromeClient
+    initWebChromeClient();
+  }
+
+  private void initAppBar() {
+    mToolbar = (Toolbar) findViewById(R.id.toolbar);
+    mToolbar.setTitle("载入中...");
+    mToolbar.setTitleTextColor(getResources().getColor(R.color.colorWhite));
+    setSupportActionBar(mToolbar);
+    if (getSupportActionBar() != null) {
+      getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+    }
+  }
+
+  private void initWebView() {
+    mWebView = (WebView) findViewById(R.id.web_view);
+    mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
+    String url = "https://www.baidu.com";
+    mWebView.loadUrl(url);
+  }
+
+  //果你的应用没有在WebView内直接使用JavaScript，不要调用setJavaScriptEnabled()
+  //要忽略警告及加上以下注解
+  @SuppressLint("SetJavaScriptEnabled") private void initWebSettings() {
+    WebSettings settings = mWebView.getSettings();
+    //支持获取手势焦点
+    mWebView.requestFocusFromTouch();
+    //支持JS
+    settings.setJavaScriptEnabled(true);
+    //支持插件
+    settings.setPluginState(WebSettings.PluginState.ON);
+    //设置适应屏幕
+    settings.setUseWideViewPort(true);
+    settings.setLoadWithOverviewMode(true);
+    //支持缩放
+    settings.setSupportZoom(false);
+    //隐藏原生缩放控件
+    settings.setDisplayZoomControls(false);
+    //支持内容重新布局
+    settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+    //设置WebView是否支持多窗口
+    settings.supportMultipleWindows();
+    settings.setSupportMultipleWindows(true);
+    //设置缓存模式
+    settings.setDomStorageEnabled(true);
+    settings.setDatabaseEnabled(true);
+    settings.setCacheMode(WebSettings.LOAD_DEFAULT);
+    settings.setAppCacheEnabled(true);
+    settings.setAppCachePath(mWebView.getContext().getCacheDir().getAbsolutePath());
+    //设置可访问文件
+    settings.setAllowContentAccess(true);
+    //当webview调用requestFocus时为webview设置节点
+    settings.setNeedInitialFocus(true);
+    //支持自动加载图片
+    if (Build.VERSION.SDK_INT &gt;= 19) {
+      settings.setLoadsImagesAutomatically(true);
+    } else {
+      settings.setLoadsImagesAutomatically(false);
+    }
+    settings.setNeedInitialFocus(true);
+    //设置编码格式
+    settings.setDefaultTextEncodingName("UTF-8");
+  }
+
+  private void initWebViewClient() {
+    mWebView.setWebViewClient(new WebViewClient() {
+      //页面开始加载时
+      @Override public void onPageStarted(WebView view, String url, Bitmap favicon) {
+        super.onPageStarted(view, url, favicon);
+        mProgressBar.setVisibility(View.VISIBLE);
+      }
+
+      //页面完成加载时
+      @Override public void onPageFinished(WebView view, String url) {
+        super.onPageFinished(view, url);
+        mProgressBar.setVisibility(View.GONE);
+      }
+
+      //是否在WebView内加载新页面
+      @Override public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+        view.loadUrl(request.toString());
+        return true;
+      }
+
+      //网络错误时回调方法
+      @Override public void onReceivedError(WebView view, WebResourceRequest request,
+          WebResourceError error) {
+        /**
+         * 在这里写网络错误时的逻辑,比如显示一个错误页面
+         *
+         * 这里我偷个懒不写了
+         */
+        view.loadUrl("http://www.jianshu.com/users/d251eadadd37/latest_articles");
+      }
+
+      //捕捉HTTP ERROR并进行相应操作
+      @Override public void onReceivedHttpError(WebView view, WebResourceRequest request,
+          WebResourceResponse errorResponse) {
+        view.loadUrl("http://www.jianshu.com/");
+      }
+    });
+  }
+
+  private void initWebChromeClient() {
+    mWebView.setWebChromeClient(new WebChromeClient() {
+      //默认的视频展示图
+      private Bitmap mDefaultVideoPoster;
+
+      @Override public void onReceivedTitle(WebView view, String title) {
+        super.onReceivedTitle(view, title);
+        setToolbarTitle(title);
+      }
+
+      @Override public Bitmap getDefaultVideoPoster() {
+        if (mDefaultVideoPoster == null) {
+          mDefaultVideoPoster = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+          return mDefaultVideoPoster;
+        }
+        return super.getDefaultVideoPoster();
+      }
+    });
+  }
+
+  /**
+   * 设置Toolbar标题
+   */
+  public void setToolbarTitle(final String title) {
+    Log.d("setToolbarTitle", " WebDetailActivity " + title);
+    if (mToolbar != null) {
+      mToolbar.post(new Runnable() {
+        @Override public void run() {
+          mToolbar.setTitle(TextUtils.isEmpty(title) ? getString(R.string.loading) : title);
+        }
+      });
+    }
+  }
+
+  private void initView() {
+    mBtnUp = (Button) findViewById(R.id.btn_up);
+    mBtnDown = (Button) findViewById(R.id.btn_down);
+    mBtnRefresh = (Button) findViewById(R.id.btn_refresh);
+
+    mBtnUp.setOnClickListener(this);
+    mBtnDown.setOnClickListener(this);
+    mBtnRefresh.setOnClickListener(this);
+  }
+
+  @Override public void onClick(View v) {
+    switch (v.getId()) {
+      case R.id.btn_up:
+        Toast.makeText(getApplicationContext(), "页面向上", Toast.LENGTH_SHORT).show();
+        mWebView.pageUp(true);
+        break;
+      case R.id.btn_down:
+        Toast.makeText(getApplicationContext(), "页面向下", Toast.LENGTH_SHORT).show();
+        mWebView.pageDown(true);
+        break;
+      case R.id.btn_refresh:
+        Toast.makeText(getApplicationContext(), "刷新", Toast.LENGTH_SHORT).show();
+        mWebView.reload();
+        break;
+    }
+  }
+
+  @Override public boolean onKeyDown(int keyCode, KeyEvent event) {
+    //如果按下的是回退键且历史记录里确实还有页面
+    if((keyCode==KeyEvent.KEYCODE_BACK)&amp;&amp;mWebView.canGoBack()){
+      mWebView.goBack();
+      return true;
+    }else {
+      Toast.makeText(getApplicationContext(), "考试结束,恭喜您考试合格!", Toast.LENGTH_LONG).show();
+    }
+    return super.onKeyDown(keyCode, event);
+  }
+}
+</code></pre>
+
+
+
+<h1 id="感谢"><a name="t15" target="_blank"></a>感谢</h1>
+
+<p><a href="https://jiandanxinli.github.io/2016-08-31.html?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank">WebView·开车指南</a></p>
+
+<p><a href="https://yq.aliyun.com/articles/32559" target="_blank">史上最全webview详解</a></p>
+
+<p><a href="http://bugly.qq.com/bbs/forum.php?mod=viewthread&amp;tid=267" target="_blank">H5 缓存机制浅析 移动端 Web 加载性能优化 </a></p>
+
+<p><a href="http://www.jianshu.com/p/427600ca2107" target="_blank">WebView加载速度优化</a></p></div>
+        <script type="text/javascript">
+            $(function () {
+                $('pre.prettyprint code').each(function () {
+                    var lines = $(this).text().split('\n').length;
+                    var $numbering = $('<ul></ul>').addClass('pre-numbering').hide();
+                    $(this).addClass('has-numbering').parent().append($numbering);
+                    for (i = 1; i <= lines; i++) {
+                        $numbering.append($('<li></li>').text(i));
+                    };
+                    $numbering.fadeIn(1700);
+                });
+            });
+        </script>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad bdshare-button-style0-16" style="float: right;" data-mod="popu_172" data-bd-bind="1501312779631">
+<a href="http://blog.csdn.net/lixuce1234/article/details/54667908#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important" target="_blank"></a>
+<a href="http://blog.csdn.net/lixuce1234/article/details/54667908#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" style="background-position:0 -52px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/lixuce1234/article/details/54667908#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" style="background-position:0 -104px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/lixuce1234/article/details/54667908#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博" style="background-position:0 -260px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/lixuce1234/article/details/54667908#" class="bds_renren" data-cmd="renren" title="分享到人人网" style="background-position:0 -208px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/lixuce1234/article/details/54667908#" class="bds_weixin" data-cmd="weixin" title="分享到微信" style="background-position:0 -1612px !important" target="_blank"></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   
+
+<!--172.16.140.14-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/bds_s_v2.js.下载"></script>
+
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+
+
+ 
+
+
+        <div id="digg" articleid="54667908">
+            <dl id="btnDigg" class="digg digg_disable" onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>0</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable" onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" target="_blank">&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" target="_blank">&nbsp;</a></div>
+    <script type="text/javascript">
+        function btndigga() {
+            $(".tracking-ad[data-mod='popu_222'] a").click();
+        }
+        function btnburya() {
+            $(".tracking-ad[data-mod='popu_223'] a").click();
+        }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;]);location.href=&#39;http://blog.csdn.net/lixuce1234/article/details/54667740&#39;;">上一篇</span><a href="http://blog.csdn.net/lixuce1234/article/details/54667740" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;])">安卓中很好用的BaseActivity，自定义标题栏；</a></li>
+                <li class="next_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;]);location.href=&#39;http://blog.csdn.net/lixuce1234/article/details/54668465&#39;;">下一篇</span><a href="http://blog.csdn.net/lixuce1234/article/details/54668465" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;])">发现了一个挺好用的LoadingLayout，网络错误，无数据，动态显示！</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+            <div class="similar_article">
+                    <h4></h4>
+                    <div class="similar_c" style="margin:20px 0px 0px 0px">
+                        <div class="similar_c_t">
+                          &nbsp;&nbsp;相关文章推荐
+                        </div>
+                   
+                        <div class="similar_wrap tracking-ad" data-mod="popu_36">                       
+                            <ul class="similar_list fl">    
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/renfufei/article/details/14107031" title="WebView 简介" strategy="BlogCommendFromCsdn" target="_blank">WebView 简介</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://shijincheng0223.iteye.com/blog/1424220" title="(转)Webkit内核探究----------Webkit简介 " strategy="BlogCommendFromCsdn" target="_blank">(转)Webkit内核探究----------Webkit简介 </a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/u011212112/article/details/71447616" title="#webview简介与遇到的问题及解决方案##" strategy="BlogCommendFromCsdn" target="_blank">#webview简介与遇到的问题及解决方案##</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://417950430.iteye.com/blog/2169170" title="CrossApp 0.4.2 发布，隆重推出 WebView" strategy="BlogCommendFromCsdn" target="_blank">CrossApp 0.4.2 发布，隆重推出 WebView</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/android_yyf/article/details/72922112" title="WebView简介（联网权限）" strategy="BlogCommendFromCsdn" target="_blank">WebView简介（联网权限）</a>
+                                   </li>
+                            </ul>
+                              <ul class="similar_list fr">      
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://yarin.iteye.com/blog/545740" title="《Android应用开发揭秘》内容简介" strategy="BlogCommendFromCsdn" target="_blank">《Android应用开发揭秘》内容简介</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/lihui130135/article/details/7493759" title="WebView简介（加速加载篇）" strategy="BlogCommendFromCsdn" target="_blank">WebView简介（加速加载篇）</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://thewebcode.iteye.com/blog/1928901" title="OAuth2.0简介(QQ登录)" strategy="BlogCommendFromCsdn" target="_blank">OAuth2.0简介(QQ登录)</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://daimajishu.iteye.com/blog/1557086" title="iOS 的 ASIHTTPRequest 类库简介和使用说明" strategy="BlogCommendFromCsdn" target="_blank">iOS 的 ASIHTTPRequest 类库简介和使用说明</a>
+                                   </li>
+                                   <li>
+                                       <em>•</em>
+                                       <a href="http://blog.csdn.net/qq_37657751/article/details/70157912" title="webview简介" strategy="BlogCommendFromCsdn" target="_blank">webview简介</a>
+                                   </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>   
+      
+</div>
+
+     <div>
+           
+
+       
+                           
+            <!-- 广告位：PC端-博客内容页-banner1-960*90 --> 
+            <script> 
+                (function() { 
+                    var s = "_" + Math.random().toString(36).slice(2); 
+                    document.write('<div id="' + s + '"></div>'); 
+                    (window.slotbydup=window.slotbydup || []).push({ 
+                        id: '4228013', 
+                        container: s, 
+                        size: '0,0', 
+                        display: 'inlay-fix' 
+                    }); 
+                })(); 
+            </script><div id="_yz6ds09463r"></div><script charset="utf-8" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/icim"></script><script type="text/javascript">
+    /*测试-博客内容页下方Banner1-960*90*/
+    var cpro_id = "u2998112";
+</script>
+<script type="text/javascript" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/c.js.下载"></script><div id="BAIDU_SSP__wrapper_u2998112_0"><iframe id="iframeu2998112_0" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/icim(1).html" width="960" height="90" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:960px;height:90px" allowtransparency="true"></iframe></div>
+
+    </div>
+
+<div id="suggest">
+
+</div>
+         <script language="javascript" type="text/javascript">     
+             $(function(){
+                 $.get("/lixuce1234/svc/GetSuggestContent/54667908",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+        <dl class="blog-ass-articl tracking-ad" id="res-relatived" data-mod="popu_84"> 
+             <dt><span>猜你在找</span></dt>    
+           
+    
+           
+
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/course/detail/5084" title="【直播】机器学习&amp;深度学习系统实战（唐宇迪）" strategy="undefined" target="_blank">【直播】机器学习&amp;深度学习系统实战（唐宇迪）</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/course/detail/5219" title="【直播】Kaggle 神器：XGBoost 从基础到实战（冒教授）" strategy="undefined" target="_blank">【直播】Kaggle 神器：XGBoost 从基础到实战（冒教授）</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/course/detail/5222" title="【直播回放】深度学习基础与TensorFlow实践（王琛）" strategy="undefined" target="_blank">【直播回放】深度学习基础与TensorFlow实践（王琛）</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/52" title="【直播】计算机视觉原理及实战（屈教授）" strategy="undefined" target="_blank">【直播】计算机视觉原理及实战（屈教授）</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/48" title="【直播】机器学习之凸优化（马博士）" strategy="undefined" target="_blank">【直播】机器学习之凸优化（马博士）</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/47" title="【直播】机器学习之矩阵（黄博士）" strategy="undefined" target="_blank">【直播】机器学习之矩阵（黄博士）</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/46" title="【直播】机器学习之概率与统计推断（冒教授）" strategy="undefined" target="_blank">【直播】机器学习之概率与统计推断（冒教授）</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/49" title="【直播】机器学习之数学基础" strategy="undefined" target="_blank">【直播】机器学习之数学基础</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/44" title="【直播】TensorFlow实战进阶（智亮）" strategy="undefined" target="_blank">【直播】TensorFlow实战进阶（智亮）</a>
+                        </dd>
+                        <dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;">
+                             <a href="http://edu.csdn.net/huiyiCourse/series_detail/45" title="【直播】深度学习30天系统实训（唐宇迪）" strategy="undefined" target="_blank">【直播】深度学习30天系统实训（唐宇迪）</a>
+                        </dd>
+
+                  
+              
+                 
+        </dl>
+
+
+
+
+            
+                                    
+            
+                                    
+
+        <!-- 广告位开始 -->
+        <!-- 广告位结束 -->
+
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list"><dl class="comment_item comment_topic" id="comment_item_6568973"><dt class="comment_head" floor="1">1楼 <span class="user"><a class="username" href="http://blog.csdn.net/lixuce1234" target="_blank">lixuce1234</a> <span class="ptime">2017-01-22 15:09发表</span>  <a href="http://blog.csdn.net/lixuce1234/article/details/54667908#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="6568973" username="lixuce1234"> <a href="http://blog.csdn.net/lixuce1234/article/details/54667908#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/lixuce1234/article/details/54667908#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/lixuce1234" target="_blank"><img src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/3_lixuce1234.jpg" width="40" height="40"></a></dd><dd class="comment_body">如果对大家有一定帮助请多多关注~！谢谢</dd></dl><div class="clear"></div></div>
+    <div id="comment_bar" style="display: none;">
+    </div>
+    <div id="comment_form"><div class="guest_link">您还没有登录,请<a href="javascript:void(0);" onclick="javascript:loginbox();">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Flixuce1234%2Farticle%2Fdetails%2F54667908">[注册]</a></div></div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '54667908';
+    var commentscount = 1;
+    var islock = false
+</script>
+
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top" style="bottom:60px;">
+
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/blog-icon-reply.png" alt="快速回复">
+        </a>    
+    <a id="d-top-a" class="btn btn-top backtop" style="display: none;" title="返回顶部" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_huidaodingbu&#39;])">         
+         <img src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){        
+        
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+    var articletitle='# WebView简介 #';
+
+</script>
+
+
+
+
+
+
+
+
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+               
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/lixuce1234" target="_blank">
+    <img src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/1_lixuce1234.jpg" title="访问我的空间" style="max-width:90%">
+    </a>
+    <br>
+    <span><a href="http://my.csdn.net/lixuce1234" class="user_name" target="_blank">lixuce1234</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter" title="[发私信]" onclick="window.open(&#39;http://msg.csdn.net/letters/model?receiver=lixuce1234&#39;,&#39;_blank&#39;,&#39;height=350,width=700&#39;);_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_sixin&#39;])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+                                            <a target="_blank">
+                                                    <img src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/chizhiyiheng.png" onmouseover="m_over_m(this,4)" onmouseout="m_out_m()" alt="3">
+                                            </a>
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>15511次</span></li>
+    <li>积分：<span>1073</span> </li>    
+    <li>等级： <span style="position:relative;display:inline-block;z-index:1">
+            <img src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/blog4.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：1073 </div>
+        </span>  </li>
+    <li>排名：<span>千里之外</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>93篇</span></li>
+    <li>转载：<span>8篇</span></li>
+    <li>译文：<span>2篇</span></li>
+    <li>评论：<span>5条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search csdn-tracking-statistics" target="_blank" data-mod="popu_306">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+   
+    $(function () {
+        $("#btnSubmit").unbind("click");
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {           
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            if ($("#inputSearch").val() == "") {               
+                alert("请录入搜索关键词！");                         
+                return false;
+            }
+            //var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";           
+            var url = "https://www.baidu.com/s?wd=" + encodeURIComponent($("#inputSearch").val()) + "%20site%3Ablog.csdn.net"
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="http://blog.csdn.net/lixuce1234/article/category/6539319" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">安卓开发</a><span>(88)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lixuce1234/article/category/6677706" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">微信</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lixuce1234/article/category/6823674" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">安卓开发基础知识</a><span>(16)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lixuce1234/article/category/6858535" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Java</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lixuce1234/article/category/6860920" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">开发工具</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lixuce1234/article/category/6951226" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">React—Native</a><span>(7)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lixuce1234/article/category/7010905" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">React—Native， ES6</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lixuce1234/article/category/7018029" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">javascript</a><span>(1)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list"><li><a href="http://blog.csdn.net/lixuce1234/article/month/2017/07">2017年07月</a><span>(16)</span></li><li><a href="http://blog.csdn.net/lixuce1234/article/month/2017/06">2017年06月</a><span>(9)</span></li><li><a href="http://blog.csdn.net/lixuce1234/article/month/2017/05">2017年05月</a><span>(11)</span></li><li><a href="http://blog.csdn.net/lixuce1234/article/month/2017/04">2017年04月</a><span>(27)</span></li><li><a href="http://blog.csdn.net/lixuce1234/article/month/2017/03">2017年03月</a><span>(26)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/lixuce1234/article/month/2017/02">2017年02月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/lixuce1234/article/month/2017/01">2017年01月</a><span>(8)</span></li><li><a href="http://blog.csdn.net/lixuce1234/article/month/2016/11">2016年11月</a><span>(1)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+</ul>
+</div>
+<div id="hotarticls" class="panel tracking-ad" data-mod="popu_340">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/lixuce1234/article/details/70240229" title="创建React Native项目" target="_blank">创建React Native项目</a><span>(1699)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lixuce1234/article/details/72782370" title="Android开源项目以及开源库集合（持续更新中）" target="_blank">Android开源项目以及开源库集合（持续更新中）</a><span>(948)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lixuce1234/article/details/69577309" title="如何解决Android7.0及以上的权限崩溃问题" target="_blank">如何解决Android7.0及以上的权限崩溃问题</a><span>(739)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lixuce1234/article/details/62039676" title="Android Studio 详解" target="_blank">Android Studio 详解</a><span>(671)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lixuce1234/article/details/55050336" title="介绍内容有 Android 开发规范, 架构, 布局技巧, 以及使用一些有助于快速开发相关工具等等" target="_blank">介绍内容有 Android 开发规范, 架构, 布局技巧, 以及使用一些有助于快速开发相关工具等等</a><span>(613)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lixuce1234/article/details/68490126" title="简单的自定义BottomBar-仿微信底部导航栏" target="_blank">简单的自定义BottomBar-仿微信底部导航栏</a><span>(454)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lixuce1234/article/details/56013327" title="在Android开发过程中搭建一个自己的应用框架有几个步骤？需要注意什么？" target="_blank">在Android开发过程中搭建一个自己的应用框架有几个步骤？需要注意什么？</a><span>(354)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lixuce1234/article/details/69525534" title="Android对话框Dialog_详解" target="_blank">Android对话框Dialog_详解</a><span>(352)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lixuce1234/article/details/54667507" title="安卓原生与H5交互用户丢失（Cookie丢失）现象解决方案" target="_blank">安卓原生与H5交互用户丢失（Cookie丢失）现象解决方案</a><span>(328)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lixuce1234/article/details/54667908" title="# WebView简介 #" target="_blank"># WebView简介 #</a><span>(294)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel tracking-ad" data-mod="popu_341">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/lixuce1234/article/details/54425246" title="重写InputMethodService，手动切换输入法问题" target="_blank">重写InputMethodService，手动切换输入法问题</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lixuce1234/article/details/69525534" title="Android对话框Dialog_详解" target="_blank">Android对话框Dialog_详解</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lixuce1234/article/details/69577309" title="如何解决Android7.0及以上的权限崩溃问题" target="_blank">如何解决Android7.0及以上的权限崩溃问题</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lixuce1234/article/details/54667908" title="# WebView简介 #" target="_blank"># WebView简介 #</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lixuce1234/article/details/55050094" title="直接拿去用！每个App都会用到的LoadingLayout" target="_blank">直接拿去用！每个App都会用到的LoadingLayout</a><span>(0)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lixuce1234/article/details/54669960" title="安卓表单数据的展示方式~！" target="_blank">安卓表单数据的展示方式~！</a><span>(0)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lixuce1234/article/details/54668465" title="发现了一个挺好用的LoadingLayout，网络错误，无数据，动态显示！" target="_blank">发现了一个挺好用的LoadingLayout，网络错误，无数据，动态显示！</a><span>(0)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lixuce1234/article/details/54667740" title="安卓中很好用的BaseActivity，自定义标题栏；" target="_blank">安卓中很好用的BaseActivity，自定义标题栏；</a><span>(0)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lixuce1234/article/details/54667507" title="安卓原生与H5交互用户丢失（Cookie丢失）现象解决方案" target="_blank">安卓原生与H5交互用户丢失（Cookie丢失）现象解决方案</a><span>(0)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lixuce1234/article/details/76226094" title="你真的了解TextView吗？" target="_blank">你真的了解TextView吗？</a><span>(0)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/blogdevteam/article/details/76092129" target="_blank">* CSDN日报20170725——《新的开始，从研究生到入职亚马逊》</a></li>
+<li><a href="http://blog.csdn.net/javazejian/article/details/75043422" target="_blank">* 深入剖析基于并发AQS的重入锁(ReetrantLock)及其Condition实现原理</a></li>
+<li><a href="http://blog.csdn.net/jiangwei0910410003/article/details/75512732" target="_blank">* Android版本的"Wannacry"文件加密病毒样本分析(附带锁机)</a></li>
+<li><a href="http://blog.csdn.net/mindfloating/article/details/75948781" target="_blank">* 工作与生活真的可以平衡吗？</a></li>
+<li><a href="http://blog.csdn.net/poem_qianmo/article/details/75943714" target="_blank">* 《Real-Time Rendering 3rd》 提炼总结——高级着色：BRDF及相关技术</a></li>
+<li><a href="http://blog.csdn.net/dog250/article/details/75735806" target="_blank">* 《三体》读后思考-泰勒展开/维度打击/黑暗森林</a></li>
+
+</ul></ul>
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="http://blog.csdn.net/lixuce1234/article/details/69525534#comments">Android对话框Dialog_详解</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_35494224" class="user_name">qq_35494224</a>:
+楼主继续更啊 。我们等着呢
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lixuce1234/article/details/54425246#comments">重写InputMethodService，手动切换输入法问题</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/Fairy_1126" class="user_name">Fairy_1126</a>:
+博主 你好棒 我看懂了你的用心良苦 遮挡输入框效果解决了 大大的方便 太感谢了
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lixuce1234/article/details/54425246#comments">重写InputMethodService，手动切换输入法问题</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/Fairy_1126" class="user_name">Fairy_1126</a>:
+嗨 博主 有源码吗 你说的步骤我都照做了 可弹出的还是手机自带的软键盘呐
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lixuce1234/article/details/69577309#comments">如何解决Android7.0及以上的权限崩溃问题</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/lixuce1234" class="user_name">lixuce1234</a>:
+测试，有效果
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lixuce1234/article/details/54667908#comments"># WebView简介 #</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/lixuce1234" class="user_name">lixuce1234</a>:
+如果对大家有一定帮助请多多关注~！谢谢
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+
+                 <!-- 广告位开始 --> 
+                <!-- 广告位结束 -->
+                   <div class="tracking-ad" data-view="true" data-mod="ad_popu_189" data-mtp="63" data-order="40" data-con="ad_content_1259" style="width: 250px; height: 500px;">
+                        <div id="nav_show_top_stop" style="width: 250px; height: 500px; z-index: 1000; position: fixed; top: 0px;"><div id="cpro_u2734133"><iframe id="iframeu2734133_0" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/icim(2).html" width="250" height="250" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:250px;height:250px" allowtransparency="true"></iframe></div><div id="cpro_u3031286"><iframe id="iframeu3031286_0" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/icim(3).html" width="250" height="250" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:250px;height:250px" allowtransparency="true"></iframe></div></div>
+                   </div>
+                    <script>
+
+                        setTimeout(function () {
+                            var naviga_offsetTop = 0; function naviga_stay_top() {
+                                var scrollTop = jQuery(document).scrollTop();
+                                if (scrollTop > naviga_offsetTop) {
+                                    jQuery("#nav_show_top_stop").css({ "position": "fixed" });
+                                    jQuery("#nav_show_top_stop").css({ "top": "0px" });
+                                } else { jQuery("#nav_show_top_stop").css({ "position": "fixed" }); jQuery("#nav_show_top_stop").css({ "top": naviga_offsetTop - scrollTop + "px" }); }
+                            }
+                            function onload_function() {
+                                naviga_offsetTop = jQuery("#nav_show_top_stop").position().top;
+                                jQuery(window).bind("scroll", naviga_stay_top); jQuery(window).bind("mousewheel", naviga_stay_top);
+                                jQuery(document).bind("scroll", naviga_stay_top); jQuery(document).bind("mousewheel", naviga_stay_top);
+                            } jQuery(document).ready(onload_function);
+                        }, 200);
+
+                    </script>
+                   <script type="text/javascript">
+                       /*PC端-博客内容页左侧Button-250*250，创建于2016-08-15*/
+                       (window.cproArray = window.cproArray || []).push({ id: "u2734133" });
+</script>
+<script type="text/javascript" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/c.js.下载"></script>
+<script type="text/javascript">
+    (window.cproArray = window.cproArray || []).push({ id: "u3031286" });
+</script>
+<script type="text/javascript" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/c.js.下载"></script>
+
+           </div>   
+
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/login.js.下载"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div>
+      <!--new top-->
+    
+
+     
+
+   
+   
+     <!--new top-->
+   
+   
+
+    
+    
+    
+   
+
+   
+
+
+       <script type="text/javascript" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/MathJax.js.下载"></script>
+          <script type="text/javascript">
+              //$(function () {
+              //    setTimeout(function () {
+              //        var searchtitletags = articletitle + ',' + $("#tags").html();
+              //        searchService({
+              //            index: 'blog',
+              //            query: searchtitletags,
+              //            from: 5,
+              //            size: 5,
+              //            appendTo: '#res',
+              //            url: 'recommend',
+              //            his: 2,
+              //            client: "blog_cf_enhance",
+              //            tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+              //        });
+              //    }, 1000);
+              //});
+
+         </script>
+    
+    <script src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/csdn_blog_detail.min.js.下载" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/pub_footer_2014.css"><div class="pub_fo"><div id="pub_footerall" class="pub_footer_new"><dl><dt></dt> <dd class="foot_sub_menu"><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a><span>|</span><a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a><span>|</span><a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a><span>|</span><a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a><span>|</span><a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a><span>|</span><a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a><span>|</span><a href="mailto:webmaster@csdn.net">问题报告</a><span>|</span><a target="_blank" href="http://www.csdn.net/friendlink.html">合作伙伴</a><span>|</span><a href="http://bbs.csdn.net/forums/Service" target="_blank">论坛反馈</a></dd><dd class="foot_contact"><a href="javascript:void(0);" target="_blank" class="qq">网站客服</a><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2251809102&amp;site=qq&amp;menu=yes" target="_blank" class="qq">杂志客服</a><a href="http://e.weibo.com/csdnsupport/profile" target="_blank" class="weibo">微博客服</a><a href="mailto:webmaster@csdn.net" class="email" title="联系邮箱">webmaster@csdn.net</a><span class="phone" title="服务热线">400-660-0108</span><span class="interval">|</span><span>北京创新乐知信息技术有限公司 版权所有</span><span class="interval">|</span><span>江苏知之为计算机有限公司</span><span class="interval">|</span><span>江苏乐知网络技术有限公司</span></dd><dd class="foot_copyright"><span>京&nbsp;ICP&nbsp;证&nbsp;09002463&nbsp;号</span><span class="interval">|</span><span>Copyright © 1999-2017, CSDN.NET, All Rights Reserved&nbsp;</span><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div></div><div id="note1" class="csdn_note" style="display:none; position:absolute; z-index:9999; width:440px">  <span class="notice_top_arrow"><span class="inner"></span></span>  <div class="box"></div></div><div class="csdn_notice_tip" style="display:none; position:absolute; z-index:9990; width:170px">  <iframe src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/saved_resource(2).html" frameborder="0" scrolling="no" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div class="tip_text">您有<strong>0</strong>条新通知</div>  <a href="javascript:void 0" class="close2"></a></div><script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/notify.js.下载"></script><input type="hidden" id="aa_g_data_ids">
+        
+    <script type="text/javascript" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/csdn_public_blog_detail.min.js.下载"></script>
+
+    <script type="text/javascript" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/showblogmedal.ashx"></script>
+
+     
+    
+
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334" src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/52b5334.js.下载"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+
+    
+    
+        
+     
+
+    
+          
+    <div class="pop_CA_cover" style="display:none"></div>
+    <div class="pop pop_CA" style="display:none">
+          <div class="CA_header">
+            收藏助手
+            <span class="cancel_icon" id="fapancle" onclick="$(&#39;.pop_CA&#39;).hide();$(&#39;.pop_CA_cover&#39;).hide();"></span>
+          </div>
+          <iframe src="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/saved_resource(3).html" id="fa" frameborder="0" width="100%" height="360" scrolling="no"></iframe>
+    </div>
+
+
+        <script type="text/javascript">
+
+            $(function () {
+                var fromjs = $("#fromjs");
+                if (fromjs.length > 0) {
+                    $("#fromjs .markdown_views pre").addClass("prettyprint");
+                    prettyPrint();
+
+                    $('pre.prettyprint code').each(function () {
+                        var lines = $(this).text().split('\n').length;
+                        var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                        $(this).addClass('has-numbering').parent().append($numbering);
+                        for (i = 1; i <= lines; i++) {
+                            $numbering.append($('<li/>').text(i));
+                        };
+                        $numbering.fadeIn(1700);
+                    });
+
+                    $('.pre-numbering li').css("color", "#999");
+                }
+            });
+
+            $(".markdown_views a[target!='_blank']").attr("target", "_blank");
+
+            //$(".toc a[target='_blank']").attr("target", "");
+
+            setTimeout(function () {
+                $(".toc a[target='_blank']").attr("target", "");
+            }, 500);
+
+        </script>
+    
+
+   
+<div id="tag-suggest-pop">
+  <div class="relative">
+    <div class="close"></div>
+    <div class="content"></div>
+  </div>
+</div><div id="mask_code"></div><div class="gist_edit"><div class="save_snippets clearfix"><div class="tit"><h3>保存代码片</h3><span>整理和分享保存的代码片，请访问<a href="https://code.csdn.net/snippets_manage" target="_blank">代码笔记</a></span></div><div class="con_form"><ul class="gist_edit_list clearfix"><li><span class="red">*</span><span class="txt">标题</span><input id="form_title" class="form-input" placeholder="# WebView简介 #" type="text"></li><li><span class="red">*</span><span class="txt">描述</span><textarea id="form-textarea" class="form-textarea" placeholder="# WebView简介 #： http://blog.csdn.net/lixuce1234/article/details/54667908"></textarea></li><li><span class="red">&nbsp;</span><span class="txt">标签</span><div id="divSearchTags"><span class="label blog_tag"><span>android</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>webview</span><a title="Removing tag" href="javascript:;">x</a></span><input id="insertTag" class="insertTag" placeholder="请输入标签，按Enter生成(最多5项)" type="text" value="" name="insertTag" maxlength="21" style="color: rgb(51, 51, 51);"><input id="OrganTag" class="OrganTag" type="hidden" name="OrganTag" value="android,webview,"><input id="OldOrganTag" class="OldOrganTag" type="hidden" name="OldOrganTag" value=""><input type="hidden" name="txtSearchTags"></div></li></ul></div><div class="bottom-bar"><a href="javascript:;" class="btn-submit btn-cancel">取消</a><span class="tracking-ad" data-mod="popu_250"><a class="btn-submit btn-confirm" href="javascript:;" target="_blank">确定</a></span></div></div></div><link rel="stylesheet" type="text/css" media="screen" href="./# WebView简介 # - lixuce1234的博客 - CSDN博客_files/ask_float_fonts_css-6b30a53970eb5c3a2a045e3df585b475.css"><div data-mod="popu_64" class="csdn-tracking-statistics" chg-blk="0"><a id="com-quick-QRcode" class="QRcodebg1" title="扫描二维码" style="top:227px"><span class="closeQR"></span></a><a id="com-quick-reply" title="快速回复" style="top:361px"></a><a id="com-quick-collect" title="我要收藏" style="top:399px"></a><a id="com-d-top-a" style="top: 437px; display: inline;" title="返回顶部" onclick=""></a></div><div class="pop_edit ask_second comm_ask_second"><h3>提问</h3><span class="ask_float_span">您的问题将会被发布在“<a class="ask_float_channel" href="http://ask.csdn.net/" target="_blank" style="cursor:pointer">技术问答</a>”频道</span><a href="http://blog.csdn.net/lixuce1234/article/details/54667908#" nodetype="close" class="close">×</a><div class="context"><div class="err_div"><span class="err_ico"></span><span class="err_txt">该问题已存在，请勿重复提问</span></div><div class="input_div"><input id="askInputSecond" type="text" style="font-size:14px;" placeholder="问题标题"></div><div class="cm_box"><div class="cm_dialog"></div> <div class="pop_cm cm_add_link"><input type="text" placeholder="链接内容" id="af_cm_link_txt"><input type="text" placeholder="链接地址" id="af_cm_link_url"><input type="text" placeholder="链接提示" id="af_cm_link_tit"><div class="text-right"><span class="btn btn-default btn-sm" id="add_link_btn">插入链接</span> </div> </div><div class="pop_cm cm_add_img"><div class="nav-tabs"><a class="img_tab active" href="http://blog.csdn.net/lixuce1234/article/details/54667908#tab_upload">本地上传</a><a class="img_tab" href="http://blog.csdn.net/lixuce1234/article/details/54667908#tab_weburl">网络图片</a></div><div class="tab_panel active" id="tab_upload"><div class="set_img"></div></div><div class="tab_panel" id="tab_weburl"><input type="text" placeholder="图片地址" id="af_cm_img_url"><input type="text" placeholder="图片说明" id="af_cm_img_alt"><div class="text-right"><span class="btn btn-default btn-sm" id="add_img_btn">插入图片</span> </div></div> </div></div> <textarea id="editor_all" rows="8" style="display: none;"></textarea><div class="editor-toolbar"><i class="separator">|</i><a class="icon-headline" title="标题一（Ctrl+Alt+1）"></a><a class="icon-heading" title="标题二（Ctrl+Alt+2）"></a><a class="icon-bold" title="粗体（Ctrl+B）"></a><a class="icon-italic" title="斜体（Ctrl+I）"></a><i class="separator">|</i><a class="icon-quote-left" title="引用（Ctrl+’）"></a><a class="icon-code" title="插入代码片（Ctrl+,）"></a><a class="icon-list-ul" title="无序列表（Ctrl+L）"></a><a class="icon-list-ol" title="有序列表（Ctrl+Alt+L）"></a><i class="separator">|</i><a class="icon-link" title="添加链接（Ctrl+K）"></a><a class="icon-picture" title="添加图片（Ctrl+Alt+I）"></a><i class="separator">|</i><a class="icon-reply" title="撤退（Ctrl+Z）"></a><a class="icon-share-alt" title="前进（Ctrl+Shift+Z）"></a><i class="separator">|</i><a class="icon-info" href="http://ask.csdn.net/pages/markdown" target="_blank" title="markdown语法参考"></a><a class="icon-preview" title="预览"></a><i class="separator">|</i></div><div class="CodeMirror cm-s-paper CodeMirror-focused"><div style="overflow: hidden; position: relative; width: 3px; height: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none; font-size: 4px;" tabindex="0"></textarea></div><div class="CodeMirror-hscrollbar"><div style="height: 1px;"></div></div><div class="CodeMirror-vscrollbar"><div style="width: 1px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="min-width: 33px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>&nbsp;<span style="display: inline-block; width: 1px; margin-right: -1px;">&nbsp;</span></pre></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code"></div><div class="CodeMirror-cursor" style="visibility: hidden;">&nbsp;</div><div class="CodeMirror-cursor CodeMirror-secondarycursor" style="visibility: hidden;">&nbsp;</div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px;"></div><div class="CodeMirror-gutters" style="display: none;"></div></div></div><div class="editor-statusbar"><span class="lines">0</span><span class="words">0</span><span class="cursor">0:0</span></div><div class="div_tags clearfix"><div id="divSearchTags" class="tags_con"><input type="text"></div><input type="hidden" name="txtSearchTags"></div><div id="ask2_tagRecomm_div" class="drt_tagRecomm tracking-ad" data-mod="popu_73"><span class="drt_tit">推荐标签：</span></div></div><div class="success"><div class="left_area"><input id="chk_cb" type="checkbox"><span class="wyxs">我要悬赏</span><input id="cb_num" class="cb_num" readonly="true"><span class="phib_rii"><span> 币</span></span></div><a href="http://blog.csdn.net/lixuce1234/article/details/54667908#" nodetype="cancel" class="cancel">取消</a><a href="http://blog.csdn.net/lixuce1234/article/details/54667908#" nodetype="ok" class="ok">发布</a></div></div><div id="common_ask_div_sc" class="searchContainer"><div class="sTitle">可能存在类似的问题：</div><div class="sFooter"><a class="sFirstNewAsk">我想提一个新问题</a></div></div><div style="position:fixed; top:0; left:0; overflow:hidden;"><input style="position:absolute; left:-300px;" type="text" value="" id="focus_retriever" readonly="true"></div></body></html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.jianshu.com/p/2857d55e2f6e -->
+<html><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+
+  <!-- Start of Baidu Transcode -->
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="MobileOptimized" content="width">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="mobile-agent" content="format=html5;url=http://www.jianshu.com/p/2857d55e2f6e">
+  <!-- End of Baidu Transcode -->
+
+    <meta name="description" content="原文连接WebChromeClient常用API与功能使用详解在WebView的开发过程中当你需要使用到一些高级功能可以通过设置WebChromeClient从而来辅助WebView处理JavaScript的对话框、网站图标、网站title、加载进度等WebChromeClient常用的API方法1.通知应用程序当前网页加载的进度@OverridepublicvoidonProgressCh...">
+
+  <meta name="360-site-verification" content="604a14b53c6b871206001285921e81d8">
+  <meta property="wb:webmaster" content="294ec9de89e7fadb">
+  <meta property="qc:admins" content="104102651453316562112116375">
+  <meta property="qc:admins" content="11635613706305617">
+  <meta property="qc:admins" content="1163561616621163056375">
+  <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4">
+  <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI">
+  <meta http-equiv="mobile-agent" content="format=html5; url=http://www.jianshu.com/p/2857d55e2f6e">
+
+  <!-- Apple -->
+  <meta name="apple-mobile-web-app-title" content="简书">
+
+    <!--  Meta for Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=888237539, app-argument=jianshu://notes/3805974">
+  <!-- End -->
+
+  <!--  Meta for Twitter Card -->
+  <meta content="summary" property="twitter:card">
+  <meta content="@jianshucom" property="twitter:site">
+  <meta content="WebChromeClient常用API与功能使用详解" property="twitter:title">
+  <meta content="原文连接WebChromeClient常用API与功能使用详解在WebView的开发过程中当你需要使用到一些高级功能可以通过设置WebChromeClient从而来辅助WebView处理JavaScript的对话框、网站图标、网站title、加载进度等WebChromeClient常用的API方法1.通知应用程序当前网页加载的进度@OverridepublicvoidonProgressChanged(WebViewview,intnewProgress)2.获取网页title标题@Overridepublicvoid..." property="twitter:description">
+  <meta content="http://www.jianshu.com/p/2857d55e2f6e" property="twitter:url">
+  <!-- End -->
+
+  <!--  Meta for OpenGraph -->
+  <meta property="fb:app_id" content="865829053512461">
+  <meta property="og:site_name" content="简书">
+  <meta property="og:title" content="WebChromeClient常用API与功能使用详解">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://www.jianshu.com/p/2857d55e2f6e">
+  <meta property="og:description" content="原文连接WebChromeClient常用API与功能使用详解在WebView的开发过程中当你需要使用到一些高级功能可以通过设置WebChromeClient从而来辅助WebView处理Java...">
+  <!-- End -->
+
+  <!--  Meta for Facebook Applinks -->
+  <meta property="al:ios:url" content="jianshu://notes/3805974">
+  <meta property="al:ios:app_store_id" content="888237539">
+  <meta property="al:ios:app_name" content="简书">
+
+  <meta property="al:android:url" content="jianshu://notes/3805974">
+  <meta property="al:android:package" content="com.jianshu.haruki">
+  <meta property="al:android:app_name" content="简书">
+  <!-- End -->
+
+
+    <title>WebChromeClient常用API与功能使用详解 - 简书</title>
+
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="gRh+J+76fXnP+7+v65cMokXRNlyPrAt32AWhELN9GxzAbqDZ1ncUNJAD8h5OsiQeQmvd+UBu702aMjyTxTrbrQ==">
+
+  <link rel="stylesheet" media="all" href="./WebChromeClient常用API与功能使用详解 - 简书_files/web-04d0b3d33adf1549e566.css">
+  
+  <link rel="stylesheet" media="all" href="./WebChromeClient常用API与功能使用详解 - 简书_files/entry-04d0b3d33adf1549e566.css">
+
+  <link href="http://cdn2.jianshu.io/assets/favicons/favicon-783beb88ed621ceab614de960376ac0c.ico" rel="icon">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/57-47624b2e2161e8eb144462c85db0a5ff.png" sizes="57x57">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/72-c00cde7cf98fc49e50cbb3ee1dcd5804.png" sizes="72x72">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/76-e8af0bdeaf1ba31e303b1fde8b5e66c4.png" sizes="76x76">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/114-f4c78569bbf1977e8382a5fd90c9237a.png" sizes="114x114">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/120-cf10c3711dba269522743729efe66bbc.png" sizes="120x120">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/152-7bd60457b5f3ecbf1343f0e6241be4f8.png" sizes="152x152">
+<link rel="stylesheet" href="blob:http://www.jianshu.com/27a0c3c4-7b30-4aa1-8b7a-bdeab006a087"><link rel="stylesheet" href="blob:http://www.jianshu.com/f7fa3f03-e63c-4f9a-acd4-b3451ea386fe"></head>
+
+  <body lang="zh-CN" class="reader-black-font">
+    <!-- 全局顶部导航栏 -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="width-limit">
+    <!-- 左上方 Logo -->
+    <a class="logo" href="http://www.jianshu.com/"><img src="./WebChromeClient常用API与功能使用详解 - 简书_files/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo"></a>
+
+    <!-- 右上角 -->
+      <!-- 未登录显示登录/注册/写文章 -->
+      <a class="btn write-btn" target="_blank" href="http://www.jianshu.com/writer#/">
+        <i class="iconfont ic-write"></i>写文章
+</a>      <a class="btn sign-up" href="http://www.jianshu.com/sign_up">注册</a>
+      <a class="btn log-in" href="http://www.jianshu.com/sign_in">登录</a>
+
+    <!-- 如果用户登录，显示下拉菜单 -->
+
+    <div class="style-mode"><a class="style-mode-btn"><i class="iconfont ic-navigation-mode"></i></a> <div class="popover-modal" style="left: 0px; display: none;"><div class="meta"><i class="iconfont ic-navigation-night"></i><span>夜间模式</span></div> <div class="switch day-night-group"><a class="switch-btn">开</a> <a class="switch-btn active">关</a></div> <hr> <div class="switch font-family-group"><a class="switch-btn font-song">宋体</a> <a class="switch-btn font-hei active">黑体</a></div> <div class="switch"><a class="switch-btn active">简</a> <a class="switch-btn">繁</a></div></div></div>
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="nav navbar-nav">
+            <li class="">
+              <a href="http://www.jianshu.com/">
+                <span class="menu-text">首页</span><i class="iconfont ic-navigation-discover menu-icon"></i>
+</a>            </li>
+            <li class="">
+              <a class="app-download-btn" href="http://www.jianshu.com/apps"><span class="menu-text">下载App</span><i class="iconfont ic-navigation-download menu-icon"></i></a>
+            </li>
+          <li class="search">
+            <form target="_blank" action="http://www.jianshu.com/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+              <input type="text" name="q" id="q" value="" placeholder="搜索" class="search-input">
+              <a class="search-btn" href="javascript:void(null)"><i class="iconfont ic-search"></i></a>
+              <!-- <div id="navbar-trending-search"></div> -->
+</form>          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+    
+<div class="note">
+  <div class="post">
+    <div class="article">
+        <h1 class="title">WebChromeClient常用API与功能使用详解</h1>
+
+        <!-- 作者区域 -->
+        <div class="author">
+          <a class="avatar" href="http://www.jianshu.com/u/791ffd3d7bb7">
+            <img src="./WebChromeClient常用API与功能使用详解 - 简书_files/fd44bc1c6661.jpg" alt="144">
+</a>          <div class="info">
+            <span class="tag">作者</span>
+            <span class="name"><a href="http://www.jianshu.com/u/791ffd3d7bb7">yangjingxuan</a></span>
+            <!-- 关注用户按钮 -->
+            <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+            <!-- 文章数据信息 -->
+            <div class="meta">
+              <!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
+                <span class="publish-time">2016.05.17 16:04</span>
+              <span class="wordage">字数 892</span>
+            <span class="views-count">阅读 3024</span><span class="comments-count">评论 1</span><span class="likes-count">喜欢 9</span></div>
+          </div>
+          <!-- 如果是当前作者，加入编辑按钮 -->
+        </div>
+        <!-- -->
+
+        <!-- 文章内容 -->
+        <div data-note-content="" class="show-content">
+          <blockquote><p>原文连接 <a href="http://yangjingxuan.github.io/2016/05/17/WebChromeClient%E5%B8%B8%E7%94%A8API%E4%B8%8E%E5%8A%9F%E8%83%BD%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/#more" target="_blank">WebChromeClient常用API与功能使用详解</a></p></blockquote>
+<p>在WebView的开发过程中当你需要使用到一些高级功能可以通过设置WebChromeClient从而来辅助WebView处理 JavaScript 的对话框、网站图标、网站title、加载进度等</p>
+<h5>WebChromeClient常用的API方法</h5>
+<h6>1.通知应用程序当前网页加载的进度</h6>
+<pre class="hljs java"><code class="java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onProgressChanged</span><span class="hljs-params">(WebView view, <span class="hljs-keyword">int</span> newProgress)</span></span></code></pre>
+<h6>2.获取网页title标题</h6>
+<pre class="hljs java"><code class="java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onReceivedTitle</span><span class="hljs-params">(WebView view, String title)</span></span></code></pre>
+<p>获取标题的时间主要取决于网页前段设置标题的位置，一般设置在页面加载前面，可以较早调用到这个函数</p>
+<h6>3.网页中有H5播放flash video的时候按下全屏按钮将会调用到这个方法，一般用作设置网页播放全屏操作</h6>
+<pre class="hljs java"><code class="java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onShowCustomView</span><span class="hljs-params">(View view, CustomViewCallback callback)</span></span></code></pre>
+<p>对应的取消全屏方法</p>
+<pre class="hljs java"><code class="java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onHideCustomView</span><span class="hljs-params">()</span></span></code></pre>
+<h4>WebView下载监听</h4>
+<p>通过设置webview下载监听进而监听网页下载</p>
+<pre class="hljs java"><code class="java">mWebView.setDownloadListener(<span class="hljs-keyword">new</span> DownloadListener() {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDownloadStart</span><span class="hljs-params">(String url, String userAgent, String contentDisposition, String mimetype, <span class="hljs-keyword">long</span> contentLength)</span> </span>{
+    }
+});</code></pre>
+<p>一般可在downloadStart 处进行下载处理</p>
+<h5>WebChromeClient高级功能实现</h5>
+<h6>1.让你的webview支持File Input 标签</h6>
+<p>在Android 5.0 API 21后 借助新的 <em>onShowFileChooser()</em> 方法,您现在不但可以在 WebView 中使用输入表单字段,而且可以启动文件选择器从 Android 设备中选择图片和文件</p>
+<pre class="hljs java"><code class="java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onShowFileChooser</span><span class="hljs-params">(WebView webView, ValueCallback&lt;Uri[]&gt; filePathCallback,
+                                 WebChromeClient.FileChooserParams fileChooserParams)</span> </span>{
+    <span class="hljs-keyword">if</span> (mFilePathCallback != <span class="hljs-keyword">null</span>) {
+        mFilePathCallback.onReceiveValue(<span class="hljs-keyword">null</span>);
+    }
+    mFilePathCallback = filePathCallback;
+
+    Intent takePictureIntent = <span class="hljs-keyword">new</span> Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+    <span class="hljs-keyword">if</span> (takePictureIntent.resolveActivity(getPackageManager()) != <span class="hljs-keyword">null</span>) {
+        <span class="hljs-comment">// Create the File where the photo should go</span>
+        File photoFile = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">try</span> {
+            photoFile = createImageFile();
+            takePictureIntent.putExtra(<span class="hljs-string">"PhotoPath"</span>, mCameraPhotoPath);
+        } <span class="hljs-keyword">catch</span> (IOException ex) {
+            <span class="hljs-comment">// Error occurred while creating the File</span>
+            Log.e(TAG, <span class="hljs-string">"Unable to create Image File"</span>, ex);
+        }
+
+        <span class="hljs-comment">// Continue only if the File was successfully created</span>
+        <span class="hljs-keyword">if</span> (photoFile != <span class="hljs-keyword">null</span>) {
+            mCameraPhotoPath = <span class="hljs-string">"file:"</span> + photoFile.getAbsolutePath();
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                    Uri.fromFile(photoFile));
+        } <span class="hljs-keyword">else</span> {
+            takePictureIntent = <span class="hljs-keyword">null</span>;
+        }
+    }
+
+    Intent contentSelectionIntent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_GET_CONTENT);
+    contentSelectionIntent.addCategory(Intent.CATEGORY_OPENABLE);
+    contentSelectionIntent.setType(<span class="hljs-string">"image/*"</span>);
+
+    Intent[] intentArray;
+    <span class="hljs-keyword">if</span> (takePictureIntent != <span class="hljs-keyword">null</span>) {
+        intentArray = <span class="hljs-keyword">new</span> Intent[]{takePictureIntent};
+    } <span class="hljs-keyword">else</span> {
+        intentArray = <span class="hljs-keyword">new</span> Intent[<span class="hljs-number">0</span>];
+    }
+    Intent chooserIntent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_CHOOSER);
+    chooserIntent.putExtra(Intent.EXTRA_INTENT, contentSelectionIntent);
+    chooserIntent.putExtra(Intent.EXTRA_TITLE, <span class="hljs-string">"Image Chooser"</span>);
+    chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, intentArray);
+    startActivityForResult(chooserIntent, INPUT_FILE_REQUEST_CODE);
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+}</code></pre>
+<p>在选择完图片后回调onActivityResult 获取图片</p>
+<pre class="hljs java"><code class="java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onActivityResult</span><span class="hljs-params">(<span class="hljs-keyword">int</span> requestCode, <span class="hljs-keyword">int</span> resultCode, Intent data)</span> </span>{
+    <span class="hljs-keyword">if</span> (requestCode != INPUT_FILE_REQUEST_CODE || mFilePathCallback == <span class="hljs-keyword">null</span>) {
+        <span class="hljs-keyword">super</span>.onActivityResult(requestCode, resultCode, data);
+        <span class="hljs-keyword">return</span>;
+    }
+
+    Uri[] results = <span class="hljs-keyword">null</span>;
+
+    <span class="hljs-comment">// Check that the response is a good one</span>
+    <span class="hljs-keyword">if</span> (resultCode == Activity.RESULT_OK) {
+        <span class="hljs-keyword">if</span> (data == <span class="hljs-keyword">null</span>) {
+            <span class="hljs-comment">// If there is not data, then we may have taken a photo</span>
+            <span class="hljs-keyword">if</span> (mCameraPhotoPath != <span class="hljs-keyword">null</span>) {
+                results = <span class="hljs-keyword">new</span> Uri[]{Uri.parse(mCameraPhotoPath)};
+            }
+        } <span class="hljs-keyword">else</span> {
+            String dataString = data.getDataString();
+            <span class="hljs-keyword">if</span> (dataString != <span class="hljs-keyword">null</span>) {
+                results = <span class="hljs-keyword">new</span> Uri[]{Uri.parse(dataString)};
+            }
+        }
+    }
+
+    mFilePathCallback.onReceiveValue(results);
+    mFilePathCallback = <span class="hljs-keyword">null</span>;
+    <span class="hljs-keyword">return</span>;
+}</code></pre>
+<h6>2.支持全屏视频播放</h6>
+<p>设置webview视频未播放时默认显示占位图</p>
+<pre class="hljs java"><code class="java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> Bitmap <span class="hljs-title">getDefaultVideoPoster</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">if</span>(getActivity() == <span class="hljs-keyword">null</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    }
+
+    <span class="hljs-keyword">return</span> BitmapFactory.decodeResource(getActivity().getApplicationContext().getResources(),
+            R.drawable.video_poster);
+}</code></pre>
+<p>视频播放全屏时调用</p>
+<pre class="hljs java"><code class="java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onShowCustomView</span><span class="hljs-params">(View view,
+                             WebChromeClient.CustomViewCallback callback)</span> </span>{
+    <span class="hljs-comment">// if a view already exists then immediately terminate the new one</span>
+    <span class="hljs-keyword">if</span> (mCustomView != <span class="hljs-keyword">null</span>) {
+        onHideCustomView();
+        <span class="hljs-keyword">return</span>;
+    }
+
+    <span class="hljs-comment">// 1. Stash the current state</span>
+    mCustomView = view;
+    mOriginalSystemUiVisibility = getActivity().getWindow().getDecorView().getSystemUiVisibility();
+    mOriginalOrientation = getActivity().getRequestedOrientation();
+
+    <span class="hljs-comment">// 2. Stash the custom view callback</span>
+    mCustomViewCallback = callback;
+
+    <span class="hljs-comment">// 3. Add the custom view to the view hierarchy</span>
+    FrameLayout decor = (FrameLayout) getActivity().getWindow().getDecorView();
+    decor.addView(mCustomView, <span class="hljs-keyword">new</span> FrameLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT));
+
+
+    <span class="hljs-comment">// 4. Change the state of the window</span>
+    getActivity().getWindow().getDecorView().setSystemUiVisibility(
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+                    View.SYSTEM_UI_FLAG_FULLSCREEN |
+                    View.SYSTEM_UI_FLAG_IMMERSIVE);
+    getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+}</code></pre>
+<p>视频取消全屏时候调用</p>
+<pre class="hljs java"><code class="java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onHideCustomView</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// 1. Remove the custom view</span>
+    FrameLayout decor = (FrameLayout) getActivity().getWindow().getDecorView();
+    decor.removeView(mCustomView);
+    mCustomView = <span class="hljs-keyword">null</span>;
+
+    <span class="hljs-comment">// 2. Restore the state to it's original form</span>
+    getActivity().getWindow().getDecorView()
+            .setSystemUiVisibility(mOriginalSystemUiVisibility);
+    getActivity().setRequestedOrientation(mOriginalOrientation);
+
+    <span class="hljs-comment">// 3. Call the custom view callback</span>
+    mCustomViewCallback.onCustomViewHidden();
+    mCustomViewCallback = <span class="hljs-keyword">null</span>;
+
+}</code></pre>
+<p>具体实例可以参照 GoogleChrome高级使用实例<br>[<a href="https://github.com/GoogleChrome/chromium-webview-samples" target="_blank">https://github.com/GoogleChrome/chromium-webview-samples</a>]</p>
+<p>下篇将讲解WebView优化以及在开发过程中常遇到的问题</p>
+
+        </div>
+        <!--  -->
+
+        <div class="show-foot">
+          <a class="notebook" href="http://www.jianshu.com/nb/203253">
+            <i class="iconfont ic-search-notebook"></i> <span>日记本</span>
+</a>          <div class="copyright" data-toggle="tooltip" data-html="true" data-original-title="转载请联系作者获得授权，并标注“简书作者”。">
+            © 著作权归作者所有
+          </div>
+          <div class="modal-wrap" data-report-note="">
+            <a id="report-modal">举报文章</a>
+          </div>
+        </div>
+    </div>
+
+    <!-- 文章底部作者信息 -->
+      <div class="follow-detail">
+        <div class="info">
+          <a class="avatar" href="http://www.jianshu.com/u/791ffd3d7bb7">
+            <img src="./WebChromeClient常用API与功能使用详解 - 简书_files/fd44bc1c6661.jpg" alt="144">
+</a>          <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+          <a class="title" href="http://www.jianshu.com/u/791ffd3d7bb7">yangjingxuan</a>
+        <p>写了 5066 字，被 41 人关注，获得了 140 个喜欢</p></div>
+          <div class="signature">科技宅，代码汪..</div>
+      </div>
+
+      <div class="support-author"></div>
+
+    <div class="meta-bottom">
+      <div class="like"><div class="btn like-group"><div class="btn-like"><a href="http://www.jianshu.com/sign_in"><i class="iconfont ic-like"></i>喜欢</a></div> <div class="modal-wrap"><a>9</a></div></div> <!----></div>
+      <div class="share-group">
+        <a class="share-circle" data-action="weixin-share" data-toggle="tooltip" data-original-title="分享到微信">
+          <i class="iconfont ic-wechat"></i>
+        </a>
+        <a class="share-circle" data-toggle="tooltip" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/3805974/weibo/image_38cbc307d5fc.jpg&#39;, &#39;推荐 yangjingxuan 的文章《WebChromeClient常用API与功能使用详解》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/2857d55e2f6e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));" data-original-title="分享到微博">
+          <i class="iconfont ic-weibo"></i>
+        </a>
+          <a class="share-circle" data-toggle="tooltip" href="http://cwb.assets.jianshu.io/notes/images/3805974/weibo/image_38cbc307d5fc.jpg" target="_blank" data-original-title="下载长微博图片">
+            <i class="iconfont ic-picture"></i>
+          </a>
+        <a class="share-circle more-share" tabindex="0" data-toggle="popover" data-placement="top" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="
+          &lt;ul class=&quot;share-list&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/2857d55e2f6e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 yangjingxuan 的文章《WebChromeClient常用API与功能使用详解》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-zone&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/2857d55e2f6e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 yangjingxuan 的文章《WebChromeClient常用API与功能使用详解》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-twitter&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/2857d55e2f6e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-facebook&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/2857d55e2f6e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-google&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/2857d55e2f6e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;WebChromeClient常用API与功能使用详解&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-douban&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        " data-original-title="" title="">更多分享</a>
+      </div>
+    </div>
+    <div id="vue_comment"></div>
+  </div>
+
+  <div class="side-tool"><ul><li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="回到顶部"><a class="function-button"><i class="iconfont ic-backtop"></i></a></li> <!----> <!----> <li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="分享文章"><a tabindex="0" role="button" data-toggle="popover" data-placement="left" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="&lt;ul class=&#39;share-list&#39;&gt;
+                &lt;li&gt;&lt;a class=&quot;weixin-share&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-weixin&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到微信&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/3805974/weibo/image_38cbc307d5fc.jpg&#39;, &#39;推荐 yangjingxuan 的文章《WebChromeClient常用API与功能使用详解》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/2857d55e2f6e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-weibo&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到微博&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;http://cwb.assets.jianshu.io/notes/images/3805974/weibo/image_38cbc307d5fc.jpg&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-picture&quot;&gt;&lt;/i&gt;&lt;span&gt;下载长微博图片&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/2857d55e2f6e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 yangjingxuan 的文章《WebChromeClient常用API与功能使用详解》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-zone&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/2857d55e2f6e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 yangjingxuan 的文章《WebChromeClient常用API与功能使用详解》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-twitter&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/2857d55e2f6e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-facebook&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/2857d55e2f6e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-google&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/2857d55e2f6e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;WebChromeClient常用API与功能使用详解&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-douban&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;" data-original-title="" title="" class="function-button"><i class="iconfont ic-share"></i></a> <!----></li></ul></div>
+</div>
+<div class="note-bottom">
+  <div><div class="main"><div class="title">被以下专题收入，发现更多相似内容</div> <!----> <div class="include-collection"><!----> <a href="http://www.jianshu.com/c/6ff4e268824f?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./WebChromeClient常用API与功能使用详解 - 简书_files/android.graphics.Bitmap_429c9298.jpeg"><div class="name">android...</div></a><a href="http://www.jianshu.com/c/61fa34a35bf5?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./WebChromeClient常用API与功能使用详解 - 简书_files/android.graphics.Bitmap_317e07bc.jpeg"><div class="name">H5专题</div></a> <!----></div></div> <!----> <!----></div>
+  <div data-vcomp="recommended-notes" data-note-id="3805974"></div>
+</div>
+
+    <script src="./WebChromeClient常用API与功能使用详解 - 简书_files/push.js.下载"></script><script src="./WebChromeClient常用API与功能使用详解 - 简书_files/hm.js.下载"></script><script async="" src="./WebChromeClient常用API与功能使用详解 - 简书_files/analytics.js.下载"></script><script type="application/json" data-name="page-data">{"user_signed_in":false,"locale":"zh-CN","os":"windows","read_mode":"day","read_font":"font2","note_show":{"is_author":false,"is_following_author":false,"is_liked_note":false,"uuid":"e66a8dd1-44c9-48c1-8405-9e47117ea758"},"note":{"id":3805974,"slug":"2857d55e2f6e","user_id":99120,"notebook_id":203253,"commentable":true,"likes_count":9,"views_count":3024,"public_wordage":892,"comments_count":1,"total_rewards_count":0,"is_author":false,"author":{"nickname":"yangjingxuan","total_wordage":5066,"followers_count":41,"total_likes_count":140}}}</script>
+    
+    <script src="./WebChromeClient常用API与功能使用详解 - 简书_files/babel-polyfill-d0c2732d002a471ed287.js.下载"></script>
+    <script src="./WebChromeClient常用API与功能使用详解 - 简书_files/web-base-04d0b3d33adf1549e566.js.下载"></script>
+<script src="./WebChromeClient常用API与功能使用详解 - 简书_files/web-1bc6f25d67ffa58ce876.js.下载"></script>
+    
+    <script src="./WebChromeClient常用API与功能使用详解 - 简书_files/entry-6f034d43d24e8ff141af.js.下载"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35169517-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?0c0e9d9b1e7d617b3e6842e85b9fb068";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+  
+
+<!----><!----></body></html>

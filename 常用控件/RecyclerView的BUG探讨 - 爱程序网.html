@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0042)http://www.aichengxu.com/other/1370721.htm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<style id="znBdcsStyle" type="text/css">#bdcs-rec{display:none;}</style><title>RecyclerView的BUG探讨 - 爱程序网</title>
+	<meta name="Keywords" content="bug,RecyclerView的BUG探讨">
+	<meta name="Description" content="RecyclerView这是一个全新的列表控件，这里就暂时不讨论它的用法了，百度随便一搜就会出现一大堆用法，这里讨论的是我在使用过程中遇到的一个bug。异常信息如下：[code]10">
+	
+	<link rel="dns-prefetch" href="http://r.aichengxu.com/">
+	<meta name="mobile-agent" content="format=xhtml; url=http://m.aichengxu.com/other/1370721.htm">
+	<meta name="mobile-agent" content="format=html5; url=http://m.aichengxu.com/other/1370721.htm">      
+	<link type="text/css" rel="stylesheet" href="./RecyclerView的BUG探讨 - 爱程序网_files/g.css">
+	<script src="./RecyclerView的BUG探讨 - 爱程序网_files/push.js.下载"></script><script src="./RecyclerView的BUG探讨 - 爱程序网_files/hm.js.下载"></script><script type="text/javascript" async="" src="./RecyclerView的BUG探讨 - 爱程序网_files/insideText.js.下载"></script><script type="text/javascript" async="" src="./RecyclerView的BUG探讨 - 爱程序网_files/js"></script><script type="text/javascript" async="" src="./RecyclerView的BUG探讨 - 爱程序网_files/zcym"></script><script src="./RecyclerView的BUG探讨 - 爱程序网_files/ca-pub-8651881551177092.js.下载"></script><script type="text/javascript" src="./RecyclerView的BUG探讨 - 爱程序网_files/jquery.js.下载"></script>	
+	<script type="text/javascript" src="./RecyclerView的BUG探讨 - 爱程序网_files/main.js.下载"></script>
+	<script type="text/javascript">helper.uaredirect("http://m.aichengxu.com/other/1370721.htm");</script> 
+</head>
+<body><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./RecyclerView的BUG探讨 - 爱程序网_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div>
+<div id="wrap">
+
+<div id="header">
+	<div class="logo">
+		<a href="http://www.aichengxu.com/"><img width="311" height="48" alt="爱程序网" src="./RecyclerView的BUG探讨 - 爱程序网_files/logo.png"></a>
+	</div>
+	<div class="search">
+		<form target="_blank" action="http://zhannei.baidu.com/cse/search">           
+			<div class="search-ipt"><input id="bdcsMain" type="text" value="" name="q"></div>
+			<div class="search-btn"><input type="submit" value="搜索" class="sub-btn"></div>
+	    <div><input type="hidden" name="s" value="13701196898887196136"><input type="hidden" name="entry" value="1"></div></form>
+	</div>
+</div>
+<div id="nav">
+	<ul>
+		<li><a href="http://www.aichengxu.com/">首页</a></li>
+			<li><a href="http://www.aichengxu.com/php/">PHP技术</a></li>
+			<li><a href="http://www.aichengxu.com/java/">JAVA技术教程</a></li>
+			<li><a href="http://www.aichengxu.com/aspnet/">ASP.NET技术教程</a></li>
+			<li><a href="http://www.aichengxu.com/cyvyan/">C语言&amp;C++</a></li>
+			<li><a href="http://www.aichengxu.com/htmlcss/">HTML/CSS</a></li>
+			<li><a href="http://www.aichengxu.com/javascript/">JavaScript技术</a></li>
+			<li><a href="http://www.aichengxu.com/seo/">SEO知识</a></li>
+			<li><a href="http://www.aichengxu.com/mysql/">Mysql技术教程</a></li>
+		<li>   <a class="nav-more">更多</a>   <b class="verify-b"></b>   
+		<div class="drop-sub-nav" style="display:none;">
+			<a href="http://www.aichengxu.com/diannao/">电脑基础知识</a>
+			<a href="http://www.aichengxu.com/thinkphp/">ThinkPHP框架知识</a>
+			<a href="http://www.aichengxu.com/python/">Python技术</a>
+			<a href="http://www.aichengxu.com/android/">Android开发技术</a>
+			<a href="http://www.aichengxu.com/ios/">IOS开发技术</a>
+			<a href="http://www.aichengxu.com/linux/">Linux技术知识</a>
+			<a href="http://www.aichengxu.com/apache/">Apache技术知识</a>
+			<a href="http://www.aichengxu.com/nginx/">nginx技术知识</a>
+			<a href="http://www.aichengxu.com/cate/">专辑收藏</a>
+		</div>
+		</li>                
+	</ul>
+</div>           
+<div class="top-nav-ad">
+    <script type="text/javascript">adsense.common.ad1();</script><script async="" src="./RecyclerView的BUG探讨 - 爱程序网_files/adsbygoogle.js.下载"></script>
+<ins class="adsbygoogle" style="display: block; height: 90px;" data-ad-client="ca-pub-8651881551177092" data-ad-slot="9251341447" data-ad-format="auto" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:960px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:960px;background-color:transparent"><iframe width="960" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;width:960px;height:90px;" src="./RecyclerView的BUG探讨 - 爱程序网_files/saved_resource.html"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div> 
+<div id="user-loc">当前位置：<a href="http://www.aichengxu.com/">首页</a> » <a href="http://www.aichengxu.com/other/">其他</a></div>
+<div id="post">
+	<div class="post-left">   
+		<div class="post-detail">
+			<h1>RecyclerView的BUG探讨</h1>
+			<div class="p-info">
+				<span class="p-time">2015-10-29 03:04</span>
+				<span class="p-author">本站整理</span>
+				<span class="p-view">浏览(518)</span>
+			</div>
+			<div class="p-text">
+				<!--div id="ad-left"><script type="text/javascript">adsense.detail.ad1();</script></div-->
+				RecyclerView 这是一个全新的列表控件，这里就暂时不讨论它的用法了，百度随便一搜就会出现一大堆用法，这里讨论的是我在使用过程中遇到的一个bug。异常信息如下：<br><pre>[code]10-29 00:44:52.845: E/AndroidRuntime(17874): java.lang.IndexOutOfBoundsException: Inconsistency detected. Invalid view holder adapter positionViewHolder{42cbf960 position=12 id=-1, oldPos=1, pLpos:1 scrap no parent}
+10-29 00:44:52.845: E/AndroidRuntime(17874):    at android.support.v7.widget.RecyclerView$Recycler.validateViewHolderForOffsetPosition(RecyclerView.java:3147)
+10-29 00:44:52.845: E/AndroidRuntime(17874):    at android.support.v7.widget.RecyclerView$Recycler.getViewForPosition(RecyclerView.java:3277)
+10-29 00:44:52.845: E/AndroidRuntime(17874):    at android.support.v7.widget.RecyclerView$Recycler.getViewForPosition(RecyclerView.java:3258)
+10-29 00:44:52.845: E/AndroidRuntime(17874):    at android.support.v7.widget.LinearLayoutManager$LayoutState.next(LinearLayoutManager.java:1803)
+10-29 00:44:52.845: E/AndroidRuntime(17874):    at android.support.v7.widget.LinearLayoutManager.layoutChunk(LinearLayoutManager.java:1302)
+10-29 00:44:52.845: E/AndroidRuntime(17874):    at android.support.v7.widget.LinearLayoutManager.fill(LinearLayoutManager.java:1265)
+10-29 00:44:52.845: E/AndroidRuntime(17874):    at android.support.v7.widget.LinearLayoutManager.onLayoutChildren(LinearLayoutManager.java:522)
+10-29 00:44:52.845: E/AndroidRuntime(17874):    at android.support.v7.widget.RecyclerView.dispatchLayout(RecyclerView.java:1872)
+10-29 00:44:52.845: E/AndroidRuntime(17874):    at android.support.v7.widget.RecyclerView.onLayout(RecyclerView.java:2155)</pre><br>当然网上还有一个类似的BUG   Inconsistency detected. Invalid item position 157(offset:157).state:588（这个BUG似乎是谷歌程序猿的锅，反正网上大家都这样说，暂且就相信这种说法吧）。然而我遇到的则是第一种bug，说实话这种bug很难排查，因为异常的堆栈根本没有你自己的代码（对于这种情况的BUG，我暂时还没总结出一套好的排查方式，希望有人看到的话，能留言指导我一下，不胜感激）。于是我把异常信息放到百度  谷歌搜索了一下，搜到下面这篇文章，虽然我还是很疑惑，但是至少给我们指明了一个方向。<a href="http://blog.csdn.net/Singleton1900/article/details/48369239" target="_blank">链接在这里哦</a> <br>    文章中说到：在进行数据移除和数据增加时，务必要保证RVAdapter中的数据和移除的数据保持一致！什么意思呢？我自己琢磨认为是这样的，如果你更新你的集合后，调用RVAdapter的新出现的notifyxxxx方法时，adapter 的更新预期结果和实际集合更新结果不同，那么就会出现异常了。 <br>    举个例子吧：  比如你集合remove了两条数据，但是你RVAdapter只notifyItemRemoved(2)（这里表示移除第三条数据，只移除了一条），这种情况旧属于数据不一致了。还有一种是你增加数据，你集合增加10条数据，但是你RVAdapter的notify只增加了5条数据，这也是数据不一致。 <br>    好了，通过以上两种情况，大概就知道了，这个数据一致其实说的是要保证数量一致。就是说RVAdapter有个size，你的集合有个size。这两个size，在调用RvAdapter的notifyxxxx时候必须保持相同。 <br>    下面我们来看实际案例吧（本人项目出现的BUG，╮(╯▽╰)╭调BUG伤不起啊，这么晚还一边写博客，一边猜想BUG）。 <br>    需求： <br>    监听用户输入，每输入一个字就向服务器请求一次数据，返回最新的搜索结果。 <br>    实现:<br><pre>[code]public class TestActivity extends Activity {
+
+        RecyclerView mRecyclerView;
+        RecyclerAdapter mAdapter;
+        LinearLayoutManager manager;
+        Button search;
+        List&lt;String&gt; searchDatas = new ArrayList&lt;String&gt;();
+        boolean isloading;
+        Handler mHandler = new Handler() {
+
+                @Override
+                public void handleMessage(android.os.Message msg) {
+                        mAdapter.notifyItemRangeInserted(0, 10);
+                        isloading = false;
+
+                };
+        };
+        Runnable searchTask = new Runnable() {
+
+                public void run() {
+                        int size = searchDatas.size();
+                        for (int i = 0; i &lt; 10; i++) {
+                                searchDatas.add("这是第" + (size + i) + "个搜索");
+                        }                       
+                        mHandler.sendEmptyMessage(0);
+                }
+        };
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+                setContentView(R.layout.activity_main);
+                mRecyclerView = (RecyclerView) findViewById(R.id.list);
+                manager = new LinearLayoutManager(this);
+                mRecyclerView.setLayoutManager(manager);
+                mAdapter = new RecyclerAdapter(searchDatas);
+                mRecyclerView.setAdapter(mAdapter);
+                search = (Button) findViewById(R.id.search);
+                search.setOnClickListener(new OnClickListener() {
+                        //为了少写点Demo (*^__^*)  这里用按钮点击 来代替用户输入监听
+                        @Override
+                        public void onClick(View v) {
+                                if (!isloading) {
+                                        isloading = true;
+                                        searchDatas.clear();                                      
+                                        mAdapter.notifyDataSetChanged();                                        
+                                        new Thread(searchTask).start();
+                                }
+
+                        }
+                });
+
+        }
+}</pre><br>这段代码有没有问题呢？以我个人来看，我觉得是没有问题，然而现实确实，我一点搜索就会崩溃，而且神奇的是，能看到RecyclerView已经刷新，当然一瞬间程序就crash了。  然而实际项目里，我也是这样做的却没有崩溃，为什么Demo就crash了呢？问题就出现在我为searchDatas这个集合赋值的过程里，Demo里我为了省事，随便开个子线程添加了一点数据，这中间的时间是非常短的，而实际项目需要去服务器请求数据 还要解析数据，这个耗时就会长一点。  于是我修改了一下我的searchTask：<br><pre>[code]Runnable searchTask = new Runnable() {
+
+                public void run() {
+                        try {
+                                Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                        }
+                        int size = searchDatas.size();
+                        for (int i = 0; i &lt; 10; i++) {
+                                searchDatas.add("这是第" + (size + i) + "个搜索");
+                        }                       
+                        mHandler.sendEmptyMessage(0);
+                }
+        };</pre><br>于是，神奇的事情发生了，程序不会Crash了。这尼玛坑爹呢？这中间发生了什么状况啊？还记得我上面说过有个现象吗？Demo在crash之前是有一瞬间显示了数据的，于是我又再次修改了我的searchTask。<br><pre>[code] Runnable searchTask = new Runnable() {
+
+                public void run() {
+
+                        int size = searchDatas.size();
+                        for (int i = 0; i &lt; 10; i++) {
+                                searchDatas.add("这是第" + (size + i) + "个搜索");
+                                if (i==5) {
+                                        try {
+                                                Thread.sleep(3000);
+                                        } catch (InterruptedException e) {
+                                                // TODO Auto-generated catch block
+                                                e.printStackTrace();
+                                        }
+                                }
+                        }                       
+                        mHandler.sendEmptyMessage(0);
+                }
+        };</pre><br>猜猜这一次会发生什么？WTF！是的，你没有猜错，我点击按钮后，RecyclerView显示了6条数据，然后大概三秒后，程序crash了。这个现象确实很神奇，到这里我有个猜测，是不是RVAdapter的notifyDataSetChanged()方法影响了呢？于是，我把这个调用给注释了。结果似乎真的就是这样，我第一次点击按钮的时候，程序是不会crash的，也能正常显示数据。但是我第二次点击，程序就crah了。 <br>    接下来我做了一个简单的验证，第二次点击程序是在我调用searchDatas.clear()方法后crash的。 <br>    经过以上实验，我得到了一个不一定正确的结论： <br>    1.RVAdapter的notifyDataSetChanged方法执行后，在一定时间内，如果你更新了你的集合（无论是否在主线程更新集合），那么这个更新会实时反应到控件上，也就是说你的控件显示也会更新。 <br>    2.在上面结论的基础上，也就是说你调用notifyDataSetChanged方法后，很快又更新了集合，然后调用了诸如notifyItemRangeInserted这样的方法，这个时候是会触发BUG的，如果是再调用notifyDataSetChanged方法是不会触发BUG的。 <br>    3.针对上面的情况，我得到一个初步的解决办法，也就是说我每次清空数据调用notifyDataSetChanged方法之后，执行更新集合任务先休眠几秒（任务要是执行太快就像一开始的Demo那样了），至于休眠几秒这个我暂时还没想清楚，大概就休眠3秒再执行吧。  <br>额，因为这篇文章是我熬夜写的，其实我也是一边写，一边做验证的，所以我又整理了一下我的结论，结论应该如下： <br>    1.RVAdapter的notifyDataSetChanged方法执行后，在一定时间内，如果你更新了你的集合（无论是否在主线程更新集合），那么这个更新会实时反应到控件上，也就是说你的控件显示也会更新。 <br>    2.调用诸如notifyItemRangeInserted这样的方法之前，考虑清楚你的集合到底更新成什么样了！要注意参考结论1，结论1会影响你的判断。 <br>好了，到此，BUG应该是解决了，明天到公司再验证吧！至于为何会出现结论1这种奇葩情况，我暂时也不清楚，希望英语好的哥们帮我去google的社区问问吧。 <br>    这篇文章因为是我熬夜一边猜想验证，一边写的，应该还有不少问题，希望看到的人能够留言指出，不胜感激！
+				<div class="tags"><a href="http://www.aichengxu.com/tag/bug/">bug</a></div>
+			</div>
+			<div class="ad-under"><script type="text/javascript">adsense.detail.ad2();</script><script async="" src="./RecyclerView的BUG探讨 - 爱程序网_files/adsbygoogle.js.下载"></script>
+<ins class="adsbygoogle" style="display: block; width: 580px; height: 60px;" data-ad-client="ca-pub-8651881551177092" data-ad-slot="9251341447" data-ad-format="auto" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:60px;margin:0;padding:0;position:relative;visibility:visible;width:580px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:60px;margin:0;padding:0;position:relative;visibility:visible;width:580px;background-color:transparent"><iframe width="580" height="60" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;width:580px;height:60px;" src="./RecyclerView的BUG探讨 - 爱程序网_files/saved_resource(1).html"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+			<div class="connect">
+				<i class="connect-left"></i>
+				<i class="connect-right"></i>
+			</div>
+			<div class="p-extra">
+            	<h3>猜你在找</h3>
+            	<ul>
+					<li><a href="http://www.aichengxu.com/dev/460985.htm">[考试维护]时隔半年的考试系统</a></li>
+					<li><a href="http://www.aichengxu.com/other/461011.htm">软件测试-基础篇</a></li>
+					<li><a href="http://www.aichengxu.com/other/861656.htm">(VS2010刚装上就不能编译)LINK : fatal error LNK1123: 转换到 COFF 期间失败: 文件无效或损坏</a></li>
+					<li><a href="http://www.aichengxu.com/dev/463160.htm">WKWebView 在64位设备上的白屏问题</a></li>
+					<li><a href="http://www.aichengxu.com/java/862835.htm">java文件预览及加密解密的部分问题及解决方案</a></li>
+					<li><a href="http://www.aichengxu.com/diannao/864193.htm">Determining the source of Bug Check 0x133 (DPC_WATCHDOG_VIOLATION) errors on Windows Server 2012</a></li>
+					<li><a href="http://www.aichengxu.com/dev/465099.htm">在 Android Studio 中使用OpenCV所遇到问题</a></li>
+					<li><a href="http://www.aichengxu.com/dev/466982.htm">Android好奇宝宝_11_SwipeRefreshLayout原理浅析</a></li>
+					<li><a href="http://www.aichengxu.com/dev/468496.htm">漫谈程序员系列：程序员到底是什么角色</a></li>
+					<li><a href="http://www.aichengxu.com/photoshop/869214.htm">自动化代码复查工具 findbugs</a></li>
+					<li><a href="http://www.aichengxu.com/other/665611.htm">FusionCharts 2D柱状图和折线图的组合图调试错误</a></li>
+					<li><a href="http://www.aichengxu.com/zhiye/469539.htm">漫谈程序员系列：她发现了一个Bug……</a></li>
+					<li><a href="http://www.aichengxu.com/zhiye/469541.htm">这10个问题去哪儿啦</a></li>
+					<li><a href="http://www.aichengxu.com/zhiye/469558.htm">漫谈程序员系列：噢，我不想成为问题！</a></li>
+					<li><a href="http://www.aichengxu.com/zhiye/469559.htm">漫谈程序员系列：让程序员蛋疼的那些事儿</a></li>
+					<li><a href="http://www.aichengxu.com/zhiye/469564.htm">漫谈程序员系列：无BUG不生活</a></li>
+					<li><a href="http://www.aichengxu.com/other/668973.htm">应用程序无法正常启动 0x0000007b</a></li>
+					<li><a href="http://www.aichengxu.com/dev/475413.htm">C语言每日小练（一）——3n+1问题</a></li>
+					<li><a href="http://www.aichengxu.com/other/603249.htm">RecyclerView的bug——Inconsistency detected</a></li><li><a href="http://www.aichengxu.com/other/6606481.htm">RecyclerView焦点跳转BUG优化</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="post-right">     
+        <div id="side-box" class="box-fixed">
+            <h3>阅读榜</h3>
+            <ul>
+			</ul>
+			<div class="ad300"><script type="text/javascript">adsense.detail.ad3();</script><script async="" src="./RecyclerView的BUG探讨 - 爱程序网_files/adsbygoogle.js.下载"></script>
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-8651881551177092" data-ad-slot="1867675445" data-adsbygoogle-status="done"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><ins id="aswift_2_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><iframe width="336" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;width:336px;height:280px;" src="./RecyclerView的BUG探讨 - 爱程序网_files/saved_resource(2).html"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+        </div>
+    </div>    
+</div>
+<script type="text/javascript">
+    //右侧浮动
+    fixFloat("side-box");
+</script>
+<script type="text/javascript">ac('6', '1370721');</script>
+
+<div id="footer">
+	<p>Copyright&nbsp;©&nbsp;2011-2015&nbsp;&nbsp;爱程序网&nbsp;&nbsp;沪ICP备14001972号-1&nbsp;&nbsp;
+	业务咨询：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1658522921&amp;site=qq&amp;menu=yes"><img border="0" src="./RecyclerView的BUG探讨 - 爱程序网_files/pa" alt="业务咨询" title="业务咨询"></a> &nbsp;&nbsp;</p>
+</div>
+<script type="text/javascript">menuDrop();</script>
+<!--Baidu Search-->
+<script type="text/javascript">
+		/*内文搜索*/
+		var cpro_id = "u2051930";
+	</script>
+	<script src="./RecyclerView的BUG探讨 - 爱程序网_files/cnw.js.下载" type="text/javascript"></script><div id="BAIDU_SSP__wrapper_u2051930_0"><script id="ScriptIdu2051930_0" src="./RecyclerView的BUG探讨 - 爱程序网_files/zcym(1)" charset="utf-8"></script></div>
+<!--站内搜索-->
+<script type="text/javascript">(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=13701196898887196136' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script><div id="bdcs"><div class="bdcs-container"><meta http-equiv="x-ua-compatible" content="IE=9">                          </div></div>
+<div style="display:none;"><script type="text/javascript"> try { third.do(); } catch (e) {} </script><script src="./RecyclerView的BUG探讨 - 爱程序网_files/z_stat.php" language="JavaScript"></script><script src="./RecyclerView的BUG探讨 - 爱程序网_files/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=1261058748" target="_blank" title="站长统计">站长统计</a>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?ad752f1ac5ddc6b6a89bcf4b99ff494f";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+(function(){
+	var bp = document.createElement('script');
+	var curProtocol = window.location.protocol.split(':')[0];
+	if (curProtocol === 'https') {
+		bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';		
+	}
+	else {
+		bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	}
+	var s = document.getElementsByTagName("script")[0];
+	s.parentNode.insertBefore(bp, s);
+})();
+</script>
+</div>
+
+
+</div>
+
+</body></html>

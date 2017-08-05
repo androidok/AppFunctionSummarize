@@ -1,0 +1,133 @@
+﻿
+function fillTable(x) {
+    var t = "";
+    t = t + "<table style='cursor:pointer;' class='reference'>"
+    t = t + "<tr>"
+    t = t + "<th style='cursor:auto;width:33%;font-weight:bold;'>px</th>"
+    t = t + "<th style='cursor:auto;width:33%;font-weight:bold;'>em</th>"
+    t = t + "<th style='cursor:auto;width:33%;font-weight:bold;'>百分比</th>"
+    t = t + "</tr>"
+    for (i = 5; i < 26; i++) {
+        t = t + "<tr onclick=&#39;fillTable(" + i + ")&#39;)&#39;"
+        if (i == x) {
+
+            t = t + " style=&#39;background-color:#555;color:white;&#39; "
+        }
+
+        t = t + "><td>" + i + "px</td>"
+        t = t + "<td>" + (i / x).toFixed(4) + "em</td>"
+        t = t + "<td>" + ((i / x) * 100).toFixed(2) + "%</td>"
+        t = t + "</tr>"
+    }
+    t = t + "</table>";
+    document.getElementById("demo").innerHTML = t;
+}
+
+
+function wrong() {
+    document.getElementById("myInput2").disabled = true;
+    document.getElementById("myInput2").value = "";
+}
+
+function wrong2() {
+    document.getElementById("myInput").disabled = true;
+    document.getElementById("myInput").value = "";
+}
+
+function works() {
+    document.getElementById("myInput2").disabled = false;
+    document.getElementById("myInput2").value = "";
+}
+
+
+function works2() {
+    document.getElementById("myInput").disabled = false;
+    document.getElementById("myInput").value = "";
+}
+
+
+function myFunction() {
+    var x = document.getElementById("myInput").value;
+    var z = document.getElementById("myInput2").value;
+    var y = document.getElementById("pix1").value;
+    var res = document.getElementById("result1");
+
+
+    if (x) {
+        res.innerHTML = x / y + "em";
+    } else {
+        res.innerHTML = z * y + "px";
+    }
+
+    if (isNaN(x) || isNaN(z) || isNaN(y)) {
+        res.innerHTML = "请输入数字！";
+        res.style.color = "red";
+    } else {
+        res.style.color = "black";
+    }
+}
+
+
+function urlencode() {
+    var txt = document.getElementById("txt").value;
+    //var encodetxt=encodeURI(txt);
+    var encodetxt = encodeURIComponent(txt);
+    document.getElementById("encodingresult").innerHTML = encodetxt;
+}
+
+
+var colorhex = "#FF0000"
+function mouseOverColor(hex) {
+    document.getElementById("divpreview").style.backgroundColor = hex;
+    document.getElementById("divpreviewtxt").innerHTML = hex;
+    document.body.style.cursor = "pointer";
+}
+
+function mouseOutMap() {
+    document.getElementById("divpreview").style.backgroundColor = colorhex;
+    document.getElementById("divpreviewtxt").innerHTML = colorhex;
+    document.body.style.cursor = "";
+}
+
+function clickColor(hex, seltop, selleft) {
+    var xhttp, c
+    if (hex == 0) {
+        c = document.getElementById("colorhex").value;
+    }
+    else {
+        c = hex;
+    }
+    if (c.substr(0, 1) == "#") {
+        c = c.substr(1);
+    }
+    colorhex = "#" + c;
+    colorhex = colorhex.substr(0, 10);
+    document.getElementById("colorhex").value = colorhex;
+    if (window.XMLHttpRequest) {
+        xhttp = new XMLHttpRequest();
+    }
+    else {
+        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xhttp.open("GET", "/try/colorpicker.php?colorhex=" + c + "&r=" + Math.random(), false);
+    xhttp.send("");
+    document.getElementById("colorshades").innerHTML = xhttp.responseText;
+    if (seltop > -1 && selleft > -1) {
+        document.getElementById("selectedColor").style.top = seltop + "px";
+        document.getElementById("selectedColor").style.left = selleft + "px";
+        document.getElementById("selectedColor").style.visibility = "visible";
+    }
+    else {
+        document.getElementById("divpreview").style.backgroundColor = colorhex;
+        document.getElementById("divpreviewtxt").innerHTML = colorhex;
+        document.getElementById("selectedColor").style.visibility = "hidden";
+    }
+    //refreshleader()
+}
+
+function post_html_url_test()
+{
+    var param = $("#html_url_name").val();
+    window.open("/try/formAction?text="+param);
+}
+

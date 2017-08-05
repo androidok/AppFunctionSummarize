@@ -1,0 +1,113 @@
+﻿$(function () {
+    //Login Dialog 垂直居中
+    //Login Dialog 拖动效果
+    //$("#LoginModal").draggable({
+    //    handle: ".modal-header"
+    //});
+    $('#LoginModal').on('show.bs.modal', function () {
+        $('.modal-dialog').css('width', $(window).width() * 0.35);
+        //$('.modal-content').css('height', $(window).height() * 0.5);
+    });
+
+    //动态获取访客信息
+    $.ajax({
+        type: "Post",
+        cache: false,
+        url: '/Home/GetVisitorRecord',
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        success: function (data) {
+            var v_html = ""
+            var j_data = $.parseJSON(data);
+            if (data=="[]")
+            {
+                $('#marquee').html("<li style='text-align:center;color:#18bc9c;font-size:14px;top:9px;left:3px;'>暂无动态</li>");
+                return;
+            }
+            $(j_data).each(function (index,item) {
+                v_html += "<li style=\"color:#18bc9c;font-size:13px;line-height:20px;padding-left:5px;\">";
+                v_html += "<a style=\"display:block;\" title=\"" + item.title + "\" href=\"http://www.it1352.com/" + item.id + ".html\" taget=\"_blank\">【" + item.area + "】网友 正在浏览<br/><span style='display:block;padding-left:5px;'>" + cutstr(item.title, 36) + "</span></a>";
+                //v_html += "<a>"+item.title.substr(0,20)+"</a>";
+                v_html += "</li>";
+            });
+            $('#marquee').html(v_html);
+            $("#marquee").marquee({ yScroll: "top", pauseSpeed: 2000 });
+        }
+    });
+});
+
+//判断中英文混合字符串长度(字节)
+function strlen(str) {
+    var len = 0;
+    for (var i = 0; i < str.length; i++) {
+        var c = str.charCodeAt(i);
+        //单字节加1 
+        if ((c >= 0x0001 && c <= 0x007e) || (0xff60 <= c && c <= 0xff9f)) {
+            len++;
+        }
+        else {
+            len += 2;
+        }
+    }
+    return len;
+}
+
+/** 
+ * js截取字符串，中英文都能用 
+ * @param str：需要截取的字符串 
+ * @param len: 需要截取的长度 
+ */
+function cutstr(str, len) {
+    if (!str)
+    {
+        return "";
+    }
+    var str_length = 0;
+    var str_len = 0;
+    str_cut = new String();
+    str_len = str.length;
+    for (var i = 0; i < str_len; i++) {
+        a = str.charAt(i);
+        str_length++;
+        if (escape(a).length > 4) {
+            //中文字符的长度经编码之后大于4  
+            str_length++;
+        }
+        str_cut = str_cut.concat(a);
+        if (str_length >= len) {
+            str_cut = str_cut.concat("...");
+            return str_cut;
+        }
+    }
+    //如果给定字符串小于指定长度，则返回源字符串；  
+    if (str_length < len) {
+        return str;
+    }
+}
+
+function copyToClipboard(maintext,successMsg) {
+    if (window.clipboardData) {
+        window.clipboardData.setData("Text", maintext);
+    } else if (window.netscape) {
+        try {
+            netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+        } catch (e) {
+            //alert("该浏览器不支持一键复制！");
+            layer.msg('该浏览器不支持一键复制！', { time: 3000, icon: 5 });
+        }
+        var clip = Components.classes['@mozilla.org/widget/clipboard;1'].createInstance(Components.interfaces.nsIClipboard);
+        if (!clip) return;
+        var trans = Components.classes['@mozilla.org/widget/transferable;1'].createInstance(Components.interfaces.nsITransferable);
+        if (!trans) return;
+        trans.addDataFlavor('text/unicode');
+        var str = new Object();
+        var len = new Object();
+        var str = Components.classes["@mozilla.org/supports-string;1"].createInstance(Components.interfaces.nsISupportsString);
+        var copytext = maintext;
+        str.data = copytext;
+        trans.setTransferData("text/unicode", str, copytext.length * 2);
+        var clipid = Components.interfaces.nsIClipboard;
+        if (!clip) return false;
+        clip.setData(trans, null, clipid.kGlobalClipboard);
+    }
+    layer.msg(successMsg, { time: 3000, icon: 6 });
+}

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://www.tuicool.com/articles/7jYvQrR -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="authenticity_token" name="csrf-param">
+<meta content="tu4P1d+oQ1Xx7H34VEOKe2gY4wC0DO8T7pKoirexIGM=" name="csrf-token">
+    <title>
+            使用 video.js 开发 HTML5 视频页面 - 推酷
+   </title>
+    <meta name="description" content="使用 video.js 开发 HTML5 视频页面">
+  <link rel="shortcut icon" href="http://static0.tuicool.com/favicon.ico" type="image/x-icon">
+  <link href="http://static0.tuicool.com/images/icon114.png" rel="Bookmark">
+  <link rel="apple-touch-icon" sizes="57x57" href="http://static1.tuicool.com/images/icon57.png"> 
+  <link rel="apple-touch-icon" sizes="72x72" href="http://static2.tuicool.com/images/icon72.png">  
+  <link rel="apple-touch-icon" sizes="114x114" href="http://static0.tuicool.com/images/icon114.png">    
+  <link rel="apple-touch-icon" sizes="144x144" href="http://static1.tuicool.com/images/icon144.png">
+  <link href="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/pub.css" rel="stylesheet">
+  <link href="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/application-99035d317841f86532bdc4208145b52d.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/font-awesome.min.css" rel="stylesheet">
+  <script type="text/javascript" src="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/pub.js.下载"></script>
+  <script src="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/application-f8dd22e38da72b470d036c6151afa4cc.js.下载" type="text/javascript"></script>
+  
+      <style type="text/css">
+      .btn-large {
+        padding: 0;
+      }
+      .load-fail {
+        display: none;
+      }
+    </style>
+
+</head>
+<body class="  pace-done"><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+  <div class="pace-progress-inner"></div>
+</div>
+<div class="pace-activity"></div></div>
+  
+  <div id="header" class="navbar-fixed-top">
+    <div class="container">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> 
+            <span class="icon-bar"></span> 
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span> 
+          </a>
+          <a href="http://www.tuicool.com/" class="brand">推酷</a>        
+        <nav class="nav-collapse collapse">
+            <ul class="nav navbar primary-nav">                            
+              <li class="active">
+                <a href="http://www.tuicool.com/ah">
+                  文章
+                </a>
+              </li>              
+              <li class="">
+                <a href="http://www.tuicool.com/sites/hot">
+                  站点
+                </a>
+              </li>
+              <li class="">
+                <a href="http://www.tuicool.com/topics">
+                  主题
+                </a>
+              </li>
+              <li class="">
+                <a href="http://huodong.tuicool.com/">
+                  活动
+                </a>
+              </li>
+              <li class="">
+                <a href="http://www.tuicool.com/mobile">
+                  APP
+                    <sup style="font-size:0.8em;color: #16A085;">荐</sup>
+                </a>
+              </li>
+              <li class="dropdown  ">
+                <a href="http://www.tuicool.com/articles/7jYvQrR#" class="dropdown-toggle" data-toggle="dropdown">周刊 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="http://www.tuicool.com/mags">编程狂人</a></li>
+                  <li><a href="http://www.tuicool.com/mags/design">设计匠艺</a></li> 
+                  <li><a href="http://www.tuicool.com/mags/startup">创业周刊</a></li> 
+                  <li><a href="http://www.tuicool.com/mags/tech">科技周刊</a></li>      
+                  <li><a href="http://www.tuicool.com/articles/weekly">一周拾遗</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="http://www.tuicool.com/articles/7jYvQrR#" class="dropdown-toggle" data-toggle="dropdown">更多 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="http://course.tuicool.com/">
+                    公开课
+                  </a>
+                  </li>
+                  <li><a href="http://www.tuicool.com/daily_news">今日酷闻</a></li>
+                  <li><a href="http://www.tuicool.com/bbs/go/issues">意见反馈</a></li>
+                </ul>
+              </li>
+              </ul>
+            <form class="navbar-search pull-left" action="http://www.tuicool.com/search">
+              <input type="text" class="search-query span2" name="kw" placeholder="搜索">
+            </form>
+            <ul class="nav pull-right">
+                <li><a href="http://www.tuicool.com/login">登录</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+  </div>   
+</div>
+  <div id="flash_container" class="noPrint">    
+  </div>
+  
+  <div class="container-fluid">  
+      
+<div class="row-fluid article_row_fluid">
+    <div class="span8 contant article_detail_bg">
+        <h1>使用 video.js 开发 HTML5 视频页面</h1>
+        <div class="article_meta">
+            <div style="margin-bottom: 5px;">
+            <span class="timestamp">时间&nbsp;2015-05-13 17:11:58
+            </span>
+            <span class="from">
+                <i class="icon-globe"></i>
+                    <a class="cut cut28 from" href="http://www.tuicool.com/sites/yqeeUzv" target="_blank">The GIS Guy
+                    </a>
+            </span>
+            </div>
+            <div class="source">
+                <i style="float:left;">原文</i>&nbsp; 
+                <a class="cut cut70" href="http://thegisguy.tk/html5-video-using-video-js/?utm_source=tuicool&amp;utm_medium=referral" style="display:inline-block;">http://thegisguy.tk/html5-video-using-video-js/</a>
+            </div>
+            <div>
+                <span>主题</span>
+                <a href="http://www.tuicool.com/topics/11060166" target="_blank">
+                    <span class="new-label">Video.js</span>
+                </a>
+                <a href="http://www.tuicool.com/topics/11060001" target="_blank">
+                    <span class="new-label">HTML5</span>
+                </a>
+            </div>
+        </div>
+        <div class="article_body" id="nei">
+            <div itemprop="articleBody"> 
+ <p>使用 video.js 简单几步编写一个可以在微信、QQ内置浏览器中正常工作的 HTML5 视频播放器。</p> 
+ <p> HTML5 <code>&lt;video&gt;</code> 标签看似简单，但在不同设备上使用时却问题不断，原因是很多设备强制使用自身的视频播放器来播放 HTML5 视频。使用第三方组件 video.js 可以在一定程度上克服这个问题。 </p> 
+ <h2>初始化 video.js</h2> 
+ <p>编写 HTML 页面：</p> 
+ <pre class="prettyprint hljs xml"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>  
+	<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1, maximum-scale=1"</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"include/video-js/video-js.css"</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"video.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+		videojs.options.flash.swf = <span class="hljs-string">"include/video-js/video-js.swf"</span>
+	</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>  
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>  
+<span class="hljs-tag">&lt;<span class="hljs-name">video</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"video"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"video-js vjs-default-skin vjs-big-play-centered"</span>  
+	<span class="hljs-attr">controls</span> <span class="hljs-attr">preload</span>=<span class="hljs-string">"auto"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100%"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"100%"</span>
+	<span class="hljs-attr">poster</span>=<span class="hljs-string">"img/pure-black.jpg"</span> <span class="hljs-attr">data-setup</span>=<span class="hljs-string">''</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"video/video.mp4"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">'video/mp4'</span> /&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"video/video.webm"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">'video/webm'</span> /&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">source</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"video/video.ogv"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">'video/ogg'</span> /&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"vjs-no-js"</span>&gt;</span>播放视频需要启用 JavaScript，推荐使用支持HTML5的浏览器访问。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">video</span>&gt;</span>  
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>  
+</code>
+</pre> 
+ <p> 与官方教程相比，这里为 <code>video</code> 元素额外添加了 <code>vjs-big-play-centered</code> 类，让播放按钮显示在视频的正中间（默认在左上角）。 <code>controls</code> 表示自动添加播放控件。加上 <code>preload="auto"</code> 可以让页面加载完成后立即开始加载视频，如果设置为 <code>preload="meta"</code> 则只加载视频元数据。 </p> 
+ <p> 在 <code>&lt;head&gt;</code> 中声明 <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"&gt;</code> ，可以让页面在高分辨率的手机上显示正确的尺寸，防止因为屏幕像素高而使得页面元素变得很小。 </p> 
+ <p> 虽然页面中已经指定 <code>&lt;video&gt;</code> 高度为100%，但此时视频控件高度仍然为0，可以用下面的 CSS 样式让视频控件全屏。 </p> 
+ <pre class="prettyprint hljs css"><code class="language-css"><span class="hljs-selector-tag">html</span>, <span class="hljs-selector-tag">body</span> {  
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+    <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
+}
+</code></pre> 
+ <p>为适配不同内核的浏览器，需要同时提供 .mp4、.ogv、.webm 三种格式的视频，但 OS X 下没有找到好用的免费转换器可以同时转换成 .mp4、.ogv 和 .webm 三种格式。miro 虽然号称免费开源，但是不捐钱无法得到下载链接……如果视频不大，推荐使用 converter.com 的在线转换器。</p> 
+ <p>可以看看上面代码在浏览器中的效果：</p> 
+ <p> <img src="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/equA7j.png!web" class="alignCenter"> </p> 
+ <h2>事件响应</h2> 
+ <p>video.js 对 HTML5 视频的事件进行了封装，下面的代码演示了如何给视频添加事件响应：</p> 
+ <pre class="prettyprint hljs javascript"><code class="language-javascript"><span class="hljs-keyword">var</span> player = videojs(<span class="hljs-string">'video'</span>);  
+<span class="hljs-comment">// 检测播放时间</span>
+player.on(<span class="hljs-string">'timeupdate'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{  
+	<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'当前播放时间：'</span> = player.currentTime());
+}
+});
+<span class="hljs-comment">// 开始或恢复播放</span>
+player.on(<span class="hljs-string">'play'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{  
+	<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'开始/恢复播放'</span>);
+});
+<span class="hljs-comment">// 暂停播放</span>
+player.on(<span class="hljs-string">'pause'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{  
+	<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'暂停播放'</span>);
+});
+</code>
+</pre> 
+ <p>视频播放控件最常用的事件是 'play'，'pause'，'ended'，以及'timeupdate'。</p> 
+ <h2>适配iOS、安卓设备</h2> 
+ <h3>正确处理播放结束事件</h3> 
+ <p> 在设备实测中可以发现，上一节中提到的 <code>'ended'</code> 事件在安卓设备上并没有正确触发。因此，需要通过 <code>'timeupdate'</code> 事件判断视频是否已播放完毕： </p> 
+ <pre class="prettyprint hljs php"><code class="language-javascript">player.on(<span class="hljs-string">'timeupdate'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{  
+    <span class="hljs-comment">// 如果 currentTime() === duration()，则视频已播放完毕</span>
+    <span class="hljs-keyword">if</span> (player.duration() != <span class="hljs-number">0</span> &amp;&amp; player.currentTime() === player.duration()) {
+            <span class="hljs-comment">// 播放结束</span>
+        }
+    });
+</code></pre> 
+ <p> 与iOS设备不同，安卓设备中视频还未加载的情况下 <code>player.duration()</code> 与 <code>player.currentTime()</code> 均为0，因此需要通过 <code>player.duration() != 0</code> 确保视频信息已加载成功 ，以免在页面刚刚加载的时候就错误地认为视频播放已经结束。 </p> 
+ <h3>隐藏移动设备自动添加的播放按钮</h3> 
+ <p>移动设备上的浏览器检测到 HTML5 视频时，会自动加上播放按钮，然而在大多数情况下，默认的播放按钮点击之后并不能正常播放视频。（为什么要采用第三方组件来写视频控件的原因。）</p> 
+ <p>另外，video.js 本身已经带有播放按钮，因此需要将设备自动添加的播放按钮隐藏。设置下面的 CSS 样式：</p> 
+ <pre class="prettyprint hljs elixir"><code class="language-css"><span class="hljs-symbol">video:</span><span class="hljs-symbol">:-webkit-media-controls</span> {  
+    <span class="hljs-symbol">display:</span>none !important;
+}
+</code></pre> 
+ <p>到此为止，一个适配了桌面端与移动端，并用能在QQ、微信浏览器中正常打开视频的页面就完成了。</p> 
+ <h2>参考</h2> 
+</div>
+        </div>
+        <div class="article_social">
+         <div class="article_like">
+    <div class="circle circle-like" id="my_zan" data_id="7jYvQrR">  </div>
+
+</div>
+        <div id="share_weixin_image">
+            <img width="100px" height="100px" src="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/qrcode.php">
+        </div>
+<div class="article_share_fav">
+    <div class="share" id="ckepop">
+        <span>分享</span>
+        <button class="share_weibo" id="share_weibo_id" title="分享到新浪微博"></button>
+        <button class="share_qq" id="share_qq_id" title="分享到QQ空间"></button>
+        <button class="share_weixin" id="share_weixin_id"></button>
+    </div>
+    <div class="fav_correct">
+        <button id="my_fav" data_id="7jYvQrR">
+            <i class="icon icon-star-empty"></i> <span id="fav_tip">收藏</span>
+        </button>
+        <button id="article-correct" data_id="7jYvQrR" uid="0">
+            <i class="icon icon-warning-sign"></i>
+            <span>纠错</span>
+        </button>
+    </div>
+</div>
+<script type="text/javascript">
+$("#share_weibo_id").click( function() {
+   window.open("http://share.baidu.com/s?type=text&searchPic=0&sign=on&to=tsina&url=http://www.tuicool.com/articles/7jYvQrR&title=%E4%BD%BF%E7%94%A8+video.js+%E5%BC%80%E5%8F%91+HTML5+%E8%A7%86%E9%A2%91%E9%A1%B5%E9%9D%A2++%28%E5%88%86%E4%BA%AB%E8%87%AA+%40%E6%8E%A8%E9%85%B7%E7%BD%91%29&key=3113829255");
+});
+$("#share_qq_id").click( function() {
+   window.open("http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://www.tuicool.com/articles/7jYvQrR&title=%E4%BD%BF%E7%94%A8+video.js+%E5%BC%80%E5%8F%91+HTML5+%E8%A7%86%E9%A2%91%E9%A1%B5%E9%9D%A2&desc=&summary=&site=");
+});
+$("#share_weixin_id").click( function() {
+  $("#share_weixin_image").toggle();
+});
+</script>
+
+
+            <div class="bottom_plink clearfix">
+                    <a href="http://activity.ksyun.com/1710/index.html?ch=00033.00018&amp;hmsr=tk&amp;hmpl=1710&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank"><img src="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/ksyun774.jpg"></a>
+
+            </div>
+        </div>
+        <div id="site_articles" style="clear:both;">
+              <div class="article-part-title">
+                <span>推荐文章</span>
+              </div>
+          <ul class="side_article_list">
+                <li class="side_article_list_item">
+                    1.<a href="http://www.tuicool.com/articles/rmUZBve" target="_blank" title="Storybook 3.2 引入 Vue.js 支持 - 知乎专栏">
+                    Storybook 3.2 引入 Vue.js 支持 - 知乎专栏
+                    </a>
+                </li>
+                <li class="side_article_list_item">
+                    2.<a href="http://www.tuicool.com/articles/Yjaua2U" target="_blank" title="CSS3热身实战--过渡与动画（实现炫酷下拉，手风琴，无缝滚动）">
+                    CSS3热身实战--过渡与动画（实现炫酷下拉，手风琴，无缝滚动）
+                    </a>
+                </li>
+                <li class="side_article_list_item">
+                    3.<a href="http://www.tuicool.com/articles/MNFfmer" target="_blank" title="详解 Weex 页面的渲染过程">
+                    详解 Weex 页面的渲染过程
+                    </a>
+                </li>
+                <li class="side_article_list_item">
+                    4.<a href="http://www.tuicool.com/articles/ymyeiiJ" target="_blank" title="为什么使用第三方表单验证库? | CSS-Tricks">
+                    为什么使用第三方表单验证库? | CSS-Tricks
+                    </a>
+                </li>
+                <li class="side_article_list_item">
+                    5.<a href="http://www.tuicool.com/articles/IVnUNfB" target="_blank" title="10个有趣的Javascript和CSS库-2017年7月">
+                    10个有趣的Javascript和CSS库-2017年7月
+                    </a>
+                </li>
+                <li class="side_article_list_item">
+                    6.<a href="http://www.tuicool.com/articles/ZrmE7rb" target="_blank" title="学CSS有啥用">
+                    学CSS有啥用
+                    </a>
+                </li>
+          </ul>
+        </div>
+        <div id="kan_articles"> <div class="article-part-title"> <span>相关推刊</span></div><div class="kan-list-container"><ul class="kan-list clearfix">          <li class="kan-item">            <a href="http://www.tuicool.com/kans/3054940102" target="_blank" class="kan-item-head">              <small>by chengdong0421</small>              <img class="kan-cover" src="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/default_kan_cover.png">            </a>            <span class="kan-detail">              <a href="http://www.tuicool.com/kans/3054940102" target="_blank">《技术》</a>              <i class="kan-num">6</i>            </span>          </li>                  <li class="kan-item">            <a href="http://www.tuicool.com/kans/4000631922" target="_blank" class="kan-item-head">              <small>by 卡卡蝎子</small>              <img class="kan-cover" src="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/default_kan_cover.png">            </a>            <span class="kan-detail">              <a href="http://www.tuicool.com/kans/4000631922" target="_blank">《video》</a>              <i class="kan-num">3</i>            </span>          </li>                  <li class="kan-item">            <a href="http://www.tuicool.com/kans/765960745" target="_blank" class="kan-item-head">              <small>by 夕文艺园</small>              <img class="kan-cover" src="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/rUFRvq.jpg!kan">            </a>            <span class="kan-detail">              <a href="http://www.tuicool.com/kans/765960745" target="_blank">《html5》</a>              <i class="kan-num">6</i>            </span>          </li>        </ul></div><i class="clearfix"></i></div>
+        <div id="article_weibo" style="display:none;">
+            <div class="article-part-title">
+                <span>相关微博</span>
+                <sub>
+                    <a href="http://www.tuicool.com/articles/weibo_list/7jYvQrR" target="_blank">(<i id="weibo_num"></i>)</a> 
+               </sub>
+            </div>
+            <div class="related-weibo-list"></div>
+        </div>
+        <div class="comments">
+    <div class="comments-area">
+    <div class="comments-header">
+        <h5>我来评几句</h5>
+        <div class="alert comment-alert alert-error" style="display:none;">
+            错误
+        </div>
+            <textarea cols="60" rows="5" id="comment-body" placeholder="请输入评论内容..." style="resize: none;"></textarea>
+            <span class="btn btn-medium btn-submit" id="comment-submit">登录后评论</span>
+        <p style="margin-top: 5px;margin-left:10px;">
+            已发表评论数(<span class="comment_cnt">1</span>)
+        </p>
+    </div>
+    <div class="comments-list" style="display: block;">
+        <div class="empty-cmts alert alert-success" style="display:none;">
+            没有更多评论了^^
+        </div>
+    <div class="single" id="c-15683">                            <img class="img avatar" src="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/ca947b19bfe3_1479290042.jpg">                            <div class="comment-item" style="padding:0 0 0 5px;">                              <div class="info"><a class="uname" href="http://www.tuicool.com/user/1375443240" target="_blank">CoreyWang</a><span class="timestamp">02-16 10:23</span>                              </div>                              <div class="body">player.on('timeupdate', function () {  
+  console.log('当前播放时间：' = player.currentTime());
+}
+});
+
+这段有错误</div>                              </div></div></div>
+    <div class="more-comments" style="display:none;">
+        <a href="http://www.tuicool.com/articles/7jYvQrR">更多评论</a>
+    </div>
+    <div class="load-fail" style="display:none;">
+        评论加载失败，<a href="javascript:reload_comments(&#39;7jYvQrR&#39;,1,0,-1);">重新加载</a>
+    </div>
+    </div>
+</div>
+
+    </div>
+        <div class="span4 article_right_side">
+            <div class="right_top">
+    <div class="article_related_site article_detail_bg">
+    <h4 class="article-part-title">相关站点</h4>
+    <div class="article_related_site_body clearfix">
+        <div class="logo">
+            <img src="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/yqeeUzv.png">
+        </div>
+        <div class="name">
+            <div>
+                <a href="http://www.tuicool.com/sites/yqeeUzv" target="_blank"> The GIS Guy</a>
+            </div>
+            <div>
+                <div class="btn btn-success right_site_follow" id="my_follow" data_id="yqeeUzv">＋订阅</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="right_site_articles" class="article_detail_bg">
+    <div class="article-part-title">
+        <span>热门文章</span>
+    </div>
+    <ul class="side_article_list">
+        <li class="side_article_list_item">
+            1.<a href="http://www.tuicool.com/articles/rmUZBve" target="_blank" title="Storybook 3.2 引入 Vue.js 支持 - 知乎专栏"> Storybook 3.2 引入 Vue.js 支持 - 知乎专栏 </a>
+        </li>
+        <li class="side_article_list_item">
+            2.<a href="http://www.tuicool.com/articles/BRv6Zzr" target="_blank" title="掌握Chrome开发工具：新一代前端开发技术"> 掌握Chrome开发工具：新一代前端开发技术 </a>
+        </li>
+        <li class="side_article_list_item">
+            3.<a href="http://www.tuicool.com/articles/Yjaua2U" target="_blank" title="CSS3热身实战--过渡与动画（实现炫酷下拉，手风琴，无缝滚动）"> CSS3热身实战--过渡与动画（实现炫酷下拉，手风琴，无缝滚动） </a>
+        </li>
+        <li class="side_article_list_item">
+            4.<a href="http://www.tuicool.com/articles/2I3aiya" target="_blank" title="8个超震撼的HTML5和纯CSS3动画源码"> 8个超震撼的HTML5和纯CSS3动画源码 </a>
+        </li>
+        <li class="side_article_list_item">
+            5.<a href="http://www.tuicool.com/articles/MNFfmer" target="_blank" title="详解 Weex 页面的渲染过程"> 详解 Weex 页面的渲染过程 </a>
+        </li>
+    </ul>
+</div>
+</div>
+<div class="operate_zone" style="position: fixed; top: 50px;">
+      <div class="right-link" style="margin-top: 5px">
+                <a href="http://activity.ksyun.com/1710/index.html?ch=00033.00018&amp;hmsr=tk&amp;hmpl=1710&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank"><img src="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/ksyun307.jpg"></a>
+
+      </div>
+      <div class="right-link" style="margin-top: 0px">
+                <a href="https://www.mtyun.com/promote/75141963-dd40-400d-9b56-b5e0262001fd/?site=tuicool&amp;campaign=20170401sales" target="_blank"><img src="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/meituan309.jpg"></a>
+
+      </div>
+      <div class="right-link" style="margin-top: 5px">
+                <a href="http://click.aliyun.com/m/17039/" target="_blank"><img src="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/aliyun311.jpg"></a>
+
+      </div>
+</div>
+         </div>
+</div>
+
+<div>
+   <!-- add_article to kan -->
+<div id="add-article-to-kan" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <span class="add-title">收藏到推刊</span>
+    <a href="http://www.tuicool.com/articles/7jYvQrR#new-kan" class="btn pull-right" data-toggle="modal">创建推刊</a>
+    <i class="clearfix"></i>
+  </div>
+  <div class="modal-body">
+    <ul id="add-kan-list">
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <input type="hidden" value="7jYvQrR" class="article-id"> 
+    <button class="btn btn-primary pull-left add-to-btn">  收 藏  </button>
+    <button class="btn" data-dismiss="modal" aria-hidden="true" style="margin-right: 15px">取消</button>
+  </div>
+</div>
+
+   <div id="new-kan" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-body">
+    <input type="text" name="name" id="new-kan-name" placeholder="推刊名(必填)" required="" data-validation-required-message="请填写推刊名">
+    <span class="new-ness-name">请填写推刊名</span>
+    <br>
+    <textarea name="desc" id="desc" rows="6" placeholder="推刊描述"></textarea>
+    <span class="new-ness-desc">描述不能大于100个字符!</span>
+    <br>
+    权限设置：<input type="radio" name="type" value="1" checked="checked"> 公开
+    <input type="radio" name="type" value="0"> 仅自己可见
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary pull-left create-kan-btn" disabled="">创建</button>
+    <button class="btn dismiss-new-kan" data-dismiss="modal" aria-hidden="true">取消</button>
+  </div>
+</div>
+
+
+</div>
+<div id="article-correct-modal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            ×
+        </button>
+        <h3>文章纠错</h3>
+    </div>
+    <div class="modal-body">
+        <input type="hidden" value="7jYvQrR" id="article-correct-source">
+        <div>
+            <label for="article-correct-email">
+                邮箱地址
+            </label>
+            <input type="email" id="article-correct-email" class="input-large">
+        </div>
+        <div>
+            <label for="article-correct-select">
+                错误类型
+            </label>
+            <select id="article-correct-select">
+                <option value="正文不准确">正文不准确</option>
+                <option value="标题不准确">标题不准确</option>
+                <option value="排版有问题">排版有问题</option>
+                <option value="排版有问题">主题不准确</option>
+                <option value="没有分页内容">没有分页内容</option>
+                <option value="图片无法显示">图片无法显示</option>
+                <option value="视频无法显示">视频无法显示</option>
+                <option value="与原文不一致">与原文不一致</option>
+            </select>
+        </div>
+        <div>
+            <label for="article-correct-other">
+                补充信息
+            </label>
+            <textarea id="article-correct-other" class="span4"></textarea>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary pull-right huodong_correct_submit" id="article-correct-submit">
+            &nbsp;&nbsp;提交&nbsp;&nbsp;
+        </button>
+    </div>
+</div>
+      <link rel="stylesheet" href="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/highlight.default.css">
+      <script src="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/highlight.pack.js.下载"></script>
+<script type="text/javascript">
+    $('table').each(function(i) {
+        var size = $(this).children().size();
+        if (size > 1) {
+            $(this).attr('class',"table table-bordered");
+        } else if (size == 1) {
+            var e11 = $(this).children(":first");
+            var e1 = e11[0];
+            var name = e1.nodeName.toLowerCase();
+            if ("tbody" == name) {
+                if (e1.children.length > 1) {
+                    $(this).attr('class',"table table-bordered");
+                } else if (e1.children.length == 1){
+                    var e12 = e1.children[0];
+                    var name2 = e12.nodeName.toLowerCase();
+                    if ("tr" == name2) {
+                       if (e12.children.length > 1) {
+                         $(this).attr('class',"table table-bordered");
+                       }
+                    }
+                }
+            }
+        }
+    });
+            related_kan("7jYvQrR");
+        window.page = 0;
+        window.last = 0;    
+        window.first = true;
+        resize_article_image('#nei', 550);
+                load_comments("7jYvQrR",1,0,-1);
+                window.uid = -1;
+        open_add_article_to_kan("false");
+        async_do_zan_article();
+      $('pre').each(function(i, e) {
+        hljs.highlightBlock(e, "<span class='indent'>  </span>", false)
+      });
+          
+       handle_follow_site("#my_follow","已订阅","+ 订阅");
+</script>
+
+
+    <div class="loader-inner ball-pulse ball-loading-center" id="page-loading" style="display: none">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="read-later-alert"></div>
+  </div>
+
+        <div class="footer">
+      <div class="footer-inner" style="padding-top: 50px;padding-bottom: 50px">
+        <a href="http://www.tuicool.com/about" target="_blank">关于我们</a>
+        <a href="http://www.tuicool.com/mobile" target="_blank">移动应用</a>
+        <a href="http://www.tuicool.com/bbs/go/issues" target="_blank">意见反馈</a>
+        <a target="_blank" href="http://e.weibo.com/tuicool2012">官方微博</a>
+      </div>
+    </div>
+    <div style="display:none;">
+      <script src="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/stat.php" language="JavaScript"></script><script src="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=5541078" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/pic.gif"></a>
+    </div>
+
+    <script type="text/javascript" src="./使用 video.js 开发 HTML5 视频页面 - 推酷_files/tip.js.下载" async=""></script>
+
+
+<div class="return" title="返回顶部" style="display: block;"></div></body></html>

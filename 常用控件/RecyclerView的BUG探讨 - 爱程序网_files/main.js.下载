@@ -1,0 +1,509 @@
+function CookieFetcher(){
+}
+CookieFetcher.prototype.byimpl = function(){
+	return "cookie";
+}
+CookieFetcher.prototype.get = function(name){
+	var reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+	var values = document.cookie.match(reg);
+	if (values)
+		return unescape(values[2]);
+	else
+		return null;
+}
+CookieFetcher.prototype.getIntValue = function(name) {
+	var value = this.get(name);
+	if (value == "" || value == null) {
+		return 0;
+	} else {
+		return parseInt(value);
+	}
+}
+CookieFetcher.prototype.set = function (name, value, ms, path) {
+	if (path){} else {path="/";}
+	if (isNaN(ms)) {
+		document.cookie = name + "=" + escape(value) + ";path=" + path;
+	} else {
+		var exp = new Date();
+		exp.setTime(exp.getTime() + ms);
+		document.cookie = name + "=" + escape(value) + ";path=" + path + ";expires=" + exp.toGMTString(); 
+	}
+}
+CookieFetcher.prototype.remove = function (name) {
+	this.set(name, 1, -1);
+}
+CookieFetcher.prototype.clear = function () {
+	var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+	if (keys) {
+		for (var i = keys.length; i--;)
+			document.cookie = keys[i] + "=0;expires=" + new Date(0).toUTCString();
+	}
+}
+
+function LocalStorageFetcher() {}
+LocalStorageFetcher.prototype.byimpl = function(){
+	return "localStorage";
+}
+LocalStorageFetcher.prototype.get = function (name) {
+	return window.localStorage.getItem(name);
+}
+LocalStorageFetcher.prototype.getIntValue = function(name) {
+	var value = this.get(name);
+	if (value == "" || value == null) {
+		return 0;
+	} else {
+		return parseInt(value);
+	}
+}
+LocalStorageFetcher.prototype.set = function (name, value, ms, path) {
+	window.localStorage.setItem(name, value);
+}
+LocalStorageFetcher.prototype.remove = function (name) {
+	window.localStorage.removeItem(name);
+}
+LocalStorageFetcher.prototype.clear = function () {
+	window.localStorage.clear();
+}
+var fetcher = window.localStorage ? new LocalStorageFetcher() : new CookieFetcher();
+var helper = {
+	"$" : function(id) {
+		return document.getElementById(id);
+	},
+	cookie : new CookieFetcher(),
+	store : window.localStorage ? new LocalStorageFetcher() : new CookieFetcher(),
+	isMobile : function() {
+		return navigator.userAgent.match(/(iPhone|iPod|Android|ios|iPad)/i);
+	},
+	log : function(msg) {
+		if (console) {
+			console.log(msg);
+		}
+	},
+	uaredirect : function(murl) {
+		try {
+	        if (document.getElementById("bdmark") != null) {
+	            return;
+	        }
+	        var urlhash = window.location.hash;
+	        if (!urlhash.match("fromapp")) {
+	            if (helper.isMobile()) {
+	                location.replace(murl);
+	            }
+	        }
+	    } catch(err) {}
+	}
+}
+/*utils.js*/
+var third = {
+	tongji : function() {
+		document.writeln("<script src=\"http:\/\/s4.cnzz.com\/z_stat.php?id=1261058748&web_id=1261058748\" language=\"JavaScript\"><\/script>");
+		
+		document.writeln("<script>");
+		document.writeln("var _hmt = _hmt || [];");
+		document.writeln("(function() {");
+		document.writeln("  var hm = document.createElement(\"script\");");
+		document.writeln("  hm.src = \"https:\/\/hm.baidu.com\/hm.js?ad752f1ac5ddc6b6a89bcf4b99ff494f\";");
+		document.writeln("  var s = document.getElementsByTagName(\"script\")[0]; ");
+		document.writeln("  s.parentNode.insertBefore(hm, s);");
+		document.writeln("})();");
+		document.writeln("<\/script>");
+	},
+	report4Seo : function() {
+		document.writeln("<script>");
+		document.writeln("(function(){");
+		document.writeln("	var bp = document.createElement(\'script\');");
+		document.writeln("	var curProtocol = window.location.protocol.split(\':\')[0];");
+		document.writeln("	if (curProtocol === \'https\') {");
+		document.writeln("		bp.src = \'https:\/\/zz.bdstatic.com\/linksubmit\/push.js\';		");
+		document.writeln("	}");
+		document.writeln("	else {");
+		document.writeln("		bp.src = \'http:\/\/push.zhanzhang.baidu.com\/push.js\';");
+		document.writeln("	}");
+		document.writeln("	var s = document.getElementsByTagName(\"script\")[0];");
+		document.writeln("	s.parentNode.insertBefore(bp, s);");
+		document.writeln("})();");
+		document.writeln("<\/script>");
+	}, 
+	do : function() {
+		this.tongji();
+		this.report4Seo();
+	}
+}
+function getCurrentMulu() {
+	var index = window.location.href.indexOf("/", 8);
+	var path = "/";
+	if (index > -1) path = window.location.href.substring(index);
+	return path;
+}
+function getResetTime() {
+	var now = new Date();
+	now.setHours(0);
+	now.setMinutes(0);
+	now.setSeconds(0);
+	now.setMilliseconds(0);	
+	return new Date(24 * 3600 * 1000 + now.getTime());
+}
+
+function showInfoTip(msg) {
+	alert(msg);
+}
+
+function Ajax(url, params, callback, method) {
+	this.createHttpRequest = function() {
+		if (window.ActiveXObject) {
+			try {
+				return new ActiveXObject('Msxml2.XMLHTTP');
+			} catch (e) {
+				return new ActiveXObject("Microsoft.XMLHTTP");
+			}
+		} else {
+			return new XMLHttpRequest();
+		}
+	}
+	this.url = url;
+	this.params = params;
+	this.callback = callback;
+	this.method = method == null? "post" : method;
+	this.xmlHttp = this.createHttpRequest();
+	
+	window.myAjax = this;
+	this.doRequest = function() {
+		var query = "";
+		for (var param in this.params) {
+			if (query != "") {
+				query += "&";
+			}
+			query += param + "=" + this.params[param];
+		}
+		
+		if (this.method == "post") {
+			this.xmlHttp.open(this.method, this.url, true);
+			this.xmlHttp.onreadystatechange = this.stateChanged;
+			this.xmlHttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+			this.xmlHttp.send(query);
+		} else {
+			this.url += "?" + query;
+			try { 
+			this.xmlHttp.open(this.method, this.url, true);
+			} catch (err) {}
+			this.xmlHttp.send(null);
+			return this.xmlHttp.responseText;
+		}
+	};
+	this.stateChanged = function() {
+		if (myAjax.xmlHttp.readyState==4 || myAjax.xmlHttp.readyState=="complete") {
+			var data = myAjax.xmlHttp.responseText;
+			myAjax.callback(data);
+		}
+	};
+	
+}
+function inOrSave(name, aid, ms, store) {
+	if (!store) {
+		store = helper.store;
+	}
+	var ras = store.get(name);
+	var array = null;
+	if (ras == null || ras == "") {
+		array = new Array();
+		array.push(aid);
+	} else {
+		array = ras.split(",");
+		for (var i in array) {
+			if (array[i] == aid) {return false;}
+		}
+		array.splice(0, 0, aid);
+		//array.push(aid);
+	}
+	if (array.length > 50) {
+		array.splice(50);
+	}
+	ras = array.join(",");
+	store.set(name, ras, ms ? ms : 365 * 24 * 3600 * 1000, "/");
+	return true;
+}
+
+
+var voteMessage = "";
+function vote(type, tid) {
+	var params = new Object();
+	params.ot = type;
+	params.tid = tid;
+	var ajax = new Ajax("/vote.htm", params, votecb, "post");
+	ajax.doRequest();
+}
+function votecb(data) {
+	var json = eval("(" + data + ")");
+	//setCookie("cids", "", 1)
+	if (json.flag == "success") {
+		if (voteMessage) {
+			if (voteMessage != "null") {
+				alert(voteMessage);
+			}
+			voteMessage = "";
+		} else {
+			alert("提交成功。");
+		}
+	} else if (json.flag == "error") {
+		if (json.data == "nl") {
+			showInfoTip("您还没有登陆，请先登录或如果没有账号，请先注册。");
+		} else if (json.data == "repeat") {
+			//showInfoTip("重复提交信息。");
+		} else {
+			showInfoTip(json.data);
+		}
+	}
+}
+function ac(cid, id) {
+	voteMessage = "null";
+	if ( inOrSave("ras", id, 365*24*3600000, helper.cookie) ) vote("AC" + cid, id);
+}
+function vc(cid, id) {
+	if ( inOrSave("vas", id) ) { 
+		voteMessage = "推荐成功，谢谢您的参与。";
+		vote("VT" + cid, id);
+	} else {
+		alert("您已经推荐过了这本书，谢谢对网站的支持。");
+	}
+}
+
+var reportMessage="";
+function sm(message) {
+	var ajax = new Ajax("/m.htm", message, smcb, "post");
+	ajax.doRequest();
+}
+function smcb(data) {
+	var json = eval("(" + data + ")");
+	if (json.flag == "success") {
+		if (reportMessage) {
+			if (reportMessage != "null") {
+				alert(reportMessage);
+			}
+			reportMessage = "";
+		} else {
+			showInfoTip("提交成功。");
+		}
+	} else if (json.flag == "error") {
+		if (json.data == "nl") {
+			showInfoTip("您还没有登陆，请先登录或如果没有账号，请先注册。");
+		} else if (json.data == "repeat") {
+			showInfoTip("重复提交信息。");
+		} else {
+			showInfoTip(json.data);
+		}
+	}
+}
+
+function toggle(id1, id2) {
+	var o1 = document.getElementById(id1);
+	var o2 = document.getElementById(id2);
+	var oldDispaly = o1.style.display;
+	o1.style.display = o2.style.display;
+	o2.style.display = oldDispaly;
+}
+
+if(helper.isMobile()){
+	if (window._murl) {
+		window.location.href=window._murl;
+	}
+}
+
+var adsense = {
+	google : {
+		ad338x280 : function() {
+			document.writeln("<script async src=\"\/\/pagead2.googlesyndication.com\/pagead\/js\/adsbygoogle.js\"><\/script>");
+			document.writeln("<ins class=\"adsbygoogle\"");
+			document.writeln("     style=\"display:inline-block;width:336px;height:280px\"");
+			document.writeln("     data-ad-client=\"ca-pub-8651881551177092\"");
+			document.writeln("     data-ad-slot=\"1867675445\"><\/ins>");
+			document.writeln("<script>");
+			document.writeln("(adsbygoogle = window.adsbygoogle || []).push({});");
+			document.writeln("<\/script>");
+		},
+		ad300x250 : function() {
+			document.writeln("<script async src=\"\/\/pagead2.googlesyndication.com\/pagead\/js\/adsbygoogle.js\"><\/script>");
+			document.writeln("<ins class=\"adsbygoogle\"");
+			document.writeln("     style=\"display:inline-block;width:300px;height:250px\"");
+			document.writeln("     data-ad-client=\"ca-pub-8651881551177092\"");
+			document.writeln("     data-ad-slot=\"3344408643\"><\/ins>");
+			document.writeln("<script>");
+			document.writeln("(adsbygoogle = window.adsbygoogle || []).push({});");
+			document.writeln("<\/script>");
+		},
+		auto : function() {
+			document.writeln("<script async src=\"\/\/pagead2.googlesyndication.com\/pagead\/js\/adsbygoogle.js\"><\/script>");
+			document.writeln("<ins class=\"adsbygoogle\"");
+			document.writeln("     style=\"display:block\"");
+			document.writeln("     data-ad-client=\"ca-pub-8651881551177092\"");
+			document.writeln("     data-ad-slot=\"9251341447\"");
+			document.writeln("     data-ad-format=\"auto\"><\/ins>");
+			document.writeln("<script>");
+			document.writeln("(adsbygoogle = window.adsbygoogle || []).push({});");
+			document.writeln("<\/script>");
+		},
+		fix : function(width, height) {
+			document.writeln("<script async src=\"\/\/pagead2.googlesyndication.com\/pagead\/js\/adsbygoogle.js\"><\/script>");
+			document.writeln("<ins class=\"adsbygoogle\"");
+			document.writeln("     style=\"display:block;width:" + width + "px;height:" + height + "px\"");
+			document.writeln("     data-ad-client=\"ca-pub-8651881551177092\"");
+			document.writeln("     data-ad-slot=\"9251341447\"");
+			document.writeln("     data-ad-format=\"auto\"><\/ins>");
+			document.writeln("<script>");
+			document.writeln("(adsbygoogle = window.adsbygoogle || []).push({});");
+			document.writeln("<\/script>");
+		}
+	},
+	baidu : {
+		ad338x280 : function() {
+		},
+		ad300x250 : function() {
+		},
+		auto : function() {
+		}
+	},
+	detail : {
+		ad1 : function() {
+			helper.log("detail adsense 1");
+		},
+		ad2 : function() {
+			helper.log("detail adsense 2");
+			adsense.google.fix(580, 90);
+		},
+		ad3 : function() {
+			adsense.google.ad338x280();
+			helper.log("detail adsense 3");
+		},
+		ad4 : function() {
+			helper.log("detail adsense 4");
+		},
+		ad5 : function() {
+			helper.log("detail adsense 5");
+		}
+	},
+	list : {
+		ad1 : function() {
+			helper.log("list adsense 1");
+		},
+		ad2 : function() {
+			helper.log("list adsense 2");
+		},
+		ad3 : function() {
+			helper.log("list adsense 3");
+		}
+	},
+	index : {
+		ad1 : function() {
+			helper.log("index adsense 1");
+		},
+		ad2 : function() {
+			helper.log("index adsense 2");
+		},
+		ad3 : function() {
+			helper.log("index adsense 3");
+		}
+	},
+	common : {
+		ad1 : function() {
+			adsense.google.auto();
+			helper.log("common adsense 1");
+		},
+		ad2 : function() {
+			helper.log("common adsense 2");
+		},
+		ad3 : function() {
+			helper.log("common adsense 3");
+		}
+	}
+	
+}
+
+function addfavor() {
+	var url = window.location.href;
+	var title = window.title;
+    var ua = navigator.userAgent.toLowerCase();
+    if(ua.indexOf("msie 8")>-1){
+        external.AddToFavoritesBar(url,title,'');//IE8
+    }else{
+        try {
+            window.external.addFavorite(url, title);
+        } catch(e) {
+            try {
+                window.sidebar.addPanel(title, url, "");//firefox
+            } catch(e) {
+                alert("加入收藏失败，请使用Ctrl+D进行添加");
+            }
+        }
+    }
+    return false;
+}
+
+function setHomepage(){
+    if (document.all){
+		document.body.style.behavior='url(#default#homepage)';
+		document.body.setHomePage(window.location.href);
+    } else if (window.sidebar){
+        if(window.netscape){
+            try{
+                netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+            }catch (e){
+                alert( "该操作被浏览器拒绝，如果想启用该功能，请在地址栏内输入 about:config,然后将项 signed.applets.codebase_principal_support 值该为true" );
+            }
+        }
+        var prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components. interfaces.nsIPrefBranch);
+        prefs.setCharPref('browser.startup.homepage',window.location.href);
+    } else {
+        alert('您的浏览器不支持自动自动设置首页, 请使用浏览器菜单手动设置!');
+    }
+    return false;
+}
+function fixFloat(id) {
+	var oDiv = document.getElementById(id);
+    var H = 0, iE6;
+    var Y = oDiv;
+    while (Y) {
+        H += Y.offsetTop;
+        Y = Y.offsetParent;
+    }
+    iE6 = window.ActiveXObject && !window.XMLHttpRequest;
+    if (!iE6) {
+        window.onscroll = function() {
+            var s = document.body.scrollTop || document.documentElement.scrollTop;
+            if (s > H) {
+                oDiv.className = "box-fixed";
+                if (iE6) {
+                    oDiv.style.top = (s - H) + "px";
+                }
+            }
+            else {
+                oDiv.removeAttribute("class");
+            }
+        };
+    }
+}
+function menuDrop() {
+	$(document).ready(function(){
+	    $(".nav-more,.drop-sub-nav").mouseover(function(){
+	        $(".verify-b").addClass("verify-b-on");
+	        $(".nav-more").css("backgroundColor","#006600");
+	        $(".drop-sub-nav").css("display","block");
+	    }).mouseout(function(){
+	        $(".verify-b").removeClass("verify-b-on");
+	        $(".nav-more").css("backgroundColor","#3fb118");
+	        $(".drop-sub-nav").css("display","none");
+	    });
+	});
+}
+
+/*
+document.writeln("<div style=\"width:970px;margin:10px auto;\">")
+document.writeln('<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>');
+document.writeln('<!-- html5tricks-demo-big -->');
+document.writeln('<ins class="adsbygoogle"');
+document.writeln('     style="display:inline-block;width:970px;height:250px"');
+document.writeln('     data-ad-client="ca-pub-8651881551177092"');
+document.writeln('     data-ad-slot="9251341447"></ins>');
+document.writeln('<script>');
+document.writeln('(adsbygoogle = window.adsbygoogle || []).push({});');
+document.writeln('</script>');
+document.writeln("</div>");
+*/

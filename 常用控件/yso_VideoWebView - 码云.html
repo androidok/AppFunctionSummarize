@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://git.oschina.net/yso/VideoWebView -->
+<html lang="zh-CN" class=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta content="VideoWebView,Android" name="Keywords">
+<meta content="支持国内大多数机型在html上播放video标签，可全屏。" name="Description">
+<title>
+yso/VideoWebView - 码云
+</title>
+<link href="http://git.oschina.net/assets/favicon-f6562a1bc6a110e32367f6e0cab4ba89.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
+<meta content="git.oschina.net/yso/VideoWebView git https://git.oschina.net/yso/VideoWebView.git" name="go-import">
+<link href="./yso_VideoWebView - 码云_files/application-6b92801a31b295a49aacea4fb2455ccb.css" media="screen" rel="stylesheet" type="text/css">
+<script src="./yso_VideoWebView - 码云_files/hm.js.下载"></script><script src="./yso_VideoWebView - 码云_files/application-4982301ff7d00582658f357e29e7f6a0.js.下载" type="text/javascript"></script>
+<script src="./yso_VideoWebView - 码云_files/jquery.timeago.zh-CN-bcd91c2c27a815fa9a395595874b592b.js.下载" type="text/javascript"></script>
+
+<meta content="authenticity_token" name="csrf-param">
+<meta content="17IqVNTANpXFKfvZoG/sQQxz15PzH4inECXN+yDpHr0=" name="csrf-token">
+<script type="text/javascript">
+//<![CDATA[
+window.gon = {};gon.http_clone="https://git.oschina.net/yso/VideoWebView.git";gon.user_project="yso/VideoWebView";gon.message="yso";gon.manage_branch="\u7ba1\u7406\u5206\u652f";gon.manage_tag="\u7ba1\u7406\u6807\u7b7e";gon.enterprise_id=0;gon.cp="\u70b9\u51fb\u590d\u5236";gon.aready_cp="\u5df2\u590d\u5236";gon.ref="master";
+//]]>
+</script>
+<script src="./yso_VideoWebView - 码云_files/jweixin-1.2.0.js.下载" type="text/javascript"></script>
+<script>
+  wx.config({
+    debug: false,
+    appId: "wxff219d611a159737",
+    timestamp: "1501685416",
+    nonceStr: "e9e38ee120a631d272624e087fe6f09e",
+    signature: "0df3a2ef4b7d94a9dc8a9d680570080c378754b5",
+    jsApiList: [
+      'onMenuShareTimeline',
+      'onMenuShareAppMessage'
+    ]
+  });
+  wx.ready(function () {
+    wx.onMenuShareTimeline({
+      title: document.title, // 分享标题
+      link: "https://git.oschina.net/yso/VideoWebView", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+      imgUrl: "https://git.oschina.net//logo_4wechat.png" // 分享图标
+    });
+    wx.onMenuShareAppMessage({
+      title: document.title, // 分享标题
+      link: "https://git.oschina.net/yso/VideoWebView", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+      desc: $('meta[name=Description]').attr('content'),
+      imgUrl: "https://git.oschina.net//logo_4wechat.png" // 分享图标
+    });
+  });
+</script>
+
+<!--[if lt IE 10]>
+<script>
+    window.location.href = "/incompatible.html";
+</script>
+<![endif]-->
+<style type="text/css">.fancybox-margin{margin-right:17px;}</style><link rel="stylesheet" href="./yso_VideoWebView - 码云_files/share_style1_32.css"></head>
+
+<body class="git-project dimmable webkit">
+<script src="./yso_VideoWebView - 码云_files/app-28c7b7795fffa76722617ea214faebe7.js.下载" type="text/javascript"></script>
+<script>
+  $(function() {
+    GitLab.GfmAutoComplete.dataSource = "/yso/VideoWebView/autocomplete_sources"
+    GitLab.GfmAutoComplete.Emoji.assetBase = '/assets/emoji'
+    GitLab.GfmAutoComplete.setup();
+  });
+</script>
+
+<header class="common-header fixed noborder" id="git-header-nav">
+<div class="ui container">
+<div class="ui menu">
+<div class="item gitosc-logo">
+<a href="http://git.oschina.net/"><img class="ui inline image" height="28" src="./yso_VideoWebView - 码云_files/logo.svg" width="95">
+</a></div>
+<a href="http://git.oschina.net/explore/recommend" class="item " title="开源项目">开源项目
+</a><a href="http://git.oschina.net/gists" class="item " title="代码片段">代码片段
+</a><a href="http://git.oschina.net/enterprises" class="item " title="企业版">企业版
+<sup class="ui red label">
+特惠
+</sup>
+</a><div class="right menu userbar" id="git-nav-user-bar">
+<div class="item">
+<form accept-charset="UTF-8" action="http://git.oschina.net/search" id="projects-search-form" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+<div class="ui icon left mini fluid input">
+<input autocomplete="off" id="search_top-search-input" name="search" placeholder="搜索..." type="text">
+<i class="iconfont icon-search" id="projects-search"></i>
+<input id="group_id" name="group_id" type="hidden">
+<input id="project_id" name="project_id" type="hidden" value="650972">
+<input id="type" name="type" type="hidden">
+</div>
+</form>
+
+<script>
+  $('#projects-search').click(function(){
+     $('#projects-search-form').submit();
+  });
+  $('#projects-search-form').submit(function(){
+    query_name = $('#search_top-search-input').val();
+    if(query_name != undefined && $.trim(query_name).length < 1) {
+      $('#search_top-search-input').focus();
+      alert("搜索关键字不能少于1个");
+      return false;
+    }
+  })
+  
+  // End
+</script>
+
+</div>
+<a href="http://git.oschina.net/signup" class="item">注册
+</a><a href="http://git.oschina.net/login" class="item">登录
+</a><script>
+  $('.destroy-user-session').click(function() {
+    $.cookie('access_token', null, { path: '/' });
+  })
+</script>
+
+</div>
+</div>
+</div>
+</header>
+<script>
+  (function() {
+    var updateNavbar;
+  
+    updateNavbar = function() {
+      if (window.scrollY > 5) {
+        return $('#git-header-nav').addClass('floating');
+      } else {
+        return $('#git-header-nav').removeClass('floating');
+      }
+    };
+  
+    updateNavbar();
+  
+    $(window).on('scroll', updateNavbar);
+  
+  }).call(this);
+</script>
+<script>
+  var emailStatus, commentStatus, gotopStatus;
+  
+  var c_start;
+  c_start = document.cookie.indexOf("remote_way=");
+  if (c_start == -1) {
+    setCookie('remote_way', "http", 360);
+  }
+  function setCookie(c_name, value, expiredays) {
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + expiredays);
+    document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires = " + exdate.toGMTString()) + ("; path = /");
+  }
+</script>
+
+<!--[if lt IE 10]>
+<script>
+  window.location.href = "/incompatible.html"
+</script>
+<![endif]-->
+
+<div class="fixed-notice-messages">
+<div class="ui hide green message" id="project-ok-msg">
+私信发送成功
+</div>
+<div class="ui hide blue message alertmsg" id="oneclick_login_by_osc">
+检测到您已登录开源中国，是否
+<a href="http://git.oschina.net/osc_login" class="ui small orange button" data-method="post" rel="nofollow"><i class="icon-hand-right"></i>
+一键登录码云
+</a>？
+</div>
+<script>
+  $(document).ready(function(){
+    $.get("/osc_login", function(data){
+      if(data == 1)
+        $("#oneclick_login_by_osc").show();
+    });
+  });
+</script>
+<div class="ui container">
+<div class="flash-messages" id="messages-container"></div>
+</div>
+</div>
+<script>
+  (function() {
+    var notify_content, notify_options, setCookie, template;
+  
+    template = '<div data-notify="container" class="ui {0} message" role="alert">' + '<i data-notify="dismiss" class="close icon"></i>' + '<span data-notify="message">{2}</span>' + '</div>';
+  
+    notify_content = null;
+  
+    notify_options = {};
+  
+    if (notify_content) {
+      notify_options.delay = 3000;
+      notify_options.template = template;
+      notify_options.offset = {
+        x: 10,
+        y: 30
+      };
+      notify_options.element = '#messages-container';
+      $.notify(notify_content, notify_options);
+    }
+  
+    setCookie = function(name, value) {
+      var Days, exp;
+  
+      Days = 360;
+      exp = new Date;
+      exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+      document.cookie = name + '=' + escape(value) + ';path=/' + ';expires=' + exp.toGMTString();
+    };
+  
+    $('#remove-bulletin').on('click', function() {
+      setCookie('remove_bulletin', 'xiamen_meetting');
+      $('#git-bulletin').hide();
+    });
+  
+  }).call(this);
+</script>
+
+<div class="git-project-header">
+<div class="fixed-notice-messages">
+<div class="ui info icon floating message green" id="fetch-ok" style="display: none">
+<div class="content">
+<div class="header status-title">
+<i class="info icon status-icon"></i>
+代码拉取完成，系统将自动刷新
+</div>
+</div>
+</div>
+</div>
+<div class="ui container">
+<div class="git-project-header-details">
+<div class="git-project-header-actions">
+<span class="ui basic buttons">
+<a class="ui button donate" id="project-donate" title="捐赠">
+<i class="iconfont icon-donation"></i>
+捐赠
+</a>
+<a class="ui button social-count" href="http://git.oschina.net/yso/VideoWebView#project-donate-overview">0</a>
+
+<div class="ui small modal wepay-qrcode">
+<div class="header">
+扫描微信二维码支付
+<span class="wepay-cash"></span>
+</div>
+<div class="content weqcode-center">
+<img id="wepay-qrcode" src="http://git.oschina.net/yso/VideoWebView">
+</div>
+<div class="actions">
+<div class="ui negative button">取消</div>
+<div class="ui button positive right">
+支付完成
+</div>
+</div>
+</div>
+</span>
+<script>
+  (function() {
+    var $btnSubmit, $dimmer, $fieldManualCash, $modal;
+  
+    $modal = $('.project-donate-modal');
+  
+    $dimmer = $modal.find('.dimmer');
+  
+    $modal.find('.radio.checkbox').checkbox({
+      fireOnInit: true
+    });
+  
+    $fieldManualCash = $modal.find('input[name="manual_cash"]').parents('.field');
+  
+    $modal.find('input[name="ensure_cash"]').on('change', function() {
+      var $this;
+  
+      $this = $(this);
+      $this.parents('.card-fields').find('.checked').removeClass('checked');
+      $this.parent().addClass('checked');
+      if ($this.val() === 'manual') {
+        return $fieldManualCash.show();
+      } else {
+        return $fieldManualCash.hide();
+      }
+    });
+  
+    $('#btn-cancel-donate').on('click', function() {
+      return $modal.modal('hide');
+    });
+  
+    $btnSubmit = $modal.find('.ui.pay.button').on('click', function() {
+      var $msg, $name, $payType, cash, data, msgReg, nameReg, token;
+  
+      msgReg = /.{4,256}/;
+      nameReg = /.{2,36}/;
+      $msg = $modal.find('[name="msg"]');
+      $name = $modal.find('[name="name"]');
+      $payType = $modal.find('input[name="pay_type"]:checked');
+      token = $modal.find('meta[name="csrf-token"]').attr('content');
+      cash = $modal.find('input[name="ensure_cash"]:checked').val();
+      if (cash === 'manual') {
+        cash = $('#manual_cash').val();
+      }
+      if (isNaN(cash) || cash < 1 || cash > 50000) {
+        $('#manual_cash').parent().addClass('error');
+        return;
+      }
+      data = {
+        msg: $msg.val(),
+        name: $name.val(),
+        cash: cash,
+        authenticity_token: token
+      };
+      $('#manual_cash').parent().removeClass('error');
+      if (!nameReg.test(data.name)) {
+        $name.parent().addClass('error');
+        return;
+      }
+      $name.parent().removeClass('error');
+      if (!msgReg.test(data.msg)) {
+        $msg.parent().addClass('error');
+        return;
+      }
+      $msg.parent().removeClass('error');
+      $dimmer.addClass('active');
+      $btnSubmit.addClass('disabled').prop('disabled', true);
+      if ($payType.val() === 'wepay') {
+        $.ajax({
+          url: '/yso/VideoWebView/wepay',
+          data: data,
+          type: 'POST',
+          success: function(data) {
+            var base64data, money;
+  
+            if (data.result === 'fail') {
+              alert('无法完成支付！原因：' + data.msg);
+              window.location.reload();
+              return;
+            }
+            money = data.money + ' 元';
+            base64data = 'data:image/png;base64,' + data.data.base64QRCode;
+            $('#wepay-qrcode').attr('src', base64data);
+            $('.wepay-cash').text(money);
+            $('.ui.modal.wepay-qrcode').modal('show');
+            $btnSubmit.removeClass('disabled').prop('disabled', false);
+            $dimmer.removeClass('active');
+            return $modal.modal('hide');
+          },
+          error: function(xhr) {
+            if (xhr.status === 401) {
+              alert('需要先登录账号才能完成支付！');
+              window.location.href = '/login';
+              return;
+            }
+            return alert('无法完成支付，请过一段时间后再试！');
+          }
+        });
+      } else {
+        $.ajax({
+          url: '/yso/VideoWebView/alipay',
+          data: data,
+          type: 'POST',
+          success: function(data) {
+            if (data.result === 'fail') {
+              alert('无法完成支付！原因：' + data.msg);
+              window.location.reload();
+              return;
+            }
+            document.write(data.data.html);
+            $dimmer.removeClass('active');
+            return $btnSubmit.removeClass('disabled').prop('disabled', false);
+          },
+          error: function(xhr) {
+            if (xhr.status === 401) {
+              alert('需要先登录账号才能完成支付！');
+              window.location.href = '/login';
+              return;
+            }
+            return alert('无法完成支付，请过一段时间后再试！');
+          }
+        });
+      }
+      return false;
+    });
+  
+  }).call(this);
+</script>
+
+<span class="ui basic buttons watch-container">
+<a href="http://git.oschina.net/login" class="ui button watch" title="登录以Watch"><i class="iconfont icon-watch"></i>
+Watch
+</a><a href="http://git.oschina.net/yso/VideoWebView/watchers" class="ui button social-count" title="2">2
+</a></span>
+<span class="ui basic buttons star-container">
+<a href="http://git.oschina.net/login" class="ui button star" title="你必须登录后才可以star一个仓库"><i class="iconfont icon-star"></i>
+Star
+</a><a href="http://git.oschina.net/yso/VideoWebView/stargazers" class="ui button social-count" title="5">5
+</a></span>
+<span class="ui basic buttons fork-container">
+<a href="http://git.oschina.net/yso/VideoWebView#" class="ui button disabled fork " id="fork-top-button"><i class="iconfont icon-fork"></i>
+Fork
+</a><a href="http://git.oschina.net/yso/VideoWebView/members" class="ui button social-count" title="3">3
+</a></span>
+</div>
+<h2 class="git-project-title">
+<span class="project-title"><i class="iconfont icon-project-public" title="这是一个公开项目"></i> <a href="http://git.oschina.net/yso" class="author" target="_blank" title="yso">yso</a> / <a href="http://git.oschina.net/yso/VideoWebView" class="repository" style="padding-bottom: 0px" target="" title="VideoWebView">VideoWebView</a></span><span class="project-badges"><a href="http://git.oschina.net/languages/Android" class="ui small label" id="project-language" target="_blank" title="主要编程语言">Android</a></span>
+</h2>
+</div>
+</div>
+<div class="row" id="import-result-message" style="padding-top: 0px; display: none">
+<div class="sixteen wide column">
+<div class="ui icon yellow message status-color">
+<i class="info icon status-icon" style="width:60px;padding-right:12px;"></i>
+<i class="close icon"></i>
+<div class="header status-title">
+同步状态
+</div>
+<span class="status-message"></span>
+</div>
+</div>
+</div>
+<div class="ui small modal" id="modal-fork-project">
+<div class="header center aligned">
+<div class="mayun-icon my-ic-notification my-ic-notification-dims"></div>
+Fork 该项目？
+</div>
+<div class="content">
+<p>使用 fork 功能将在后台会为你创建一个与该项目内容一样的同名项目，你可以在这个新项目里自由的修改内容。</p>
+<p>建议只在有意向参与改进该项目时使用 fork 功能。</p>
+</div>
+<div class="actions center aligned">
+<div class="ui small button orange ok"> 确定 </div>
+<div class="ui small basic button cancel"> 取消 </div>
+</div>
+</div>
+<script>
+  (function() {
+    var $modalDonate;
+  
+    $modalDonate = $('.project-donate-modal').modal({
+      onApprove: function() {
+        return false;
+      }
+    });
+  
+    if ("" === 'true') {
+      $modalDonate.modal('show');
+    }
+  
+    $('#project-donate').on('click', function() {
+      return $modalDonate.modal('show');
+    });
+  
+    $('#send-message-to-author').on('click', function() {
+      $modalDonate.modal('hide');
+      return $('#project-user-message').trigger('click');
+    });
+  
+    $('.ui.radio.checkbox').checkbox();
+  
+    $('.copy-member').checkbox('set checked');
+  
+  }).call(this);
+</script>
+<style>
+  i.loading {
+    -webkit-animation: icon-loading 1.2s linear infinite;
+    animation: icon-loading 1.2s linear infinite;
+  }
+  .qrcode_cs{
+    float: left;
+  }
+</style>
+
+<div class="git-project-nav">
+<div class="ui container">
+<div class="ui secondary pointing menu">
+<a href="http://git.oschina.net/yso/VideoWebView" class="item active"><i class="iconfont icon-code"></i>
+代码
+</a><a href="http://git.oschina.net/yso/VideoWebView/issues" class="item "><i class="iconfont icon-issue"></i>
+Issues
+<span class="ui mini circular label">
+0
+</span>
+</a><a href="http://git.oschina.net/yso/VideoWebView/pulls" class="item "><i class="iconfont icon-pull-request"></i>
+Pull Requests
+<span class="ui mini circular label">0</span>
+</a><a href="http://git.oschina.net/yso/VideoWebView/attach_files" class="item "><i class="iconfont icon-annex"></i>
+附件
+<span class="ui mini circular label">1</span>
+</a><a href="http://git.oschina.net/yso/VideoWebView/wikis" class="item "><i class="iconfont icon-wiki"></i>
+Wiki
+<span class="ui mini circular label">1</span>
+</a><a href="http://git.oschina.net/yso/VideoWebView/repository/stats/master" class="item "><i class="iconfont icon-statistics"></i>
+统计
+</a><div class="item">
+<div class="ui dropdown git-project-service" tabindex="0">
+<div class="text">
+<i class="iconfont icon-service"></i>
+服务
+</div>
+<i class="dropdown icon"></i>
+<div class="menu" tabindex="-1">
+<a href="http://git.oschina.net/yso/VideoWebView/paas/select_platform" class="item">代码演示
+</a><a href="http://git.oschina.net/yso/VideoWebView/quality_analyses/confirm_platform" class="item">质量分析
+</a><a href="http://git.oschina.net/yso/VideoWebView/pages" class="item">Pages
+</a></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  $('.git-project-nav .ui.dropdown').dropdown({ action: 'nothing' });
+</script>
+<style>
+  .git-project-nav i.checkmark.icon {
+    color: green;
+  }
+</style>
+<script>
+  $('#git-versions.dropdown').dropdown();
+  $.ajax({
+    url:"/yso/VideoWebView/access/add_access_log",
+    type:"GET"
+  });
+</script>
+
+</div><div class="ui dimmer modals page"><div class="ui small modal project-donate-modal">
+<div class="content">
+项目的主人没有开启捐赠功能，快通知他让他开启吧！
+</div>
+<div class="actions" id="modal-act">
+<div class="message">
+</div>
+<div class="buttons">
+<div class="ui green button">
+关闭
+</div>
+</div>
+</div>
+</div></div>
+<div class="git-project-content-wrapper">
+<div class="ui container">
+<div id="git-project-search-panel" style="display: none;">
+<div class="header">
+<button class="ui small basic button" id="back-to-list">
+<i class="arrow left icon"></i>
+返回列表
+</button>
+<a href="http://git.oschina.net/yso/VideoWebView">VideoWebView
+</a>/
+<input class="ui input" id="search-name" maxlength="40" placeholder="搜索文件">
+</div>
+</div>
+<div class="git-project-content" id="git-project-content">
+<div class="git-project-desc-wrapper">
+<div class="git-project-desc">
+<span class="git-project-desc-text">
+支持国内大多数机型在html上播放video标签，可全屏。
+</span>
+<span class="git-project-homepage">
+<a href="http://www.cnblogs.com/kimmy/p/4999932.html" id="homepage" rel="nofollow" target="_blank">http://www.cnblogs.com/kimmy/p/4999932.html</a>
+</span>
+</div>
+<div class="ui form" id="description-edit" style="display:none;">
+<div class="fields">
+<div class="eight wide field">
+<div class="ui small input">
+<input id="desc-input" placeholder="描述" type="text" value="支持国内大多数机型在html上播放video标签，可全屏。">
+</div>
+</div>
+<div class="four wide field">
+<div class="ui small input">
+<input id="url-input" placeholder="项目主页(eg: https://git.oschina.net)" type="text" value="http://www.cnblogs.com/kimmy/p/4999932.html">
+</div>
+</div>
+<button class="ui positive button" id="btn-save-desc">
+保存更改
+</button>
+<button class="ui button" id="btn-cancel-edit-desc">
+取消
+</button>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    var $btnCancel, $btnSave, $description, $homepage, $textDescription, $textHomepage, description, homepage;
+  
+    $homepage = $('#url-input');
+  
+    $description = $('#desc-input');
+  
+    homepage = $('#url-input').val();
+  
+    description = $('#desc-input').val();
+  
+    $textHomepage = $('.git-project-homepage');
+  
+    $textDescription = $('.git-project-desc-text');
+  
+    $btnSave = $('#btn-save-desc');
+  
+    $btnCancel = $('#btn-cancel-edit-desc');
+  
+    $btnCancel.on('click', function() {
+      $('#description-edit').hide();
+      return $('.git-project-desc').show();
+    });
+  
+    $('#btn-edit-desc').on('click', function() {
+      $homepage.val(homepage);
+      $description.val(description).focus();
+      $('#description-edit').show();
+      return $('.git-project-desc').hide();
+    });
+  
+    $btnSave.on('click', function() {
+      var newDescription, newHomepage, reg, url;
+  
+      reg = /^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)/;
+      url = '/yso/VideoWebView/update_description';
+      newDescription = $('#desc-input').val().trim();
+      newHomepage = $('#url-input').val().trim();
+      if (newHomepage && !reg.test(newHomepage)) {
+        newHomepage = 'http://' + newHomepage;
+      }
+      $btnSave.addClass('disabled').prop('disabled', true);
+      $btnCancel.addClass('disabled').prop('disabled', true);
+      return $.post(url, {
+        desc: newDescription,
+        homepage: newHomepage
+      }, function(data) {
+        $btnSave.removeClass('disabled').prop('disabled', false);
+        $btnCancel.removeClass('disabled').prop('disabled', false);
+        if (data.status === -1) {
+          alert('无权限操作!');
+        } else if (data.status === 1) {
+          description = newDescription;
+          homepage = newHomepage;
+          if (description) {
+            $textDescription.text(description);
+          } else {
+            $textDescription.html('<i class="none">暂无描述</i>');
+          }
+          if (homepage) {
+            $textHomepage.html('<a href="' + homepage + '" rel="nofollow">' + homepage + '</a>').show();
+          } else {
+            $textHomepage.hide();
+          }
+        } else if (data.status === 0) {
+          alert('修改发生错误,请稍后重试!');
+          return;
+        } else {
+          alert(data.status);
+          return;
+        }
+        $('#description-edit').hide();
+        return $('.git-project-desc').show();
+      });
+    });
+  
+  }).call(this);
+</script>
+
+<div class="ui horizontal hollow nopadding segments git-project-stats">
+<div class="ui segment center aligned">
+<a href="http://git.oschina.net/yso/VideoWebView/commits/master"><i class="iconfont icon-commit"></i>
+<b id="commits_count">11</b>
+Commits
+</a></div>
+<div class="ui segment center aligned">
+<a href="http://git.oschina.net/yso/VideoWebView/branches"><i class="iconfont icon-branches"></i>
+<b id="branches_count">1</b>
+Branches
+</a></div>
+<div class="ui segment center aligned">
+<a href="http://git.oschina.net/yso/VideoWebView/tags"><i class="iconfont icon-tag"></i>
+<b id="tags_count">0</b>
+Tags
+</a></div>
+<div class="ui segment center aligned">
+<a href="http://git.oschina.net/yso/VideoWebView/releases" target="_blank"><i class="iconfont icon-release"></i>
+<b id="releases_count">0</b>
+Releases
+</a></div>
+<div class="ui segment center aligned">
+<a href="http://git.oschina.net/yso/VideoWebView/contributors?ref=master" target="_blank"><i class="iconfont icon-collaborators"></i>
+<b id="collaborators_count">1</b>
+Contributors
+</a></div>
+</div>
+<div class="git-project-bread" id="git-project-bread">
+<div class="ui right floated horizontal list">
+<div class="item">
+<div class="ui orange button" id="btn-dl-or-clone">
+克隆/下载
+<i class="dropdown icon"></i>
+</div>
+</div>
+</div>
+<div class="ui horizontal list">
+<div class="item item git-project-branch-item">
+<input id="path" name="path" type="hidden" value="">
+<div class="ui top left pointing dropdown gradient button" id="git-project-branch">
+<input id="ref" name="ref" type="hidden" value="master">
+<div class="text">master</div>
+<i class="dropdown icon"></i>
+<div class="menu" tabindex="-1">
+<div class="ui left icon search input">
+<i class="iconfont icon-search"></i>
+<input placeholder="搜索分支或标签" type="text" tabindex="0">
+</div>
+<div class="header"><div class="pull-right">
+<a href="http://git.oschina.net/yso/VideoWebView/branches/recent">管理</a></div>分支 (1)</div>
+<div class="scrolling menu">
+<div class="item active selected" data-value="master">master</div>
+</div>
+</div>
+</div>
+</div>
+<div class="item">
+<div class="disp-index repo-index" style="margin-left:0px;">
+<div class="ui horizontal list repo-action-list">
+<div class="item">
+<div class="ui pointing right top dropdown gradient button" id="git-project-file" tabindex="0">
+<div class="text">文件</div>
+<i class="dropdown icon"></i>
+<div class="menu" tabindex="-1">
+<div class="disabled item">新建文件</div>
+<div class="disabled item">上传文件</div>
+<a class="item repo-action" id="search-files">
+搜索文件
+</a>
+</div>
+</div>
+</div>
+<div class="item">
+<a href="http://git.oschina.net/yso/VideoWebView/widget" class="ui gradient button repo-action">挂件
+</a></div>
+</div>
+</div>
+</div>
+<div class="breadcrumb_path item repo-none-index" style="margin-left: 0; padding-left: 0">
+<div class="ui breadcrumb path" id="path-breadcrumb">
+<a href="http://git.oschina.net/yso/VideoWebView/tree/master" class="section repo-name" data-direction="back" style="font-weight: bold">VideoWebView
+</a></div>
+
+</div>
+</div>
+<div class="ui popup bottom right transition hidden git-project-download-panel">
+<div class="ui small secondary pointing menu">
+<a class="item active" data-type="http" data-url="https://git.oschina.net/yso/VideoWebView.git">HTTPS</a>
+<a class="item" data-type="ssh" data-url="git@git.oschina.net:yso/VideoWebView.git">SSH</a>
+</div>
+<div class="ui fluid right labeled small input">
+<input id="project_clone_url" name="project_clone_url" onclick="focus();select()" readonly="readonly" type="text" value="https://git.oschina.net/yso/VideoWebView.git">
+<div class="ui basic label">
+<div class="ui small basic orange button" data-clipboard-target="#project_clone_url" id="btn-copy-clone-url">
+复制
+</div>
+</div>
+</div>
+<hr>
+<a href="http://git.oschina.net/login?url_to=/yso/VideoWebView/repository/archive/master" class="ui fluid download link button" data-confirm="登录后才能下载, 确定登录?"><i class="icon download"></i>
+下载ZIP
+</a><hr>
+<a href="http://git.oschina.net/enterprises?from=gitosc-project-ad2">
+<div class="ent-poster project ver-2">
+</div>
+</a>
+</div>
+</div>
+<style>
+  .ui.dropdown .menu>.header{text-transform:none}
+</style>
+<script>
+  $(document).ready(function () {
+    var $tip = $('#apk-download-tip');
+    if (!$tip.length) {
+      return;
+    }
+    $tip.find('.btn-close').on('click', function () {
+      $tip.slideUp();
+    });
+  });
+  $('#git-project-branch').dropdown({
+    fullTextSearch: true,
+    onChange: function (value, text) {
+      var path = $('#path').val();
+      var href = ['/yso/VideoWebView/tree', value, path].join('/');
+      window.location.href = href;
+    }
+  });
+  $('#git-project-file').dropdown({ action: 'hide' });
+</script>
+<script>
+  (function() {
+    var $btnCopy, $input, $item, $panel, clipboard, remoteWay;
+  
+    $input = $('#project_clone_url');
+  
+    remoteWay = 'http';
+  
+    clipboard = new Clipboard('#btn-copy-clone-url');
+  
+    $panel = $('.git-project-download-panel');
+  
+    $btnCopy = $('#btn-copy-clone-url');
+  
+    $panel.find('.menu > .item').on('click', function() {
+      var $item;
+  
+      $item = $(this).addClass('active');
+      $item.siblings().removeClass('active');
+      $input.val($item.attr('data-url'));
+      return setCookie('remote_way', $item.attr('data-type'), 360);
+    });
+  
+    $('#btn-dl-or-clone').popup({
+      popup: $panel,
+      position: 'bottom right',
+      on: 'click'
+    });
+  
+    if (remoteWay) {
+      $item = $panel.find('.item[data-type="' + remoteWay + '"]');
+      if ($item.length === 0) {
+        $item = $panel.find('.item[data-type="http"]');
+      }
+      $item.addClass('active').siblings().removeClass('active');
+      $input.val($item.attr('data-url'));
+    }
+  
+    clipboard.on('success', function() {
+      $btnCopy.popup({
+        content: '已复制',
+        position: 'right center',
+        onHidden: function() {
+          return $btnCopy.popup('destroy');
+        }
+      });
+      return $btnCopy.popup('show');
+    });
+  
+    clipboard.on('error', function() {
+      $btnCopy.popup({
+        content: '复制失败，请手动复制',
+        position: 'right center',
+        onHidden: function() {
+          return $btnCopy.popup('destroy');
+        }
+      });
+      return $btnCopy.popup('show');
+    });
+  
+  }).call(this);
+</script>
+
+<div class="row column tree-holder" id="tree-holder">
+<div class="tree-content-holder" id="tree-content-holder">
+<div class="ui flat nopadding segment tree-content">
+<div class="git-project-recent-commit" id="git-project-info">
+<div class="twelve wide column content float-left recent-commit">
+<a href="http://git.oschina.net/yso" class="commit-author-link"><img alt="" class="mini avatar circular ui image s20" src="./yso_VideoWebView - 码云_files/331643_yso.png" width="20"> <span class="commit-author-name">yso</span></a>
+最后提交于
+<span class="timeago" title="2015-11-27 20:35">2年前</span>
+.
+<a href="http://git.oschina.net/yso/VideoWebView/commit/1a1f7a5c6d606767bc5f1866d5f7d72860774540" class="repo-index-commit-msg" title="Update readme.md">Update readme.md</a>
+</div>
+<div class="clearfix"></div>
+</div>
+
+<div class="ui selection list tree-table ui grid" data-class="table_da39a3ee5e6b4b0d3255bfef95601890afd80709" id="tree-slider">
+<div class="file_803c06a7086b5817c03d2e8672da27bc56ba2bce row tree-item" file_hex="file_803c06a7086b5817c03d2e8672da27bc56ba2bce">
+<div class="five wide column tree-item-file-name tree-folder">
+<i class="iconfont icon-folders"></i>
+<a href="http://git.oschina.net/yso/VideoWebView/tree/master/.idea" title=".idea"><span class="simplified-path">
+
+</span>
+.idea
+</a></div>
+<div class="nine wide column tree_author">
+<div class="commit-details">
+<a href="http://git.oschina.net/yso" class="commit-author-link"><img alt="" class="mini avatar circular ui image s20" src="./yso_VideoWebView - 码云_files/331643_yso.png" width="20"> <span class="commit-author-name">yso</span></a>
+<a href="http://git.oschina.net/yso/VideoWebView/commit/e5426df4b4dd1729802882222da1c9fd0d45f0ad" class="tree-commit-link" title="first commit">first commit</a>
+</div>
+</div>
+<div class="two wide column right aligned tree_time_ago">
+<span class="timeago" title="2015-11-27 20:14">2年前</span>
+</div>
+</div>
+<div class="rename-file_803c06a7086b5817c03d2e8672da27bc56ba2bce row tree-item tree-item-rename" file_hex="file_803c06a7086b5817c03d2e8672da27bc56ba2bce" style="display:none">
+<div class="ui column form" path="tree/master/.idea">
+<div class="two fields">
+<div class="five wide field">
+<input class="ui input" name="new_filename" type="text" value=".idea">
+</div>
+<div class="five wide field">
+<button class="ui blue button popup-save" type="submit">保存</button>
+<button class="ui baisc button popup-close">取消</button>
+</div>
+</div>
+</div>
+</div>
+<div class="file_7d1043473d55bfa90e8530d35801d4e381bc69f0 row tree-item" file_hex="file_7d1043473d55bfa90e8530d35801d4e381bc69f0">
+<div class="five wide column tree-item-file-name tree-folder">
+<i class="iconfont icon-folders"></i>
+<a href="http://git.oschina.net/yso/VideoWebView/tree/master/app" title="app"><span class="simplified-path">
+
+</span>
+app
+</a></div>
+<div class="nine wide column tree_author">
+<div class="commit-details">
+<a href="http://git.oschina.net/yso" class="commit-author-link"><img alt="" class="mini avatar circular ui image s20" src="./yso_VideoWebView - 码云_files/331643_yso.png" width="20"> <span class="commit-author-name">yso</span></a>
+<a href="http://git.oschina.net/yso/VideoWebView/commit/91edd7655ac6d90c6bc20d529cd1b4610ac6b532" class="tree-commit-link" title="添加注释">添加注释</a>
+</div>
+</div>
+<div class="two wide column right aligned tree_time_ago">
+<span class="timeago" title="2015-11-27 20:32">2年前</span>
+</div>
+</div>
+<div class="rename-file_7d1043473d55bfa90e8530d35801d4e381bc69f0 row tree-item tree-item-rename" file_hex="file_7d1043473d55bfa90e8530d35801d4e381bc69f0" style="display:none">
+<div class="ui column form" path="tree/master/app">
+<div class="two fields">
+<div class="five wide field">
+<input class="ui input" name="new_filename" type="text" value="app">
+</div>
+<div class="five wide field">
+<button class="ui blue button popup-save" type="submit">保存</button>
+<button class="ui baisc button popup-close">取消</button>
+</div>
+</div>
+</div>
+</div>
+<div class="file_426c7f0cef08242532aa37f031883529de437268 row tree-item" file_hex="file_426c7f0cef08242532aa37f031883529de437268">
+<div class="five wide column tree-item-file-name tree-folder">
+<i class="iconfont icon-folders"></i>
+<a href="http://git.oschina.net/yso/VideoWebView/tree/master/gradle/wrapper" title="gradle/wrapper"><span class="simplified-path">
+gradle/
+</span>
+wrapper
+</a></div>
+<div class="nine wide column tree_author">
+<div class="commit-details">
+<a href="http://git.oschina.net/yso" class="commit-author-link"><img alt="" class="mini avatar circular ui image s20" src="./yso_VideoWebView - 码云_files/331643_yso.png" width="20"> <span class="commit-author-name">yso</span></a>
+<a href="http://git.oschina.net/yso/VideoWebView/commit/e5426df4b4dd1729802882222da1c9fd0d45f0ad" class="tree-commit-link" title="first commit">first commit</a>
+</div>
+</div>
+<div class="two wide column right aligned tree_time_ago">
+<span class="timeago" title="2015-11-27 20:14">2年前</span>
+</div>
+</div>
+<div class="rename-file_426c7f0cef08242532aa37f031883529de437268 row tree-item tree-item-rename" file_hex="file_426c7f0cef08242532aa37f031883529de437268" style="display:none">
+<div class="ui column form" path="tree/master/gradle/wrapper">
+<div class="two fields">
+<div class="five wide field">
+<input class="ui input" name="new_filename" type="text" value="gradle/wrapper">
+</div>
+<div class="five wide field">
+<button class="ui blue button popup-save" type="submit">保存</button>
+<button class="ui baisc button popup-close">取消</button>
+</div>
+</div>
+</div>
+</div>
+<div class="file_a5cc2925ca8258af241be7e5b0381edf30266302 row tree-item" file_hex="file_a5cc2925ca8258af241be7e5b0381edf30266302">
+<div class="five wide column tree-item-file-name tree-file">
+<i class="iconfont icon-file"></i>
+<a href="http://git.oschina.net/yso/VideoWebView/blob/master/.gitignore" title=".gitignore">.gitignore</a>
+</div>
+<div class="nine wide column tree_author">
+<div class="commit-details">
+<a href="http://git.oschina.net/yso" class="commit-author-link"><img alt="" class="mini avatar circular ui image s20" src="./yso_VideoWebView - 码云_files/331643_yso.png" width="20"> <span class="commit-author-name">yso</span></a>
+<a href="http://git.oschina.net/yso/VideoWebView/commit/e5426df4b4dd1729802882222da1c9fd0d45f0ad" class="tree-commit-link" title="first commit">first commit</a>
+</div>
+</div>
+<div class="two wide column right aligned tree_time_ago">
+<span class="timeago" title="2015-11-27 20:14">2年前</span>
+</div>
+</div>
+<div class="rename-file_a5cc2925ca8258af241be7e5b0381edf30266302 row tree-item tree-item-rename" file_hex="file_a5cc2925ca8258af241be7e5b0381edf30266302" style="display:none">
+<div class="ui column form" path="blob/master/.gitignore">
+<div class="two fields">
+<div class="five wide field">
+<input class="ui input" name="new_filename" type="text" value=".gitignore">
+</div>
+<div class="five wide field">
+<button class="ui blue button popup-save" type="submit">保存</button>
+<button class="ui basic button popup-close">取消</button>
+</div>
+</div>
+</div>
+</div>
+<div class="file_f07866736216be0ee2aba49e392191aeae700a35 row tree-item" file_hex="file_f07866736216be0ee2aba49e392191aeae700a35">
+<div class="five wide column tree-item-file-name tree-file">
+<i class="iconfont icon-file"></i>
+<a href="http://git.oschina.net/yso/VideoWebView/blob/master/build.gradle" title="build.gradle">build.gradle</a>
+</div>
+<div class="nine wide column tree_author">
+<div class="commit-details">
+<a href="http://git.oschina.net/yso" class="commit-author-link"><img alt="" class="mini avatar circular ui image s20" src="./yso_VideoWebView - 码云_files/331643_yso.png" width="20"> <span class="commit-author-name">yso</span></a>
+<a href="http://git.oschina.net/yso/VideoWebView/commit/e5426df4b4dd1729802882222da1c9fd0d45f0ad" class="tree-commit-link" title="first commit">first commit</a>
+</div>
+</div>
+<div class="two wide column right aligned tree_time_ago">
+<span class="timeago" title="2015-11-27 20:14">2年前</span>
+</div>
+</div>
+<div class="rename-file_f07866736216be0ee2aba49e392191aeae700a35 row tree-item tree-item-rename" file_hex="file_f07866736216be0ee2aba49e392191aeae700a35" style="display:none">
+<div class="ui column form" path="blob/master/build.gradle">
+<div class="two fields">
+<div class="five wide field">
+<input class="ui input" name="new_filename" type="text" value="build.gradle">
+</div>
+<div class="five wide field">
+<button class="ui blue button popup-save" type="submit">保存</button>
+<button class="ui basic button popup-close">取消</button>
+</div>
+</div>
+</div>
+</div>
+<div class="file_2afbb999f001938c88fa43fc2ef52abf0f8213e4 row tree-item" file_hex="file_2afbb999f001938c88fa43fc2ef52abf0f8213e4">
+<div class="five wide column tree-item-file-name tree-file">
+<i class="iconfont icon-file"></i>
+<a href="http://git.oschina.net/yso/VideoWebView/blob/master/gradle.properties" title="gradle.properties">gradle.properties</a>
+</div>
+<div class="nine wide column tree_author">
+<div class="commit-details">
+<a href="http://git.oschina.net/yso" class="commit-author-link"><img alt="" class="mini avatar circular ui image s20" src="./yso_VideoWebView - 码云_files/331643_yso.png" width="20"> <span class="commit-author-name">yso</span></a>
+<a href="http://git.oschina.net/yso/VideoWebView/commit/e5426df4b4dd1729802882222da1c9fd0d45f0ad" class="tree-commit-link" title="first commit">first commit</a>
+</div>
+</div>
+<div class="two wide column right aligned tree_time_ago">
+<span class="timeago" title="2015-11-27 20:14">2年前</span>
+</div>
+</div>
+<div class="rename-file_2afbb999f001938c88fa43fc2ef52abf0f8213e4 row tree-item tree-item-rename" file_hex="file_2afbb999f001938c88fa43fc2ef52abf0f8213e4" style="display:none">
+<div class="ui column form" path="blob/master/gradle.properties">
+<div class="two fields">
+<div class="five wide field">
+<input class="ui input" name="new_filename" type="text" value="gradle.properties">
+</div>
+<div class="five wide field">
+<button class="ui blue button popup-save" type="submit">保存</button>
+<button class="ui basic button popup-close">取消</button>
+</div>
+</div>
+</div>
+</div>
+<div class="file_5bbfa66edb4db3c7c33c5181f43510990d3307f9 row tree-item" file_hex="file_5bbfa66edb4db3c7c33c5181f43510990d3307f9">
+<div class="five wide column tree-item-file-name tree-file">
+<i class="iconfont icon-file"></i>
+<a href="http://git.oschina.net/yso/VideoWebView/blob/master/gradlew" title="gradlew">gradlew</a>
+</div>
+<div class="nine wide column tree_author">
+<div class="commit-details">
+<a href="http://git.oschina.net/yso" class="commit-author-link"><img alt="" class="mini avatar circular ui image s20" src="./yso_VideoWebView - 码云_files/331643_yso.png" width="20"> <span class="commit-author-name">yso</span></a>
+<a href="http://git.oschina.net/yso/VideoWebView/commit/e5426df4b4dd1729802882222da1c9fd0d45f0ad" class="tree-commit-link" title="first commit">first commit</a>
+</div>
+</div>
+<div class="two wide column right aligned tree_time_ago">
+<span class="timeago" title="2015-11-27 20:14">2年前</span>
+</div>
+</div>
+<div class="rename-file_5bbfa66edb4db3c7c33c5181f43510990d3307f9 row tree-item tree-item-rename" file_hex="file_5bbfa66edb4db3c7c33c5181f43510990d3307f9" style="display:none">
+<div class="ui column form" path="blob/master/gradlew">
+<div class="two fields">
+<div class="five wide field">
+<input class="ui input" name="new_filename" type="text" value="gradlew">
+</div>
+<div class="five wide field">
+<button class="ui blue button popup-save" type="submit">保存</button>
+<button class="ui basic button popup-close">取消</button>
+</div>
+</div>
+</div>
+</div>
+<div class="file_2a45a911a8f1836b0b6c5b758962572012d8f8c3 row tree-item" file_hex="file_2a45a911a8f1836b0b6c5b758962572012d8f8c3">
+<div class="five wide column tree-item-file-name tree-file">
+<i class="iconfont icon-file"></i>
+<a href="http://git.oschina.net/yso/VideoWebView/blob/master/gradlew.bat" title="gradlew.bat">gradlew.bat</a>
+</div>
+<div class="nine wide column tree_author">
+<div class="commit-details">
+<a href="http://git.oschina.net/yso" class="commit-author-link"><img alt="" class="mini avatar circular ui image s20" src="./yso_VideoWebView - 码云_files/331643_yso.png" width="20"> <span class="commit-author-name">yso</span></a>
+<a href="http://git.oschina.net/yso/VideoWebView/commit/e5426df4b4dd1729802882222da1c9fd0d45f0ad" class="tree-commit-link" title="first commit">first commit</a>
+</div>
+</div>
+<div class="two wide column right aligned tree_time_ago">
+<span class="timeago" title="2015-11-27 20:14">2年前</span>
+</div>
+</div>
+<div class="rename-file_2a45a911a8f1836b0b6c5b758962572012d8f8c3 row tree-item tree-item-rename" file_hex="file_2a45a911a8f1836b0b6c5b758962572012d8f8c3" style="display:none">
+<div class="ui column form" path="blob/master/gradlew.bat">
+<div class="two fields">
+<div class="five wide field">
+<input class="ui input" name="new_filename" type="text" value="gradlew.bat">
+</div>
+<div class="five wide field">
+<button class="ui blue button popup-save" type="submit">保存</button>
+<button class="ui basic button popup-close">取消</button>
+</div>
+</div>
+</div>
+</div>
+<div class="file_275d783e298228506068436512433d343feb52aa row tree-item" file_hex="file_275d783e298228506068436512433d343feb52aa">
+<div class="five wide column tree-item-file-name tree-file">
+<i class="iconfont icon-file"></i>
+<a href="http://git.oschina.net/yso/VideoWebView/blob/master/readme.md" title="readme.md">readme.md</a>
+</div>
+<div class="nine wide column tree_author">
+<div class="commit-details">
+<a href="http://git.oschina.net/yso" class="commit-author-link"><img alt="" class="mini avatar circular ui image s20" src="./yso_VideoWebView - 码云_files/331643_yso.png" width="20"> <span class="commit-author-name">yso</span></a>
+<a href="http://git.oschina.net/yso/VideoWebView/commit/1a1f7a5c6d606767bc5f1866d5f7d72860774540" class="tree-commit-link" title="Update readme.md">Update readme.md</a>
+</div>
+</div>
+<div class="two wide column right aligned tree_time_ago">
+<span class="timeago" title="2015-11-27 20:35">2年前</span>
+</div>
+</div>
+<div class="rename-file_275d783e298228506068436512433d343feb52aa row tree-item tree-item-rename" file_hex="file_275d783e298228506068436512433d343feb52aa" style="display:none">
+<div class="ui column form" path="blob/master/readme.md">
+<div class="two fields">
+<div class="five wide field">
+<input class="ui input" name="new_filename" type="text" value="readme.md">
+</div>
+<div class="five wide field">
+<button class="ui blue button popup-save" type="submit">保存</button>
+<button class="ui basic button popup-close">取消</button>
+</div>
+</div>
+</div>
+</div>
+<div class="file_05efc8b1657769a27696d478ded1e95f38737233 row tree-item" file_hex="file_05efc8b1657769a27696d478ded1e95f38737233">
+<div class="five wide column tree-item-file-name tree-file">
+<i class="iconfont icon-file"></i>
+<a href="http://git.oschina.net/yso/VideoWebView/blob/master/settings.gradle" title="settings.gradle">settings.gradle</a>
+</div>
+<div class="nine wide column tree_author">
+<div class="commit-details">
+<a href="http://git.oschina.net/yso" class="commit-author-link"><img alt="" class="mini avatar circular ui image s20" src="./yso_VideoWebView - 码云_files/331643_yso.png" width="20"> <span class="commit-author-name">yso</span></a>
+<a href="http://git.oschina.net/yso/VideoWebView/commit/e5426df4b4dd1729802882222da1c9fd0d45f0ad" class="tree-commit-link" title="first commit">first commit</a>
+</div>
+</div>
+<div class="two wide column right aligned tree_time_ago">
+<span class="timeago" title="2015-11-27 20:14">2年前</span>
+</div>
+</div>
+<div class="rename-file_05efc8b1657769a27696d478ded1e95f38737233 row tree-item tree-item-rename" file_hex="file_05efc8b1657769a27696d478ded1e95f38737233" style="display:none">
+<div class="ui column form" path="blob/master/settings.gradle">
+<div class="two fields">
+<div class="five wide field">
+<input class="ui input" name="new_filename" type="text" value="settings.gradle">
+</div>
+<div class="five wide field">
+<button class="ui blue button popup-save" type="submit">保存</button>
+<button class="ui basic button popup-close">取消</button>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+<div class="tree_progress ui">
+<div class="ui active inverted dimmer">
+<div class="ui small text loader">Loading...</div>
+</div>
+</div>
+</div>
+<div id="git-readme">
+<div class="ui flat nopadding segment file_holder">
+<div class="file_title">
+<i class="iconfont icon-readme"></i>
+<span class="file_name">
+readme.md
+<small>1.16 KB</small>
+</span>
+</div>
+<div class="file_content markdown-body">
+<h3><a class="anchor" id="原生webview+webchromeclient-对于html5的video标签支持很不友好" href="http://git.oschina.net/yso/VideoWebView#原生webview+webchromeclient-对于html5的video标签支持很不友好"></a><strong>原生WebView+WebChromeClient，对于HTML5的Video标签支持很不友好</strong>
+</h3>
+<p><a href="http://http//git.oschina.net/yso/VideoWebView/attach_files/download?i=17974&amp;u=http%3A%2F%2Ffiles.git.oschina.net%2Fgroup1%2FM00%2F00%2FB5%2FfMqNk1ZYTimAd8v5ABA8nrb6YDg276.apk%3Ftoken%3D03713f485cb836a9760453e827923913%26ts%3D1448627692%26attname%3DHTML5%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE.apk">测试apk下载地址</a><br>
+因此，我们参考了<a href="https://github.com/cprcrack/VideoEnabledWebView">Github上的一个库</a>，做了自己的一部分优化，实际使用下来在魅族、华为、小米、三星、摩托、联想200块的手机上都可以正常播放，无崩溃。欢迎各位提建议<br>
+已知问题：  </p>
+
+<ol class="task-list">
+<li>华为p8原生浏览器上没有全屏按钮<br>
+</li>
+<li>由于退出全屏事件在很多机型上都会崩溃，因此为稳定性考虑，禁用了此事件，导致退出全屏后，当前视频是暂停状态的。</li>
+</ol>
+
+<p><a class="fancybox" rel="data-fancybox-gallery" href="./yso_VideoWebView - 码云_files/202425_f559980e_331643.png" style="display:table-cell"><img alt="输入图片说明" src="./yso_VideoWebView - 码云_files/202425_f559980e_331643.png" title="在这里输入图片标题"></a>
+<a class="fancybox" rel="data-fancybox-gallery" href="./yso_VideoWebView - 码云_files/202806_8974f225_331643.png" style="display:table-cell"><img alt="输入图片说明" src="./yso_VideoWebView - 码云_files/202806_8974f225_331643.png" title="在这里输入图片标题"></a></p>
+</div>
+</div>
+</div>
+<script src="./yso_VideoWebView - 码云_files/md_relative_url-0aa1f99d0be91fc3a5a09ec7abf7bb79.js.下载" type="text/javascript"></script>
+<script>
+  if($('.markdown-body').children("style").length != 0){
+    var i, array = $('.markdown-body').children("style");
+    array.first().attr('scoped','');
+    $.scoped();
+  }
+</script>
+
+<div class="project-donate-overview" id="project-donate-overview">
+<div class="ui center aligned">
+<div class="ui large orange donate button">
+ 捐赠 
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    var $btnLoad, $container, $list, $modal, $root, $tipLoading, checkLoad, href, isLoading, loadDonates, page, setDonates;
+  
+    $root = $('html, body');
+  
+    href = '#project-donate-overview';
+  
+    $('a[href="' + href + '"]').click(function() {
+      $root.animate({
+        scrollTop: $(href).offset().top
+      }, 500, function() {
+        return window.location.hash = href;
+      });
+      return false;
+    });
+  
+    page = -1;
+  
+    isLoading = false;
+  
+    $list = $('.project-donate-list');
+  
+    $modal = $('.project-donate-modal');
+  
+    $container = $('#project-donate-overview');
+  
+    $tipLoading = $container.find('.tip-loading');
+  
+    $container.find('.donate.button').on('click', function() {
+      return $modal.modal('show');
+    });
+  
+    if (0 > 0) {
+      $btnLoad = $container.find('.btn-load-more').on('click', function() {
+        return loadDonates();
+      });
+      setDonates = function(list) {
+        var $item, html, item, _i, _len, _results;
+  
+        _results = [];
+        for (_i = 0, _len = list.length; _i < _len; _i++) {
+          item = list[_i];
+          html = ['<div class="header">', item.donator_name, '<span class="ui yellow circular label money">¥', item.money, '</span></div><div class="content">', item.message, '</div>'].join('');
+          if (item.donator_avatar_url.indexOf('no_portrait.png') === 0) {
+            item.donator_avatar_url = LetterAvatar(item.donator_name);
+          }
+          $item = $(['<span class="donate-info"><img src="', item.donator_avatar_url, '" class="ui inline circular image"', 'alt="', item.donator_name, '"></span>'].join(''));
+          $list.append($item);
+          _results.push($item.popup({
+            inline: true,
+            html: html,
+            position: 'bottom center'
+          }));
+        }
+        return _results;
+      };
+      loadDonates = function() {
+        if (isLoading) {
+          return;
+        }
+        page += 1;
+        isLoading = true;
+        $btnLoad.hide();
+        $tipLoading.show();
+        return $.getJSON('/yso/VideoWebView/donates.json', {
+          page: page
+        }, function(list) {
+          setDonates(list);
+          isLoading = false;
+          if (page * 10 + list.length < 0) {
+            $btnLoad.show();
+            return $tipLoading.hide();
+          } else {
+            $btnLoad.remove();
+            return $tipLoading.remove();
+          }
+        });
+      };
+      checkLoad = function() {
+        var listTop, top;
+  
+        top = $(window).scrollTop();
+        listTop = $list.offset().top;
+        if (listTop >= top && listTop < top + $(window).height()) {
+          $(window).off('scroll', checkLoad);
+          return loadDonates();
+        }
+      };
+      $(window).on('scroll', checkLoad);
+      checkLoad();
+    }
+  
+  }).call(this);
+</script>
+
+<div class="git-project-comments">
+<h3 id="project_comm_title">
+<i class="iconfont icon-comment"></i>
+项目点评
+(<span class="comments-count">0</span>)
+</h3>
+<div class="ui comments middle aligned" id="notes-list"></div>
+<div class="text-center">
+<div class="tip-loading" style="display: none">
+<div class="ui active mini inline loader"></div>
+正在加载...
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    var $btnLoad, $comments, $container, $tipLoading, checkLoad, commentsCount, loadComments, page;
+  
+    page = 0;
+  
+    commentsCount = 0;
+  
+    $container = $('.git-project-comments');
+  
+    $comments = $container.find('.ui.comments');
+  
+    $tipLoading = $container.find('.tip-loading');
+  
+    $btnLoad = $container.find('.btn-load-more');
+  
+    Notes.init();
+  
+    if (commentsCount < 1) {
+      return;
+    }
+  
+    loadComments = function() {
+      $btnLoad.hide();
+      $tipLoading.show();
+      return $.ajax({
+        url: '/yso/VideoWebView/comment_list',
+        data: {
+          page: page
+        },
+        success: function(data) {
+          $tipLoading.hide();
+          $btnLoad.show();
+          if (data.status !== 0) {
+            $btnLoad.text('无更多评论');
+            return $btnLoad.prop('disabled', true).addClass('disabled');
+          } else {
+            $comments.append(data.html);
+            $comments.find('.timeago').timeago();
+            $comments.find('.commenter-role-label').popup();
+            page += 1;
+            if (data.comments_count < 10) {
+              $btnLoad.text('无更多评论');
+              return $btnLoad.prop('disabled', true).addClass('disabled');
+            }
+          }
+        }
+      });
+    };
+  
+    checkLoad = function() {
+      var listTop, top;
+  
+      top = $(window).scrollTop();
+      listTop = $container.offset().top;
+      if (listTop >= top && listTop < top + $(window).height()) {
+        $(window).off('scroll', checkLoad);
+        return loadComments();
+      }
+    };
+  
+    $btnLoad.on('click', loadComments);
+  
+    $(window).on('scroll', checkLoad);
+  
+    checkLoad();
+  
+  }).call(this);
+</script>
+
+<p>
+你可以在<a href="http://git.oschina.net/login">登录</a>后，对此项目发表评论
+</p>
+
+<script>
+  function containSpecial(s){
+    var containSpecial = RegExp(/[(\%\\)]+/);
+    return (containSpecial.test(s));
+  }
+  
+  $(function(){
+    if("true" == "false" || "false" == "false" ){return null;}
+    var editing = false
+    window.alreadyContext = false
+  
+    $('html').on('click',function(event){
+      if(alreadyContext){
+        $('.tree-context').remove();
+        alreadyContext=false;
+        event.preventDefault();
+      }
+    })
+  
+    $('.tree-item').on('click',function(event){
+      if(alreadyContext){
+        event.preventDefault();
+      }
+    })
+  
+    function rename(file_hex){
+      $(".row.tree-item").show();
+      $(".tree-item-rename").hide();
+  
+      if($("."+file_hex).is(':hidden') == true) return;
+  
+      $("."+file_hex).hide();
+      var _t = $(".rename-"+file_hex);
+      src = _t.attr('src_text')
+      if(src==undefined){
+         newName = _t.find("[name='new_filename']").val()
+        _t.attr('src_text',newName)
+      }else{
+        _t.find("[name='new_filename']").val(_t.attr('src_text'))
+      }
+      $(".rename-"+file_hex).css("display","");
+    }
+  
+    setTimeout(function(){
+      $(".popup-save").click(function(){
+        form = $(this).parents(".ui.form")
+        file_hex = $(this).parents(".row.tree-item").attr("file_hex");
+        new_filename = $.trim(form.find("[name='new_filename']").val())
+        if(containSpecial(new_filename)) {
+          alert("文件名包含特殊字符！");
+          return;
+        }
+        overwrite = false
+        $('.tree-item-file-name').find('a').each(function(a){
+          title = $(this).attr('title');
+          if(title != undefined){
+            if (title.split('/')[0].toLowerCase() == new_filename.toLowerCase()){
+              overwrite = true;
+            }
+          }
+        });
+        if(overwrite){
+          form.find("[name='new_filename']").focus();
+          alert("存在相同的文件名,请修改后重试")
+          return;
+        }
+        $.ajax({
+          type: 'POST',
+          url: "/yso/VideoWebView/rename/"+form.attr("path"),
+          data:
+          {
+            new_filename: new_filename
+          },
+          success: function(o){
+            if(o.status == 1){
+              href = window.location.href.split('?')[0]
+              window.location.href = href;
+            }else {
+              alert("重命名失败！");
+            }
+          },
+          dataType: "json"
+        });
+      })
+  
+      $(".popup-close").click(function(){
+        $(".row.tree-item").show();
+        $(".tree-item-rename").hide();
+      })
+      $('.tree-item-file-name').each(function(){
+        var _this = $(this)
+        if(_this.parent().attr('file_hex')!=undefined){
+          _this.contextmenu(function(event){
+            if(alreadyContext==false){
+              content = "<div class='ui menu compact vertical tree-context'><a class='item tree-operation' id='btn-open-new-tab'><i class='file outline icon'></i>新标签打开</a><a class='item tree-operation' id='btn-rename'><i class='edit icon'></i>重命名</a><a class='item tree-operation' id='btn-delete'><i class='trash icon'></i>删除</a></div>"
+              c = $(content);
+              c.css('left',event.pageX+'px').css('top',event.pageY+'px').css('padding', 0)
+              $('body').append(c)
+              $('#btn-open-new-tab').on('click', function(event) {
+                var path = _this.parent().find('a').attr('href');
+                window.open(path);
+              })
+              $('#btn-rename').on('click',function(event){
+                rename(_this.parent().attr('file_hex'));
+                event.preventDefault();
+              })
+              $('#btn-delete').on('click',function(event){
+                var path = _this.parent().next().find('.ui.form').attr('path')
+                var r=confirm("确定要删除吗？")
+                if(r){
+                  $.ajax({
+                    type: 'GET',
+                    url: "/yso/VideoWebView/delete/"+path,
+                    success: function(o){
+                      if(o.status == 1){
+                        if($('.tree-item-file-name').length == 2){
+                          window.location.href = '/'+gon.user_project;
+                        }else{
+                          href = window.location.href.split('?')[0]
+                          window.location.href = href;
+                        }
+                      }else{
+                        alert("删除失败！");
+                      }
+                    }
+                  });
+                }
+                event.preventDefault();
+              })
+              alreadyContext = true
+            }else{
+              $('.tree-context').remove();
+              alreadyContext=false;
+            }
+          event.preventDefault();
+        })
+      }})
+    },1000)
+  })
+</script>
+
+</div>
+<script>
+  (function() {
+    $(function() {
+      return Tree.init();
+    });
+  
+  }).call(this);
+</script>
+</div>
+</div>
+</div><textarea tabindex="-1" style="position: absolute; top: -999px; left: 0px; right: auto; bottom: auto; border: 0px; box-sizing: content-box; word-wrap: break-word; overflow: hidden; transition: none; height: 0px !important; min-height: 0px !important;"></textarea>
+<style>
+  .team-member-checkbox .ui.radio.checkbox.checked label:after{top:7px !important}
+</style>
+
+<script>
+  Tree.initHighlightTheme('white')
+</script>
+<footer id="git-footer-main">
+<div class="ui container">
+<div class="ui two column grid">
+<div class="column">
+<p><a href="https://gitee.com/" target="_blank">© Gitee.com  </a></p>
+<div class="ui two column grid" id="footer-left">
+<div class="column">
+<div class="ui link list">
+<div class="item">
+<a href="http://git.oschina.net/terms" class="item">使用条款</a>
+</div>
+<div class="item">
+<a href="http://git.mydoc.io/" class="item">帮助文档</a>
+</div>
+<div class="item">
+<a href="http://git.oschina.net/api/v5/swagger" class="item">OpenAPI</a>
+</div>
+</div>
+</div>
+<div class="column">
+<div class="ui link list">
+<div class="item">
+<a href="http://git.oschina.net/appclient" class="item">APP与插件下载</a>
+</div>
+<div class="item">
+<a href="http://git.oschina.net/links.html" class="item">友情链接</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="column right aligned followus">
+<div class="qrcode weixin">
+<p class="weixin-text">微信公众号</p>
+<img alt="Qrcode-weixin" src="./yso_VideoWebView - 码云_files/qrcode-weixin-0133b31ee0f8fd2d88eee0821788abda.jpg">
+</div>
+<div class="phone-and-qq column">
+<div class="ui list">
+<div class="item">
+400-898-2008 转2
+</div>
+<div class="item">
+git#oschina.cn（请将#替换成@）
+</div>
+<div class="item qq-and-weibo">
+<a href="http://shang.qq.com/wpa/qunwpa?idkey=0d6c2fc0b5b71ac33405dd575bb490bf1a50e3c9a9f694e8a689cb59ee7dacc3" class="icon-popup" title="点击加入码云官方三群"><i class="iconfont icon-logo-qq"></i>
+<span>三群：655903986</span>
+</a><a href="http://weibo.com/mayunOSC" class="icon-popup" target="_blank" title="关注码云微博"><i class="iconfont icon-logo-weibo"></i>
+<span>码云Gitee</span>
+</a></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bottombar">
+<div class="ui container">
+<div class="ui two column grid">
+<div class="column">
+本站带宽由 <a href="http://www.51idc.com/" target="_blank" title="51idc"><img alt="Logo-51idc" height="23" src="./yso_VideoWebView - 码云_files/logo-51idc-f1307c11a026d708360f16b4060a2a9f.png" width="54"></a> 提供
+</div>
+<div class="column right aligned">
+<i class="icon world"></i>
+<a href="http://git.oschina.net/language/zh-CN">简 体
+</a>/
+<a href="http://git.oschina.net/language/zh-TW">繁 體
+</a>/
+<a href="http://git.oschina.net/language/en">English
+</a></div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+  function force_mobile() {
+    current_url = window.location.href;
+    force_mobile_url = current_url.substr(0,current_url.indexOf('?'))+'?force_mobile=true';
+    location.href = force_mobile_url;
+  }
+  (function () {
+    // 更新底栏的位置，当页面内容高度小于窗口高度时，会将底栏浮动定位在窗口底端
+    function updateFooterPosition() {
+      var pageHeight = document.body.offsetHeight;
+      if ($footer.hasClass('fixed-bottom')) {
+        pageHeight += $footer.outerHeight();
+        if (pageHeight > $(window).height()) {
+          $footer.removeClass('fixed-bottom');
+        }
+      } else {
+        if (pageHeight < $(window).height()) {
+          $footer.addClass('fixed-bottom');
+        }
+      }
+    }
+    var $footer = $('#git-footer-main');
+    $(document).on('ready', updateFooterPosition);
+    $(window).on({
+      'scroll': updateFooterPosition,
+      'resize': updateFooterPosition
+    });
+    // 每隔一段时间检测页面高度变化，确保底栏能在页面最底端
+    setInterval(updateFooterPosition, 500);
+  })();
+  $('.icon-popup').popup({ position: 'bottom center' });
+</script><div class="ui popup"><div class="content">点击加入码云官方三群</div></div><div class="ui popup"><div class="content">关注码云微博</div></div>
+<div class="side-toolbar">
+<div class="button share-link">
+<i class="iconfont icon-share"></i>
+</div>
+<div class="ui popup">
+<div class="header">
+分享到
+</div>
+<div class="bdsharebuttonbox bdshare-button-style1-32" data-bd-bind="1501685364163">
+<a class="item bds_weixin" data-cmd="weixin" title="分享到微信">weixin</a>
+<a class="item bds_tsina" data-cmd="tsina" title="分享到新浪微博">sina</a>
+<a class="item bds_sqq" data-cmd="sqq" title="分享到QQ好友">qq</a>
+<a class="item bds_qzone" data-cmd="qzone" title="分享到QQ空间">qzone</a>
+</div>
+</div>
+<div class="popup button" data-content="评论" id="home-comment">
+<i class="iconfont icon-comment"></i>
+</div>
+<div class="button gotop popup" data-content="回到顶部" id="gotop">
+<i class="iconfont icon-top"></i>
+</div>
+</div>
+<script>
+  (function() {
+    var $gotop, $root, $toolbar, update;
+  
+    $root = $('body, html');
+  
+    $toolbar = $('.side-toolbar');
+  
+    $gotop = $('#gotop').popup({
+      position: 'left center'
+    }).on('click', function() {
+      return $root.animate({
+        scrollTop: 0
+      }, 500);
+    });
+  
+    update = function() {
+      if ($(window).scrollTop() > 50) {
+        return $gotop.addClass('active');
+      } else {
+        return $gotop.removeClass('active');
+      }
+    };
+  
+    $(window).on('scroll', update);
+  
+    update();
+  
+    $toolbar.find('.share-link').popup({
+      inline: true,
+      hoverable: true,
+      position: 'left center',
+      delay: {
+        hide: 500
+      }
+    });
+  
+  }).call(this);
+</script><div class="ui popup"><div class="content">回到顶部</div></div>
+<script>
+  (function() {
+    var $comment, $root;
+  
+    $root = $('body, html');
+  
+    $comment = $('#home-comment').popup({
+      position: 'left center'
+    });
+  
+    $comment.on('click', function() {
+      var comment, href, offsetTop;
+  
+      if ($('#project_comm_title').length === 0) {
+        href = '/yso/VideoWebView#project_comm_title';
+        window.location.href = href;
+        return;
+      }
+      comment = $('.comment.note')[0];
+      if (comment) {
+        offsetTop = $(comment).offset().top - 80;
+        return $root.animate({
+          scrollTop: offsetTop
+        }, 400);
+      } else {
+        offsetTop = $('#editor_comment').offset().top + 30;
+        $root.animate({
+          scrollTop: offsetTop
+        }, 400);
+        return $('#editor_comment').focus();
+      }
+    });
+  
+  }).call(this);
+</script><div class="ui popup"><div class="content">评论</div></div>
+<script>
+  window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"分享到新浪微博","bdMini":"1","bdMiniList":["bdxc","tqf","douban","bdhome","sqq","thx","ibaidu","meilishuo","mogujie","diandian","huaban","duitang","hx","fx","youdao","sdo","qingbiji","people","xinhua","mail","isohu","yaolan","wealink","ty","iguba","fbook","twi","linkedin","h163","evernotecn","copy","print"],"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};
+</script>
+<script src="./yso_VideoWebView - 码云_files/share.js.下载" type="text/javascript"></script>
+
+
+
+
+<script>
+  (function (ww, dt) {
+    ww.__gac = {
+      domain: 'www.oschina.net'
+    };
+    var script = dt.createElement('script');
+    script.setAttribute('type', 'text/javascript');
+    script.setAttribute('src', '//www.oschina.net/public/javascripts/cjl/ga.js?t=20160926');
+    dt.body.appendChild(script);
+  } (window, window.document));
+</script><script type="text/javascript" src="./yso_VideoWebView - 码云_files/ga.js.下载"></script>
+<div class="ui popup"><div class="content">主要编程语言</div></div><div class="ui popup"><div class="content">这是一个公开项目</div></div><div id="atwho-container"></div></body></html>

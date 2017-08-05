@@ -1,0 +1,1546 @@
+/// <reference path="../../scripts/jquery-1.7.2-vsdoc.js" />
+var ajaxRequest = {};
+ajaxRequest.type = 'post';
+ajaxRequest.dataType = 'json';
+ajaxRequest.contentType = 'application/json; charset=utf8';
+ajaxRequest.data = "{}";
+$.ajaxSetup({
+    type: 'post',
+    dataType: 'json',
+    contentType: 'application/json; charset=utf8',
+    cache: false
+});
+
+var DEFAULT_ING_TIPS = "你在做什么？你在想什么？";
+
+var search = function () { }
+var searchEnter = function (event) {
+    if (event.keyCode == 13) {
+        search();
+        return false;
+    }
+}
+
+function loadCurrentUserInfo() {
+    $.ajax({
+        url: '/ajax/user/CurrentUserInfo',
+        type: 'get',
+        dataType: 'text',
+        success: function (data) {
+            var header_user = $('#header_user');
+            if (header_user.html() != data) {
+                $('#header_user').html(data);
+            }
+        }
+    });
+}
+
+function htmlDecode(input) {
+    var ret = $("<div/>").html(input).text();
+    return ret;
+}
+function htmlEncode(input) {
+    var ret = $("<div/>").text(input).html();
+    ret = ret.replace(/['"]/g, "&quot;");
+    return ret;
+}
+
+function publish_ing() {
+    publish_ing_new();
+}
+
+function publish_ing_new() {
+    var urlRegex = /(http|ftp|https):\/\/([^\/:,，]+)(:\d+)?(\/[^\u0391-\uFFE5\s,]*)?/ig;
+    var ingContent = $("#txt_ing").val();
+    ingContent = $.trim(ingContent);
+    try {
+        var noUrlIng = ingContent.replace(urlRegex, '').replace(/(\s)+/ig, '');
+        if (noUrlIng.length > 300) {
+            alert('闪存内容不能超过300个字符！当前字符数: ' + noUrlIng.length);
+            return;
+        }
+    }
+    catch (e) { }
+    if (ingContent == DEFAULT_ING_TIPS || ingContent == "" || ingContent == "提示：请输入内容") {
+        $("#txt_ing").val('提示：请输入内容');
+        window.setTimeout(function () { if ($("#txt_ing").val() == "提示：请输入内容") { $("#txt_ing").val('你在做什么？你在想什么？'); } }, 2000);
+        return;
+    }
+    /*if (currentTag == '程序员节' && ingContent.indexOf('[程序员节]') < 0) {
+        ingContent = '[程序员节]' + ingContent;
+    }*/
+
+    /*
+    var lastcontent = $("#last_ing").html();
+    if (lastcontent.length > 0 && ingContent == lastcontent) {
+        show_ing_tip("相同内容已发布过");
+        return;
+    }
+    else {
+        $("#last_ing").html(ingContent);
+    }*/
+
+    show_ing_tip("　发布中..");
+    $("#btn_ing_publish").attr("disabled", "true");
+
+    var publicFlag = 1;
+    if ($("#ing_type_private").attr("checked") == "checked" || $("#ing_type_private").attr("checked") == true)
+        publicFlag = 0;
+
+    var contentParam = {};
+    contentParam.content = ingContent;
+    contentParam.publicFlag = publicFlag;
+
+    $.ajax({
+        url: '/ajax/ing/Publish',
+        data: JSON.stringify(contentParam),
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            if (data.IsSuccess) {
+                var content = data.responseText;
+                $("#ing_current").html(content);
+                $("#txt_ing").val('');
+                AppendNewIngNew(content);
+            }
+            else {
+                show_ing_tip(data.responseText);
+            }
+            $("#btn_ing_publish").removeAttr("disabled");
+            //$("#ing_publish_tip").html("");
+        },
+        error: function (xhr) {
+            show_ing_tip(xhr.responseText);
+            $("#last_ing").html("");
+            $("#btn_ing_publish").removeAttr("disabled");
+        }
+    });
+}
+
+function PublicIngEnterNew(event) {
+    if (event.keyCode == 13) {
+        publish_ing_new();
+        return false;
+    }
+}
+
+function show_ing_tip(msg) {
+    $("#ing_publish_tip").html(msg);
+}
+
+function AppendNewIngNew(ingContent) {
+    if ($("#feed_list") != "") {
+        var url = $("#lnk_current_user").attr("href");
+        var avatar = $("#header_user_right img").attr("src");
+        var author = $("#lnk_current_user").html();
+        var ingstr = '';
+        if (location.href.indexOf("/ing") > -1 || location.href.indexOf("/zt/") > -1) {
+            /*if (currentTag == '程序员节') {
+                ingContent = ingContent.replace("[程序员节]",'');
+            }*/
+            var className = $("#feed_list li").next().attr("class");
+            ingstr = '<li class="' + className + '"><div class="feed_avatar"><img src="' + avatar + '"/></div><div class="feed_body"><a class="big_font blue" href="' + url + '">我</a>：<span class="ing_body">' + ingContent + '</span></div><div class="clear"></div></li>';
+            $("#feed_list").prepend(ingstr);
+            $("#ing_publish_tip").html("");
+        }
+        else {
+            location.href = '/ing/';
+            //$("#ing_publish_tip").html("发布成功!");
+            //setFeedTab('me');
+            //ingstr = '<li class="feed_item"><div class="feed_avatar"><img src="' + avatar + '"/></div><div class="feed_body"><div class="feed_title"><a href="' + url + '">我</a>：' + ingContent + '</div></div><div class="clear"></div></li>';
+        }
+    }
+}
+
+function SearchUser() {
+    if ($('#txt_user_name').val() == '' || $('#txt_user_name').val() == '先输入内容') {
+        $('#txt_user_name').val('先输入内容');
+        $('#txt_user_name').css('color', 'gray');
+        window.setTimeout(function () { if ($("#txt_user_name").val() == "先输入内容") { $("#txt_user_name").val(''); $('#txt_user_name').css('color', '#000'); } }, 1000);
+    }
+    else {
+        var keystr = encodeURIComponent($('#txt_user_name').val());
+        window.location = "/user/Search.aspx?key=" + keystr;
+    }
+}
+function SearchUserEnter(event) {
+    if (event.keyCode == 13) {
+        SearchUser();
+        return false;
+    }
+}
+function zzk_go() {
+    var keystr = encodeURIComponent(document.getElementById('q').value);
+    window.location = "http://zzk.cnblogs.com/s?w=" + keystr;
+}
+function zzk_go_enter(event) {
+    if (event.keyCode == 13) {
+        zzk_go();
+        return false;
+    }
+}
+function CheckMsg() {
+    var msg_count = $("#msg_count");
+    if ($("#msg_count").length) {
+        var jqxhr = $.ajax({
+            url: '/ajax/user/GetUnreadMsgCount',
+            type: 'get',
+            dataType: 'text',
+            success: function (data) {
+                if (data !== '0') {
+                    if (msg_count != "[" + data + "]") {
+                        msg_count.html("[" + data + "]");
+                    }
+                } else {
+                    if (msg_count.html() != '') {
+                        $("#msg_count").html('');
+                    }
+                }
+            }
+        });
+    }
+}
+
+function GetLastIng() {
+    if ($("#last_ing_block") != "") {
+        $.ajax({
+            url: '/Old/WebService/IngManage.asmx/GetLastIng',
+            data: '{}',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            cache: false,
+            success: function (data) {
+                if (data.d) {
+                    $("#last_ing_block").html(data.d);
+                }
+            }
+        });
+    }
+}
+
+function GetPassportHost() {
+    return "https://" + location.hostname.replace('home.', 'passport.') + '/';
+}
+
+function logout_immediate() {
+    location.href = GetPassportHost() + "logout.aspx?ReturnUrl=" + location.href;
+    return false;
+}
+
+function GetRecentFeed(feedListType, appId) {
+    ShowLoading();
+    var itemcount = 30;
+    $.ajax({
+        url: '/Old/WebService/FeedService.asmx/GetRecentFeed',
+        data: '{feedListType:' + feedListType + ',appId:"' + appId + '",itemcount:' + itemcount + '}',
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        cache: false,
+        success: function (data) {
+            if (data.d) {
+                $("#feed_list").html(data.d);
+                $("#feed_list").show();
+                HideLoading();
+            }
+            else {
+                $("#feed_list").html("<br /><span class='text_gray'>还没有动态，去看一下 <a href='/feed/all/'>全站</a> 的吧 :-)</span>");
+                HideLoading();
+            }
+        },
+        error: function (xhr) {
+            //$("#feed_list").html(xhr.responseText);
+            HideLoading();
+        }
+    });
+
+    $.ajax({
+        url: '/Old/WebService/FeedService.asmx/GetFeedCount',
+        data: '{feedListType:' + feedListType + ',appId:"' + appId + '"}',
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        cache: false,
+        success: function (data) {
+            if (data.d > itemcount) {
+                var url = pageUrl.replace("{0}", 2); //jQuery.queryString(location.href, "page=2");
+                $("#feed_more_block").html('<a href="' + url + '">更多动态</a>');
+            }
+            else {
+                //清空，不再显示更多动态
+                $("#feed_more_block").html('');
+            }
+        }
+    });
+}
+
+function setFeedTab(feedType) {
+    if (!isLogined) {
+        login();
+        return false;
+    }
+    $(".topic_nav_block a").removeClass('current_nav');
+    $(".topic_nav_block #feed_" + feedType).addClass('current_nav');
+    if (feedType == "me") {
+        feedListType = 4;
+    }
+    else if (feedType == "all") {
+        feedListType = 5;
+    }
+    else {
+        feedListType = 1;
+    }
+    $("#sel_application").val("all");
+    currentAppId = "";
+    GetPagedFeed(1);
+    return false;
+}
+
+function RefreshFeed() {
+    $("#sel_application").val("all");
+    currentAppId = "";
+    $("#refresh_tips").html("更新中...");
+    $("#a_refresh").hide();
+    GetPagedFeed(1);
+    return false;
+}
+
+function GetPagedFeed(pageIndex, pSize) {
+    window.scrollTo(0, 0);
+    pageSize = pSize;
+    GetPagedFeed(pageIndex);
+    return false;
+}
+
+function GetPagedFeed(pageIndex) {
+    ShowLoading();
+    if (currentAppId == "") {
+        currentAppId = "00000000-0000-0000-0000-000000000000";
+    }
+    var beginTime = (new Date()).getTime();
+    $.ajax({
+        url: '/ajax/feed/recent',
+        data: '{"feedListType":' + feedListType + ',"appId":"' + currentAppId + '","pageIndex":' + pageIndex + ',"pageSize":' + pageSize + '}',
+        type: 'post',
+        dataType: 'text',
+        contentType: 'application/json;',// charset=utf-8',
+        cache: false,
+        success: function (data) {
+            ShowProfiler((new Date()).getTime() - beginTime);
+            $("#a_refresh").show();
+            $("#refresh_tips").html("");
+            HideLoading();
+            if (data) {
+                $("#feed_list").html(data);
+            }
+            else {
+                $("#feed_list").html("<li class='nofeed'>当前无动态 :-)</li>");
+            }
+        },
+        error: function (xhr) {
+            //$("#feed_list").html(xhr.responseText);
+            HideLoading();
+        }
+    });
+
+    $.ajax({
+        url: '/ajax/feed/GetFeedPager',
+        data: '{"feedListType":' + feedListType + ',"appId":"' + currentAppId + '","pageIndex":' + pageIndex + ',"pageSize":' + pageSize + '}',
+        type: 'post',
+        dataType: 'text',
+        contentType: 'application/json;',
+        cache: false,
+        success: function (data) {
+            $("#feed_pager_block").html(data);
+            if (pageIndex > 1) {
+                $("#pager_top").html(data);
+                $("#pager_top").show();
+            }
+            else {
+                $("#pager_top").hide();
+            }
+        },
+        error: function (xhr) {
+            //alert(xhr.responseText);
+        }
+    });
+    return false;
+}
+
+function GetFeedsBySelect(applicationName) {
+    var applicationId = "00000000-0000-0000-0000-000000000000";
+    $.ajax({
+        url: '/ajax/common/GetApplicationIdByName',
+        data: '{applicatonName:"' + applicationName + '"}',
+        type: 'post',
+        dataType: 'text',
+        contentType: 'application/json;charset=utf-8',
+        cache: false,
+        async: false,
+        success: function (data) {
+            applicationId = data;
+        }
+    });
+    currentAppId = applicationId;
+    GetPagedFeed(1);
+}
+
+function SetPageUrl(applicationName) {
+    var feedTypeName = "";
+    switch (feedTypeIndex) {
+        case 1:
+            feedTypeName = "recent/"
+            break
+        case 4:
+            feedTypeName = "me/"
+            break
+        case 5:
+            feedTypeName = "all/"
+            break
+        default:
+            feedTypeName = "recent/"
+    }
+
+    if (applicationName == "")
+        pageUrl = "/new/feed/" + feedTypeName + "{0}.html";
+    else
+        pageUrl = "/new/feed/" + feedTypeName + applicationName + "/{0}.html";
+}
+
+function SetFeedRefreshStaus() {
+    var height = $("#feed_list").height();
+    $('#feed_list').html('<li class="feed_loading" id="feed_loading_block"><img src=\"//static.cnblogs.com/images/loading.gif\" alt=\"\"/></li>');
+    $("#feed_loading_block").css("height", height);
+}
+
+function HideTip() {
+    if ($("#txt_ing").val() == DEFAULT_ING_TIPS || $("#txt_ing").val() == "提示：请输入内容") {
+        $("#txt_ing").val("");
+        $("#txt_ing").css("color", "#222");
+        $("#txt_ing").css("font-size", "14px");
+    }
+}
+function IngIsEmpty() {
+    if ($("#txt_ing").val() == "") {
+        $("#txt_ing").css("color", "#BBB");
+        $("#txt_ing").val(DEFAULT_ING_TIPS);
+    }
+}
+
+function cnblogs_code_collapse(element) {
+    if (element.children('div.cnblogs_code_open').css('display') != 'none') {
+        element.children('div.cnblogs_code_open').css('display', 'none');
+        element.children('img.code_img_opened').css('display', 'none');
+        element.children('img.code_img_closed').css('display', 'inline');
+    }
+    else {
+        element.children('div.cnblogs_code_open').css('display', 'block');
+        element.children('img.code_img_opened').css('display', 'inline');
+        element.children('img.code_img_closed').css('display', 'none');
+    }
+}
+function cnblogs_code_show(id) {
+    if ($('#cnblogs_code_open_' + id).css('display') == 'none') {
+        $('#cnblogs_code_open_' + id).show();
+        $('#code_img_opened_' + id).show();
+        $('#code_img_closed_' + id).hide();
+    }
+}
+function cnblogs_code_hide(id, evt) {
+    if ($('#cnblogs_code_open_' + id).css('display') != 'none') {
+        $('#cnblogs_code_open_' + id).hide();
+        $('#code_img_opened_' + id).hide();
+        $('#code_img_closed_' + id).show();
+        evt.stopPropagation();
+    }
+}
+function AddToWz() {
+    window.open('https://wz.cnblogs.com/create?t=&u=&c=&i=0', '_wz', 'scrollbars=auto,width=460,height=400,left=100,top=50,status=yes,resizable=yes');
+}
+
+function PutInWz() {
+    var width = 460;
+    var height = 353;
+    var leftVal = (screen.width - width) / 2;
+    var topVal = (screen.height - height) / 2;
+    var d = document;
+    var t = d.selection ? (d.selection.type != 'None' ? d.selection.createRange().text : '') : (d.getSelection ? d.getSelection() : '');
+    if (t.length > 200) {
+        t = t.substring(0, 200);
+    }
+    window.open('https://wz.cnblogs.com/create?t=' + escape(d.title) + '&u=' + encodeURIComponent(d.location.href) + '&c=' +
+	     escape(t) + '&i=0', '_blank', 'width=' + width + ',height=' + height + ',toolbars=0,resizable=1,left=' + leftVal + ',top=' + topVal);
+}
+
+function ShowLoading() {
+    $("#feed_loading").html('<img align="absmiddle" src=\"//static.cnblogs.com/images/loading.gif\" alt=\"\"/> 正在加载数据...');
+    $("#feed_loading").show();
+    $("#feed_list").hide();
+}
+
+function HideLoading() {
+    $("#feed_loading").hide();
+    $("#feed_list").show();
+}
+
+function ShowProfiler(ms) {
+    $("#profiler_footer").html("(执行耗时" + ms + "毫秒)");
+}
+
+/*#region Pager*/
+var Pager = {};
+Pager.PageIndex = 1;
+Pager.PageSize = 30;
+Pager.ShowPageCount = 5;
+Pager.TotalCount = 0;
+Pager.UrlFormat = location.href + "?page={0}";
+Pager.ClickFunctionName = "";
+Pager.Build = function (node) {
+    if (this.PageSize >= this.TotalCount) {
+        //return;
+    }
+    $(node).html('');
+    var sumPage = parseInt((this.TotalCount + this.PageSize - 1) / this.PageSize);
+    var start = this.PageIndex - this.ShowPageCount;
+    var end = this.PageIndex + this.ShowPageCount;
+    if (sumPage > (this.ShowPageCount * 2 - 1)) {
+        if (start < 1) {
+            start = 1;
+            end = start + 2 * this.ShowPageCount;
+        }
+        else if (end > sumPage) {
+            start = sumPage - 2 * this.ShowPageCount;
+            end = sumPage;
+        }
+    }
+    else {
+        start = 1;
+        end = sumPage;
+    }
+
+    var fragment = document.createDocumentFragment();
+    if (this.PageIndex > 1) {
+        fragment.appendChild(this.BuildLink("&lt; Prev", this.PageIndex - 1));
+        //分页显示多出“1”bug修复
+        if (this.PageIndex > this.ShowPageCount + 1 && start > 1) {
+            fragment.appendChild(this.BuildLink(1, 1));
+        }
+        if (start > 2) {
+            fragment.appendChild(document.createTextNode("···"));
+        }
+    }
+
+    for (i = start; i <= end; i++) {
+        if (i == this.PageIndex) {
+            var span = document.createElement("span");
+            $(span).prop("class", "current");
+            span.innerHTML = this.PageIndex;
+            fragment.appendChild(span);
+        }
+        else {
+            fragment.appendChild(this.BuildLink(i, i));
+        }
+    }
+
+    if (this.PageIndex < sumPage) {
+        if (end < sumPage) {
+            fragment.appendChild(document.createTextNode("···"));
+            fragment.appendChild(this.BuildLink(sumPage, sumPage, this.TotalCount));
+        }
+        fragment.appendChild(this.BuildLink("Next &gt;", this.PageIndex + 1, this.TotalCount));
+    }
+    $(node).html(fragment);
+}
+
+Pager.BuildLink = function (pageTitle, pageIndex) {
+    var a = document.createElement("a");
+    if (this.ClickFunctionName) {
+        a.href = "javascript:void(0);";
+        var js = this.ClickFunctionName + "(" + pageIndex + ");Pager.SetCurrent(" + pageIndex + ");";
+        a.onclick = function () { eval(js); }
+    }
+    else {
+        a.href = this.UrlFormat.replace("{0}", pageIndex);
+    }
+    a.innerHTML = pageTitle;
+    return a;
+}
+
+Pager.SetCurrent = function (pageIndex) {
+    //    var selNode = $(el);
+    //    var cloneNode = selNode.clone();
+    //    var prevSelNode = selNode.parent().children("span.current");
+    //    var prevSelPageIndex = prevSelNode.html();
+    //    prevSelNode.replaceWith(this.BuildLink(prevSelPageIndex, prevSelPageIndex));
+    //    selNode.replaceWith('<span class="current">' + selNode.html() + '</span>');
+    this.PageIndex = pageIndex;
+    if (this.PageIndex > 1) {
+        this.Build($("#pager_top"));
+    }
+    this.Build($("#pager_bottom"));
+}
+/*#endregion Pager*/
+
+function RelationController() { };
+RelationController.GetMyFolloweesFollowers = function (id, resultElement) {
+    $.ajax({
+        url: '/Relation/GetMyFolloweesFollowers',
+        data: '{"id":' + id + '}',
+        type: 'post',
+        dataType: 'text',
+        success: function (data) {
+            $("#" + resultElement).html(data);
+        }
+    });
+}
+
+function gotoTop(){
+    window.scrollTo(0, 0);
+    return false;
+}
+
+
+if (typeof googletag !== 'undefined') {
+    googletag.cmd.push(function () {
+        googletag.defineSlot('/1090369/home.cnblogs.com_side', [250, 250], 'div-gpt-ad-1346371457607-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+    });
+}
+
+$(function () {
+    CheckMsg();
+});
+document.domain = 'cnblogs.' + location.hostname.substring(location.hostname.lastIndexOf(".") + 1, location.hostname.length);
+function SearchGroup() {
+    if ($('#txt_group_name').val() == '' || $('#txt_group_name').val() == '先输入内容') {
+        $('#txt_group_name').val('先输入内容');
+        $('#txt_group_name').css('color', 'gray');
+        window.setTimeout(function() { if ($("#txt_group_name").val() == "先输入内容") { $("#txt_group_name").val(''); $('#txt_group_name').css('color', '#000'); } }, 1000);
+    }
+    else {
+        var keystr = encodeURIComponent($('#txt_group_name').val());
+        window.location = "/group/search?keyword=" + keystr;
+    }
+}
+function SearchGroupUser(gid) {
+	if ($('#txt_user_name').val() == '' || $('#txt_user_name').val() == '先输入内容') {
+		$('#txt_user_name').val('先输入内容');
+		$('#txt_user_name').css('color', 'gray');
+		window.setTimeout(function () { if ($("#txt_user_name").val() == "先输入内容") { $("#txt_user_name").val(''); $('#txt_user_name').css('color', '#000'); } }, 1000);
+	}
+	else {
+		var keystr = encodeURIComponent($('#txt_user_name').val());
+        window.location = "/" + gid + "/member/search?keyword=" + keystr;
+	}
+}
+function SearchGroupEnter(event) {
+    if (event.keyCode == 13) {
+        SearchGroup();
+        return false;
+    }
+}
+function SearchGroupUserEnter(event, gid) {
+	if (event.keyCode == 13) {
+		SearchGroupUser(gid);
+		return false;
+	}
+}
+function AttendGroup(groupId) {
+    if (isLogined) {
+        if (confirm("您要加入该小组吗？")) {
+            $.ajax({
+            	url: '/ajax/group/attendGroup',
+            	data: {groupId: groupId},
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+                cache: false,
+                success: function(data) {
+                	if (data.Message == "success") {
+                        alert("已加入");
+                        $("#group_opt").html("<span class='text_gray'>»</span> <a href='/newpost/" + groupId + "/'>我要发言</a>");
+                    }
+                    else {
+                        alert("加入失败");
+                    }
+                },
+                error: function(xhr) {
+                    alert(xhr.responseText);
+                }
+            });
+        }
+    }
+    else {
+        location.href = "https://passport.cnblogs.com/user/signin?ReturnURL=" + location.href;
+    }
+}
+function QuitGroup(groupId,title) {
+    if (isLogined) {
+        if (confirm(title)) {
+            $.ajax({
+            	url: '/ajax/group/quitGroup',
+            	data: {groupId: groupId},
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+                cache: false,
+                success: function(data) {
+                	if (data.Message == "success") {
+                        alert("已退出");
+                        $("#group_opt").html("<span class='text_gray'>»</span> <a href='javascript:;' onclick='AttendGroup(" + groupId + ")'>加入小组</a>");
+                    }
+                    else {
+                        alert("退出失败");
+                    }
+                },
+                error: function(xhr) {
+                    alert(xhr.responseText);
+                }
+            });
+        }
+    }
+    else {
+        location.href = "https://passport.cnblogs.com/user/signin?ReturnURL=" + location.href;
+    }
+}
+function BlockPost(groupId) {
+    if (isLogined) {
+        if (confirm("您要禁言该小组吗？")) {
+            $.ajax({
+                url: '/ajax/group/blockPost',
+                data: { groupId: groupId },
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+                cache: false,
+                success: function (data) {
+                    if (data.Message == "success") {
+                        alert("已禁言");
+                        $("#group_opt li:last").html("<span class='text_gray'>»</span> <a href='javascript:;' onclick='RecoverPost(" + groupId + ")'>恢复发言</a>");
+                    }
+                    else {
+                        alert("禁言失败");
+                    }
+                },
+                error: function (xhr) {
+                    alert(xhr.responseText);
+                }
+            });
+        }
+    }
+}
+function RecoverPost(groupId) {
+    if (isLogined) {
+        if (confirm("您要恢复该小组吗？")) {
+            $.ajax({
+                url: '/ajax/group/recoverPost',
+                data: { groupId: groupId },
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+                cache: false,
+                success: function (data) {
+                    if (data.Message == "success") {
+                        alert("已恢复");
+                        $("#group_opt li:last").html("<span class='text_gray'>»</span> <a href='javascript:;' onclick='BlockPost(" + groupId + ")'>禁止发言</a>");
+                    }
+                    else {
+                        alert("恢复失败");
+                    }
+                },
+                error: function (xhr) {
+                    alert(xhr.responseText);
+                }
+            });
+        }
+    }
+}
+
+function OpenEmoticonWindow(folder, width, height, num) {
+    var path = 'Emoticons/' + folder + '/';
+    leftVal = (screen.width - width) / 2;
+    topVal = (screen.height - height) / 2;
+    var newwindow = window.open('/transfer/emoticons?num=' + num + '&rif=' + path, '_blank', 'width=' + width + ',height=' + height + ',toolbars=0,resizable=1,left=' + leftVal + ',top=' + topVal);
+    newwindow.focus();
+}
+
+function OpenWindow(url, width, height, offset) {
+    var leftVal = (screen.width - width) / 2 - offset;
+    var topVal = (screen.height - height) / 2 - offset;
+    var newwindow = window.open(url, '_blank', 'width=' + width + ',height=' + height + ',toolbars=0,resizable=1,left=' + leftVal + ',top=' + topVal);
+    newwindow.focus();
+}
+function InsertEmotion(content) {
+    document.getElementById("txtContent").value += content;
+}
+function ctlent(e) {
+    if (e.type == 'keydown' && e.ctrlKey && e.keyCode == 13) {
+        NewThread();
+        return false;
+    }
+}
+function InsertUBBImgToEditor(url) {
+    InsertImgUBB("txtContent", url);
+}
+
+//话题详细页面：添加、修改、删除
+function CommentCtEnt(e) {
+    if (e.type == 'keydown' && e.ctrlKey && e.keyCode == 13) {
+        PostReply();
+        return false;
+    }
+}
+
+function PostReply() {
+    $("#post_staus").html("正在提交中..");
+    var content = $("#txtContent").val();
+    var lastContent = $("#span_last_content").val();
+    if (content == lastContent) {
+        alert("该回复内容已提交过！");
+        $("#post_staus").html('');
+        return false;
+    }
+    else {
+        $("#span_last_content").val(content);
+    }
+
+    if (content.length < 3) {
+        alert("回复的字数太少了，至少3个字吧！");
+        $("#post_staus").html("");
+        return false;
+    }
+    var postId = $("#span_edit_postId").html();
+    $("#btnReply").attr("disabled", "disabled");
+    if (postId == null || postId == '') {
+        newPost(content);
+    }
+    else {
+        updatePost(postId, content);
+    }   
+}
+
+function editPost(postId) {
+    $.ajax({
+        url: '/ajax/group/getPostById',
+        data: {postId: postId},
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+        cache: false,
+        success: function (data) {
+            if (!data.Success) {
+        		$("#post_staus").html("获取评论内容失败，请联系管理员");
+        	}
+            else {
+                $("#txtContent").val(data.Message);
+                $("#span_edit_postId").html(postId);
+                $("#txtContent").focus();
+            }
+        },
+        error: function (xhr) {
+            $("#post_staus").html("获取评论内容失败，请联系管理员");
+            $("#post_staus").html(xhr.responseText);
+        }
+    });
+}
+
+function updatePost(postId, content) {
+    var post = {};
+    post.postId = postId;
+    post.content = content;
+    $.ajax({
+        timeout: 30000, //30s
+        url: '/ajax/group/updateThreadComment',
+        data: post,
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+        cache: false,
+        success: function(data) {
+        	var result = data.Message;
+            if (result == "-1" || result == "-4") {
+                $("#post_staus").html("更新失败，请联系管理员");                
+            }
+            else {
+            	$("#p_" + postId + " .thread_comment_content").html(result);
+                $("#post_staus").html("更新成功 :)");
+                $("#txtContent").val("");
+                $("#span_edit_postId").html("");
+                //清除一些记录的东西，比如回复ID
+            }
+            $("#btnReply").removeAttr("disabled");
+        },
+        error: function (xhr, textStatus) {
+            var data;
+            if (xhr.status == 500) {
+                data = "抱歉！发生了错误！麻烦反馈至contact@cnblogs.com";
+            } else if (xhr.status > 0) {
+                data = "抱歉！评论提交失败！错误信息：" + xhr.responseText;
+            } else {
+                data = "抱歉！评论提交失败！出错原因：" + textStatus;
+            }
+            $("#btnReply").removeAttr("disabled");
+            $("#post_staus").html(data);
+        }
+    });
+}
+
+//group comment
+function newPost(content) {
+    var comment = {};
+    comment.threadId = $("#span_thread_id").html();
+    comment.groupId = $("#span_group_id").html();
+    comment.groupType = $("#span_group_type").html();
+    comment.title = $("#thread_title").html();
+    comment.content = content;
+    comment.replyTo = parseInt($("#replyto_userId").val());
+    var start_ms = new Date().getTime();
+    $.ajax({
+        timeout: 30000, //30s
+        url: '/ajax/group/addComment',
+        data: comment,
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+        cache: false,
+        success: function (data) {
+            if (data.Success) {
+                $("#thread_comment_list").append(data.Message + '<span style="color:gray">提交回复耗时' + (new Date().getTime() - start_ms) + '毫秒</span>');
+                $("#post_staus").html("");
+                $("#txtContent").val("");
+                $("#replyto_userId").val("0");
+                //清除一些记录的东西，比如回复ID
+            } else {
+                $("#post_staus").html(data.Message);
+                $("#span_last_content").val("");
+            }
+            $("#btnReply").removeAttr("disabled");
+        },
+        error: function (xhr, textStatus) {
+            var data;
+            if (xhr.status == 500) {
+                data = "抱歉！发生了错误！麻烦反馈至contact@cnblogs.com";
+            } else if (xhr.status > 0) {
+                data = "抱歉！评论提交失败！错误信息：" + xhr.responseText;
+            } else {
+                data = "抱歉！评论提交失败！出错原因：" + textStatus;
+            }
+            $("#btnReply").removeAttr("disabled");
+            $("#post_staus").html(data);
+        }
+    });
+}
+function delPost(postId) {
+    if (!confirm("您确实要删除这条评论吗？"))
+        return false;
+    $.ajax({
+        url: '/ajax/group/deleteThreadComment',
+        data: {postId: postId},
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+        cache: false,
+        success: function(data) {
+            var result = data.Message;
+            if (result == "-1" || result == "-4") {
+                $("#post_staus").html("删除失败，请联系管理员");
+            }
+            else {
+                $("#p_" + postId).html("<div class='text_gray'>已删除成功 :)<br /><br /></div>");
+                $("#post_staus").html("");
+                $("#txtContent").val("");
+                $("#span_edit_postId").html("");
+            }
+        },
+        error: function(xhr) {
+            alert(xhr.responseText);
+            $("#post_staus").html("删除失败，请联系管理员");
+        }
+    });
+}
+function reply(postId, spaceUserId) {
+    var author = $("#p_" + postId + " .thread_author_block a").text();
+    $("#txtContent").focus();
+    $("#txtContent").val("@" + author + "\r\n" + $("#txtContent").val());
+    $("#replyto_userId").val(spaceUserId);
+}
+function DelThread(threadId, groupId) {
+    if (!confirm("您确实要删除这个话题吗？")) {
+        return false;
+    }
+    $.ajax({
+        url: '/ajax/group/deleteThread',
+        data: {threadId: threadId, groupId: groupId},
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+        cache: false,
+        success: function(data) {
+            var result = data.Message;
+            if (result == "-1" || result == "-4") {
+                alert("权限不够，请联系管理员");
+            }
+            else {
+                location.href = "/" + groupId + "/";
+            }
+        },
+        error: function(xhr) {
+            alert(xhr.responseText);
+            alert("删除失败，请联系管理员");
+        }
+    });
+}
+//END:话题详细页面：添加、修改、删除
+
+function enterSearch(e,groupId) {
+    if (e.type == 'keydown' && e.keyCode == 13) {
+        Search(groupId);
+        return false;
+    }
+}
+function Search(groupId) {
+    var searchTxt = $("#txt_search").val();
+    if (searchTxt == "") {
+        alert("请先输入搜索关键字");
+        return false;
+    }
+    searchTxt = encodeURIComponent(searchTxt);
+    window.location = "/" + groupId + "/search?keyword=" + searchTxt;
+}
+
+function SetTop(threadId, groupId, isTop) {
+    if (isTop) {
+        if (!confirm("您确实要将这个帖子设置为置顶吗？"))
+            return false;
+    }
+    else {
+        if (!confirm("您确实要将这个帖子取消置顶吗？"))
+            return false;
+    }
+    $.ajax({
+        url: '/ajax/group/setTop',
+        data: {threadId: threadId, groupId: groupId, isTop: isTop},
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+        cache: false,
+        success: function(data) {
+            var result = data.Message;
+            if (result == "-1" || result == "-4") {
+                alert("权限不够，请联系管理员");
+            }
+            else {
+                var topStr = "取消置顶";
+                if (!isTop) topStr = "置顶";                
+                $("#span_top").html("<a onclick='SetTop(" + threadId + "," + groupId + "," + !isTop + ");return false;' href='javascript:;' class='gray3'>" + topStr + "</a>");
+            }
+        },
+        error: function(xhr) {
+            alert(xhr.responseText);
+        }
+    });
+}
+
+function SetBest(threadId, groupId, isBest) {
+    if (isBest) {
+        if (!confirm("您确实要将这个帖子设置为精华贴吗？"))
+            return false;
+    }
+    else {
+        if (!confirm("您确实要将这个帖子取消精华吗？"))
+            return false;
+    }
+    $.ajax({
+    url: '/ajax/group/setBest',
+        data: {threadId: threadId, groupId: groupId, isBest: isBest},
+        type: 'post',
+        dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+        cache: false,
+        success: function(data) {
+            var result = data.Message;
+            if (result == "-1" || result == "-4") {
+                alert("权限不够，请联系管理员");
+            }
+            else {
+                var bestStr = "取消精华";
+                if (!isBest)
+                    bestStr = "精华";
+                $("#span_best").html("<a onclick='SetBest(" + threadId + "," + groupId + "," + !isBest + ");return false;' href='javascript:;' class='gray3'>" + bestStr + "</a>");
+            }
+        },
+        error: function(xhr) {
+            alert(xhr.responseText);
+        }
+    });
+}
+
+function NewGroup() {
+	var title = document.getElementById("txt_title").value.replace(/\x22/g, '”');
+	var summary = document.getElementById('txtSummary').value.replace(/\x22/g, '”');
+	var tags = document.getElementById('txtTags').value.replace(/\x22/g, '”');
+	var groupType = $("#span_group_type").html();
+
+	if (title == '') {
+		alert('小组名称不能为空！');
+		return;
+	}
+	else if (tags.length > 128) {
+		alert('小组标签总长不允许超过128个字符!');
+		return;
+	}
+	var Channel = $("#lstChannel").val();
+	if (Channel == "0") {
+		alert("请选择一个分类！");
+		return;
+	}
+	$("#publish_tip_block").html("<span class='text_red'>　数据正在提交中...</span>");
+
+	if (isLogined) {
+		var group = {};
+		group.title = title;
+		group.summary = summary;
+		group.tags = tags;
+		group.channel = Channel;
+		group.groupType = groupType;
+		$.ajax({
+			url: '/ajax/group/newGroup',
+			data: group,
+			type: 'post',
+			dataType: 'json',
+            contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+			cache: false,
+			success: function (data) {
+				if (data.Message > 100000) {
+					$("#publish_tip_block").html();
+					document.location.href = "/" + data.Message + "/";
+				}
+				else {
+					$("#publish_tip_block").html(data.Message);
+				}
+			},
+			error: function (xhr) {
+				alert(xhr.responseText);
+				$("#publish_tip_block").html("");
+			}
+		});
+	}
+}
+
+function NewThread() {
+    var title = document.getElementById("txt_title").value;
+    var content = tinyMCE.get('txtContent').getContent();
+    var threadId = $("#span_thread_id").html();
+
+    if (title == '') {
+        alert('标题不能为空！');
+        return;
+    }
+    else if (content.length < 12) {
+        alert('发言的字数太少了，至少5个字吧！');
+        return;
+    }
+
+    //新建一个话题
+    if (threadId == null || threadId == '') {
+        $("#publish_tip_block").html("<span class='text_red'>　数据正在提交中...</span>");
+        CreateThread(title, content);
+    }
+        //更新一个话题
+    else {
+        $("#publish_tip_block").html("<span class='text_red'>　数据正在提交中...</span>");
+        UpdateThread(threadId, title, content);
+    }
+}
+
+function NewForum() {
+	var title = document.getElementById("txt_title").value;
+	var content = tinyMCE.get('txtContent').getContent();
+	var groupId = $("#span_group_id").html();
+
+	if (title == '') {
+		alert('标题不能为空！');
+		return;
+	}
+	else if (content.length < 12) {
+		alert('发言的字数太少了，至少5个字吧！');
+		return;
+	}
+	$("#publish_tip_block").html("<span class='text_red'>　数据正在提交中...</span>");
+	if (isLogined) {
+		var thread = {};
+		thread.groupId = groupId;
+		thread.topic = title;
+		thread.content = content;
+		$.ajax({
+			url: '/ajax/forum/newForum',
+			data: thread,
+			type: 'post',
+			dataType: 'json',
+            contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+			cache: false,
+			success: function (data) {
+                var result = data.Message;
+				if (result > 0) {
+					document.location.href = "/topic/" + result;
+				}
+				else if (result == -2) {
+					alert("有不合适的内容，不能发布！");
+				}
+				else {
+					alert("发布失败");
+				}
+				$("#publish_tip_block").html("<span class='text_gray'>　按Ctrl+Enter提交</span>");
+			},
+			error: function (xhr) {
+				alert(xhr.responseText);
+				$("#publish_tip_block").html("<span class='text_gray'>　按Ctrl+Enter提交</span>");
+			}
+		});
+	}
+}
+
+function CreateThread(Title, Content) {
+    var groupListId = "ddl_group";
+    var groupId = $("#" + groupListId).val();
+    var isNotifyOriginalPoster = true;
+    if (!($('#IsNotifyOriginalPoster').is(':checked'))) {
+        isNotifyOriginalPoster = false;
+    }
+    if (groupId == "0") {
+        alert("请选择一个小组");
+        $("#publish_tip_block").html("");
+        return;
+    }
+    if (isLogined) {
+        var authenNum = ''; //$.trim($("#tbAuthenCode").val());
+        var authenCode = ''; //$("#span_id_code").html();
+        var thread = {};
+        thread.groupId = groupId;
+        thread.topic = Title;
+        thread.content = Content;
+        thread.authenNum = authenNum;
+        thread.authenCode = authenCode;
+        thread.isNotifyOriginalPoster = isNotifyOriginalPoster;
+        $.ajax({
+            url: '/ajax/group/newThread',
+            data: thread,
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+            cache: false,
+            success: function (data) {
+                var result = data.Message;
+                if (result > 0) {
+                    var groupTitle = $("#ddl_group option[value=" + groupId + "]").text();
+                    document.location.href = "/tip?type=newpost&threadId=" + result + "&gid=" + groupId + "&title=" + encodeURI(groupTitle);
+                }
+                else if (result == -1) {
+                    alert("该小组已被禁止发言！");
+                }
+                else if (result == -2) {
+                    alert("有不合适的内容，不能发布！");
+                }
+                else if (result == -5) {
+                    alert("验证码不正确！");
+                    RefreshAuthenCode();
+                }
+                else {
+                    alert("发布失败！");
+                }
+                $("#publish_tip_block").html("<span class='text_gray'>　按Ctrl+Enter提交</span>");
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+                $("#publish_tip_block").html("<span class='text_gray'>　按Ctrl+Enter提交</span>");
+            }
+        });
+    }
+}
+
+function addUser(groupId) {
+	var username = document.getElementById("txtUser").value.replace(/(^\s*)|(\s*$)/g, '');
+	if (username == '') {
+	    $('#span_member').html('用户名不能为空');
+	    return;
+	}
+	var params = {};
+	params.groupId = groupId;
+	params.Username = username;
+	$.ajax({
+		url: '/ajax/group/addGroupMebmer',
+		data: params,
+		type: 'post',
+		dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		cache: false,
+		success: function (data) {
+            var result = data.Message;
+			if (result == "1") {
+				document.location.reload();
+			}
+			else {
+                $('#span_member').html(result);
+			}
+		},
+		error: function (xhr) {
+			alert(xhr.responseText);
+		}
+	});
+}
+
+function MemberRemove(userID, groupID) {
+	var con = confirm('确认要移除该用户么？');
+	if (con) {
+		var params = {};
+		params.UserId = userID;
+		params.GroupId = groupID;
+		$.ajax({
+			url: '/ajax/group/userQuitGroup',
+			data: params,
+			type: 'post',
+			dataType: 'json',
+            contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+			cache: false,
+			success: function () {
+				document.getElementById("span_" + userID).innerHTML = "";
+				document.getElementById("span_td_" + userID).innerHTML = "";
+			},
+			error: function (xhr) {
+				alert(xhr.responseText);
+			}
+		});
+	}
+	return;
+}
+
+function MemberPromote(userId, groupId, rankId) {
+	var params = {};
+	params.userId = userId;
+	params.groupId = groupId;
+	params.rankId = rankId;
+	params.isPromote = true;
+	$.ajax({
+		url: '/ajax/group/modifyUserRank',
+		data: params,
+		type: 'post',
+		dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		cache: false,
+		success: function (data) {
+            var result = data.Message;
+			if (result == "1") {
+				document.location.reload();
+			}
+			else {
+				alert(result);
+			}
+		},
+		error: function (xhr) {
+			alert(xhr.responseText);
+		}
+	});
+}
+
+function MemberDemote(userId, groupId, rankId) {
+	var con = confirm('确认要该用户降一级么？');
+	if (con) {
+		var params = {};
+		params.userId = userId;
+		params.groupId = groupId;
+		params.rankId = rankId;
+		params.isPromote = false;
+		$.ajax({
+			url: '/ajax/group/modifyUserRank',
+			data: params,
+			type: 'post',
+			dataType: 'json',
+            contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+			cache: false,
+			success: function (data) {
+                var result = data.Message;
+				if (result == "1") {
+					document.location.reload();
+				}
+				else {
+					alert(result);
+				}
+			},
+			error: function (xhr) {
+				alert(xhr.responseText);
+			}
+		});
+	}
+	return;
+}
+
+function LockGroup(groupId) {
+	//需要确认
+	var con = confirm('你确认要注销小组么？');
+	if (con) {
+		$.ajax({
+			url: '/ajax/admin/lockGroup',
+            data: {groupId: groupId},
+			type: 'post',
+			dataType: 'json',
+            contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+			cache: false,
+			success: function (data) {
+                var result = data.Message;
+				if (result == "1") {
+					alert('注销成功！');
+					document.location = "/";
+				}
+				else {
+					alert("注销失败！");
+				}
+			},
+			error: function (xhr) {
+				alert(xhr.responseText);
+			}
+		});
+	}
+	return;
+}
+
+function EditGroup(groupId) {
+	var title = document.getElementById("txt_title").value.replace(/\x22/g, '”');
+	var summary = document.getElementById('txtSummary').value.replace(/\x22/g, '”');
+	var news = document.getElementById('txtNews').value.replace(/\x22/g, '”');
+	var tags = document.getElementById('txtTags').value.replace(/\x22/g, '”');
+
+	if (title == '') {
+		alert('小组名称不能为空！');
+		return;
+	}
+	else if (tags.length > 128) {
+		alert('小组标签总长不允许超过128个字符!');
+		return;
+	}
+    
+	$("#publish_tip_block").html("<span class='text_red'>　数据正在提交中...</span>");
+
+	var group = {};
+	group.groupId = groupId;
+	group.title = title;
+	group.summary = summary;
+	group.news = news;
+	group.tags = tags;
+    group.channel = $("#lstChannel").val();
+    group.type = $("#lstType").val();
+	$.ajax({
+		url: '/ajax/admin/editGroup',
+		data: group,
+		type: 'post',
+		dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		cache: false,
+		success: function (data) {
+			if (data.Message == "1") {
+				$("#publish_tip_block").html();
+				document.location.href = "/" + groupId + "/admin/";
+			}
+			else {
+                $("#publish_tip_block").html("<span class='text_red'>　" + data.Message + "</span>");
+			}
+		},
+		error: function (xhr) {
+			alert(xhr.responseText);
+			$("#publish_tip_block").html("");
+		}
+	});
+}
+
+function EditNames(groupId) {
+	var txtNewsTitle = document.getElementById("txtNewsTitle").value.replace(/\x22/g, '”');
+	var txtAdminTitle = document.getElementById('txtAdminTitle').value.replace(/\x22/g, '”');
+	var txtAssistantTitle = document.getElementById('txtAssistantTitle').value.replace(/\x22/g, '”');
+	var txtHighUserTitle = document.getElementById('txtHighUserTitle').value.replace(/\x22/g, '”');
+	var txtUserTitle = document.getElementById('txtUserTitle').value.replace(/\x22/g, '”');
+
+	if (txtNewsTitle == '') {
+		alert('公告名称不能为空！');
+		return;
+	}
+	if (txtAdminTitle == '') {
+		alert('组长名称不能为空！');
+		return;
+	}
+	if (txtAssistantTitle == '') {
+		alert('组长助理名称不能为空！');
+		return;
+	}
+	if (txtHighUserTitle == '') {
+		alert('高级组员名称不能为空！');
+		return;
+	}
+	if (txtUserTitle == '') {
+		alert('组员名称不能为空！');
+		return;
+	}
+
+	$("#publish_tip_block").html("<span class='text_red'>　数据正在提交中...</span>");
+
+	var group = {};
+	group.groupID = groupId;
+	group.newsTitle = txtNewsTitle;
+	group.adminTitle = txtAdminTitle;
+	group.assistantTitle = txtAssistantTitle;
+	group.highUserTitle = txtHighUserTitle;
+	group.userTitle = txtUserTitle;
+	$.ajax({
+		url: '/ajax/admin/editNames',
+		data: group,
+		type: 'post',
+		dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		cache: false,
+		success: function (data) {
+			if (data.Message == "1") {
+				$("#publish_tip_block").html();
+				document.location.href = "/" + groupId + "/admin/";
+			}
+			else {
+				$("#publish_tip_block").html(data.Message);
+			}
+		},
+		error: function (xhr) {
+			alert(xhr.responseText);
+			$("#publish_tip_block").html("");
+		}
+	});
+}
+function EditUrl(groupId) {
+	var txtAlias = document.getElementById("txtAlias").value.replace(/\x22/g, '”');
+
+	if (txtAlias == '') {
+		alert('小组别名不能为空！');
+		return;
+	}
+	
+	var group = {};
+	group.groupId = groupId;
+	group.alias = txtAlias;
+	$.ajax({
+		url: '/ajax/admin/editUrl',
+		data: group,
+		type: 'post',
+		dataType: 'json',
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		cache: false,
+		success: function (data) {
+			if (data.Message == "1") {
+				document.location.href = "/" + txtAlias + "/";
+			}
+			else {
+				$("#lbmsg").html(data.Message);
+			}
+		},
+		error: function (xhr) {
+			alert(xhr.responseText);
+		}
+	});
+}

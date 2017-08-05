@@ -1,0 +1,1751 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0045)http://mahaile.blog.51cto.com/2891586/682676/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+
+<script src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/hm.js.下载"></script><script id="allmobilize" charset="utf-8" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/allmobilize.min.js.下载"></script><style type="text/css"></style><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://mahaile.blog.51cto.com/#">
+
+
+<title>android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客</title>
+<meta name="description" content="&#160;判断activity是横屏还是竖屏&#160;方法1：//根据设备配置信息Configurationcf=this.getResources().getConfiguration();//获取设置的配置信息intori=cf.orientation;//获取屏幕方向if(ori==cf.ORIENTATION_..">
+<meta name="keywords" content="移动开发,android,横屏,休闲,判断屏幕方向">
+<meta http-equiv="Cache-Control" content="private">
+<!--<base href="http://mahaile.blog.51cto.com/">--><base href=".">
+<script src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/def.js.下载"></script>
+<script language="javascript" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/message.js.下载" type="text/javascript"></script>
+<script language="javascript" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/user_comment.js.下载" type="text/javascript"></script>
+<script language="javascript" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/base2.js.下载" type="text/javascript"></script>
+<script language="javascript" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/dialog_utf8.js.下载" type="text/javascript"></script>
+<link href="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/30.css" rel="stylesheet" type="text/css">
+<link rel="alternate" href="http://mahaile.blog.51cto.com/rss.php?uid=2891586" type="application/rss+xml" title="RSS 2.0">
+<link rel="edituri" type="application/rsd+xml" title="rsd" href="http://mahaile.blog.51cto.com/xmlrpc.php?rsd=1">
+<link href="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/header_master_top.css" rel="stylesheet" type="text/css">
+<link href="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/base.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	.mainNav li a{display:inline-block}
+</style>
+<script>
+var myid = "";
+function add_flink(){
+	if(myid==""){
+
+        var refurlk = "http://mahaile.blog.51cto.com/2891586/682676";
+
+				//commentSubmit("",refurlk);
+				location.href="http://home.51cto.com/index.php?reback="+encodeURIComponent(encodeURIComponent(refurlk));
+				
+				return false;
+	}else{
+		var mtk = "f65c7fbd6a6a2546496c0d8787016f48";
+      		var url='/mod/edit_flink.php?type=addflink&uid=2891586&flink=http://mahaile.blog.51cto.com&mtk='+mtk;
+		var ajax = InitAjax1();
+		ajax.open("GET", url, true);
+		ajax.onreadystatechange = function() {
+			if (ajax.readyState == 4 && ajax.status == 200) {
+				/*if(myid == 5290427){
+					alert(ajax.responseText);
+				}*/
+				if(ajax.responseText==""){
+					alert("添加成功。");
+				}
+				if(ajax.responseText=="1"){
+				alert("链接指向自己。");
+				}
+				if(ajax.responseText=="2"){
+				alert("友情链接已存在。")
+				}
+				if(ajax.responseText=="4"){
+					alert("验证已过期。")
+					}
+			}
+		}
+		ajax.send(null);
+	}
+
+
+
+}
+function sendmessage(){
+
+	var refurlk = "http://mahaile.blog.51cto.com/2891586/682676";
+
+	if(myid){
+		return true;
+	}else{
+		commentSubmit("",refurlk);
+		return false;
+	}
+}
+function copylink(ourl){
+	if(!ourl){
+		var clipBoardContent = "http://mahaile.blog.51cto.com";
+	}else{
+		var clipBoardContent = ourl;
+	}
+	window.clipboardData.setData("Text",clipBoardContent);
+	alert("复制成功!");
+	return false;
+}
+function correctPNG() {
+if (document.getElementById('blog_touxian'))
+{
+var img = document.getElementById('blog_touxian');
+      var imgName = img.src.toUpperCase()
+      var imgID = (img.id) ? "id='" + img.id + "' " : ""
+      var imgClass = (img.className) ? "class='" + img.className + "' " : ""
+      var imgTitle = (img.title) ? "title='" + img.title + "' " : "title='" + img.alt + "' "
+      var imgStyle = "display:inline-block;" + img.style.cssText
+      if (img.align == "left") imgStyle = "float:left;" + imgStyle
+      if (img.align == "right") imgStyle = "float:right;" + imgStyle
+      if (img.parentElement.href) imgStyle = "cursor:hand;" + imgStyle
+      var strNewHTML = "<span " + imgID + imgClass + imgTitle
+         + " style=\"" + "width:" + img.width + "px; height:" + img.height + "px;" + imgStyle + ";"
+         + "filter:progid:DXImageTransform.Microsoft.AlphaImageLoader"
+         + "(src=\'" + img.src + "\', sizingMethod='scale');\"></span>" ;
+      img.outerHTML = strNewHTML;
+}
+}
+//window.attachEvent("onload", correctPNG);
+window.onload=correctPNG;
+
+function copy(){
+var text=document.getElementById("txtUser").value;
+if(copy2Clipboard(text)!=false){ 
+alert("复制成功了！ "); 
+} 
+}
+function copy2Clipboard(txt){ 
+if(window.clipboardData){ 
+window.clipboardData.clearData(); 
+window.clipboardData.setData("Text",txt); 
+}else if(navigator.userAgent.indexOf("Opera")!=-1){ 
+window.location=txt; 
+}else if(window.netscape){ 
+try{ 
+netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect"); 
+} 
+catch(e){ 
+alert("您使用的浏览器不支持此复制功能，请使用Ctrl+C或鼠标右键。"); 
+return false; 
+} 
+var clip=Components.classes['@mozilla.org/widget/clipboard;1'].createInstance(Components.interfaces.nsIClipboard); 
+if(!clip)return; 
+var trans=Components.classes['@mozilla.org/widget/transferable;1'].createInstance(Components.interfaces.nsITransferable); 
+if(!trans)return; 
+trans.addDataFlavor('text/unicode'); 
+var str=new Object(); 
+var len=new Object(); 
+var str=Components.classes["@mozilla.org/supports-string;1"].createInstance(Components.interfaces.nsISupportsString); 
+var copytext=txt;str.data=copytext; 
+trans.setTransferData("text/unicode",str,copytext.length*2); 
+var clipid=Components.interfaces.nsIClipboard; 
+if(!clip)return false; 
+clip.setData(trans,null,clipid.kGlobalClipboard); 
+return true;
+} 
+}
+
+function mod_close(){
+  document.getElementById('mod_tg').style.display="none";
+}
+
+function match_invite(uid) {
+    var url='/mod/match_invite.php';
+	var ajax = InitAjax();
+    var re = 'uid=' + uid;
+	ajax.open("POST", url, true);
+    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	ajax.send(re);
+    ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+            if(ajax.responseText == 1){
+                alert("邀请信息已经发送成功。");
+            } else if(ajax.responseText=="-1"){
+                alert("邀请失败，请稍候再试。");
+            } else if(ajax.responseText=="2"){
+                alert("该用户已经报名了。")
+            }
+        }
+    }
+}
+
+</script>
+<style type="text/css">
+/*
+.artContent img {max-width:450px !important;}
+.showContent img{max-width:650px!important;}
+*/
+
+.artContent img{max-width: 450px; width:expression(this.width > 450 ? "450px" : this.width)}
+/*
+.showContent img{max-width: 450px; width:expression(this.width > 650 ? "650px" : this.width)}
+*/
+
+
+</style>
+<script src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/share.js.下载"></script><style id="table">
+.showContent table.noBorderTable td,.showContent table.noBorderTable th,.showContent table.noBorderTable caption{border:1px dashed #ddd !important}.showContent table{margin-bottom:10px;border-collapse:collapse;display:table;}.showContent td,.showContent th{ background:white; padding: 5px 10px;border: 1px solid #DDD;}.showContent caption{border:1px dashed #DDD;border-bottom:0;padding:3px;text-align:center;}.showContent th{border-top:2px solid #BBB;background:#F7F7F7;}.showContent td p{margin:0;padding:0;}
+.showContent table.noBorderTable td,.showContent table.noBorderTable th,.showContent table.noBorderTable caption{border:1px dashed #ddd !important}.showContent table{margin-bottom:10px;border-collapse:collapse;display:table;}.showContent td,.showContent th{ background:white; padding: 5px 10px;border: 1px solid #DDD;}.showContent caption{border:1px dashed #DDD;border-bottom:0;padding:3px;text-align:center;}.showContent th{border-top:2px solid #BBB;background:#F7F7F7;}.showContent td p{margin:0;padding:0;}</style><link id="syntaxhighlighter_css" rel="stylesheet" type="text/css" href="http://mahaile.blog.51cto.com/"><link rel="stylesheet" href="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/share_style1_32.css"></head>
+
+<body>
+
+<div id="home_top">
+<div class="top_nav" style="width:990px;">
+<div class="left" style="margin-top:10px; width:600px;"><a href="http://blog.51cto.com/" target="_blank"><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/head_blog_sibebar_logo.gif" align="absmiddle" style="margin-top:-4px;"></a><!--<a target="_blank" href="http://www.51cto.com">51CTO首页</a>--><img height="25" align="absmiddle" width="16" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/top_bg_xian.gif" style="margin-top:-4px;"><a href="http://blog.51cto.com/" target="_blank">首页</a><img height="25" align="absmiddle" width="16" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/top_bg_xian.gif" style="margin-top:-4px;"><a href="http://home.51cto.com/?reback=http%253A%252F%252Fmahaile.blog.51cto.com%252F2891586%252F682676%252F">我的博客</a><img height="25" align="absmiddle" width="16" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/top_bg_xian.gif" style="margin-top:-4px;">
+
+
+   <a href="http://blog.51cto.com/artcommend">推荐博文</a>
+    <img height="25" align="absmiddle" width="16" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/top_bg_xian.gif" style="margin-top:-4px;"><a href="http://blog.51cto.com/original/">最新原创</a>
+    <img height="25" align="absmiddle" width="16" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/top_bg_xian.gif" style="margin-top:-4px;"><a href="http://blog.51cto.com/expert">专家博客</a>
+    <img height="25" align="absmiddle" width="16" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/top_bg_xian.gif" style="margin-top:-4px;"><a href="http://blog.51cto.com/blogcommend">推荐博客</a>
+    <img height="25" align="absmiddle" width="16" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/top_bg_xian.gif" style="margin-top:-4px;"><a target="_blank" href="http://so.51cto.com/">搜索</a>
+    <!--<a href="javascript:void(0);" style="color:#FF0000; text-decoration:underline; display:none" id="showMessagerDim">每日博报</a>-->
+</div>
+
+<div class="right" style="width:380px;">
+<div class="more"><img height="16" align="absmiddle" width="27" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/top_shequ.gif"><a href="javascript:viod(0);" onmouseout="popupClose()" onmouseover="show(3,this)">网站导航<img align="absmiddle" style="padding-left: 4px;" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/nav_ico1.gif"></a>            </div>            <span id="login_status"><div class="login" style="padding-top:8px; text-align:right;"><a href="http://home.51cto.com/index?reback=http://mahaile.blog.51cto.com/2891586/682676/" target="_self">登录</a><a href="http://home.51cto.com/user/register?reback=http://mahaile.blog.51cto.com/2891586/682676/" target="_self">注册</a><a href="http://home.51cto.com/members/in-fo?down" target="_blank"><span class="jsVipDrop" style="position: relative;"><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/vip_grey2.png" style="float:right; margin-top:5px"><div id="vip_mes_top" style="display:none;position: absolute;right:-75px;top: 17px;width: 137px;z-index: 99;"><div style="background: #faf7e6 none repeat scroll 0 0;border: 1px solid #ecb7a5;color: #666;font-size: 12px;padding: 3px 5px;position: relative;"><span style="background: rgba(0, 0, 0, 0) url(https://static1.51cto.com/home/web/images/hidearro.png) no-repeat scroll center center;display: inline-block;height: 7px;position: absolute;right: 57px;top: -6px;width: 12px;"></span><div style="color:#f60; text-align:center;">一个会员，全站特权</div></div></div></span></a></div></span>                </div>    </div></div>
+
+
+
+<div class="subMenu3" id="s3" onmouseover="popupNoClose()" onmouseout="popupClose()">
+<ul>
+
+<li><a href="http://edu.51cto.com/" target="_blank">学院</a></li>
+<li><a href="http://blog.51cto.com/" target="_blank">博客</a></li>
+<li><a href="http://bbs.51cto.com/" target="_blank">论坛</a></li>
+<li><a href="http://down.51cto.com/" target="_blank">下载</a></li>
+    <li><a href="http://home.51cto.com/" target="_blank">家园</a></li>
+<li><a href="http://wot.51cto.com/?blog" target="_blank">WOT峰会</a></li>
+    <li><a href="http://www.51cto.com/" target="_blank">51CTO主站</a></li>
+</ul>
+</div>
+<!--简导航end-->
+
+
+
+<div class="headerBox">
+<div class="header">
+<div class="header_l">
+<div class="logo_blogname">
+
+
+
+<div class="blogName">
+<a href="http://mahaile.blog.51cto.com/"><h1>android,unity3d</h1></a>
+</div>
+</div><!--logo_blogname end-->
+<div class="blogLink">
+
+<a href="http://mahaile.blog.51cto.com/">http://mahaile.blog.51cto.com</a> <input id="txtUser" type="hidden" size="32" value="http://mahaile.blog.51cto.com">   <a href="javascript:void(0);" onclick="copy();">【复制】</a> <a href="http://mahaile.blog.51cto.com/rss.php?uid=2891586" target="_blank"></a><a href="http://mahaile.blog.51cto.com/rss.php?uid=2891586" target="_blank">【订阅】</a>
+
+</div>
+
+
+
+</div><!--header_l end-->
+<div class="header_r">
+<div class="blogInfo"><span><a href="http://mahaile.blog.51cto.com/2891586/o" title="察看ma_haile所有原创文章">原创</a>:26</span><span><a href="http://mahaile.blog.51cto.com/2891586/t" title="察看ma_haile所有翻译文章">翻译</a>:1</span><span><a href="http://mahaile.blog.51cto.com/2891586/c" title="察看ma_haile所有转载文章">转载</a>:2</span></div>
+
+</div>
+</div>
+<!--header end-->
+</div><!--headerBox end-->
+<div class="mainNav">
+<span class="mainNavT"></span>
+<ul>
+<li><a href="http://mahaile.blog.51cto.com/">主页</a></li>|<li><a href="http://mahaile.blog.51cto.com/2891586/d-3">unity3d游戏开发</a></li>|<li><a href="http://mahaile.blog.51cto.com/2891586/d-4">android游戏开发</a></li>|<li><a href="http://mahaile.blog.51cto.com/2891586/d-5">android jbox2d</a></li>|<li><a href="http://mahaile.blog.51cto.com/2891586/d-6">Ios开发入门</a></li>|<li><a href="http://mahaile.blog.51cto.com/2891586/d-7">linux android</a></li>
+</ul>
+<span class="mainNavB"></span>
+</div>
+<!--mainNav end-->
+
+
+<style>
+.wrap_box{width:750px;float:left;}
+.box1{width:368px;background: #fff; border: 0px solid #626262;float:left;height: 162px;}
+.mr10{margin-right:10px;}
+.newcrumbox{ width:193px; margin:0 auto;}
+.a_lsits a{display: inline-block;  height:22px; line-height:22px; padding-left: 28px; color:#555; border:1px solid #d6d6d6; border-radius: 3px; background: #efefef; font-size:12px; margin-bottom: 8px; text-decoration: none; background:url(https://s4.51cto.com/wyfs02/M01/98/95/wKiom1k-Wz6DbAw-AAAQL3nX74k572.png) no-repeat;}
+.a_lsits .newicon_d{ width:55px;}
+.a_lsits .newicon_l{ width:70px;}
+.a_lsits .newicon_1{ background-position: 8px 4px;}
+.a_lsits .newicon_2{ background-position: 8px -22px;}
+.a_lsits .newicon_3{ background-position: 8px -49px;}
+.a_lsits .newicon_4{ background-position: 8px -102px;}
+.a_lsits .newicon_5{ background-position: 8px -74px;}
+.a_listbot{ text-align: center; margin-top: 5px;}
+.a_listbot a{ display: inline-block;font-size:12px;padding-left: 35px;background:url(https://s4.51cto.com/wyfs02/M01/98/95/wKiom1k-Wz6DbAw-AAAQL3nX74k572.png) no-repeat;height:22px; line-height:22px; color:#E93504;text-decoration: none;}
+.a_listbot a.style_1{background-position: 8px -74px; }
+.a_listbot a.style_2{background-position: 8px -131px;}
+</style>
+<script type="text/javascript" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/jquery-1.7.1.min.js.下载"></script>
+<!--[if IE 6]>
+  <script type="text/javascript" src="http://images.watchstor.com/newhomes/png.js"></script>
+  <script>
+    DD_belatedPNG.fix('img,input,ul,li, .get-box, div, .add, .sub, .ui-slider-handle, .footer-chopper');
+  </script>
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/fck_editorarea.css">
+<script type="text/javascript" charset="gbk" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/shCores.js.下载"></script>
+<link rel="stylesheet" type="text/css" href="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/shCoreDefault.css">
+<script type="text/javascript" charset="gbk" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/uparse.js.下载"></script>
+<script type="text/javascript">
+	uParse('.showContent');
+	$(function(){
+		//SyntaxHighlighter.config.clipboardSwf = 'http://bbs.51cto.com/plugins/syntaxhighlighter/scripts/clipboard.swf';
+		//为了在编辑器之外能展示高亮代码
+		SyntaxHighlighter.highlight();
+	});
+</script>
+
+
+<script type="text/javascript">
+/**
+ * 回复评论需要用的js
+ * 2012-5-14
+ * by:chengtao
+ */
+ jQuery(function(){
+	blogpost.init();//初始化博客回复功能
+ })
+ /**
+  * 处理博文评论功能优化
+  */
+ blogpost={
+	abstruct_list:null,
+	init:function(){
+		blogpost.bind();//绑定一些时间
+		this.abstruct_list=new Array();//初始化保存评论信息的数组
+	},
+	/**
+	 * 博客回复需要绑定的一些事件
+	 */
+	bind:function(){
+		/**
+		 * 点击回复的事件
+		 */
+		jQuery('.repost').live('click',function(){
+			blogpost.repost(jQuery(this).attr('user_name'),jQuery(this).attr('parentid'));
+			return false;
+		});
+		/**
+		 * 点击楼层进行翻页且找到锚点
+		 */
+		jQuery('.anchor_page').live('click',function(){
+			var parentid = $(this).attr('parentid');
+			var tid=$(this).attr('tid');
+			$.get('/comments.php?tid='+tid+'&parentid='+parentid,function(data){
+				$('#artcomment').html(data);
+				window.location.hash=''+parentid;
+			})
+			return false;
+		}),
+		jQuery('.anchor_page').live('mouseover',function(){
+			var parentid = $(this).attr('parentid');
+			if(!blogpost.abstruct_list[parentid]){
+				var this_t = $(this);
+				$.get('/comments.php?cid='+parentid,function(data,textStatus){
+					blogpost.abstruct_list[parentid]=data;
+					this_t.attr('title',this_t.text()+':'+ blogpost.abstruct_list[parentid]);
+				});
+			}else{
+				$(this).attr('title',$(this).text()+':'+blogpost.abstruct_list[parentid]);
+			}
+		})
+	},
+	/**
+	 * @param user_name 用户名
+	 * @param parentid  父评论id
+	 */
+	repost:function(user_name,parentid){
+		window.location.hash='comment';
+		jQuery('#parentid').val(parentid);
+		jQuery('#commentcontent').val('回复 '+user_name+":\n").focus();
+		if(!$.browser.mozilla){
+			var elem = jQuery('#commentcontent')[0];
+			var caretPos = elem.value.length;
+			if (elem.createTextRange) {
+				var range = elem.createTextRange();
+				range.move('character', caretPos);
+				range.select();
+			}else{
+				elem.setSelectionRange(caretPos, caretPos);
+			}
+		}
+	},
+	/**
+	 * 发送完毕之后清理表单数据 不是ajax可能用不到
+	 */
+	clean:function(){
+
+	}
+ }
+</script>
+<script type="text/javascript">
+jQuery(function(){
+	var anchor = document.location.hash;
+	var comment_id=anchor.split('#')[1];
+	if(!isNaN(parseInt(comment_id))){//是整形
+		jQuery.get('/comments.php?tid=682676&parentid='+comment_id,function(data){
+			jQuery('#artcomment').html(data);
+			window.location.hash=''+comment_id;
+		})
+	}
+});
+</script>
+
+
+
+<script type="text/javascript">
+jQuery(function() {
+	jQuery('#favourdiv').mouseover(function(){
+		if(jQuery(this).attr('className') == 'support01')
+		{
+			jQuery(this).attr('className', "support02");
+			jQuery(this).html('+1人');
+			jQuery(this).attr('title', "赞一个，我支持TA");
+		}
+		else if(jQuery(this).attr('className') == 'support03')
+		{
+			jQuery(this).attr('title', "你已经赞了这篇博文！");
+		}
+
+	});
+	jQuery('#favourdiv').mouseout(function(){
+		if(jQuery(this).attr('className') == 'support02')
+		{
+			jQuery(this).attr('className', "support01");
+			jQuery(this).html("0人");
+		}
+	});
+	jQuery('.blog_match_yq').click(function(){
+		var wind_uid = '';
+		if(!wind_uid){
+			alert("请先登录！");
+			return false;
+		}
+		jQuery.ajax({
+			   type: "POST",
+			   url:"/contest2012/index.php?mod=sendmsg",
+			   dataType: "html",
+			   data: "vuid=" + 2891586,
+			   success: function(data) {
+					if(data == 0)
+					{
+						alert("查无此人！");
+						return false;
+					}else if(data == 1){
+						alert("请先登录！");
+						return false;
+					}else if(data == 2){
+						alert("不能邀请自己！");
+						return false;
+					}else if(data == 22){
+						alert("邀请信息已发出！");
+						return false;
+					}
+			   }
+		  });
+	});
+	jQuery('#favourdiv').click(function(){
+			jQuery.ajax({
+			   type: "POST",
+			   url:"/mod/favour.php",
+			   dataType: "html",
+			   data: "tid=" + 682676,
+			   success: function(data) {
+					if(data == 0)
+					{
+						alert("您还未登录或者已过期，请重新登录");
+						location.href = "http://home.51cto.com/index.php?reback=http%253A%252F%252Fmahaile.blog.51cto.com%252F2891586%252F682676%252F";
+						return false;
+					}
+					else if(data == '-1')
+					{
+						alert("参数传递错误！");
+						return false;
+					}
+					else if(data == '-2')
+					{
+						alert("该博文已被删除或者不存在！");
+						return false;
+					}
+					else if(data == '-3')
+					{
+						alert("您已经赞过了！");
+						return false;
+					}
+					else if(data == '-4')
+					{
+						alert("赞操作失败！");
+						return false;
+					}
+					else
+					{
+						//alert("操作成功，你已经赞了这篇博文！");
+						jQuery('#favourdiv').attr('className', "support03");
+
+						var num = 0 + 1 + "人";
+						jQuery('#favourdiv').html(num);
+						jQuery('#favourer').html(data);
+						return false;
+					}
+			   }
+		  });
+	});
+	//Jaydar http://blog.51cto.com/js/header.php?uid=blogdb[uid]&tid=tid
+	jQuery.post('/js/header.php',{uid:2891586,tid:682676},function(data){
+		jQuery('#readNum').html(data[0]);
+		jQuery('#cmtNum').html(data[1]);
+	},'json');
+
+
+})
+
+jQuery(function(){
+	jQuery('#darid').bind('click',function(){
+		if(confirm("你确定删除此篇文章？")){
+			jQuery.ajax({
+				'type':'post',
+				'url':'user_index.php?action=delarticle',
+				'data':{'job':'del', 'selid':'682676', 'mhash':''},
+				'dataType':'html',
+				'success':function(res){
+					if('ok' == res){
+						location.href="http://.blog.51cto.com";
+					}
+
+				}
+			});
+		}
+	});
+});
+</script>
+
+
+
+
+<style type="text/css">
+.m_sharelinks{
+	line-height:30px;
+	text-align:left;
+	padding-left:20px;
+	//background:url(http://img1.51cto.com/images/share/ico_lb.gif) no-repeat left center;
+	float:left;
+	width:600px;
+	height:30px;
+}
+.m_sharelinks a{ margin-left:10px;}
+.m_sharebtn{ height:50px; width:726px; margin:0 auto;}
+.m_sharebtn01{width:520px; float:left;}
+.weibo_51cto{ background:url(http://img1.51cto.com/images/share/ico_mweibo.gif) no-repeat center center; display:block; width:33px; height:33px; float:left; margin:3px 3px 0 0;cursor:pointer;}
+.shareMored {
+    line-height: 30px;
+	float:right;
+	text-align:right;
+	width:100px;
+	height:30px;
+}
+
+.showContent {
+	margin:20px 15px 8px;
+}
+.userImage img {
+    text-align: center;
+	border:0;
+	padding:0;
+}
+.photo_links{ line-height:30px; padding-top:5px; font-size:13px;width:170px; margin:0 auto;}
+.photo_links_blue{ text-align:center;}
+.photo_links_blue a:link,.photo_links_blue a:visited,.photo_links_blue a:hover,.photo_links_blue a:active{ color:#015F91; text-decoration: underline;}
+.photo_links_red{ text-align:left;}
+.photo_links_red a:link,.photo_links_red a:visited,.photo_links_red a:hover,.photo_links_red a:active{ color:#fc4343; text-decoration:underline;}
+.photo_links_red02{ text-align:center;}
+
+.vlist{ margin:10px 10px; height:65px;}
+.vlist img{ float:left; margin-right:10px;}
+.vlist dl{ text-align:left;}
+.vlist dl dt{ height:40px;line-height: 20px; overflow:hidden; padding-top:5px;}
+.vlist dl dt,.vlist dl dt a{ color:#262626;}
+.vlist dl dd,.vlist dl dd a{ color:#777;}
+
+.video-icon{
+    position: relative;
+}
+.video-icon a.i_video {
+    background: url("http://www.51cto.com/images/homepage/Images/eduplay.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: block;
+    height: 25px;
+    left:31px;
+    position: absolute;
+    top:22px;
+    width: 25px;
+    z-index: 10;
+}
+
+.ipadFload{ position:fixed; width:136px; height:194px; background:url("http://bbs.51cto.com/images/IPad-bg.png") left top no-repeat #fff; font-family:"微软雅黑"; padding-left:18px;}
+.ipadClose{ text-align:right; font-size:14px; line-height:20px;}
+.ipadImg{ padding-top:38px;}
+.ipadImg img{ width:105px; height:105px;}
+.iPadair2{ font-size:12px;}
+.iPadair2 a{ color:#659b01; text-decoration:none; background:url("http://bbs.51cto.com/images/51CTO-IPAD-BOTTOM.png") right center no-repeat; display:block; line-height:30px;}
+
+</style>
+<div id="add_sys_type_div" style="width:600px;border:1px #58B0DD solid; background-color:#FFF; position:absolute;left:30%;top:300px;display:none;z-index:255"></div>
+<div id="add_sys_type_dvs" style="width:550px;border:1px #58B0DD solid; background-color:#FFF; position:absolute;left:30%;top:300px;display:none;z-index:255"></div>
+
+
+
+
+<div class="blogMain">
+<div class="blogLeft">
+
+
+<div class="box moduleUser">
+<div class="title">
+<h2><a href="http://mahaile.blog.51cto.com/"><strong>ma_haile</strong> 的BLOG  </a></h2>
+</div>
+<div class="modCon">
+
+<div class="userImage" style="margin: 10px auto 5px;text-align: center;width: 130px;border: 1px solid #D4D4D4;">
+	<table width="100%" cellpadding="0" cellspacing="0">
+		<tbody><tr>
+			<td valign="middle" align="center" height="130" class="position_r"><a href="http://mahaile.blog.51cto.com/"><script src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/userface.php"></script><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/avatar.php" id="userface"></a></td>
+		</tr>
+	</tbody></table>
+</div>
+<div class="photo_links">
+</div>
+
+
+
+
+
+
+
+
+
+    <div class="newcrumbox">
+        <div class="a_lsits">
+            <a href="http://home.51cto.com/index.php?s=/Notify/write/uid/2891586" class="newicon_3 newicon_d">发私信</a>
+            <a href="http://mahaile.blog.51cto.com/" onclick="add_flink(2891586);return false" class="newicon_5 newicon_l">加友情链接</a>
+        </div>
+    </div>
+
+<div style="width:239px;height:64px;display:none;">
+
+
+<div style="float:left;"><p style="padding:15px 0 0 28px; line-height:20px;">2012年度IT博客大赛<br><a target="_blank" href="http://blog.51cto.com/contest2012/#top10000" style="color:#F00; text-decoration:underline;">十大杰出IT博客诞生</a></p></div>
+<div style="float:right;"><a target="_blank" href="http://blog.51cto.com/contest2012/"><img width="57" height="27" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/blog_match_endlook.jpg" style="margin:23px 20px 0 0;"></a></div>
+<!-- <div style="float:left;"><p style="padding:15px 0 0 28px; line-height:20px;">星光评委正在评选<br><a target="_blank" href="http://blog.51cto.com/contest2012/index.php?mod=userlist_sec" style="color:#F00; text-decoration:underline;">2012年度IT博客大赛50强</a></p></div>
+<div style="float:right;"><img class="blog_match_yq" width="57" height="27" src="http://img1.51cto.com/images/blog_match_invite.jpg" style="margin:23px 20px 0 0;"></div> -->
+
+
+
+<div class="clear"></div>
+</div>
+
+
+</div><!--modCon end-->
+<span class="modBot"></span>
+</div>
+
+
+<div class="infoList box">
+<div class="title">
+<h2>博客统计信息</h2>
+</div>
+<div class="modCon">
+<p>
+<span class="infoListHead"></span>
+用户名：ma_haile<br>
+文章数：38<br>
+评论数：25<br>
+访问量：622435<br>
+<a href="http://home.51cto.com/index.php?s=/Account/credit" target="_blank">无忧币</a>：20<br>
+<a href="http://51ctoblog.blog.51cto.com/26414/5591" target="_blank">博客积分</a>：200<br>
+<a href="http://51ctoblog.blog.51cto.com/26414/5591" target="_blank">博客等级</a>：2<br>
+注册日期：2011-03-24<br>
+</p>
+</div>
+<span class="modBot"></span>
+</div>
+
+
+<div class="infoList box">
+	<div class="title">
+		<h2 class="fl">热门专题</h2>
+		<a target="_blank" class="fr" href="http://blog.51cto.com/zt">更多&gt;&gt;</a>
+	</div>
+	<div class="modCon" style="height: 348px;">
+
+
+		<div class="vlist">
+		  <a href="http://blog.51cto.com/zt/705" target="_blank"><img width="63" height="63" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/wKioL1kxBvqDXivDAAA4F7mg1So675.jpg"></a>
+		<dl>
+		<dt>
+		  <a href="http://blog.51cto.com/zt/705" target="_blank" title="Oracle零基础成长之路">Oracle零基础成长之路</a></dt>
+		<dd>阅读量：1297</dd>
+		</dl>
+		</div>
+
+		<div class="vlist">
+		  <a href="http://blog.51cto.com/zt/706" target="_blank"><img width="63" height="63" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/wKioL1k_SpejGPpUAAA3gnotfPU742.png"></a>
+		<dl>
+		<dt>
+		  <a href="http://blog.51cto.com/zt/706" target="_blank" title="原来你也在这里（征文）">原来你也在这里（征文）</a></dt>
+		<dd>阅读量：3317</dd>
+		</dl>
+		</div>
+
+		<div class="vlist">
+		  <a href="http://blog.51cto.com/zt/14" target="_blank"><img width="63" height="63" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/1304672337_index.jpg"></a>
+		<dl>
+		<dt>
+		  <a href="http://blog.51cto.com/zt/14" target="_blank" title="从菜鸟到老鸟-教你玩转Mac操作系统">从菜鸟到老鸟-教你玩转Mac操作系统</a></dt>
+		<dd>阅读量：442674</dd>
+		</dl>
+		</div>
+
+		<div class="vlist">
+		  <a href="http://blog.51cto.com/zt/20" target="_blank"><img width="63" height="63" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/1306310178_index.jpg"></a>
+		<dl>
+		<dt>
+		  <a href="http://blog.51cto.com/zt/20" target="_blank" title="QT学习之路：从入门到精通">QT学习之路：从入门到精通</a></dt>
+		<dd>阅读量：1128803</dd>
+		</dl>
+		</div>
+
+
+	</div>
+	<span class="modBot"></span>
+</div>
+
+
+<div class="hotArt box">
+<div class="title">
+<h2>热门文章</h2>
+</div>
+<div class="modCon">
+<ul>
+<li><a href="http://mahaile.blog.51cto.com/2891586/753172">unity游戏开发 发布andro..</a></li>
+<li><a href="http://mahaile.blog.51cto.com/2891586/1017899">android webView js方法..</a></li>
+<li><a href="http://mahaile.blog.51cto.com/2891586/1021515">ios开发入门-  WebView使用</a></li>
+<li><a href="http://mahaile.blog.51cto.com/2891586/1020051">ios开发入门- TabBarCont..</a></li>
+<li><a href="http://mahaile.blog.51cto.com/2891586/682676">android 强制设置横屏 判..</a></li>
+<li><a href="http://mahaile.blog.51cto.com/2891586/831048">android游戏开发(二)触屏..</a></li>
+<li><a href="http://mahaile.blog.51cto.com/2891586/773640">Unity3D游戏开发 脚本入..</a></li>
+<li><a href="http://mahaile.blog.51cto.com/2891586/1024879">ios开发入门- Navigation..</a></li>
+
+</ul>
+</div>
+<span class="modBot"></span>
+</div>
+<div class="search box">
+<div class="title"><h2>搜索BLOG文章</h2></div>
+<div class="modCon">
+<form method="post" action="http://mahaile.blog.51cto.com/search.php?" tabindex="99">
+<input type="hidden" name="step" value="2">
+<input type="hidden" name="authorid" value="2891586">
+<input type="hidden" name="sch_area" value="S">
+<input type="text" value="" name="keyword" class="searchInput">
+<input type="submit" value="搜 索" class="searchBtn">
+</form>
+</div><!--modCon end-->
+<span class="modBot"></span>
+</div>
+
+
+<div class="box recentGuests">
+<div class="title">
+<h2>最近访客</h2>
+</div>
+<div class="modCon">
+<ul>
+
+<li><a href="http://8644143.blog.51cto.com/" class="position_r"><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/avatar(1).php"></a>
+
+
+<p><a href="http://8644143.blog.51cto.com/">沧海一粒</a></p>
+
+</li><li><a href="http://11959706.blog.51cto.com/" class="position_r"><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/avatar(2).php"></a>
+
+
+<p><a href="http://11959706.blog.51cto.com/">钻石..</a></p>
+
+</li><li><a href="http://12889452.blog.51cto.com/" class="position_r"><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/avatar(3).php"></a>
+
+
+<p><a href="http://12889452.blog.51cto.com/">zzh0810</a></p>
+
+</li><li><a href="http://12762140.blog.51cto.com/" class="position_r"><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/avatar(4).php"></a>
+
+
+<p><a href="http://12762140.blog.51cto.com/">wx58d..</a></p>
+
+</li><li><a href="http://10417719.blog.51cto.com/" class="position_r"><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/avatar(5).php"></a>
+
+
+<p><a href="http://10417719.blog.51cto.com/">一战..</a></p>
+
+</li><li><a href="http://10420374.blog.51cto.com/" class="position_r"><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/avatar(6).php"></a>
+
+
+<p><a href="http://10420374.blog.51cto.com/">超耐磨你</a></p>
+
+</li><li><a href="http://12297318.blog.51cto.com/" class="position_r"><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/avatar(7).php"></a>
+
+
+<p><a href="http://12297318.blog.51cto.com/">huzhi..</a></p>
+
+</li><li><a href="http://13129562.blog.51cto.com/" class="position_r"><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/avatar(8).php"></a>
+
+
+<p><a href="http://13129562.blog.51cto.com/">qq596..</a></p>
+
+</li><li><a href="http://10694234.blog.51cto.com/" class="position_r"><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/avatar(9).php"></a>
+
+
+<p><a href="http://10694234.blog.51cto.com/">PandaL33</a></p>
+
+</li><li><a href="http://11780580.blog.51cto.com/" class="position_r"><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/avatar(10).php"></a>
+
+
+<p><a href="http://11780580.blog.51cto.com/">fiifoo</a></p>
+
+</li><li><a href="http://41137.blog.51cto.com/" class="position_r"><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/avatar(11).php"></a>
+
+
+<p><a href="http://41137.blog.51cto.com/">xieyang</a></p>
+
+</li><li><a href="http://7665164.blog.51cto.com/" class="position_r"><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/avatar(12).php"></a>
+
+
+<p><a href="http://7665164.blog.51cto.com/">dew12..</a></p>
+
+</li></ul>
+<span class="clear"></span>
+</div>
+<span class="modBot"></span>
+</div>
+
+
+<div class="newComments box">
+<div class="title">
+<h2>最新评论
+
+</h2>
+
+
+
+</div>
+<div class="modCon">
+<ul>
+
+<li><a href="http://6079172.blog.51cto.com/" class="operlink" target="_blank"><b>yh198827</b></a>：<a href="http://mahaile.blog.51cto.com/2891586/1021515" target="_blank">非常感谢，我这不会段菜鸟也能飞起来了</a></li>
+
+<li><a href="http://1487813.blog.51cto.com/" class="operlink" target="_blank"><b>森森的啊</b></a>：<a href="http://mahaile.blog.51cto.com/2891586/1012048" target="_blank">写得不错，简单，明白</a></li>
+
+<li><a href="http://2940503.blog.51cto.com/" class="operlink" target="_blank"><b>aa4790139</b></a>：<a href="http://mahaile.blog.51cto.com/2891586/1021515" target="_blank">源码地址呢？</a></li>
+
+<li><a href="http://8846998.blog.51cto.com/" class="operlink" target="_blank"><b>zbs4311</b></a>：<a href="http://mahaile.blog.51cto.com/2891586/753172" target="_blank">发布unity游戏首先要购买unity发布..</a></li>
+
+<li><a href="http://6693976.blog.51cto.com/" class="operlink" target="_blank"><b>tanyuwen66</b></a>：<a href="http://mahaile.blog.51cto.com/2891586/752305" target="_blank">我按照楼主的第一种方法，找到vs08..</a></li>
+
+
+</ul>
+</div>
+<span class="modBot"></span>
+</div>
+
+
+<div class="hotBlogArt box">
+<div class="title">
+  <h2 class="fl">51CTO推荐博文</h2>
+  <a href="http://blog.51cto.com/artcommend" class="fr">更多&gt;&gt;</a></div>
+<div class="modCon">
+<ul>
+<li><a href="http://xiaofw.blog.51cto.com/50361/1934224" title="51CTO博客移动化意味着什么？IT博主可以搞事情了！" target="_blank">51CTO博客移动化意味着什么？IT博..</a></li>
+<li><a href="http://1754966750.blog.51cto.com/7455444/1919608" title="ActiveMQ（13）：ActiveMQ的集群" target="_blank">ActiveMQ（13）：ActiveMQ的集群</a></li>
+<li><a href="http://namesam.blog.51cto.com/12364721/1913232" title="MySQL高可用解决方案MMM" target="_blank">MySQL高可用解决方案MMM</a></li>
+<li><a href="http://hubuxcg.blog.51cto.com/2559426/1911803" title="迁移Exchange队列至其它服务器继续传送队列邮件" target="_blank">迁移Exchange队列至其它服务器继..</a></li>
+<li><a href="http://renzhiyuan.blog.51cto.com/10433137/1902287" title="HAProxy Nginx LVS Apache总结篇" target="_blank">HAProxy Nginx LVS Apache总结篇</a></li>
+<li><a href="http://renzhiyuan.blog.51cto.com/10433137/1898689" title="一次和公司总监的聊天..." target="_blank">一次和公司总监的聊天...</a></li>
+<li><a href="http://weiweidefeng.blog.51cto.com/1957995/1895261" title="Linux轻量级自动运维工具-Ansible浅析" target="_blank">Linux轻量级自动运维工具-Ansible..</a></li>
+<li><a href="http://yolynn.blog.51cto.com/11575833/1886151" title="运维工作中的bootstraping之PXE自动安装操作系统" target="_blank">运维工作中的bootstraping之PXE自..</a></li>
+<li><a href="http://xmdevops.blog.51cto.com/11144840/1877695" title="消息队列_RabbitMQ-0002.深入MQ生产者/信道/交换机/队列/消费者?" target="_blank">消息队列_RabbitMQ-0002.深入MQ生..</a></li>
+<li><a href="http://zhang789.blog.51cto.com/11045979/1873435" title="高可用高性能负载均衡软件HAproxy详解指南-第二章（配置文件、关键字、ACL）" target="_blank">高可用高性能负载均衡软件HAproxy..</a></li>
+<li><a href="http://jackcui.blog.51cto.com/11877206/1858989" title="由浅入深学习Apache httpd原理与配置" target="_blank">由浅入深学习Apache httpd原理与配置</a></li>
+
+</ul>
+</div><!--modCon end-->
+<span class="modBot"></span>
+</div>
+
+
+<div class="friendLink box">
+<div class="title">
+  <h2>友情链接</h2>
+</div>
+<div class="modCon">
+<ul>
+
+<li><a href="http://51ctoblog.blog.51cto.com/" title="51CTO博客开发" target="_blank">51CTO博客开发</a> <img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/tubiao3.gif" alt="本周内更新"></li>
+
+</ul>
+</div><!--modCon end-->
+<span class="modBot"></span>
+</div>
+
+
+
+</div>
+<!--left end-->
+
+<script type="text/javascript">
+    var favor_url = "http://mahaile.blog.51cto.com/2891586/682676/";
+    var favor_title = "android 强制设置横屏 判断是横屏还是竖屏";
+    var favor_fuid = "2891586";
+</script>
+<script type="text/javascript" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/favorbox.js.下载"></script>
+
+
+<div class="blogRight" rel="2891586######移动开发 android 横屏 休闲 判断屏幕方向" id="article_edu_void">
+<input type="hidden" value="12" id="edu_jia">
+
+	<!--<p style="clear:both;"  class="edu_insert"></p>-->
+	<style type="text/css">
+.vlist {
+    float: left;
+    padding: 2px 0 0 10px;
+    width: 218px;
+
+}
+.vlist img {
+    float: left;
+    margin-right: 10px;
+}
+.vlist dl {
+    float: left;
+    text-align: left;
+    width: 122px;
+}
+.vlist dl dt {
+    height: 44px;
+    overflow: hidden;
+    padding-top: 5px;
+}
+.vlist dl dt, .vlist dl dt a {
+    color: #262626;
+}
+.vlist dl dd, .vlist dl dd a {
+    color: #777777;
+}
+.vbox_tit {
+    border-bottom: 1px solid #B3D0E6;
+    color: #666666;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: left;
+}
+.video-icon {
+    position: relative;
+}
+.video-icon a.i_video {
+    background: url("http://www.51cto.com/images/homepage/Images/eduplay.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: block;
+    height: 25px;
+    left: 41px;
+    position: absolute;
+    top: 22px;
+    width: 25px;
+    z-index: 10;
+}
+.vbox2 .vlist1{margin:0;}
+.edu-col-a{ float:left;margin-right:6px;}
+.edu-col-b{ float:left;}
+	</style><!--modCon end-->
+	<div class="artShow box" style="margin-top:5px;">
+   	  <div class="share" id="share">
+
+    <div class="shareItem">
+		<div class="m_sharelinks"><a target="_blank" href="http://mahaile.blog.51cto.com/" style="color:red;"></a><a target="_blank" href="http://mahaile.blog.51cto.com/" style="color:blue;"></a><a target="_blank" href="http://mahaile.blog.51cto.com/" style="color:blue;"></a></div>
+		<p class="shareMored"><a href="http://mahaile.blog.51cto.com/all/2891586">博主的更多文章&gt;&gt;</a></p>
+	</div>
+      </div>
+       <div class="modCon">
+   	  <div class="showBox" style="margin:0 0 10px;">
+      <div class="line_hd_r"></div>
+      <div class="art_tj">
+
+      </div>
+
+
+    		<div class="showHead">
+    		  <div class="showTitleBOx" style="text-align:center">
+              <div class="showTitle">
+
+             <img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/artType01.jpg">
+
+
+    		    android 强制设置横屏 判断是横屏还是竖屏
+                </div>
+  		    </div>
+   		    <span class="artTime">2011-10-08 15:53:10</span></div><!--showHead end-->
+    <div class="showTags">标签：<a href="http://blog.51cto.com/tag-%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91.html" target="_blank" class="operlink">移动开发</a> <a href="http://blog.51cto.com/tag-android.html" target="_blank" class="operlink">android</a> <a href="http://blog.51cto.com/tag-%E6%A8%AA%E5%B1%8F.html" target="_blank" class="operlink">横屏</a> <a href="http://blog.51cto.com/tag-%E4%BC%91%E9%97%B2.html" target="_blank" class="operlink">休闲</a> <a href="http://blog.51cto.com/tag-%E5%88%A4%E6%96%AD%E5%B1%8F%E5%B9%95%E6%96%B9%E5%90%91.html" target="_blank" class="operlink">判断屏幕方向</a>
+
+	</div>
+
+			<div class="CopyrightStatement lh22">
+            原创作品，允许转载，转载时请务必以超链接形式标明文章 <a href="http://mahaile.blog.51cto.com/2891586/682676" target="_blank" style="text-decoration:underline">原始出处</a> 、作者信息和本声明。否则将追究法律责任。<a href="http://mahaile.blog.51cto.com/2891586/682676">http://mahaile.blog.51cto.com/2891586/682676</a>
+            </div>
+
+
+            <!--正文 begin-->
+
+
+		  <div class="showContent">
+    		  <p><span style="color: rgb(128, 128, 128); "><strong>&nbsp; 判断activity 是横屏还是竖屏&nbsp;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>方法 1： //根据设备配置信息</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>Configuration cf= this.getResources().getConfiguration(); //获取设置的配置信息</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>int ori = cf.orientation ; //获取屏幕方向</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>if(ori == cf.ORIENTATION_LANDSCAPE){</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&nbsp; //横屏</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>}else if(ori == cf.ORIENTATION_PORTRAIT){</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&nbsp;//竖屏</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>}</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&nbsp;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>方法2： 通过设备分辨率还判断</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&nbsp;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>DisplayMetrics dm = new DisplayMetrics();</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>mLauncher.getWindowManager().getDefaultDisplay().getMetrics(dm);</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>mWidth = dm.widthPixels;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>mHeight = dm.heightPixels;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>if (mHeight &gt; mWidth){//layout port</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>// 竖屏 .......</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>}else{//layout land</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>// 横屏 .......</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>}</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&nbsp;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&nbsp;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&nbsp;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>设置程序 横屏还是竖屏 有两种方法 1：通过配置实习 &nbsp;2: 代码实现</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>方法2：//重写activity onResume方法</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>@Override protected void onResume() {</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>/**   * 设置为横屏   */</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>if(getRequestedOrientation()!=ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){   setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>//ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE :横</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>//SCREEN_ORIENTATION_PORTRAIT：竖</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>}</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>super.onResume();</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>}</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&nbsp;方法2： 配置androidManifest.xml实现&nbsp;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>在activity 中加入&nbsp;android:screenOrientation="landscape" 信息即可 该属性有两个值&nbsp;<span class="Apple-style-span" style="font-family: tahoma, arial, 宋体, sans-serif; font-size: 14px; line-height: 21px; background-color: rgb(255, 255, 255); ">portrait//竖 &nbsp;</span>landscape//横</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&nbsp;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&lt;activity android:name="MainActivity"&nbsp;android:label="@string/app_name" android:screenOrientation="landscape"&gt;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&nbsp; &nbsp;&lt;/activity&gt;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&nbsp;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&nbsp;搞定 &nbsp;快去试试 吧 &nbsp; 不过细心的朋友 会发现 咦 当我屏幕的方向 发生变化的时候为啥 activity 的onCreate 怎么会重新加载呢</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&nbsp;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>原因是: 由于屏幕的旋转会造出 当然的activity 元素关闭 从而造出activity重新加载 ，显然这有时候并不是我们要的效果 ， 那我们 在看看 如果解决这个问题吧</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>我们在androidManifest.xml 文件中&nbsp;activity 节点加入红色的 属性</strong></span></p>
+<p>&nbsp;</p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&lt;activity android:name="MainActivity"&nbsp;android:label="@string/app_name" android:screenOrientation="landscape"&nbsp;<span class="Apple-style-span" style="font-family: tahoma, arial, 宋体, sans-serif; font-size: 14px; line-height: 21px; background-color: rgb(255, 255, 255); ">&nbsp;<span style="word-wrap: break-word; "><strong style="word-wrap: break-word; ">android:configChanges="orientation|keyboardHidden"</strong></span></span>&gt;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&nbsp; &nbsp;&lt;/activity&gt;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&nbsp;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong><span class="Apple-style-span" style="font-family: Arial; font-size: 14px; line-height: 26px; background-color: rgb(255, 255, 255); "> </span></strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>1、不设置Activity的android:configChanges时，切屏会重新调用各个生命周期，切横屏时会执行一次，切竖屏时会执行两次</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&nbsp;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>2、设置Activity的android:configChanges="orientation"时，切屏还是会重新调用各个生命周期，切横、竖屏时只会执行一次</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&nbsp;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>3、设置Activity的android:configChanges="orientation|keyboardHidden"时，切屏不会重新调用各个生命周期，只会执行onConfigurationChanged方法</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&nbsp;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong> <span class="Apple-style-span" style="font-family: tahoma, arial, 宋体, sans-serif; font-size: 14px; line-height: 21px; background-color: rgb(255, 255, 255); "> </span></strong></span><span class="Apple-style-span" style="color: rgb(51, 51, 51); font-family: tahoma, arial, 宋体, sans-serif; font-size: 14px; line-height: 21px; background-color: rgb(255, 255, 255); ">
+</span></p><p style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="color: rgb(128, 128, 128); "><strong>同时在Activity的Java文件中重载onConfigurationChanged(Configuration newConfig)这个方法，这样就不会在布局切换或窗口切换时重载等方法。代码如下:</strong></span></p>
+<p style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="color: rgb(128, 128, 128); "><strong>&nbsp;@Override&nbsp;<br style="word-wrap: break-word; ">
+&nbsp;&nbsp;&nbsp; public void onConfigurationChanged(Configuration newConfig)<br style="word-wrap: break-word; ">
+&nbsp;&nbsp;&nbsp; {&nbsp;<br style="word-wrap: break-word; ">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super.onConfigurationChanged(newConfig);&nbsp;<br style="word-wrap: break-word; ">
+&nbsp;&nbsp;&nbsp;&nbsp; if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)<br style="word-wrap: break-word; ">
+&nbsp;&nbsp;&nbsp;&nbsp; {<br style="word-wrap: break-word; ">
+//land<br style="word-wrap: break-word; ">
+&nbsp;&nbsp;&nbsp;&nbsp; }<br style="word-wrap: break-word; ">
+&nbsp;&nbsp;&nbsp;&nbsp; else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)<br style="word-wrap: break-word; ">
+&nbsp;&nbsp;&nbsp;&nbsp; {<br style="word-wrap: break-word; ">
+//port<br style="word-wrap: break-word; ">
+&nbsp;&nbsp;&nbsp;&nbsp; }<br style="word-wrap: break-word; ">
+&nbsp;&nbsp;&nbsp; }</strong></span></p>
+<p style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="color: rgb(128, 128, 128); "><strong>&nbsp;</strong></span></p>
+<p style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="color: rgb(128, 128, 128); "><strong>//------------------------------------------------------</strong></span></p>
+<p style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="color: rgb(128, 128, 128); "><strong>&nbsp;</strong></span></p>
+<div class="bct fc05 fc11 nbw-blog ztag js-fs2" style="word-wrap: break-word; font-size: 14px; "><span style="color: rgb(128, 128, 128); "><strong><span style="word-wrap: break-word; ">关于Android中Activity的横竖屏切换问题可以通过<span style="word-wrap: break-word; border-collapse: separate; font-style: normal; font-variant: normal; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; line-height: 16px; font-size: 13px; font-family: arial, sans-serif; ">AndroidManifest.xml文件中的Activity来配置：</span></span> </strong></span>
+<pre style="word-wrap: break-word; margin-bottom: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; font-family: &#39;courier new&#39;, courier, monospace; "><span style="color: rgb(128, 128, 128); "><strong>android:</strong></span><a target="_blank" style="word-wrap: break-word; color: rgb(0, 102, 153); text-decoration: none; " href="http://www.chengyunfeng.com/2010/04/switch-horizontal-and-vertical-screen-android-program#screen"><span style="color: rgb(128, 128, 128); "><strong>screenOrientation</strong></span></a><span style="color: rgb(128, 128, 128); "><strong>=["unspecified" | "user" | "behind" |<br style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; ">          "landscape" | "portrait" | <br style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; ">          "sensor" | "nonsensor"]</strong></span></pre>
+<span style="color: rgb(128, 128, 128); "><strong> screenOrientation 用来指定Activity的在设备上显示的方向，每个值代表如下含义：<br style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; ">
+</strong></span>
+<table style="word-wrap: break-word; empty-cells: show; border-collapse: collapse; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; margin-top: 1em; margin-right: 0px; margin-bottom: 0px; margin-left: 1em; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; font-size: 1em; ">
+    <tbody style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; ">
+        <tr style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; ">
+            <td style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="color: rgb(128, 128, 128); "><strong>"<code style="word-wrap: break-word; font-family: monospace; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; color: rgb(0, 112, 0); line-height: 1em; ">unspecified</code>"</strong></span></td>
+            <td style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="color: rgb(128, 128, 128); "><strong>默认值 由系统来判断显示方向.判定的策略是和设备相关的，所以不同的设备会有不同的显示方向.</strong></span></td>
+        </tr>
+        <tr style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; ">
+            <td style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="color: rgb(128, 128, 128); "><strong>"<code style="word-wrap: break-word; font-family: monospace; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; color: rgb(0, 112, 0); line-height: 1em; ">landscape</code>"</strong></span></td>
+            <td style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="color: rgb(128, 128, 128); "><strong>横屏显示（宽比高要长）</strong></span></td>
+        </tr>
+        <tr style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; ">
+            <td style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="color: rgb(128, 128, 128); "><strong>"<code style="word-wrap: break-word; font-family: monospace; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; color: rgb(0, 112, 0); line-height: 1em; ">portrait</code>"</strong></span></td>
+            <td style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="color: rgb(128, 128, 128); "><strong>竖屏显示(高比宽要长)</strong></span></td>
+        </tr>
+        <tr style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; ">
+            <td style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="color: rgb(128, 128, 128); "><strong>"<code style="word-wrap: break-word; font-family: monospace; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; color: rgb(0, 112, 0); line-height: 1em; ">user</code>"</strong></span></td>
+            <td style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="color: rgb(128, 128, 128); "><strong>用户当前首选的方向</strong></span></td>
+        </tr>
+        <tr style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; ">
+            <td style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="color: rgb(128, 128, 128); "><strong>"<code style="word-wrap: break-word; font-family: monospace; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; color: rgb(0, 112, 0); line-height: 1em; ">behind</code>"</strong></span></td>
+            <td style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="color: rgb(128, 128, 128); "><strong>和该Activity下面的那个Activity的方向一致(在Activity堆栈中的)</strong></span></td>
+        </tr>
+        <tr style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; ">
+            <td style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="color: rgb(128, 128, 128); "><strong>"<code style="word-wrap: break-word; font-family: monospace; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; color: rgb(0, 112, 0); line-height: 1em; ">sensor</code>"</strong></span></td>
+            <td style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="color: rgb(128, 128, 128); "><strong>有物理的感应器来决定。如果用户旋转设备这屏幕会横竖屏切换。</strong></span></td>
+        </tr>
+        <tr style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; ">
+            <td style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="color: rgb(128, 128, 128); "><strong>"<code style="word-wrap: break-word; font-family: monospace; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; color: rgb(0, 112, 0); line-height: 1em; ">nosensor</code>"</strong></span></td>
+            <td style="word-wrap: break-word; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; "><span style="color: rgb(128, 128, 128); "><strong>忽略物理感应器，这样就不会随着用户旋转设备而更改了 （ "<code style="word-wrap: break-word; font-family: monospace; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; color: rgb(0, 112, 0); line-height: 1em; ">unspecified</code>"设置除外 ）。</strong></span></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<span style="color: rgb(128, 128, 128); "><strong><span class="Apple-style-span" style="font-family: tahoma, arial, 宋体, sans-serif; font-size: 14px; line-height: 21px; background-color: rgb(255, 255, 255); "> </span></strong></span><p></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&nbsp;</strong></span></p>
+<p><span style="color: rgb(128, 128, 128); "><strong>&nbsp;</strong></span></p><p>本文出自 “<a href="http://mahaile.blog.51cto.com/">android,unity3d</a>” 博客，请务必保留此出处<a href="http://mahaile.blog.51cto.com/2891586/682676">http://mahaile.blog.51cto.com/2891586/682676</a></p>
+		  </div>
+
+			<!--正文 end-->
+<script type="text/javascript" language="javascript">
+	function iFrameHeight() {
+		var ifm= document.getElementById("iframepage");
+		var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;
+		if(ifm != null && subWeb != null) {
+			ifm.height = subWeb.body.scrollHeight;
+		}
+	}
+</script>
+<script type="text/javascript">
+	var kevent = 'onabort|onblur|onchange|onclick|ondblclick|onerror|onfocus|onkeydown|onkeypress|onkeyup|onload|onmousedown|onmousemove|onmouseout|onmouseover|onmouseup|onreset|onresize|onselect|onsubmit|onunload';
+	var aevent = kevent.split('|');
+
+	jQuery('.showContent img').each(function(){
+		var nimg = this;
+		jQuery.each(aevent, function(i, n){
+			if (n!='onload') {
+				jQuery(nimg).attr(n, '');
+			} else {
+				if (jQuery(nimg).attr(n) != 'if(this.width>650) this.width=650;') {
+					jQuery(nimg).attr(n, '');
+				}
+			}
+		});
+	});
+</script>
+<script type="text/javascript" charset="utf-8">
+var encodetitle = encodeURI('一篇很棒的博文分享给大家：《android 强制设置横屏 判断是横屏还是竖屏》');
+
+function show51share(){
+
+	window.open('http://t.51cto.com/index.php?m=share&url=http://mahaile.blog.51cto.com/2891586/682676/&type=l&count=&relateUid=&appkey=3843950324&title=' + encodetitle);
+}
+</script>
+<div class="m_sharebtn clear">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	  <tbody><tr>
+		<td width="11%" height="43" align="center" valign="middle"><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/ssk.png" alt="分享至"></td>
+		<td width="77%" align="left" valign="top">
+<!--
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_bdhome" data-cmd="bdhome" title="分享到百度新首页"></a><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_bdysc" data-cmd="bdysc" title="分享到百度云收藏"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></div>
+<script>
+var bds_config = {'wbUid':1706976420};
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false, 'bdPic':'http://blog.51cto.com/attachment/201305/173413310.jpg',"bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+ -->
+
+<div class="bdsharebuttonbox bdshare-button-style1-32" data-bd-bind="1501816401995"><a href="http://mahaile.blog.51cto.com/#" class="bds_more" data-cmd="more"></a><a href="http://mahaile.blog.51cto.com/#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a><a href="http://mahaile.blog.51cto.com/#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="http://mahaile.blog.51cto.com/#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="http://mahaile.blog.51cto.com/#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="http://mahaile.blog.51cto.com/#" class="bds_bdhome" data-cmd="bdhome" title="分享到百度新首页"></a><a href="http://mahaile.blog.51cto.com/#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a><a href="http://mahaile.blog.51cto.com/#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="http://mahaile.blog.51cto.com/#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="http://mahaile.blog.51cto.com/#" class="bds_bdysc" data-cmd="bdysc" title="分享到百度云收藏"></a><a href="http://mahaile.blog.51cto.com/#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{"tsina":"2065779340"},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"http://blog.51cto.com/img/blog_down0731.jpg","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+	<!-- Baidu Button END --></td>
+		<td width="12%" align="right" valign="middle"><a class="bdms_point" data-behavior="favorite" data-method="add" href="javascript:favorBox(&#39;open&#39;);" title="一键收藏，随时查看，分享好友！"><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/favorite_add_small.gif" border="0" alt="一键收藏，随时查看，分享好友！"></a></td>
+	  </tr>
+	</tbody></table>
+
+</div>
+    		<div class="showBottom">
+            <!--<div class="reviews"><span class="fl" style="cursor:pointer;"><a onclick="openFavoulist();" id="favourer"></a>
+
+            </span><div id="favourdiv" class="support01">0人</div>
+              <span class="fl">了这篇文章</span></div>-->
+              <table width="720" border="0" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td align="right"><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/icon01.png" width="15" height="16"> <span style="cursor:pointer;"><a onclick="openFavoulist();" id="favourer"></a></span></td>
+    <td width="70" align="left"><div style="line-height:28px;" id="favourdiv" class="support01">0人</div></td>
+    <td width="60" align="left">了这篇文章</td>
+  </tr>
+</tbody></table>
+
+
+
+
+            <div class="showType">类别：<a href="http://mahaile.blog.51cto.com/2891586/d-4" class="operlink">android游戏开发</a>┆阅读(<span id="readNum">27752</span>)┆评论(<span id="cmtNum">0</span>)
+
+┆
+<a href="http://mahaile.blog.51cto.com/">返回博主首页</a>┆<a href="http://blog.51cto.com/">返回博客首页</a></div>
+            <div class="prevNext">
+
+			上一篇 <a href="http://mahaile.blog.51cto.com/2891586/594807" class="operlink" title="android 实现图片反转效果">android 实现图片反转效果</a>
+
+
+			下一篇 <a href="http://mahaile.blog.51cto.com/2891586/751951" class="operlink" title="unity 创建一个可拖到的窗口">unity 创建一个可拖到的窗口</a>
+
+
+            </div>
+
+            </div>
+
+	  </div><!--showBottom end-->
+      </div><!--modCon-->
+    <span class="modBot"></span>
+    </div><!--artShow end-->
+    <span class="blank"></span>
+
+
+
+    <div class="relatedArt box">
+    <div class="title" name="zhuanti" id="zhuanti"><h2>相关文章</h2></div>
+    <div class="modCon">
+<ul>
+
+<li><a href="http://keke1983.blog.51cto.com/3050676/566481" title="android模拟机切换屏幕显示" target="_blank">android模拟机切换屏幕显示</a></li>
+
+
+<li><a href="http://johnny84.blog.51cto.com/2855387/651995" title="思考未来" target="_blank">思考未来</a></li>
+
+
+<li><a href="http://guanghuali.blog.51cto.com/2614415/473960" title="掌握框架API，打开(硬体)差异化的闸门" target="_blank">掌握框架API，打开(硬体)差异化的闸门</a></li>
+
+
+<li><a href="http://zensheno.blog.51cto.com/2712776/512837" title="Android模拟器正确应用与安装方法" target="_blank">Android模拟器正确应用与安装方法</a></li>
+
+
+<li><a href="http://honkershi.blog.51cto.com/1691715/412031" title="android MapView 定位与Overlay onTap事件处理" target="_blank">android MapView 定位与Overlay onTap事件处理</a></li>
+
+
+<li><a href="http://xiaodaoma.blog.51cto.com/1911142/477603" title="恶意吸费之后，你渴望开放还是开源？" target="_blank">恶意吸费之后，你渴望开放还是开源？</a></li>
+
+
+<li><a href="http://terryblog.blog.51cto.com/1764499/457093" title="Android 设备管理员--我是老大^_^" target="_blank">Android 设备管理员--我是老大^_^</a></li>
+
+
+<li><a href="http://zhaohaiyang.blog.51cto.com/2056753/671248" title="Android流媒体播放器 " target="_blank">Android流媒体播放器 </a></li>
+
+
+
+</ul>
+
+
+
+<span class="blank6"></span>
+</div><!--modCon end-->
+<span class="modBot"></span>
+</div><!--相关文章 end-->
+
+
+
+
+	<div class="relatedArt box">
+		<a href="javascript:;"><img src="http://mahaile.blog.51cto.com/"></a>
+	</div>
+
+
+<div class="artComm box">
+    <div class="title"><a name="replay"></a><h2>文章评论</h2></div>
+    <div class="modCon" id="artcomment">
+		<div>  &nbsp;</div><div>  &nbsp;</div>
+    </div><!--modCon-->
+        <span class="modBot"></span>
+</div><!--commBox end-->
+<a href="http://mahaile.blog.51cto.com/" id="com_top_top"></a>
+<!--<div class="artComm box" style="750px;height:90px;">
+<script type="text/javascript">
+    var cpro_id = "u2386995";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+</div>--><form action="http://mahaile.blog.51cto.com/comment.php?" method="post" name="form1" id="form1" onsubmit="return commentSubmit(this,&quot;&quot;);">
+<span class="blank1"></span>
+<div class="box writeComm" style="min-height:30px;">
+<a name="comment"></a>
+<input type="hidden" name="action" value="comment">
+<input id="commenttid" type="hidden" name="tid" value="682676">
+<input type="hidden" name="com_count_ajax" id="com_count_ajax" value="1">
+
+ <div class="title">
+	<h2 class="fl">发表评论&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+	<span class="fl" id="messageTj">
+<script type="text/javascript"><!--//<![CDATA[
+   var m3_u = (location.protocol=='https:'?'https://gg.51cto.com/www/delivery/ajs.php':'http://gg2.51cto.com/www/delivery/ajs.php');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   if (!document.MAX_used) document.MAX_used = ',';
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("?zoneid=460");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+   document.write ("&amp;loc=" + escape(window.location));
+   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+   document.write ("'><\/scr"+"ipt>");
+//]]>--></script><script type="text/javascript" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/ajs.php"></script><div id="beacon_99751094eb" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/lg.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+
+</span>
+	<style type="text/css">
+		a.mred:link{ color:#ff0000; text-decoration:underline;}
+		a.mred:visited{color:#ff0000;}
+		a.mred:hover{color:#ff0000;}
+		a.mred:active{color:#ff0000;}
+	</style>
+</div>
+<div style="display:none" rel="" id="ggBox">
+<script type="text/javascript"><!--//<![CDATA[
+   var m3_u = (location.protocol=='https:'?'https://gg.51cto.com/www/delivery/ajs.php':'http://gg2.51cto.com/www/delivery/ajs.php');
+   var m3_r = Math.floor(Math.random()*99999999999);
+   if (!document.MAX_used) document.MAX_used = ',';
+   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+   document.write ("?zoneid=460");
+   document.write ('&amp;cb=' + m3_r);
+   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+   document.write ("&amp;loc=" + escape(window.location));
+   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+   if (document.context) document.write ("&context=" + escape(document.context));
+   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+   document.write ("'><\/scr"+"ipt>");
+//]]>--></script><script type="text/javascript" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/ajs.php"></script><div id="beacon_99751094eb" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/lg.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+
+</div>
+<script>
+document.getElementById("messageTj").innerHTML = document.getElementById("ggBox").innerHTML;
+</script>
+ <div class="modCon">
+
+ <div class="commForm">
+<dl>
+<dt>昵&nbsp;&nbsp;称：</dt>
+<dd>
+
+<input type="text" id="commentusername" name="username" value="" class="commInput fl"><span><a href="http://home.51cto.com/index.php?reback=http%253A%252F%252Fmahaile.blog.51cto.com%252F2891586%252F682676%252F" style="text-decoration:underline">登录</a>&nbsp;&nbsp;<a href="http://home.51cto.com/user/register?reback=http%253A%252F%252Fmahaile.blog.51cto.com%252F2891586%252F682676%252F" target="_blank" style="text-decoration: underline;">快速注册</a></span>
+
+
+
+</dd>
+</dl>
+
+
+
+<dl id="commentyanzheng">
+
+
+<dt>验证码：</dt>
+<dd><input class="code" type="text" value="" id="commentauthnum" name="authnum" onclick="displaysecunum();">
+
+  <img width="78" class="fl" height="29" id="secunum" onclick="refimg()" style="display:none;"><p class="fl"><span style="display:none;" id="spanfont">点击图片可刷新验证码</span><span style="display:inline;" id="clickfont">请点击后输入验证码</span><span class="pl5"><a href="http://51ctoblog.blog.51cto.com/26414/5591" target="_blank" style="text-decoration: underline;">博客过2级，无需填写验证码</a></span></p></dd>
+</dl>
+<dl>
+<dt>内&nbsp;&nbsp;容：</dt>
+<dd>
+<textarea class="writeCommCon f12" id="commentcontent" name="content"></textarea>
+</dd>
+</dl>
+</div>
+<div class="writeCommBot">
+  <input type="hidden" name="parentid" value="" id="parentid">
+  <input class="commBtn fl" name="submit" type="button" id="commentsubmit" value="" onclick="commentSubmitend2()">
+
+ <p class="fl" style="display:none;"><input class="fl" type="checkbox" name="favour" id="favour" checked="" value="1"><span class="fl">同时赞一个</span></p>
+
+</div>
+<span class="blank"></span>
+
+</div><!--modCon-->
+<span class="modBot"></span>
+</div>
+</form>
+<iframe id="iframe1" name="iframe1" width="0" height="0" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/saved_resource.html"></iframe>
+<!--发表评论 end-->
+</div>
+</div>
+<!-- <div style="width:100px; height:300px; position:fixed; top:25%;left:50%;margin-left:-613px;z-index:100; _position:absolute; _margin-top: 0; _top:expression(documentElement.scrollTop+(documentElement.clientHeight-this.offsetHeight)/2+50);" id="f_close_box">
+<img border="0" usemap="#Map1" src="https://s1.51cto.com/wyfs02/M00/93/21/wKiom1kISujgrYSbAADPIiyteUc221.jpg">
+<map id="Map1" name="Map1">
+<area onclick="document.getElementById('f_close_box').style.display='none';" href="javascript:void(0);" coords="86,14,10"  shape="circle">
+</map>
+
+</div> -->
+<iframe src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/get-station-ads.html" style="position: fixed;left:0; top:240px;width:100px; height:300px;" scrolling="no" frameborder="0"></iframe>
+<script language="javascript">
+	function refimg(){
+		var randval = Math.random();
+		document.getElementById("secunum").src="/seccode.php?rnum="+randval;
+	}
+	function displaysecunum()
+	{
+		var displaystr = document.getElementById("secunum").style.display;
+		if(displaystr == 'none')
+		{
+			refimg();
+			document.getElementById("clickfont").style.display = 'none';
+			document.getElementById("secunum").style.display = 'inline';
+			document.getElementById("spanfont").style.display = 'inline';
+		}
+	}
+
+	function showMsn(){
+		document.getElementById("c02").style.display = "none";
+		document.getElementById("c01").style.display = "block";
+		document.getElementById("share").style.height = "83px";
+		document.getElementById("share").style.background = "none";
+	}
+	function showBBS(){
+		document.getElementById("c01").style.display = "none";
+		document.getElementById("c02").style.display = "block";
+		document.getElementById("share").style.height = "83px";
+		document.getElementById("share").style.background = "none";
+	}
+
+	//资源页面，分享按钮
+	function copyShareUrl(title){
+
+		if (window.clipboardData){
+
+			if(document.getElementById("c01").style.display == 'block')
+			{
+				copy = "推荐：" + title + "http://mahaile.blog.51cto.com/2891586/682676/";
+				var alertText = "复制成功，你可以粘贴到MSN或QQ中发给好友。";
+			}
+			else
+			{
+				copy = "[url=" + "http://mahaile.blog.51cto.com/2891586/682676/" + "][u]" + title + "[/u][/url]";
+				var alertText = "复制成功，你可以粘贴到论坛分享给坛友。";
+			}
+			window.clipboardData.clearData();
+			window.clipboardData.setData("Text", copy);
+			alert(alertText);
+		}
+		else if (window.netscape){
+			alert("您使用的浏览器不支持此复制功能，请使用Ctrl+C或鼠标右键。");
+			if(document.getElementById("c01").style.display == 'block')
+			{
+				document.getElementById("shareTextQM").value = "推荐：" + title + "http://mahaile.blog.51cto.com/2891586/682676/";
+				document.getElementById("shareTextQM").select();
+			}
+			else
+			{
+				document.getElementById("shareTextBBS").value = "[url=" + "http://mahaile.blog.51cto.com/2891586/682676/" + "][u]" + title + "[/u][/url]";
+                document.getElementById("shareTextBBS").select();
+			}
+		}
+		return false;
+	}
+	function select_login(){
+		document.getElementById('fixed').style.display='';
+	}
+	function commentcheck()
+	{
+		if(document.form1.content.value == "")
+		{
+			alert("评论内容为空!");
+			document.form1.content.focus();
+			return false;
+		}
+	}
+	function changename(){
+
+	var memberid=0;
+	memberid="";
+
+	if(document.getElementById('commentniming').checked){
+		document.getElementById('commentusername').disabled=false;
+		document.getElementById('commentusername').value='';
+		document.getElementById("indexhidden").style.display="none";
+		document.getElementById("commentindex").value='';
+		document.getElementById("commentyanzheng").style.display="";
+	}else{
+		document.getElementById('commentusername').disabled=true;
+		document.getElementById('commentusername').value="";
+		document.getElementById("indexhidden").style.display="";
+		document.getElementById("commentindex").value="http://.blog.51cto.com";
+		if(memberid>8)
+		{
+			document.getElementById("commentyanzheng").style.display="none";
+		}
+	}
+	}
+	function openFavoulist()
+	{
+		window.open ('http://blog.51cto.com/mod/favourlist.php?tid=682676','newwindow','height=300,width=500,top=400,left=400,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no,z-look=yes');
+	}
+
+	var e_zti = document.getElementById('zti');//有专题锚点
+	var maodian = window.location.href;//锚点
+	if (e_zti) {
+		//e_zti.href= (/[#]+/.test(maodian)) ? maodian : maodian + "#zhuanti";
+	}
+</script>
+<script src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/jquery-1.7.1.min.js.下载"></script>
+<script src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/jquery.cookie.js.下载"></script>
+<script src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/jquery.top.js.下载"></script>
+<link href="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/blog_top.css" rel="stylesheet" type="text/css">
+<!-- <script src="http://blog.51cto.com/js/blog_top_list.php" type="text/javascript" language="javascript"></script> -->
+<script type="text/javascript" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/edu_search.js.下载"></script>
+<!--<div id="message" class="blogpop" style="background-color:#FFFFFF;z-index:100;width:389px;height:196px;position:absolute; display:none; bottom:0; top:'document.documentElement.scrollTop + document.documentElement.clientHeight-196+'px;right:0; overflow:hidden;"><iframe style="width:800px;height:536px;top:0px;left:0px;position:absolute;visibility:inherit;z-index:-1;" frameborder=0 ></iframe>-->
+<!--<div style="height:36px;background:url(http://blog.51cto.com/image/blog_top/popbgx.jpg) repeat-x; position:relative;width:387px;border-right-color:#2668B7;border-right-width:2px;border-right-style:solid 2px #2668B7;"><span style="right:10px;padding:12px 0 0;position:absolute;top:0"><span style="margin-right:80px;color:#828282;width:190px;padding:10px 0 0 10px;font-size:14px">每日博报 精彩不止一点</span><img title="关闭" id="message_close" src="http://blog.51cto.com/image/blog_top/close.jpg" alt="关闭" /></span><div style="width:387px;height:36px;left:0;overflow:hidden; text-indent:-999em;background:url(http://blog.51cto.com/image/blog_top/hdtit.jpg) no-repeat;border-right:solid 2px #2668B7;"><a style="display: block; height: 36px;width:138px;" target="_blank" href="http://blog.51cto.com"></a>-->
+<!--</div>-->
+<!--<div style="clear:both;"></div>-->
+<!--</div>-->
+	<!--<div id="message_content" style="border-top:none;font-family:Microsoft YaHei;font-size:12px;width:389px;height:160pxpx;text-align:left;overflow:hidden;">-->
+	<!--<script type='text/javascript'>&lt;!&ndash;//<![CDATA[-->
+	   <!--var m3_u = (location.protocol=='https:'?'https://gg.51cto.com/www/delivery/ajs.php':'http://gg3.51cto.com/www/delivery/ajs.php');-->
+	   <!--var m3_r = Math.floor(Math.random()*99999999999);-->
+	   <!--if (!document.MAX_used) document.MAX_used = ',';-->
+	   <!--document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);-->
+	   <!--document.write ("?zoneid=454");-->
+	   <!--document.write ('&amp;cb=' + m3_r);-->
+	   <!--if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);-->
+	   <!--document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));-->
+	   <!--document.write ("&amp;loc=" + escape(window.location));-->
+	   <!--if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));-->
+	   <!--if (document.context) document.write ("&context=" + escape(document.context));-->
+	   <!--if (document.mmm_fo) document.write ("&amp;mmm_fo=1");-->
+	   <!--document.write ("'><\/scr"+"ipt>");-->
+	<!--//]]>&ndash;&gt;</script>-->
+	<!--</div>-->
+<!--</div>-->
+<style>
+.backToTop {
+    display: none;
+	WIDTH: 45px;
+	height:45px;
+	BOTTOM: 20px;
+     position: fixed;
+    _position: absolute;
+    right: 140px;
+    bottom: 10px;
+    _bottom: "auto";
+    cursor: pointer;
+    opacity: .6;
+    filter: Alpha(opacity=60);
+	text-indent:-9999px;
+}
+.tops { background:url(/images/tops.jpg) no-repeat center center; }
+</style>
+<script>
+(function() {
+	  $('#showMessagerDim').show();
+	   var _html = $("#addTop").html();
+	  if(get_cookie('blog_top')==''){
+//		 show_pop();
+	     jQuery.messager.showblogtop('', _html);
+	     $("#message").find("#adTop").show();
+	     var date=new Date();
+	     var test = date.getTime();
+	     document.cookie="blog_top=yes;domain=.blog.51cto.com;expires="+date.toGMTString()+";path=/;";
+	     }
+	    $("#showMessagerDim").click(function(){
+	    	jQuery.messager.showblogtop('', _html);
+			$("#message").find("#adTop").show();
+			//removeIframe();
+		});
+
+		function get_cookie(Name) {
+		    var search = Name + "=";
+		    var returnvalue = "";
+		    if (document.cookie.length > 0) {
+		        offset = document.cookie.indexOf(search);
+		        if (offset != -1) {
+		            offset += search.length;
+
+		            end1 = document.cookie.indexOf(";", offset);
+
+		            if (end1 == -1)
+		            end1 = document.cookie.length;
+		            returnvalue=unescape(document.cookie.substring(offset, end1));
+		        }
+		    }
+		    return returnvalue;
+		}
+	})();
+
+</script>
+<script type="text/javascript">
+(function() {
+    var backToTopTxt = "返回顶部", backToTopEle = $('<div class="backToTop tops"></div>').appendTo($("body"))
+        .text(backToTopTxt).attr("title", backToTopTxt).click(function() {
+            $("html, body").animate({ scrollTop: 0 }, 520);
+    }), backToTopFun = function() {
+        var st = $(document).scrollTop(), winh = $(window).height();
+        (st > 0)? backToTopEle.show(): backToTopEle.hide();
+        //IE6下的定位
+        if (!window.XMLHttpRequest) {
+            backToTopEle.css("top", st + winh - 60);
+        }
+    };
+    $(window).bind("scroll", backToTopFun);
+    $(function() { backToTopFun(); });
+})();
+</script><div class="backToTop tops" title="返回顶部" style="display: block;">返回顶部</div>
+
+
+
+
+
+
+
+
+<div class="clear"></div>
+<!-- <script>
+jQuery(function(){
+	var html= "<div id=\"sogou_se_tgbar\" style=\"text-align:center;margin:0px auto 2px auto;clear:both;background:url(http://home.51cto.com/public/images/notice/sogou_se_tgbar_bg_final1.gif) repeat-x;width:950px;color:#000;font-size:13px;height:36px;z-index:21474836471\"><div style=\"float:left;cursor:pointer;width:910px;text-align:center;border-left:solid #efbf00 1px;height:32px; line-height:32px;txt-align:center;\"><span style=\"\">	<a href=\"http://51ctoblog.blog.51cto.com/26414/1093282\">【新年祝福征集】51CTO社区年底嘉年华活动正在征集博主祝福语，祝福以红包的形式随机的赠送给访问51CTO的网友 点此送祝福>></a></span></div><div onclick=\"document.getElementById('sogou_se_tgbar').style.display = 'none';\" style=\"float:right;width:20px;cursor:pointer;height:28px;padding:4px 8px 0px 8px;border-right:solid #efbf00 1px\"><img style=\"border:none;margin:4px 0px 0px 0px;\" src=\"http://home.51cto.com/public/images/notice/sogou_se_tgbar_close_final1.gif\"></div></div>"
+	jQuery('body').prepend(html);
+})
+</script> -->
+
+<style>
+    .fixexit_small {
+        bottom: 185px;
+        position: fixed;
+        right: 10px;
+        z-index: 99;
+    }
+    .fixexit_small .exit_list {
+        margin-top: 4px;
+    }
+    .fixexit_small .exit_list .ina {
+        border-radius: 5px;
+        display: block;
+        height: 40px;
+        text-align: center;
+        width: 40px;
+    }
+    .fixexit_small .exit_list .ina b {
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 12px;
+        font-weight: normal;
+        line-height: 15px;
+        padding-top: 5px;
+        text-align: center;
+    }
+    .fixexit_small .exit_list_fkui .ina {
+        background: #40afff none repeat scroll 0 0;
+    }
+    .fixexit_small .exit_list_fkui .ina:hover {
+        background: #2ea7ff none repeat scroll 0 0;
+    }
+    .fixexit_small .exit_list_zxun .ina {
+        background: #c1c1c1 url("./images/anchor_qq.png") no-repeat scroll 9px 9px;
+    }
+    .fixexit_small .exit_list_zxun .ina:hover {
+        background: #40afff url("./images/anchor_qq.png") no-repeat scroll 9px 9px;
+    }
+    .fixexit_small .exit_list_zxun .ina img {
+        height: 18px;
+        width: 18px;
+    }
+    .fixexit_small .exit_list_gaozhao .ina {
+        background: #c1c1c1 url("./images/gaozhao.jpg")  no-repeat center center;
+    }
+    .fixexit_small .exit_list_gaozhao .ina:hover {
+        background: #40afff url("./images/gaozhao.jpg")  no-repeat center center;
+    }
+    .fixexit_small .exit_list_gaozhao .ina img {
+        height: 18px;
+        width: 18px;
+    }
+    .fixexit_small .exit_list_back {
+        bottom: 0;
+        display: none;
+        left: 0;
+        position: absolute;
+    }
+    .fixexit_small .exit_list_back .ina {
+        background: #c1c1c1 url("./images/anchor_top.png") no-repeat scroll 10px 12px;
+    }
+    .fixexit_small .exit_list_back .ina:hover {
+        background: #40afff none repeat scroll 0 0;
+    }
+    .fixexit_small .exit_list_back .ina b {
+        display: none;
+    }
+    .fixexit_small .exit_list_back .ina:hover b {
+        display: block;
+    }
+
+</style>
+<div class="fixexit_small">
+    <div class="infixexit" style="font-family: &quot;微软雅黑&quot;">
+        <div class="exit_list exit_list_zxun"><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=1173854158&amp;site=qq&amp;menu=yes" class="ina" target="_blank"></a></div>
+        <div class="exit_list exit_list_fkui "><span class="ina"><a href="http://51ctoblog.blog.51cto.com/26414/1933645"><b>意见<br>反馈</b></a></span></div>
+        <div class="exit_list  exit_list_gaozhao"><a href="http://51ctoblog.blog.51cto.com/" target="_black" class="ina"></a></div>
+
+    </div>
+</div>
+<div id="footer">
+  <div id="innerFooter">
+	<center>
+		<small>
+			Copyright By 51CTO.COM 版权所有<br><br>
+			<a href="http://blog.51cto.com/" target="_blank"><img src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/copyright.jpg"></a>
+	  </small>
+	</center>
+  </div>
+</div>
+<script src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/index.php" charset="utf-8"></script><script src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/vip_top.js.下载"></script>
+<div style="display:none">
+<script src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/count.js.下载"></script><script src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/count.php"></script>
+<div style="display:none">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?2283d46608159c3b39fc9f1178809c21";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <script type="text/javascript">
+        var uid = "";
+        var _educto = _educto || [];
+        _educto.push(['_setUserId',uid]);
+    </script>
+
+    <script type="text/javascript">
+        document.write(decodeURI("%3Cscript src='https://tongji.51cto.com/cto.js/d2cb9d6ccefce8d1e89582c2a2a24cc0' type='text/javascript'%3E%3C/script%3E"));
+        function bdmsPoint(behavior,method){
+            _educto.push(['_trackEvent', behavior, method])
+        }
+        $(function(){
+            $(".bdms_point").click(function(){
+                bdmsPoint($(this).attr("data-behavior"),$(this).attr("data-method"));
+            })
+        })
+    </script><script src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/d2cb9d6ccefce8d1e89582c2a2a24cc0" type="text/javascript"></script>
+
+
+</div>
+<iframe frameborder="0" scrolling="no" width="0" height="0" src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/pageview.html"></iframe>
+</div>
+
+<script src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/poptop.js.下载"></script>
+<script src="./android 强制设置横屏 判断是横屏还是竖屏 - android,unity3d - 51CTO技术博客_files/iframe-member-adv"></script>
+
+
+</body></html>

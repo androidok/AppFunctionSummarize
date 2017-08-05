@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.jianshu.com/p/d793c8d4ff81 -->
+<html><script src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/push.js.下载"></script><script src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/hm.js.下载"></script><script async="" src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/analytics.js.下载"></script><script type="text/javascript">Object.defineProperty(window.navigator, 'userAgent', { get: function(){ return 'Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.114 Mobile Safari/537.36'; } });Object.defineProperty(window.navigator, 'vendor', { get: function(){ return ''; } });Object.defineProperty(window.navigator, 'platform', { get: function(){ return 'Android'; } });</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+
+    <!-- Start of Baidu Transcode -->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="MobileOptimized" content="width">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="mobile-agent" content="format=html5;url=http://www.jianshu.com/p/d793c8d4ff81">
+    <!-- End of Baidu Transcode -->
+
+    <!-- 禁止自动检测数字为电话号码 -->
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- theme-color in Chrome 39 for Android -->
+    <meta name="theme-color" content="#ea6f5a">
+
+    <!-- Start of Site Verifications -->
+    <meta name="360-site-verification" content="604a14b53c6b871206001285921e81d8">
+    <meta property="wb:webmaster" content="294ec9de89e7fadb">
+    <meta property="qc:admins" content="104102651453316562112116375">
+    <meta property="qc:admins" content="11635613706305617">
+    <meta property="qc:admins" content="1163561616621163056375">
+    <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4">
+    <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI">
+    <!-- End of Site Verifications -->
+
+      <title>Android快速去掉WebView上的烦人广告 - JellyCai - 简书</title>
+
+      <meta name="description" content="近日，在把某网站用WebView打包到App里面的时候，出现的一个麻烦。看下图 额，有广告。不影响阅读体验的广告都是可以接受的。但是有一问题是因为有一个广告div比屏幕要大，导致该网页在在移动端上可以左右滑动，这个就没法忍受了，看下图&lt;!--more--&gt; 没办法了，只能把广告去掉了.首先看看集成网页的代码. 为了支持离线浏览，打开了WebView的默认缓存，设置支持js支持,设置WebClient，这里的NoAdWebViewClient在下面可以看到，在WebViewClient里面去掉广告. 重写Activity的onKeyDown简单back案件，当网页可以back的时候让网页回...">
+
+    <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="t2FiCh4ojzRyTdeov+nDwkJyhFphZgEsd8lnzgkjbJH1+wEihqj0ergp0u9uCHIyAix2yQYv9/iXGeXpl9F29Q==">
+    <link rel="stylesheet" media="all" href="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/mobile-2f8011a5f8e91d8db92c.css">
+
+    <link href="http://cdn2.jianshu.io/assets/favicons/favicon-783beb88ed621ceab614de960376ac0c.ico" rel="icon">
+
+        <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/57-47624b2e2161e8eb144462c85db0a5ff.png" sizes="57x57">
+        <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/72-c00cde7cf98fc49e50cbb3ee1dcd5804.png" sizes="72x72">
+        <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/76-e8af0bdeaf1ba31e303b1fde8b5e66c4.png" sizes="76x76">
+        <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/114-f4c78569bbf1977e8382a5fd90c9237a.png" sizes="114x114">
+        <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/120-cf10c3711dba269522743729efe66bbc.png" sizes="120x120">
+        <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/152-7bd60457b5f3ecbf1343f0e6241be4f8.png" sizes="152x152">
+  <link rel="stylesheet" href="blob:http://www.jianshu.com/c87550d0-e473-4d28-a140-a9c2181747ee"><link rel="stylesheet" href="blob:http://www.jianshu.com/4b74a4d4-3f65-46ef-be8a-5274c314fe8f"><link rel="stylesheet" href="blob:http://www.jianshu.com/96a61184-778c-4717-b490-15803f9e5269"><link rel="stylesheet" href="blob:http://www.jianshu.com/c687e041-e919-4065-bf9d-4a14ef2c1c44"><link rel="stylesheet" href="blob:http://www.jianshu.com/cf1bc7de-13b6-4a58-ac07-040678f62c1c"><link rel="stylesheet" href="blob:http://www.jianshu.com/6709553b-9402-4cbd-a1e5-10df4470ede3"><link rel="stylesheet" href="blob:http://www.jianshu.com/412bd6f8-f411-4486-a55d-353306cbcae1"><link rel="stylesheet" href="blob:http://www.jianshu.com/b58a5448-6f01-4212-8bd9-863cef5dc249"></head>
+
+  <body class="reader-day-mode">
+    
+<div class="container">
+  <!-- 顶部下载 Banner -->
+    <a class="top" href="http://www.jianshu.com/apps/download?utm_medium=top-download-banner&amp;utm_source=mobile">
+    <div class="logo">
+      <img src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/new-logo-faf216afbbda9b37305c7d9fa4a5e9f2.png" alt="New logo">
+    </div>
+    <div class="slogan">
+      <div class="slogan-title">创作你的创作</div>
+      <!-- div>一分钟做出完美朋友圈图文</div -->
+    </div>
+    <div class="app-download">免费下载</div>
+</a>
+
+  <!-- Trial 审核创建 -->
+
+    <!-- 文章标题 -->
+    <h1 class="title">Android快速去掉WebView上的烦人广告</h1>
+
+    <!-- 作者信息和文章计数器 -->
+    <div class="article-info">
+      <!-- 作者信息 -->
+      <a class="avatar" href="http://www.jianshu.com/u/1451159c42c2?utm_medium=note-author-link&amp;utm_source=mobile">
+        <img src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/5c31f74fb603.jpg" alt="180">
+        <div class="name">JellyCai</div>
+</a>        <span class="label">作者</span>
+
+      <!-- 文章 meta -->
+      <div class="meta">
+        <span>2016.11.10 21:03</span>
+        <a href="javascript:void(null)" class="app-open" data-app-opener="">
+          <i class="iconfont ic-openinapp"></i>
+          打开App
+        </a>
+      </div>
+    </div>
+
+    <!-- 文章内容 -->
+    <div class="content" data-note-content="">
+      <p>近日，在把某网站用WebView打包到App里面的时候，出现的一个麻烦。看下图<br></p><div class="image-package">
+<img src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/2098384-19f5829027718ee1.jpg" data-original-src="http://upload-images.jianshu.io/upload_images/2098384-19f5829027718ee1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2"><br><div class="image-caption">广告</div>
+</div><p><br>额，有广告。不影响阅读体验的广告都是可以接受的。但是有一问题是因为有一个广告div比屏幕要大，导致该网页在在移动端上可以左右滑动，这个就没法忍受了，看下图<br>&lt;!--more--&gt;<br></p><div class="image-package">
+<img src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/2098384-3ad29493abc77b3b.jpg" data-original-src="http://upload-images.jianshu.io/upload_images/2098384-3ad29493abc77b3b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2"><br><div class="image-caption">广告</div>
+</div><p><br>没办法了，只能把广告去掉了.<br>首先看看集成网页的代码.</p>
+<pre><code>private WebView webView;
+private WebSettings settings;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    this.setContentView(R.layout.activity_main);
+    webView = (WebView) findViewById(web);
+    //设置WebView属性，能够执行Javascript脚本
+    settings = webView.getSettings();
+    settings.setJavaScriptEnabled(true);
+    settings.setAppCacheEnabled(true);
+    webView.setWebViewClient(new NoAdWebViewClient());
+    //加载需要显示的网页
+    webView.loadUrl("http://champion.gg/");
+
+}</code></pre>
+<p>为了支持离线浏览，打开了WebView的默认缓存，设置支持js支持,设置WebClient，这里的NoAdWebViewClient在下面可以看到，在WebViewClient里面去掉广告.</p>
+<pre><code>@Override
+//设置回退
+//覆盖Activity类的onKeyDown(int keyCoder,KeyEvent event)方法
+public boolean onKeyDown(int keyCode, KeyEvent event) {
+    if ((keyCode == KeyEvent.KEYCODE_BACK) &amp;&amp; webView.canGoBack()) {
+        webView.goBack(); //goBack()表示返回WebView的上一页面
+        return true;
+    }
+    return false;
+}</code></pre>
+<p>重写Activity的onKeyDown简单back案件，当网页可以back的时候让网页回到上一页面.<br>来看一下NoAdWebViewClient的关键代码:<br>继承系统的WebViewClient，然后重写onPageFinished方法。</p>
+<pre><code>package com.jelly.championgg;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.os.Handler;
+import android.os.Message;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+
+/**
+ * Created by BrainWang on 05/01/2016.
+ */
+public class NoAdWebViewClient extends WebViewClient {
+
+    private Context context;    
+
+    public NoAdWebViewClient(Context context) {
+        this.context = context;
+    }
+
+    @Override
+    public void onPageFinished(WebView view, String url) {
+        super.onPageFinished(view, url);
+        String js = ADFilterTool.getClearAdDivJs(context);
+        Log.v("adJs",js);
+        view.loadUrl(js);
+    }
+
+}</code></pre>
+<p>在onPageFinished里面外面执行的了一段Js,来看一看这段js（以下js为了方便阅读，经过整理）：</p>
+<pre><code>javascript:
+var adDiv0= document.getElementById('div-gpt-ad-1443488528500-4');
+if(adDiv0 != null)
+    adDiv0.parentNode.removeChild(adDiv0);
+
+var adDiv1= document.getElementById('div-gpt-ad-1443727656867-1');
+if(adDiv1 != null)
+    adDiv1.parentNode.removeChild(adDiv1);
+
+var adDiv2= document.getElementById('div-gpt-ad-1443488528500-5');
+if(adDiv2 != null)
+    adDiv2.parentNode.removeChild(adDiv2);
+...</code></pre>
+<p>去掉广告的原理很简单，注入一段js把显示广告的div删除就ok了，来看一下生成js的代码:</p>
+<pre><code>    public static String getClearAdDivJs(Context context){
+    String js = "javascript:";
+    Resources res = context.getResources();
+    String[] adDivs = res.getStringArray(R.array.adBlockDiv);
+    for(int i=0;i&lt;adDivs.length;i++){
+
+        js += "var adDiv"+i+"= document.getElementById('"+adDivs[i]+"');if(adDiv"+i+" != null)adDiv"+i+".parentNode.removeChild(adDiv"+i+");";
+    }
+    return js;
+}</code></pre>
+<p>通过arrays.xml去管理去要去掉的广告div，遍历广告divId的集合，组合成一段js代码，注入到网页中去掉广告.</p>
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+
+    &lt;string-array name="adBlockDiv"&gt;
+        &lt;item&gt;div-gpt-ad-1443488528500-4&lt;/item&gt;
+        &lt;item&gt;div-gpt-ad-1443727656867-1&lt;/item&gt;
+        &lt;item&gt;div-gpt-ad-1443488528500-5&lt;/item&gt;
+        &lt;item&gt;div-gpt-ad-1443488528500-6&lt;/item&gt;
+        &lt;item&gt;div-gpt-ad-1443488528500-7&lt;/item&gt;
+        &lt;item&gt;div-gpt-ad-1443727656867-0&lt;/item&gt;
+        &lt;item&gt;div-gpt-ad-1443488528500-2&lt;/item&gt;
+        &lt;item&gt;div-gpt-ad-1443488528500-3&lt;/item&gt;
+        &lt;item&gt;div-gpt-ad-1443488528500-1&lt;/item&gt;
+    &lt;/string-array&gt;
+
+&lt;/resources&gt;</code></pre>
+<p>那么这些广告div的Id是如何获取的呢？我们通过Chrome浏览器可以很方便的获取到这些Id,可以看到通过F12的调试模式可以轻易的获取到广告div的Id<br></p><div class="image-package">
+<img src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/2098384-f823d41d32f14377.png" data-original-src="http://upload-images.jianshu.io/upload_images/2098384-f823d41d32f14377.png?imageMogr2/auto-orient/strip%7CimageView2/2"><br><div class="image-caption">获取广告ID</div>
+</div><p><br>完成后我们就可以看到没有广告的页面了，完成效果。<br></p><div class="image-package">
+<img src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/2098384-50c5dc34f9542bb9.jpg" data-original-src="http://upload-images.jianshu.io/upload_images/2098384-50c5dc34f9542bb9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2"><br><div class="image-caption">最后效果</div>
+</div><p><br>其实这里还有一个问题，当网络比较慢的情况下，我们的网页会一直加载，然后当还没有调用onPageFinished的时候，用户就已经开始操作了，所以我们可以优化一下这种方式：</p>
+<pre><code>package com.jelly.championgg;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+
+/**
+ * Created by BrainWang on 05/01/2016.
+ */
+public class NoAdWebViewClient extends WebViewClient {
+    private Context context;
+    private WebView webView;
+    private boolean isClose;
+
+    public NoAdWebViewClient(Context context,WebView webView) {
+        this.context = context;
+        this.webView = webView;
+    }
+
+
+    @Override
+    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+        super.onPageStarted(view, url, favicon);
+        if(isClose){ //如果线程正在运行就不用重新开启一个线程了
+            return;
+        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                isClose = true;
+                while (isClose){
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    handler.sendEmptyMessage(0x001);
+                }
+            }
+        }).start();
+    }
+
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            String js = ADFilterTool.getClearAdDivJs(context);
+            Log.v("adJs",js);
+            webView.loadUrl(js);
+        }
+    };
+
+    @Override
+    public void onPageFinished(WebView view, String url) {
+        super.onPageFinished(view, url);
+        isClose = false;
+    }
+
+}</code></pre>
+<p>在NoAdWebViewClient里面我们重写onPageStarted方法，并且开启一个线程，每1秒的循环注入js，在这里由于不能在子线程里面操作WebView，所以利用Handler去注入js.并且在onPageFinished内关闭线程.这样之后，即使网络很慢，在没有回调onPageFinished的时候，也不会出现广告了。</p>
+<p><a href="https://github.com/JellyCai1995/NoAdChampiongg" target="_blank">代码地址</a></p>
+
+    </div>
+
+    <!-- share 数据 -->
+    <script type="application/json" data-name="share-data">
+      {"title":"Android快速去掉WebView上的烦人广告","description":"近日，在把某网站用WebView打包到App里面的时候，出现的一个麻烦。看下图 额，有广告。不...","image_url":"http://upload-images.jianshu.io/upload_images/2098384-19f5829027718ee1.jpg"}
+    </script>
+
+  <!-- 打赏 -->
+  <!-- 现在仅支持在微信内 -->
+
+  <div class="copyright">© 著作权归作者所有</div>
+
+  <!-- 评论列表 -->
+  <div class="comment-list"><a class="like-btn"><i class="iconfont ic-like"></i><span class="badge">39</span><!----></a> <!----> <!----> <div class="top-title">8条评论
+      <a class="write-comment"><i class="iconfont ic-write"></i>写评论</a></div> <div><div class="comment"><div class="comment-top"><a href="http://www.jianshu.com/u/42dcdb7af156" class="avatar"><img src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/0242c369e111"></a> <a class="comment-function-btn"><i class="iconfont ic-zan"></i> <!----></a> <a class="comment-function-btn"><i class="iconfont ic-comment"></i></a> <div class="author-info"><a href="http://www.jianshu.com/u/42dcdb7af156">JesusLiu</a> <!----></div></div> <p>看起来很赞的样子！<img src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/+1.png" alt=":+1:" title=":+1:" class="emoji" width="20" height="20"><img src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/+1.png" alt=":+1:" title=":+1:" class="emoji" width="20" height="20"><img src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/+1.png" alt=":+1:" title=":+1:" class="emoji" width="20" height="20"></p> <div class="meta">2楼 · 2016.11.10 21:54</div> <!----> <!----> <!----></div><div class="comment"><div class="comment-top"><a href="http://www.jianshu.com/u/3ac968a7d8e9" class="avatar"><img src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/317247a5944a"></a> <a class="comment-function-btn"><i class="iconfont ic-zan"></i> <!----></a> <a class="comment-function-btn"><i class="iconfont ic-comment"></i></a> <div class="author-info"><a href="http://www.jianshu.com/u/3ac968a7d8e9">3ac968a7d8e9</a> <!----></div></div> <p>我的只在手机显示，不在pc浏览器上显示怎么办，求帮忙</p> <div class="meta">3楼 · 2016.11.11 15:25</div> <!----> <!----> <!----></div><div class="comment"><div class="comment-top"><a href="http://www.jianshu.com/u/ecffa7e453dd" class="avatar"><img src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/d3f50792410f.jpg"></a> <a class="comment-function-btn"><i class="iconfont ic-zan"></i> <!----></a> <a class="comment-function-btn"><i class="iconfont ic-comment"></i></a> <div class="author-info"><a href="http://www.jianshu.com/u/ecffa7e453dd">尘_屠</a> <!----></div></div> <p>没有去掉我想去掉的div,好奇怪。var adDiv = document.getElementsByClassName("download_bg");<br>if(adDiv!=null){<br>adDiv.parentNode.removeChild(adDiv);<br>}<br>JS代码是这样的，然而loadurl（JS)没有去掉，不知道哪里错了</p> <div class="meta">4楼 · 02.20 14:02</div> <div class="sub-comment-list"><div class="sub-comment"><a href="http://www.jianshu.com/u/1451159c42c2">JellyCai</a>:
+            <p>具体要删除掉什么标签，得去看前端的代码才行,或许可以给我看看你的代码</p> <div class="time">
+              02.20 18:59
+              <a class="reply-btn">回复</a></div></div><div class="sub-comment"><a href="http://www.jianshu.com/u/ecffa7e453dd">尘_屠</a>:
+            <p><a href="http://www.jianshu.com/users/1451159c42c2" class="maleskine-author" target="_blank" data-user-slug="1451159c42c2">@JellyCai</a> 我把JS单独放在本地文件里面去读取的，是读取失败了，代码问题<img src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/smiley.png" alt=":smiley:" title=":smiley:" class="emoji" width="20" height="20"> </p> <div class="time">
+              02.21 09:21
+              <a class="reply-btn">回复</a></div></div><div class="sub-comment"><a href="http://www.jianshu.com/u/1451159c42c2">JellyCai</a>:
+            <p><a href="http://www.jianshu.com/users/ecffa7e453dd" class="maleskine-author" target="_blank" data-user-slug="ecffa7e453dd">@尘_屠</a> <img src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/smiley.png" alt=":smiley:" title=":smiley:" class="emoji" width="20" height="20"> </p> <div class="time">
+              02.21 16:22
+              <a class="reply-btn">回复</a></div></div></div> <!----> <!----></div><div class="comment"><div class="comment-top"><a href="http://www.jianshu.com/u/6740854c6174" class="avatar"><img src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/7-0993d41a595d6ab6ef17b19496eb2f21.jpg"></a> <a class="comment-function-btn"><i class="iconfont ic-zan"></i> <!----></a> <a class="comment-function-btn"><i class="iconfont ic-comment"></i></a> <div class="author-info"><a href="http://www.jianshu.com/u/6740854c6174">rome753</a> <!----></div></div> <p>public void onProgressChanged(WebView view, int newProgress)<br>在这个回调中去广告就行了，不用开启线程</p> <div class="meta">5楼 · 05.03 17:13</div> <!----> <!----> <!----></div><div class="comment"><div class="comment-top"><a href="http://www.jianshu.com/u/e9d1e83afb99" class="avatar"><img src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/f2227d09-16c4-4458-96c1-2cf85c78465b"></a> <a class="comment-function-btn"><i class="iconfont ic-zan"></i> <!----></a> <a class="comment-function-btn"><i class="iconfont ic-comment"></i></a> <div class="author-info"><a href="http://www.jianshu.com/u/e9d1e83afb99">langxun1237</a> <!----></div></div> <p>我们的app发布出去了, webview出现了广告, 然而我们并不知道这个广告的div id ,作者抽取的这个divid是有共性的吗?</p> <div class="meta">6楼 · 06.23 11:55</div> <!----> <!----> <!----></div></div> <!----> <!----> <div class="modal write-comment" style="display: none;"><div class="mask"></div> <div class="modal-content"><textarea placeholder="写下你的评论..."></textarea> <div class="bottom-bar"><a class="btn-send">回复</a> <a class="cancel">取消</a></div></div></div></div>
+
+    <!-- 底部作者介绍 -->
+    <div class="split-line"></div>
+    <div class="top-title">文章作者</div>
+    <div class="note-author">
+      <a class="avatar" href="http://www.jianshu.com/u/1451159c42c2?utm_medium=note-author-link&amp;utm_source=mobile">
+        <img src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/5c31f74fb603.jpg" alt="180">
+</a>      <div class="author-info">
+        <div class="name">
+          JellyCai
+            <i class="iconfont ic-man"></i>
+        </div>
+        <!-- 签约作者标签 -->
+
+
+        <div class="description">
+          写了 5967 字，获得了 189 个喜欢
+        </div>
+        <p>
+          读万卷书，行万里路
+        </p>
+
+        <!-- 关注按钮 -->
+        <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+        <!---->
+
+        <!-- 个人页链接 -->
+        <a class="load-more" href="http://www.jianshu.com/u/1451159c42c2?utm_medium=note-author-link&amp;utm_source=mobile">
+          作者个人主页
+          <i class="iconfont ic-link"></i>
+</a>      </div>
+    </div>
+
+  <div class="split-line"></div>
+  <div class="top-title">
+    推荐阅读
+    <a class="more" href="http://www.jianshu.com/?utm_medium=note-recommendation-link-index&amp;utm_source=mobile">
+      更多精彩内容
+      <i class="iconfont ic-link"></i>
+    </a>
+  </div>
+
+  <!-- 下载banner -->
+  <div class="download-banner">
+      <a href="http://www.jianshu.com/apps/download?utm_medium=bottom-download-banner&amp;utm_source=mobile">
+        <div class="name">下载简书App<br>随时随地发现和创作内容</div>
+        <div class="download-img"></div>
+</a>  </div>
+
+  <div data-v-0374d8c8=""><div data-v-0374d8c8="" class="recommend-note"><a data-v-0374d8c8="" href="http://www.jianshu.com/p/57208945a9ab?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=mobile_all_hots&amp;utm_source=recommendation" class="recommend-wrap"><div data-v-0374d8c8="" class="recommend-img" style="background-image: url(&quot;//cdn2.jianshu.io/assets/mobile/07-b13aa1d4b72b22d0eb92008725ce9a73.png&quot;);"></div> <div data-v-0374d8c8="" class="author"><div data-v-0374d8c8="" class="title">来不及解释了，快上车之EventBus3.0快速上手</div> <div data-v-0374d8c8="" class="avatar"><img data-v-0374d8c8="" src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/5c31f74fb603(1).jpg"></div> <div data-v-0374d8c8="" class="author-name">JellyCai</div> <div data-v-0374d8c8="" class="meta"><i data-v-0374d8c8="" class="iconfont ic-list-read"></i><span data-v-0374d8c8="">1180</span> <i data-v-0374d8c8="" class="iconfont ic-list-comments"></i><span data-v-0374d8c8="">4</span> <i data-v-0374d8c8="" class="iconfont ic-list-like"></i><span data-v-0374d8c8="">12</span></div></div></a><a data-v-0374d8c8="" href="http://www.jianshu.com/p/3274ac7224c1?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=mobile_all_hots&amp;utm_source=recommendation" class="recommend-wrap"><div data-v-0374d8c8="" class="recommend-img" style="background-image: url(&quot;//upload-images.jianshu.io/upload_images/2098384-e2fd76dfa62be633.png?imageMogr2/auto-orient/strip|imageView2/1/w/750/h/300&quot;);"></div> <div data-v-0374d8c8="" class="author"><div data-v-0374d8c8="" class="title">初探Quartz</div> <div data-v-0374d8c8="" class="avatar"><img data-v-0374d8c8="" src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/5c31f74fb603(1).jpg"></div> <div data-v-0374d8c8="" class="author-name">JellyCai</div> <div data-v-0374d8c8="" class="meta"><i data-v-0374d8c8="" class="iconfont ic-list-read"></i><span data-v-0374d8c8="">297</span> <i data-v-0374d8c8="" class="iconfont ic-list-comments"></i><span data-v-0374d8c8="">2</span> <i data-v-0374d8c8="" class="iconfont ic-list-like"></i><span data-v-0374d8c8="">3</span></div></div></a><a data-v-0374d8c8="" href="http://www.jianshu.com/p/f9ea73658f24?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=mobile_all_hots&amp;utm_source=recommendation" class="recommend-wrap"><div data-v-0374d8c8="" class="recommend-img" style="background-image: url(&quot;//upload-images.jianshu.io/upload_images/5993567-b201fca151055e3a.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/750/h/300&quot;);"></div> <div data-v-0374d8c8="" class="author"><div data-v-0374d8c8="" class="title">世间若有童话，一定就在这里</div> <div data-v-0374d8c8="" class="avatar"><img data-v-0374d8c8="" src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/91c8093a-34a4-4f3c-aefb-149dceb6a2d8.jpg"></div> <div data-v-0374d8c8="" class="author-name">上官小满</div> <div data-v-0374d8c8="" class="meta"><i data-v-0374d8c8="" class="iconfont ic-list-read"></i><span data-v-0374d8c8="">5366</span> <i data-v-0374d8c8="" class="iconfont ic-list-comments"></i><span data-v-0374d8c8="">173</span> <i data-v-0374d8c8="" class="iconfont ic-list-like"></i><span data-v-0374d8c8="">343</span></div></div></a><a data-v-0374d8c8="" href="http://www.jianshu.com/p/256b37a352a3?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=mobile_all_hots&amp;utm_source=recommendation" class="recommend-wrap"><div data-v-0374d8c8="" class="recommend-img" style="background-image: url(&quot;//upload-images.jianshu.io/upload_images/1417131-52d1bdc6e19156e5.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/750/h/300&quot;);"></div> <div data-v-0374d8c8="" class="author"><div data-v-0374d8c8="" class="title">我删掉了游戏《王者荣耀》，同时删掉的还有今日头条</div> <div data-v-0374d8c8="" class="avatar"><img data-v-0374d8c8="" src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/b0f33523aa79.jpg"></div> <div data-v-0374d8c8="" class="author-name">沐丞</div> <div data-v-0374d8c8="" class="meta"><i data-v-0374d8c8="" class="iconfont ic-list-read"></i><span data-v-0374d8c8="">31790</span> <i data-v-0374d8c8="" class="iconfont ic-list-comments"></i><span data-v-0374d8c8="">311</span> <i data-v-0374d8c8="" class="iconfont ic-list-like"></i><span data-v-0374d8c8="">444</span></div></div></a><a data-v-0374d8c8="" href="http://www.jianshu.com/p/006e1f2c7808?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=mobile_all_hots&amp;utm_source=recommendation" class="recommend-wrap"><div data-v-0374d8c8="" class="recommend-img" style="background-image: url(&quot;//upload-images.jianshu.io/upload_images/6870677-0e76059d539b4425?imageMogr2/auto-orient/strip|imageView2/1/w/750/h/300&quot;);"></div> <div data-v-0374d8c8="" class="author"><div data-v-0374d8c8="" class="title">人人呼吁女权的时代，你是否愿意听听“男权”的声音？</div> <div data-v-0374d8c8="" class="avatar"><img data-v-0374d8c8="" src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/1cf5dcae-8126-40be-9d64-24038f437b01.jpeg"></div> <div data-v-0374d8c8="" class="author-name">新京报书评周刊</div> <div data-v-0374d8c8="" class="meta"><i data-v-0374d8c8="" class="iconfont ic-list-read"></i><span data-v-0374d8c8="">7394</span> <i data-v-0374d8c8="" class="iconfont ic-list-comments"></i><span data-v-0374d8c8="">350</span> <i data-v-0374d8c8="" class="iconfont ic-list-like"></i><span data-v-0374d8c8="">274</span></div></div></a></div></div>
+
+  <!-- slogan -->
+  <div class="slogan-footer">
+    <img class="logo" src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/slogan-footer-logo-45e6c60d359980816f1a6f9f49b1b41c.png" alt="Slogan footer logo">
+    <div class="content">
+      <div>创作你的创作，</div>
+      <div>接受世界的赞赏</div>
+    </div>
+  </div>
+</div>
+
+      <div data-v-3bc85c72="" class="login-footer"><!----> <div data-v-3bc85c72="" class="open-app"><a data-v-3bc85c72="">登录</a> <b data-v-3bc85c72="">|</b> <a data-v-3bc85c72="">打开App</a> <b data-v-3bc85c72="">|</b> <a data-v-3bc85c72="" href="http://www.jianshu.com/?utm_medium=bottom-link-index&amp;utm_source=mobile">热门文章</a></div> <!----></div>
+    <script type="application/json" data-name="page-data">{"user_signed_in":false,"locale":"zh-CN","os":"android","note":{"is_author":false,"author":{"nickname":"JellyCai"}}}</script>
+    <!-- AppOpener -->
+      <div data-app-opener-downloader="" class="download-tip" style="display: none;">
+    <div class="modal">
+      <h3>快去下载最新简书 App 吧~</h3>
+      <div class="btn">稍后下载</div>
+      <a class="btn btn-red" href="https://downloads.jianshu.io/apps/haruki/JianShu-2.1.0.apk">立即下载</a>
+     </div>
+    <div class="mask"></div>
+  </div>
+
+  <div data-app-opener-weixin-helper="" class="open-in-app" style="display: none;">
+    <div class="modal">
+      <img src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/top-right-arrow-cd4cabac33996464fbd529f7500a0e7d.png" alt="Top right arrow">
+      <h3>请点击右上角的「···」按钮</h3>
+      <p>选择「在浏览器中打开」后再次尝试~</p>
+     </div>
+    <div class="mask"></div>
+  </div>
+
+    
+    
+    
+    <script src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/mobile-1a415137ad452682bfe3.js.下载"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35169517-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?0c0e9d9b1e7d617b3e6842e85b9fb068";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+  
+
+<iframe id="p_analyse_iframe" src="./Android快速去掉WebView上的烦人广告 - JellyCai - 简书_files/saved_resource.html" style="display: none;"></iframe><!----></body></html>
