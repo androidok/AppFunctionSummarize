@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.jianshu.com/p/47b1b4733e86 -->
+<html><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+
+  <!-- Start of Baidu Transcode -->
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="MobileOptimized" content="width">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="mobile-agent" content="format=html5;url=http://www.jianshu.com/p/47b1b4733e86">
+  <!-- End of Baidu Transcode -->
+
+    <meta name="description" content="闲来无事做了一个自定义的进度条，大致效果图如下：progressbar.gif废话不多说，下面直接上代码：自定义控件代码CircleProgressBar.java：publicclassCircleProgressBarextendsView{//画圆环的画笔privatePaintringPaint;//画字体的画笔privatePainttextPaint;//圆环颜色privatei...">
+
+  <meta name="360-site-verification" content="604a14b53c6b871206001285921e81d8">
+  <meta property="wb:webmaster" content="294ec9de89e7fadb">
+  <meta property="qc:admins" content="104102651453316562112116375">
+  <meta property="qc:admins" content="11635613706305617">
+  <meta property="qc:admins" content="1163561616621163056375">
+  <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4">
+  <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI">
+  <meta http-equiv="mobile-agent" content="format=html5; url=http://www.jianshu.com/p/47b1b4733e86">
+
+  <!-- Apple -->
+  <meta name="apple-mobile-web-app-title" content="简书">
+
+    <!--  Meta for Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=888237539, app-argument=jianshu://notes/4789760">
+  <!-- End -->
+
+  <!--  Meta for Twitter Card -->
+  <meta content="summary" property="twitter:card">
+  <meta content="@jianshucom" property="twitter:site">
+  <meta content="Android自定义圆形ProgressBar" property="twitter:title">
+  <meta content="闲来无事做了一个自定义的进度条，大致效果图如下：progressbar.gif废话不多说，下面直接上代码：自定义控件代码CircleProgressBar.java：publicclassCircleProgressBarextendsView{//画圆环的画笔privatePaintringPaint;//画字体的画笔privatePainttextPaint;//圆环颜色privateintringColor;//字体颜色pri..." property="twitter:description">
+  <meta content="http://www.jianshu.com/p/47b1b4733e86" property="twitter:url">
+  <!-- End -->
+
+  <!--  Meta for OpenGraph -->
+  <meta property="fb:app_id" content="865829053512461">
+  <meta property="og:site_name" content="简书">
+  <meta property="og:title" content="Android自定义圆形ProgressBar">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://www.jianshu.com/p/47b1b4733e86">
+  <meta property="og:description" content="闲来无事做了一个自定义的进度条，大致效果图如下：progressbar.gif废话不多说，下面直接上代码：自定义控件代码CircleProgressBar.java：publicclassCir...">
+  <!-- End -->
+
+  <!--  Meta for Facebook Applinks -->
+  <meta property="al:ios:url" content="jianshu://notes/4789760">
+  <meta property="al:ios:app_store_id" content="888237539">
+  <meta property="al:ios:app_name" content="简书">
+
+  <meta property="al:android:url" content="jianshu://notes/4789760">
+  <meta property="al:android:package" content="com.jianshu.haruki">
+  <meta property="al:android:app_name" content="简书">
+  <!-- End -->
+
+
+    <title>Android自定义圆形ProgressBar - 简书</title>
+
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="BcCq7xTQynCB75U6Hin8UmXENNx64Xe+7CCnBS5KB89buvY8IoK9LRiX0ry6PY2u4k7/+qc/Ego/BHUEiJvxJw==">
+
+  <link rel="stylesheet" media="all" href="./Android自定义圆形ProgressBar - 简书_files/web-b8d32280710fa11789b5.css">
+  
+  <link rel="stylesheet" media="all" href="./Android自定义圆形ProgressBar - 简书_files/entry-b8d32280710fa11789b5.css">
+
+  <link href="http://cdn2.jianshu.io/assets/favicons/favicon-783beb88ed621ceab614de960376ac0c.ico" rel="icon">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/57-47624b2e2161e8eb144462c85db0a5ff.png" sizes="57x57">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/72-c00cde7cf98fc49e50cbb3ee1dcd5804.png" sizes="72x72">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/76-e8af0bdeaf1ba31e303b1fde8b5e66c4.png" sizes="76x76">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/114-f4c78569bbf1977e8382a5fd90c9237a.png" sizes="114x114">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/120-cf10c3711dba269522743729efe66bbc.png" sizes="120x120">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/152-7bd60457b5f3ecbf1343f0e6241be4f8.png" sizes="152x152">
+<link rel="stylesheet" href="blob:http://www.jianshu.com/1f3febaf-144b-4cb7-814f-caef6d022c00"></head>
+
+  <body lang="zh-CN" class="reader-black-font">
+    <!-- 全局顶部导航栏 -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="width-limit">
+    <!-- 左上方 Logo -->
+    <a class="logo" href="http://www.jianshu.com/"><img src="./Android自定义圆形ProgressBar - 简书_files/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo"></a>
+
+    <!-- 右上角 -->
+      <!-- 未登录显示登录/注册/写文章 -->
+      <a class="btn write-btn" target="_blank" href="http://www.jianshu.com/writer#/">
+        <i class="iconfont ic-write"></i>写文章
+</a>      <a class="btn sign-up" href="http://www.jianshu.com/sign_up">注册</a>
+      <a class="btn log-in" href="http://www.jianshu.com/sign_in">登录</a>
+
+    <!-- 如果用户登录，显示下拉菜单 -->
+
+    <div class="style-mode"><a class="style-mode-btn"><i class="iconfont ic-navigation-mode"></i></a> <div class="popover-modal" style="left: 0px; display: none;"><div class="meta"><i class="iconfont ic-navigation-night"></i><span>夜间模式</span></div> <div class="switch day-night-group"><a class="switch-btn">开</a> <a class="switch-btn active">关</a></div> <hr> <div class="switch font-family-group"><a class="switch-btn font-song">宋体</a> <a class="switch-btn font-hei active">黑体</a></div> <div class="switch"><a class="switch-btn active">简</a> <a class="switch-btn">繁</a></div></div></div>
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="nav navbar-nav">
+            <li class="">
+              <a href="http://www.jianshu.com/">
+                <span class="menu-text">首页</span><i class="iconfont ic-navigation-discover menu-icon"></i>
+</a>            </li>
+            <li class="">
+              <a class="app-download-btn" href="http://www.jianshu.com/apps"><span class="menu-text">下载App</span><i class="iconfont ic-navigation-download menu-icon"></i></a>
+            </li>
+          <li class="search">
+            <form target="_blank" action="http://www.jianshu.com/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+              <input type="text" name="q" id="q" value="" autocomplete="off" placeholder="搜索" class="search-input">
+              <a class="search-btn" href="javascript:void(null)"><i class="iconfont ic-search"></i></a>
+</form>          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+    
+<div class="note">
+  <div class="post">
+    <div class="article">
+        <h1 class="title">Android自定义圆形ProgressBar</h1>
+
+        <!-- 作者区域 -->
+        <div class="author">
+          <a class="avatar" href="http://www.jianshu.com/u/0368f475f2d9">
+            <img src="./Android自定义圆形ProgressBar - 简书_files/d5d02a0a506f.jpg" alt="144">
+</a>          <div class="info">
+            <span class="tag">作者</span>
+            <span class="name"><a href="http://www.jianshu.com/u/0368f475f2d9">iflymoon</a></span>
+            <!-- 关注用户按钮 -->
+            <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+            <!-- 文章数据信息 -->
+            <div class="meta">
+              <!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
+                <span class="publish-time">2016.07.14 11:06</span>
+              <span class="wordage">字数 657</span>
+            <span class="views-count">阅读 1218</span><span class="comments-count">评论 2</span><span class="likes-count">喜欢 10</span></div>
+          </div>
+          <!-- 如果是当前作者，加入编辑按钮 -->
+        </div>
+        <!-- -->
+
+        <!-- 文章内容 -->
+        <div data-note-content="" class="show-content">
+          <p>闲来无事做了一个自定义的进度条，大致效果图如下：<br></p><div class="image-package">
+<img src="./Android自定义圆形ProgressBar - 简书_files/2456775-20843c8584016318.gif" data-original-src="http://upload-images.jianshu.io/upload_images/2456775-20843c8584016318.gif?imageMogr2/auto-orient/strip" style="cursor: zoom-in;"><br><div class="image-caption">progressbar.gif</div>
+</div><p><br>废话不多说，下面直接上代码：<br>自定义控件代码CircleProgressBar.java：</p>
+<pre class="hljs undefined"><code>public class CircleProgressBar extends View{   
+  // 画圆环的画笔   
+  private Paint ringPaint;   
+  // 画字体的画笔   
+  private Paint textPaint;   
+  // 圆环颜色   
+  private int ringColor;   
+  // 字体颜色   
+  private int textColor;   
+  // 半径   
+  private float radius;   
+  // 圆环宽度   
+  private float strokeWidth;   
+  // 字的长度   
+  private float txtWidth;   
+  // 字的高度   
+  private float txtHeight;   
+  // 总进度   
+  private int totalProgress = 100;   
+  // 当前进度   
+  private int currentProgress;   
+  // 透明度   private int alpha = 25;      
+
+  public CircleProgressBar(Context context, AttributeSet attrs) {      
+    super(context, attrs);      
+    initAttrs(context, attrs);      
+    initVariable();   
+  }   
+
+  private void initAttrs(Context context, AttributeSet attrs) {      
+    TypedArray typeArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.CircleProgressbar, 0 , 0);      
+    radius = typeArray.getDimension(R.styleable.CircleProgressbar_radius, 80);      
+    strokeWidth = typeArray.getDimension(R.styleable.CircleProgressbar_strokeWidth, 10);
+    ringColor = typeArray.getColor(R.styleable.CircleProgressbar_ringColor, 0xFF0000);
+    textColor = typeArray.getColor(R.styleable.CircleProgressbar_textColor, 0xFFFFFF);   
+  }      
+
+  private void initVariable() {      
+    ringPaint = new Paint();      
+    ringPaint.setAntiAlias(true);      
+    ringPaint.setDither(true);      
+    ringPaint.setColor(ringColor);      
+    ringPaint.setStyle(Paint.Style.STROKE);      
+    ringPaint.setStrokeCap(Cap.ROUND);      
+    ringPaint.setStrokeWidth(strokeWidth);            
+    textPaint = new Paint();      
+    textPaint.setAntiAlias(true);      
+    textPaint.setStyle(Paint.Style.FILL);      
+    textPaint.setColor(textColor);      
+    textPaint.setTextSize(radius/2);      
+    FontMetrics fm = textPaint.getFontMetrics();      
+    txtHeight = fm.descent + Math.abs(fm.ascent);   
+  }   
+
+  @Override   
+  protected void onDraw(Canvas canvas) {      
+    if (currentProgress &gt;= 0) {         
+      ringPaint.setAlpha((int) (alpha + ((float) currentProgress / totalProgress)*230));
+      RectF oval = new RectF(getWidth() / 2 - radius, getHeight() / 2 - radius, getWidth() / 2 + radius, getHeight() / 2 + radius);         
+      canvas.drawArc(oval, 0, 0, false, ringPaint);         
+      canvas.drawArc(oval, -90, ((float) currentProgress / totalProgress) * 360, false, ringPaint);          
+      String txt = currentProgress + "%";         
+      txtWidth = textPaint.measureText(txt, 0, txt.length());         
+      canvas.drawText(txt, getWidth() / 2 - txtWidth / 2, getHeight() / 2 + txtHeight / 4, textPaint);
+    }   
+  }      
+
+  public void setProgress(int progress) {      
+    currentProgress = progress;      
+    postInvalidate();   
+  }   
+}</code></pre>
+<p>自定义控件的属性文件attrs.xml：</p>
+<pre class="hljs undefined"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;        
+  &lt;declare-styleable name="CircleProgressbar"&gt;        
+    &lt;attr name="radius" format="dimension"/&gt;        
+    &lt;attr name="strokeWidth" format="dimension"/&gt;        
+    &lt;attr name="ringColor" format="color"/&gt;        
+    &lt;attr name="textColor" format="color"/&gt;    
+  &lt;/declare-styleable&gt;    
+&lt;/resources&gt;</code></pre>
+<p>下面是主界面的布局文件和具体实现：<br>布局activity_main.xml：</p>
+<pre class="hljs undefined"><code>&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:cp="http://schemas.android.com/apk/res-auto"    
+  android:layout_width="match_parent"    
+  android:layout_height="match_parent"&gt;    
+  &lt;me.my.circleprogressbar.CircleProgressBar        
+    android:id="@+id/circleProgressbar"        
+    android:layout_width="wrap_content"        
+    android:layout_height="wrap_content"        
+    android:layout_centerInParent="true"        
+    cp:radius="80dp"        
+    cp:strokeWidth="10dp"        
+    cp:ringColor="#ff0000"        
+    cp:textColor="#0000ff"/&gt;
+&lt;/RelativeLayout&gt;</code></pre>
+<p>实现MainActivity.java：</p>
+<pre class="hljs undefined"><code>public class MainActivity extends Activity {    
+  private CircleProgressBar circleProgressBar;    
+  private int totalProgress = 100;    
+  private int currentProgress;    
+
+  @Override    
+  protected void onCreate(Bundle savedInstanceState) {        
+    super.onCreate(savedInstanceState);        
+    setContentView(R.layout.activity_main);        
+    circleProgressBar = (CircleProgressBar) findViewById(R.id.circleProgressbar);        
+    new Thread(new ProgressRunable()).start();    
+  }    
+
+  class ProgressRunable implements Runnable {        
+    @Override        
+    public void run() {            
+      while (currentProgress &lt; totalProgress) {                
+        currentProgress += 1;                
+        circleProgressBar.setProgress(currentProgress);                
+        try {                    
+          Thread.sleep(100);                
+        } catch (Exception e) {                    
+          e.printStackTrace();                
+        }            
+      }        
+    }    
+  }
+}</code></pre>
+<p>其实实现非常简单，就是通过进度画圆环，具体的我也就不多说了，代码中有不足之处希望大家批评指正，共同学习！</p>
+
+        </div>
+        <!--  -->
+
+        <div class="show-foot">
+          <a class="notebook" href="http://www.jianshu.com/nb/5082630">
+            <i class="iconfont ic-search-notebook"></i> <span>Android随笔</span>
+</a>          <div class="copyright" data-toggle="tooltip" data-html="true" data-original-title="转载请联系作者获得授权，并标注“简书作者”。">
+            © 著作权归作者所有
+          </div>
+          <div class="modal-wrap" data-report-note="">
+            <a id="report-modal">举报文章</a>
+          </div>
+        </div>
+    </div>
+
+    <!-- 文章底部作者信息 -->
+      <div class="follow-detail">
+        <div class="info">
+          <a class="avatar" href="http://www.jianshu.com/u/0368f475f2d9">
+            <img src="./Android自定义圆形ProgressBar - 简书_files/d5d02a0a506f.jpg" alt="144">
+</a>          <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+          <a class="title" href="http://www.jianshu.com/u/0368f475f2d9">iflymoon</a>
+            <i class="iconfont ic-man"></i>
+        <p>写了 11434 字，被 22 人关注，获得了 120 个喜欢</p></div>
+          <div class="signature">一个Android菜鸟</div>
+      </div>
+
+      <div class="support-author"></div>
+
+    <div class="meta-bottom">
+      <div class="like"><div class="btn like-group"><div class="btn-like"><a href="http://www.jianshu.com/sign_in?utm_source=desktop&amp;utm_medium=not-signed-in-like-button"><i class="iconfont ic-like"></i>喜欢</a></div> <div class="modal-wrap"><a>10</a></div></div> <!----></div>
+      <div class="share-group">
+        <a class="share-circle" data-action="weixin-share" data-toggle="tooltip" data-original-title="分享到微信">
+          <i class="iconfont ic-wechat"></i>
+        </a>
+        <a class="share-circle" data-action="weibo-share" data-toggle="tooltip" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/4789760/weibo/image_e3d0bbe3558b.jpg&#39;, &#39;推荐 iflymoon 的文章《Android自定义圆形ProgressBar》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/47b1b4733e86?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));" data-original-title="分享到微博">
+          <i class="iconfont ic-weibo"></i>
+        </a>
+          <a class="share-circle" data-toggle="tooltip" href="http://cwb.assets.jianshu.io/notes/images/4789760/weibo/image_e3d0bbe3558b.jpg" target="_blank" data-original-title="下载长微博图片">
+            <i class="iconfont ic-picture"></i>
+          </a>
+        <a class="share-circle more-share" tabindex="0" data-toggle="popover" data-placement="top" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="
+          &lt;ul class=&quot;share-list&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/47b1b4733e86?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 iflymoon 的文章《Android自定义圆形ProgressBar》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-zone&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/47b1b4733e86?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 iflymoon 的文章《Android自定义圆形ProgressBar》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-twitter&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/47b1b4733e86?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-facebook&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/47b1b4733e86?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-google&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/47b1b4733e86?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;Android自定义圆形ProgressBar&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-douban&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        " data-original-title="" title="">更多分享</a>
+      </div>
+    </div>
+    <div id="vue_comment"></div>
+  </div>
+
+  <div class="side-tool"><ul><li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="回到顶部" style=""><a class="function-button"><i class="iconfont ic-backtop"></i></a></li> <!----> <!----> <li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="分享文章"><a tabindex="0" role="button" data-toggle="popover" data-placement="left" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="&lt;ul class=&#39;share-list&#39;&gt;
+                &lt;li&gt;&lt;a class=&quot;weixin-share&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-weixin&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到微信&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/4789760/weibo/image_e3d0bbe3558b.jpg&#39;, &#39;推荐 iflymoon 的文章《Android自定义圆形ProgressBar》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/47b1b4733e86?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-weibo&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到微博&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;http://cwb.assets.jianshu.io/notes/images/4789760/weibo/image_e3d0bbe3558b.jpg&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-picture&quot;&gt;&lt;/i&gt;&lt;span&gt;下载长微博图片&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/47b1b4733e86?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 iflymoon 的文章《Android自定义圆形ProgressBar》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-zone&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/47b1b4733e86?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 iflymoon 的文章《Android自定义圆形ProgressBar》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-twitter&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/47b1b4733e86?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-facebook&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/47b1b4733e86?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-google&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/47b1b4733e86?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;Android自定义圆形ProgressBar&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-douban&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;" data-original-title="" title="" class="function-button"><i class="iconfont ic-share"></i></a> <!----></li></ul></div>
+</div>
+<div class="note-bottom">
+  <div><div class="main"><div class="title">被以下专题收入，发现更多相似内容</div> <!----> <div class="include-collection"><!----> <a href="http://www.jianshu.com/c/5139d555c94d?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android自定义圆形ProgressBar - 简书_files/1416528891_3612.png"><div class="name">Android...</div></a><a href="http://www.jianshu.com/c/908d710faefe?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android自定义圆形ProgressBar - 简书_files/1458412659.jpg"><div class="name">移动开发</div></a><a href="http://www.jianshu.com/c/eb89ff8ade29?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android自定义圆形ProgressBar - 简书_files/ic_launcher.png"><div class="name">Android程序猿</div></a><a href="http://www.jianshu.com/c/0dc880a2c73c?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android自定义圆形ProgressBar - 简书_files/ff55916a6a0c2db84ebb1ffdcef539dd.png"><div class="name">Android开发</div></a><a href="http://www.jianshu.com/c/6b993c50a739?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./Android自定义圆形ProgressBar - 简书_files/806261e232b5f2b6e5ff3406760dc126.jpeg"><div class="name">自定义view</div></a> <!----></div></div> <!----> <!----></div>
+  <div data-vcomp="recommended-notes" data-note-id="4789760"></div>
+</div>
+
+    <script src="./Android自定义圆形ProgressBar - 简书_files/push.js.下载"></script><script src="./Android自定义圆形ProgressBar - 简书_files/hm.js.下载"></script><script async="" src="./Android自定义圆形ProgressBar - 简书_files/analytics.js.下载"></script><script type="application/json" data-name="page-data">{"user_signed_in":false,"locale":"zh-CN","os":"windows","read_mode":"day","read_font":"font2","note_show":{"is_author":false,"is_following_author":false,"is_liked_note":false,"uuid":"0cae08fd-7406-436b-b2ff-04270b30c441"},"note":{"id":4789760,"slug":"47b1b4733e86","user_id":2456775,"notebook_id":5082630,"commentable":true,"likes_count":10,"views_count":1218,"public_wordage":657,"comments_count":2,"total_rewards_count":0,"is_author":false,"author":{"nickname":"iflymoon","total_wordage":11434,"followers_count":22,"total_likes_count":120}}}</script>
+    
+    <script src="./Android自定义圆形ProgressBar - 简书_files/babel-polyfill-edd4242643dcecaa8f83.js.下载"></script>
+    <script src="./Android自定义圆形ProgressBar - 简书_files/web-base-b8d32280710fa11789b5.js.下载"></script>
+<script src="./Android自定义圆形ProgressBar - 简书_files/web-499c6f2f481699d2ce98.js.下载"></script>
+    
+    <script src="./Android自定义圆形ProgressBar - 简书_files/entry-728fbe82ab70179cf588.js.下载"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35169517-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?0c0e9d9b1e7d617b3e6842e85b9fb068";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+  
+
+<!----><!----></body></html>

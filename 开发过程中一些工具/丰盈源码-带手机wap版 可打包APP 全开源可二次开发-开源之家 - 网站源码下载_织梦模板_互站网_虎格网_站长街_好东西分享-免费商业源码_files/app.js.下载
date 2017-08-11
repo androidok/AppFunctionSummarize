@@ -1,0 +1,1 @@
+<script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8" homePageUrl="/" homePageName="&#x56de;&#x5230;&#x6211;&#x7684;&#x4e3b;&#x9875;"></script>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://www.cnblogs.com/whm-blog/p/7042617.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Android  远程连接数据库。。。。。 - 正义的伙伴！ - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Android 远程连接数据库。。。。。 - 正义的伙伴！ - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Android 远程连接数据库。。。。。 - 正义的伙伴！ - 博客园_files/bundle-darkgreentrip.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./Android 远程连接数据库。。。。。 - 正义的伙伴！ - 博客园_files/bundle-darkgreentrip-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/whm-blog/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/whm-blog/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/whm-blog/wlwmanifest.xml">
+<script async="" src="./Android 远程连接数据库。。。。。 - 正义的伙伴！ - 博客园_files/analytics.js.下载"></script><script type="text/javascript" src="./Android 远程连接数据库。。。。。 - 正义的伙伴！ - 博客园_files/encoder.js.下载"></script><script src="./Android 远程连接数据库。。。。。 - 正义的伙伴！ - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'whm-blog', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Android 远程连接数据库。。。。。 - 正义的伙伴！ - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/whm-blog/"><img id="blogLogo" src="./Android 远程连接数据库。。。。。 - 正义的伙伴！ - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/whm-blog/">正义的伙伴！</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/whm-blog/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E6%AD%A3%E4%B9%89%E7%9A%84%E4%BC%99%E4%BC%B4%EF%BC%81">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/whm-blog/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/whm-blog/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 105&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 1</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/whm-blog/p/7042617.html">Android  远程连接数据库。。。。。</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p><img src="./Android 远程连接数据库。。。。。 - 正义的伙伴！ - 博客园_files/1179512-20170618004343415-1403097908.png" alt="" width="398" height="198">本来是 6.0.6 &nbsp;换成mysql 5.1.14 驱动ok。。。。</p>
+<p><img src="./Android 远程连接数据库。。。。。 - 正义的伙伴！ - 博客园_files/1179512-20170618004436290-395423633.png" alt="" width="503" height="191">将方法 放在 new Thread() 解决。。。。。</p>
+<p><img src="./Android 远程连接数据库。。。。。 - 正义的伙伴！ - 博客园_files/1179512-20170618004523165-1693268116.png" alt="" width="603" height="213">只能在主线程绘制ui。。。。</p>
+<p>解决办法。。。<br>子Thread 获取数据后,将绘制ui代码放到Handler.post中执行</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android 远程连接数据库。。。。。 - 正义的伙伴！ - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>代码----
+
+<span style="color: #0000ff">package</span><span style="color: #000000"> com.example.administrator.demo1;
+
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> android.os.Handler;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> android.support.v7.app.AlertDialog;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> android.support.v7.app.AppCompatActivity;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> android.os.Bundle;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> android.util.AttributeSet;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> android.view.View;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> android.widget.FrameLayout;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> android.widget.LinearLayout;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> android.widget.TabHost;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> android.widget.TabWidget;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> android.widget.TextView;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> android.widget.Toast;
+
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> org.whm.db.DbUtils;
+
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> java.util.ArrayList;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> java.util.List;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> java.util.Map;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> java.util.Objects;
+</span><span style="color: #0000ff">import</span><span style="color: #000000"> java.util.jar.Attributes;
+
+</span><span style="color: #0000ff">public</span> <span style="color: #0000ff">class</span> MainActivity <span style="color: #0000ff">extends</span><span style="color: #000000"> AppCompatActivity {
+
+    </span><span style="color: #008000">//</span><span style="color: #008000">钩子线程</span>
+    Handler handler = <span style="color: #0000ff">null</span><span style="color: #000000">;
+
+    @Override
+    </span><span style="color: #0000ff">protected</span> <span style="color: #0000ff">void</span><span style="color: #000000"> onCreate(Bundle savedInstanceState) {
+        </span><span style="color: #0000ff">super</span><span style="color: #000000">.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        </span><span style="color: #008000">//</span><span style="color: #008000"> Example of a call to a native method
+        </span><span style="color: #008000">//</span><span style="color: #008000">TextView tv = (TextView) findViewById(R.id.tabhost);
+        </span><span style="color: #008000">//</span><span style="color: #008000"> tv.setText(stringFromJNI());</span>
+        TabHost tabHost =<span style="color: #000000"> (TabHost) findViewById(R.id.tabhost);
+        tabHost.setup();
+
+
+</span><span style="color: #008000">//</span><span style="color: #008000">        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.tabcontent);
+</span><span style="color: #008000">//</span><span style="color: #008000">        int childCount = frameLayout.getChildCount();</span>
+        LinearLayout l1 =<span style="color: #000000"> (LinearLayout) findViewById(R.id.tab1);
+        LinearLayout l2 </span>=<span style="color: #000000"> (LinearLayout) findViewById(R.id.tab2);
+
+        handler </span>= <span style="color: #0000ff">new</span><span style="color: #000000"> Handler();
+
+        </span><span style="color: #008000">//</span><span style="color: #008000">在lambda中尽量不要抛出异常。。。。</span>
+        <span style="color: #0000ff">new</span> Thread(() -&gt;<span style="color: #000000"> {
+            List</span>&lt;Map&lt;String, Object&gt;&gt; list =<span style="color: #000000"> getData(l1);
+            handler.post(</span><span style="color: #0000ff">new</span> Thread(() -&gt;<span style="color: #000000"> {
+                darwView(list, l1);
+            }));
+        }).start();
+
+
+        TabHost.TabSpec tabSpec1 </span>= tabHost.newTabSpec("tabSpec1").setIndicator("视频"<span style="color: #000000">).setContent(R.id.tab1);
+        TabHost.TabSpec tabSpec2 </span>= tabHost.newTabSpec("tabSpec2").setIndicator("直播"<span style="color: #000000">).setContent(R.id.tab2);
+
+
+        tabHost.addTab(tabSpec1);
+        tabHost.addTab(tabSpec2);
+
+
+    }
+
+    </span><span style="color: #008000">/**</span><span style="color: #008000">
+     * A native method that is implemented by the 'native-lib' native library,
+     * which is packaged with this application.
+     </span><span style="color: #008000">*/</span>
+    <span style="color: #0000ff">public</span> <span style="color: #0000ff">native</span><span style="color: #000000"> String stringFromJNI();
+
+
+    </span><span style="color: #008000">//</span><span style="color: #008000">从远程服务器获取数据</span>
+    <span style="color: #0000ff">private</span> List&lt;Map&lt;String, Object&gt;&gt;<span style="color: #000000"> getData(LinearLayout l) {
+        List</span>&lt;Map&lt;String, Object&gt;&gt; list = <span style="color: #0000ff">null</span><span style="color: #000000">;
+        </span><span style="color: #0000ff">try</span><span style="color: #000000"> {
+            list </span>= DbUtils.execQuery("select * from video", <span style="color: #0000ff">null</span><span style="color: #000000">);
+        } </span><span style="color: #0000ff">catch</span><span style="color: #000000"> (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), </span>"发生了错误"<span style="color: #000000">, Toast.LENGTH_LONG).show();
+        }
+        </span><span style="color: #0000ff">return</span><span style="color: #000000"> list;
+
+    }
+
+
+    </span><span style="color: #008000">//</span><span style="color: #008000">绘制ui</span>
+    <span style="color: #0000ff">private</span> <span style="color: #0000ff">void</span> darwView(List&lt;Map&lt;String, Object&gt;&gt;<span style="color: #000000"> list, LinearLayout view) {
+        list.forEach((map) </span>-&gt;<span style="color: #000000"> {
+            TextView tv </span>= <span style="color: #0000ff">new</span><span style="color: #000000"> TextView(getApplicationContext());
+            tv.setText((String) map.get(</span>"title"<span style="color: #000000">));
+            view.addView(tv);
+        });
+    }
+
+
+    </span><span style="color: #008000">//</span><span style="color: #008000"> Used to load the 'native-lib' library on application startup.</span>
+    <span style="color: #0000ff">static</span><span style="color: #000000"> {
+        System.loadLibrary(</span>"native-lib"<span style="color: #000000">);
+    }
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android 远程连接数据库。。。。。 - 正义的伙伴！ - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/whm-blog/category/1017646.html" target="_blank">Android</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(7042617,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;eb523f57-8b4c-4c0a-e268-08d49c352df2&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Android 远程连接数据库。。。。。 - 正义的伙伴！ - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Android 远程连接数据库。。。。。 - 正义的伙伴！ - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/whm-blog/" target="_blank"><img src="./Android 远程连接数据库。。。。。 - 正义的伙伴！ - 博客园_files/sample_face.gif" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/whm-blog/">正义的伙伴！</a><br>
+            <a href="http://home.cnblogs.com/u/whm-blog/followees">关注 - 0</a><br>
+            <a href="http://home.cnblogs.com/u/whm-blog/followers">粉丝 - 0</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;eb523f57-8b4c-4c0a-e268-08d49c352df2&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(7042617,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(7042617,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/whm-blog/p/7041342.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/whm-blog/p/7041342.html" title="发布于2017-06-17 21:05">Android Studio 配置</a><br><a href="http://www.cnblogs.com/whm-blog/p/7047265.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/whm-blog/p/7047265.html" title="发布于2017-06-19 09:27">freemarker  ! 用法</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2017-06-18 00:47</span> <a href="http://www.cnblogs.com/whm-blog/">正义的伙伴！</a> 阅读(<span id="post_view_count">87</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=7042617" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/whm-blog/p/7042617.html#" onclick="AddToWz(7042617);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=360330,cb_entryId=7042617,cb_blogApp=currentBlogApp,cb_blogUserGuid='eb523f57-8b4c-4c0a-e268-08d49c352df2',cb_entryCreatedDate='2017/6/18 0:47:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/whm-blog/p/7042617.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/whm-blog/p/7042617.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://www.jiguang.cn/devservice?bky" target="_blank">【推荐】极光开发者服务平台，五大功能一站集齐</a><br><a href="http://click.aliyun.com/m/18488/" target="_blank">【推荐】阿里云“全民云计算”优惠升级</a><br><a href="https://cloud.tencent.com/developer/labs?fromSource=gwzcw.330910.330910.330910" target="_blank">【推荐】一小时搭建人工智能应用，让技术更容易入门</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://click.aliyun.com/m/26126/" target="_blank"><img width="300" height="250" src="./Android 远程连接数据库。。。。。 - 正义的伙伴！ - 博客园_files/24442-20170718132533661-166801094.jpg" alt="阿里云0718"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/575416/" target="_blank">京津冀高铁首次演示超高速Wi-Fi技术，平均传输带宽可达150Mbps</a><br> ·  <a href="http://news.cnblogs.com/n/575414/" target="_blank">不成熟的自动驾驶系统反而推高了事故率 保险业不愿意了</a><br> ·  <a href="http://news.cnblogs.com/n/575413/" target="_blank">乐视讨债人不敢回家：我回去了，工人会要求结工资</a><br> ·  <a href="http://news.cnblogs.com/n/575412/" target="_blank">32亿《战狼2》是如何炼成的？</a><br> ·  <a href="http://news.cnblogs.com/n/575411/" target="_blank">“非洲小孩举牌”广告儿童只能获零食或几元钱，淘宝称将查处</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice?source=bky&amp;hmsr=%E5%8D%9A%E5%AE%A2%E5%9B%AD&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank"><img width="468" height="60" src="./Android 远程连接数据库。。。。。 - 正义的伙伴！ - 博客园_files/24442-20170629165247758-2056260207.png" alt="极光推广_0701"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/574767/" target="_blank">编写Shell脚本的最佳实践</a><br> ·  <a href="http://kb.cnblogs.com/page/571915/" target="_blank">为什么你该开始学习编程了？</a><br> ·  <a href="http://kb.cnblogs.com/page/570194/" target="_blank">小printf的故事：什么是真正的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/569992/" target="_blank">程序员的工作、学习与绩效</a><br> ·  <a href="http://kb.cnblogs.com/page/569056/" target="_blank">软件开发为什么很难</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/whm-blog/">正义的伙伴！</a><br>园龄：<a href="http://home.cnblogs.com/u/whm-blog/" title="入园时间：2017-06-08">1个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/whm-blog/followers/">0</a><br>关注：<a href="http://home.cnblogs.com/u/whm-blog/followees/">0</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;eb523f57-8b4c-4c0a-e268-08d49c352df2&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/07/01&#39;);return false;">&lt;</a></td><td align="center">2017年8月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/09/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center"><a href="http://www.cnblogs.com/whm-blog/archive/2017/08/01.html"><u>1</u></a></td><td align="center"><a href="http://www.cnblogs.com/whm-blog/archive/2017/08/02.html"><u>2</u></a></td><td align="center"><a href="http://www.cnblogs.com/whm-blog/archive/2017/08/03.html"><u>3</u></a></td><td align="center"><a href="http://www.cnblogs.com/whm-blog/archive/2017/08/04.html"><u>4</u></a></td><td class="CalWeekendDay" align="center">5</td></tr><tr><td class="CalWeekendDay" align="center">6</td><td class="CalTodayDay" align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td class="CalWeekendDay" align="center">12</td></tr><tr><td class="CalWeekendDay" align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td class="CalWeekendDay" align="center">19</td></tr><tr><td class="CalWeekendDay" align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td class="CalWeekendDay" align="center">26</td></tr><tr><td class="CalWeekendDay" align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td></tr><tr><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/whm-blog/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/whm-blog/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/whm-blog/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/whm-blog/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/whm-blog/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/whm-blog/category/1017646.html">Android(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/whm-blog/category/1031925.html">C#(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/whm-blog/category/1019488.html">django(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/whm-blog/category/1017645.html">Html(18)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/whm-blog/category/1017647.html">Java(31)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/whm-blog/category/1018259.html">linux(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/whm-blog/category/1033392.html">maven(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/whm-blog/category/1045501.html">mybatis(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/whm-blog/category/1046915.html">mysql(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/whm-blog/category/1027878.html">php(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/whm-blog/category/1033459.html">spring(15)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/whm-blog/category/1042671.html">spring boot(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/whm-blog/category/1018813.html">sublime(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/whm-blog/category/1018212.html">心情(2)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/whm-blog/archive/2017/08.html">2017年8月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/whm-blog/archive/2017/07.html">2017年7月 (52)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/whm-blog/archive/2017/06.html">2017年6月 (39)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/whm-blog/p/7094588.html#3725388">1. Re:view js 实现 树形菜单</a></li>
+        <li class="recent_comment_body">666</li>
+        <li class="recent_comment_author">--正义的伙伴！</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/whm-blog/p/7000478.html">1. 使用spring,pageHelper ，注解完成分页。(110)</a></li><li><a href="http://www.cnblogs.com/whm-blog/p/7042617.html">2. Android  远程连接数据库。。。。。(87)</a></li><li><a href="http://www.cnblogs.com/whm-blog/p/7120271.html">3. sublime中正则替换(77)</a></li><li><a href="http://www.cnblogs.com/whm-blog/p/7122461.html">4. freemarker 遍历树形菜单(71)</a></li><li><a href="http://www.cnblogs.com/whm-blog/p/7089500.html">5. eclipse gradle 找不到依赖解决办法(71)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/whm-blog/p/7094588.html">1. vue js 实现 树形菜单(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap" style="display: none;">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 正义的伙伴！
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

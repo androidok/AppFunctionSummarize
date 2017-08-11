@@ -1,0 +1,73 @@
+/**
+ * GLOBAL ROOT (DO NOT CHANGE)
+ */
+$.root_ = $('body');
+
+/**
+ * 监听超连接,
+ * 如果用户未登陆就提示登陆，
+ * 登陆了就不做处理
+ */
+jQuery(document).on('click', 'a[data-target^=auth]', function (e) {
+    if (UserID < 1) {
+        show_login_box();
+        return false;
+    }
+});
+
+jQuery(document).on('click', 'button[data-target^=recommend]', function (e) {
+    e.preventDefault();
+    var d = jQuery(this);
+    if (UserID < 1) {
+        show_login_box();
+        return false;
+    } else {
+        jQuery.ajax({
+            url: d.data('url'),
+            success: function(data) {
+                d.html('已推荐').css("color","#888");
+            },
+            error: function (XMLHttpRequest, textStatus) {
+
+            }
+        });
+    }
+});
+
+/**
+ * alert显示
+ */
+jQuery(document).on('click', '[data-target^=alert]', function (e) {
+    var d = dialog({
+        title: 'Codeforge 提示',
+        id: 'addfav',
+        content: $(this).data('content'),
+        width: 360,
+        padding: '60px 25px',
+        //okValue: '朕知道了！',
+        /*ok: function () {
+         return false;
+         }*/
+    });
+    d.show();
+    setTimeout(function () {
+        d.close().remove();
+    }, $(this).data('time') * 3000);
+});
+
+/**
+ * Ajax在模态框里加载
+ */
+jQuery(document).on('click', '[data-target^=modal]', function (e) {
+    dialog({
+        title: $(this).data('title'),
+        content: $(this).data('content'),
+        okValue: '确定',
+        ok: function () {
+
+            return false;
+        }
+
+    }).show();
+});
+

@@ -1,0 +1,43 @@
+.cnblogs_code pre {
+font-family: Courier New!important;
+font-size: 17px!important;
+word-wrap: break-word;
+white-space: pre-wrap;
+}
+
+.cnblogs_code span {
+font-family: Courier New!important;
+font-size: 17px!important;
+line-height: 1.5!important;
+}
+
+#mainContent {
+  background: none;
+  float: left;
+  overflow: visible;
+  text-overflow: ellipsis;
+  width: 1100px;
+  word-break: break-all;
+}
+
+#sideBar {
+  width: 260px;
+  margin-left: 20px;
+  float: left;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow: visible;
+  word-break: break-all;
+}
+
+#home {
+margin: 0 auto;
+width: 1400px;
+}
+
+#main {
+min-width: 1400px;
+text-align: left;
+clear: both;
+background: #fff;
+}

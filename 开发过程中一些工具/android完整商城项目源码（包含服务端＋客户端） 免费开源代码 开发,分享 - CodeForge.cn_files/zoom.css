@@ -1,0 +1,134 @@
+@media (min-width:1260px){ body{ overflow-x:hidden}}
+@media (max-width:1260px){#navigation,.footin,#content,.logobox,.topmenubox,.map-box,.e-box,.event_con,div.mwi-con,.d-tool-con{width:1000px}
+.gift-box .g-first-li{width: 49.8%}
+.gift-box li{width: 24.84%}
+ul.dn-link-box{ width:76%}
+.shop-con .code-info-p{ width:70%}
+.shop-con .entry .content_stat.c-info-tag{ width:28%}
+#content #content_left{width:730px;margin: 0 10px 0 0}
+div.d-tool-con ul{width:730px}
+div.cintro_con {width: 720px !important;}
+span.dl_file_name{ max-width:138px}
+#topDnLoad .dl_file_name {max-width: none;}
+form.bottom-form .cinput{width: 170px}
+#right_sidebar{width:228px}
+.ggadv,.progr{display:none}
+.btitle h2,.titlewrapper h4, #titlewrapper h4{font-size:19px}
+.toptit h2 span{width:700px}
+.review textarea{width:712px;max-width:712px}
+.tab1,.tab2,.tab3,.tab4{padding: 5px 0;min-width:50px}
+.adv1{background:none}
+.titlewrapper img, #titlewrapper img{width:26px}
+.uloginbox .searchinput{width:165px}
+.uloginbox .searchinput{width:135px\9;height:20px\9}
+.uloginbox li .loginuser,.uloginbox li .loginpsw{padding-left:5px\9;background:#fff\9}
+.uloginbox .captchapic{width:80px\9}
+.theme-popbod b, .uloginbox b{font-size:12px;width:50px}
+.uloginbox li .loginpsw.captcha,.uloginbox li .loginpsw.captcha:focus{width: 95px;width: 45px\9;height:20px\9;margin-right: 0;padding-left:5px}
+.captchapic{width:100px}
+.uloginbox li .loginsub{width:205px}
+rempsw a,.remem{font-size:10px}
+.cintro_con img{max-width:730px}
+.blog_header .logobox{width:1199px}
+.uinfo h3,.fans li .addto,.jobfirst_add .time-range span{font-size:16px !important}
+.blog_header .weiboxin{float:right}
+.yinfo{font-size:13px}
+.sendm{background-position:30% center}
+.honortag{background-position:40px 0}
+.privi .honortag{background-position: 122px 0}
+.pres .honortag{background-position: 228px 0}
+.pic_view{padding:15px 40px}
+.yinfo li em{display:none}
+.upnote{padding:8px 15px}
+.addcode_con .searchinput{width:50%}
+.yinfo li:first-child{margin-left: 2px}
+.weiboxin{display:none}
+.e-info-table{ width:478px; font-size:12px}
+.e-info-table th{padding: 3px 0; width: 18%}
+.qq-group{ font-size:12px}
+#l-map{ width:228px}
+.read_dtl #right_sidebar,.on_off_btn, .oob{display:none !important}
+#content.read_dtl #content_left{width:1000px !important}
+.bolg-fbox #content #content_left{width:100%}
+.enroll_con #content_left .e-info-table {padding: 20px 15%}
+#content_left .xmpll{width:60%}
+.ev-partner li {padding: 5px 2px;}
+}
+@media screen and (min-width: 1530px) and (max-width: 1599px){.control_btn{margin-right:5px}
+.jobfirst_add .time-range span{font-size:17px}}
+@media screen and (max-width: 1900px){.bolg-fbox .ggadv{display:none}
+.mylang{width:17%}
+.job_on i, .edu_on i{margin-right:12px}}
+@media screen and (max-width: 1529px){.control_btn{margin-right:5px}
+.control_btn img{width:20px}
+.control_btn li:first-child{margin-top: 18px}
+.pho_tip{font-size:12px}
+.pass-portrait li, .pass-portrait-more{width:60px;height:60px;line-height:60px}
+.jobfirst_add .time-range span{font-size:15px}
+.mylang{width:20%;font-size:12px}
+.addcode_con .searchinput{width:98%}
+.upnote{width:150px}
+.progr{display:none}
+.time-range{margin-left:15px}
+.job_on i, .edu_on i{margin-right:8px}
+.job_timeinput .cinput{width: 28.3%}
+.eduspan .dk_label{width: 90% !important}}
+@media screen and (max-width: 1366px){.timeword{margin:12px 10px 0 0}
+.jobform .cinput,.jobform .ctarea{width:88%;max-width:88%}
+.job_timeinput .cinput{width:42.3%}
+div .dk_toggle{padding: 11px 39px 11px 10px}
+.eduspan .dk_options a{padding: 4px 10px}
+.uptip{margin-top:10px}
+.upfile{width:620px}
+.bolg-fbox{margin: 10px 8px 10px 280px}
+.blog_left{width:260px !important}
+.uphotoa{width:25%;height:65px}
+.fanleft{margin-left:15px}
+.uinfo,.text-muted,.copbox a span{font-size:12px}
+.owner_info li a,.fans-heading a{font-size:14px}
+.owner_info .copbox li a{height:60px}
+.owner_info .copbox{height:145px}
+.uinfo ul li:last-child{margin:10px 0}
+.copbox a span{margin-top:8px}
+a.pull-left{margin: 0 5px 5px 0}
+.media-body{margin:0 0 10px 0}
+.navbar-wrapper li a{padding:0 10px;font-size:16px}}
+@media screen and (max-width: 1300px){.time-range span{padding:12px 8px}}
+@media screen and (max-width: 1024px){body ,#filediv table,.time-range span,.contact_ul dd,.infotable{font-size:12px}
+div.introduction{font-size:14px}
+#navigation, .footin, #content, .logobox, .topmenubox,.blog_header .logobox,.map-box,.e-box,.event_con,div.mwi-con,.d-tool-con{width:900px}
+.shop-con .code-info-p{ width:68%}
+.shop-con .entry .content_stat.c-info-tag{ width:31%}
+.e-info-table{ width:448px; padding:5px}
+#content_left .btitle.ep-title img{ width:200px}
+#content #content_left{width:650px}
+#content.read_dtl #content_left{width:900px !important}
+.adv1,.shake.shake-slow{display:none}
+#content_left .inpage_title{margin:15px 0}
+div#codeinfo_l,.article-left{width:185px; margin-right:10px}
+.article-right .topinfo{ width:438px}
+.article-u-pho{ display:none}
+.toptit h2 span,.review textarea,.bolg-fbox{width:620px}
+div.cintro_con{width: 620px !important}
+.basicinfo .ctarea{width:90%}
+.basicinfo td, .basicinfo th{padding:3px 0}
+.cinput{padding:5px}
+.basicinfo table{margin:10px 0;min-height:420px}
+.sb_active[type="selectbox"]{z-index:5 !important}
+.jobdl{width:87%}
+.job_dtl{width:83%}
+.job_on b, .edu_on b,.infodn td{font-size:13px}
+.job_on i, .edu_on i{display:none}
+.jobform .cinput{width:84%}
+.jobform .ctarea{width:83%;max-width:83%}
+.job_timeinput .cinput{width: 40%}
+.job_list dt{font-size:16px}
+.bolg-fbox #right_sidebar,.bolg-fbox #content_left{width:100%;float:none;padding-top:10px}
+#searchbar .searchinput{width:374px}
+.bolg-fbox .topsearch{background:#fff}
+.bolg-fbox #content #content_left{width:100%}
+.addcode_con #right_sidebar{clear:both}
+.blog-nm{display:block}
+.writesth{ display:none}
+.hot_keywords li a{ font-size:12px}
+}

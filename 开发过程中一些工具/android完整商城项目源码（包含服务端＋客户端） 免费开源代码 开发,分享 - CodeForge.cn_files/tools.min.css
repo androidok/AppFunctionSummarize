@@ -1,0 +1,309 @@
+/*article page*/
+.container-breadcrumb a { color: #006894 }
+.container-breadcrumb a:hover { color: #a00 }
+.toptit { margin: 15px 0 12px; font-size: 17px; color: #000 }
+.toptit h2 { font-size: 24px; line-height: 26px; border-bottom: 1px solid #eee; font-weight: 600;color: #283B4E;padding-bottom: 5px }
+.toptit span { padding-bottom: 2px }
+.topinfo { width: 100%; margin: 0 auto; clear: both }
+.topinfo .tagbotm { margin: 0 15px 0 0 }
+.topinfo .tagbotm img { margin-top: 8px }
+.dninfo { clear: both }
+.dninfo img { width: 16px; height: 16px; margin: 2px 5px 0 0; float: left }
+.infodn { width: 100% }
+.infodn td { background: #f2f2f2; font-size: 15px }
+.tabinfobox { width: 100% }
+.tabinfobox .entry .tagbotm span { background: none; padding: 8px 5px }
+#codeinfo_l { width: 250px; padding: 6px; margin: 0 15px 12px 0; background: #F2F8FF; border: 1px solid #E4EEF9 }
+.infotable { width: 100%; font-size: 13px }
+.infotable td { height: 31px; line-height: 22px }
+.infotable .itab_utd b { float: left }
+.infotable .itab_utd span { width: 180px; float: left; display: block; font-size: 14px; color: #006894; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.infotable i { font-style: normal; margin-bottom: 10px }
+.infotable img { border-radius: 3px }
+.infotable span { color: #f40 }
+.dninfo .anlk { padding: 15px }
+#recommend{ border:0; background:none; font-weight:bold; font-family:"Microsoft YaHei"; font-size:15px; margin-right:15px; cursor:pointer}
+.dninfo .anlk a,#recommend { color: #006894;background: none; float: left }
+#recommend:hover{ color:#a00}
+.anlk.anlkclass { padding: 6px 15px }
+.anlk.anlkclass div { margin-top: 6px; height: 26px; float: left }
+.anlktitle { float: left }
+.tags-ac{ display:none}
+.downloadlink { clear: both }
+.b-d-link { max-width: 220px; min-width: 160px; height: 100%; padding-right: 3px; display: block; line-height: 40px; color: #fff; background: rgb(15, 165, 117); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; float: left; cursor: pointer }
+.b-d-link:first-child{position: relative;z-index: 6;}
+.b-d-link span { padding: 12px 8px 13px 25px; margin-right: 5px; font-weight: 600; font-size: 16px; text-shadow: rgb(206, 82, 0) 0px 1px 0px; background: #f60 url(../images/all_icon.png) 8px 15px no-repeat; background-size: 130px }
+.dn-link-box { float: left; width: 83%; min-height: 36px }
+.dn-link-box li { padding-bottom: 5px }
+#dnloadTipbox.searchtip { height: 400px }
+#dnloadTipbox .swch_box { padding: 30px 20px }
+#dnloadTipbox .theme-poptit { height: 56px; background: rgb(58, 169, 133) }
+#dnloadTipbox .theme-poptit h3 { font-size: 18px; font-weight: 400; line-height: 22px }
+#dnloadTipbox h3 span { color: #BFFFEA; font-weight: 300; margin-left: 5px; float: left;max-width: 300px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis; }
+#dnloadTipbox h3 em { max-width: 78%; float: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-style: normal }
+#dnloadTipbox p { margin: 5px 0; font-size: 13px; text-align: center; clear: both }
+#dnloadTipbox .dn-num { font-size: 18px; margin-bottom: 12px }
+.dn-num b { color: #f40 }
+.dn-num .help-tip { margin-left: 5px; text-align: center }
+#dnloadTipbox .share-box { margin-bottom: 15px; text-indent: 32px; position: relative }
+.dn-checkbox { display: inline-block; width: 13px; height: 13px; margin-right: 8px; background: url(../images/d.png); background-size: 26px; vertical-align: -2px; cursor: pointer; position: absolute }
+#dnCheckbox { left: 215px; top: 3px; z-index: 8; }
+#dnCheckbox2 { background-position: -13px 0; left: 215px; top: 3px; z-index: -1 }
+.dialog-bottom { width: 100%; border-top: 1px dotted #e6e6e6;  margin-top: 30px; padding-top: 5px }
+#normal_show{ margin-top:42px}
+.more-dot{ text-indent: 57px; position: absolute; bottom: 8px; font-size: 18px; display:none}
+.d-t-box { height: 215px }
+.d-off { text-align: center }
+.d-off a { color: #1E6B52; cursor: pointer }
+.original{clear: both; display: block; font-size: 13px; color: #aaa; text-align: left; text-indent: 28px}
+.dm-left { float: left; width: 50%; text-align: right }
+.dm-right { float: left; width: 50% }
+.zfc-tc{height: 22px;width: 230px;margin: 0 auto;}
+.zfc-tc em{ font-style:normal; }
+.d-off form{ clear:both}
+.zfbicon{ width:18px; height:18px; background:url(../images/zfb.png); background-size:100% 100%;margin: 3px 5px 0 0; float:left }
+.zfbicon.wxi{background:url(../images/weixinico.png); background-size:100% 100%;}
+.zf-num { color: #f40 }
+.sh_gift { height: 32px; width: 135px; margin: 10px 10px 0 0; float: left; background: #f60; border-radius: 3px }
+p.colorshine { font-size: 20px; margin: 0 auto; width: 136px; line-height: 30px; cursor: default; text-indent: 10px; z-index: 98; position: relative }
+.colorshine { background: #f10 -webkit-gradient(linear, left top, right top, from(#f10), to(#f10), color-stop(0.5, #ff0)) 0 0 no-repeat; -webkit-background-size: 52px 32px; color: rgba(255, 255, 255, 0.8); -webkit-background-clip: text; -webkit-animation-duration: 2s; -webkit-animation-iteration-count: infinite }
+div .gift_intro { width: 206px; display: none; position: relative; z-index: 97 }
+.sn_tag { width: 17px; height: 10px; background: url(../images/all_icon.png) no-repeat -61px -68px; background-size: 130px; transform: rotate(180deg); margin-left: 45px }
+.sn_con { background: #ddd; border-radius: 3px; font-size: 12px }
+.sn_con ul { padding: 12px }
+.sn_con ul li { margin: 10px 0; list-style: disc inside; line-height: 20px; border-bottom: 1px dashed #354758; padding-bottom: 5px }
+.sn_con ul li:last-child { border-bottom: 0; padding-bottom: 0 }
+.codelist .btitle span { float: right; margin: 8px 10px; color: #D35500; font-size: 15px }
+#dnload { float: none; clear: both; display: block; cursor: pointer }
+#dnload:hover { text-decoration: underline }
+.dnload-toolbar { width: 100%; height: 42px; background: rgba(50, 50, 50, 0.97); background: #ccc \9; position: fixed; bottom: -1px; left: 0;z-index: 99992 }
+.d-tool-con { height: 100%; color: #eee }
+.d-tool-con ul { width: 930px; height: 42px; float: left }
+.d-tool-con li { height: 42px; line-height: 42px; float: left }
+.d-tool-con .down-list { margin-left: 10px; float: right }
+.bottom-form .cinput { width: 220px;    height: 39px;line-height: 39px; border-color: #373737;color :#283B4E;float: left; margin: 1px -1px 0 0; border-radius: 0 }
+.bottom-form .btn {    height: 37px; padding:0 10px; margin:2px 0; vertical-align: top;border-radius: 0 }
+.btn:hover {background-color: #11A0B9; color:#fff}
+.footer-con{ padding-bottom:41px}
+.cf-icon { width: 20px; height: 22px; background: url(../images/all_icon.png) 65px -20px; background-size: 118px; float: left; margin: 10px 0 0 0 }
+.cf-icon span { font-weight: bold }
+.d-tool-con .tool-right { width: 250px; float: right; }
+.tool-right img { width: 18px; height: 18px; margin: 12px 5px 0 0; float: left }
+#favBottom i, #fav i { background: url(../images/fav.png) 0 0; background-size: 18px; height: 18px; width: 18px; margin: 11px 5px 0 0; float: left }
+#fav i { margin: 2px 4px 0 0; }
+#favBottom .fav-active, #fav .fav-active { background-position: 0 18px }
+.tool-right a { color: #eee }
+.d-tool-con .tool-right li { min-width:62px; margin-right: 10px; padding: 0 5px }
+.d-tool-con .tool-right li:hover { background: #5E686F }
+.share-bottom { width: 49px; cursor: default }
+.share-bottom .share, .rat-tip { position: absolute; bottom: 43px; width: 62px; background: #4F5356; padding: 5px 14px; margin-left: -5px; display: none }
+.share-bottom .share a { margin: 3px 6px 3px 0 }
+.rat-tip { width: auto; bottom: 48px; background: #0FA575; margin-left: 96px }
+.rat-tip .r-t-mark.share { position: absolute; bottom: -10px }
+.share.share-b { height: 6px; width: 46px; padding: 0; bottom: 37px; background: url(../images/all_icon.png) no-repeat -40px -69px; background-size: 130px }
+.wjdx { margin-left: 15px; color: #283B4E; font-weight: bold }
+.filesize { margin-left: 5px; font-size: 14px }
+.quik-link a { margin-right: 15px }
+.leftintro { width: 628px }
+.introduction { margin-bottom: 15px; line-height: 26px; font-size: 15px; clear:both }
+.cintro_con { width: 920px !important; word-wrap: break-word }
+.cintro_con span { word-wrap: break-word !important; white-space: pre-wrap !important }
+.cintro_con img { max-width: 830px; max-height: 600px; margin: 10px 0 }
+.cintro_con img:hover { opacity: 0.8 }
+.codelist table { width: 100%; font-family: "Microsoft YaHei", Tahoma, sans-serif; font-size: 14px;color: #283B4E }
+.codelist td { padding: 3px; border-bottom: 1px dotted #ddd }
+.codelist th { padding: 5px; border-radius: 3px; text-align: left; font-size: 15px }
+.codelist th:last-child { text-align: right }
+.codelist td:last-child, .codelist th:last-child { text-align: right }
+#filediv th { background: none; font-size: 14px; border-bottom: 1px solid #ddd; border-radius: 0 }
+#filediv td { word-break: break-all }
+#filediv img { width: 16px; height: 16px; margin-right: 8px }
+.file-ico{ width: 16px; height: 17px; margin:2px 8px 0 0; display:block; float:left; background:url(../images/file_ico.svg) 0 -17px no-repeat}
+.r-file-name{ float:left}
+.folder{ background-position:0 0}
+.unknown{ background-position:0 -17px}
+.txt{ background-position:0 -38px}
+.cpp,.cs{ background-position:0 -59px}
+.h,.hpp{background-position:0 -80px}
+.dsp,.dsw{background-position:0 -101px}
+.exe{background-position:0 -119px}
+.bmp{background-position:0 -138px}
+.ico{background-position:0 -160px}
+.pdf{background-position:0 -181px}
+.doc{background-position:0 -201px}
+.c{background-position:0 -221px}
+.vhd{background-position:0 -241px}
+.m{background-position:0 -262px}
+.ini{background-position:0 -278px}
+.mdb{background-position:0 -295px}
+.pas{background-position:0 -314px}
+.dpr{background-position:0 -334px}
+.bat{background-position:0 -355px}
+.java,.jar{background-position:0 -373px}
+.gif{background-position:0 -393px}
+.js{background-position:0 -414px}
+.xml{background-position:0 -434px}
+.css{background-position:0 -455px}
+.html,.htm{background-position:0 -476px}
+.php{background-position:0 -494px}
+.png{background-position:0 -511px}
+.jpg,.jpeg{background-position:0 -531px}
+
+.holder { margin: 15px 0; clear: both }
+.holder a { cursor: pointer; padding: 3px 10px; border-radius: 3px; }
+.holder a.jp-previous { margin-right: 15px; }
+.holder a.jp-next { margin-left: 15px; }
+.holder a.jp-disabled, a.jp-disabled:hover { color: #aaa; }
+.holder a.jp-current, a.jp-current:hover, .holder a.jp-disabled, a.jp-disabled:hover { cursor: default; background: none; }
+.holder span { margin: 0 5px; color: #283B4E }
+.holder a.jp-current, a.jp-current:hover, .holder a:hover { background-color: #69D1FF; color: #fff; }
+.read-able { color: #058 }
+.read-able i { padding: 0 8px; margin-left: 5px; background: url(../images/d.png) 0 -45px; background-size: 26px }
+.topaload { position:relative;margin: 10px 0 !important }
+.showbox .syntaxhighlighter td.code .container { margin-top: 20px !important }
+.mfile-btn{ margin:10px 0; display:none}
+#dnl-tip{ display:none}
+/*.link_name{ float:left}*/
+.mfile-btn a{ color:#058;/* float:left*/ }
+.mfile-btn a:hover{ color:#3cf }
+.mfile-btn li{ height: 18px;margin:5px 0}
+.mfile-btn .pack2{ width:16px; height:16px; margin:1px 3px 0 0; /*float:left*/}
+#dnload:hover { color: #a00 }
+#dnload img { width: 18px; height: 18px; margin: 1px 5px 0 0; float: left }
+.showbox #dnload img { margin: 0 5px 0 15px }
+.dl_file_name { float: left; max-width: 330px; min-height: 22px;white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.dtl_topinfo .ymback_btn { float: right; margin-bottom: 10px }
+.ymback_btn { font-style: normal; padding: 5px 10px; line-height: 22px; background: #f8f8f8; border: 1px solid #eee; border-radius: 3px }
+.backtoart { float: right }
+.on_off_btn, .oob { min-width: 60px; height: 30px; line-height: 30px; text-align: center; cursor: pointer; background: #0095ED; color: #fff; position: absolute; top: 0; right: 0; display: block; border-bottom-left-radius: 5px; float: right }
+.on_off_btn:hover, .oob:hover { background: #4DBDFF }
+.morebar:hover { background: #e4eef9 !important }
+.rdl_link { display: block; height: 6px }
+.on_off_btn { z-index: 2 }
+.oob { z-index: 1 }
+.code-box h2 span{font-size: 18px; font-weight: 400;}
+.showbox { height: 545px; overflow: hidden; position: relative }
+div .jRatingColor { background-image: url(../images/stars5.png) }
+.myRating { margin: -3px 5px 0 0 }
+#myRating2 .myRating { margin: -1px 5px 0 0 }
+#myRating .jStar { background-image: url(../images/stars2.png) !important }
+p.jRatingInfos { padding-top: 8px !important; margin-top: -50px }
+.jRatingAverage { background-image: url(../images/stars5.png); position: relative; top: 0; left: 0; z-index: 2; height: 100% }
+.jRatingColor { position: relative; top: 0; left: 0; z-index: 2; height: 100% }
+.jStar { position: relative; left: 0; z-index: 3; cursor: pointer }
+p.jRatingInfos { position: absolute; z-index: 9999; background: rgba(55, 55, 55,0.9); color: #FFF; display: none; width: 65px; height: 32px; border-radius: 3px; margin-left: 15px; font-size: 16px; text-align: center; padding-top: 5px }
+p.jRatingInfos span.maxRate { color: #c9c9c9; font-size: 14px }
+.d-on { text-align: center }
+#downShare, #downLoad, .buycode,#mDnload { margin: 60px auto 10px; display: block; width: 150px; padding: 8px 25px; font-size: 16px; }
+#downShare:hover, #downLoad:hover,#mDnload:hover { color: #fff }
+#mDnload{ display: none }
+#dnloadTipbox .dnl-tip { color:#f20;margin: 5px 60px; display:none}
+.btn.zfb-tc { padding: 8px 25px; font-size: 16px }
+.m-code-con { border: 1px solid #C7D7EB; background: #F8F8F8; text-align: center;  }
+.m-code-con h2 { margin: 15px 0 5px; font-size: 20px; font-weight: 400; line-height: 28px }
+.m-code-con .btn.zfb-tc { padding: 8px 35px; display: block;width: 150px;margin: 2px auto 10px}
+.m-code-con p span { color: #f40 }
+#mpage{margin:12px 0 8px; display:none}
+#readMore{color:#008CA5; font-size:17px; cursor:pointer}
+#readMore:hover{ color:#a00}
+#readMore div{ font-family:'宋体'; margin-top:2px}
+#topDnLoad { max-width: 368px; position: absolute; top: 10px; left: 90px; z-index: 2; background: #fff}
+.code-box{width:100%;margin:0 auto;font-size:14px;position:relative;clear:both}
+.code-box pre{min-height:640px;padding:30px 15px;border-radius: 5px;border: 1px solid #ccc;background: #f9f9f9}
+.code-box pre code{font: 13px/18px "Microsoft YaHei",Tahoma,Arial,sans-serif}
+.code-box h2{font-size:24px;font-family: Georgia,"Microsoft YaHei",serif;line-height:32px;margin:15px 0;border-bottom: 1px solid #eee;padding-bottom: 2px;display:block}
+.dtl_topinfo{height:20px}
+.dtl_topinfo a span{color:#00aec5 }
+.dtl_topinfo a:hover span{ color:#a00}
+.dtl_topinfo p,.code-box h2 p{display:inline}
+.read_dtl .syntaxhighlighter{margin:0 !important}
+.read_dtl .anlk.andload{height: 20px; padding-bottom: 10px; clear:both}
+.read_dtl .andload img{width: 16px;height: 16px;float:left;margin-right:5px}
+#readInfo{ height:22px;margin:0;}
+#readInfo li{ float:left;margin: 10px 15px 8px 0;border-right: 1px solid #ddd;padding-right: 10px;}
+#readInfo li:last-child{ border:0}
+#readInfo li i{ font-style:normal; color:#888}
+#readInfo span{ color:#f40}
+.d-q-l{ padding-top:10px}
+.yminfo{ width:70px; float:left}
+.yminfo_a{ max-width:860px; white-space: nowrap;overflow: hidden;text-overflow: ellipsis;float:left}
+/*hlighter-core*/
+.syntaxhighlighter a, .syntaxhighlighter div, .syntaxhighlighter code, .syntaxhighlighter table, .syntaxhighlighter table td, .syntaxhighlighter table tr, .syntaxhighlighter table tbody, .syntaxhighlighter table thead, .syntaxhighlighter table caption, .syntaxhighlighter textarea { -moz-border-radius: 0 0 0 0 !important; -webkit-border-radius: 0 0 0 0 !important; background: none !important; border: 0 !important; bottom: auto !important; float: none !important; height: auto !important; left: auto !important; line-height: 1.3em !important; margin: 0 !important; outline: 0 !important; overflow: visible !important; padding: 0 !important; position: static !important; right: auto !important; text-align: left !important; top: auto !important; vertical-align: baseline !important; width: auto !important; box-sizing: content-box !important; font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace !important; font-weight: normal !important; font-style: normal !important; font-size: 1em !important; min-height: inherit !important; min-height: auto !important }
+.syntaxhighlighter { width: 100% !important; margin: 1em 0 1em 0 !important; position: relative !important; overflow: auto !important; font-size: 1em !important }
+.syntaxhighlighter.source { overflow: hidden !important }
+.syntaxhighlighter .bold { font-weight: bold !important }
+.syntaxhighlighter .italic { font-style: italic !important }
+.syntaxhighlighter table { width: 100% !important }
+.syntaxhighlighter table caption { text-align: left !important; padding: .5em 0 0.5em 1em !important }
+.syntaxhighlighter table td.code { width: 100% !important }
+.syntaxhighlighter table td.code .container { position: relative !important }
+.syntaxhighlighter table td.code .container textarea { box-sizing: border-box !important; position: absolute !important; left: 0 !important; top: 0 !important; width: 100% !important; height: 100% !important; border: none !important; background: white !important; padding-left: 1em !important; overflow: hidden !important; white-space: pre !important }
+.syntaxhighlighter table td.gutter .line { text-align: right !important; padding: 0 0.5em 0 1em !important }
+.syntaxhighlighter table td.code .line { padding: 0 1em !important; max-width: 850px; }
+.syntaxhighlighter .line code { word-break: break-word; }
+.syntaxhighlighter.nogutter td.code .container textarea, .syntaxhighlighter.nogutter td.code .line { padding-left: 0em !important }
+.syntaxhighlighter.show { display: block !important }
+.syntaxhighlighter.collapsed table { display: none !important }
+.syntaxhighlighter.collapsed .toolbar { padding: 0.1em 0.8em 0em 0.8em !important; font-size: 1em !important; position: static !important; width: auto !important; height: auto !important }
+.syntaxhighlighter.collapsed .toolbar span { display: inline !important; margin-right: 1em !important }
+.syntaxhighlighter.collapsed .toolbar span a { padding: 0 !important; display: none !important }
+.syntaxhighlighter.collapsed .toolbar span a.expandSource { display: inline !important }
+.syntaxhighlighter .toolbar { position: absolute !important; right: 1px !important; top: 1px !important; width: 11px !important; height: 11px !important; font-size: 10px !important; z-index: 10 !important }
+.syntaxhighlighter .toolbar span.title { display: inline !important }
+.syntaxhighlighter .toolbar a { display: none !important; text-align: center !important; text-decoration: none !important; padding-top: 1px !important }
+.syntaxhighlighter .toolbar a.expandSource { display: none !important }
+.syntaxhighlighter.ie { font-size: .9em !important; padding: 1px 0 1px 0 !important }
+.syntaxhighlighter.ie .toolbar { line-height: 8px !important }
+.syntaxhighlighter.ie .toolbar a { padding-top: 0px !important }
+.syntaxhighlighter.printing .line.alt1 .content, .syntaxhighlighter.printing .line.alt2 .content, .syntaxhighlighter.printing .line.highlighted .number, .syntaxhighlighter.printing .line.highlighted.alt1 .content, .syntaxhighlighter.printing .line.highlighted.alt2 .content { background: none !important }
+.syntaxhighlighter.printing .line .number { color: #bbbbbb !important }
+.syntaxhighlighter.printing .line .content { color: black !important }
+.syntaxhighlighter.printing .toolbar { display: none !important }
+.syntaxhighlighter.printing a { text-decoration: none !important }
+.syntaxhighlighter.printing .plain, .syntaxhighlighter.printing .plain a { color: black !important }
+.syntaxhighlighter.printing .comments, .syntaxhighlighter.printing .comments a { color: #008200 !important }
+.syntaxhighlighter.printing .string, .syntaxhighlighter.printing .string a { color: blue !important }
+.syntaxhighlighter.printing .keyword { color: #006699 !important; font-weight: bold !important }
+.syntaxhighlighter.printing .preprocessor { color: gray !important }
+.syntaxhighlighter.printing .variable { color: #aa7700 !important }
+.syntaxhighlighter.printing .value { color: #009900 !important }
+.syntaxhighlighter.printing .functions { color: #ff1493 !important }
+.syntaxhighlighter.printing .constants { color: #0066cc !important }
+.syntaxhighlighter.printing .script { font-weight: bold !important }
+.syntaxhighlighter.printing .color1, .syntaxhighlighter.printing .color1 a { color: gray !important }
+.syntaxhighlighter.printing .color2, .syntaxhighlighter.printing .color2 a { color: #ff1493 !important }
+.syntaxhighlighter.printing .color3, .syntaxhighlighter.printing .color3 a { color: red !important }
+.syntaxhighlighter.printing .break, .syntaxhighlighter.printing .break a { color: black !important }
+/*shThemeDefault*/
+.syntaxhighlighter { background-color: white !important }
+.syntaxhighlighter .line.alt1 { background-color: white !important }
+.syntaxhighlighter .line.alt2 { background-color: white !important }
+.syntaxhighlighter .line.highlighted.alt1, .syntaxhighlighter .line.highlighted.alt2 { background-color: #e0e0e0 !important }
+.syntaxhighlighter .line.highlighted.number { color: black !important }
+.syntaxhighlighter table caption { color: black !important }
+.syntaxhighlighter .gutter { color: #afafaf !important }
+.syntaxhighlighter .gutter .line { border-right: 3px solid #3cf !important }
+.syntaxhighlighter .gutter .line.highlighted { background-color: #6ce26c !important; color: white !important }
+.syntaxhighlighter.printing .line .content { border: none !important }
+.syntaxhighlighter.collapsed { overflow: visible !important }
+.syntaxhighlighter.collapsed .toolbar { color: blue !important; background: white !important; border: 1px solid #6ce26c !important }
+.syntaxhighlighter.collapsed .toolbar a { color: blue !important }
+.syntaxhighlighter.collapsed .toolbar a:hover { color: red !important }
+.syntaxhighlighter .toolbar { color: white !important; border: none !important }
+.syntaxhighlighter .toolbar a { color: white !important }
+.syntaxhighlighter .toolbar a:hover { color: black !important }
+.syntaxhighlighter .plain, .syntaxhighlighter .plain a { color: black !important }
+.syntaxhighlighter .comments, .syntaxhighlighter .comments a { color: #00aec5 !important }
+.syntaxhighlighter .string, .syntaxhighlighter .string a { color: blue !important }
+.syntaxhighlighter .keyword { color: #006699 !important }
+.syntaxhighlighter .preprocessor { color: gray !important }
+.syntaxhighlighter .variable { color: #aa7700 !important }
+.syntaxhighlighter .value { color: #009900 !important }
+.syntaxhighlighter .functions { color: #ff1493 !important }
+.syntaxhighlighter .constants { color: #0066cc !important }
+.syntaxhighlighter .script { font-weight: bold !important; color: #006699 !important; background-color: none !important }
+.syntaxhighlighter .color1, .syntaxhighlighter .color1 a { color: gray !important }
+.syntaxhighlighter .color2, .syntaxhighlighter .color2 a { color: #ff1493 !important }
+.syntaxhighlighter .color3, .syntaxhighlighter .color3 a { color: red !important }
+.syntaxhighlighter .keyword { font-weight: bold !important }
+body .syntaxhighlighter .line { white-space: pre-wrap !important; }

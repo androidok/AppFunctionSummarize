@@ -1,0 +1,982 @@
+
+<!-- saved from url=(0056)http://blog.csdn.net/u012620150/article/details/51754569 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/prettify.css">
+<script src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/hm.js.下载"></script><script type="text/javascript" src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/prettify.js.下载"></script>
+
+<script type="text/javascript">
+    var username = "u012620150";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/u012620150";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+
+    var fileName = '51754569';
+    var commentscount = 0;
+    var islock = false
+
+   window.quickReplyflag = true;
+            
+             var isBole = false;
+            
+
+</script>
+
+
+
+      
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+   
+    <meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://blog.csdn.net/u012620150/article/details/51754569#">
+    <script type="text/javascript" src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/tracking.js.下载" charset="utf-8"></script> 
+   
+     <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico">    
+     <link type="text/css" rel="stylesheet" href="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/default.css">
+
+
+    <script src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/jquery-1.9.1.min.js.下载" type="text/javascript"></script>
+
+     <!-- ad begin -->
+         <script language="javascript" type="text/javascript" src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/tracking.js(1).下载"></script>
+    <!-- ad end-->
+
+      <script src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/main.js.下载"></script>
+
+    <link rel="stylesheet" href="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/index.css">
+    <link rel="stylesheet" href="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/bootstrap.css">
+ 	<link rel="stylesheet" href="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/avatar.css">
+    <link rel="stylesheet" href="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/common.css">
+    <!-- [if IE 7]-->
+    <link rel="stylesheet" href="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/font-awesome.min.css">
+    <!-- [endif]-->
+    <link rel="stylesheet" href="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/main.css">
+    
+     <link rel="stylesheet" href="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/jquery.rollbar.css">
+    <link rel="stylesheet" href="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/style.css">
+    
+    
+    <!-- [if lt IE 9]-->
+    <script src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/html5shiv.min.js.下载"></script>
+    <!-- [endif]-->
+	<script src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/skintemplatecommon.js.下载" type="text/javascript"></script>
+
+    <script src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/skintemplateprovider.js.下载" type="text/javascript"></script>      
+	<script src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/skintemplatecomment.js.下载" type="text/javascript"></script>
+
+    <script src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/cnick.js.下载" type="text/javascript"></script>      
+   
+       
+    
+
+      <script type="text/javascript">
+          $(function () {
+              setTimeout(function () {
+                  $(".mess_name").each(function (index, item) {
+                      var u = $(this).text().split('：')[0].toString().replace("回复", "")
+                      var thisComment = $(this);
+                      if (u) {
+                          $.getJSON("https://passport.csdn.net/get/nick?callback=?", { users: u }, function (a) {
+                              if (a != null && a.data != null && a.data.length > 0) {
+                                  nick = a.data[0].n;
+                                  if (u != nick) {
+                                      thisComment.text(thisComment.text().replace(u, nick));
+                                  }
+                              }
+                          });
+                      }
+                  });
+
+                  $(".username").each(function (index, item) {
+                      var u = $(this).text().split('：')[0].toString().replace("回复", "")
+                      var thisComment = $(this);
+                      if (u) {
+                          $.getJSON("https://passport.csdn.net/get/nick?callback=?", { users: u }, function (a) {
+                              if (a != null && a.data != null && a.data.length > 0) {
+                                  nick = a.data[0].n;
+                                  if (u != nick) {
+                                      thisComment.text(thisComment.text().replace(u, nick));
+                                  }
+                              }
+                          });
+                      }
+                  });
+
+              }, 200);
+
+          });
+      </script>
+
+    <title>ProgressBar 旋转 - 博客频道 - CSDN.NET</title>	
+  <script src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/share.js.下载"></script><link rel="stylesheet" type="text/css" href="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/style(1).css"><link rel="stylesheet" href="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/share_style0_16.css"></head>
+  <body><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div><div class="csdn-toolbar csdn-toolbar-skin-black ">        <div class="container row center-block ">          <div class="col-md-3 pull-left logo clearfix"><a href="http://www.csdn.net/?ref=toolbar" title="CSDN首页" target="_blank" class="icon"></a><a title="频道首页" href="http://blog.csdn.net/?ref=toolbar_logo" class="img blog-icon"></a></div>          <div class="pull-right login-wrap unlogin">            <ul class="btns">              <li class="loginlink"><a href="https://passport.csdn.net/account/login?ref=toolbar" target="_top">登录&nbsp;</a>|<a target="_top" href="http://passport.csdn.net/account/mobileregister?ref=toolbar&amp;action=mobileRegister">&nbsp;注册</a></li>              <li class="search">                <div class="icon on-search-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <form action="http://so.csdn.net/search" id="toolbar_search" method="get" target="_blank">                      <input type="hidden" value="toolbar" name="ref" accesskey="2">                      <div class="border">                        <input placeholder="搜索" type="text" value="" name="q" accesskey="2"><span class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li class="favor">                <div class="icon on-favor-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div style="display:none;" class="favor-success"><span class="msg">收藏成功</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <div style="display:none;" class="favor-failed"><span class="icon-danger-lg"></span><span class="msg">收藏失败，请重新收藏</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <form role="form" class="form-horizontal favor-form">                      <div class="form-group">                        <div class="clearfix">                          <label for="input-title" class="col-sm-2 control-label"><span class="red_txt">*</span>标题</label>                          <div class="col-sm-10">                            <input id="inputTitle" type="text" placeholder="" class="title form-control">                          </div>                        </div>                        <div class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div class="form-group" style="display:none;">                        <label for="input-url" class="col-sm-2 control-label">网址</label>                        <div class="col-sm-10">                          <input id="input-url" type="text" placeholder="" class="url form-control">                        </div>                      </div>                      <div class="form-group">                        <label for="input-tag" class="col-sm-2 tag control-label">标签</label>                        <div class="col-sm-10">                          <input id="input-tag" type="text" class="form-control tag">                        </div>                      </div>                      <div class="form-group">                        <label for="input-description" class="description col-sm-2 control-label">位置</label>                        <div class="col-sm-10">                          <div class="my_lib_box">                            个人主页&nbsp;-&nbsp;<a href="http://my.csdn.net/" target="_blank">我的知识</a>                          </div>                          <div class="checkbox">                            <div class="pull-left">                              <label>                                <input type="checkbox" name="share" class="save_lib_map" checked="checked">同时保存至：                              </label>                            </div>                            <div class="pull-left">                              <div class="dropdown">                                <button id="toolbar_sele_map" type="button">                                  选择知识图谱                                  <i class="fa fa-chevron-down"></i>                                </button>                                <div class="top_arr"></div>                                <div class="outside">                                  <ul class="dropdown-menu" id="toolbar_Design_knowledge"><li>选择知识图谱</li></ul>                                </div>                              </div>                            </div>                            <div class="pull-left new_txt">                              <a href="http://lib.csdn.net/my/create/structure" target="_blank">新建？</a>                            </div>                          </div>                        </div>                      </div>                      <div class="form-group">                        <div class="col-sm-offset-2 col-sm-10 ft">                          <div class="col-sm-4 pull-left" style="display:none">                            <div class="checkbox">                              <label>                                <input type="checkbox" name="share" checked="checked" class="share">公开                              </label>                            </div>                          </div>                          <div class="col-sm-8 pull-right favor-btns">                            <button type="button" class="cancel btn btn-default">取消</button>                            <button type="submit" class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li class="notify">                <div style="display:none" class="number"></div>                <div style="display:none" class="icon-hasnotes-sm"></div>                <div id="header_notice_num"></div>                <div class="icon on-notify-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div id="note1" class="csdn_note">                      <div class="box"></div>                    <iframe src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/saved_resource.html" frameborder="0" allowtransparency="true" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li class="ugc">                <div class="icon on-ugc-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <dl>                      <dt><a href="http://geek.csdn.net/news/expert?ref=toolbar" target="_blank" class="p-news clearfix" style="display:none;"><em class="icon"></em><span>分享资讯</span></a></dt>                      <dt style="border: none;"><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-doc clearfix"><em class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a href="http://bbs.csdn.net/topics/new?ref=toolbar" target="_blank" class="p-ask clearfix"><em class="icon"></em><span>提问题</span></a></dt>                      <dt><a href="http://write.blog.csdn.net/postedit?ref=toolbar" target="_blank" class="p-blog clearfix"><em class="icon"></em><span>写博客</span></a></dt>                      <dt><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-src clearfix"><em class="icon"></em><span>传资源</span></a></dt>                      <dt><a href="https://code.csdn.net/projects/new?ref=toolbar" target="_blank" class="c-obj clearfix"><em class="icon"></em><span>创建项目</span></a></dt>                      <dt><a href="https://code.csdn.net/snippets/new?ref=toolbar" target="_blank" class="c-code clearfix"><em class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li class="profile">                <div class="icon on-profile-icon"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/100x100.jpg" class="curr-icon-img">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div class="bd">                      <dl class="clearfix">                        <dt class="pull-left img"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="avatar"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/100x100.jpg"></a></dt>                        <dd class="info" style="border: none;"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="nickname"></a><a class="set-nick" href="https://passport.csdn.net/account/profile">设置昵称<span class="write-icon"></span></a><span class="dec"><a class="fill-dec" href="http://my.csdn.net/" target="_blank">编辑自我介绍，让更多人了解你<span class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div class="ft clearfix"><a target="_blank" href="http://my.csdn.net/my/account/changepwd?ref=toolbar" class="pull-left"><span class="icon-cog"></span>帐号设置</a><a href="https://passport.csdn.net/account/logout?ref=toolbar" target="_top" class="pull-left" style="margin-left:132px; width:18px; height:27px; white-space:nowrap; overflow:hidden;"><span class="icon-signout"></span><span class="out">退出</span></a></div>                  </div>                </div>              </li>              <li class="apps">                <div id="chasnew123" class="hasnew" style="display: none;"></div>                <div id="cappsarea123" class="icon on-apps-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a href="http://blog.csdn.net/?ref=toolbar" target="_blank">博客</a></dd>                      <dd> <a href="http://bbs.csdn.net/?ref=toolbar" target="_blank">论坛</a></dd>                      <dd> <a href="http://download.csdn.net/?ref=toolbar" target="_blank">下载</a></dd>                      <dd> <a href="http://lib.csdn.net/?ref=toolbar" target="_blank">知识库</a></dd>                      <dd><a href="http://ask.csdn.net/?ref=toolbar" target="_blank">技术问答</a></dd>                      <dd><a href="http://geek.csdn.net/?ref=toolbar" target="_blank">极客头条</a></dd>                      <dd style="display:none"> <a href="http://hero.csdn.net/?ref=toolbar" target="_blank">英雄会</a></dd>                    </dl>                  </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd style="display:none"> <a href="http://job.csdn.net/?ref=toolbar" target="_blank">JOB<img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="http://edu.csdn.net/?ref=toolbar" target="_blank">学院<img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="https://code.csdn.net/?ref=toolbar" target="_blank">CODE</a></dd>                      <dd> <a href="http://huiyi.csdn.net/?ref=toolbar" target="_blank">活动</a></dd>                      <dd> <a href="http://www.csto.com/?ref=toolbar" target="_blank">CSTO</a></dd>                      <dd> <a href="http://mall.csdn.net/?ref=toolbar" target="_blank">C币兑换<img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                    </dl>                  </div>                  <div class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a href="http://cto.csdn.net/?ref=toolbar" target="_blank">CTO俱乐部</a></dd>                      <dd> <a href="http://student.csdn.net/?ref=toolbar" target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+
+<div class="J_adv" data-view="true" data-mod="ad_popu_72" data-mtp="62" data-order="40" data-con="ad_content_2072">
+			 <script id="popuLayer_js_q" src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/popuLayer.js.下载" defer="defer" type="text/javascript"></script>
+		    <div id="layerd" style="position: fixed; bottom: 0px; right: 0px; line-height: 0px; z-index: 1000; width: 300px; height: 278px;">
+			    <div class="J_close layer_close" style="display:;background-color:#efefef;padding:0px;color:#333;font:12px/24px Helvetica,Tahoma,Arial,sans-serif;text-align:right;">关闭</div><!-- 广告占位容器 --><div id="cpro_u2895327"><iframe id="iframeu2895327_0" name="iframeu2895327_0" src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/zcmm.html" width="300" height="250" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:300px;height:250px" allowtransparency="true"></iframe></div></div>
+		    <script>  document.getElementById("popuLayer_js_q").onload=function(){      var styObjd=styObj={width:"300px","height":parseInt(250)+28};window.CSDN.Layer.PopuLayer("#layerd",{storageName:"layerd",styleObj:styObjd,total:50,expoire:1000*60});  }</script><!-- 投放代码 --><script type="text/javascript">                /*服务器频道首页置顶Banner960*90，创建于2014-7-3*/    (window.cproArray = window.cproArray || []).push({        id: "u2895327"      });  </script>  <script src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/c.js.下载" type="text/javascript"></script>
+	     
+	</div>
+
+       <!-- 广告位开始 -->
+        <ins data-revive-zoneid="149" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins>
+    <!-- 广告位结束 -->
+
+   <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/html.js.下载" type="text/javascript"></script>
+    <div class="blog_left">
+      <div class="blog_l_c">
+        <h2 class="blog_l_t">u012620150的专栏</h2>
+        <h6 class="blog_l_sign"></h6>
+        <div class="item_wrap">
+          <dl class="item_l">
+            <dt class="item">29</dt>
+            <dd class="item_name">原创</dd>
+          </dl>
+          <dl class="item_l">
+            <dt class="item">30</dt>
+            <dd class="item_name">转载</dd>
+          </dl>
+          <dl class="item_l">
+            <dt class="item">0</dt>
+            <dd class="item_name">译文</dd>
+          </dl>
+          <dl class="item_l">
+            <dt class="item">4</dt>
+            <dd class="item_name">评论</dd>
+          </dl>
+          <dl class="item_l">
+            <dt class="item">25131</dt>
+            <dd class="item_name">访问</dd>
+          </dl>
+        </div>
+      </div>
+      <div class="blog_copyright">
+        <p><span>京 ICP 证 070598 号</span><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/copyright.png" alt="img"></p>
+        <p>
+          Copyright © 1999-2016,
+          <br>
+          CSDN.NET, All Rights Reserved
+        </p>
+       </div>
+    </div>
+    <div id="skin_m" class="skin_m" style="position: relative; overflow: hidden;"><div class="rollbar-path-vertical" style="z-index: 80; top: 0px; height: 705px;"><div class="rollbar-handle" style="height: 30%; opacity: 0.5; top: 20px;"></div></div><div class="rollbar-path-horizontal" style="z-index: 80; display: none; left: 20px; width: 1020px;"><div class="rollbar-handle" style="width: 30%; opacity: 0.5; left: 0px;"></div></div>
+      <div class="rollbar-content" style="position: relative; top: -105px; left: 0px; overflow: hidden;"><div id="skin_center" class="skin_center">
+          <div class="skin_center_t">
+                <h2 class="mod_most"></h2>
+                <!--include ../modules/mod_list.jade-->
+                <div class="skin_list">
+                  <dl class="list_c clearfix detail_list">
+                    <dt>
+                      <div class="date">
+                        <div class="date_t"><span>2016</span><em>六月</em></div>
+                        <div class="date_b">24</div>
+                      </div>
+                    </dt>
+                    <dd>
+                      <div class="skin_icon"><a href="javascript:;" class="set_old">原</a></div>
+                      <h3 class="list_c_t"><a href="http://blog.csdn.net/u012620150/article/details/51754569">ProgressBar 旋转</a></h3>  
+                        <div class="list_c_Title">
+                          <p class="detail_p">
+                            <label></label>
+                         </p>
+                         <p class="read_r">
+                            <label><i class="fa fa-eye" style="cursor:default"></i><span style="cursor:default"> （1042）</span></label>
+                            <label><i class="fa fa-comment-o" style="cursor:default"></i><span style="cursor:default"> （0）</span></label>
+                             
+                             
+
+                             
+                          </p>
+                        </div>
+                      <div class="skin_detail" id="article_content">
+                        
+<div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;" target="_blank">copy</a><div style="position: absolute; left: 468px; top: 161px; width: 16px; height: 16px; z-index: 99;"><embed id="ZeroClipboardMovie_1" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="16" height="16" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=16&amp;height=16" wmode="transparent"></div></span><span class="tracking-ad" data-mod="popu_169"> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;" target="_blank">print</a></span><a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><span class="tracking-ad" data-mod="popu_167"><a href="https://code.csdn.net/snippets/1728733" target="_blank" title="在CODE上查看代码片" style="text-indent:0;"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/CODE_ico.png" width="12" height="12" alt="在CODE上查看代码片" style="position:relative;top:1px;left:2px;"></a></span><span class="tracking-ad" data-mod="popu_170"><a href="https://code.csdn.net/snippets/1728733/fork" target="_blank" title="派生到我的代码片" style="text-indent:0;"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/ico_fork.svg" width="12" height="12" alt="派生到我的代码片" style="position:relative;top:2px;left:2px;"></a></span></div></div><ol start="1" class="dp-j"><li class="alt"><span><span>&lt;ProgressBar&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style=<span class="string">"@android:style/Widget.ProgressBar.Inverse"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:layout_width=<span class="string">"wrap_content"</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:layout_height=<span class="string">"wrap_content"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:layout_gravity=<span class="string">"center"</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:indeterminateDrawable=<span class="string">"@drawable/test"</span><span>/&gt;&nbsp;&nbsp;</span></span></li></ol><div class="save_code tracking-ad" data-mod="popu_249" style="display: none;"><a href="javascript:;" target="_blank"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre code_snippet_id="1728733" snippet_file_name="blog_20160624_1_5430077" name="code" class="java" style="display: none;"> &lt;ProgressBar
+        style="@android:style/Widget.ProgressBar.Inverse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateDrawable="@drawable/test"/&gt;</pre>
+<p><br>
+</p>
+<p>drawable/test.xml</p>
+<p></p>
+<div class="dp-highlighter bg_html"><div class="bar"><div class="tools"><b>[html]</b> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;" target="_blank">copy</a><div style="position: absolute; left: 471px; top: 418px; width: 16px; height: 16px; z-index: 99;"><embed id="ZeroClipboardMovie_2" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="16" height="16" name="ZeroClipboardMovie_2" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=16&amp;height=16" wmode="transparent"></div></span><span class="tracking-ad" data-mod="popu_169"> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;" target="_blank">print</a></span><a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><span class="tracking-ad" data-mod="popu_167"><a href="https://code.csdn.net/snippets/1728733" target="_blank" title="在CODE上查看代码片" style="text-indent:0;"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/CODE_ico.png" width="12" height="12" alt="在CODE上查看代码片" style="position:relative;top:1px;left:2px;"></a></span><span class="tracking-ad" data-mod="popu_170"><a href="https://code.csdn.net/snippets/1728733/fork" target="_blank" title="派生到我的代码片" style="text-indent:0;"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/ico_fork.svg" width="12" height="12" alt="派生到我的代码片" style="position:relative;top:2px;left:2px;"></a></span></div></div><ol start="1" class="dp-xml"><li class="alt"><span><span class="tag">&lt;?</span><span class="tag-name">xml</span><span>&nbsp;</span><span class="attribute">version</span><span>=</span><span class="attribute-value">"1.0"</span><span>&nbsp;</span><span class="attribute">encoding</span><span>=</span><span class="attribute-value">"utf-8"</span><span class="tag">?&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="tag">&lt;</span><span class="tag-name">animated-rotate</span><span>&nbsp;</span><span class="attribute">xmlns:android</span><span>=</span><span class="attribute-value">"http://schemas.android.com/apk/res/android"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:drawable</span><span>=</span><span class="attribute-value">"@drawable/jiazai"</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:pivotX</span><span>=</span><span class="attribute-value">"50%"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:pivotY</span><span>=</span><span class="attribute-value">"50%"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="tag">&lt;/</span><span class="tag-name">animated-rotate</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li></ol><div class="save_code tracking-ad" data-mod="popu_249" style="display: none;"><a href="javascript:;" target="_blank"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre code_snippet_id="1728733" snippet_file_name="blog_20160624_2_3903341" name="code" class="html" style="display: none;">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;animated-rotate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/jiazai"
+    android:pivotX="50%"
+    android:pivotY="50%"&gt;
+
+&lt;/animated-rotate&gt;</pre>
+<p><br>
+</p>
+<p></p>
+<h3 style="margin:0px; padding:0px; color:rgb(54,46,43); font-family:Arial; line-height:26px">
+方式1：(效果为补间动画一样)</h3>
+<div class="dp-highlighter bg_html"><div class="bar"><div class="tools"><b>[html]</b> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;" target="_blank">copy</a><div style="position: absolute; left: 471px; top: 689px; width: 16px; height: 16px; z-index: 99;"><embed id="ZeroClipboardMovie_3" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="16" height="16" name="ZeroClipboardMovie_3" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=3&amp;width=16&amp;height=16" wmode="transparent"></div></span><span class="tracking-ad" data-mod="popu_169"> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;" target="_blank">print</a></span><a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><span class="tracking-ad" data-mod="popu_167"><a href="https://code.csdn.net/snippets/1728733" target="_blank" title="在CODE上查看代码片" style="text-indent:0;"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/CODE_ico.png" width="12" height="12" alt="在CODE上查看代码片" style="position:relative;top:1px;left:2px;"></a></span><span class="tracking-ad" data-mod="popu_170"><a href="https://code.csdn.net/snippets/1728733/fork" target="_blank" title="派生到我的代码片" style="text-indent:0;"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/ico_fork.svg" width="12" height="12" alt="派生到我的代码片" style="position:relative;top:2px;left:2px;"></a></span></div></div><ol start="1" class="dp-xml"><li class="alt"><span><span class="tag">&lt;</span><span class="tag-name">ProgressBar</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:layout_width</span><span>=</span><span class="attribute-value">"wrap_content"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:layout_height</span><span>=</span><span class="attribute-value">"wrap_content"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:indeterminate</span><span>=</span><span class="attribute-value">"true"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:indeterminateDrawable</span><span>=</span><span class="attribute-value">"@anim/loading"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;&nbsp;</span></span></li></ol><div class="save_code tracking-ad" data-mod="popu_249" style="display: none;"><a href="javascript:;" target="_blank"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre code_snippet_id="1728733" snippet_file_name="blog_20161031_3_2045337" name="code" class="html" style="display: none;">&lt;ProgressBar  
+    android:layout_width="wrap_content"  
+    android:layout_height="wrap_content"  
+    android:indeterminate="true"  
+    android:indeterminateDrawable="@anim/loading" /&gt; </pre><br>
+<span style="color:rgb(54,46,43); font-family:Arial; font-size:14px; line-height:26px">其中动画loading:</span><br>
+<p></p>
+<p><span style="color:rgb(54,46,43); font-family:Arial; font-size:14px; line-height:26px"></span></p><div class="dp-highlighter bg_html"><div class="bar"><div class="tools"><b>[html]</b> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;" target="_blank">copy</a><div style="position: absolute; left: 471px; top: 900px; width: 16px; height: 16px; z-index: 99;"><embed id="ZeroClipboardMovie_4" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="16" height="16" name="ZeroClipboardMovie_4" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=4&amp;width=16&amp;height=16" wmode="transparent"></div></span><span class="tracking-ad" data-mod="popu_169"> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;" target="_blank">print</a></span><a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><span class="tracking-ad" data-mod="popu_167"><a href="https://code.csdn.net/snippets/1728733" target="_blank" title="在CODE上查看代码片" style="text-indent:0;"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/CODE_ico.png" width="12" height="12" alt="在CODE上查看代码片" style="position:relative;top:1px;left:2px;"></a></span><span class="tracking-ad" data-mod="popu_170"><a href="https://code.csdn.net/snippets/1728733/fork" target="_blank" title="派生到我的代码片" style="text-indent:0;"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/ico_fork.svg" width="12" height="12" alt="派生到我的代码片" style="position:relative;top:2px;left:2px;"></a></span></div></div><ol start="1" class="dp-xml"><li class="alt"><span><span class="tag">&lt;?</span><span class="tag-name">xml</span><span>&nbsp;</span><span class="attribute">version</span><span>=</span><span class="attribute-value">"1.0"</span><span>&nbsp;</span><span class="attribute">encoding</span><span>=</span><span class="attribute-value">"UTF-8"</span><span class="tag">?&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="tag">&lt;</span><span class="tag-name">animation-list</span><span>&nbsp;</span><span class="attribute">android:oneshot</span><span>=</span><span class="attribute-value">"false"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;<span class="attribute">xmlns:android</span><span>=</span><span class="attribute-value">"http://schemas.android.com/apk/res/android"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">item</span><span>&nbsp;</span><span class="attribute">android:duration</span><span>=</span><span class="attribute-value">"60"</span><span>&nbsp;</span><span class="attribute">android:drawable</span><span>=</span><span class="attribute-value">"@drawable/load_1"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">item</span><span>&nbsp;</span><span class="attribute">android:duration</span><span>=</span><span class="attribute-value">"60"</span><span>&nbsp;</span><span class="attribute">android:drawable</span><span>=</span><span class="attribute-value">"@drawable/load_3"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">item</span><span>&nbsp;</span><span class="attribute">android:duration</span><span>=</span><span class="attribute-value">"60"</span><span>&nbsp;</span><span class="attribute">android:drawable</span><span>=</span><span class="attribute-value">"@drawable/load_5"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">item</span><span>&nbsp;</span><span class="attribute">android:duration</span><span>=</span><span class="attribute-value">"60"</span><span>&nbsp;</span><span class="attribute">android:drawable</span><span>=</span><span class="attribute-value">"@drawable/load_7"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">item</span><span>&nbsp;</span><span class="attribute">android:duration</span><span>=</span><span class="attribute-value">"60"</span><span>&nbsp;</span><span class="attribute">android:drawable</span><span>=</span><span class="attribute-value">"@drawable/load_9"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">item</span><span>&nbsp;</span><span class="attribute">android:duration</span><span>=</span><span class="attribute-value">"60"</span><span>&nbsp;</span><span class="attribute">android:drawable</span><span>=</span><span class="attribute-value">"@drawable/load_11"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">item</span><span>&nbsp;</span><span class="attribute">android:duration</span><span>=</span><span class="attribute-value">"60"</span><span>&nbsp;</span><span class="attribute">android:drawable</span><span>=</span><span class="attribute-value">"@drawable/load_13"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">item</span><span>&nbsp;</span><span class="attribute">android:duration</span><span>=</span><span class="attribute-value">"60"</span><span>&nbsp;</span><span class="attribute">android:drawable</span><span>=</span><span class="attribute-value">"@drawable/load_15"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="tag">&lt;/</span><span class="tag-name">animation-list</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li></ol><div class="save_code tracking-ad" data-mod="popu_249" style="display: none;"><a href="javascript:;" target="_blank"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre code_snippet_id="1728733" snippet_file_name="blog_20161031_4_823838" name="code" class="html" style="display: none;">&lt;?xml version="1.0" encoding="UTF-8"?&gt;  
+&lt;animation-list android:oneshot="false"  
+  xmlns:android="http://schemas.android.com/apk/res/android"&gt;  
+  &lt;item android:duration="60" android:drawable="@drawable/load_1" /&gt;  
+  &lt;item android:duration="60" android:drawable="@drawable/load_3" /&gt;  
+  &lt;item android:duration="60" android:drawable="@drawable/load_5" /&gt;  
+  &lt;item android:duration="60" android:drawable="@drawable/load_7" /&gt;  
+  &lt;item android:duration="60" android:drawable="@drawable/load_9" /&gt;  
+  &lt;item android:duration="60" android:drawable="@drawable/load_11" /&gt;  
+  &lt;item android:duration="60" android:drawable="@drawable/load_13" /&gt;  
+  &lt;item android:duration="60" android:drawable="@drawable/load_15" /&gt;  
+&lt;/animation-list&gt;  </pre><br>
+<p></p>
+<h3 style="margin:0px; padding:0px; color:rgb(54,46,43); font-family:Arial; line-height:26px">
+方式2：（效果为自定义图片让其不断的旋转）</h3>
+<div class="dp-highlighter bg_html"><div class="bar"><div class="tools"><b>[html]</b> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;" target="_blank">copy</a><div style="position: absolute; left: 471px; top: 1255px; width: 16px; height: 16px; z-index: 99;"><embed id="ZeroClipboardMovie_5" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="16" height="16" name="ZeroClipboardMovie_5" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=5&amp;width=16&amp;height=16" wmode="transparent"></div></span><span class="tracking-ad" data-mod="popu_169"> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;" target="_blank">print</a></span><a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><span class="tracking-ad" data-mod="popu_167"><a href="https://code.csdn.net/snippets/1728733" target="_blank" title="在CODE上查看代码片" style="text-indent:0;"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/CODE_ico.png" width="12" height="12" alt="在CODE上查看代码片" style="position:relative;top:1px;left:2px;"></a></span><span class="tracking-ad" data-mod="popu_170"><a href="https://code.csdn.net/snippets/1728733/fork" target="_blank" title="派生到我的代码片" style="text-indent:0;"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/ico_fork.svg" width="12" height="12" alt="派生到我的代码片" style="position:relative;top:2px;left:2px;"></a></span></div></div><ol start="1" class="dp-xml"><li class="alt"><span><span class="tag">&lt;</span><span class="tag-name">ProgressBar</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:layout_width</span><span>=</span><span class="attribute-value">"wrap_content"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:layout_height</span><span>=</span><span class="attribute-value">"wrap_content"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:indeterminate</span><span>=</span><span class="attribute-value">"true"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:indeterminateDrawable</span><span>=</span><span class="attribute-value">"@drawable/progressbar"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre code_snippet_id="1728733" snippet_file_name="blog_20161031_5_2949626" name="code" class="html" style="display: none;">&lt;ProgressBar  
+    android:layout_width="wrap_content"  
+    android:layout_height="wrap_content"  
+    android:indeterminate="true"  
+    android:indeterminateDrawable="@drawable/progressbar" /&gt;  </pre><span style="color:rgb(54,46,43); font-family:Arial; font-size:14px; line-height:26px">其中progressbar:</span><br>
+<div class="dp-highlighter bg_html"><div class="bar"><div class="tools"><b>[html]</b> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;" target="_blank">copy</a><div style="position: absolute; left: 471px; top: 1442px; width: 16px; height: 16px; z-index: 99;"><embed id="ZeroClipboardMovie_6" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="16" height="16" name="ZeroClipboardMovie_6" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=6&amp;width=16&amp;height=16" wmode="transparent"></div></span><span class="tracking-ad" data-mod="popu_169"> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;" target="_blank">print</a></span><a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><span class="tracking-ad" data-mod="popu_167"><a href="https://code.csdn.net/snippets/1728733" target="_blank" title="在CODE上查看代码片" style="text-indent:0;"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/CODE_ico.png" width="12" height="12" alt="在CODE上查看代码片" style="position:relative;top:1px;left:2px;"></a></span><span class="tracking-ad" data-mod="popu_170"><a href="https://code.csdn.net/snippets/1728733/fork" target="_blank" title="派生到我的代码片" style="text-indent:0;"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/ico_fork.svg" width="12" height="12" alt="派生到我的代码片" style="position:relative;top:2px;left:2px;"></a></span></div></div><ol start="1" class="dp-xml"><li class="alt"><span><span class="tag">&lt;?</span><span class="tag-name">xml</span><span>&nbsp;</span><span class="attribute">version</span><span>=</span><span class="attribute-value">"1.0"</span><span>&nbsp;</span><span class="attribute">encoding</span><span>=</span><span class="attribute-value">"utf-8"</span><span class="tag">?&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="tag">&lt;</span><span class="tag-name">layer-list</span><span>&nbsp;</span><span class="attribute">xmlns:android</span><span>=</span><span class="attribute-value">"http://schemas.android.com/apk/res/android"</span><span>&nbsp;</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">item</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">rotate</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:drawable</span><span>=</span><span class="attribute-value">"@drawable/load"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:fromDegrees</span><span>=</span><span class="attribute-value">"0.0"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:pivotX</span><span>=</span><span class="attribute-value">"50.0%"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:pivotY</span><span>=</span><span class="attribute-value">"50.0%"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:toDegrees</span><span>=</span><span class="attribute-value">"360.0"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">span</span><span>&nbsp;</span><span class="attribute">style</span><span>=</span><span class="attribute-value">"white-space:pre"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;/</span><span class="tag-name">span</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comments">&lt;!--&nbsp;其中360.0值越大，转的圈圈越快&nbsp;--&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">item</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span><span class="tag">&lt;/</span><span class="tag-name">layer-list</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre code_snippet_id="1728733" snippet_file_name="blog_20161031_6_5839565" name="code" class="html" style="display: none;">&lt;?xml version="1.0" encoding="utf-8"?&gt;  
+&lt;layer-list xmlns:android="http://schemas.android.com/apk/res/android" &gt;  
+  
+    &lt;item&gt;  
+        &lt;rotate  
+            android:drawable="@drawable/load"  
+            android:fromDegrees="0.0"  
+            android:pivotX="50.0%"  
+            android:pivotY="50.0%"  
+            android:toDegrees="360.0" /&gt;  
+     &lt;span style="white-space:pre"&gt;   &lt;/span&gt;    &lt;!-- 其中360.0值越大，转的圈圈越快 --&gt;  
+    &lt;/item&gt;  
+  
+&lt;/layer-list&gt;  </pre><br>
+<h3 style="margin:0px; padding:0px; color:rgb(54,46,43); font-family:Arial; line-height:26px">
+方式三：（效果为自定义颜色让其不断的旋转）</h3>
+<div class="dp-highlighter bg_html"><div class="bar"><div class="tools"><b>[html]</b> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;" target="_blank">copy</a><div style="position: absolute; left: 471px; top: 1811px; width: 16px; height: 16px; z-index: 99;"><embed id="ZeroClipboardMovie_7" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="16" height="16" name="ZeroClipboardMovie_7" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=7&amp;width=16&amp;height=16" wmode="transparent"></div></span><span class="tracking-ad" data-mod="popu_169"> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;" target="_blank">print</a></span><a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><span class="tracking-ad" data-mod="popu_167"><a href="https://code.csdn.net/snippets/1728733" target="_blank" title="在CODE上查看代码片" style="text-indent:0;"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/CODE_ico.png" width="12" height="12" alt="在CODE上查看代码片" style="position:relative;top:1px;left:2px;"></a></span><span class="tracking-ad" data-mod="popu_170"><a href="https://code.csdn.net/snippets/1728733/fork" target="_blank" title="派生到我的代码片" style="text-indent:0;"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/ico_fork.svg" width="12" height="12" alt="派生到我的代码片" style="position:relative;top:2px;left:2px;"></a></span></div></div><ol start="1" class="dp-xml"><li class="alt"><span><span class="tag">&lt;</span><span class="tag-name">ProgressBar</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:layout_width</span><span>=</span><span class="attribute-value">"wrap_content"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:layout_height</span><span>=</span><span class="attribute-value">"wrap_content"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:indeterminate</span><span>=</span><span class="attribute-value">"true"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:indeterminateDrawable</span><span>=</span><span class="attribute-value">"@drawable/progressbar2"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre code_snippet_id="1728733" snippet_file_name="blog_20161031_7_5174473" name="code" class="html" style="display: none;">&lt;ProgressBar  
+    android:layout_width="wrap_content"  
+    android:layout_height="wrap_content"  
+    android:indeterminate="true"  
+    android:indeterminateDrawable="@drawable/progressbar2" /&gt;  </pre><span style="color:rgb(54,46,43); font-family:Arial; font-size:14px; line-height:26px">其中progressbar2:</span>
+<p></p>
+<p><span style="color:rgb(54,46,43); font-family:Arial; font-size:14px; line-height:26px"><span style="color:rgb(54,46,43); font-family:Arial; font-size:14px; line-height:26px"></span></span></p><div class="dp-highlighter bg_html"><div class="bar"><div class="tools"><b>[html]</b> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span class="tracking-ad" data-mod="popu_168"> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;" target="_blank">copy</a><div style="position: absolute; left: 471px; top: 2002px; width: 16px; height: 16px; z-index: 99;"><embed id="ZeroClipboardMovie_8" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="16" height="16" name="ZeroClipboardMovie_8" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=8&amp;width=16&amp;height=16" wmode="transparent"></div></span><span class="tracking-ad" data-mod="popu_169"> <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;" target="_blank">print</a></span><a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><span class="tracking-ad" data-mod="popu_167"><a href="https://code.csdn.net/snippets/1728733" target="_blank" title="在CODE上查看代码片" style="text-indent:0;"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/CODE_ico.png" width="12" height="12" alt="在CODE上查看代码片" style="position:relative;top:1px;left:2px;"></a></span><span class="tracking-ad" data-mod="popu_170"><a href="https://code.csdn.net/snippets/1728733/fork" target="_blank" title="派生到我的代码片" style="text-indent:0;"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/ico_fork.svg" width="12" height="12" alt="派生到我的代码片" style="position:relative;top:2px;left:2px;"></a></span></div></div><ol start="1" class="dp-xml"><li class="alt"><span><span class="tag">&lt;</span><span class="tag-name">rotate</span><span>&nbsp;</span><span class="attribute">xmlns:android</span><span>=</span><span class="attribute-value">"http://schemas.android.com/apk/res/android"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:fromDegrees</span><span>=</span><span class="attribute-value">"0"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:pivotX</span><span>=</span><span class="attribute-value">"50%"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:pivotY</span><span>=</span><span class="attribute-value">"50%"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:toDegrees</span><span>=</span><span class="attribute-value">"360"</span><span>&nbsp;</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">shape</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:innerRadiusRatio</span><span>=</span><span class="attribute-value">"3"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:shape</span><span>=</span><span class="attribute-value">"ring"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:thicknessRatio</span><span>=</span><span class="attribute-value">"8"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:useLevel</span><span>=</span><span class="attribute-value">"false"</span><span>&nbsp;</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">gradient</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:centerColor</span><span>=</span><span class="attribute-value">"#FFFFFF"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:centerY</span><span>=</span><span class="attribute-value">"0.50"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:endColor</span><span>=</span><span class="attribute-value">"#1E90FF"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:startColor</span><span>=</span><span class="attribute-value">"#000000"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:type</span><span>=</span><span class="attribute-value">"sweep"</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">android:useLevel</span><span>=</span><span class="attribute-value">"false"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">shape</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span><span class="tag">&lt;/</span><span class="tag-name">rotate</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre code_snippet_id="1728733" snippet_file_name="blog_20161031_8_5381433" name="code" class="html" style="display: none;">&lt;rotate xmlns:android="http://schemas.android.com/apk/res/android"  
+    android:fromDegrees="0"  
+    android:pivotX="50%"  
+    android:pivotY="50%"  
+    android:toDegrees="360" &gt;  
+    &lt;shape  
+        android:innerRadiusRatio="3"  
+        android:shape="ring"  
+        android:thicknessRatio="8"  
+        android:useLevel="false" &gt;  
+        &lt;gradient  
+            android:centerColor="#FFFFFF"  
+            android:centerY="0.50"  
+            android:endColor="#1E90FF"  
+            android:startColor="#000000"  
+            android:type="sweep"  
+            android:useLevel="false" /&gt;  
+    &lt;/shape&gt;  &lt;/rotate&gt;                                                                   </pre><br>
+<br>
+<br>
+<p></p>
+<br>
+<p></p>
+<link rel="stylesheet" href="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/markdown_views.css">
+                      </div>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="skin_nav">        
+                     <div class="skin_edit"><i class="fa fa-th-list"></i>
+                     <div class="nav_list nav_list_edit"><a href="http://blog.csdn.net/u012620150">文章列表</a></div>
+                  </div>
+                     
+                </div>
+                <div class="rssFix">
+        	        <a href="http://blog.csdn.net/u012620150/rss/list" class="column" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_RSS&#39;])"><i class="fa fa-rss"></i></a>
+                </div>        
+
+                <div id="goTopBtn" class="skin_backTop"><i class="fa fa-chevron-up"></i></div>
+        </div>
+        <div class="detail_b">
+          <p class="reprint_copy" style="" id="copyright">版权声明：本文为博主原创文章，未经博主允许不得转载。</p>  
+		   <!--      
+          <div class="bole" style="display:none">
+            <h2 class="bole_t clearfix"><span>伯乐推荐</span>
+              <label>一共有<em>{bolecount}</em>位博乐进行推荐</label>
+            </h2>
+           {bolecomment}              
+          </div>		
+          -->  
+           <!-- style=""style=""-->
+          <h2 class="praise">
+            <label id="digg" articleid="51754569" onclick="btndigga();"><span id="btnDigg">顶</span><em>0</em></label>
+            <label id="bury" onclick="btnburya();"><span id="btnBury">踩</span><em>0</em></label>
+          </h2>           
+                <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" target="_blank">&nbsp;</a>   </div>
+                <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" target="_blank">&nbsp;</a></div>
+           
+             <script type="text/javascript">
+                 function btndigga() {
+                     $(".tracking-ad[data-mod='popu_222'] a").click();
+                 }
+                 function btnburya() {
+                     $(".tracking-ad[data-mod='popu_223'] a").click();
+                 }
+
+                 $(function () {
+                     if ($(".markdown_views").length > 0) {
+			if($("#fromjs").length==0)
+			{
+                         $('pre.prettyprint code').each(function () {
+                             var lines = $(this).text().split('\n').length;
+                             var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                             $(this).addClass('has-numbering').parent().append($numbering);
+                             for (i = 1; i <= lines; i++) {
+                                 $numbering.append($('<li/>').text(i));
+                             };
+                             $numbering.fadeIn(1700);
+                         });
+			}
+                     }
+                     else {
+                         $("#article_content pre").each(function () {
+                             var $this = $(this);
+                             if ($this.attr("class") != undefined) {
+                                 if ($this.attr("class").indexOf("brush:") != -1) {
+                                     var lang = $this.attr("class").split(';')[0].split(':')[1];
+                                     $this.attr('name', 'code');
+                                     $this.attr('class', lang);
+                                 }
+                                 if ($this.attr("class")) {
+                                     $this.attr('name', 'code');
+                                 }
+                             }
+                         });
+                         $('#article_content textarea[name=code]').each(function () {
+                             var $this = $(this);
+                             if ($this.attr("class").indexOf(":") != -1) {
+                                 $this.attr("class", $this.attr("class").split(':')[0]);
+                             }
+                         });
+                         dp.SyntaxHighlighter.HighlightAll('code');
+                         $('.highlighter').addClass('dp-highlighter');
+                         if (!window.clipboardData) {
+                             setTimeout("setCopyBtn()", 500);
+                         }
+
+                         function __get_code_toolbar(snippet_id) {
+                             return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                                     + snippet_id
+                                     + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                                     + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                                     + snippet_id
+                                     + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+                         }
+
+                         $("[code_snippet_id]").each(function () {
+                             __s_id = $(this).attr("code_snippet_id");
+                             if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                                 __code_tool = __get_code_toolbar(__s_id);
+                                 $(this).prev().find(".tools").append(__code_tool);
+                             }
+                         });
+
+                         $(".bar").show();
+                     }
+                 });
+            </script>
+          <div class="blog_share">
+              <!--<i class="fa fa-qq"></i><i class="fa fa-weixin"></i><i class="fa fa-weibo"></i><i class="fa fa-renren"></i><i class="fa fa-qq"></i><i class="fa fa-weixin"></i>
+              <i class="fa fa-weibo"></i><i class="fa fa-renren"></i>-->                
+               <div class="bdsharebuttonbox tracking-ad bdshare-button-style0-16" style="float: right;" data-mod="popu_172" data-bd-bind="1502370033086">
+                <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important" target="_blank"></a>
+                <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" style="background-position:0 -52px !important" target="_blank"></a>
+                <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" style="background-position:0 -104px !important" target="_blank"></a>
+                <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博" style="background-position:0 -260px !important" target="_blank"></a>
+                <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="bds_renren" data-cmd="renren" title="分享到人人网" style="background-position:0 -208px !important" target="_blank"></a>
+                <a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="bds_weixin" data-cmd="weixin" title="分享到微信" style="background-position:0 -1612px !important" target="_blank"></a>
+                </div>
+                <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+                <!-- Baidu Button END -->
+          </div>
+          <div class="forward_back">
+            <div class="back fl"><a href="javascript:void(0);" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;]);location.href=&#39;http://blog.csdn.net/u012620150/article/details/51744661&#39;;"><span><i class="fa fa-arrow-left"></i></span><em>startActivityForResult 用在于多个Activity之间传值时一些需要注意的用法</em></a></div><div class="forward fr"><a href="javascript:void(0);" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;]);location.href=&#39;http://blog.csdn.net/u012620150/article/details/52032476&#39;;"><em>android面试问题的总结</em><span><i class="fa fa-arrow-right"></i></span></a></div>
+          </div>
+            <div>
+                <script type="text/javascript">
+    /*博客内容页下方Banner2-728*90，创建于2014-7-3*/
+    var cpro_id = "u1607657";
+</script>
+<script type="text/javascript" src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/c.js.下载"></script><div id="BAIDU_SSP__wrapper_u1607657_0"><iframe id="iframeu1607657_0" name="iframeu1607657_0" src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/zcmm(1).html" width="728" height="90" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:728px;height:90px" allowtransparency="true"></iframe></div>
+            </div>            
+        <!--  
+		{articleinsamecategory}
+            -->
+          <div class="comment" id="comment_form">
+              <div id="commentsbmitarear"><div class="guest_link">您还没有登录,请<a href="javascript:void(0);" onclick="javascript:loginbox();">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Fu012620150%2Farticle%2Fdetails%2F51754569">[注册]</a></div></div>
+              <a name="comments"></a>
+            <div class="comment_list" id="comment_list"><br>&nbsp;&nbsp;暂无评论<br><br><div class="clear"></div></div>
+            <div style="height:60px">&nbsp;</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+    <div class="skin_right">
+      <div id="skin_r_wrap" class="skin_r_wrap" style="position: relative; overflow: hidden;"><div class="rollbar-path-vertical" style="z-index: 80; top: 0px; height: 705px;"><div class="rollbar-handle" style="height: 30%; opacity: 0.5;"></div></div><div class="rollbar-path-horizontal" style="z-index: 80; display: none; left: 20px; width: 210px;"><div class="rollbar-handle" style="width: 30%; opacity: 0.5;"></div></div>
+        <div class="rollbar-content" style="position: relative; top: 0px; left: 0px; overflow: hidden;"><div id="skin_r" class="skin_r"><i id="arrow_r" class="fa fa-arrow-right"></i>
+          <div class="mess"><a href="http://my.csdn.net/u012620150"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/1_u012620150.jpg" alt="img" class="head"></a>
+            <p class="mess_name">Garfield_1211</p>
+            <div class="grade">
+                <p><span>等级：</span><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/blog3.png"></p>
+                <p><span>排名：</span><span>千里之外</span></p>
+            </div>
+            <div class="blog_medal"><a href="http://blog.csdn.net/experts/rule.html"></a>
+              <div class="medal_c"></div>
+              <div class="attention">
+			  <a href="javascript:void(0);" id="span_add_follow"><i class="fa fa-plus"></i><span>加关注</span></a>
+			  <a href="javascript:void(0);" onclick="window.open(&#39;http://msg.csdn.net/letters/model?receiver=u012620150&#39;,&#39;_blank&#39;,&#39;height=350,width=700&#39;);_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_sixin&#39;])"><i class="fa fa-envelope-o"></i><span>发私信</span></a>			  			 
+			  </div>   
+			   <div class="contact"></div>         
+            </div>
+          </div>
+          <div class="classify">     
+             <!--
+            <dl class="classify_list js_list">
+	             <dt>
+	                  <div class="js_column"><i class="fa fa-th"></i><a href="#" class="column">文章分类</a></div>
+	            </dt>
+            </dl>
+
+                  <dl class="classify_list">
+              <dt><i class="fa fa-play-circle"></i><a  href="/u012620150/blog/course" class="column">我的课程</a></dt>
+            </dl> 
+		    -->	    	
+            
+            
+                
+               
+               <dl class="classify_list">
+                     <div class="article_search">
+                         <div class="article_search_c">
+                            <form id="frmSearch" action="http://so.csdn.net/search" class="form_search csdn-tracking-statistics" target="_blank" data-mod="popu_306">
+                                <input type="text" id="inputSearch" placeholder="文章搜索"><i class="fa fa-search" id="btnSubmit"></i>
+                            </form>
+                         </div>
+                     </div>
+               </dl>  
+			<script type="text/javascript">
+
+		   
+		    $(function () {
+		        $("#btnSubmit").unbind("click");
+		        $("#btnSubmit").click(function () {           
+		            search();
+		        });
+
+		        $("#frmSearch").submit(function () {           
+		            search();
+		            return false;
+		        });
+
+		        function search()
+		        {
+		            if ($("#inputSearch").val() == "") {               
+		                alert("请录入搜索关键词！");                         
+		                return false;
+		            }
+		            //var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";           
+		            var url = "https://www.baidu.com/s?wd=" + encodeURIComponent($("#inputSearch").val()) + "%20site%3Ablog.csdn.net"
+		            window.location.href = url;
+		        }   
+		    });
+		</script>
+                    
+            <dl class="classify_list">
+              <dt><i class="fa fa-file-text"></i><a href="http://blog.csdn.net/u012620150/blog/column" class="column">博客专栏</a> </dt>
+            </dl>  
+                    
+           <dl class="classify_list js_list">
+              <dt>
+                <div class="js_column_wrap"><i class="fa fa-th"></i><span class="column">文章分类</span></div>
+                <ul id="article_list0" class="article_list">
+				  <li><a href="http://blog.csdn.net/u012620150/article/category/2253303" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">adb</a><span>（2）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/2253397" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">视频播放</a><span>（1）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/2264201" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android 动画</a><span>（2）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/2279939" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Bitmap</a><span>（0）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/2309145" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">View</a><span>（1）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/2309327" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">dialog</a><span>（0）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/2310245" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">ProgressBar</a><span>（1）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/2338595" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">TextView</a><span>（0）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/2344493" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">AlertDialog</a><span>（0）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/2344919" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android</a><span>（22）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/2404633" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">python</a><span>（1）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/2404635" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">解析网页</a><span>（1）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/2414271" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android读写文件权限</a><span>（1）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/2624079" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Camera</a><span>（0）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/2723263" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">eclipse</a><span>（1）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/2753179" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">genymotion</a><span>（1）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/2763025" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">图片加载</a><span>（0）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/3025733" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">心情随记</a><span>（0）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/5680529" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">java</a><span>（0）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/6178468" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android stu</a><span>（1）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/6178470" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android studio</a><span>（4）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/6330871" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">面试</a><span>（6）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/6478911" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android反编译</a><span>（1）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/7025802" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">查看个人信息jsp页面</a><span>（0）</span></li><li><a href="http://blog.csdn.net/u012620150/article/category/7041921" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">工具</a><span>（1）</span></li>                  
+                </ul>
+              </dt>
+              <dd style="display:none"><a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="article_add"><i class="fa fa-plus"></i></a></dd>
+            </dl>
+            
+            <dl class="classify_list js_list">
+              <dt>
+                <div class="js_column_wrap"><i class="fa fa-calendar"></i><span class="column">文章存档</span></div>
+                <ul id="article_list1" class="article_list">
+                 
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2017/08">2017年08月</a><span>(1)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2017/07">2017年07月</a><span>(4)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2017/05">2017年05月</a><span>(1)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2017/02">2017年02月</a><span>(1)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2017/01">2017年01月</a><span>(1)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2016/11">2016年11月</a><span>(7)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2016/10">2016年10月</a><span>(3)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2016/07">2016年07月</a><span>(1)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2016/06">2016年06月</a><span>(4)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2016/05">2016年05月</a><span>(1)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2016/04">2016年04月</a><span>(2)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2016/02">2016年02月</a><span>(2)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2015/11">2015年11月</a><span>(3)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2015/09">2015年09月</a><span>(1)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2015/06">2015年06月</a><span>(2)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2015/05">2015年05月</a><span>(3)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2015/03">2015年03月</a><span>(4)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2015/01">2015年01月</a><span>(5)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2014/12">2014年12月</a><span>(3)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2014/11">2014年11月</a><span>(1)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2014/07">2014年07月</a><span>(3)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2014/06">2014年06月</a><span>(4)</span></li>
+                
+                    <li><a href="http://blog.csdn.net/u012620150/article/month/2014/05">2014年05月</a><span>(2)</span></li>
+                
+                </ul>
+              </dt>
+            </dl>
+                 
+            <dl class="classify_list js_list">
+              <dt>
+                <div class="js_column_wrap"><i class="fa fa-eye"></i><span class="column">阅读排行</span></div>
+                <ul class="article_list">
+                
+                 <li><a href="http://blog.csdn.net/u012620150/article/details/51125874">android studio 新建文件，直接添加到svn,不用手动添加</a><span>（2618）</span></li>
+                 
+                 <li><a href="http://blog.csdn.net/u012620150/article/details/48315335">android 群组头像的显示（仿QQ群组）</a><span>（1588）</span></li>
+                 
+                 <li><a href="http://blog.csdn.net/u012620150/article/details/46119723">TextView 加中划线，下划线，抗锯齿，取消设置的线</a><span>（1383）</span></li>
+                 
+                 <li><a href="http://blog.csdn.net/u012620150/article/details/50668186">Fragment 嵌套Fragment时，用getChildFragmentManager()</a><span>（1310）</span></li>
+                 
+                 <li><a href="http://blog.csdn.net/u012620150/article/details/28599075">View.bringToFront</a><span>（1094）</span></li>
+                 
+                 <li><a href="http://blog.csdn.net/u012620150/article/details/51754569">ProgressBar 旋转</a><span>（1042）</span></li>
+                 
+                 <li><a href="http://blog.csdn.net/u012620150/article/details/45484485">删除ListView选中的item</a><span>（681）</span></li>
+                 
+                 <li><a href="http://blog.csdn.net/u012620150/article/details/49644851">透明度转换成十六进制的色值</a><span>（640）</span></li>
+                 
+                 <li><a href="http://blog.csdn.net/u012620150/article/details/43150557">多线程下载图片（使用ExecutorService）</a><span>（583）</span></li>
+                 
+                 <li><a href="http://blog.csdn.net/u012620150/article/details/46650093">setAnimation vs startAnimation的区别</a><span>（555）</span></li>
+                 
+                </ul>
+              </dt>
+            </dl>
+            
+            <dl class="classify_list js_list">
+              <dt>
+                <div class="js_column_wrap"><i class="fa fa-comments"></i><span class="column">评论排行</span></div>
+                <ul class="article_list">
+                  
+                  <li><a href="http://blog.csdn.net/u012620150/article/details/48315335">android 群组头像的显示（仿QQ群组）</a><span>（3）</span></li>
+                  
+                  <li><a href="http://blog.csdn.net/u012620150/article/details/50668186">Fragment 嵌套Fragment时，用getChildFragmentManager()</a><span>（1）</span></li>
+                  
+                  <li><a href="http://blog.csdn.net/u012620150/article/details/41277123">Eclipse中出现Select at least one project解决办法</a><span>（0）</span></li>
+                  
+                  <li><a href="http://blog.csdn.net/u012620150/article/details/38045127">android读写文件权限</a><span>（0）</span></li>
+                  
+                  <li><a href="http://blog.csdn.net/u012620150/article/details/37930057">TextView设置圆角，内容太多可以滚动</a><span>（0）</span></li>
+                  
+                  <li><a href="http://blog.csdn.net/u012620150/article/details/37923665">python解析网页查询IP所属地</a><span>（0）</span></li>
+                  
+                  <li><a href="http://blog.csdn.net/u012620150/article/details/32331183">ProgressDialog</a><span>（0）</span></li>
+                  
+                  <li><a href="http://blog.csdn.net/u012620150/article/details/30243631">选中时控件外部显示边框</a><span>（0）</span></li>
+                  
+                  <li><a href="http://blog.csdn.net/u012620150/article/details/76905527">Glide的使用总结</a><span>（0）</span></li>
+                  
+                  <li><a href="http://blog.csdn.net/u012620150/article/details/28599075">View.bringToFront</a><span>（0）</span></li>
+                  
+                </ul>
+              </dt>
+            </dl>
+                
+            <dl class="classify_list js_list">
+              <dt>
+                <div class="js_column_wrap"><i class="fa fa-list-ol"></i><span class="column">推荐文章</span></div>
+                <ul class="article_list">
+                 <ul>
+<li><a href="http://blog.csdn.net/blogdevteam/article/details/76092129" target="_blank">* CSDN日报20170725——《新的开始，从研究生到入职亚马逊》</a></li>
+<li><a href="http://blog.csdn.net/javazejian/article/details/75043422" target="_blank">* 深入剖析基于并发AQS的重入锁(ReetrantLock)及其Condition实现原理</a></li>
+<li><a href="http://blog.csdn.net/jiangwei0910410003/article/details/75512732" target="_blank">* Android版本的"Wannacry"文件加密病毒样本分析(附带锁机)</a></li>
+<li><a href="http://blog.csdn.net/mindfloating/article/details/75948781" target="_blank">* 工作与生活真的可以平衡吗？</a></li>
+<li><a href="http://blog.csdn.net/poem_qianmo/article/details/75943714" target="_blank">* 《Real-Time Rendering 3rd》 提炼总结——高级着色：BRDF及相关技术</a></li>
+<li><a href="http://blog.csdn.net/dog250/article/details/75735806" target="_blank">* 《三体》读后思考-泰勒展开/维度打击/黑暗森林</a></li>
+
+</ul>
+                </ul>
+              </dt>
+            </dl>
+                  
+            <dl class="classify_list js_list">
+              <dt>
+                <div class="js_column_wrap"><i class="fa fa-commenting"></i><span class="column">最新评论</span></div>
+                <ul class="article_list new_comment">
+                  
+                    <li>                    
+                    <p><a href="http://blog.csdn.net/u012620150/article/details/50668186">Fragment 嵌套Fragment时，用getChildFragmentManager()</a></p>                   
+                    <p><a href="http://blog.csdn.net/chenzhiyong1994" class="reply_name">chenzhiyong1994</a><span>回复：</span></p>
+                    <p class="reply_c"><em></em><i>我想问下你这解决了什么问题？</i></p>                    
+                  </li>      
+                 
+                    <li>                    
+                    <p><a href="http://blog.csdn.net/u012620150/article/details/48315335">android 群组头像的显示（仿QQ群组）</a></p>                   
+                    <p><a href="http://blog.csdn.net/yizixiansheng" class="reply_name">yizixiansheng</a><span>回复：</span></p>
+                    <p class="reply_c"><em></em><i>好厉害</i></p>                    
+                  </li>      
+                 
+                    <li>                    
+                    <p><a href="http://blog.csdn.net/u012620150/article/details/51754569">android 群组头像的显示（仿QQ群组）</a></p>                   
+                    <p><a href="http://blog.csdn.net/u012620150" class="reply_name">u012620150</a><span>回复：</span></p>
+                    <p class="reply_c"><em></em><i>@dhl_1986:网络图片下载完后，再做这样的处理</i></p>                    
+                  </li>      
+                 
+                    <li>                    
+                    <p><a href="http://blog.csdn.net/u012620150/article/details/51754569">android 群组头像的显示（仿QQ群组）</a></p>                   
+                    <p><a href="http://blog.csdn.net/dhl_1986" class="reply_name">dhl_1986</a><span>回复：</span></p>
+                    <p class="reply_c"><em></em><i>如果是网络图片呢</i></p>                    
+                  </li>      
+                 
+                    <li>                    
+                    <p><a href="http://blog.csdn.net/u012620150/article/details/44459979">2015的计划</a></p>                   
+                    <p><a href="http://blog.csdn.net/u012620150" class="reply_name">u012620150</a><span>回复：</span></p>
+                    <p class="reply_c"><em></em><i>谢谢，不过已经离开深圳啦！(可以交个朋友吗？我是做android开发)</i></p>                    
+                  </li>      
+                 
+                    <li>                    
+                    <p><a href="http://blog.csdn.net/u012620150/article/details/51754569">2015的计划</a></p>                   
+                    <p><a href="http://blog.csdn.net/czxt0605" class="reply_name">czxt0605</a><span>回复：</span></p>
+                    <p class="reply_c"><em></em><i>好运</i></p>                    
+                  </li>      
+                           
+                </ul>
+              </dt>
+            </dl>
+                
+
+            <!--
+           [startblogcolumn]            
+             [startsearch]   
+               <dl class="classify_list">
+                     <div class="article_search">
+                         <div class="article_search_c">
+                            <form id="frmSearch" action="http://so.csdn.net/search" class="form_search csdn-tracking-statistics" target="_blank"  data-mod="popu_306">
+                                <input type="text" id="inputSearch" placeholder="文章搜索"><i class="fa fa-search" id="btnSubmit"></i>
+                            </form>
+                         </div>
+                     </div>
+               </dl>  
+			<script type="text/javascript">
+
+		   
+		    $(function () {
+		        $("#btnSubmit").unbind("click");
+		        $("#btnSubmit").click(function () {           
+		            search();
+		        });
+
+		        $("#frmSearch").submit(function () {           
+		            search();
+		            return false;
+		        });
+
+		        function search()
+		        {
+		            if ($("#inputSearch").val() == "") {               
+		                alert("请录入搜索关键词！");                         
+		                return false;
+		            }
+		            //var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";           
+		            var url = "https://www.baidu.com/s?wd=" + encodeURIComponent($("#inputSearch").val()) + "%20site%3Ablog.csdn.net"
+		            window.location.href = url;
+		        }   
+		    });
+		</script>
+            [endsearch]   
+            
+            [startspecialcolumn]        
+            <dl class="classify_list">
+              <dt><i class="fa fa-file-text"></i><a  href="/u012620150/blog/column" class="column">博客专栏</a> </dt>
+            </dl>  
+            [endspecialcolumn]   
+            
+             [startcategory]        
+           <dl class="classify_list js_list">
+              <dt>
+                <div class="js_column_wrap"><i class="fa fa-th"></i><span class="column">文章分类</span></div>
+                <ul id="article_list0" class="article_list">
+				  {articlecategorys}                  
+                </ul>
+              </dt>
+              <dd style="display:none"><a href="#" class="article_add"><i class="fa fa-plus"></i></a></dd>
+            </dl>
+            [endcategory]
+
+            [startarchive]
+            <dl class="classify_list js_list">
+              <dt>
+                <div class="js_column_wrap"><i class="fa fa-calendar"></i><span class="column">文章存档</span></div>
+                <ul id="article_list1" class="article_list">
+                 [startlist]
+                    <li><a href="/{0}/article/month/{1}/{2}">{1}年{2}月</a><span>({3})</span></li>
+                [endlist]
+                </ul>
+              </dt>
+            </dl>
+             [endarchive]    
+                [startviewcountarticles]    
+            <dl class="classify_list js_list">
+              <dt>
+                <div class="js_column_wrap"><i class="fa fa-eye"></i><span class="column">阅读排行</span></div>
+                <ul class="article_list">
+                [startlist]
+                 <li><a href="{columnarticleurl}">{columnarticletitle}</a><span>（{columnarticlecount}）</span></li>
+                 [endlist]
+                </ul>
+              </dt>
+            </dl>
+            [endviewcountarticles]
+                [startcommentcountarticles]
+            <dl class="classify_list js_list">
+              <dt>
+                <div class="js_column_wrap"><i class="fa fa-comments"></i><span class="column">评论排行</span></div>
+                <ul class="article_list">
+                  [startlist]
+                  <li><a href="{columnarticleurl}">{columnarticletitle}</a><span>（{columnarticlecommentcount}）</span></li>
+                  [endlist]
+                </ul>
+              </dt>
+            </dl>
+                [endcommentcountarticles]
+                [starthomepagearticles]
+            <dl class="classify_list js_list">
+              <dt>
+                <div class="js_column_wrap"><i class="fa fa-list-ol"></i><span class="column">推荐文章</span></div>
+                <ul class="article_list">
+                 {cloumcontent}
+                </ul>
+              </dt>
+            </dl>
+                  [endhomepagearticles]
+                [startnewcomments]
+            <dl class="classify_list js_list">
+              <dt>
+                <div class="js_column_wrap"><i class="fa fa-commenting"></i><span class="column">最新评论</span></div>
+                <ul class="article_list new_comment">
+                  [startlist]
+                    <li>                    
+                    <p><a href="{articleurl}">ProgressBar 旋转</a></p>                   
+                    <p><a href="/{commentusername}" class="reply_name">{commentusername}</a><span>回复：</span></p>
+                    <p class="reply_c"><em></em><i>{commentcontent}</i></p>                    
+                  </li>      
+                 [endlist]          
+                </ul>
+              </dt>
+            </dl>
+                [endnewcomments]
+                [startcustom]
+                   <dl class="classify_list js_list">
+                      <dt>
+                        <div class="js_column_wrap"><i class="fa fa-cube"></i><span class="column">{columntitle}</span></div>
+                        <ul class="article_list">
+                         {columcontent}
+                        </ul>
+                      </dt>
+                    </dl>
+                [endcustom]
+         [endblogcolumn]    
+            -->
+
+            <!--
+            <dl class="classify_list">
+              <dt class="rss"><i class="fa fa-rss"></i>			 
+			  <span class="column">
+			   	<a href="http://blog.csdn.net/u012620150/rss/list" class="column"  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])">RSS订阅</a>
+			   </span>
+			  </dt>
+            </dl>
+            -->
+            
+          </div>
+        </div></div>
+      </div>
+    </div>
+    <div id="skin_right_small" class="skin_right_small">
+      <div class="skin_r_small"><i id="faNavicon" class="fa fa-navicon"></i>
+        <div class="head_small"><a href="http://my.csdn.net/u012620150"><img src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/1_u012620150.jpg" alt="img"></a></div>
+        <ul class="rSmallList">  
+           
+                
+                  <li class="small_article"><i class="fa fa-file-text"></i><a href="http://blog.csdn.net/u012620150/blog/column" class="small_column">博客专栏</a></li>
+                    
+                  <li class="small_article js_smallArticle"><i class="fa fa-th"></i><a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="small_column">文章分类</a></li>
+                
+                  <li class="small_article js_smallArticle"><i class="fa fa-calendar"></i><a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="small_column">文章存档</a></li>
+                
+                  <li class="small_article js_smallArticle"><i class="fa fa-eye"></i><a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="small_column">阅读排行</a></li>
+              
+                  <li class="small_article js_smallArticle"><i class="fa fa-comments"></i><a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="small_column">评论排行</a></li>
+              
+                  <li class="small_article js_smallArticle"><i class="fa fa-list-ol"></i><a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="small_column">推荐文章</a></li>
+              
+                  <li class="small_article js_smallArticle"><i class="fa fa-commenting"></i><a href="http://blog.csdn.net/u012620150/article/details/51754569#" class="small_column">最新评论</a></li>
+                      
+          <!-- 
+           [startblogcolumnsmall]   
+               [startspecialcolumn]    
+                  <li class="small_article"><i class="fa fa-file-text"></i><a href="/u012620150/blog/column" class="small_column">博客专栏</a></li>
+               [endspecialcolumn]  
+                [startcategory]     
+                  <li class="small_article js_smallArticle"><i class="fa fa-th"></i><a href="#" class="small_column">文章分类</a></li>
+                [endcategory]     
+              [startarchive]
+                  <li class="small_article js_smallArticle"><i class="fa fa-calendar"></i><a href="#" class="small_column">文章存档</a></li>
+              [endarchive]
+              [startviewcountarticles]  
+                  <li class="small_article js_smallArticle"><i class="fa fa-eye"></i><a href="#" class="small_column">阅读排行</a></li>
+              [endviewcountarticles]  
+              [startcommentcountarticles]
+                  <li class="small_article js_smallArticle"><i class="fa fa-comments"></i><a href="#" class="small_column">评论排行</a></li>
+              [endcommentcountarticles]
+              [starthomepagearticles]
+                  <li class="small_article js_smallArticle"><i class="fa fa-list-ol"></i><a href="#" class="small_column">推荐文章</a></li>
+              [endhomepagearticles]
+              [startnewcomments]
+                  <li class="small_article js_smallArticle"><i class="fa fa-commenting"></i><a href="#" class="small_column">最新评论</a></li>
+              [endnewcomments]
+              [startcustom]
+                  <li class="small_article js_smallArticle"><i class="fa fa-cube"></i><a href="#" class="small_column">{columntitle}</a></li>
+              [endcustom]
+          [endblogcolumnsmall]    
+          -->         
+        </ul>        
+      </div>
+    </div>
+	
+    <div id="mask"></div>
+    <script type="text/javascript" src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/accordion.js.下载"></script>
+    
+    <script type="text/javascript" src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/jquery.mousewheel.js.下载"></script>
+    <script type="text/javascript" src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/jquery.rollbar.min.js.下载"></script>
+    
+    <script type="text/javascript" src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/transition.js.下载"></script>  
+     <div id="note1" class="csdn_note" style="display:none; position:absolute; z-index:9999; width:440px">  <span class="notice_top_arrow"><span class="inner"></span></span>  <div class="box"></div></div><div class="csdn_notice_tip" style="display:none; position:absolute; z-index:9990; width:170px">  <iframe src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/saved_resource(1).html" frameborder="0" scrolling="no" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div class="tip_text">您有<strong>0</strong>条新通知</div>  <a href="javascript:void 0" class="close2"></a></div><script id="noticeScript" type="text/javascript" charset="utf-8" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/notify.js.下载"></script><input type="hidden" id="aa_g_data_ids">  
+    <!--script( type="text/javascript" src="http://csdnimg.cn/pubfooter/js/publib_footer.js" )-->
+    <!--script( type="text/javascript" src="http://static.csdn.net/public/common/toolbar/js/toolbar.js" )-->
+    <script id="csdn-toolbar-id" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" type="text/javascript" src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/toolbar.js.下载"></script>
+
+     <div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+    </div>
+    <div id="report_dialog">
+    </div>
+
+    <div id="popup_mask"></div>
+    <style type="text/css">
+        #popup_mask
+        {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            left: 0px;
+            top: 0px;
+            opacity: 0.3;
+            filter: alpha(opacity=30);
+            display: none;
+        }
+
+         .skin_list  dl dd div ol {  
+        margin-left:15px;
+            }  
+
+       .skin_list dl dd div ol li {  
+         display:list-item;list-style-type:decimal;margin-left:15px;
+            }       
+
+    </style>     
+      
+        <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334" src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/52b5334.js.下载"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+        </div> 
+
+       <!-- 广告位开始 -->
+        <ins data-revive-zoneid="72" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins>
+    <!-- 广告位结束 -->
+
+   <link rel="stylesheet" href="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/blog_code.css">
+            <script type="text/javascript" src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/saveToCode.js.下载"></script>     
+	<script type="text/javascript" src="./ProgressBar 旋转 - 博客频道 - CSDN.NET_files/main.js(1).下载" javascript"=""></script>
+
+
+<script type="text/javascript">
+    var fromjs=$("#fromjs");
+    if(fromjs.length>0)
+    {                  
+        $("#fromjs .markdown_views pre").addClass("prettyprint");       
+        prettyPrint();
+
+        $('pre.prettyprint code').each(function () {
+            var lines = $(this).text().split('\n').length;
+            var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+            $(this).addClass('has-numbering').parent().append($numbering);
+            for (i = 1; i <= lines; i++) {
+                $numbering.append($('<li/>').text(i));
+            };
+            $numbering.fadeIn(1700);
+        });
+
+        $('.pre-numbering li').css("color","#999");             
+    }
+
+    $(function(){
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },500);         
+       
+
+    });
+
+</script>
+
+<div style="position:fixed; top:0; left:0; overflow:hidden;"><input style="position:absolute; left:-300px;" type="text" value="" id="focus_retriever" readonly="true"></div><div id="mask_code"></div><div class="gist_edit"><div class="save_snippets clearfix"><div class="tit"><h3>保存代码片</h3><span>整理和分享保存的代码片，请访问<a href="https://code.csdn.net/snippets_manage" target="_blank">代码笔记</a></span></div><div class="con_form"><ul class="gist_edit_list clearfix"><li><span class="red">*</span><span class="txt">标题</span><input id="form_title" class="form-input" placeholder="ProgressBar 旋转" type="text"></li><li><span class="red">*</span><span class="txt">描述</span><textarea id="form-textarea" class="form-textarea" placeholder="ProgressBar 旋转： http://blog.csdn.net/u012620150/article/details/51754569"></textarea></li><li><span class="red">&nbsp;</span><span class="txt">标签</span><div id="divSearchTags"><input id="insertTag" class="insertTag" placeholder="请输入标签，按Enter生成(最多5项)" type="text" value="" name="insertTag" maxlength="21" style="color: rgb(51, 51, 51);"><input id="OrganTag" class="OrganTag" type="hidden" name="OrganTag" value=""><input id="OldOrganTag" class="OldOrganTag" type="hidden" name="OldOrganTag" value=""><input type="hidden" name="txtSearchTags"></div></li></ul></div><div class="bottom-bar"><a href="javascript:;" class="btn-submit btn-cancel">取消</a><span class="tracking-ad" data-mod="popu_250"><a class="btn-submit btn-confirm" href="javascript:;" target="_blank">确定</a></span></div></div></div><div style="position:fixed; top:0; left:0; overflow:hidden;"><input style="position:absolute; left:-300px;" type="text" value="" id="focus_retriever" readonly="true"></div><div id="tag-suggest-pop">
+  <div class="relative">
+    <div class="close"></div>
+    <div class="content"></div>
+  </div>
+</div></body></html>

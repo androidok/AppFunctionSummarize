@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://www.cnblogs.com/tianzhijiexian/p/3854346.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>自定义各式各样的圆形ProgressBar - developer_Kale - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/bundle-CodingLife.css">
+<link type="text/css" rel="stylesheet" href="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/191655.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/bundle-CodingLife-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/tianzhijiexian/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/tianzhijiexian/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/tianzhijiexian/wlwmanifest.xml">
+<script async="" src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/analytics.js.下载"></script><script type="text/javascript" src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/encoder.js.下载"></script><script src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'tianzhijiexian', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/tianzhijiexian/"><img id="blogLogo" src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/tianzhijiexian/">Developer_Kale</a></h1>
+<h2>因为疯狂所以专注，因为专注所以疯狂！</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/tianzhijiexian/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/developer_Kale">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/tianzhijiexian/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/tianzhijiexian/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 379&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 141</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/tianzhijiexian/p/3854346.html">自定义各式各样的圆形ProgressBar</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p><img src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/182216199902389.png" alt="" width="288" height="512">&nbsp;&nbsp;<img src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/182217328961849.png" alt="" width="288" height="513">&nbsp;&nbsp;<img src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/182218293342906.png" alt="" width="289" height="514"></p>
+<p><span style="font-size: 18px;">上面三个图分别是 开始时的样子，走进度时候的样子，最后完成的样子</span></p>
+<p><span style="font-size: 18px;">这是我在两个大神的Demo基础上修改后的结果，我们先来看看自定义view是怎么做到的。</span></p>
+<p><span style="font-size: 18px;">1.自己写一个类继承View类，然后处理。</span></p>
+<p><span style="font-size: 18px;">2.在values中建立一个attrs.xml文件来存放自定义view的属性。</span></p>
+<p><span style="font-size: 18px;">3.自定义的view类中的各个属性都从xml文件中获取</span></p>
+<p><span style="font-size: 18px;">4.在布局文件中使用该视图，通过属性值即可设定该视图的样子</span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px;">我们先在values中建立一个attrs.xml文件，看看我们进度条需要的属性。</span></p>
+<p>&nbsp;</p>
+<p><br>	    <span style="font-size: 14pt;"><strong>max 　　　　&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;最大进度</strong></span><br><span style="font-size: 14pt;"><strong>	    startAngle 　　&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;进度从圆环的哪个角度开始走</strong></span><br><span style="font-size: 14pt;"><strong>	    backColor 　　 &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; 圆环内部的填充色</strong></span><br><span style="font-size: 14pt;"><strong>	    roundColor 　　　 &nbsp;&nbsp; &nbsp;圆环的颜色</strong></span><br><span style="font-size: 14pt;"><strong>	    roundProgressColor  圆环进度的颜色</strong></span><br><span style="font-size: 14pt;"><strong>	    roundWidth　　　　 &nbsp;圆环宽度</strong></span><br><span style="font-size: 14pt;"><strong>	    textColor　　　　　 &nbsp;&nbsp;中心文字的颜色</strong></span><br><span style="font-size: 14pt;"><strong>	    textSize 　　　　　　			中心文字的大小</strong></span><br><span style="font-size: 14pt;"><strong>	    textIsDisplayable &nbsp;&nbsp;&nbsp;中心文字是否显示</strong></span><br><span style="font-size: 14pt;"><strong>	    style = 0/1 　　　　 		进度的风格，实心或者空心</strong></span><br><br></p>
+<p>&nbsp;</p>
+<p><span style="line-height: 28px; font-size: 18px;">这里是通过键值对的形式来存放的。键（name）：属性名 值（format</span><span style="line-height: 28px; font-size: 18px;">）：属性的类型（限制输入的类型）</span></p>
+<p>&nbsp;</p>
+<pre><span style="color: #ff00ff;"><strong><span style="font-size: 18px;">&lt;attr name="max" format="integer"&gt;&lt;/attr&gt; </span></strong></span><br><span style="font-size: 18px;">这个就是表明了，max这个属性，输入的值必须为整形</span></pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;?</span><span style="color: #ff00ff;">xml version="1.0" encoding="utf-8"</span><span style="color: #0000ff;">?&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">resources</span><span style="color: #0000ff;">&gt;</span>
+    
+    <span style="color: #008000;">&lt;!--</span><span style="color: #008000;"> 
+        max                 最大进度
+        startAngle             进度从圆环的哪个角度开始走
+        backColor             圆环内部的填充色
+        roundColor             圆环的颜色
+        roundProgressColor  圆环进度的颜色
+        roundWidth             圆环宽度
+        textColor             中心文字的颜色
+        textSize             中心文字的大小
+        textIsDisplayable     中心文字是否显示
+        style = 0/1          进度的风格，实心或者空心
+     </span><span style="color: #008000;">--&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">declare-styleable </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="RoundProgressBar"</span><span style="color: #0000ff;">&gt;</span>  
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">attr </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="max"</span><span style="color: #ff0000;"> format</span><span style="color: #0000ff;">="integer"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">attr</span><span style="color: #0000ff;">&gt;</span> 
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">attr </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="startAngle"</span><span style="color: #ff0000;"> format</span><span style="color: #0000ff;">="integer"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">attr</span><span style="color: #0000ff;">&gt;</span> 
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">attr </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="roundColor"</span><span style="color: #ff0000;"> format</span><span style="color: #0000ff;">="color"</span><span style="color: #0000ff;">/&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">attr </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="roundProgressColor"</span><span style="color: #ff0000;"> format</span><span style="color: #0000ff;">="color"</span><span style="color: #0000ff;">/&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">attr </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="roundWidth"</span><span style="color: #ff0000;"> format</span><span style="color: #0000ff;">="dimension"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">attr</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">attr </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="backColor"</span><span style="color: #ff0000;"> format</span><span style="color: #0000ff;">="color"</span> <span style="color: #0000ff;">/&gt;</span>  
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">attr </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="textColor"</span><span style="color: #ff0000;"> format</span><span style="color: #0000ff;">="color"</span> <span style="color: #0000ff;">/&gt;</span>  
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">attr </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="textSize"</span><span style="color: #ff0000;"> format</span><span style="color: #0000ff;">="dimension"</span> <span style="color: #0000ff;">/&gt;</span> 
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">attr </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="textIsDisplayable"</span><span style="color: #ff0000;"> format</span><span style="color: #0000ff;">="boolean"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">attr</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">attr </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="style"</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">enum </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="STROKE"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="0"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">enum</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">enum </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="FILL"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="1"</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">enum</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">attr</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">declare-styleable</span><span style="color: #0000ff;">&gt;</span> 
+    
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">resources</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px;">然后，我们就需要在自定义的view中获得这些属性。将代码和xml文件联系起来</span></p>
+<p><span style="font-size: 18px;">1.定义TypedArray ，2.将变量的值和属性关联</span></p>
+<p><span style="font-size: 18px;"> TypedArray mTypedArray = context.obtainStyledAttributes(attrs,</span><span style="font-size: 18px;">R.styleable.RoundProgressBar);</span></p>
+<p><span style="font-size: 18px;">（获取自定义属性和默认值，第一个参数是从用户属性中得到的设置，如果用户没有设置，那么就用默认的属性，即：第二个参数）</span></p>
+<p><span style="font-size: 18px;">int roundColor = mTypedArray.getColor(R.styleable.RoundProgressBar_roundColor,<span style="color: #ff00ff;"> Color.RED</span>); &nbsp;<span style="color: #ff00ff;">//粉色的是默认的值</span></span></p>
+<p><span style="font-size: 18px;"><span>这样通过xml文件初始化变量的过程就完成了，下面就是代码的操作了。代码中就是用画笔画圆环和圆形。</span></span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">package</span><span style="color: #000000;"> com.kale.progressbar02;
+
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.content.Context;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.content.res.TypedArray;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.graphics.Canvas;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.graphics.Color;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.graphics.Paint;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.graphics.RectF;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.graphics.Typeface;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.util.AttributeSet;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.view.View;
+
+</span><span style="color: #008000;">/**</span><span style="color: #008000;">
+ * 仿iphone带进度的进度条，线程安全的View，可直接在线程中更新进度
+ * </span><span style="color: #808080;">@author</span><span style="color: #008000;"> xiaanming
+ * </span><span style="color: #008000; text-decoration: underline;">http://blog.csdn.net/xiaanming/article/details/10298163</span><span style="color: #008000;">
+ *
+ </span><span style="color: #008000;">*/</span>
+<span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> RoundProgressBar <span style="color: #0000ff;">extends</span><span style="color: #000000;"> View {
+    </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+     * 画笔对象的引用
+     </span><span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">private</span><span style="color: #000000;"> Paint paint;
+    
+    </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+     * 圆环的颜色
+     </span><span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> roundColor;
+    
+    </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+     * 圆环进度的颜色
+     </span><span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> roundProgressColor;
+    
+    </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+     * 中间进度百分比的字符串的颜色
+     </span><span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> textColor;
+    
+    </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+     * 中间进度百分比的字符串的字体
+     </span><span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">float</span><span style="color: #000000;"> textSize;
+    
+    </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+     * 圆环的宽度
+     </span><span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">float</span><span style="color: #000000;"> roundWidth;
+    
+    </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+     * 最大进度
+     </span><span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> max;
+    
+    </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+     * 当前进度
+     </span><span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> progress;
+    </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+     * 是否显示中间的进度
+     </span><span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">boolean</span><span style="color: #000000;"> textIsDisplayable;
+    
+    </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+     * 进度的风格，实心或者空心
+     </span><span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> style;
+    
+    </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+     * 进度开始的角度数 
+     </span><span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> startAngle;
+    
+    </span><span style="color: #0000ff;">private</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> backColor;
+    
+    
+    
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">final</span> <span style="color: #0000ff;">int</span> STROKE = 0<span style="color: #000000;">;
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">final</span> <span style="color: #0000ff;">int</span> FILL = 1<span style="color: #000000;">;
+    
+    </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> RoundProgressBar(Context context) {
+        </span><span style="color: #0000ff;">this</span>(context, <span style="color: #0000ff;">null</span><span style="color: #000000;">);
+    }
+
+    </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> RoundProgressBar(Context context, AttributeSet attrs) {
+        </span><span style="color: #0000ff;">this</span>(context, attrs, 0<span style="color: #000000;">);
+    }
+    
+    </span><span style="color: #0000ff;">public</span> RoundProgressBar(Context context, AttributeSet attrs, <span style="color: #0000ff;">int</span><span style="color: #000000;"> defStyle) {
+        </span><span style="color: #0000ff;">super</span><span style="color: #000000;">(context, attrs, defStyle);
+        
+        paint </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> Paint();
+
+        
+        TypedArray mTypedArray </span>=<span style="color: #000000;"> context.obtainStyledAttributes(attrs,
+                R.styleable.RoundProgressBar);
+        
+        </span><strong><span style="color: #008000;">//</span><span style="color: #008000;">获取自定义属性和默认值，第一个参数是从用户属性中得到的设置，如果用户没有设置，那么就用默认的属性，即：第二个参数
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">圆环的颜色</span>
+        roundColor =<span style="color: #000000;"> mTypedArray.getColor(R.styleable.RoundProgressBar_roundColor, Color.RED);
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">圆环进度条的颜色</span>
+        roundProgressColor =<span style="color: #000000;"> mTypedArray.getColor(R.styleable.RoundProgressBar_roundProgressColor, Color.GREEN);
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">文字的颜色</span>
+        textColor =<span style="color: #000000;"> mTypedArray.getColor(R.styleable.RoundProgressBar_textColor, Color.GREEN);
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">文字的大小</span>
+        textSize = mTypedArray.getDimension(R.styleable.RoundProgressBar_textSize, 15<span style="color: #000000;">);
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">圆环的宽度</span>
+        roundWidth = mTypedArray.getDimension(R.styleable.RoundProgressBar_roundWidth, 5<span style="color: #000000;">);
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">最大进度</span>
+        max = mTypedArray.getInteger(R.styleable.RoundProgressBar_max, 100<span style="color: #000000;">);
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">是否显示中间的进度</span>
+        textIsDisplayable = mTypedArray.getBoolean(R.styleable.RoundProgressBar_textIsDisplayable, <span style="color: #0000ff;">true</span><span style="color: #000000;">);
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">进度的风格，实心或者空心</span>
+        style = mTypedArray.getInt(R.styleable.RoundProgressBar_style, 0<span style="color: #000000;">);
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">进度开始的角度数 </span>
+        startAngle = mTypedArray.getInt(R.styleable.RoundProgressBar_startAngle, -90<span style="color: #000000;">);
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 圆形颜色</span>
+        backColor = mTypedArray.getColor(R.styleable.RoundProgressBar_backColor, 0</strong><span style="color: #000000;"><strong>);</strong>
+        mTypedArray.recycle();
+    }
+    
+
+    @Override
+    </span><span style="color: #0000ff;">protected</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onDraw(Canvas canvas) {
+        </span><span style="color: #0000ff;">super</span><span style="color: #000000;">.onDraw(canvas);
+        
+        </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+         * 画最外层的大圆环
+         </span><span style="color: #008000;">*/</span>
+        <span style="color: #0000ff;">int</span> centre = getWidth()/2; <span style="color: #008000;">//</span><span style="color: #008000;">获取圆心的x坐标</span>
+        <span style="color: #0000ff;">int</span> radius = (<span style="color: #0000ff;">int</span>) (centre - roundWidth/2); <span style="color: #008000;">//</span><span style="color: #008000;">圆环的半径</span>
+        paint.setColor(roundColor); <span style="color: #008000;">//</span><span style="color: #008000;">设置圆环的颜色</span>
+        paint.setStyle(Paint.Style.STROKE); <span style="color: #008000;">//</span><span style="color: #008000;">设置空心</span>
+        paint.setStrokeWidth(roundWidth); <span style="color: #008000;">//</span><span style="color: #008000;">设置圆环的宽度</span>
+        paint.setAntiAlias(<span style="color: #0000ff;">true</span>);  <span style="color: #008000;">//</span><span style="color: #008000;">消除锯齿 </span>
+        canvas.drawCircle(centre, centre, radius, paint); <span style="color: #008000;">//</span><span style="color: #008000;">画出圆环
+        
+        </span><span style="color: #008000;">//</span><span style="color: #008000;">Log.e("log", centre + "");</span>
+        <span style="color: #0000ff;">if</span> (backColor != 0<span style="color: #000000;">) {
+            paint.setAntiAlias(</span><span style="color: #0000ff;">true</span><span style="color: #000000;">);
+            paint.setColor(backColor);
+            paint.setStyle(Paint.Style.FILL);
+            canvas.drawCircle(centre, centre, radius, paint);
+        }
+        
+        </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+         * 画进度百分比
+         </span><span style="color: #008000;">*/</span><span style="color: #000000;">
+        paint.setStrokeWidth(</span>0<span style="color: #000000;">); 
+        paint.setColor(textColor);
+        paint.setTextSize(textSize);
+        paint.setTypeface(Typeface.DEFAULT_BOLD); </span><span style="color: #008000;">//</span><span style="color: #008000;">设置字体</span>
+        <span style="color: #0000ff;">int</span> percent = (<span style="color: #0000ff;">int</span>)(((<span style="color: #0000ff;">float</span>)progress / (<span style="color: #0000ff;">float</span>)max) * 100);  <span style="color: #008000;">//</span><span style="color: #008000;">中间的进度百分比，先转换成float在进行除法运算，不然都为0</span>
+        <span style="color: #0000ff;">float</span> textWidth = paint.measureText(percent + "%");   <span style="color: #008000;">//</span><span style="color: #008000;">测量字体宽度，我们需要根据字体的宽度设置在圆环中间</span>
+        
+        <span style="color: #0000ff;">if</span>(textIsDisplayable &amp;&amp; percent != 0 &amp;&amp; style ==<span style="color: #000000;"> STROKE){
+            canvas.drawText(percent </span>+ "%", centre - textWidth / 2, centre + textSize/2, paint); <span style="color: #008000;">//</span><span style="color: #008000;">画出进度百分比</span>
+<span style="color: #000000;">        }
+        
+        
+        </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+         * 画圆弧 ，画圆环的进度
+         </span><span style="color: #008000;">*/</span>
+        <span style="color: #008000;">//</span><span style="color: #008000;">设置进度是实心还是空心</span>
+        paint.setStrokeWidth(roundWidth); <span style="color: #008000;">//</span><span style="color: #008000;">设置圆环的宽度</span>
+        paint.setColor(roundProgressColor);  <span style="color: #008000;">//</span><span style="color: #008000;">设置进度的颜色</span>
+        RectF oval = <span style="color: #0000ff;">new</span> RectF(centre - radius, centre -<span style="color: #000000;"> radius, centre
+                </span>+ radius, centre + radius);  <span style="color: #008000;">//</span><span style="color: #008000;">用于定义的圆弧的形状和大小的界限</span>
+        
+        <span style="color: #0000ff;">switch</span><span style="color: #000000;"> (style) {
+            </span><span style="color: #0000ff;">case</span><span style="color: #000000;"> STROKE:{
+                paint.setStyle(Paint.Style.STROKE);
+
+                </span><span style="color: #008000;">/*</span><span style="color: #008000;">第二个参数是进度开始的角度，-90表示从12点方向开始走进度，如果是0表示从三点钟方向走进度，依次类推
+                 *public void drawArc(RectF oval, float startAngle, float sweepAngle, boolean useCenter, Paint paint)
+                    oval :指定圆弧的外轮廓矩形区域。
+                    startAngle: 圆弧起始角度，单位为度。
+                    sweepAngle: 圆弧扫过的角度，顺时针方向，单位为度。
+                    useCenter: 如果为True时，在绘制圆弧时将圆心包括在内，通常用来绘制扇形。
+                    paint: 绘制圆弧的画板属性，如颜色，是否填充等
+                 * 
+                </span><span style="color: #008000;">*/</span><span style="color: #000000;">
+                canvas.drawArc(oval, startAngle, </span>360 * progress / max, <span style="color: #0000ff;">false</span>, paint);  <span style="color: #008000;">//</span><span style="color: #008000;">根据进度画圆弧</span>
+                <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+            }
+            </span><span style="color: #0000ff;">case</span><span style="color: #000000;"> FILL:{
+                paint.setStyle(Paint.Style.FILL_AND_STROKE);
+                </span><span style="color: #0000ff;">if</span>(progress !=0<span style="color: #000000;">)
+                    canvas.drawArc(oval, startAngle, </span>360 * progress / max, <span style="color: #0000ff;">true</span>, paint);  <span style="color: #008000;">//</span><span style="color: #008000;">根据进度画圆弧</span>
+                <span style="color: #0000ff;">break</span><span style="color: #000000;">;
+            }
+        }
+        
+        
+    }
+    
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">synchronized</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> getMax() {
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> max;
+    }
+
+    </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+     * 设置进度的最大值
+     * </span><span style="color: #808080;">@param</span><span style="color: #008000;"> max
+     </span><span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">synchronized</span> <span style="color: #0000ff;">void</span> setMax(<span style="color: #0000ff;">int</span><span style="color: #000000;"> max) {
+        </span><span style="color: #0000ff;">if</span>(max &lt; 0<span style="color: #000000;">){
+            </span><span style="color: #0000ff;">throw</span> <span style="color: #0000ff;">new</span> IllegalArgumentException("max not less than 0"<span style="color: #000000;">);
+        }
+        </span><span style="color: #0000ff;">this</span>.max =<span style="color: #000000;"> max;
+    }
+
+    </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+     * 获取进度.需要同步
+     * </span><span style="color: #808080;">@return</span>
+     <span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">synchronized</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> getProgress() {
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> progress;
+    }
+
+    </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+     * 设置进度，此为线程安全控件，由于考虑多线的问题，需要同步
+     * 刷新界面调用postInvalidate()能在非UI线程刷新
+     * </span><span style="color: #808080;">@param</span><span style="color: #008000;"> progress
+     </span><span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">synchronized</span> <span style="color: #0000ff;">void</span> setProgress(<span style="color: #0000ff;">int</span><span style="color: #000000;"> progress) {
+        </span><span style="color: #0000ff;">if</span>(progress &lt; 0<span style="color: #000000;">){
+            </span><span style="color: #0000ff;">throw</span> <span style="color: #0000ff;">new</span> IllegalArgumentException("progress not less than 0"<span style="color: #000000;">);
+        }
+        </span><span style="color: #0000ff;">if</span>(progress &gt;<span style="color: #000000;"> max){
+            progress </span>=<span style="color: #000000;"> max;
+        }
+        </span><span style="color: #0000ff;">if</span>(progress &lt;=<span style="color: #000000;"> max){
+            </span><span style="color: #0000ff;">this</span>.progress =<span style="color: #000000;"> progress;
+            postInvalidate();
+        }
+    }
+    
+    
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> getCircleColor() {
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> roundColor;
+    }
+
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> setCircleColor(<span style="color: #0000ff;">int</span><span style="color: #000000;"> CircleColor) {
+        </span><span style="color: #0000ff;">this</span>.roundColor =<span style="color: #000000;"> CircleColor;
+    }
+
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> getCircleProgressColor() {
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> roundProgressColor;
+    }
+
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> setCircleProgressColor(<span style="color: #0000ff;">int</span><span style="color: #000000;"> CircleProgressColor) {
+        </span><span style="color: #0000ff;">this</span>.roundProgressColor =<span style="color: #000000;"> CircleProgressColor;
+    }
+
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> getTextColor() {
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> textColor;
+    }
+
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> setTextColor(<span style="color: #0000ff;">int</span><span style="color: #000000;"> textColor) {
+        </span><span style="color: #0000ff;">this</span>.textColor =<span style="color: #000000;"> textColor;
+    }
+
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">float</span><span style="color: #000000;"> getTextSize() {
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> textSize;
+    }
+
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> setTextSize(<span style="color: #0000ff;">float</span><span style="color: #000000;"> textSize) {
+        </span><span style="color: #0000ff;">this</span>.textSize =<span style="color: #000000;"> textSize;
+    }
+
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">float</span><span style="color: #000000;"> getRoundWidth() {
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> roundWidth;
+    }
+
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> setRoundWidth(<span style="color: #0000ff;">float</span><span style="color: #000000;"> roundWidth) {
+        </span><span style="color: #0000ff;">this</span>.roundWidth =<span style="color: #000000;"> roundWidth;
+    }
+
+
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px;">下面我们需要在布局文件中用这个视图，第一步是将命名空间进行注册</span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 18px;">xmlns:android_custom="http://schemas.android.com/apk/res/<span style="color: #ff00ff;">com.kale.progressbar02</span>" 前缀是一样的，后面是这个项目的包名。之后我们就可以用android_custom这个空间名来使用我们的自定义空间的属性了。</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000;">&lt;!--</span><span style="color: #008000;"> 设置命名空间 </span><span style="color: #008000;">--&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">LinearLayout 
+    </span><span style="color: #ff0000;">xmlns:android</span><span style="color: #0000ff;">="http://schemas.android.com/apk/res/android"</span><span style="font-size: 18px;"><strong><span style="color: #ff00ff;">
+    xmlns:android_custom="http://schemas.android.com/apk/res/com.kale.progressbar02"</span></strong></span><span style="color: #ff0000;">
+    xmlns:tools</span><span style="color: #0000ff;">="http://schemas.android.com/tools"</span><span style="color: #ff0000;">
+    android:layout_width</span><span style="color: #0000ff;">="match_parent"</span><span style="color: #ff0000;">
+    android:layout_height</span><span style="color: #0000ff;">="match_parent"</span><span style="color: #ff0000;">
+    android:padding</span><span style="color: #0000ff;">="16dp"</span><span style="color: #ff0000;">
+    android:orientation</span><span style="color: #0000ff;">="vertical"</span><span style="color: #0000ff;">&gt;</span>
+
+     <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">LinearLayout
+         </span><span style="color: #ff0000;">android:layout_width</span><span style="color: #0000ff;">="match_parent"</span><span style="color: #ff0000;">
+         android:layout_height</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;"> 
+         android:layout_marginTop</span><span style="color: #0000ff;">="20dp"</span><span style="color: #0000ff;">&gt;</span>
+
+         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">TextView
+             </span><span style="color: #ff0000;">android:layout_width</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+             android:layout_height</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+             android:text</span><span style="color: #0000ff;">="有数字，环形"</span> <span style="color: #0000ff;">/&gt;</span>
+
+         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">TextView
+             </span><span style="color: #ff0000;">android:layout_width</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+             android:layout_height</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+             android:layout_marginLeft</span><span style="color: #0000ff;">="50dp"</span><span style="color: #ff0000;">
+             android:text</span><span style="color: #0000ff;">="无数字，饼状"</span> <span style="color: #0000ff;">/&gt;</span>
+
+     <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">LinearLayout</span><span style="color: #0000ff;">&gt;</span>
+
+     <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">LinearLayout
+         </span><span style="color: #ff0000;">android:layout_width</span><span style="color: #0000ff;">="match_parent"</span><span style="color: #ff0000;">
+         android:layout_height</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;"> 
+         android:layout_marginTop</span><span style="color: #0000ff;">="10dp"</span><span style="color: #0000ff;">&gt;</span>
+
+         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">com.kale.progressbar02.RoundProgressBar
+             </span><span style="color: #ff0000;">android:id</span><span style="color: #0000ff;">="@+id/roundProgressBar01_id"</span><span style="color: #ff0000;">
+             android:layout_width</span><span style="color: #0000ff;">="80dp"</span><span style="color: #ff0000;">
+             android:layout_height</span><span style="color: #0000ff;">="80dp"</span><span style="font-size: 15px;"><strong><span style="color: #ff0000;">
+             
+             android_custom:backColor</span><span style="color: #0000ff;">="#ffffff"</span><span style="color: #ff0000;">
+             android_custom:startAngle</span><span style="color: #0000ff;">="0"</span><span style="color: #ff0000;">
+             android_custom:roundColor</span><span style="color: #0000ff;">="#D1D1D1"</span><span style="color: #ff0000;">
+             android_custom:roundProgressColor</span><span style="color: #0000ff;">="@android:color/black"</span><span style="color: #ff0000;">
+             android_custom:roundWidth</span><span style="color: #0000ff;">="10dp"</span><span style="color: #ff0000;">
+             android_custom:textColor</span><span style="color: #0000ff;">="#000000"</span><span style="color: #ff0000;">
+             android_custom:textSize</span><span style="color: #0000ff;">="18sp"</span> <span style="color: #0000ff;">/&gt;</span></strong></span>
+
+         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">com.kale.progressbar02.RoundProgressBar
+             </span><span style="color: #ff0000;">android:id</span><span style="color: #0000ff;">="@+id/roundProgressBar02_id"</span><span style="color: #ff0000;">
+             android:layout_width</span><span style="color: #0000ff;">="80dp"</span><span style="color: #ff0000;">
+             android:layout_height</span><span style="color: #0000ff;">="80dp"</span><span style="color: #ff0000;">
+             android:layout_marginLeft</span><span style="color: #0000ff;">="50dp"</span><strong><span style="font-size: 15px;"><span style="color: #ff0000;">
+             
+             android_custom:startAngle</span><span style="color: #0000ff;">="-60"</span><span style="color: #ff0000;">
+             android_custom:style</span><span style="color: #0000ff;">="FILL"</span><span style="color: #ff0000;">
+             android_custom:roundProgressColor</span><span style="color: #0000ff;">="#C2C2C2"</span><span style="color: #ff0000;">
+             android_custom:roundWidth</span><span style="color: #0000ff;">="1dp"</span> <span style="color: #0000ff;">/&gt;</span></span></strong>
+
+     <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">LinearLayout</span><span style="color: #0000ff;">&gt;</span>
+     
+     <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">LinearLayout
+         </span><span style="color: #ff0000;">android:layout_width</span><span style="color: #0000ff;">="match_parent"</span><span style="color: #ff0000;">
+         android:layout_height</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;"> 
+         android:layout_marginTop</span><span style="color: #0000ff;">="20dp"</span><span style="color: #0000ff;">&gt;</span>
+
+         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">TextView
+             </span><span style="color: #ff0000;">android:layout_width</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+             android:layout_height</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+             android:text</span><span style="color: #0000ff;">="默认的样式"</span> <span style="color: #0000ff;">/&gt;</span>
+
+         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">TextView
+             </span><span style="color: #ff0000;">android:layout_width</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+             android:layout_height</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+             android:layout_marginLeft</span><span style="color: #0000ff;">="50dp"</span><span style="color: #ff0000;">
+             android:text</span><span style="color: #0000ff;">="无数字，环形"</span> <span style="color: #0000ff;">/&gt;</span>
+
+     <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">LinearLayout</span><span style="color: #0000ff;">&gt;</span>
+     
+     <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">LinearLayout
+         </span><span style="color: #ff0000;">android:layout_width</span><span style="color: #0000ff;">="match_parent"</span><span style="color: #ff0000;">
+         android:layout_height</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;"> 
+         android:layout_marginTop</span><span style="color: #0000ff;">="10dp"</span><span style="color: #0000ff;">&gt;</span>
+         
+         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">com.kale.progressbar02.RoundProgressBar
+            </span><span style="color: #ff0000;">android:id</span><span style="color: #0000ff;">="@+id/roundProgressBar03_id"</span><span style="color: #ff0000;">
+            android:layout_width</span><span style="color: #0000ff;">="80dp"</span><span style="color: #ff0000;">
+            android:layout_height</span><span style="color: #0000ff;">="80dp"</span><span style="color: #0000ff;">/&gt;</span>
+     
+         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">com.kale.progressbar02.RoundProgressBar
+            </span><span style="color: #ff0000;">android:id</span><span style="color: #0000ff;">="@+id/roundProgressBar04_id"</span><span style="color: #ff0000;">
+            android:layout_width</span><span style="color: #0000ff;">="80dp"</span><span style="color: #ff0000;">
+            android:layout_height</span><span style="color: #0000ff;">="80dp"</span><span style="color: #ff0000;">
+            android:layout_marginLeft</span><span style="color: #0000ff;">="50dp"</span><span style="font-size: 15px;"><strong><span style="color: #ff0000;">
+            
+            android_custom:startAngle</span><span style="color: #0000ff;">="30"</span><span style="color: #ff0000;">
+            android_custom:roundColor</span><span style="color: #0000ff;">="#C6E2FF"</span><span style="color: #ff0000;">
+            android_custom:roundWidth</span><span style="color: #0000ff;">="10dip"</span><span style="color: #ff0000;">
+            android_custom:roundProgressColor</span><span style="color: #0000ff;">="#CD3333"</span><span style="color: #ff0000;">
+            android_custom:textIsDisplayable</span><span style="color: #0000ff;">="false"</span> <span style="color: #0000ff;">/&gt;</span></strong></span>
+     <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">LinearLayout</span><span style="color: #0000ff;">&gt;</span>
+
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">LinearLayout</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 18px;">右上角的那个进度条是用shape画的，这里贴一下代码。</span></p>
+<p><span style="font-size: 18px;">common_pressbar_bar.xml</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;?</span><span style="color: #ff00ff;">xml version="1.0" encoding="utf-8"</span><span style="color: #0000ff;">?&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">rotate </span><span style="color: #ff0000;">xmlns:android</span><span style="color: #0000ff;">="http://schemas.android.com/apk/res/android"</span><span style="color: #ff0000;">
+    android:fromDegrees</span><span style="color: #0000ff;">="0"</span><span style="color: #ff0000;">
+    android:pivotX</span><span style="color: #0000ff;">="50%"</span><span style="color: #ff0000;">
+    android:pivotY</span><span style="color: #0000ff;">="50%"</span><span style="color: #ff0000;">
+    android:toDegrees</span><span style="color: #0000ff;">="360"</span> <span style="color: #0000ff;">&gt;</span>
+
+    <span style="color: #008000;">&lt;!--</span><span style="color: #008000;"> 这里画了一个灰色的环形 </span><span style="color: #008000;">--&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">shape
+        </span><span style="color: #ff0000;">android:innerRadiusRatio</span><span style="color: #0000ff;">="3"</span><span style="color: #ff0000;">
+        android:shape</span><span style="color: #0000ff;">="ring"</span><span style="color: #ff0000;">
+        android:thicknessRatio</span><span style="color: #0000ff;">="8"</span><span style="color: #ff0000;">
+        android:useLevel</span><span style="color: #0000ff;">="false"</span> <span style="color: #0000ff;">&gt;</span>
+        <span style="color: #008000;">&lt;!--</span><span style="color: #008000;"> 径向渐变 </span><span style="color: #008000;">--&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">gradient
+            </span><span style="color: #ff0000;">android:centerColor</span><span style="color: #0000ff;">="#FF0000"</span><span style="color: #ff0000;">
+            android:centerX</span><span style="color: #0000ff;">="1.0"</span><span style="color: #ff0000;">
+            android:centerY</span><span style="color: #0000ff;">="1.0"</span><span style="color: #ff0000;">
+            android:endColor</span><span style="color: #0000ff;">="@android:color/darker_gray"</span><span style="color: #ff0000;">
+            android:gradientRadius</span><span style="color: #0000ff;">="90"</span><span style="color: #ff0000;">
+            android:startColor</span><span style="color: #0000ff;">="@android:color/darker_gray"</span><span style="color: #ff0000;">
+            android:type</span><span style="color: #0000ff;">="radial"</span><span style="color: #ff0000;">
+            android:useLevel</span><span style="color: #0000ff;">="false"</span> <span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">shape</span><span style="color: #0000ff;">&gt;</span>
+
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">rotate</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 18px;">对应的布局文件</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>     <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">ProgressBar
+        </span><span style="color: #ff0000;">android:layout_width</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+        android:layout_height</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+        android:background</span><span style="color: #0000ff;">="#ffffff"</span><span style="color: #ff0000;">
+        
+        android:indeterminate</span><span style="color: #0000ff;">="false"</span><span style="color: #ff0000;">
+        android:indeterminateDrawable</span><span style="color: #0000ff;">="@drawable/common_pressbar_bar"</span> <span style="color: #0000ff;">/&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 18px;">最后是用简单的代码来看看，进度条的效果。</span></p>
+<p><span style="font-size: 18px;">MainActivity.java</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">package</span><span style="color: #000000;"> com.kale.progressbar02;
+
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.app.Activity;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.os.Bundle;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.view.Menu;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.view.MenuItem;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.view.Window;
+
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> MainActivity <span style="color: #0000ff;">extends</span><span style="color: #000000;"> Activity {
+
+</span><span style="color: #0000ff;">private</span><span style="color: #000000;"> TasksCompletedView mTasksView;
+    
+    </span><span style="color: #0000ff;">private</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> mTotalProgress;
+    </span><span style="color: #0000ff;">private</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> mCurrentProgress;
+    </span><span style="color: #0000ff;">private</span><span style="color: #000000;"> RoundProgressBar rpBar01, rpBar02 ,rpBar03, rpBar04;
+
+    @Override
+    </span><span style="color: #0000ff;">protected</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onCreate(Bundle savedInstanceState) {
+        </span><span style="color: #0000ff;">super</span><span style="color: #000000;">.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_main);
+        initVariable();
+        viewInit();
+        
+        </span><span style="color: #0000ff;">new</span> Thread(<span style="color: #0000ff;">new</span><span style="color: #000000;"> ProgressRunable()).start();
+    }
+    
+    </span><span style="color: #0000ff;">private</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> initVariable() {
+        mTotalProgress </span>= 100<span style="color: #000000;">;
+        mCurrentProgress </span>= 0<span style="color: #000000;">;
+    }
+    
+    </span><span style="color: #0000ff;">private</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> viewInit() {
+        mTasksView </span>=<span style="color: #000000;"> (TasksCompletedView) findViewById(R.id.tasks_view);
+        
+        rpBar01 </span>=<span style="color: #000000;"> (RoundProgressBar) findViewById(R.id.roundProgressBar01_id);
+        rpBar02 </span>=<span style="color: #000000;"> (RoundProgressBar) findViewById(R.id.roundProgressBar02_id);
+        rpBar03 </span>=<span style="color: #000000;"> (RoundProgressBar) findViewById(R.id.roundProgressBar03_id);
+        rpBar04 </span>=<span style="color: #000000;"> (RoundProgressBar) findViewById(R.id.roundProgressBar04_id);
+    }
+    
+    </span><span style="color: #0000ff;">class</span> ProgressRunable <span style="color: #0000ff;">implements</span><span style="color: #000000;"> Runnable {
+
+        @Override
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> run() {<br>
+            </span><span style="font-size: 14px;"><strong><span style="color: #0000ff;">while</span> (mCurrentProgress &lt;<span style="color: #000000;"> mTotalProgress) {
+                mCurrentProgress </span>+= 1<span style="color: #000000;">;
+                
+                mTasksView.setProgress(mCurrentProgress);
+                
+                rpBar01.setProgress(mCurrentProgress);
+                rpBar02.setProgress(mCurrentProgress);
+                rpBar03.setProgress(mCurrentProgress);
+                rpBar04.setProgress(mCurrentProgress);
+                
+                </span><span style="color: #0000ff;">try</span><span style="color: #000000;"> {
+                    Thread.sleep(</span>100<span style="color: #000000;">);
+                } 
+                </span><span style="color: #0000ff;">catch</span></strong></span><span style="color: #000000;"><span style="font-size: 14px;"><strong> (Exception e) {
+                    e.printStackTrace();
+                }
+            }</strong></span>
+        }
+        
+    }
+
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 18px;">源码下载：<a href="http://download.csdn.net/detail/shark0017/7651957"><span style="color: #ff0000;">http://download.csdn.net/detail/shark0017/7651957</span></a></span></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/tianzhijiexian/category/654008.html" target="_blank">ProgressBar</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(3854346,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;39e71692-ea0c-e411-8d02-90b11c0b17d6&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/tianzhijiexian/" target="_blank"><img src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/20140717134855.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/tianzhijiexian/">developer_Kale</a><br>
+            <a href="http://home.cnblogs.com/u/tianzhijiexian/followees">关注 - 0</a><br>
+            <a href="http://home.cnblogs.com/u/tianzhijiexian/followers">粉丝 - 140</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;39e71692-ea0c-e411-8d02-90b11c0b17d6&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(3854346,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(3854346,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/tianzhijiexian/p/3854139.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/tianzhijiexian/p/3854139.html" title="发布于2014-07-18 18:53">SeekBar的用法和自定义滑块的样式</a><br><a href="http://www.cnblogs.com/tianzhijiexian/p/3854639.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/tianzhijiexian/p/3854639.html" title="发布于2014-07-19 10:12">attrs.xml中declare-styleable 详解（用于自定义控件的属性）</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2014-07-18 22:20</span> <a href="http://www.cnblogs.com/tianzhijiexian/">developer_Kale</a> 阅读(<span id="post_view_count">6955</span>) 评论(<span id="post_comment_count">1</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=3854346" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/tianzhijiexian/p/3854346.html#" onclick="AddToWz(3854346);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=191655,cb_entryId=3854346,cb_blogApp=currentBlogApp,cb_blogUserGuid='39e71692-ea0c-e411-8d02-90b11c0b17d6',cb_entryCreatedDate='2014/7/18 22:20:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/tianzhijiexian/p/3854346.html#3447758" class="layer">#1楼</a><a name="3447758" id="comment_anchor_3447758"></a><span id="comment-maxId" style="display:none;">3447758</span><span id="comment-maxDate" style="display:none;">2016/6/6 21:20:38</span>  <span class="comment_date">2016-06-06 21:20</span> <a id="a_comment_author_3447758" href="http://home.cnblogs.com/u/796093/" target="_blank">iversonzhou</a> <a href="http://msg.cnblogs.com/send/iversonzhou" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3447758" class="blog_comment_body">大神！！！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3447758,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3447758,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/tianzhijiexian/p/3854346.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/tianzhijiexian/p/3854346.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://www.jiguang.cn/devservice?bky" target="_blank">【推荐】极光开发者服务平台，五大功能一站集齐</a><br><a href="http://click.aliyun.com/m/18488/" target="_blank">【推荐】阿里云“全民云计算”优惠升级</a><br><a href="https://cloud.tencent.com/developer/labs?fromSource=gwzcw.330910.330910.330910" target="_blank">【推荐】一小时搭建人工智能应用，让技术更容易入门</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://click.aliyun.com/m/26126/" target="_blank"><img width="300" height="250" src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/24442-20170718132533661-166801094.jpg" alt="阿里云0718"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/575773/" target="_blank">自媒体为锤子炮轰阿里|阿里回应：臆测虚构 索赔百万</a><br> ·  <a href="http://news.cnblogs.com/n/575775/" target="_blank">苹果回应反垄断举报：大部分中国App得到及时通过</a><br> ·  <a href="http://news.cnblogs.com/n/575770/" target="_blank">特斯拉工人向管理层施压：先满足工会要求再考虑提高产量</a><br> ·  <a href="http://news.cnblogs.com/n/575769/" target="_blank">网络招聘app研究报告</a><br> ·  <a href="http://news.cnblogs.com/n/575774/" target="_blank">中国联通微信号更名 “任性”送1GB流量</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice?source=bky&amp;hmsr=%E5%8D%9A%E5%AE%A2%E5%9B%AD&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank"><img width="468" height="60" src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/24442-20170727100914671-839522651.gif" alt="极光0801"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/569057/" target="_blank">架构腐化之谜</a><br> ·  <a href="http://kb.cnblogs.com/page/572854/" target="_blank">学会思考，而不只是编程</a><br> ·  <a href="http://kb.cnblogs.com/page/574767/" target="_blank">编写Shell脚本的最佳实践</a><br> ·  <a href="http://kb.cnblogs.com/page/571915/" target="_blank">为什么你该开始学习编程了？</a><br> ·  <a href="http://kb.cnblogs.com/page/570194/" target="_blank">小printf的故事：什么是真正的程序员？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div><img src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/292018114419518.png" alt=""></div><p>&nbsp;</p><strong style="font-size: 14.3999996185303px; line-height: 1.5; color: #000080;"><a href="http://android.cordovachina.cn/index.html" style="font-size: 14.3999996185303px; line-height: 1.5;"><span style="color: #000080; font-size: 10pt;">Api文档</span></a></strong><p><a href="https://www.zybuluo.com/"><strong style="color: #000080; font-size: 10pt;">作业部落</strong></a></p><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/tianzhijiexian/">developer_Kale</a><br>园龄：<a href="http://home.cnblogs.com/u/tianzhijiexian/" title="入园时间：2014-07-16">3年</a><br>粉丝：<a href="http://home.cnblogs.com/u/tianzhijiexian/followers/">140</a><br>关注：<a href="http://home.cnblogs.com/u/tianzhijiexian/followees/">0</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;39e71692-ea0c-e411-8d02-90b11c0b17d6&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/tianzhijiexian/tag/test/">test</a>(1)</li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/tianzhijiexian/category/653989.html">■shape | selector | layer-list(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/tianzhijiexian/category/595992.html">★Install | Error | Setting(16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/tianzhijiexian/category/660688.html">♠Paint | Canvas | Path(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/tianzhijiexian/category/653987.html">ActionBar(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/tianzhijiexian/category/653983.html">Activity(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/tianzhijiexian/category/653986.html">Adapter(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/tianzhijiexian/category/689057.html">Android Studio(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/tianzhijiexian/category/653988.html">Animation(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/tianzhijiexian/category/653999.html">AsyncTask | Loader(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/tianzhijiexian/category/654126.html">Attribute(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/tianzhijiexian/category/654077.html">Bitmap(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/tianzhijiexian/category/653991.html">BroadcastReceiver(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/tianzhijiexian/category/654002.html">Button(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/tianzhijiexian/category/654021.html">Cache | Optimiz(31)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/tianzhijiexian/category/654011.html">CheckBox(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/tianzhijiexian/category/689049.html">color | theme(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/tianzhijiexian/category/653993.html">DB | Prefs(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/tianzhijiexian/category/672210.html">Design Pattern(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/tianzhijiexian/category/654016.html">Dialog(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/tianzhijiexian/category/689056.html">Eclipse(14)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/tianzhijiexian/category/654013.html">EditText(17)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/tianzhijiexian/category/653995.html">File | IO(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/tianzhijiexian/category/653985.html">Fragment(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/tianzhijiexian/category/674666.html">Git(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/tianzhijiexian/category/688691.html">Gradle(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="http://www.cnblogs.com/tianzhijiexian/category/653997.html">GridLayout(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="http://www.cnblogs.com/tianzhijiexian/category/653996.html">GridView(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_27" href="http://www.cnblogs.com/tianzhijiexian/category/653998.html">Handler(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_28" href="http://www.cnblogs.com/tianzhijiexian/category/596198.html">ImageView(24)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_29" href="http://www.cnblogs.com/tianzhijiexian/category/653984.html">Intent(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_30" href="http://www.cnblogs.com/tianzhijiexian/category/654060.html">Java(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_31" href="http://www.cnblogs.com/tianzhijiexian/category/654003.html">Layout(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_32" href="http://www.cnblogs.com/tianzhijiexian/category/654005.html">ListView(20)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_33" href="http://www.cnblogs.com/tianzhijiexian/category/653994.html">Net | Http | Wifi(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_34" href="http://www.cnblogs.com/tianzhijiexian/category/654015.html">Notification(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_35" href="http://www.cnblogs.com/tianzhijiexian/category/598658.html">Other Skills(39)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_36" href="http://www.cnblogs.com/tianzhijiexian/category/654004.html">OtherView(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_37" href="http://www.cnblogs.com/tianzhijiexian/category/654109.html">PopupWindow(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_38" href="http://www.cnblogs.com/tianzhijiexian/category/654008.html">ProgressBar(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_39" href="http://www.cnblogs.com/tianzhijiexian/category/654076.html">ScrollView(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_40" href="http://www.cnblogs.com/tianzhijiexian/category/654009.html">SeekBar(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_41" href="http://www.cnblogs.com/tianzhijiexian/category/654123.html">Selector(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_42" href="http://www.cnblogs.com/tianzhijiexian/category/653992.html">Service(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_43" href="http://www.cnblogs.com/tianzhijiexian/category/654133.html">Software(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_44" href="http://www.cnblogs.com/tianzhijiexian/category/654006.html">Spinner(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_45" href="http://www.cnblogs.com/tianzhijiexian/category/654010.html">Switch(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_46" href="http://www.cnblogs.com/tianzhijiexian/category/654059.html">TableLayout</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_47" href="http://www.cnblogs.com/tianzhijiexian/category/654012.html">TextView(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_48" href="http://www.cnblogs.com/tianzhijiexian/category/654000.html">Thread</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_49" href="http://www.cnblogs.com/tianzhijiexian/category/654014.html">Toast(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_50" href="http://www.cnblogs.com/tianzhijiexian/category/654040.html">ViewPager(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_51" href="http://www.cnblogs.com/tianzhijiexian/category/654065.html">WebView(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_52" href="http://www.cnblogs.com/tianzhijiexian/category/689012.html">WindowUtil(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_53" href="http://www.cnblogs.com/tianzhijiexian/category/653990.html">Xml | Html | Json(4)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/tianzhijiexian/archive/2015/10.html">2015年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/tianzhijiexian/archive/2015/09.html">2015年9月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/tianzhijiexian/archive/2015/08.html">2015年8月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/tianzhijiexian/archive/2015/07.html">2015年7月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/tianzhijiexian/archive/2015/06.html">2015年6月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/tianzhijiexian/archive/2015/05.html">2015年5月 (17)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/tianzhijiexian/archive/2015/04.html">2015年4月 (24)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/tianzhijiexian/archive/2015/03.html">2015年3月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/tianzhijiexian/archive/2015/02.html">2015年2月 (30)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/tianzhijiexian/archive/2015/01.html">2015年1月 (43)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/tianzhijiexian/archive/2014/12.html">2014年12月 (22)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/tianzhijiexian/archive/2014/11.html">2014年11月 (23)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/tianzhijiexian/archive/2014/10.html">2014年10月 (32)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/tianzhijiexian/archive/2014/09.html">2014年9月 (26)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/tianzhijiexian/archive/2014/08.html">2014年8月 (28)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/tianzhijiexian/archive/2014/07.html">2014年7月 (102)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/tianzhijiexian/p/4127695.html#3730577">1. Re:判断当前屏幕是否是全屏+是否是竖屏</a></li>
+        <li class="recent_comment_body">我在onCreate（）方法中执行，失败，但是当onCreate中代码变多时，又是对的。或者到onResum()中，结果也是对的。</li>
+        <li class="recent_comment_author">--Mingyueyixi</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/tianzhijiexian/p/4047368.html#3690822">2. Re:DES、MD5、RSA加密算法</a></li>
+        <li class="recent_comment_body">md5加密的结果好像不对啊？</li>
+        <li class="recent_comment_author">--libran</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/tianzhijiexian/p/4248585.html#3674898">3. Re:修改博客园默认的代码字体大小</a></li>
+        <li class="recent_comment_body">很好，博客园的默认设置真的丑到反人类，谢谢指点。</li>
+        <li class="recent_comment_author">--Mazhaokeng</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/tianzhijiexian/p/4023802.html">1. 开源项目PullToRefresh详解（一）——PullToRefreshListView(34344)</a></li><li><a href="http://www.cnblogs.com/tianzhijiexian/p/4226675.html">2. 详细解读Android中的搜索框（三）—— SearchView(31635)</a></li><li><a href="http://www.cnblogs.com/tianzhijiexian/p/4469516.html">3. RecyclerView和ScrollView嵌套使用(30604)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/tianzhijiexian/p/4254110.html">1. 根据ImageView的大小来压缩Bitmap，避免OOM(19)</a></li><li><a href="http://www.cnblogs.com/tianzhijiexian/p/4505766.html">2. 巧用用layer-list做一个卡片背景(12)</a></li><li><a href="http://www.cnblogs.com/tianzhijiexian/p/4492773.html">3. 打造高仿QQ的友盟反馈界面（MVP模式）(10)</a></li></ul></div>
+</div>
+</div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 developer_Kale
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<!-- GoStats Simple HTML Based Code -->
+<a target="_blank" title="网站流量统计工具" href="http://gostats.cn/"><img alt="网站流量统计工具" src="./自定义各式各样的圆形ProgressBar - developer_Kale - 博客园_files/counter.png" style="border-width:0"></a>
+<!-- End GoStats Simple HTML Based Code -->
+<!--PageEndHtml Block End-->
+
+
+</body></html>

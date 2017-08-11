@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)http://m.blog.csdn.net/jushenziao/article/details/51647188 -->
+<html style="font-size: 40px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <link rel="canonical" href="http://blog.csdn.net/jushenziao/article/details/51647188">
+
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="yes">    
+    <meta name="shenma-site-verification" content="bf32a58a3df1c3452b75fbe96c7feb42_1497604697">
+    <script type="text/javascript" async="" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/pr.js.下载"></script><script type="text/javascript" async="" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/aeycbycerddwruuycx.js.下载"></script><script src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/hm.js.下载"></script><script src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/jquery-1.9.1.min.js.下载" type="text/javascript"></script>
+    <!--link( rel="stylesheet" href="http://c.csdnimg.cn/public/common/toolbar/css/index.css" )-->
+    <link rel="stylesheet" href="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/bootstrap.css">
+    <link rel="stylesheet" href="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/avatar.css">
+    <link rel="stylesheet" href="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/common.css">
+    <!-- [if IE 7]-->
+    <!--link( rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" )-->
+    <!-- [endif]-->
+    <link rel="stylesheet" href="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/main.css">
+    <!-- [if lt IE 9]-->
+    <script src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/html5shiv.min.js.下载"></script>
+    <!-- [endif]-->
+        <title>Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客</title>
+    
+    <script type="text/javascript" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/blog_mobile.js.下载"></script>
+
+    
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+   
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div><link href="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/jiathis_share.css" rel="stylesheet" type="text/css"><iframe frameborder="0" style="position: absolute; display: none; opacity: 0;" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/saved_resource.html"></iframe><div class="jiathis_style" style="position: absolute; z-index: 1000000000; display: none; top: 50%; left: 50%; overflow: auto;"></div><div class="jiathis_style" style="position: absolute; z-index: 1000000000; display: none; overflow: auto;"></div><iframe frameborder="0" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/jiathis_utility.html" style="display: none;"></iframe>
+    
+<!-- 广告位开始 --> 
+<ins data-revive-zoneid="202" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins> 
+<!-- 广告位结束 -->
+
+
+<script language="JavaScript" type="text/javascript" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/jquery.cookie.js.下载"></script>
+<script type="text/javascript" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/main.js.下载"></script>
+
+<script type="text/javascript" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/MathJax.js.下载"></script>
+<link rel="stylesheet" href="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/markdown_views.css">
+
+<script type="text/javascript">
+    var fileName = '51647188';
+    var commentscount = 4;
+    var islock = false;
+    var currentUserName='';
+    
+</script>
+
+<script type="text/javascript" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/digg.js.下载"></script>
+
+
+<div class="blog_main">
+      <div class="blog_top_wrap">
+        <div class="blog_top"><i id="menu_J" class="iconfont icon_l"></i>
+            <form method="get" action="http://m.blog.csdn.net/search/index" id="searchform">
+    <i id="search_J" class="iconfont icon_r"></i>
+    <div id="search_c_J" class="search">
+         <input type="text" placeholder="请输入" id="search" name="keyword" page="1" value=""><i class="iconfont icon_search"></i><i class="iconfont icon_close"></i>
+    </div>
+</form>
+<script type="text/javascript" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/search.js.下载"></script>
+
+
+
+
+          <h2 class="blog_top_t">CSDN博客</h2>
+        </div>
+      </div>
+
+ 
+
+      <div class="main_list">
+     
+
+          <script type="text/javascript">             
+              var cpro_id = "u2901270";
+        </script>
+        
+          <div id="_0c13e1dulxki" style="width: 100%;"><iframe width="1583" frameborder="0" height="238" scrolling="no" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/s.html"></iframe></div><script type="text/javascript" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/igdgevskg5.js.下载"></script>
+
+
+        <div class="blog_article">
+          <div class="blog_article_t">
+            <div class="article_l"><a href="http://m.blog.csdn.net/jushenziao"><img src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/1_jushenziao.jpg" alt="img"></a>
+                <a href="http://m.blog.csdn.net/jushenziao" class="article_user">jushenziao</a></div>
+            <div class="article_r">
+            </div>
+          </div>
+          <div class="blog_article_c clearfix">
+            <h3 class="article_t">Camera中MediaStore.EXTRA_OUTPUT遇到的问题</h3>
+            <p class="date"><i>发表于</i><em>2016/6/12 17:06:52  &nbsp;</em><i>3028</i><span>人阅读</span></p>
+            <p class="category_p">
+            </p>
+             
+<div class="article_c">
+
+<p>我们在做Camera应用的时候，经常用到打开Camera拍照然后在<span style="background-color:#e4e4ff">onActivityResult返回的intent中获取bitmap</span></p>
+<p><span style="background-color:#e4e4ff">然而当我们需要将拍摄的照片存储在SDcard的时候，需要在startActivityForResult中的intent参数加上这么一句</span></p>
+<pre style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); font-family: Consolas; font-size: 10.5pt; width: 100%; overflow: hidden;">intent.putExtra(android.provider.MediaStore.<span style="color:#660e7a; font-weight:bold; font-style:italic">EXTRA_OUTPUT</span>, GenerateFileUri());</pre>
+这样我们就可以将拍摄的图片存在我们想存的地方。但是加上这一句后，出现一个问题：<span style="background-color:#e4e4ff">onActivityResult</span>参数中 intent&nbsp; is&nbsp; null
+<p><span style="background-color:#e4e4ff">不可思议</span></p>
+<p><span style="background-color:#e4e4ff">我们追踪一下Camera源码 网址如下：https://github.com/android/platform_packages_apps_camera/blob/gingerbread-release/src/com/android/camera/Camera.java#L1186</span></p>
+<p><span style="background-color:#e4e4ff">嗯 两千多行代码 估计看完今儿就下班了。我们还是从<span style="background-color:#e4e4ff"></span></span><span style="color:#660e7a">MediaStore.EXTRA_OUTPUT开始找 发现这么一句</span></p>
+<p><span style="color:#660e7a">private void setupCaptureParams() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bundle myExtras = getIntent().getExtras();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (myExtras != null) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mSaveUri = (Uri) myExtras.getParcelable(MediaStore.EXTRA_OUTPUT);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mCropValue = myExtras.getString("crop");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }</span></p>
+<p><span style="color:#660e7a"><span style="color:#660e7a">我们接着找 mSaveUri 找到如下代码</span></span></p>
+<p><span style="color:#660e7a"><span style="color:#660e7a">if (mSaveUri != null) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OutputStream outputStream = null;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; outputStream = mContentResolver.openOutputStream(mSaveUri);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; outputStream.write(data);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; outputStream.close();<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setResult(RESULT_OK);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; finish();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } catch (IOException ex) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // ignore exception<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } finally {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Util.closeSilently(outputStream);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bitmap bitmap = createCaptureBitmap(data);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setResult(RESULT_OK,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new Intent("inline-data").putExtra("data", bitmap));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; finish();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</span></span></p>
+<p><span style="color:#660e7a"><span style="color:#660e7a">这回找出问题所在了&nbsp; ，相信大家也看明白了，，虽然不知道这样写有啥好处</span><br>
+</span></p>
+ </div>
+
+          </div>
+
+                               
+
+             <div class="blog_handle">
+        <span id="digg" style="cursor:pointer"><i class="iconfont"></i><em>0</em></span>
+        <span id="bury" style="cursor:pointer"><i class="iconfont"></i><em>1</em></span>
+       
+    </div>
+
+
+
+              <div class="prev_next">
+              </div>         
+        </div>
+        
+    
+
+          <script type="text/javascript">
+               /*csdn wap端 博客内页-20:3 创建于 2016-05-10*/
+               var cpro_id = "u2634430";
+            </script>
+           
+
+          <div id="_aj01dnuqusj" style=""><iframe width="1583" frameborder="0" height="238" scrolling="no" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/s(1).html"></iframe></div><script type="text/javascript" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/ggdgbyvmc5.js.下载"></script>
+
+
+       
+<script type="text/javascript" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/highcode.js.下载"></script>
+<script type="text/javascript">
+    var fileName = '51647188';
+    var commentscount = 4;
+    var islock = false;
+    var currentUserName='qq_38284915';
+    var topSize=3;
+    var listId = ".blog_comment_list";
+</script>
+
+<div class="no_comment" style="display:none"><i class="iconfont"></i><span>暂无评论，</span><a href="http://m.blog.csdn.net/comment/post?id=51647188">我去发表</a><em>~</em></div>
+
+ <div class="blog_comment" style="">
+       <h3 class="isComment">评论<span>（4）</span></h3>
+       <dl class="blog_comment_list"> <dl class="blog_comment_list">      <dt class="clearfix">        <label><a href="http://m.blog.csdn.net/blog/index?username=mql17"><img src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/3_mql17.jpg" alt="mql17"></a><a href="http://m.blog.csdn.net/jushenziao/article/details/51647188#" class="com_user">mql17</a></label><span><em>2</em>楼</span>      </dt>      <dd>         <p class="comment_c">File mPhotoFile;<br>mPhotoFile 写成 路径+文件名<br>Uri uri = Uri.fromFile(mPhotoFile);<br>intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);<br>这样 startActivityForResult  回来的时候 直接检测mPhotoFile 是否为空 是否存在<br>然后直接用就ok了</p>         <div class="com_time clearfix"><span>2017-03-03 19:32</span><a href="http://m.blog.csdn.net/comment/post?id=51647188&amp;replyId=6647592&amp;replyUserName=mql17#reply" class="com_reply">回复</a></div> <dl class="blog_comment_list comment_sigle clearfix">   <dt class="clearfix">            <label><a href="http://m.blog.csdn.net/blog/index?username=jushenziao"><img src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/3_jushenziao.jpg" alt="jushenziao"></a><a href="http://m.blog.csdn.net/jushenziao/article/details/51647188#" class="com_user">jushenziao</a></label>            </dt>            <dd>               <p class="comment_c">回复mql17：确实是个很直接的解决办法</p>              <div class="com_time"><span>2017-03-04 21:06</span>               </div>            </dd> </dl>       </dd>     </dl> <dl class="blog_comment_list">      <dt class="clearfix">        <label><a href="http://m.blog.csdn.net/blog/index?username=qq_29847157"><img src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/3_qq_29847157.jpg" alt="qq_29847157"></a><a href="http://m.blog.csdn.net/jushenziao/article/details/51647188#" class="com_user">qq_29847157</a></label><span><em>1</em>楼</span>      </dt>      <dd>         <p class="comment_c">大神，那该怎么解决啊</p>         <div class="com_time clearfix"><span>2016-11-04 11:25</span><a href="http://m.blog.csdn.net/comment/post?id=51647188&amp;replyId=6392310&amp;replyUserName=qq_29847157#reply" class="com_reply">回复</a></div> <dl class="blog_comment_list comment_sigle clearfix">   <dt class="clearfix">            <label><a href="http://m.blog.csdn.net/blog/index?username=jushenziao"><img src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/3_jushenziao.jpg" alt="jushenziao"></a><a href="http://m.blog.csdn.net/jushenziao/article/details/51647188#" class="com_user">jushenziao</a></label>            </dt>            <dd>               <p class="comment_c">回复qq_29847157：sorry 我不是大神 我也没想怎么解决 实在不行你就自己去存的地方在取一遍吧</p>              <div class="com_time"><span>2016-11-15 09:56</span>               </div>            </dd> </dl>       </dd>     </dl></dl>
+       <div class="checkAll"><a href="http://m.blog.csdn.net/comment/post?id=51647188">发表评论</a></div>
+ </div>
+
+<script type="text/javascript" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/comment.js.下载"></script>
+
+
+
+       
+        <div style="display:none" id="tags">color,位图,图片,存储,应用</div>
+
+   
+<script type="text/javascript">
+    /*wap端-博客内页热门文章上通栏-20:5*/
+    var cpro_id = "u2901277";
+</script>
+
+<div style="width: 100%;"><div style="cursor:auto;"><iframe width="1583" frameborder="0" height="396" scrolling="no" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/s(2).html"></iframe></div></div><script type="text/javascript" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/pndinhgfig.js.下载"></script>
+<div class="my_hot_article">
+         <h3 class="isArticle">相关博文</h3>
+
+                  <ul class="hot_article tracking-ad" id="res" data-mod="popu_36">
+                                   <li>                                      
+                                       <a href="http://blog.csdn.net/superjunjin/article/details/39525663" title="android项目中的拍照和本地图片截图" strategy="BlogCommendFromCsdn" target="_blank">android项目中的拍照和本地图片截图</a>
+                                   </li>
+                                   <li>                                      
+                                       <a href="http://blog.csdn.net/u010355144/article/details/46547753" title="Android开发中使用照相机功能  及其常见问题解法方法" strategy="BlogCommendFromCsdn" target="_blank">Android开发中使用照相机功能  及其常见问题解法方法</a>
+                                   </li>
+                                   <li>                                      
+                                       <a href="http://blog.csdn.net/xiaoyangsavvy/article/details/70847489" title="Android 调用系统功能实现图片选择器，你可能会遇到的问题汇总" strategy="BlogCommendFromCsdn" target="_blank">Android 调用系统功能实现图片选择器，你可能会遇到的问题汇总</a>
+                                   </li>
+                                   <li>                                      
+                                       <a href="http://xitong.iteye.com/blog/1723666" title="ebtables的OUTPUT链DNAT问题" strategy="BlogCommendFromCsdn" target="_blank">ebtables的OUTPUT链DNAT问题</a>
+                                   </li>
+                                   <li>                                      
+                                       <a href="http://username2.iteye.com/blog/2223500" title="设置头像与背景图片" strategy="BlogCommendFromCsdn" target="_blank">设置头像与背景图片</a>
+                                   </li>
+                                   <li>                                      
+                                       <a href="http://blog.csdn.net/wuyusheng314/article/details/55667423" title="Android_照相机Camera_调用系统照…" strategy="BlogCommendFromCsdn" target="_blank">Android_照相机Camera_调用系统照…</a>
+                                   </li>
+                                   <li>                                      
+                                       <a href="http://liujunliang1210-yahoo-com-cn.iteye.com/blog/1742443" title="android 图片过大 分辨率问题" strategy="BlogCommendFromCsdn" target="_blank">android 图片过大 分辨率问题</a>
+                                   </li>
+                                   <li>                                      
+                                       <a href="http://blog.csdn.net/T3/article/details/70172379" title="Android 调用系统相机拍照并且显示在相册中，以及中间可能会遇到的一些问题的解决" strategy="BlogCommendFromCsdn" target="_blank">Android 调用系统相机拍照并且显示在相册中，以及中间可能会遇到的一些问题的解决</a>
+                                   </li>
+                                   <li>                                      
+                                       <a href="http://daibalusu.iteye.com/blog/1586747" title="学习Camera开发时遇到的问题" strategy="BlogCommendFromCsdn" target="_blank">学习Camera开发时遇到的问题</a>
+                                   </li>
+                                   <li>                                      
+                                       <a href="http://weimingtom.iteye.com/blog/1526725" title="【翻译】(85)照相机" strategy="BlogCommendFromCsdn" target="_blank">【翻译】(85)照相机</a>
+                                   </li>
+                  </ul>
+        </div>
+
+      
+<script type="text/javascript">
+    /*wap端-博客内页相关博文上通栏-20:5*/
+    var cpro_id = "u2901286";
+</script>
+
+<div id="_ny6xus0p3i" style=""><p style="width:0px;height:0px;margin-left:0px;"></p><iframe width="1583" frameborder="0" height="396" scrolling="no" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/s(3).html"></iframe><div id="eazezh" style="display:none;"></div></div><script type="text/javascript" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/ywd719wkds.js.下载"></script>
+
+        
+    <div class="my_hot_article">
+          <h3 class="isArticle">我的热门文章</h3>
+          <ul class="hot_article">
+                <li><a href="http://m.blog.csdn.net/jushenziao/article/details/51316130">MultiDex 官方教你解决64K方法</a></li>
+                <li><a href="http://m.blog.csdn.net/jushenziao/article/details/51647188">Camera中MediaStore.EXTRA_OUTPUT遇到的问题</a></li>
+                <li><a href="http://m.blog.csdn.net/jushenziao/article/details/49882731">仿支付宝支付成功动画</a></li>
+                <li><a href="http://m.blog.csdn.net/jushenziao/article/details/52701377">RelativeLayout和LinearLayout性能比较 相对布局和线性布局的性能比较</a></li>
+                <li><a href="http://m.blog.csdn.net/jushenziao/article/details/51770301">RXJava——线程控制 —— Scheduler (一)</a></li>
+          </ul>
+        </div>
+
+<script type="text/javascript" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/main.js(1).下载"></script>
+
+
+
+
+
+
+
+
+       
+      </div>
+
+        
+   <div class="leftNav">
+      
+<div class="left_top">
+        <a href="http://m.blog.csdn.net/Blog?username=qq_38284915"><img src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/1_qq_38284915.jpg" alt="qq_38284915"></a>
+        <a href="http://m.blog.csdn.net/Blog?username=qq_38284915" class="sign">qq_38284915</a>
+</div>
+        
+        <ul class="nav_list">
+            <li><a href="http://m.blog.csdn.net/home/index"><i>•</i><span>首页</span><img src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+                <li><a href="http://m.blog.csdn.net/Column/Column?Channel=mobile&amp;Type="><i>•</i><span>移动开发</span><img src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+                <li><a href="http://m.blog.csdn.net/Column/Column?Channel=web&amp;Type="><i>•</i><span>Web前端</span><img src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+                <li><a href="http://m.blog.csdn.net/Column/Column?Channel=enterprise&amp;Type="><i>•</i><span>架构设计</span><img src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+                <li><a href="http://m.blog.csdn.net/Column/Column?Channel=code&amp;Type="><i>•</i><span>编程语言</span><img src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+                <li><a href="http://m.blog.csdn.net/Column/Column?Channel=www&amp;Type="><i>•</i><span>互联网</span><img src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+                <li><a href="http://m.blog.csdn.net/Column/Column?Channel=database&amp;Type="><i>•</i><span>数据库</span><img src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+                <li><a href="http://m.blog.csdn.net/Column/Column?Channel=cloud&amp;Type="><i>•</i><span>云计算</span><img src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+                <li><a href="http://m.blog.csdn.net/Column/Column?Channel=software&amp;Type="><i>•</i><span>研发管理</span><img src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+                <li><a href="http://m.blog.csdn.net/Column/Column?Channel=other&amp;Type="><i>•</i><span>综合</span><img src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/iconfont-youjiantou.png" alt="img" class="arrow_r"></a></li>
+        </ul>
+   </div>
+   
+
+      <div id="mask"></div>
+    </div>
+
+
+   
+
+    <div class="backToTop" style="display: block;"><img src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/iconfont-fudongxiangshang.png" alt="img"></div>
+    <!--分享弹窗：-->
+    <div class="popup_cover"></div>
+    <div class="sharePopup_box">
+      <div class="sharePopup">
+        <!--JiaThis Button BEGIN-->
+        <div class="jiathis_style_32x32"><a class="jiathis_button_weixin" title="分享到微信"><span class="jiathis_txt jiathis_separator jtico jtico_weixin"><b><i class="iconfont"></i></b><em>微信分享</em></span></a><a class="jiathis_button_tsina" title="分享到微博"><span class="jiathis_txt jiathis_separator jtico jtico_tsina"><b><i class="iconfont"></i></b><em>新浪微博</em></span></a><a class="jiathis_button_cqq" title="分享到QQ好友"><span class="jiathis_txt jiathis_separator jtico jtico_cqq"><b><i class="iconfont"></i></b><em>QQ好友</em></span></a><a class="jiathis_button_qzone" title="分享到QQ空间"><span class="jiathis_txt jiathis_separator jtico jtico_qzone"><b><i class="iconfont"></i></b><em>QQ空间</em></span></a></div>
+        <script type="text/javascript" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/jia.js.下载" charset="utf-8"></script><script type="text/javascript" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/plugin.client.js.下载" charset="utf-8"></script>
+        <!--JiaThis Button END-->
+      </div>
+      <div class="sharePopup_cancel">取 消</div>
+    </div>
+    <script>
+      $(function(){
+        $('#share_btn').click(function(){
+          $('.popup_cover').stop().show();
+          $('.sharePopup_box').stop().slideDown();
+        });
+        $('.sharePopup_cancel').click(function(){
+          $('.popup_cover').stop().hide();
+          $('.sharePopup_box').stop().slideUp();
+        });
+      })
+    </script>
+
+
+
+
+
+
+ <div class="ad_box">
+      <div class="ad_l"><a href="http://ms.csdn.net/download.html"><img src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/index_AD.jpg" alt="img"></a><span>即使是一小步<br>也想与你分享</span></div>
+      <div class="ad_r"><a href="http://ms.csdn.net/download.html" class="open_btn">打开</a><i class="ad_close iconfont"></i></div>
+    </div>
+
+   <div class="backToTop" style="z-index: 9999999; display: block;"><img src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/iconfont-fudongxiangshang.png" alt="img"></div>
+    <div class="blog_footer">©1999-2012, csdn.net, All Rights Reserved</div>
+    <script type="text/javascript" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/fontSize.js.下载"></script>
+<script type="text/javascript" charset="utf-8" src="./Camera中MediaStore.EXTRA_OUTPUT遇到的问题 - jushenziao的博客 - CSDN博客_files/tracking.js.下载"></script>
+
+
+
+
+
+<div style="position:fixed; top:0; left:0; overflow:hidden;"><input style="position:absolute; left:-300px;" type="text" value="" id="focus_retriever" readonly="true"></div></body></html>

@@ -1,0 +1,1434 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0048)http://www.eoeandroid.com/thread-925885-1-1.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 -  Powered by Discuz!</title>
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.eoeandroid.com/open-search.xml" title="eoeAndroid">
+<script type="text/javascript" async="" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/vds.js.下载"></script><script type="text/javascript" charset="utf-8" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/NzM3OTY4Nw==.js.下载"></script><script src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/brush.js.下载" type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/shCore.css">
+<link type="text/css" rel="stylesheet" href="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/shThemeDefault.css">
+<script type="text/javascript">
+SyntaxHighlighter.config.clipboardSwf = 'static/js/code//scripts/clipboard.swf';
+SyntaxHighlighter.all();
+</script> <link href="http://www.eoeandroid.com/thread-925885-1-1.html" rel="canonical">
+<meta name="keywords" content="教你实现android上传应用市场让用户在应用商店下载app,Android实例教程,eoe 移动开发者论坛,开发,android,宝软网,开发者,性价比">
+<meta name="description" content="Android实例教程,eoe 移动开发者论坛 ">
+<meta name="generator" content="Discuz! X3.2">
+<meta name="author" content="Discuz! Team and Comsenz UI Team">
+<meta name="copyright" content="2001-2013 Comsenz Inc.">
+<meta name="MSSmartTagsPreventParsing" content="True">
+<meta http-equiv="MSThemeCompatible" content="Yes">
+<!--<base href="http://www.eoeandroid.com/">--><base href="."><link rel="stylesheet" type="text/css" href="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/style_1_common.css"><link rel="stylesheet" type="text/css" href="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/style_1_forum_viewthread.css"><script type="text/javascript">var STYLEID = '1', STATICURL = 'static/', IMGDIR = 'static/image/common', VERHASH = 'fa1', charset = 'utf-8', discuz_uid = '3018782', cookiepre = 'M9xo_2132_', cookiedomain = '', cookiepath = '/', showusercard = '1', attackevasive = '0', disallowfloat = 'newthread|viewvote|tradeorder|activity|debate|usergroups|task', creditnotice = '1|e望|点,2|体力|个,4|e币|元', defaultstyle = '', REPORTURL = 'aHR0cDovL3d3dy5lb2VhbmRyb2lkLmNvbS90aHJlYWQtOTI1ODg1LTEtMS5odG1s', SITEURL = 'http://www.eoeandroid.com/', JSPATH = 'http://s1.eoeandroid.com/js/', CSSPATH = 'data/cache/style_', DYNAMICURL = '';</script>
+<script src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/common.js.下载" type="text/javascript"></script>
+<meta name="application-name" content="eoe 移动开发者论坛">
+<meta name="msapplication-tooltip" content="eoe 移动开发者论坛">
+<meta name="msapplication-task" content="name=首页;action-uri=http://www.eoeandroid.com/portal.php;icon-uri=http://www.eoeandroid.com/static/image/common/portal.ico"><meta name="msapplication-task" content="name=社区;action-uri=http://www.eoeandroid.com/forum.php;icon-uri=http://www.eoeandroid.com/static/image/common/bbs.ico">
+<meta name="msapplication-task" content="name=群组;action-uri=http://www.eoeandroid.com/group.php;icon-uri=http://www.eoeandroid.com/static/image/common/group.ico"><meta name="msapplication-task" content="name=;action-uri=http://www.eoeandroid.com/home.php;icon-uri=http://www.eoeandroid.com/static/image/common/home.ico"><link rel="archives" title="eoe 移动开发者论坛" href="http://www.eoeandroid.com/archiver/">
+<script src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/forum.js.下载" type="text/javascript"></script>
+<link rel="stylesheet" href="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/style.3.2.0.css"><script type="text/javascript" id="iiEtnLbkfWTgiXbkfngZXYKIYFOYOIEH" charset="UTF-8" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/smilies.js.下载"></script></head>
+
+<body id="nv_forum" class="pg_viewthread" onkeydown="if(event.keyCode==27) return false;"><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div>
+<div id="append_parent"><div id="fastpostsml_menu" class="sllt" style="display: none;"><div id="fastpostsmiliesdiv" style="overflow: hidden;"><div id="fastpostsmiliesdiv_tb" class="tb tb_s cl" style="width: 288px;"><ul><li id="fastpoststype_7" onclick="smilies_switch(&#39;fastpostsmiliesdiv&#39;, &#39;8&#39;, 7, 1, &#39;fastpost&#39;);if(CURRENTSTYPE) {$(&#39;fastpoststype_&#39;+CURRENTSTYPE).className=&#39;&#39;;}this.className=&#39;current&#39;;CURRENTSTYPE=7;doane(event);"><a href="javascript:;" hidefocus="true">小纯洁</a></li><li id="fastpoststype_5" onclick="smilies_switch(&#39;fastpostsmiliesdiv&#39;, &#39;8&#39;, 5, 1, &#39;fastpost&#39;);if(CURRENTSTYPE) {$(&#39;fastpoststype_&#39;+CURRENTSTYPE).className=&#39;&#39;;}this.className=&#39;current&#39;;CURRENTSTYPE=5;doane(event);"><a href="javascript:;" hidefocus="true">鱼兔妹</a></li><li class="current" id="fastpoststype_4" onclick="smilies_switch(&#39;fastpostsmiliesdiv&#39;, &#39;8&#39;, 4, 1, &#39;fastpost&#39;);if(CURRENTSTYPE) {$(&#39;fastpoststype_&#39;+CURRENTSTYPE).className=&#39;&#39;;}this.className=&#39;current&#39;;CURRENTSTYPE=4;doane(event);"><a href="javascript:;" hidefocus="true">悠嘻猴</a></li></ul></div><div id="fastpostsmiliesdiv_data"><table id="fastpostsmiliesdiv_table" cellpadding="0" cellspacing="0"><tbody><tr><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_81:}&#39;)" id="fastpostsmilie_81_td"><img id="smilie_81" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/a.gif" alt="{:4_81:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_82:}&#39;)" id="fastpostsmilie_82_td"><img id="smilie_82" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/11.gif" alt="{:4_82:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_85:}&#39;)" id="fastpostsmilie_85_td"><img id="smilie_85" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/12.gif" alt="{:4_85:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_86:}&#39;)" id="fastpostsmilie_86_td"><img id="smilie_86" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/ms.gif" alt="{:4_86:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_87:}&#39;)" id="fastpostsmilie_87_td"><img id="smilie_87" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/tk.gif" alt="{:4_87:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_88:}&#39;)" id="fastpostsmilie_88_td"><img id="smilie_88" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/bd.gif" alt="{:4_88:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_89:}&#39;)" id="fastpostsmilie_89_td"><img id="smilie_89" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/232.gif" alt="{:4_89:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_90:}&#39;)" id="fastpostsmilie_90_td"><img id="smilie_90" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/2321.gif" alt="{:4_90:}"></td></tr><tr><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_91:}&#39;)" id="fastpostsmilie_91_td"><img id="smilie_91" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/22222.GIF" alt="{:4_91:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_92:}&#39;)" id="fastpostsmilie_92_td"><img id="smilie_92" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/dfd.gif" alt="{:4_92:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_93:}&#39;)" id="fastpostsmilie_93_td"><img id="smilie_93" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/asd.gif" alt="{:4_93:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_94:}&#39;)" id="fastpostsmilie_94_td"><img id="smilie_94" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/tl.gif" alt="{:4_94:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_95:}&#39;)" id="fastpostsmilie_95_td"><img id="smilie_95" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/ddee.gif" alt="{:4_95:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_96:}&#39;)" id="fastpostsmilie_96_td"><img id="smilie_96" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/22.gif" alt="{:4_96:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_97:}&#39;)" id="fastpostsmilie_97_td"><img id="smilie_97" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/mt.gif" alt="{:4_97:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_98:}&#39;)" id="fastpostsmilie_98_td"><img id="smilie_98" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/2312.gif" alt="{:4_98:}"></td></tr><tr><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_99:}&#39;)" id="fastpostsmilie_99_td"><img id="smilie_99" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/erwr.gif" alt="{:4_99:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_100:}&#39;)" id="fastpostsmilie_100_td"><img id="smilie_100" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/qq.gif" alt="{:4_100:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_101:}&#39;)" id="fastpostsmilie_101_td"><img id="smilie_101" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/nnn.gif" alt="{:4_101:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_102:}&#39;)" id="fastpostsmilie_102_td"><img id="smilie_102" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/eeee.gif" alt="{:4_102:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_103:}&#39;)" id="fastpostsmilie_103_td"><img id="smilie_103" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/wwe.gif" alt="{:4_103:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_104:}&#39;)" id="fastpostsmilie_104_td"><img id="smilie_104" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/wweqw.gif" alt="{:4_104:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_105:}&#39;)" id="fastpostsmilie_105_td"><img id="smilie_105" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/rtrt.gif" alt="{:4_105:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_106:}&#39;)" id="fastpostsmilie_106_td"><img id="smilie_106" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/rtert.gif" alt="{:4_106:}"></td></tr><tr><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_108:}&#39;)" id="fastpostsmilie_108_td"><img id="smilie_108" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/rtrtr.GIF" alt="{:4_108:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_109:}&#39;)" id="fastpostsmilie_109_td"><img id="smilie_109" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/erer.GIF" alt="{:4_109:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_110:}&#39;)" id="fastpostsmilie_110_td"><img id="smilie_110" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/rtr.gif" alt="{:4_110:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_111:}&#39;)" id="fastpostsmilie_111_td"><img id="smilie_111" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/ghfgh.gif" alt="{:4_111:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_112:}&#39;)" id="fastpostsmilie_112_td"><img id="smilie_112" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/ewerwe.gif" alt="{:4_112:}"></td><td onmouseover="smilies_preview(&#39;fastpost&#39;, &#39;fastpostsmiliesdiv&#39;, this, 50)" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;{:4_113:}&#39;)" id="fastpostsmilie_113_td"><img id="smilie_113" width="20" height="20" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/rter.GIF" alt="{:4_113:}"></td></tr></tbody></table></div><div class="sllt_p" id="fastpostsmiliesdiv_page"></div></div></div><script type="text/javascript" charset="utf-8" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/common_smilies_var.js.下载"></script></div><div id="ajaxwaitid"></div>
+<div id="toptb" class="cl">
+<div class="wp">
+<div class="z"><a href="http://www.eoeandroid.com/portal.php">首页</a><a href="http://www.eoeandroid.com/forum.php">Android开发者社区</a><a href="http://wiki.eoeandroid.com/" target="_blank">Android百科</a><a href="http://www.jikexueyuan.com/?hmsr=eoe_dbdh_index" target="_blank">极客学院</a><script type="text/javascript">var _speedMark = new Date();</script></div>
+<div class="y">
+<a id="switchblind" href="javascript:;" onclick="toggleBlind(this)" title="开启辅助访问" class="switchblind">开启辅助访问</a>
+<a href="http://www.eoeandroid.com/plugin.php?id=dsu_paulsign:sign" style="color: red">打卡签到</a><a href="http://www.eoeandroid.com/thread-558384-1-1.html" style="color: blue">我要上头条</a><a href="http://www.eoeandroid.com/thread-194200-1-1.html" style="color: green">如何赚e币</a><a href="http://www.eoeandroid.com/thread-289175-1-1.html" title="QQ游客和邮箱验证的问题" style="color: blue">注册验证问题</a><a href="http://www.eoeandroid.com/thread-554818-1-1.html" style="color: red">版主申请</a><a href="javascript:;" id="switchwidth" onclick="widthauto(this)" title="切换到宽版" class="switchwidth">切换到宽版</a>
+<a id="sslct" href="javascript:;" onmouseover="delayShow(this, function() {showMenu({&#39;ctrlid&#39;:&#39;sslct&#39;,&#39;pos&#39;:&#39;34!&#39;})});">切换风格</a></div>
+</div>
+</div>
+
+<ul id="myprompt_menu" class="p_pop" style="display: none;">
+<li><a href="http://www.eoeandroid.com/home.php?mod=space&amp;do=pm" id="pm_ntc" style="background-repeat: no-repeat; background-position: 0 50%;"><em class="prompt_news_0"></em>消息</a></li>
+<li><a href="http://www.eoeandroid.com/home.php?mod=follow&amp;do=follower"><em class="prompt_follower_0"></em>新听众</a></li>
+<li class="ignore_noticeli"><a href="javascript:;" onclick="setcookie(&#39;ignore_notice&#39;, 1);hideMenu(&#39;myprompt_menu&#39;)" title="暂不提醒"><em class="ignore_notice"></em></a></li>
+</ul>
+<div id="sslct_menu" class="cl p_pop" style="display: none;">
+<span class="sslct_btn" onclick="extstyle(&#39;&#39;)" title="默认"><i></i></span><span class="sslct_btn" onclick="extstyle(&#39;./template/default/style/t1&#39;)" title="红"><i style="background:#BA350F"></i></span>
+<span class="sslct_btn" onclick="extstyle(&#39;./template/default/style/t4&#39;)" title="紫"><i style="background:#9934B7"></i></span>
+<span class="sslct_btn" onclick="extstyle(&#39;./template/default/style/t2&#39;)" title="青"><i style="background:#429296"></i></span>
+<span class="sslct_btn" onclick="extstyle(&#39;./template/default/style/t3&#39;)" title="橙"><i style="background:#FE9500"></i></span>
+<span class="sslct_btn" onclick="extstyle(&#39;./template/default/style/t5&#39;)" title="蓝"><i style="background:#0053B9"></i></span>
+</div>
+<ul id="myitem_menu" class="p_pop" style="display: none;">
+<li><a href="http://www.eoeandroid.com/forum.php?mod=guide&amp;view=my">帖子</a></li>
+<li><a href="http://www.eoeandroid.com/home.php?mod=space&amp;do=favorite&amp;view=me">收藏</a></li>
+<li><a href="http://www.eoeandroid.com/home.php?mod=space&amp;do=friend">好友</a></li>
+</ul>
+<div id="qmenu_menu" class="p_pop " style="display: none;">
+<ul class="cl nav"><li><a href="http://www.eoeandroid.com/forum.php?mod=guide&amp;view=my" style="background-image:url(http://www.eoeandroid.com/static/image/feed/thread_b.png) !important">我的帖子</a></li>
+<li><a href="http://www.eoeandroid.com/home.php?mod=space&amp;do=favorite&amp;view=me" style="background-image:url(http://www.eoeandroid.com/static/image/feed/favorite_b.png) !important">我的收藏</a></li>
+<li><a href="http://www.eoeandroid.com/forum.php?mod=guide&amp;view=new" target="_blank" style="background-image:url(http://a1.eoeandroid.com/attachment/common/cf/111009rcrn6e6n0e0c9065.png?Aa1Ay7) !important">查看新帖</a></li>
+<li><a href="http://www.eoeandroid.com/forum.php?mod=collection&amp;op=my" style="background-image:url(http://www.eoeandroid.com/static/image/feed/collection_b.png) !important">淘帖</a></li>
+<li><a href="http://www.eoeandroid.com/home.php?mod=medal" style="background-image:url(http://www.eoeandroid.com/static/image/feed/medal_b.png) !important">勋章</a></li>
+<li><a href="http://www.eoeandroid.com/home.php?mod=task" style="background-image:url(http://www.eoeandroid.com/static/image/feed/task_b.png) !important">任务</a></li>
+<li><a href="http://www.eoeandroid.com/forum.php?mod=guide" style="background-image:url(http://www.eoeandroid.com/static/image/feed/guide_b.png) !important">导读</a></li>
+<li><a href="http://www.eoeandroid.com/misc.php?mod=ranklist" style="background-image:url(http://www.eoeandroid.com/static/image/feed/ranklist_b.png) !important">排行榜</a></li>
+</ul>
+<div id="fjump_menu" class="btda"></div></div><div id="hd">
+<div class="wp">
+<div class="hdc cl"><h2><a href="http://www.eoeandroid.com/" title="eoe 移动开发者论坛"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/eoe_logo.png" alt="eoe 移动开发者论坛" border="0"></a></h2><div id="um">
+<div class="avt y"><a href="http://www.eoeandroid.com/space-uid-3018782.html"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/avatar.php"></a></div>
+<p>
+<strong class="vwmy qq"><a href="http://www.eoeandroid.com/space-uid-3018782.html" target="_blank" title="访问我的空间">121212ff</a></strong>
+<span class="pipe">|</span><a href="javascript:;" id="myitem" class="showmenu" onmouseover="showMenu({&#39;ctrlid&#39;:&#39;myitem&#39;});">我的</a>
+<span class="pipe">|</span><a href="http://www.eoeandroid.com/home.php?mod=spacecp">设置</a>
+<span class="pipe">|</span><a href="http://www.eoeandroid.com/home.php?mod=space&amp;do=pm" id="pm_ntc">消息</a>
+<span class="pipe">|</span><a href="http://www.eoeandroid.com/home.php?mod=space&amp;do=notice" id="myprompt" class="a showmenu" onmouseover="showMenu({&#39;ctrlid&#39;:&#39;myprompt&#39;});">提醒</a><span id="myprompt_check"></span>
+<span class="pipe">|</span><a href="http://www.eoeandroid.com/member.php?mod=logging&amp;action=logout&amp;formhash=f8c47677">退出</a>
+</p>
+<p>
+<a href="http://www.eoeandroid.com/home.php?mod=spacecp&amp;ac=credit&amp;showcredit=1" id="extcreditmenu" onmouseover="delayShow(this, showCreditmenu);" class="showmenu">积分: 309</a>
+<span class="pipe">|</span><a href="http://www.eoeandroid.com/home.php?mod=spacecp&amp;ac=usergroup" id="g_upmine" class="showmenu" onmouseover="delayShow(this, showUpgradeinfo)">用户组: No.3 砌墙工人</a>
+</p>
+</div>
+</div>
+
+<div id="nv" style="border-left-width: 0px; border-right-width: 0px; height: 33px; width: 960px; top: 0px; left: 311.5px; position: fixed; z-index: 199; opacity: 0.85;">
+<a href="javascript:;" id="qmenu" onmouseover="delayShow(this, function () {showMenu({&#39;ctrlid&#39;:&#39;qmenu&#39;,&#39;pos&#39;:&#39;34!&#39;,&#39;ctrlclass&#39;:&#39;a&#39;,&#39;duration&#39;:2});showForummenu(27);})">快捷导航</a>
+<ul><li id="mn_N95e0"><a href="http://www.eoeandroid.com/portal.php" hidefocus="true">首页</a></li><li class="a" id="mn_forum"><a href="http://www.eoeandroid.com/forum.php" hidefocus="true" title="论坛">社区<span>论坛</span></a></li><li id="mn_N7b08"><a href="http://www.eoeandroid.com/forum-53-1.html" hidefocus="true">新手入门</a></li><li id="mn_Nd90d"><a href="http://www.eoeandroid.com/forum-27-1.html" hidefocus="true">实例教程</a></li><li id="mn_N79b5" onmouseover="showMenu({&#39;ctrlid&#39;:this.id,&#39;ctrlclass&#39;:&#39;hover&#39;,&#39;duration&#39;:2})"><a href="http://www.eoeandroid.com/forum.php?gid=180" hidefocus="true">资源下载</a></li><li id="mn_Necef"><a href="http://www.eoeandroid.com/forum.php?gid=121" hidefocus="true">游戏开发</a></li><li id="mn_Ne9d6"><a href="http://www.eoeandroid.com/topic-demo.html" hidefocus="true">Android源码</a></li><li id="mn_Nf7f5"><a href="http://www.eoeandroid.com/forum-26-1.html" hidefocus="true" title="Android高薪招聘">招聘<span>Android高薪招聘</span></a></li></ul>
+</div>
+<ul class="p_pop h_pop" id="plugin_menu" style="display: none">  <li><a href="http://www.eoeandroid.com/dsu_paulsign-sign.html" id="mn_plink_sign">每日签到</a></li>
+ </ul>
+<ul class="p_pop h_pop" id="mn_N79b5_menu" style="display: none"><li><a href="http://www.eoeandroid.com/topic-env.html" hidefocus="true">Android开发环境搭建</a></li><li><a href="http://www.eoeandroid.com/forum-23-1.html" hidefocus="true">源码下载</a></li><li><a href="http://www.eoeandroid.com/forum-207-1.html" hidefocus="true">开源项目组件</a></li><li><a href="http://www.eoeandroid.com/forum-208-1.html" hidefocus="true">UI开发资源</a></li><li><a href="http://download.jikexueyuan.com/index/cate/android" hidefocus="true" target="_blank" style="font-weight: bold;">Android开发资料下载</a></li><li><a href="http://event.eoeandroid.com/umeng/" hidefocus="true" target="_blank">视频下载</a></li></ul><div class="p_pop h_pop" id="mn_userapp_menu" style="display: none"></div><div id="mu" class="cl">
+<ul class="cl " id="snav_mn_userapp" style="display:none">
+</ul>
+</div><div id="scbar" class="scbar_narrow cl">
+<form id="scbar_form" method="post" autocomplete="off" onsubmit="searchFocus($(&#39;scbar_txt&#39;))" action="http://www.eoeandroid.com/search.php?searchsubmit=yes" target="_blank">
+<input type="hidden" name="mod" id="scbar_mod" value="forum">
+<input type="hidden" name="formhash" value="f8c47677">
+<input type="hidden" name="srchtype" value="title">
+<input type="hidden" name="srhfid" value="27">
+<input type="hidden" name="srhlocality" value="forum::viewthread">
+<table cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td class="scbar_icon_td"></td>
+<td class="scbar_txt_td"><input type="text" name="srchtxt" id="scbar_txt" value="请输入搜索内容" autocomplete="off" x-webkit-speech="" speech="" class=" xg1" placeholder="请输入搜索内容"></td>
+<td class="scbar_type_td"><a href="javascript:;" id="scbar_type" class="xg1" onclick="showMenu(this.id)" hidefocus="true">帖子</a></td>
+<td class="scbar_btn_td"><button type="submit" name="searchsubmit" id="scbar_btn" sc="1" class="pn pnc" value="true"><strong class="xi2">搜索</strong></button></td>
+<td class="scbar_hot_td">
+<div id="scbar_hot">
+<strong class="xw1">热搜: </strong>
+
+<a href="http://www.eoeandroid.com/search.php?mod=forum&amp;srchtxt=%E4%BA%8C%E7%BB%B4%E7%A0%81&amp;formhash=f8c47677&amp;searchsubmit=true&amp;source=hotsearch" target="_blank" class="xi2" sc="1">二维码</a>
+
+
+
+<a href="http://www.eoeandroid.com/search.php?mod=forum&amp;srchtxt=%E5%AE%9A%E6%97%B6%E5%99%A8&amp;formhash=f8c47677&amp;searchsubmit=true&amp;source=hotsearch" target="_blank" class="xi2" sc="1">定时器</a>
+
+
+
+<a href="http://www.eoeandroid.com/search.php?mod=forum&amp;srchtxt=%E6%89%8B%E7%94%B5%E7%AD%92&amp;formhash=f8c47677&amp;searchsubmit=true&amp;source=hotsearch" target="_blank" class="xi2" sc="1">手电筒</a>
+
+
+
+<a href="http://www.eoeandroid.com/search.php?mod=forum&amp;srchtxt=%E6%BB%91%E5%9D%97&amp;formhash=f8c47677&amp;searchsubmit=true&amp;source=hotsearch" target="_blank" class="xi2" sc="1">滑块</a>
+
+
+
+<a href="http://www.eoeandroid.com/search.php?mod=forum&amp;srchtxt=%E6%96%97%E5%9C%B0%E4%B8%BB&amp;formhash=f8c47677&amp;searchsubmit=true&amp;source=hotsearch" target="_blank" class="xi2" sc="1">斗地主</a>
+
+
+
+<a href="http://www.eoeandroid.com/search.php?mod=forum&amp;srchtxt=%E4%B9%A6%E6%9E%B6&amp;formhash=f8c47677&amp;searchsubmit=true&amp;source=hotsearch" target="_blank" class="xi2" sc="1">书架</a>
+
+
+
+<a href="http://www.eoeandroid.com/search.php?mod=forum&amp;srchtxt=%E5%AE%9A%E4%BD%8D&amp;formhash=f8c47677&amp;searchsubmit=true&amp;source=hotsearch" target="_blank" class="xi2" sc="1">定位</a>
+
+
+
+<a href="http://www.eoeandroid.com/search.php?mod=forum&amp;srchtxt=%E4%B9%B0%E6%89%8B%E6%9C%BA&amp;formhash=f8c47677&amp;searchsubmit=true&amp;source=hotsearch" target="_blank" class="xi2" sc="1">买手机</a>
+
+
+
+<a href="http://www.eoeandroid.com/search.php?mod=forum&amp;srchtxt=%E8%81%8A%E5%A4%A9&amp;formhash=f8c47677&amp;searchsubmit=true&amp;source=hotsearch" target="_blank" class="xi2" sc="1">聊天</a>
+
+
+
+<a href="http://www.eoeandroid.com/search.php?mod=forum&amp;srchtxt=%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91&amp;formhash=f8c47677&amp;searchsubmit=true&amp;source=hotsearch" target="_blank" class="xi2" sc="1">游戏开发</a>
+
+
+
+<a href="http://www.eoeandroid.com/search.php?mod=forum&amp;srchtxt=%E6%B8%B8%E6%88%8F&amp;formhash=f8c47677&amp;searchsubmit=true&amp;source=hotsearch" target="_blank" class="xi2" sc="1">游戏</a>
+
+
+
+<a href="http://www.eoeandroid.com/search.php?mod=forum&amp;srchtxt=%E8%82%A1%E7%A5%A8%E6%9F%A5%E8%AF%A2&amp;formhash=f8c47677&amp;searchsubmit=true&amp;source=hotsearch" target="_blank" class="xi2" sc="1">股票查询</a>
+
+
+
+<a href="http://www.eoeandroid.com/search.php?mod=forum&amp;srchtxt=%E6%9C%BA%E9%A1%B6%E7%9B%92&amp;formhash=f8c47677&amp;searchsubmit=true&amp;source=hotsearch" target="_blank" class="xi2" sc="1">机顶盒</a>
+
+
+
+<a href="http://www.eoeandroid.com/search.php?mod=forum&amp;srchtxt=%E9%80%9A%E8%AF%9D%E8%AE%B0%E5%BD%95&amp;formhash=f8c47677&amp;searchsubmit=true&amp;source=hotsearch" target="_blank" class="xi2" sc="1">通话记录</a>
+
+
+
+<a href="http://www.eoeandroid.com/search.php?mod=forum&amp;srchtxt=%E4%BA%8C%E7%BB%B4%E7%A0%81%E6%89%AB%E6%8F%8F&amp;formhash=f8c47677&amp;searchsubmit=true&amp;source=hotsearch" target="_blank" class="xi2" sc="1">二维码扫描</a>
+
+
+
+<a href="http://www.eoeandroid.com/search.php?mod=forum&amp;srchtxt=%E6%8C%AF%E5%8A%A8%E5%99%A8&amp;formhash=f8c47677&amp;searchsubmit=true&amp;source=hotsearch" target="_blank" class="xi2" sc="1">振动器</a>
+
+
+
+<a href="http://www.eoeandroid.com/search.php?mod=forum&amp;srchtxt=listview&amp;formhash=f8c47677&amp;searchsubmit=true&amp;source=hotsearch" target="_blank" class="xi2" sc="1">listview</a>
+
+
+
+<a href="http://www.eoeandroid.com/search.php?mod=forum&amp;srchtxt=fragment&amp;formhash=f8c47677&amp;searchsubmit=true&amp;source=hotsearch" target="_blank" class="xi2" sc="1">fragment</a>
+
+
+
+<a href="http://www.eoeandroid.com/search.php?mod=forum&amp;srchtxt=%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8&amp;formhash=f8c47677&amp;searchsubmit=true&amp;source=hotsearch" target="_blank" class="xi2" sc="1">音乐播放器</a>
+
+
+
+<a href="http://www.eoeandroid.com/search.php?mod=forum&amp;srchtxt=%E6%92%AD%E6%94%BE%E5%99%A8&amp;formhash=f8c47677&amp;searchsubmit=true&amp;source=hotsearch" target="_blank" class="xi2" sc="1">播放器</a>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</form>
+</div>
+<ul id="scbar_type_menu" class="p_pop" style="display: none;"><li><a href="javascript:;" rel="curforum" fid="27">本版</a></li><li><a href="javascript:;" rel="article">文章</a></li><li><a href="javascript:;" rel="forum" class="curtype">帖子</a></li><li><a href="javascript:;" rel="group">群组</a></li><li><a href="javascript:;" rel="user">用户</a></li></ul>
+<script type="text/javascript">
+initSearchmenu('scbar', '');
+</script>
+</div>
+</div>
+
+
+<div id="wp" class="wp">
+<script type="text/javascript">var fid = parseInt('27'), tid = parseInt('925885');</script>
+
+<script src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/forum_viewthread.js.下载" type="text/javascript"></script>
+<script type="text/javascript">zoomstatus = parseInt(1);var imagemaxwidth = '600';var aimgcount = new Array();</script>
+
+<style id="diy_style" type="text/css"></style>
+<!--[diy=diynavtop]--><div id="diynavtop" class="area"></div><!--[/diy]-->
+<div id="pt" class="bm cl">
+<div class="z">
+<a href="http://www.eoeandroid.com/" class="nvhm" title="首页">eoe 移动开发者论坛</a><em>»</em><a href="http://www.eoeandroid.com/forum.php">社区</a> <em>›</em> <a href="http://www.eoeandroid.com/forum.php?gid=3">Android开发交流</a> <em>›</em> <a href="http://www.eoeandroid.com/forum-27-1.html">Android实例教程</a> <em>›</em> <a href="http://www.eoeandroid.com/thread-925885-1-1.html">教你实现android上传应用市场让用户在应用商店下载app ...</a>
+</div>
+</div>
+
+<style id="diy_style" type="text/css"></style>
+<div class="wp">
+<!--[diy=diy1]--><div id="diy1" class="area"></div><!--[/diy]-->
+</div>
+
+<div id="ct" class="wp cl">
+<div id="pgt" class="pgs mbm cl ">
+<div class="pgt"></div>
+<span class="y pgb" id="visitedforums" onmouseover="$(&#39;visitedforums&#39;).id = &#39;visitedforumstmp&#39;;this.id = &#39;visitedforums&#39;;showMenu({&#39;ctrlid&#39;:this.id,&#39;pos&#39;:&#39;34&#39;})"><a href="http://www.eoeandroid.com/forum-27-1.html">返回列表</a></span>
+<a id="newspecial" onmouseover="$(&#39;newspecial&#39;).id = &#39;newspecialtmp&#39;;this.id = &#39;newspecial&#39;;showMenu({&#39;ctrlid&#39;:this.id})" onclick="showWindow(&#39;newthread&#39;, &#39;forum.php?mod=post&amp;action=newthread&amp;fid=27&#39;)" href="javascript:;" title="发新帖"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/pn_post.png" alt="发新帖"></a><a id="post_reply" onclick="showWindow(&#39;reply&#39;, &#39;forum.php?mod=post&amp;action=reply&amp;fid=27&amp;tid=925885&#39;)" href="javascript:;" title="回复"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/pn_reply.png" alt="回复"></a>
+</div>
+
+<ul class="p_pop" id="newspecial_menu" style="display: none">
+<li><a href="http://www.eoeandroid.com/forum.php?mod=post&amp;action=newthread&amp;fid=27">发表帖子</a></li><li class="poll"><a href="http://www.eoeandroid.com/forum.php?mod=post&amp;action=newthread&amp;fid=27&amp;special=1">发起投票</a></li></ul>
+
+
+<div id="postlist" class="pl bm">
+<table cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td class="pls ptn pbn">
+<div class="hm ptn">
+<span class="xg1">查看:</span> <span class="xi1">204</span><span class="pipe">|</span><span class="xg1">回复:</span> <span class="xi1">1</span>
+</div>
+</td>
+<td class="plc ptm pbn vwthd">
+<div class="y">
+<a href="http://www.eoeandroid.com/forum.php?mod=viewthread&amp;action=printable&amp;tid=925885" title="打印" target="_blank"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/print.png" alt="打印" class="vm"></a>
+<a href="http://www.eoeandroid.com/forum.php?mod=redirect&amp;goto=nextoldset&amp;tid=925885" title="上一主题"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/thread-prev.png" alt="上一主题" class="vm"></a>
+<a href="http://www.eoeandroid.com/forum.php?mod=redirect&amp;goto=nextnewset&amp;tid=925885" title="下一主题"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/thread-next.png" alt="下一主题" class="vm"></a>
+</div>
+<span class="xg1 side_btn">
+<a onclick="setcookie(&#39;close_leftinfo&#39;, 1);location.reload();" title="收起左侧" class="btn_s_close" href="javascript:;"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/control_l.png" alt="收起左侧" class="vm"></a>
+</span>
+<h1 class="ts">
+<a href="http://www.eoeandroid.com/forum.php?mod=forumdisplay&amp;fid=27&amp;filter=typeid&amp;typeid=24">[Android算法]</a>
+<span id="thread_subject">教你实现android上传应用市场让用户在应用商店下载app</span>
+</h1>
+<span class="xg1">
+<a href="http://www.eoeandroid.com/thread-925885-1-1.html" onclick="return copyThreadUrl(this, &#39;eoe 移动开发者论坛&#39;)">[复制链接]</a>
+</span>
+</td>
+</tr>
+</tbody></table>
+
+
+<table cellspacing="0" cellpadding="0" class="ad">
+<tbody><tr>
+<td class="pls">
+</td>
+<td class="plc">
+</td>
+</tr>
+</tbody></table><div id="post_6666019"><table id="pid6666019" class="plhin" summary="pid6666019" cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td class="pls" rowspan="2">
+<div id="favatar6666019" class="pls favatar" style="top: -245px; position: fixed;">
+ <div class="pi">
+<div class="authi"><a href="http://www.eoeandroid.com/space-uid-506962.html" target="_blank" class="xw1">riskycheng</a>
+</div>
+</div>
+<div class="p_pop blk bui card_gender_0" id="userinfo6666019" style="display: none; margin-top: -11px;">
+<div class="m z">
+<div id="userinfo6666019_ma"></div>
+</div>
+<div class="i y">
+<div>
+<strong><a href="http://www.eoeandroid.com/space-uid-506962.html" target="_blank" class="xi2">riskycheng</a></strong>
+<em>当前离线</em>
+</div><strong><a href="http://www.eoeandroid.com/home.php?mod=spacecp&amp;ac=usergroup&amp;gid=13" target="_blank">No.4 见习攻城师</a></strong><div class="imicn">
+<a href="http://www.eoeandroid.com/home.php?mod=space&amp;uid=506962&amp;do=profile" target="_blank" title="查看详细资料"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/userinfo.gif" alt="查看详细资料"></a>
+</div>
+<div id="avatarfeed"><span id="threadsortswait"></span></div>
+</div>
+</div>
+<div>
+<div class="avatar" onmouseover="showauthor(this, &#39;userinfo6666019&#39;)"><a href="http://www.eoeandroid.com/space-uid-506962.html" class="avtm" target="_blank"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/avatar(1).php"></a></div>
+</div>
+<p>签到天数: 64 天</p><p>连续签到: 2 天</p><p>[LV.6]常住居民II</p><div class="tns xg2"><table cellspacing="0" cellpadding="0"><tbody><tr><th><p><a href="http://www.eoeandroid.com/home.php?mod=space&amp;uid=506962&amp;do=thread&amp;type=thread&amp;view=me&amp;from=space" class="xi2">8</a></p>主题</th><th><p><a href="http://www.eoeandroid.com/home.php?mod=space&amp;uid=506962&amp;do=thread&amp;type=reply&amp;view=me&amp;from=space" class="xi2">243</a></p>帖子</th><td><p><a href="http://www.eoeandroid.com/home.php?mod=space&amp;uid=506962&amp;do=profile" class="xi2">470</a></p>e币</td></tr></tbody></table></div>
+<div class="c_icon">
+
+</div><ul class="xl xl2 o cl">
+<li class="pm2"><a href="http://www.eoeandroid.com/home.php?mod=spacecp&amp;ac=pm&amp;op=showmsg&amp;handlekey=showmsg_506962&amp;touid=506962&amp;pmid=0&amp;daterange=2&amp;pid=6666019&amp;tid=925885" onclick="showWindow(&#39;sendpm&#39;, this.href);" title="发消息" class="xi2">发消息</a></li>
+</ul>
+</div>
+</td>
+<td class="plc">
+<div class="pi">
+<div id="fj" class="y">
+<label class="z">电梯直达</label>
+<input type="text" class="px p_fre z" size="2" onkeyup="$(&#39;fj_btn&#39;).href=&#39;forum.php?mod=redirect&amp;ptid=925885&amp;authorid=0&amp;postno=&#39;+this.value" onkeydown="if(event.keyCode==13) {window.location=$(&#39;fj_btn&#39;).href;return false;}" title="跳转到指定楼层">
+<a href="javascript:;" id="fj_btn" class="z" title="跳转到指定楼层"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/fj_btn.png" alt="跳转到指定楼层" class="vm"></a>
+</div>
+<strong>
+<a href="http://www.eoeandroid.com/thread-925885-1-1.html" id="postnum6666019" onclick="setCopy(this.href, &#39;帖子地址复制成功&#39;);return false;">
+楼主</a>
+</strong>
+<div class="pti">
+<div class="pdbt">
+</div>
+<div class="authi">
+<img class="authicn vm" id="authicon6666019" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/online_member.gif">
+<em id="authorposton6666019">发表于 2017-6-1 15:54:01</em>
+<span class="pipe">|</span>
+<a href="http://www.eoeandroid.com/forum.php?mod=viewthread&amp;tid=925885&amp;page=1&amp;authorid=506962" rel="nofollow">只看该作者</a>
+<span class="none"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/arw_r.gif" class="vm" alt="回帖奖励"></span>
+<span class="pipe show">|</span><a href="http://www.eoeandroid.com/forum.php?mod=viewthread&amp;tid=925885&amp;extra=page%3D1&amp;ordertype=1" class="show">倒序浏览</a>
+<span class="pipe show">|</span><a href="javascript:;" onclick="readmode($(&#39;thread_subject&#39;).innerHTML, 6666019);" class="show">阅读模式</a>
+</div>
+</div>
+</div><div class="pct"><style type="text/css">.pcb{margin-right:0}</style><div class="pcb">
+ 
+<div class="t_fsz">
+<table cellspacing="0" cellpadding="0"><tbody><tr><td class="t_f" id="postmessage_6666019">
+<strong><font size="3"><font face="Microsoft YaHei, Tahoma, Helvetica, SimSun, sans-serif"> </font><font face="宋体">教你实现android上传应用市场让用户在应用商店下载app（QQ：220-5357007提供<a href="http://www.eoeandroid.com/" target="_blank" class="relatedlink">安卓</a>应用市场分发上架，ios刷榜优化，ios上架等服务</font></font><font face="宋体"><a href="http://wpa.qq.com/msgrd?V=1&amp;Uin=2205357007&amp;Site=[Discuz!]&amp;Menu=yes" target="_blank"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/pa" border="0"></a><font style="font-size:14px"><font size="3">）<a href="http://www.eoeandroid.com/" target="_blank" class="relatedlink">Android开发</a>的APK 怎么发布到各个市场上；各位开发者，炎炎夏日就要到来，你是不是还在为上传应用而伤透脑筋。为体恤各位开发者，特此整理了一下上传市场攻略，供各位分享</font></font><font size="3"><font size="3">。</font></font></font></strong><font face="宋体"><font size="3"><font color="#444444"><font size="3">而对于国内开发者来说，Android的市场“碎片化”问题也是一个很头疼的问题。<br>
+&nbsp; &nbsp; 一起先来看一段代码：<br>
+<br>
+<table cellspacing="0" class="t_table"><tbody><tr><td>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6<br>
+7<br>
+8<br>
+9<br>
+10<br>
+11<br>
+12<br>
+13<br>
+14<br>
+15<br>
+16<br>
+17<br>
+18<br>
+19<br>
+20<br>
+21<br>
+22<br>
+23<br>
+24<br>
+25<br>
+26<br>
+27<br>
+28<br>
+29<br>
+30<br>
+31<br>
+32<br>
+33<br>
+34<br>
+35<br>
+36<br>
+37<br>
+</td><td>private String getChannelName(String channelKey) { <br>
+&nbsp; &nbsp; String result = ""; <br>
+&nbsp; &nbsp; if ("dev".equals(channelKey)) { result = "开发版"; <br>
+&nbsp; &nbsp; } else if ("official".equals(channelKey)) { result = "官方版"; <br>
+&nbsp; &nbsp; } else if ("google".equals(channelKey)) { result = "谷歌版"; <br>
+&nbsp; &nbsp; } else if ("appchina".equals(channelKey)) { result = "应用汇版"; <br>
+&nbsp; &nbsp; } else if ("youmi".equals(channelKey)) { result = "有米版"; <br>
+&nbsp; &nbsp; } else if ("waps".equals(channelKey)) { result = "万普版"; <br>
+&nbsp; &nbsp; } else if ("gfan".equals(channelKey)) { result = "机锋版"; <br>
+&nbsp; &nbsp; } else if ("91".equals(channelKey)) { result = "91版"; <br>
+&nbsp; &nbsp; } else if ("hiapk".equals(channelKey)) { result = "安卓版"; <br>
+&nbsp; &nbsp; } else if ("goapk".equals(channelKey)) { result = "安智版"; <br>
+&nbsp; &nbsp; } else if ("mumayi".equals(channelKey)) { result = "木蚂蚁版"; <br>
+&nbsp; &nbsp; } else if ("eoe".equals(channelKey)) { result = "优亿版"; <br>
+&nbsp; &nbsp; } else if ("nduo".equals(channelKey)) { result = "N多版"; <br>
+&nbsp; &nbsp; } else if ("feiliu".equals(channelKey)) { result = "飞流版"; <br>
+&nbsp; &nbsp; } else if ("crossmo".equals(channelKey)) { result = "十字猫版"; <br>
+&nbsp; &nbsp; } else if ("liantong".equals(channelKey)) { result = "联通版"; <br>
+&nbsp; &nbsp; } else if ("huawei".equals(channelKey)) { result = "智汇云版"; <br>
+&nbsp; &nbsp; } else if ("qq".equals(channelKey)) { result = "腾讯版"; <br>
+&nbsp; &nbsp; } else if ("3g".equals(channelKey)) { result = "3G版"; <br>
+&nbsp; &nbsp; } else if ("360".equals(channelKey)) { result = "360版"; <br>
+&nbsp; &nbsp; } else if ("baidu".equals(channelKey)) { result = "百度版"; <br>
+&nbsp; &nbsp; } else if ("sohu".equals(channelKey)) { result = "搜狐版"; <br>
+&nbsp; &nbsp; } else if ("samsung".equals(channelKey)) { result = "三星版"; <br>
+&nbsp; &nbsp; } else if ("coolmart".equals(channelKey)) { result = "酷派版"; <br>
+&nbsp; &nbsp; } else if ("meizu".equals(channelKey)) { result = "魅族版"; <br>
+&nbsp; &nbsp; } else if ("moto".equals(channelKey)) { result = "摩托版"; <br>
+&nbsp; &nbsp; } else if ("xiaomi".equals(channelKey)) { result = "小米版"; <br>
+&nbsp; &nbsp; } else if ("lenovo".equals(channelKey)) { result = "联想版"; <br>
+&nbsp; &nbsp; } else if ("zhuamob".equals(channelKey)) { result = "抓猫版"; <br>
+&nbsp; &nbsp; } else if ("iandroid".equals(channelKey)) { result = "爱卓版"; <br>
+&nbsp; &nbsp; } else if ("imobile".equals(channelKey)) { result = "手机之家版"; <br>
+&nbsp; &nbsp; } else if ("uc".equals(channelKey)) { result = "UC版"; <br>
+&nbsp; &nbsp; } else { result = "山寨版";} <br>
+&nbsp; &nbsp; return result; <br>
+}<br>
+<br>
+</td></tr></tbody></table><br>
+<br>
+<br>
+&nbsp; &nbsp; 这还只是一部分市场，有几个是我自定义的和广告平台的，剩下的也有将近30个，第一次光是注册账号就会烦你一天的，以后每次光是上传应用就会弄晕你。<br>
+<strong>1. 国内到底有哪些市场？</strong><br>
+&nbsp; &nbsp; 这是一个很难回答问题，"百密必有一疏"，所以我正好借用这个平台列举一下，通过大家慧眼识珠和强大的人肉回答来修正和补充：<br>
+?<br>
+<table cellspacing="0" class="t_table"><tbody><tr><td>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6<br>
+7<br>
+8<br>
+9<br>
+10<br>
+11<br>
+12<br>
+13<br>
+14<br>
+15<br>
+16<br>
+17<br>
+18<br>
+19<br>
+20<br>
+21<br>
+</td><td>// 下面主要是列出开发者后台地址 <br>
+Google Play : https://play.google.com/apps/publish <br>
+&nbsp; &nbsp;&nbsp; &nbsp; 应用汇: http://dev.appchina.com <br>
+&nbsp; &nbsp; 机锋市场 : http://dev.gfan.com/ <br>
+91和安卓市场 : http://dev.apk.hiapk.com/ <br>
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;//说明一下，发布在安卓市场也会发布到91市场，他们其实同一家了 <br>
+安智(goapk) : http://dev.anzhi.com/ <br>
+&nbsp; &nbsp;&nbsp; &nbsp;木蚂蚁 : http://dev.mumayi.com/ <br>
+&nbsp; &nbsp;&nbsp; &nbsp;N多网 : http://www.nduoa.com/developer <br>
+&nbsp;&nbsp;联想乐商店 : http://developer.lenovomm.com/developer/ <br>
+&nbsp; &nbsp;&nbsp;&nbsp;十字猫 : http://dev.crossmo.com/ <br>
+&nbsp;&nbsp;腾讯应用宝 : http://tap.myapp.com/android/index.jsp <br>
+&nbsp; &nbsp;&nbsp; &nbsp; 飞流 : http://dev.feiliu.com/ <br>
+&nbsp; &nbsp;&nbsp;&nbsp;智汇云 : https://dev.hicloud.com/indexManageAction.action <br>
+小米应用商店 : http://developer.xiaomi.com/ <br>
+&nbsp; &nbsp;&nbsp; &nbsp; 百度 : http://developer.baidu.com/ <br>
+&nbsp; &nbsp;&nbsp; &nbsp; 魅族 : http://developer.meizu.com/ <br>
+&nbsp; &nbsp;&nbsp; &nbsp; 易优 : http://www.eomarket.com/user/login/lang/zh_CN <br>
+&nbsp; &nbsp; 手机之家 : http://profile.imobile.com.cn <br>
+&nbsp;&nbsp;联通沃商店 : http://dev.wo.com.cn/userportal/mapc_login.action <br>
+&nbsp; &nbsp;&nbsp;&nbsp;爱卓网 : http://www.iandroid.cn/index.php?app=my_sharegoods&amp;act=add&amp;is_original=1<br>
+<br>
+</td></tr></tbody></table><br>
+<br>
+<br>
+　　大家尽情的留言补充啊，期待大家的力量....<br>
+<strong>2. 哪个市场的好坏？</strong><br>
+&nbsp; &nbsp; 这是一个很难回答问题，"圣人为圣，善假于物"，同一个平台，适合不同阶层的开发者，有些大平台可能对于个人开发者来说，上首页推荐的机会就比较小，成本比较高，而在小的平台可能性就要大些了。利用好各个平台，不要嫌弃一些小平台，这点我觉得很重要。<br>
+&nbsp; &nbsp; 所以，这里不做综合比较。<br>
+&nbsp; &nbsp; 我就根据友盟统计的数据来分析一下吧(因为我的应用下载量比较小，而且没有做任何推广，仅供参考):<br>
+?<br>
+<table cellspacing="0" class="t_table"><tbody><tr><td>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6<br>
+7<br>
+8<br>
+9<br>
+10<br>
+11<br>
+12<br>
+13<br>
+14<br>
+15<br>
+16<br>
+</td><td>渠道&nbsp;&nbsp;新增用户&nbsp; &nbsp; 即时新增用户&nbsp;&nbsp;活跃用户&nbsp; &nbsp; 累计用户（%） <br>
+appchina64&nbsp;&nbsp;73&nbsp;&nbsp;123 784(66.0 %) <br>
+hiapk&nbsp; &nbsp;16&nbsp;&nbsp;18&nbsp;&nbsp;27&nbsp;&nbsp;209(17.0 %) <br>
+lenovo&nbsp;&nbsp;9&nbsp; &nbsp;10&nbsp;&nbsp;17&nbsp;&nbsp;65(5.0 %) <br>
+goapk&nbsp; &nbsp;3&nbsp; &nbsp;3&nbsp; &nbsp;6&nbsp; &nbsp;63(5.0 %) <br>
+dev&nbsp; &nbsp;&nbsp;&nbsp;0&nbsp; &nbsp;0&nbsp; &nbsp;2&nbsp; &nbsp;20(1.0 %) <br>
+xiaomi&nbsp;&nbsp;9&nbsp; &nbsp;10&nbsp;&nbsp;11&nbsp;&nbsp;15(1.0 %) <br>
+meizu&nbsp; &nbsp;7&nbsp; &nbsp;7&nbsp; &nbsp;7&nbsp; &nbsp;7(0.0 %) <br>
+3g&nbsp; &nbsp;&nbsp; &nbsp;4&nbsp; &nbsp;4&nbsp; &nbsp;4&nbsp; &nbsp;6(0.0 %) <br>
+official0&nbsp; &nbsp;0&nbsp; &nbsp;1&nbsp; &nbsp;4(0.0 %) <br>
+huawei&nbsp;&nbsp;3&nbsp; &nbsp;3&nbsp; &nbsp;3&nbsp; &nbsp;4(0.0 %) <br>
+feiliu&nbsp;&nbsp;3&nbsp; &nbsp;3&nbsp; &nbsp;3&nbsp; &nbsp;3(0.0 %) <br>
+baidu&nbsp; &nbsp;1&nbsp; &nbsp;1&nbsp; &nbsp;1&nbsp; &nbsp;1(0.0 %) <br>
+gfan&nbsp; &nbsp; 0&nbsp; &nbsp;0&nbsp; &nbsp;0&nbsp; &nbsp;1(0.0 %) <br>
+mumayi&nbsp;&nbsp;0&nbsp; &nbsp;0&nbsp; &nbsp;0&nbsp; &nbsp;1(0.0 %) <br>
+google&nbsp;&nbsp;0&nbsp; &nbsp;0&nbsp; &nbsp;0&nbsp; &nbsp;2(0.0 %)<br>
+<br>
+</td></tr></tbody></table><br>
+<br>
+<br>
+&nbsp; &nbsp; 这是我周一发布的应用的数据（我就不说名字了，避免做广告嫌疑），能反应一个大概的各市场的量的比例，当然有的市场数据明显不对，比如gfan，这个有待勘察。<br>
+&nbsp; &nbsp; 我还有几个应用，也是差不多的量，没什么参考价值，就不列出来了。<br>
+&nbsp; &nbsp; 欢迎各位能列出有代表的数据，我可以加到这篇文章来。<br>
+<strong>3. 提交应用的准备工作</strong><br>
+&nbsp; &nbsp; 终于开始进入本文的重点了，应用开发完毕，打包好了，也签名了，是不是马上去提交！<br>
+&nbsp; &nbsp; 有一条指导建议："临时现做总是很慢的";<br>
+&nbsp; &nbsp; OK，可以，但是一个市场两个市场可以，市场一多，你自己会先烦掉的。不如先把下面的准备工作做好的。<br>
+&nbsp; &nbsp; 市场对于提交的应用一般需要填写相应的资料，需要提前就做好准备，比如第一次提交：<br>
+?<br>
+<table cellspacing="0" class="t_table"><tbody><tr><td>1<br>
+2<br>
+3<br>
+4<br>
+5<br>
+6<br>
+7<br>
+8<br>
+9<br>
+</td><td>(1). 应用程序APK文件 <br>
+(2). 应用简短描述，10个字或者20个字内 <br>
+(3). 应用关键字，以空格或者逗号隔开，有的市场还会限制个数，比如最多5个 <br>
+(4). 应用介绍，有的市场要大于200字， <br>
+(5). 应用icon，个人市场需要单独上传icon图标，google play上需要上传一个512x512的高清icon，最好提前准备好 <br>
+(6). 应用截图，最好准备5张，一般市场要求3-5张 <br>
+(7). 官方网站，这个填写博客就可以了，我想不是问题吧 <br>
+(8). 宣传图，这个是可选的，个别市场上有这个选项，如google play上的尺寸要求为800x480,1024x500，飞流上也有一个，要求224x108尺寸的 <br>
+(9). 类别，下拉选择一个接近的，各个市场的分类都不大一致<br>
+<br>
+</td></tr></tbody></table><br>
+<br>
+<br>
+　　第二次更新升级的时候，就会简单很多：<br>
+?<br>
+<table cellspacing="0" class="t_table"><tbody><tr><td>1<br>
+2<br>
+3<br>
+4<br>
+</td><td>(1). 最新APK文件 <br>
+(6). 最新截图，有些市场可以用旧的截图 <br>
+(8). 最新宣传图，可选 <br>
+(10). 更新日志，必选，发布之前就要整理好，[增加][修复]了哪些功能和问题<br>
+<br>
+</td></tr></tbody></table><br>
+<br>
+<br>
+　　准备工作只要做一次，还算比较简单。下一步才是真正的繁琐。<br>
+<strong>4. 广告平台问题</strong><br>
+&nbsp; &nbsp; 做完上面一步，你可能就要面临下面这个重大问题，广告平台问题:<br>
+?<br>
+<table cellspacing="0" class="t_table"><tbody><tr><td>1<br>
+</td><td>不同的市场对不同的广告平台有不同的兼容性。<br>
+<br>
+</td></tr></tbody></table><br>
+<br>
+<br>
+&nbsp; &nbsp; 很多广告平台在一些市场几乎是不能上的，比如最典型的是，安智网是不容许积分墙的，所以万普的积分墙应用是进入不了安智市场的。<br>
+&nbsp; &nbsp; 那这个问题怎么解决？<br>
+&nbsp; &nbsp; 不上？不行，没有条件创造条件也要上。<br>
+&nbsp; &nbsp; 这个需要在这家广告平台和这家市场之间做一个选择了。<br>
+&nbsp; &nbsp; 我的解决办法是发布另外一个不包含这家广告平台的同一个应用，比如我把万普的换成有米没有积分系统的同一款应用，这样就能上传到安智市场了。<br>
+&nbsp; &nbsp; 这点最好在开发早期就考虑好，从技术的角度打包不同广告平台的应用，本文就不深入探讨了。<br>
+<strong>5. 正式提交应用到各大市场</strong><br>
+&nbsp; &nbsp; 上面都做好了的话，接下来，就是正式的提交应用到各大市场了。<br>
+&nbsp; &nbsp; 提交应用绝对是一个任劳任怨的体力活。<br>
+&nbsp; &nbsp; 在公司里面应该是有市场推广部门负责的，但是个人的话，只能亲自操刀上阵，一个一个来了。<br>
+&nbsp; &nbsp; 在这个繁琐枯燥的过程中，我记录了各个市场的”脾气“，积累了一点经验，特别拿出来记录、分享，以求共勉。<br>
+<br>
+&nbsp; &nbsp; <i><strong>(1). 应用汇appchina:</strong></i><br>
+&nbsp; &nbsp; 点评:应用汇是最好上的，量比较大，审核也特别快，1天左右就能上架，也没什么限制积分墙。赞一个！<br>
+&nbsp; &nbsp; 详细:应用汇的量大，我初步分析不是应用汇本身的量，而是其他很多第三方网站抓取后转载导致。<br>
+<br>
+&nbsp; &nbsp; <strong><i>(2). 安卓市场(91):</i></strong><br>
+&nbsp; &nbsp; 点评:安卓市场限制积分墙，一定程度的内容审查和特殊权限的控制，审核速度还行，1-2天吧，量算比较大点的。<br>
+&nbsp; &nbsp; 详细:第一，安卓市场是不能上万普积分墙的，会提示不支持的积分墙的应用，不予通过。据说以前可以，但是现在不行。第二，我有一个应用里面包含了”成人用品“的内容（我认为是这个原因），结果别拒绝了，拒绝理由是”抱歉，您的软件中部分文字尺度过大，谢绝发布。安卓市场严禁张贴政治、色情、恐怖、暴力的图片及文字，感谢配合！“。第三，不允许CALL PHONE权限，拒绝理由是”抱歉，您的软件发现功能以外的额外付费权限“拨打电话”，请检查，正常功能需求，请在软件描述中注明使用功能点，感谢配合“。<br>
+<br>
+&nbsp; &nbsp; <i><strong>(3). 机锋市场</strong></i><br>
+&nbsp; &nbsp; 点评:机锋市场算比较好上的，支持万普积分墙，要求不严格，审核比较快，1-2天吧，量也不错，但是升级好像没什么量。但是需要主要机锋标识，什么竞争对手链接等问题。<br>
+&nbsp; &nbsp; 详细:第一，我有一次被拒绝的理由是“因为：含有竞争类产品链接，拒绝。。请修改，修改后我们会尽快再次审核。感谢合作！”，我勒了个去，莫名其妙，后来都不知道改了什么，再上传就通过了。第二，针对万普，桔子，有米等等几个广告平台，机锋市场上提交应用和其他市场有一个很大的区别是，需要增加机锋标识，可以优先上架，刚开始不知道的人还真不知道怎么弄，这里我贴出相关文档的地址：<br>
+http://www.gfan.com/dev/gunion/2012032616630.html <br>
+否则会被拒绝：”品不符合市场发布规范（广告 万普世纪, SDK未添加机锋标识),暂拒。。请修改“。<br>
+<br>
+&nbsp; &nbsp; <strong><i>(4). 腾讯应用</i></strong><br>
+&nbsp; &nbsp;&nbsp;&nbsp;点评:之前印象挺好的，速度快，支持万普积分墙，量也马马虎虎还行，但是现在一个应用上传了快两周了还没审核测试，搞不懂腾讯应用是不是内部出现问题了？？？？<br>
+&nbsp; &nbsp;&nbsp;&nbsp;详细:之前审核速度相当快，我以为是大公司的，要求肯定高，但是腾讯的要求不是很严格，但是，但是，现在，11月26日升级一个应用，到现在还是”待测试“，12月2日上传一个新的应用，两三天了没动静，还是”待审核“，什么情况啊。<br>
+<br>
+&nbsp; &nbsp; <strong><i>(5). 360应用</i></strong><br>
+&nbsp; &nbsp;&nbsp;&nbsp;点评:坑爹的一个平台，左一个版权，右一个名堂，还搞黑名单，一旦是黑名单，再修改都提交不了。<br>
+&nbsp; &nbsp;&nbsp;&nbsp;详细:不说了，名堂太多。<br>
+&nbsp; &nbsp; <i><strong>(6). </strong></i><i><strong>优亿市场</strong></i><br>
+&nbsp; &nbsp;&nbsp;&nbsp;点评:对于个人开发者来说，比较坑爹，需要授权证书和证明文档，如下图，和360是一路货色，打心里看不起个人开发者。<br>
+<br>
+<div style="width: 100px; height: 100px;background: url(static/image/common/loading.gif) no-repeat center center;"></div><img id="aimg_UmNw8" onclick="zoom(this, this.src, 0, 0, 0)" class="zoom" file="http://pic002.cnblogs.com/images/2012/31770/2012120521474993.jpg" onmouseover="img_onmouseoverfunc(this)" lazyloadthumb="1" border="0" alt="" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/2012120521474993.jpg" lazyloaded="true" style="height: 1px; width: 1px;"><br>
+<br>
+&nbsp; &nbsp; <i><strong>(7). 木蚂蚁</strong></i><br>
+&nbsp; &nbsp; 点评: 比较容易上，支持万普积分墙，量个人觉得不大，审核1-2天吧，但是”不收录个人开发者提交的图书、笑话、连连看、对对碰、壁纸、锁屏类应用。“，需要注意一下，我的《幽默笑话》就被拒绝了。<br>
+<br>
+&nbsp; &nbsp; <i><strong>(8). 3G安卓市场</strong></i><br>
+&nbsp; &nbsp; 点评:审核算快的，1-2天吧，量感觉还可以，支持万普积分墙。还不错。&nbsp; &nbsp; <br>
+&nbsp; &nbsp; 详细:最近，也就是前几天又提交了一个应用，过了几天，3G安卓市场发来了一个邮件，说软件被下架了，原因是“(产品不通过)封面图与截图不能为同一张”，这都被发现了！！只能换图了。<br>
+<br>
+&nbsp; &nbsp; <i><strong>(9). N多市场</strong></i><br>
+&nbsp; &nbsp; 点评:审核速度还可以,1天左右有反馈，不支持万普积分墙。<br>
+&nbsp; &nbsp; 详细:上传第二天就被拒了，反馈倒是挺快的：”经测试您的应用不符合我们的审核标准，请检查您的应用是否含有积分系统、推荐其他应用或广告自行下载等问题。请确保您再次上传的应用不包含以上问题。“,昨天更新升级，现在还在审核中，之前上传了2款应用都审核通过了，待查。<br>
+<br>
+&nbsp; &nbsp; <strong><i>(10). 十字猫</i></strong><br>
+&nbsp; &nbsp; 点评:软件刚上传，审核时间稍微长一点，2-3天吧，暂时感觉量一般！<br>
+&nbsp; &nbsp; 详细:发生了一件比较搞的事情，之前十字猫我一直登陆不上，点”忘记密码“重置了好几次密码，一直提示我密码错误，非常郁闷啊，试了又试，过了几天又试，搞了很久，后来没办法联系商务，结果告诉是说我的开发者账号需要审核，汗，系统提示也太垃圾了吧，还好，商务很快就给我审核通过了。<br>
+&nbsp; &nbsp; <i><strong>(11). Google Play</strong></i><br>
+&nbsp; &nbsp; 点评:主要是账号需要信用卡申请，我是用招行双币visa信用卡办的，没什么审核，但是要填的东西蛮多的，量比较小。<br>
+&nbsp; &nbsp; 详细:软件上传后详细页面生效可能要等几个小时。<br>
+<br>
+&nbsp; &nbsp; <i><strong>(12). 联想乐商店</strong></i><br>
+&nbsp; &nbsp; 点评:审核速度超快，量还可以，不能上万普积分墙。<br>
+&nbsp; &nbsp; 详细:可能是先自动审核，再人工干预。因为我才上传5分钟，就接到邮件通知，因为积分墙被拒绝了：<br>
+================================================<br>
+检测项目 检测结果 描述<br>
+积分墙检测结果 不通过 含有非联想指定的积分墙<br>
+兼容性测试检测结果 arm: 通过 <br>
+================================================<br>
+随后我马上更新上传一个不包含积分墙的版本，不到一个小时就审核通过了，邮件如下：<br>
+================================================<br>
+;;;; 很荣幸地通知您， 您提交的应用——xxxx将于30分钟内上架，您可以先逛逛乐商店，看看有什么好玩的应用。 也请您多关注自己应用的下载情况，并及时回复用户提出的问题，谢谢。<br>
+================================================<br>
+太特么高效了。<br>
+<br>
+&nbsp; &nbsp; <i><strong>(13). 智汇云</strong></i><br>
+&nbsp; &nbsp; 点评:审核速度还行，2天吧，不支持万普积分墙吧，量的话一般般。<br>
+&nbsp; &nbsp; 详细:华为的平台，还算比较容易上，需要身份实名认证。 <br>
+<br>
+&nbsp; &nbsp; <i><strong>(14). 魅族</strong></i><br>
+&nbsp; &nbsp; 点评:审核速度比较快，一天左右，支持万普积分墙,初步感觉量还可以。<br>
+&nbsp; &nbsp; 详细:网上有人说魅族的量比较大，审核非常严格，我没感觉到，继续观察！！！<br>
+<br>
+&nbsp; &nbsp; <strong><i>(15). 小米</i></strong><br>
+&nbsp; &nbsp; 点评:小米的审核速度也是超快,估计量一般吧，支持万普积分墙。<br>
+&nbsp; &nbsp; 详细:上传应用后一会儿就反馈一封邮件，才过了不到一个小时，马上又反馈一封邮件，提示软件已经上架，给力！<br>
+<br>
+&nbsp; &nbsp; <strong><i>(16). 飞流</i></strong><br>
+&nbsp; &nbsp; 点评:审核速度挺快的，1天吧，量比较小，支持万普积分墙。<br>
+&nbsp; &nbsp; 详细:最新上传的2款软件都很快通过审核了，但是有一款很早之前的软件一直没有审核，我很无解！<br>
+<br>
+&nbsp; &nbsp; <strong><i>(17). 百度</i></strong><br>
+&nbsp; &nbsp; 点评:我个人觉得比较坑爹，搞不懂它的后台管理系统，我通过抓猫提交的，审核速度比较快，没有量。<br>
+&nbsp; &nbsp; 详细:感觉和百度首页的”应用“没有关系啊，搞不懂搞不懂。<br>
+<br>
+&nbsp; &nbsp; <strong><i>(18). 联通沃商店</i></strong><br>
+&nbsp; &nbsp; 点评:需要签约，2-3天账户审核通过。<br>
+&nbsp; &nbsp; 详细:联通，移动MM这些国内巨头，都弄的很麻烦，但是感觉东西却不怎么样<br>
+<br>
+&nbsp; &nbsp; <i><strong>(19). 搜狐应用中心</strong></i><br>
+&nbsp; &nbsp; 点评:账户审核2-3天，继续等待上传软件。<br>
+</font></font></font></font><br>
+<strong><font face="宋体"><br>
+</font></strong><font face="宋体"><font size="3">&nbsp; &nbsp; 首先，举几个简单的市场，对市场的上传方式进行一下分类，主要分为以下两类：</font><br>
+<font size="3">一、有后台可供开发者进行自主上传的应用市场（这类市场优点是收录速度快，缺点是步骤繁琐）：</font><br>
+<br>
+</font><div align="center"><font face="宋体"><font color="#ff0000">小米市场、魅锋网、机锋网、安智网、安卓网等等</font></font></div><font face="宋体"><br>
+<font size="3">二、上传至邮箱，或者有专人负责收录的应用市场（这类市场优点是步骤简单，缺点是审核速度较慢）：</font><br>
+</font><div align="center"><font face="宋体"><font color="#ff0000">乐致网、宝软网、木蚂蚁、历趣等等</font></font></div><font face="宋体"><br>
+<br>
+<font size="3">&nbsp; &nbsp; 在找寻到市场之后，需要对自己的应用进行一个准确的定位，因为不同的应用适合不同的市场，虽然每一个市场都需要去铺设，但是有的放矢的在有效益，有投入产出比的市场上，毫无疑问是更有价值的。通俗来说就是选择性价比最高的市场进行专攻。</font><br>
+<font size="3">&nbsp; &nbsp; 那么，哪些市场或者说渠道更加适合于应用的发布，哪些市场渠道更加适合于游戏的推广，让我们回过头去看各个市场的起源和最开始做的事情，就会有一些新的发现，举个例子来说，机锋网，安卓，安智等都是老牌应用市场，其用户对于游戏应用的分享积极度非常高，拥有一定规模的忠实用户数。并且热衷于刷机等技术性的活，与其说这几个是应用市场，不如说是比较活跃的手机综合性论坛和社区，也就是说，这三个大的市场的用户对于新的产品有更多的积极性和关注性，并且其庞大的用户基数决定了一款应用在刚开始推广时，有一个好的“舞台”，那么在这些大的市场上，花费一定的时间去做推广是很必要的，依旧以机锋为例，我来详细介绍一下对一款产品如何进行包装和推广。</font><br>
+<font size="3">&nbsp; &nbsp;&nbsp;&nbsp;首先需要进入开发者平台</font><br>
+<font size="3">&nbsp; &nbsp;&nbsp;&nbsp;点击应用发布之后，就可以发布新的应用了。</font><br>
+<font size="3">&nbsp; &nbsp; 上传是一个很简单的事情，但是其中也有一些小学问，譬如机锋上传中，在详细描述中，对于字体的排列是有一定的考究的，更好的组织文字有利于用户更加好的理解产品，和对产品产生较好的第一印象，当然适当的“标题党”也将为开发者带来不小的惊喜。同时关键字也能够增加搜索引擎的收录。</font><br>
+<font size="3">图标是一款应用最开始让人看到的最直观的部分，俗话说的好：看人先看脸，图标做的成功，一款产品就成功了一半，所以做一个有诱惑力的图标是非常重要和关键的。</font><br>
+<font size="3">&nbsp; &nbsp;&nbsp;&nbsp;在此基础上，就是填写其他一些选择项的时候了。</font><br>
+<font size="3">&nbsp; &nbsp;&nbsp;&nbsp;对于产品分类进行准确的选择，一款RPG类型的动作类游戏，既可以选择是RPG游戏，也可以选择为动作类游戏，在这个选择的时候，就可以去查看机锋网该两类游戏的数量，在进行类型的选择，</font><br>
+<font size="3">如果，角色扮演类的游戏一共有817款，而动作类的游戏有1945款，也就是说动作类中要得到一个好的位置将会更加的难，那么这时候就应该选择角色扮演类以减少同类型游戏的相互竞争，以便之后争取一个靠前的排名。</font><br>
+<font size="3">&nbsp; &nbsp; 游戏上传之后，可能会需要等待一天到两天的审核期，机锋的审核速度相对来说，还是比较快的，当然如果你等不及的话，可以去找寻一下各个市场负责审核的人，其联系方式，本文上面已经列出来。</font><br>
+<font size="3">在此，特别强调一点，一款产品想要得到好的展示机会，其内容是该款应用的核心，只有好的内容，才可以为市场创造价值，市场也会愿意提供展示位等方式免费的替这款产品进行推广，于此同时，市场也需要生存，也需要收入，那么一些免费的广告位就非常的难得，可以说，对这些广告位的抢夺是非常火爆的，在产品质量过关的情况下，如何脱颖而出呢？</font><br>
+<font size="3">&nbsp; &nbsp; 就像一个撰稿人是非常需要一个稳定靠谱的编辑一样，应用开发者同样需要去认识一些可以为自己提供展示位的人，在彼此的熟悉中，应用开发者更好的开发适合市场和用户的产品，而市场也得到了产品，这是一种相生相惜的关系，所以，和市场的人员去套一套交情是很必要的，而市场也需要好的产品来点缀自己，所以市场人员也是很热忱的。</font><br>
+<font size="3">&nbsp; &nbsp;&nbsp;&nbsp;除了上面的常规方法，开发者也可以使用其他的方法，以机锋网为例，机锋有同广告平台进行合作，这些广告平台手中就握有机锋网的一些推广的资源，嵌入广告平台的广告，也可以得到推广的机会，</font><br>
+<font size="3">&nbsp; &nbsp;&nbsp;&nbsp;不论是否获得推荐，只要应用审核通过，就需要对应用进行一些评分和评论，这是很重要的一点，很多个人开发者觉得，花费时间在刷评论和刷评分上，还不如再去开发个产品，事实上，一款产品的评价能够决定这款产品飞的有多高，在论坛为主的市场中，口碑传播是病毒式的，所以必要的为自己的产品刷上几个好评，和打上几个好分是很重要的，用户第一眼看到介绍后，总会在去看一眼评论再下载，而你只需要花费几分钟的评论可能给你带来的是比预期中多的多的下载量。事半工倍何乐而不为呢？</font></font><br>
+<font face="宋体"><font size="3"><br>
+</font></font><br>
+<font face="宋体"><font size="3">&lt;meta-data android:name="CHANNEL" android:value="xxx" /&gt;<div align="left">meta的key值固定，通过循环改变meta中的value值来实现市场渠道的写入。</div><div align="left">Ant批量打包实现相对麻烦，以前写的时候多亏了<font style="color:rgb(0, 95, 169)"><font style="background-color:transparent">谦虚的天下-《App自动化之使用Ant编译项目多渠道打包》</font></font> 。如果没有这篇帖子，真不知道当时Ant要折腾多少回才能写好。</div><div align="left">Gradle作为新的安卓官方构建工具，有Google老大撑腰，它的批量打包实现会相对简单些。可以参考<font style="color:rgb(0, 95, 169)"><font style="background-color:transparent">《迁移到Android Studio》</font></font>。当然这里面有些指令过时了，例如：runProguard已经被minifyEnabled替代了。</div><div align="left">以上两种都是传统的批量打包方式，他们最大的缺点就是打包时间长。<br>
+在前期渠道很少时这种方法还可以接受，但只要渠道稍微增多该方法就不再适用了，原因是每打一个包都要执行一遍构建过程，效率太低。（电脑比较烂，以前一般打包都要花费个30-40分钟。）</div><strong>打包界的曙光</strong><div align="left">前几天看到美团的技术分享文档:<font style="color:rgb(0, 95, 169)"><font style="background-color:transparent">《美团Android自动化之旅—生成渠道包》</font></font>，其中第三种方式提到：</div><blockquote><div align="left">如果能直接修改apk的渠道号，而不需要再重新签名能节省不少打包的时间。幸运的是我们找到了这种方法。直接解压apk，解压后的根目录会有一个META-INF目录，如下图所示：<br>
+<img id="aimg_PPs2M" onclick="zoom(this, this.src, 0, 0, 0)" class="zoom" width="211" height="207" file="http://static.open-open.com/lib/uploadImg/20141211/20141211095627_718.jpg" border="0" alt="" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/20141211095627_718.jpg" lazyloaded="true" style="" _load="1"><br>
+如果在META-INF目录内添加空文件，可以不用重新签名应用。因此，通过为不同渠道的应用添加不同的空文件，可以唯一标识一个渠道。<br>
+采用这种方式，每打一个渠道包只需复制一个apk，在META-INF中添加一个使用渠道号命名的空文件即可。<br>
+这种打包方式速度非常快，900多个渠道不到一分钟就能打完。</div></blockquote><div align="left">OK，到这里，思路就有了。</div><ul type="1" class="litype_1"><li>在META-INF中放置一个类似 channel_xxx 的空文件来标识市场。</li><li>在Java代码中解析这个文件名获取市场xxx即可。<br>
+</li></ul><div align="left">由于文档中的代码实现较少，这里我来讲述一下我的实现。</div><strong>我的实现</strong><div align="left">基于以上总结的美团思路，实现了一套自己的代码，方便引入到工程后实现这种打包方式。</div><div align="left">代码在Github：<font style="color:rgb(0, 95, 169)"><font style="background-color:transparent">GavinCT/AndroidMultiChannelBuildTool</font></font></div><strong>Python工具实现（基于Python 3）</strong><ul type="1" class="litype_1"><li><div align="left">首先创建一个空文件，等待写入META-INF目录作为channel_xxx文件</div># 空文件 便于写入此空文件到apk包中作为channel文件src_empty_file = 'info/czt.txt'# 创建一个空文件（不存在则创建）f = open(src_empty_file, 'w') f.close()</li><li><div align="left">获取渠道列表。<br>
+考虑到渠道的更新不应该是程序员来做，因此在info文件夹下放置一个channel文件，便于不懂程序的人更新渠道。（每个渠道以换行结束）</div># 获取渠道列表channel_file = 'info/channel.txt'f = open(channel_file)lines = f.readlines()f.close()</li><li><div align="left">找到初始apk<br>
+考虑到现实中为了防止安装包过大，我们通常分为arm和x86两个版本，所以python中支持当前目录下放多个apk来进行打包。<br>
+当然有人会说共用了一个channel文件，多个apk会生成相同市场的对应包。<br>
+你也可以修改一下python，使不同的apk去找不同的channel文件进行打包。<br>
+这里由于我的业务场景这样更方便，我就不修改了。</div># 获取当前目录中所有的apk源包src_apks = []for file in os.listdir():&nbsp; &nbsp; &nbsp; &nbsp; if os.path.isfile(file):&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; extension = os.path.splitext(file)[1][1:]&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if extension in 'apk':&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; src_apks.append(file)</li><li><div align="left">遍历渠道号并写入apk。<br>
+多个apk只是for循环问题，我们来看单个apk生成多市场包的代码</div># file name (with extension)src_apk_file_name = os.path.basename(src_apk)# 分割文件名与后缀temp_list = os.path.splitext(file)# name without extensionsrc_apk_name = temp_list[0]# 后缀名，包含.&nbsp; &nbsp;例如: ".apk "src_apk_extension = temp_list[1]# 创建生成目录,与文件名相关output_dir = 'output_' + src_apk_name + '/'# 目录不存在则创建if not os.path.exists(output_dir):os.mkdir(output_dir)# 遍历渠道号并创建对应渠道号的apk文件for line in lines:&nbsp; &nbsp; &nbsp; &nbsp; # 获取当前渠道号，因为从渠道文件中获得带有\n,所有strip一下&nbsp; &nbsp; &nbsp; &nbsp; target_channel = line.strip()&nbsp; &nbsp; &nbsp; &nbsp; # 拼接对应渠道号的apk&nbsp; &nbsp; &nbsp; &nbsp; target_apk = output_dir + src_apk_name + "-" + target_channel + src_apk_extension&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; # 拷贝建立新apk&nbsp; &nbsp; &nbsp; &nbsp; shutil.copy(src_apk,&nbsp;&nbsp;target_apk)&nbsp; &nbsp; &nbsp; &nbsp; # zip获取新建立的apk文件&nbsp; &nbsp; &nbsp; &nbsp; zipped = zipfile.ZipFile(target_apk, 'a', zipfile.ZIP_DEFLATED)&nbsp; &nbsp; &nbsp; &nbsp; # 初始化渠道信息&nbsp; &nbsp; &nbsp; &nbsp; empty_channel_file = "META-INF/cztchannel_{channel}".format(channel = target_channel)&nbsp; &nbsp; &nbsp; &nbsp; # 写入渠道信息&nbsp; &nbsp; &nbsp; &nbsp; zipped.write(src_empty_file, empty_channel_file)&nbsp; &nbsp; &nbsp; &nbsp; # 关闭zip流&nbsp; &nbsp; &nbsp; &nbsp; zipped.close()<br>
+</li></ul><div align="left">以上Python是属于现学现写，有什么可以优化的地方还请告知。</div><strong>Java工具实现</strong><div align="left">Python帮我们向apk包中写入了channel信息，Java端当然也需要对应更改才能使用。<br>
+由于解析channel需要去apk也就是zip中去找文件，所以相对耗时一些。<br>
+因此在ChannelUtil.java中，会将找到的channel和对应versionCode存储在静态变量和SharedPreference中，保证本次甚至本版本中channel只从zip中获取一次。</div><strong>在Java代码中读取空渠道文件名</strong><div align="left">从apk中获取channel，美团留下的代码if (entryName.startsWith("mtchannel"))是有问题的，应该采用if (entryName.startsWith("META-INF/mtchannel")) 。<br>
+我的代码如下：</div>/** * 从apk中获取版本信息 * @param context * @param channelKey * <a href="http://www.eoeandroid.com/home.php?mod=space&amp;uid=7300" target="_blank">@return</a> */private static String getChannelFromApk(Context context, String channelKey) {&nbsp; &nbsp; &nbsp; &nbsp; //从apk包中获取&nbsp; &nbsp; ApplicationInfo appinfo = context.getApplicationInfo();&nbsp; &nbsp; String sourceDir = appinfo.sourceDir;&nbsp; &nbsp; //注意这里：默认放在meta-inf/里， 所以需要再拼接一下&nbsp; &nbsp; String key = "META-INF/" + channelKey;&nbsp; &nbsp; String ret = "";&nbsp; &nbsp; ZipFile zipfile = null;&nbsp; &nbsp; try {&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;zipfile = new ZipFile(sourceDir);&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;Enumeration&lt;?&gt; entries = zipfile.entries();&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;while (entries.hasMoreElements()) {&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;ZipEntry entry = ((ZipEntry) entries.nextElement());&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;String entryName = entry.getName();&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;if (entryName.startsWith(key)) {&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; ret = entryName;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; break;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;}&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;}&nbsp; &nbsp; } catch (IOException e) {&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;e.printStackTrace();&nbsp; &nbsp; } finally {&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;if (zipfile != null) {&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;try {&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; zipfile.close();&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;} catch (IOException e) {&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; e.printStackTrace();&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;}&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;}&nbsp; &nbsp; }&nbsp; &nbsp; String[] split = ret.split("_");&nbsp; &nbsp; String channel = "";&nbsp; &nbsp; if (split != null &amp;&amp; split.length &gt;= 2) {&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; channel = ret.substring(split[0].length() + 1);&nbsp; &nbsp; }&nbsp; &nbsp; return channel;}<strong>总结</strong><div align="left">使用这种方式打包，打包工作不再需要非得是安卓程序员。需要打包时，只要下载安装Python环境，点击MultiChannelBuildTool.py执行即可。</div><strong>那Gradle是不是没用了呢？</strong><div align="left">当然不是，Google老大为他做了这么多，怎么能说不用就不用呢？<br>
+他的用处在于实现订制，比如打包出x86和arm的包，或者打出手机包和适应平板的hd包，然后借助上面的工具生成多个市场，即完成了多种适配包多个市场的任务。</div></font></font><br>
+</td></tr></tbody></table>
+
+<div class="ptg mbm mtn">
+<a title="开发" href="http://www.eoeandroid.com/misc.php?mod=tag&amp;id=222" target="_blank">开发</a>, <a title="android" href="http://www.eoeandroid.com/misc.php?mod=tag&amp;id=211" target="_blank">android</a>, <a title="宝软网" href="http://www.eoeandroid.com/misc.php?mod=tag&amp;id=17692" target="_blank">宝软网</a>, <a title="开发者" href="http://www.eoeandroid.com/misc.php?mod=tag&amp;id=297" target="_blank">开发者</a>, <a title="性价比" href="http://www.eoeandroid.com/misc.php?mod=tag&amp;id=2509" target="_blank">性价比</a></div>
+    <script type="text/javascript">
+        function move_fast_geetest_before_submit() {
+            var vfastposttb = $('vfastposttb');
+            var geetest = $('gt_viewthread_modaction');
+            vfastposttb.parentNode.insertBefore(geetest, vfastposttb);
+
+            geetest.style.backgroundColor="white";
+            geetest.style.marginTop="-20px";
+            geetest.style.marginLeft="-3px";
+            geetest.style.marginRight="-3px";
+            geetest.style.marginBottom="3px";
+                
+            $('vfastpost').style.marginTop = "60px";    
+        }
+        _attachEvent(window, 'load', move_fast_geetest_before_submit);
+
+    </script><form method="post" autocomplete="off" id="vfastpostform" action="http://www.eoeandroid.com/forum.php?mod=post&amp;action=reply&amp;fid=27&amp;tid=925885&amp;fromvf=1&amp;extra=page=1&amp;replysubmit=yes&amp;infloat=yes&amp;handlekey=vfastpost" onsubmit="this.message.value = parseurl(this.message.value);ajaxpost(&#39;vfastpostform&#39;, &#39;return_reply&#39;, &#39;return_reply&#39;, &#39;onerror&#39;);return false;">
+<div id="vfastpost" class="fullvfastpost" style="margin-top: 60px;">				
+<input type="hidden" name="formhash" value="f8c47677">
+<div id="gt_viewthread_modaction" class="" style="background-color: white; margin: -20px -3px 3px;"><table><tbody><tr><th style="width:80px;"><div id="gt_tx">*滑动验证:</div></th><td><script type="text/javascript" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/get.php"></script><div id="geetest_1501901731011" class="gt_holder gt_float" style="touch-action: none;"><div class="gt_widget gt_hide"><div class="gt_holder_top"></div><div class="gt_box_holder" style="height: 116px;"><div class="gt_box"><div class="gt_loading"><div class="gt_loading_icon"></div><div class="gt_loading_text">加载中...</div></div><a class="gt_bg gt_show" style="background-image: none;"><div class="gt_cut_bg gt_show"><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -157px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -145px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -265px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -277px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -181px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -169px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -241px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -253px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -109px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -97px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -289px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -301px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -85px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -73px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -25px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -37px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -13px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -1px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -121px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -133px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -61px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -49px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -217px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -229px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -205px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -193px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -145px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -157px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -277px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -265px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -169px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -181px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -253px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -241px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -97px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -109px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -301px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -289px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -73px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -85px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -37px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -25px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -1px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -13px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -133px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -121px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -49px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -61px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -229px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -217px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -193px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/0988dc4c.webp&quot;); background-position: -205px 0px;"></div></div><div class="gt_slice gt_show" style="left: 0px; background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/slice/0988dc4c.png&quot;); width: 56px; height: 51px; top: 45px;"></div></a><a class="gt_fullbg gt_show" style="cursor: default; background-image: none;"><div class="gt_cut_fullbg gt_show"><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -157px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -145px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -265px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -277px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -181px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -169px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -241px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -253px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -109px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -97px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -289px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -301px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -85px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -73px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -25px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -37px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -13px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -1px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -121px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -133px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -61px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -49px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -217px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -229px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -205px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -193px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -145px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -157px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -277px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -265px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -169px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -181px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -253px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -241px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -97px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -109px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -301px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -289px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -73px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -85px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -37px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -25px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -1px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -13px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -133px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -121px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -49px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -61px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -229px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -217px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -193px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -205px 0px;"></div></div><div class="gt_flash" style="height: 94px;"></div><div class="gt_ie_success"></div></a><a class="gt_curtain gt_hide" style="background-image: none;"><div class="gt_curtain_bg_wrap"><div class="gt_curtain_bg"><div class="gt_cut_curtain"></div></div></div><div class="gt_curtain_button gt_hide"></div></a><a class="gt_box_tips" style="display: none;"></a></div><div class="gt_info"><div class="gt_info_tip"><div class="gt_info_icon"></div><div class="gt_info_text"></div></div></div></div><div class="gt_bottom"><a class="gt_refresh_button"><div class="gt_refresh_tips">刷新验证</div></a><a class="gt_help_button" href="http://www.geetest.com/contact#report" target="_blank"><div class="gt_help_tips">帮助反馈</div></a><a class="gt_logo_button" href="http://www.geetest.com/first_page" target="_blank"></a></div></div><div class="gt_input"><input class="geetest_challenge" type="hidden" name="geetest_challenge"><input class="geetest_validate" type="hidden" name="geetest_validate"><input class="geetest_seccode" type="hidden" name="geetest_seccode"></div><div class="gt_slider"><div class="gt_guide_tip gt_show">按住左边滑块，拖动完成上方拼图</div><div class="gt_slider_knob gt_show" style="left: 0px;"></div><div class="gt_curtain_tip gt_hide">点击上图按钮并沿道路拖动到终点处</div><div class="gt_curtain_knob gt_hide">移动到此开始验证</div><div class="gt_ajax_tip gt_ready"></div></div></div></td></tr></tbody></table></div><table cellspacing="0" cellpadding="0" id="vfastposttb">
+<tbody><tr>
+<td id="vf_l"></td>
+<td id="vf_m"><input type="text" name="message" id="vmessage" onkeydown="seditor_ctlent(event, &#39;$(\&#39;vfastpostform\&#39;).submit()&#39;);" style="color: rgb(205, 205, 205);"></td>
+<td id="vf_r"></td>						
+<td id="vf_b">
+<button type="submit" class="pn pnc" name="replysubmit" id="vreplysubmit" value="true" style="">post_newreply</button>								
+</td>						
+</tr>
+</tbody></table>				
+</div>
+<div id="vfastpostseccheck"></div>				
+</form>
+<script type="text/javascript">vmessage();</script>
+
+</div>
+<div id="comment_6666019" class="cm">
+</div>
+
+<div id="post_rate_div_6666019"></div>
+</div>
+</div>
+
+</td></tr>
+<tr><td class="plc plm">
+<div id="p_btn" class="mtw mbm hm cl">
+<div class="tshare cl">
+<b>分享到:&nbsp;</b>
+
+
+<a href="http://www.eoeandroid.com/home.php?mod=spacecp&amp;ac=plugin&amp;id=qqconnect:spacecp&amp;pluginop=share&amp;sh_type=4&amp;thread_id=925885" id="k_share_to_qq" title="QQ好友和群" target="_blank"><i><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/qq_share.png" alt="QQ好友和群">QQ好友和群</i></a>
+<a href="javascript:void(0);" ref="http://www.eoeandroid.com/home.php?mod=spacecp&amp;ac=plugin&amp;id=qqconnect:spacecp&amp;pluginop=share&amp;sh_type=2&amp;thread_id=925885" id="k_weiboshare" title="腾讯微博"><i><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/weibo.png" alt="腾讯微博">腾讯微博</i></a>
+<a href="javascript:void(0);" ref="http://www.eoeandroid.com/home.php?mod=spacecp&amp;ac=plugin&amp;id=qqconnect:spacecp&amp;pluginop=share&amp;sh_type=3&amp;thread_id=925885" id="k_pengyoushare" title="QQ空间"><i><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/qzone.gif" alt="QQ空间">QQ空间</i></a>
+<script type="text/javascript">
+var _is_oauth_user = true;
+var _is_share_token_outofdate = false;
+var _is_feed_auth = true;
+var _share_buttons = ['k_weiboshare', 'k_pengyoushare'];
+function connect_share_init() {
+for (var i = 0; i < _share_buttons.length; i++) {
+$(_share_buttons[i]).onclick = function () {
+connect_share_form(this);
+return false;
+}
+}
+}
+function connect_share_form(obj) {
+if (_is_oauth_user && _is_feed_auth) {
+var _url = obj.getAttribute('ref');
+showWindow(obj.id, _url, 'get', 1);
+} else {
+if (_is_share_token_outofdate) {
+var _text = '为了您的账号安全，请使用QQ帐号重新登录，将为您升级帐号安全机制<br/><br/>点击<a href="http://www.eoeandroid.com/connect.php?mod=login&op=init&referer=forum.php%3Fmod%3Dviewthread%26tid%3D925885%26extra%3Dpage%253D1%26page%3D1"><img src="static/image/common/qq_login.gif" class="vm" alt="QQ登录" /></a>页面将发生跳转';
+var _button = '我知道了';
+showDialog(_text, 'notice', null, null, 0, null, null, _button);
+} else if (!_is_oauth_user) {
+var _text = '很抱歉，由于分享功能升级，您需要使用QQ帐号重新登录本站，即可马上体验全新的分享到QQ空间、腾讯微博和腾讯朋友功能。<br /><span style="font-size: 12px;">提示：点击<a href="member.php?mod=logging&amp;action=logout&amp;formhash=f8c47677" class="xi2">这里退出</a>后，重新使用QQ账号登录。</span>';
+var _button = '我知道了';
+showDialog(_text, 'notice', null, 'connect_goto_setting()', 0, null, null, _button);
+} else if (!_is_feed_auth) {
+var _title = '授权提示';
+var _text = '独乐乐不如众乐乐，马上完善授权，您将可以把本站精彩内容分享到QQ空间、腾讯微博和腾讯朋友，跟大家分享每个精彩瞬间。';
+var _button = '修改授权';
+showDialog(_text, 'notice', _title, 'connect_goto_setting()', 0, null, null, _button);
+}
+}
+}
+function connect_goto_setting() {
+if (_is_oauth_user) {
+var _url = "http://www.eoeandroid.com/home.php?mod=spacecp&ac=plugin&id=qqconnect:spacecp";
+hideMenu('fwin_dialog', 'dialog');
+var _newWindow = window.open(_url, 'newWindow');
+_newWindow.focus();
+} else {
+hideMenu('fwin_dialog', 'dialog');
+}
+}
+_attachEvent(window, 'load', function(){
+connect_share_init();
+});
+</script>
+	
+
+</div>
+
+<a href="http://www.eoeandroid.com/home.php?mod=spacecp&amp;ac=favorite&amp;type=thread&amp;id=925885&amp;formhash=f8c47677" id="k_favorite" onclick="showWindow(this.id, this.href, &#39;get&#39;, 0);" onmouseover="this.title = $(&#39;favoritenumber&#39;).innerHTML + &#39; 人收藏&#39;" title="收藏本帖"><i><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/fav.gif" alt="收藏">收藏<span id="favoritenumber">1</span></i></a>
+<a href="javascript:;" id="ak_rate" onclick="showWindow(&#39;rate&#39;, &#39;forum.php?mod=misc&amp;action=rate&amp;tid=925885&amp;pid=6666019&#39;, &#39;get&#39;, -1);return false;" title="评分表立场"><i><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/agree.gif" alt="评分">评分</i></a>
+<a href="http://www.eoeandroid.com/forum.php?mod=collection&amp;action=edit&amp;op=addthread&amp;tid=925885" id="k_collect" onclick="showWindow(this.id, this.href);return false;" onmouseover="this.title = $(&#39;collectionnumber&#39;).innerHTML + &#39; 人淘帖&#39;" title="淘好帖进专辑"><i><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/collection.png" alt="分享">淘帖<span id="collectionnumber" style="display:none">0</span></i></a>
+<a id="recommend_add" href="http://www.eoeandroid.com/forum.php?mod=misc&amp;action=recommend&amp;do=add&amp;tid=925885&amp;hash=f8c47677" onclick="ajaxmenu(this, 3000, 1, 0, &#39;43&#39;, &#39;recommendupdate(1)&#39;);return false;" onmouseover="this.title = $(&#39;recommendv_add&#39;).innerHTML + &#39; 人好评&#39;" title="顶一下"><i><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/rec_add.gif" alt="好评">好评<span id="recommendv_add" style="display:none">0</span></i></a>
+<a id="recommend_subtract" href="http://www.eoeandroid.com/forum.php?mod=misc&amp;action=recommend&amp;do=subtract&amp;tid=925885&amp;hash=f8c47677" onclick="ajaxmenu(this, 3000, 1, 0, &#39;43&#39;, &#39;recommendupdate(-1)&#39;);return false;" onmouseover="this.title = $(&#39;recommendv_subtract&#39;).innerHTML + &#39; 人差评&#39;" title="踩一下"><i><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/rec_subtract.gif" alt="差评">差评<span id="recommendv_subtract" style="display:none">0</span></i></a>
+</div>
+<div class="mtw mbw">
+<h3 class="pbm mbm bbda">相关帖子</h3>
+<ul class="xl xl2 cl"><li>• <a href="http://www.eoeandroid.com/thread-926172-1-1.html" title="开发android wear 软件 你们用什么手表（型号）" target="_blank">开发android wear 软件 你们用什么手表（型号）</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr id="_postposition6666019"></tr>
+<tr>
+<td class="pls"></td>
+<td class="plc" style="overflow:visible;">
+<div class="po hin">
+<div class="pob cl">
+<em>
+<a class="cmmnt" href="http://www.eoeandroid.com/forum.php?mod=misc&amp;action=comment&amp;tid=925885&amp;pid=6666019&amp;extra=page%3D1&amp;page=1" onclick="showWindow(&#39;comment&#39;, this.href, &#39;get&#39;, 0)">点评</a><a class="fastre" href="http://www.eoeandroid.com/forum.php?mod=post&amp;action=reply&amp;fid=27&amp;tid=925885&amp;reppost=6666019&amp;extra=page%3D1&amp;page=1" onclick="showWindow(&#39;reply&#39;, this.href)">回复</a>
+</em>
+
+<p>
+<a href="javascript:;" onclick="showWindow(&#39;miscreport6666019&#39;, &#39;misc.php?mod=report&amp;rtype=post&amp;rid=6666019&amp;tid=925885&amp;fid=27&#39;, &#39;get&#39;, -1);return false;">举报</a>
+</p>
+
+</div>
+</div>
+</td>
+</tr>
+<tr class="ad">
+<td class="pls">
+</td>
+<td class="plc">
+</td>
+</tr>
+</tbody></table>
+<script type="text/javascript" reload="1">
+aimgcount[6666019] = ['UmNw8','PPs2M'];
+attachimggroup(6666019);
+var aimgfid = 0;
+</script>
+</div><div id="post_6666021"><table id="pid6666021" class="plhin" summary="pid6666021" cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td class="pls" rowspan="2">
+<div id="favatar6666021" class="pls favatar">
+ <a name="lastpost"></a><div class="pi">
+<div class="authi"><a href="http://www.eoeandroid.com/space-uid-506962.html" target="_blank" class="xw1">riskycheng</a>
+</div>
+</div>
+<div class="p_pop blk bui card_gender_0" id="userinfo6666021" style="display: none; margin-top: -11px;">
+<div class="m z">
+<div id="userinfo6666021_ma"></div>
+</div>
+<div class="i y">
+<div>
+<strong><a href="http://www.eoeandroid.com/space-uid-506962.html" target="_blank" class="xi2">riskycheng</a></strong>
+<em>当前离线</em>
+</div><strong><a href="http://www.eoeandroid.com/home.php?mod=spacecp&amp;ac=usergroup&amp;gid=13" target="_blank">No.4 见习攻城师</a></strong><div class="imicn">
+<a href="http://www.eoeandroid.com/home.php?mod=space&amp;uid=506962&amp;do=profile" target="_blank" title="查看详细资料"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/userinfo.gif" alt="查看详细资料"></a>
+</div>
+<div id="avatarfeed"><span id="threadsortswait"></span></div>
+</div>
+</div>
+<div>
+<div class="avatar" onmouseover="showauthor(this, &#39;userinfo6666021&#39;)"><a href="http://www.eoeandroid.com/space-uid-506962.html" class="avtm" target="_blank"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/avatar(1).php"></a></div>
+</div>
+<p>签到天数: 64 天</p><p>连续签到: 2 天</p><p>[LV.6]常住居民II</p><div class="tns xg2"><table cellspacing="0" cellpadding="0"><tbody><tr><th><p><a href="http://www.eoeandroid.com/home.php?mod=space&amp;uid=506962&amp;do=thread&amp;type=thread&amp;view=me&amp;from=space" class="xi2">8</a></p>主题</th><th><p><a href="http://www.eoeandroid.com/home.php?mod=space&amp;uid=506962&amp;do=thread&amp;type=reply&amp;view=me&amp;from=space" class="xi2">243</a></p>帖子</th><td><p><a href="http://www.eoeandroid.com/home.php?mod=space&amp;uid=506962&amp;do=profile" class="xi2">470</a></p>e币</td></tr></tbody></table></div>
+<div class="c_icon">
+
+</div><ul class="xl xl2 o cl">
+<li class="pm2"><a href="http://www.eoeandroid.com/home.php?mod=spacecp&amp;ac=pm&amp;op=showmsg&amp;handlekey=showmsg_506962&amp;touid=506962&amp;pmid=0&amp;daterange=2&amp;pid=6666021&amp;tid=925885" onclick="showWindow(&#39;sendpm&#39;, this.href);" title="发消息" class="xi2">发消息</a></li>
+</ul>
+</div>
+</td>
+<td class="plc">
+<div class="pi">
+<strong>
+<a href="http://www.eoeandroid.com/forum.php?mod=redirect&amp;goto=findpost&amp;ptid=925885&amp;pid=6666021" id="postnum6666021" onclick="setCopy(this.href, &#39;帖子地址复制成功&#39;);return false;">
+沙发</a>
+</strong>
+<div class="pti">
+<div class="pdbt">
+</div>
+<div class="authi">
+<img class="authicn vm" id="authicon6666021" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/ico_lz.png">
+&nbsp;楼主<span class="pipe">|</span>
+<em id="authorposton6666021">发表于 2017-6-1 15:56:11</em>
+<span class="pipe">|</span>
+<a href="http://www.eoeandroid.com/forum.php?mod=viewthread&amp;tid=925885&amp;page=1&amp;authorid=506962" rel="nofollow">只看该作者</a>
+</div>
+</div>
+</div><div class="pct"><div class="pcb">
+<div class="t_fsz">
+<table cellspacing="0" cellpadding="0"><tbody><tr><td class="t_f" id="postmessage_6666021">
+<br>
+当贝市场apk下载到u盘&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 发布apk到市场&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 上传apk到android市场<br>
+apk 一键发布到市场&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; apk上传到应用市场&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 当贝市场tv版apk<br>
+当贝市场tv版官网apk&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 当贝市场apk下载&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 当贝市场apk安装包</td></tr></tbody></table>
+
+
+</div>
+<div id="comment_6666021" class="cm">
+</div>
+
+<div id="post_rate_div_6666021"></div>
+</div>
+</div>
+
+</td></tr>
+<tr><td class="plc plm">
+</td>
+</tr>
+<tr id="_postposition6666021"></tr>
+<tr>
+<td class="pls"></td>
+<td class="plc" style="overflow:visible;">
+<div class="po hin">
+<div class="pob cl">
+<em>
+<a class="cmmnt" href="http://www.eoeandroid.com/forum.php?mod=misc&amp;action=comment&amp;tid=925885&amp;pid=6666021&amp;extra=page%3D1&amp;page=1" onclick="showWindow(&#39;comment&#39;, this.href, &#39;get&#39;, 0)">点评</a><a class="fastre" href="http://www.eoeandroid.com/forum.php?mod=post&amp;action=reply&amp;fid=27&amp;tid=925885&amp;repquote=6666021&amp;extra=page%3D1&amp;page=1" onclick="showWindow(&#39;reply&#39;, this.href)">回复</a>
+<a class="replyadd" href="http://www.eoeandroid.com/forum.php?mod=misc&amp;action=postreview&amp;do=support&amp;tid=925885&amp;pid=6666021&amp;hash=f8c47677" onclick="ajaxmenu(this, 3000, 1, 0, &#39;43&#39;, &#39;&#39;);return false;" onmouseover="this.title = ($(&#39;review_support_6666021&#39;).innerHTML ? $(&#39;review_support_6666021&#39;).innerHTML : 0) + &#39; 人 支持&#39;">支持 <span id="review_support_6666021"></span></a>
+<a class="replysubtract" href="http://www.eoeandroid.com/forum.php?mod=misc&amp;action=postreview&amp;do=against&amp;tid=925885&amp;pid=6666021&amp;hash=f8c47677" onclick="ajaxmenu(this, 3000, 1, 0, &#39;43&#39;, &#39;&#39;);return false;" onmouseover="this.title = ($(&#39;review_against_6666021&#39;).innerHTML ? $(&#39;review_against_6666021&#39;).innerHTML : 0) + &#39; 人 反对&#39;">反对 <span id="review_against_6666021"></span></a>
+</em>
+
+<p>
+<a href="javascript:;" onclick="showWindow(&#39;rate&#39;, &#39;forum.php?mod=misc&amp;action=rate&amp;tid=925885&amp;pid=6666021&#39;, &#39;get&#39;, -1);return false;">评分</a>
+<a href="javascript:;" onclick="showWindow(&#39;miscreport6666021&#39;, &#39;misc.php?mod=report&amp;rtype=post&amp;rid=6666021&amp;tid=925885&amp;fid=27&#39;, &#39;get&#39;, -1);return false;">举报</a>
+</p>
+
+</div>
+</div>
+</td>
+</tr>
+<tr class="ad">
+<td class="pls">
+</td>
+<td class="plc">
+</td>
+</tr>
+</tbody></table>
+</div><div id="postlistreply" class="pl"><div id="post_new" class="viewthread_table" style="display: none"></div></div>
+</div>
+
+
+<form method="post" autocomplete="off" name="modactions" id="modactions">
+<input type="hidden" name="formhash" value="f8c47677">
+<input type="hidden" name="optgroup">
+<input type="hidden" name="operation">
+<input type="hidden" name="listextra" value="page%3D1">
+<input type="hidden" name="page" value="1">
+</form>
+
+
+
+<div class="pgs mtm mbm cl">
+<span class="pgb y" id="visitedforumstmp" onmouseover="$(&#39;visitedforums&#39;).id = &#39;visitedforumstmp&#39;;this.id = &#39;visitedforums&#39;;showMenu({&#39;ctrlid&#39;:this.id,&#39;pos&#39;:&#39;21&#39;})"><a href="http://www.eoeandroid.com/forum-27-1.html">返回列表</a></span>
+<a id="newspecialtmp" onmouseover="$(&#39;newspecial&#39;).id = &#39;newspecialtmp&#39;;this.id = &#39;newspecial&#39;;showMenu({&#39;ctrlid&#39;:this.id})" onclick="showWindow(&#39;newthread&#39;, &#39;forum.php?mod=post&amp;action=newthread&amp;fid=27&#39;)" href="javascript:;" title="发新帖"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/pn_post.png" alt="发新帖"></a>
+<a id="post_replytmp" onclick="showWindow(&#39;reply&#39;, &#39;forum.php?mod=post&amp;action=reply&amp;fid=27&amp;tid=925885&#39;)" href="javascript:;" title="回复"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/pn_reply.png" alt="回复"></a>
+</div>
+
+<!--[diy=diyfastposttop]--><div id="diyfastposttop" class="area"><div id="framenSND7d" class="frame move-span cl frame-1"><div id="framenSND7d_left" class="column frame-1-c"><div id="framenSND7d_left_temp" class="move-span temp"></div></div></div></div><!--[/diy]-->
+<script type="text/javascript">
+var postminchars = parseInt('20');
+var postmaxchars = parseInt('40000');
+var disablepostctrl = parseInt('0');
+</script>
+
+<div id="f_pst" class="pl bm bmw">
+<form method="post" autocomplete="off" id="fastpostform" action="http://www.eoeandroid.com/forum.php?mod=post&amp;action=reply&amp;fid=27&amp;tid=925885&amp;extra=page%3D1&amp;replysubmit=yes&amp;infloat=yes&amp;handlekey=fastpost" onsubmit="return fastpostvalidate(this)">
+<table cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td class="pls">
+<div class="avatar avtm"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/avatar(2).php"></div></td>
+<td class="plc">
+    <script type="text/javascript">
+        function move_geetest_before_submit() {
+            var gt_submitBtn = $('fastpostsubmit');
+            var geetest = $('gt_viewthread_fastpost_content');
+            gt_submitBtn.parentNode.insertBefore(geetest, gt_submitBtn);
+            //_attachEvent(gt_submitBtn, 'click', GeeTestWidget.call_refresh);
+        }
+
+        _attachEvent(window, 'load', move_geetest_before_submit);
+
+
+        function get_button(){
+            var b = [];
+            var buttons = document.getElementsByTagName("button")
+            for(var i=0; i<buttons.length; i++){
+                var button = buttons[i];
+                if(button.type == "submit"){
+                    b.push(button)
+                }
+            }   
+            return b;           
+        }
+        
+
+        window.gt_custom_ajax = function (status, $) {
+            function refresh(){
+                console.log("click");
+                setTimeout(function(){
+                    $(".gt_refresh_button").click();
+                },3000);
+            }
+            if(status) {
+              var buttons = get_button();
+              for(var i in buttons){
+                _attachEvent(buttons[i], 'click', refresh);
+              }
+              
+            }
+         }
+     </script>
+<span id="fastpostreturn"></span>
+
+
+<div class="cl">
+<div id="fastposteditor">
+<div class="tedt mtn">
+<div class="bar">
+<span class="y">
+<a href="http://www.eoeandroid.com/forum.php?mod=post&amp;action=reply&amp;fid=27&amp;tid=925885" onclick="return switchAdvanceMode(this.href)">高级模式</a>
+</span><script src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/seditor.js.下载" type="text/javascript"></script>
+<div class="fpd">
+<a href="javascript:;" title="文字加粗" class="fbld" onclick="seditor_insertunit(&#39;fastpost&#39;, &#39;[b]&#39;, &#39;[/b]&#39;);doane(event);">B</a>
+<a href="javascript:;" title="设置文字颜色" class="fclr" id="fastpostforecolor" onclick="showColorBox(this.id, 2, &#39;fastpost&#39;);doane(event);">Color</a>
+<a id="fastpostimg" href="javascript:;" title="图片" class="fmg" onclick="seditor_menu(&#39;fastpost&#39;, &#39;img&#39;);doane(event);">Image</a>
+<a id="fastposturl" href="javascript:;" title="添加链接" class="flnk" onclick="seditor_menu(&#39;fastpost&#39;, &#39;url&#39;);doane(event);">Link</a>
+<a id="fastpostquote" href="javascript:;" title="引用" class="fqt" onclick="seditor_menu(&#39;fastpost&#39;, &#39;quote&#39;);doane(event);">Quote</a>
+<a id="fastpostcode" href="javascript:;" title="代码" class="fcd" onclick="seditor_menu(&#39;fastpost&#39;, &#39;code&#39;);doane(event);">Code</a>
+<a href="javascript:;" class="fsml" id="fastpostsml" onclick="showMenu({&#39;ctrlid&#39;:this.id,&#39;evt&#39;:&#39;click&#39;,&#39;layer&#39;:2});return false;">Smilies</a>
+<script type="text/javascript" reload="1">smilies_show('fastpostsmiliesdiv', 8, 'fastpost');</script>
+<script src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/at.js.下载" type="text/javascript"></script>
+<a id="fastpostat" href="javascript:;" title="@朋友" class="fat" onclick="seditor_menu(&#39;fastpost&#39;, &#39;at&#39;);doane(event);">@朋友</a>
+<span class="pipe z">|</span><span id="spanButtonPlaceholder">上传</span></div></div>
+<div class="area">
+<textarea rows="6" cols="80" name="message" id="fastpostmessage" onkeydown="seditor_ctlent(event, &#39;fastpostvalidate($(\&#39;fastpostform\&#39;))&#39;);" tabindex="4" class="pt"></textarea>
+</div>
+</div>
+</div>
+</div>
+<div id="seccheck_fastpost">
+</div>
+
+<script type="text/javascript">
+var editorid = '';
+var ATTACHNUM = {'imageused':0,'imageunused':0,'attachused':0,'attachunused':0}, ATTACHUNUSEDAID = new Array(), IMGUNUSEDAID = new Array();
+</script>
+
+<input type="hidden" name="posttime" id="posttime" value="1501901786">
+<div class="upfl">
+<table cellpadding="0" cellspacing="0" border="0" id="attach_tblheader" style="display: none;">
+<tbody><tr>
+<td>点击附件文件名添加到帖子内容中</td>
+<td class="atds">描述</td>
+<td class="attpr">e币</td><td class="attc"></td>
+</tr>
+</tbody></table>
+<div class="fieldset flash" id="attachlist"></div>
+<script src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/upload.js.下载" type="text/javascript"></script><script type="text/javascript">
+var upload = new SWFUpload({
+upload_url: "http://www.eoeandroid.com/misc.php?mod=swfupload&action=swfupload&operation=upload&fid=27",
+post_params: {"uid" : "3018782", "hash":"cf347b0add0cc543a8aad1c63ac5306f"},
+file_size_limit : "20480",
+file_types : "*.pdf;*.zip;*.rar;*.gif;*.jpg;*.png;*.bmp;*.apk;*.7z",
+file_types_description : "All Support Formats",
+file_upload_limit : 40,
+file_queue_limit : 0,
+swfupload_preload_handler : preLoad,
+swfupload_load_failed_handler : loadFailed,
+file_dialog_start_handler : fileDialogStart,
+file_queued_handler : fileQueued,
+file_queue_error_handler : fileQueueError,
+file_dialog_complete_handler : fileDialogComplete,
+upload_start_handler : uploadStart,
+upload_progress_handler : uploadProgress,
+upload_error_handler : uploadError,
+upload_success_handler : uploadSuccess,
+upload_complete_handler : uploadComplete,
+button_image_url : "static/image/common/uploadbutton_small.png",
+button_placeholder_id : "spanButtonPlaceholder",
+button_width: 17,
+button_height: 25,
+button_cursor:SWFUpload.CURSOR.HAND,
+button_window_mode: "transparent",
+custom_settings : {
+progressTarget : "attachlist",
+uploadSource: 'forum',
+uploadType: 'attach',
+maxAttachNum: 40,
+uploadFrom: 'fastpost'
+},
+debug: false
+});
+</script>
+</div>
+
+<input type="hidden" name="formhash" value="f8c47677">
+<input type="hidden" name="usesig" value="1">
+<input type="hidden" name="subject" value="  ">
+<p class="ptm pnpost">
+<a href="http://www.eoeandroid.com/home.php?mod=spacecp&amp;ac=credit&amp;op=rule&amp;fid=27" class="y" target="_blank">本版积分规则</a>
+<div id="gt_viewthread_fastpost_content" class="" style="margin:10px  0px 10px  0px "><table><tbody><tr><th style="width:80px;"><div id="gt_tx">*滑动验证:</div></th><td><script type="text/javascript" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/get(1).php"></script><div id="geetest_1501901737429" class="gt_holder gt_float" style="touch-action: none;"><div class="gt_widget gt_hide"><div class="gt_holder_top"></div><div class="gt_box_holder" style="height: 116px;"><div class="gt_box"><div class="gt_loading"><div class="gt_loading_icon"></div><div class="gt_loading_text">加载中...</div></div><a class="gt_bg gt_show" style="background-image: none;"><div class="gt_cut_bg gt_show"><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -157px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -145px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -265px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -277px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -181px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -169px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -241px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -253px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -109px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -97px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -289px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -301px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -85px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -73px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -25px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -37px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -13px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -1px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -121px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -133px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -61px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -49px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -217px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -229px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -205px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -193px -58px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -145px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -157px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -277px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -265px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -169px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -181px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -253px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -241px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -97px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -109px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -301px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -289px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -73px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -85px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -37px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -25px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -1px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -13px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -133px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -121px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -49px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -61px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -229px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -217px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -193px 0px;"></div><div class="gt_cut_bg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/bg/74c39206.webp&quot;); background-position: -205px 0px;"></div></div><div class="gt_slice gt_show" style="left: 0px; background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/slice/74c39206.png&quot;); width: 59px; height: 49px; top: 42px;"></div></a><a class="gt_fullbg gt_show" style="cursor: default; background-image: none;"><div class="gt_cut_fullbg gt_show"><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -157px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -145px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -265px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -277px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -181px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -169px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -241px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -253px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -109px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -97px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -289px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -301px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -85px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -73px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -25px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -37px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -13px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -1px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -121px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -133px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -61px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -49px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -217px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -229px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -205px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -193px -58px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -145px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -157px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -277px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -265px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -169px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -181px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -253px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -241px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -97px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -109px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -301px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -289px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -73px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -85px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -37px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -25px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -1px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -13px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -133px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -121px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -49px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -61px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -229px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -217px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -193px 0px;"></div><div class="gt_cut_fullbg_slice" style="background-image: url(&quot;http://static.geetest.com/pictures/gt/7ed8940e0/7ed8940e0.webp&quot;); background-position: -205px 0px;"></div></div><div class="gt_flash" style="height: 94px;"></div><div class="gt_ie_success"></div></a><a class="gt_curtain gt_hide" style="background-image: none;"><div class="gt_curtain_bg_wrap"><div class="gt_curtain_bg"><div class="gt_cut_curtain"></div></div></div><div class="gt_curtain_button gt_hide"></div></a><a class="gt_box_tips" style="display: none;"></a></div><div class="gt_info"><div class="gt_info_tip"><div class="gt_info_icon"></div><div class="gt_info_text"></div></div></div></div><div class="gt_bottom"><a class="gt_refresh_button"><div class="gt_refresh_tips">刷新验证</div></a><a class="gt_help_button" href="http://www.geetest.com/contact#report" target="_blank"><div class="gt_help_tips">帮助反馈</div></a><a class="gt_logo_button" href="http://www.geetest.com/first_page" target="_blank"></a></div></div><div class="gt_input"><input class="geetest_challenge" type="hidden" name="geetest_challenge"><input class="geetest_validate" type="hidden" name="geetest_validate"><input class="geetest_seccode" type="hidden" name="geetest_seccode"></div><div class="gt_slider"><div class="gt_guide_tip gt_show">按住左边滑块，拖动完成上方拼图</div><div class="gt_slider_knob gt_show" style="left: 0px;"></div><div class="gt_curtain_tip gt_hide">点击上图按钮并沿道路拖动到终点处</div><div class="gt_curtain_knob gt_hide">移动到此开始验证</div><div class="gt_ajax_tip gt_ready"></div></div></div></td></tr></tbody></table></div><button type="submit" onmouseover="checkpostrule(&#39;seccheck_fastpost&#39;, &#39;ac=reply&#39;);this.onmouseover=null" name="replysubmit" id="fastpostsubmit" class="pn pnc vm" value="replysubmit" tabindex="5"><strong>发表回复</strong></button>
+将此回复同步到
+
+<script type="text/javascript">
+//var _allow_qq = false;
+var _allow_t = true;
+//var _syn_qq = false;
+var _syn_t = false;
+var _is_oauth_user = true;
+var _is_feed_auth = true;
+var _is_token_outofdate = false;
+function connect_post_init() {
+//			if (_allow_qq && _syn_qq) {
+//				if (_is_feed_auth && !_is_token_outofdate) {
+//					$('connectPost_synQQ').className = 'syn_qq_check';
+//					$('connectPost_synQQ').title = '已设置同步至QQ空间';
+//					$('connect_publish_feed').value = 1;
+//				} else {
+//					$('connectPost_synQQ').className = 'syn_qq';
+//					$('connectPost_synQQ').title = '未设置同步至QQ空间';
+//					$('connect_publish_feed').value = 0;
+//				}
+//			}
+
+if (_allow_t && _syn_t) {
+if (_is_feed_auth && !_is_token_outofdate) {
+$('connectPost_synT').className = 'syn_tqq_check';
+$('connectPost_synT').title = '已设置同步至腾讯微博';
+$('connect_publish_t').value = 1;
+} else {
+$('connectPost_synT').className = 'syn_tqq';
+$('connectPost_synT').title = '未设置同步至腾讯微博';
+$('connect_publish_t').value = 0;
+}
+}
+
+//			if (_allow_qq) {
+//				$('connectPost_synQQ').onclick = function () {
+//					connect_syn_option_toggle(this);
+//				}
+//			}
+if (_allow_t) {
+$('connectPost_synT').onclick = function () {
+connect_syn_option_toggle(this);
+}
+}
+if (getcookie('connect_synpost_tip')) {
+connect_post_tip();
+}
+}
+function connect_syn_option_toggle(opt) {
+if (_is_feed_auth && !_is_token_outofdate) {
+if ($(opt.getAttribute('rel')).value == 1) {
+opt.className = opt.className.replace('_check', '');
+opt.title = opt.title.replace('已', '未');
+$(opt.getAttribute('rel')).value = 0;
+} else {
+$(opt.getAttribute('rel')).value = 1;
+opt.className += '_check';
+opt.title = opt.title.replace('未', '已');
+}
+} else {
+var _auth_text = '马上完善授权，您将可以发表主题时同步到QQ空间和腾讯微博，第一时间和大家分享您在论坛中的新鲜事儿。';
+if (_is_token_outofdate) {
+_auth_text = '为了您的账号安全，请使用QQ帐号重新登录，将为您升级帐号安全机制<br/><br/>点击<a href="http://www.eoeandroid.com/connect.php?mod=login&op=init&referer=forum.php%3Fmod%3Dviewthread%26tid%3D925885%26extra%3Dpage%253D1%26page%3D1"><img src="static/image/common/qq_login.gif" class="vm" alt="QQ登录" /></a>页面将发生跳转，请确保您已保存好帖子数据';
+var _button = '我知道了';
+showDialog(_auth_text, 'notice', null, null, 0, null, null, _button);
+return;
+} else if (!_is_oauth_user) {
+_auth_text = '马上绑定QQ账号，您将可以发表主题时同步到QQ空间和腾讯微博，第一时间和大家分享您在论坛中的新鲜事儿。';
+}
+showDialog(_auth_text, 'notice', '授权提示', 'connect_goto_setting()', 0, null, null, '修改授权');
+}
+}
+function connect_post_tip() {
+if ($('fastpostform')) {
+return;
+}
+if (_is_token_outofdate) {
+if ($('synnotice')) {
+$('synnotice').style.display = 'none';
+}
+return;
+}
+var r = document.getElementById('rstnotice');
+var c = document.createElement('div');
+c.setAttribute('id', 'synnotice');
+c.setAttribute('class', 'ntc_l bbs');
+if(BROWSER.ie) {
+c.id = 'synnotice';
+c.className = 'ntc_l bbs';
+}
+c.style.display = 'block';
+r.parentNode.insertBefore(c, r.nextSibling);
+c.innerHTML = '<a href="javascript:void(0);" title="关闭同步发帖提示" class="d y" onclick="connect_syn_tip_hide();">close</a>此主题将同步到腾讯微博，您的听众能够看到您发表的主题。&nbsp;&nbsp;<a class="xi2" href="javascript:void(0);" onclick="connect_syn_cancel();" title="取消发表主题时同步到腾讯微博，将来您可以到“设置-QQ绑定”页面重新设置。"><strong>暂不同步</strong></a>';
+}
+function connect_syn_tip_hide() {
+setcookie('connect_synpost_tip', '', '-1');
+$('synnotice').style.display = 'none';
+}
+function connect_syn_cancel() {
+ajaxget('http://www.eoeandroid.com/connect.php?mod=config&op=synconfig', '');
+//			$('connectPost_synQQ').className = 'syn_qq';
+//			$('connectPost_synQQ').title = '未设置同步至QQ空间';
+//			$('connect_publish_feed').value = 0;
+$('connectPost_synT').className = 'syn_tqq';
+$('connectPost_synT').title = '未设置同步至腾讯微博';
+$('connect_publish_t').value = 0;
+$('synnotice').style.display = 'none';
+}
+function connect_goto_setting() {
+var _url = "http://www.eoeandroid.com/home.php?mod=spacecp&ac=plugin&id=qqconnect:spacecp";
+hideMenu('fwin_dialog', 'dialog')
+var _newWindow = window.open(_url, 'newWindow');
+_newWindow.focus();
+}
+_attachEvent(window, 'load', function(){
+connect_post_init();
+});
+</script>
+
+<a title="未设置同步至腾讯微博" class="syn_tqq" href="javascript:void(0);" id="connectPost_synT" rel="connect_publish_t">腾讯微博</a>
+<input type="hidden" name="connect_publish_t" id="connect_publish_t" value="0">
+
+ | <label for="fastpostrefresh"><input id="fastpostrefresh" type="checkbox" class="pc">回帖后跳转到最后一页</label>
+<script type="text/javascript">if(getcookie('fastpostrefresh') == 1) {$('fastpostrefresh').checked=true;}</script>
+</p>
+</td>
+</tr>
+</tbody></table>
+</form>
+</div>
+
+<script type="text/javascript">
+var connect_qzone_share_url = 'http://www.eoeandroid.com/home.php?mod=spacecp&ac=plugin&id=qqconnect:spacecp&pluginop=share&sh_type=1&thread_id=925885';
+var connect_weibo_share_url = 'http://www.eoeandroid.com/home.php?mod=spacecp&ac=plugin&id=qqconnect:spacecp&pluginop=share&sh_type=2&thread_id=925885';
+var connect_thread_info = {
+thread_url: 'http://www.eoeandroid.com/thread-925885-1-1.html',
+thread_id: '925885',
+post_id: '6666019',
+forum_id: '27',
+author_id: '506962',
+author: 'riskycheng'
+};
+
+connect_autoshare = '0';
+connect_isbind = '1';
+if(connect_autoshare == 1 && connect_isbind) {
+_attachEvent(window, 'load', function(){
+connect_share(connect_weibo_share_url, connect_openid);
+});
+}
+</script>
+
+<div id="connect_share_unbind" style="display: none;">
+<div class="c hm">
+<div style="font-size:14px; margin:10px 0;">绑定QQ帐号，轻松分享到QQ空间与腾讯微博</div>
+<div><a href="http://www.eoeandroid.com/connect.php?mod=config&amp;connect_autoshare=1" target="_blank"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/qq_bind.gif" align="absmiddle" style="margin-top:5px;"></a></div>
+</div>
+<input type="hidden" id="connect_thread_title" name="connect_thread_title" value="教你实现android上传应用市场让用户在应用商店下载app">
+</div>
+
+
+<div id="visitedforums_menu" class="p_pop blk cl" style="display: none;">
+<table cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td id="v_forums">
+<h3 class="mbn pbn bbda xg1">浏览过的版块</h3>
+<ul class="xl xl1">
+<li><a href="http://www.eoeandroid.com/forum-23-1.html">Android源码下载</a></li><li><a href="http://www.eoeandroid.com/forum-207-1.html">开源项目&amp;组件&amp;框架</a></li><li><a href="http://www.eoeandroid.com/forum-62-1.html">项目/外包</a></li><li><a href="http://www.eoeandroid.com/forum-45-1.html">Android开发问答</a></li><li><a href="http://www.eoeandroid.com/forum-53-1.html">Android新手入门</a></li><li><a href="http://www.eoeandroid.com/forum-15-1.html">Android资料下载</a></li></ul>
+</td>
+</tr>
+</tbody></table>
+</div>
+<script type="text/javascript">
+new lazyload();
+</script>
+<script type="text/javascript">document.onkeyup = function(e){keyPageScroll(e, 0, 0, 'forum.php?mod=viewthread&tid=925885', 1);}</script>
+</div>
+
+<div class="wp mtn">
+<!--[diy=diy3]--><div id="diy3" class="area"><div id="framejuTv3K" class="frame move-span cl frame-1-1-1"><div class="title frame-title"><span class="titletext">推荐阅读</span></div><div id="framejuTv3K_left" class="column frame-1-1-1-l"><div id="framejuTv3K_left_temp" class="move-span temp"></div><div id="portal_block_1189" class="block move-span"><div class="blocktitle title"><span class="titletext" style="float:;margin-left:px;font-size:;color: !important;">热门话题</span></div><div id="portal_block_1189_content" class="dxb_bc"><div class="module cl xl xl1">
+<ul><li><em>6</em><a href="http://www.eoeandroid.com/thread-540743-1-1.html" title="【原创】手把手教你在eoe上头条" target="_blank">【原创】手把手教你在eoe上头条</a></li><li><em>1887</em><a href="http://www.eoeandroid.com/thread-909881-1-1.html" title="Android Studio 权威教程" target="_blank">Android Studio 权威教程</a></li><li><em>420</em><a href="http://www.eoeandroid.com/thread-918906-1-1.html" title="沉浸式状态栏" target="_blank">沉浸式状态栏</a></li><li><em>384</em><a href="http://www.eoeandroid.com/thread-919854-1-1.html" title="【朋友圈】【钱包】凡信2.0beta发布-超仿微信的开源项目 ..." target="_blank">【朋友圈】【钱包】凡信2.0beta发布-超仿微</a></li><li><em>328</em><a href="http://www.eoeandroid.com/thread-912626-1-1.html" title="我的自定义控件（三）——波纹按钮" target="_blank">我的自定义控件（三）——波纹按钮</a></li><li><em>284</em><a href="http://www.eoeandroid.com/thread-918356-1-1.html" title="app引导页(背景图片切换加各个页面动画效果)" target="_blank">app引导页(背景图片切换加各个页面动画效果</a></li><li><em>281</em><a href="http://www.eoeandroid.com/thread-907471-1-1.html" title="专家答疑第23期:徐宜生老师谈初级Android开发者如何进阶" target="_blank">专家答疑第23期:徐宜生老师谈初级Android开</a></li><li><em>261</em><a href="http://www.eoeandroid.com/thread-907490-1-1.html" title="Android快捷工具第七波: Fragment底部菜单代码生成器" target="_blank">Android快捷工具第七波: Fragment底部菜单</a></li><li><em>252</em><a href="http://www.eoeandroid.com/thread-913082-1-1.html" title="facebook强大的图片加载工具Fresco，比imageload加载速度快" target="_blank">facebook强大的图片加载工具Fresco，比imag</a></li><li><em>226</em><a href="http://www.eoeandroid.com/thread-912018-1-1.html" title="开源一个平滑下载按钮ProgressRoundButton" target="_blank">开源一个平滑下载按钮ProgressRoundButton</a></li><li><em>218</em><a href="http://www.eoeandroid.com/thread-906597-1-1.html" title="Android快捷工具第六波: 数据库操作代码生成器" target="_blank">Android快捷工具第六波: 数据库操作代码生</a></li><li><em>208</em><a href="http://www.eoeandroid.com/thread-911262-1-1.html" title="专家答疑第25期:任玉刚老师教你成为Android高级开发工程师" target="_blank">专家答疑第25期:任玉刚老师教你成为Android</a></li><li><em>204</em><a href="http://www.eoeandroid.com/thread-918315-1-1.html" title="京东、美团、汽车之家刷新样式都到碗里来~" target="_blank">京东、美团、汽车之家刷新样式都到碗里来~</a></li><li><em>201</em><a href="http://www.eoeandroid.com/thread-917935-1-1.html" title="超高仿京东商城最新版源码(非常好的商业级UI源码)" target="_blank">超高仿京东商城最新版源码(非常好的商业级U</a></li><li><em>200</em><a href="http://www.eoeandroid.com/thread-925718-1-1.html" title="Android例子大全第35版-26GB-5000多文件" target="_blank">Android例子大全第35版-26GB-5000多文件</a></li><li><em>715</em><a href="http://www.jikexueyuan.com/event/android.html?hmsr=eoe_hd_androidevent" title="线下大会专属入口" target="_blank">线下大会专属入口</a></li></ul>
+</div></div></div></div><div id="framejuTv3K_center" class="column frame-1-1-1-c"><div id="framejuTv3K_center_temp" class="move-span temp"></div><div id="portal_block_1190" class="block move-span"><div class="blocktitle title"><span class="titletext" style="float:;margin-left:px;font-size:;color: !important;">最新话题</span></div><div id="portal_block_1190_content" class="dxb_bc"><div class="module cl xl xl1">
+<ul><li><em><span title="2017-08-05">半小时前</span></em><a href="http://www.eoeandroid.com/thread-926569-1-1.html" title="eoe开发者社区2017年8月5日签到记录贴" target="_blank">eoe开发者社区2017年8月5日签到记录贴</a></li><li><em><span title="2017-08-05">2&nbsp;小时前</span></em><a href="http://www.eoeandroid.com/thread-926101-1-1.html" title="功能齐全的实用Android视频播放器" target="_blank">功能齐全的实用Android视频播放器</a></li><li><em><span title="2017-08-05">5&nbsp;小时前</span></em><a href="http://www.eoeandroid.com/thread-923836-1-1.html" title="android超级视频播放器" target="_blank">android超级视频播放器</a></li><li><em><span title="2017-08-05">9&nbsp;小时前</span></em><a href="http://www.eoeandroid.com/thread-925718-1-1.html" title="Android例子大全第35版-26GB-5000多文件" target="_blank">Android例子大全第35版-26GB-5000多文件</a></li><li><em><span title="2017-08-04">昨天&nbsp;23:57</span></em><a href="http://www.eoeandroid.com/thread-926558-1-1.html" title="eoe开发者社区2017年8月4日签到记录贴" target="_blank">eoe开发者社区2017年8月4日签到记录贴</a></li><li><em><span title="2017-08-04">昨天&nbsp;22:08</span></em><a href="http://www.eoeandroid.com/thread-926365-1-1.html" title="(最具诚意的开源项目)YiChat 即时通讯APP" target="_blank">(最具诚意的开源项目)YiChat 即时通讯APP</a></li><li><em><span title="2017-08-04">昨天&nbsp;17:54</span></em><a href="http://www.eoeandroid.com/thread-926568-1-1.html" title="python学习之上下文管理器" target="_blank">python学习之上下文管理器</a></li><li><em><span title="2017-08-04">昨天&nbsp;17:35</span></em><a href="http://www.eoeandroid.com/thread-926436-1-1.html" title="一款基于MVP设计模式开发的仿淘宝APP Android项目源码" target="_blank">一款基于MVP设计模式开发的仿淘宝APP Andro</a></li><li><em><span title="2017-08-04">昨天&nbsp;17:31</span></em><a href="http://www.eoeandroid.com/thread-926567-1-1.html" title="Django中的Session和Cookie" target="_blank">Django中的Session和Cookie</a></li><li><em><span title="2017-08-04">昨天&nbsp;17:21</span></em><a href="http://www.eoeandroid.com/thread-926566-1-1.html" title="收购ios 源码" target="_blank">收购ios 源码</a></li><li><em><span title="2017-08-04">昨天&nbsp;11:17</span></em><a href="http://www.eoeandroid.com/thread-907716-1-1.html" title="个人承接android项目，毕业设计，UI，demo" target="_blank">个人承接android项目，毕业设计，UI，demo</a></li><li><em><span title="2017-08-04">昨天&nbsp;10:46</span></em><a href="http://www.eoeandroid.com/thread-922921-1-1.html" title="专车类APP，找团队开发" target="_blank">专车类APP，找团队开发</a></li><li><em><span title="2017-08-03">前天&nbsp;23:46</span></em><a href="http://www.eoeandroid.com/thread-926543-1-1.html" title="eoe开发者社区2017年8月3日签到记录贴" target="_blank">eoe开发者社区2017年8月3日签到记录贴</a></li><li><em><span title="2017-08-03">前天&nbsp;17:52</span></em><a href="http://www.eoeandroid.com/thread-925037-1-1.html" title="『多元日报』资讯阅读客户端" target="_blank">『多元日报』资讯阅读客户端</a></li><li><em><span title="2017-08-03">前天&nbsp;17:39</span></em><a href="http://www.eoeandroid.com/thread-926150-1-1.html" title="Android真正适合项目业务的九宫格抽奖" target="_blank">Android真正适合项目业务的九宫格抽奖</a></li><li><em><span title="2017-08-03">前天&nbsp;15:56</span></em><a href="http://www.eoeandroid.com/thread-926552-1-1.html" title="高晓攀感恩粉丝生日祝福 认真工作不忘初心" target="_blank">高晓攀感恩粉丝生日祝福 认真工作不忘初心</a></li></ul>
+</div></div></div></div><div id="framejuTv3K_right" class="column frame-1-1-1-r"><div id="framejuTv3K_right_temp" class="move-span temp"></div><div id="portal_block_1191" class="block move-span"><div class="blocktitle title"><span class="titletext" style="float:;margin-left:px;font-size:;color: !important;">赞助商们</span></div><div id="portal_block_1191_content" class="dxb_bc"><div class="portal_block_summary"><!-- 广告位：eoeAndroid社区首页 -->
+<script type="text/javascript">BAIDU_CLB_SLOT_ID = "963236";</script>
+<script type="text/javascript" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/o.js.下载"></script><div id="BAIDU_SSP__wrapper_963236_0"><iframe id="iframe963236_0" onload="BAIDU_SSP_renderFrame(&#39;963236_0&#39;, this);" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/saved_resource.html" width="220" height="220" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:220px;height:220px" allowtransparency="true"></iframe></div><script charset="utf-8" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/zcbm"></script></div></div></div><div id="portal_block_1192" class="block move-span"><div id="portal_block_1192_content" class="dxb_bc"><div class="portal_block_summary"><!-- 广告位：赞助商链接 -->
+<script type="text/javascript">BAIDU_CLB_SLOT_ID = "966596";</script>
+<script type="text/javascript" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/o.js.下载"></script><div id="BAIDU_SSP__wrapper_966596_0"></div><script charset="utf-8" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/zcbm(1)"></script><ul>
+<li><a href="http://www.eoeandroid.com/thread-557383-1-1.html">Unity* x86支持资源中心</a></li>
+<li> <a href="http://www.eoeandroid.com/thread-557382-1-1.html">用Unity游戏向Android应用添加x86</a></li>
+<li><a href="http://www.eoeandroid.com/thread-557381-1-1.html">在libGDX添加运行x86CPU</a></li>
+<li><a href="http://www.eoeandroid.com/thread-557380-1-1.html">在x86上优化Android的方法和技巧</a></li>
+</ul></div></div></div></div></div></div><!--[/diy]-->
+</div>
+<script type="text/javascript">saveUserdata('forum_'+discuz_uid, '')</script>
+
+<script type="text/javascript">
+function succeedhandle_followmod(url, msg, values) {
+var fObj = $('followmod_'+values['fuid']);
+if(values['type'] == 'add') {
+fObj.innerHTML = '不收听';
+fObj.href = 'home.php?mod=spacecp&ac=follow&op=del&fuid='+values['fuid'];
+} else if(values['type'] == 'del') {
+fObj.innerHTML = '收听TA';
+fObj.href = 'home.php?mod=spacecp&ac=follow&op=add&hash=f8c47677&fuid='+values['fuid'];
+}
+}
+fixed_avatar([6666019,6666021], 1);
+</script>	</div>
+
+
+<div id="ft" class="wp cl">
+<div id="flk" class="y">
+<p>
+<a href="http://wpa.qq.com/msgrd?V=3&amp;uin=908261088&amp;Site=eoe%20%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E8%80%85%E8%AE%BA%E5%9D%9B&amp;Menu=yes&amp;from=discuz" target="_blank" title="QQ"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/site_qq.jpg" alt="QQ"></a><span class="pipe">|</span><a href="http://www.eoeandroid.com/thread-317184-1-1.html">联系我们</a><span class="pipe">|</span><a href="http://www.eoeandroid.com/forum.php?mod=misc&amp;action=showdarkroom">小黑屋</a><span class="pipe">|</span><a href="http://www.eoeandroid.com/forum.php?mobile=yes">手机版</a><span class="pipe">|</span><strong><a href="http://www.eoeandroid.com/" target="_blank">eoe 移动开发者论坛</a></strong>
+( <a href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备11018032 京公网安11010802020210</a> )&nbsp;<a href="http://discuz.qq.com/service/security" target="_blank" title="防水墙保卫网站远离侵害"><img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/security.png"></a>&nbsp;&nbsp;<a href="http://stats.discuz.qq.com/?ADTAG=FROUM.FOOTER.CLICK.ICON" title="腾讯分析" target="_blank"><img title="腾讯分析" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/toss_12.gif" border="0"></a><script type="text/javascript" src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/ping.js.下载" charset="utf-8"></script><script type="text/javascript" reload="1">pgvMain({"discuzParams":{"r2":"7379687","ui":"3018782","ty":2,"rt":"forum","md":"viewthread","fi":"27","ti":"925885","pn":1,"qq":"011","logo":12},"extraParams":""});</script><script type="text/javascript">
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', 'b9a02411593ace79']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+  </script></p>
+<p class="xs0">
+GMT+8, 2017-8-5 10:56<span id="debuginfo">
+, Processed in 0.610841 second(s), 30 queries
+, Memcache On.
+</span>
+</p>
+</div>
+<div id="frt">
+<p>Powered by <strong><a href="http://www.discuz.net/" target="_blank">Discuz!</a></strong> <em>X3.2</em></p>
+<p class="xs0">© 2001-2013 <a href="http://www.comsenz.com/" target="_blank">Comsenz Inc.</a></p>
+</div></div>
+<script src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/home.php" type="text/javascript"></script>
+<script src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/home(1).php" type="text/javascript"></script>
+<div id="scrolltop" style="left: 1271px; visibility: visible;">
+<span><a href="http://www.eoeandroid.com/forum.php?mod=post&amp;action=reply&amp;fid=27&amp;tid=925885&amp;extra=page%3D1&amp;page=1" onclick="showWindow(&#39;reply&#39;, this.href)" class="replyfast" title="快速回复"><b>快速回复</b></a></span>
+<span hidefocus="true"><a title="返回顶部" onclick="window.scrollTo(&#39;0&#39;,&#39;0&#39;)" class="scrolltopa"><b>返回顶部</b></a></span>
+<span>
+<a href="http://www.eoeandroid.com/forum-27-1.html" hidefocus="true" class="returnlist" title="返回列表"><b>返回列表</b></a>
+</span>
+</div>
+<script type="text/javascript">_attachEvent(window, 'scroll', function () { showTopLink(); });checkBlind();</script>
+			<div id="discuz_tips" style="display:none;"></div>
+			<script type="text/javascript">
+				var tipsinfo = '7379687|X3.2|0.6||0|C0FEC5604184F4D70B2F5CFD0BD63D54|3018782|12|1501901786|c2479a74ffec9bd22ca97f2f47cf4841|2';
+			</script>
+			<script src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/discuz_tips.js.下载" type="text/javascript" charset="UTF-8"></script><!-- +++++++++++++++++++++++++右侧二维码+++++++++++++++++++++ -->
+
+<div class="ferweima" id="ferweima">
+<div class="ferweiman">
+<div class="ferweima_close" onclick="closeErweima()">关闭</div>
+<img src="./教你实现android上传应用市场让用户在应用商店下载app-Android实例教程-eoe 移动开发者论坛 - Powered by Discuz!_files/eoeandroid%2Fferweima.jpg" width="180" height="180">
+<p>扫一扫 关注eoe官方微信</p>
+</div>
+</div>
+<style type="text/css">
+.ferweima{width: 180px;height: 200px;background: #fff;position: fixed;right:10px;bottom: 200px;padding: 8px 0 6px 0;}
+.ferweiman{position: relative;width: 100%;height: 100%;}
+.ferweiman p{text-align: center;}
+.ferweima_close{width: 30px;height: 15px;right: 0;top: -6px;position: absolute;cursor: pointer;}
+</style>
+
+<script type="text/javascript">
+//jq = jQuery.noConflict();
+
+var ferweima=document.getElementById('ferweima');
+var ferweima_close=document.getElementById('ferweima_close');
+var cval=getCookie('name'); 
+if(cval!=null)
+//$('.ferweima').css('display','none'); 
+ferweima.style.display="none"
+
+function closeErweima() 
+{ 
+//$('.ferweima').css('display','none');					
+ferweima.style.display="none"
+setCookie("name","hidden_erweima");
+} 
+
+
+
+
+function setCookie(name,value) 
+{ 
+    var Hours = 2; 
+    var exp = new Date(); 
+    exp.setTime(exp.getTime() + Hours*60*60*1000); 
+    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString(); 
+} 
+
+//读取cookies 
+function getCookie(name) 
+{ 
+    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+ 
+    if(arr=document.cookie.match(reg))
+ 
+        return unescape(arr[2]); 
+    else 
+        return null; 
+} 
+
+
+</script>
+
+
+<!-- +++++++++++++++++++++++++右侧二维码+++++++++++++++++++++ -->
+
+
+
+</body></html>

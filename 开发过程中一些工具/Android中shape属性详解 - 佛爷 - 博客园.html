@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)http://www.cnblogs.com/MianActivity/p/5867776.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Android中shape属性详解 - 佛爷 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Android中shape属性详解 - 佛爷 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Android中shape属性详解 - 佛爷 - 博客园_files/bundle-Banlieue13.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./Android中shape属性详解 - 佛爷 - 博客园_files/bundle-Banlieue13-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/MianActivity/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/MianActivity/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/MianActivity/wlwmanifest.xml">
+<script async="" src="./Android中shape属性详解 - 佛爷 - 博客园_files/analytics.js.下载"></script><script src="./Android中shape属性详解 - 佛爷 - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'MianActivity', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Android中shape属性详解 - 佛爷 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/MianActivity/"><img id="blogLogo" src="./Android中shape属性详解 - 佛爷 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/MianActivity/">佛爷</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="navigator">
+			
+<ul id="navList">
+	<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+	<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/MianActivity/">首页</a></li>
+	<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E4%BD%9B%E7%88%B7">联系</a></li>
+	<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+	<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/MianActivity/rss">订阅</a>
+	<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/MianActivity/rss"><img src="./Android中shape属性详解 - 佛爷 - 博客园_files/xml.gif" alt="订阅"></a></li>
+</ul>
+
+
+			<div class="blogStats">
+				
+				<div id="blog_stats">
+<!--done-->
+随笔- 2&nbsp;
+文章- 0&nbsp;
+评论- 2&nbsp;
+</div>
+				
+			</div><!--end: blogStats -->
+		</div><!--end: navigator 博客导航栏 -->
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/MianActivity/p/5867776.html">Android中shape属性详解</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><h2><a name="t0" target="_blank"></a><span style="color: #006600;">一、简单使用</span></h2>
+<p>刚开始，就先不讲一堆标签的意义及用法，先简单看看shape标签怎么用。</p>
+<h3><a name="t1" target="_blank"></a><span style="color: #660000;">1、新建shape文件</span></h3>
+<p>首先在res/drawable文件夹下，新建一个文件，命名为：shape_radius.xml</p>
+<p>内容是这样的：（先不需要理解，先看shape怎么用）</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;?<span class="tag-name">xml <span class="attribute">version=<span class="attribute-value">"1.0" <span class="attribute">encoding=<span class="attribute-value">"utf-8"<span class="tag">?&gt;&nbsp; </span></span></span></span></span></span></span></li>
+<li><span class="tag">&lt;<span class="tag-name">shape <span class="attribute">xmlns:android=<span class="attribute-value">"http://schemas.android.com/apk/res/android" <span class="tag">&gt;&nbsp; </span></span></span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="tag">&lt;<span class="tag-name">corners <span class="attribute">android:radius=<span class="attribute-value">"20dip"<span class="tag">/&gt;&nbsp; </span></span></span></span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="tag">&lt;<span class="tag-name">solid <span class="attribute">android:color=<span class="attribute-value">"#ff00ff"<span class="tag">/&gt;&nbsp; </span></span></span></span></span></li>
+<li class="alt">&nbsp;</li>
+<li><span class="tag">&lt;/<span class="tag-name">shape<span class="tag">&gt;&nbsp; </span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape xmlns:android="http://schemas.android.com/apk/res/android" &gt;
+    &lt;corners android:radius="20dip"/&gt;
+    &lt;solid android:color="#ff00ff"/&gt;
+
+&lt;/shape&gt;</pre>
+<h3><a name="t2" target="_blank"></a><span style="color: #660000;">2、添加到控件中</span></h3>
+<p>在定义好shape文件后，下一步就是将其添加到控件中，添加到控件中，一般是使用设置background属性，将其为控件背景，下面，我们将其设置为MainActivity对应的布局中（activity_main.xml），将其设为TextView的背景，看显示出来 是什么样子的。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;<span class="tag-name">RelativeLayout <span class="attribute">xmlns:android=<span class="attribute-value">"http://schemas.android.com/apk/res/android"&nbsp; </span></span></span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">xmlns:tools=<span class="attribute-value">"http://schemas.android.com/tools"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="attribute">android:layout_width=<span class="attribute-value">"match_parent"&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:layout_height=<span class="attribute-value">"match_parent"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="attribute">tools:context=<span class="attribute-value">"com.harvic.tryshape.MainActivity" <span class="tag">&gt;&nbsp; </span></span></span></li>
+<li>&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="tag">&lt;<span class="tag-name">TextView&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:layout_width=<span class="attribute-value">"wrap_content"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:layout_height=<span class="attribute-value">"wrap_content"&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:layout_margin=<span class="attribute-value">"50dip"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:text=<span class="attribute-value">"@string/hello_world"&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:background=<span class="attribute-value">"@drawable/shape_radius"<span class="tag">/&gt;&nbsp; </span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li><span class="tag">&lt;/<span class="tag-name">RelativeLayout<span class="tag">&gt;&nbsp; </span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.harvic.tryshape.MainActivity" &gt;
+
+    &lt;TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dip"
+        android:text="@string/hello_world" 
+        android:background="@drawable/shape_radius"/&gt;
+    
+&lt;/RelativeLayout&gt;</pre>
+<p>显示出来的结果是这样的：</p>
+<p>&nbsp;</p>
+<p><img src="./Android中shape属性详解 - 佛爷 - 博客园_files/20141210205145868" alt=""></p>
+<h2><a name="t3" target="_blank"></a><span style="color: #006600;">二、基本属性（corners、gradient、padding、size、solid、stroke）</span></h2>
+<p>上面给大家简单的讲了下shape标签组的简单使用方法，下面就具体讲讲shape标签里所具有的几个子标签及所具有的属性。</p>
+<h3><a name="t4" target="_blank"></a><span style="color: #660000;">1、Corners</span></h3>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;<span class="tag-name">corners&nbsp;&nbsp;&nbsp; //定义圆角&nbsp;&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:radius=<span class="attribute-value">"dimension"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //全部的圆角半径&nbsp;&nbsp;&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="attribute">android:topLeftRadius=<span class="attribute-value">"dimension"&nbsp;&nbsp; //左上角的圆角半径&nbsp;&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:topRightRadius=<span class="attribute-value">"dimension"&nbsp; //右上角的圆角半径&nbsp;&nbsp;&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="attribute">android:bottomLeftRadius=<span class="attribute-value">"dimension"&nbsp;&nbsp;&nbsp; //左下角的圆角半径&nbsp;&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:bottomRightRadius=<span class="attribute-value">"dimension" <span class="tag">/&gt;&nbsp;&nbsp;&nbsp; //右下角的圆角半径&nbsp;&nbsp;&nbsp; </span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;corners    //定义圆角  
+    android:radius="dimension"      //全部的圆角半径  
+    android:topLeftRadius="dimension"   //左上角的圆角半径  
+    android:topRightRadius="dimension"  //右上角的圆角半径  
+    android:bottomLeftRadius="dimension"    //左下角的圆角半径  
+    android:bottomRightRadius="dimension" /&gt;    //右下角的圆角半径  </pre>
+<p>Corners标签是用来字义圆角的，其中radius与其它四个并不能共同使用。</p>
+<p>&nbsp;</p>
+<p><span style="color: #006600;">android:radius：定义四个角的的圆角半径。</span></p>
+<p><span style="color: #006600;">其它四个是逐个字义每个角的圆角半径。</span></p>
+<p><strong>使用：</strong></p>
+<p><strong>控件布局：</strong></p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;<span class="tag-name">RelativeLayout <span class="attribute">xmlns:android=<span class="attribute-value">"http://schemas.android.com/apk/res/android"&nbsp; </span></span></span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:layout_width=<span class="attribute-value">"match_parent"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="attribute">android:layout_height=<span class="attribute-value">"match_parent" <span class="tag">&gt;&nbsp; </span></span></span></li>
+<li>&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="tag">&lt;<span class="tag-name">TextView&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:layout_width=<span class="attribute-value">"100dp"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:layout_height=<span class="attribute-value">"100dp"&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:layout_margin=<span class="attribute-value">"50dip"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:text=<span class="attribute-value">"@string/hello_world"&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:background=<span class="attribute-value">"@drawable/shape_radius"<span class="tag">/&gt;&nbsp; </span></span></span></li>
+<li class="alt"><span class="tag">&lt;/<span class="tag-name">RelativeLayout<span class="tag">&gt;&nbsp; </span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" &gt;
+
+    &lt;TextView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="50dip"
+        android:text="@string/hello_world" 
+        android:background="@drawable/shape_radius"/&gt;
+ &lt;/RelativeLayout&gt;</pre>
+<p><strong>shape定义：</strong></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;?<span class="tag-name">xml <span class="attribute">version=<span class="attribute-value">"1.0" <span class="attribute">encoding=<span class="attribute-value">"utf-8"<span class="tag">?&gt;&nbsp; </span></span></span></span></span></span></span></li>
+<li><span class="tag">&lt;<span class="tag-name">shape <span class="attribute">xmlns:android=<span class="attribute-value">"http://schemas.android.com/apk/res/android" <span class="tag">&gt;&nbsp; </span></span></span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="tag">&lt;<span class="tag-name">corners <span class="attribute">android:radius=<span class="attribute-value">"20dip"<span class="tag">/&gt;&nbsp; </span></span></span></span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="tag">&lt;<span class="tag-name">solid <span class="attribute">android:color=<span class="attribute-value">"#ffff00"<span class="tag">/&gt;&nbsp; </span></span></span></span></span></li>
+<li class="alt"><span class="tag">&lt;/<span class="tag-name">shape<span class="tag">&gt;&nbsp; </span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape xmlns:android="http://schemas.android.com/apk/res/android" &gt;
+    &lt;corners android:radius="20dip"/&gt;
+    &lt;solid android:color="#ffff00"/&gt;
+&lt;/shape&gt;</pre>
+<p><strong>效果：</strong></p>
+<p>&nbsp;</p>
+<p><img src="./Android中shape属性详解 - 佛爷 - 博客园_files/20141211152815078" alt=""></p>
+<h3><a name="t5" target="_blank"></a><span style="color: #660000;">2、solid </span></h3>
+<p>solid用以指定内部填充色</p>
+<p>只有一个属性：</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;<span class="tag-name">solid&nbsp; <span class="attribute">android:color=<span class="attribute-value">"color" <span class="tag">/&gt;&nbsp;&nbsp;&nbsp; </span></span></span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;solid  android:color="color" /&gt;  </pre>
+<p>在上面的例子中，我们就将填充色指定为#ffff00了，如果我们不加圆角，只使用填充色，即将shape变成这样子：</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;?<span class="tag-name">xml <span class="attribute">version=<span class="attribute-value">"1.0" <span class="attribute">encoding=<span class="attribute-value">"utf-8"<span class="tag">?&gt;&nbsp; </span></span></span></span></span></span></span></li>
+<li><span class="tag">&lt;<span class="tag-name">shape <span class="attribute">xmlns:android=<span class="attribute-value">"http://schemas.android.com/apk/res/android" <span class="tag">&gt;&nbsp; </span></span></span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="tag">&lt;<span class="tag-name">solid <span class="attribute">android:color=<span class="attribute-value">"#ffff00"<span class="tag">/&gt;&nbsp; </span></span></span></span></span></li>
+<li><span class="tag">&lt;/<span class="tag-name">shape<span class="tag">&gt;&nbsp; </span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape xmlns:android="http://schemas.android.com/apk/res/android" &gt;
+    &lt;solid android:color="#ffff00"/&gt;
+&lt;/shape&gt;</pre>
+<p>那效果就是这样的：</p>
+<p>&nbsp;</p>
+<p><img src="./Android中shape属性详解 - 佛爷 - 博客园_files/20141211153555140" alt=""></p>
+<h3><a name="t6" target="_blank"></a><span style="color: #660000;">3、gradient</span></h3>
+<p>&nbsp;</p>
+<p>gradient用以定义渐变色，可以定义两色渐变和三色渐变，及渐变样式，它的属性有下面几个：</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;<span class="tag-name">gradient&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:type=["linear" | "radial" | "sweep"]&nbsp;&nbsp;&nbsp; //共有3中渐变类型，线性渐变（默认）/放射渐变/扫描式渐变&nbsp;&nbsp;&nbsp; </span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="attribute">android:angle=<span class="attribute-value">"integer"&nbsp;&nbsp;&nbsp;&nbsp; //渐变角度，必须为45的倍数，0为从左到右，90为从上到下&nbsp;&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:centerX=<span class="attribute-value">"float"&nbsp;&nbsp;&nbsp;&nbsp; //渐变中心X的相当位置，范围为0～1&nbsp;&nbsp;&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="attribute">android:centerY=<span class="attribute-value">"float"&nbsp;&nbsp;&nbsp;&nbsp; //渐变中心Y的相当位置，范围为0～1&nbsp;&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:startColor=<span class="attribute-value">"color"&nbsp;&nbsp; //渐变开始点的颜色&nbsp;&nbsp;&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="attribute">android:centerColor=<span class="attribute-value">"color"&nbsp; //渐变中间点的颜色，在开始与结束点之间&nbsp;&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:endColor=<span class="attribute-value">"color"&nbsp;&nbsp;&nbsp; //渐变结束点的颜色&nbsp;&nbsp;&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="attribute">android:gradientRadius=<span class="attribute-value">"float"&nbsp; //渐变的半径，只有当渐变类型为radial时才能使用&nbsp;&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:useLevel=["true" | "false"] <span class="tag">/&gt;&nbsp; //使用LevelListDrawable时就要设置为true。设为false时才有渐变效果&nbsp;&nbsp;&nbsp; </span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;gradient 
+    android:type=["linear" | "radial" | "sweep"]    //共有3中渐变类型，线性渐变（默认）/放射渐变/扫描式渐变  
+    android:angle="integer"     //渐变角度，必须为45的倍数，0为从左到右，90为从上到下  
+    android:centerX="float"     //渐变中心X的相当位置，范围为0～1  
+    android:centerY="float"     //渐变中心Y的相当位置，范围为0～1  
+    android:startColor="color"   //渐变开始点的颜色  
+    android:centerColor="color"  //渐变中间点的颜色，在开始与结束点之间  
+    android:endColor="color"    //渐变结束点的颜色  
+    android:gradientRadius="float"  //渐变的半径，只有当渐变类型为radial时才能使用  
+    android:useLevel=["true" | "false"] /&gt;  //使用LevelListDrawable时就要设置为true。设为false时才有渐变效果  </pre>
+<p>首先有三种渐变类型，分别是：linear（线性渐变）、radial（放射性渐变）、sweep（扫描式渐变）</p>
+<h4><a name="t7" target="_blank"></a><span style="color: #660000;">（1）先看看这几个属性的使用方法：</span></h4>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="attribute">android:type=["linear" | "radial" | "sweep"]&nbsp; </span></li>
+<li><span class="attribute">android:startColor=<span class="attribute-value">"color"&nbsp;&nbsp; //渐变开始点的颜色&nbsp;&nbsp;&nbsp; </span></span></li>
+<li class="alt"><span class="attribute">android:centerColor=<span class="attribute-value">"color"&nbsp; //渐变中间点的颜色，在开始与结束点之间&nbsp;&nbsp;&nbsp; </span></span></li>
+<li><span class="attribute">android:endColor=<span class="attribute-value">"color"&nbsp;&nbsp;&nbsp; //渐变结束点的颜色&nbsp;&nbsp;&nbsp; </span></span></li>
+<li class="alt"><span class="attribute">android:gradientRadius=<span class="attribute-value">"float"&nbsp; //渐变的半径，只有当渐变类型为radial时才能使用&nbsp;&nbsp;&nbsp; </span></span></li>
+</ol></div>
+<pre name="code" class="html">android:type=["linear" | "radial" | "sweep"]
+android:startColor="color"   //渐变开始点的颜色  
+android:centerColor="color"  //渐变中间点的颜色，在开始与结束点之间  
+android:endColor="color"    //渐变结束点的颜色  
+android:gradientRadius="float"  //渐变的半径，只有当渐变类型为radial时才能使用  </pre>
+<p>&nbsp;</p>
+<p>下面我们使用三色渐变来看看这三种渐变方式都是怎么显示的：（如果不使用centerColor属性就是双色渐变，这个属性是可选的）</p>
+<p><img src="./Android中shape属性详解 - 佛爷 - 博客园_files/20141211160109046" alt=""></p>
+<p>需要注意的一点是，在构造放射性渐变时，要加上android:gradientRadius属性（渐变半径），即必须指定渐变半径的大小才会起作用，下面列出这三个渐变方式的shape代码，供大家参考：</p>
+<p><strong>线性渐变：</strong></p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;?<span class="tag-name">xml <span class="attribute">version=<span class="attribute-value">"1.0" <span class="attribute">encoding=<span class="attribute-value">"utf-8"<span class="tag">?&gt;&nbsp; </span></span></span></span></span></span></span></li>
+<li><span class="tag">&lt;<span class="tag-name">shape <span class="attribute">xmlns:android=<span class="attribute-value">"http://schemas.android.com/apk/res/android" <span class="tag">&gt;&nbsp; </span></span></span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="tag">&lt;<span class="tag-name">gradient&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:type=<span class="attribute-value">"linear"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:startColor=<span class="attribute-value">"#ff0000"&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:centerColor=<span class="attribute-value">"#00ff00"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:endColor=<span class="attribute-value">"#0000ff"<span class="tag">/&gt;&nbsp; </span></span></span></li>
+<li><span class="tag">&lt;/<span class="tag-name">shape<span class="tag">&gt;&nbsp; </span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape xmlns:android="http://schemas.android.com/apk/res/android" &gt;
+    &lt;gradient 
+        android:type="linear"
+        android:startColor="#ff0000"
+        android:centerColor="#00ff00"
+        android:endColor="#0000ff"/&gt;
+&lt;/shape&gt;</pre>
+<p><strong>放射性渐变：</strong></p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;?<span class="tag-name">xml <span class="attribute">version=<span class="attribute-value">"1.0" <span class="attribute">encoding=<span class="attribute-value">"utf-8"<span class="tag">?&gt;&nbsp; </span></span></span></span></span></span></span></li>
+<li><span class="tag">&lt;<span class="tag-name">shape <span class="attribute">xmlns:android=<span class="attribute-value">"http://schemas.android.com/apk/res/android" <span class="tag">&gt;&nbsp; </span></span></span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="tag">&lt;<span class="tag-name">gradient&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:type=<span class="attribute-value">"radial"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:startColor=<span class="attribute-value">"#ff0000"&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:centerColor=<span class="attribute-value">"#00ff00"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:endColor=<span class="attribute-value">"#0000ff"&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:gradientRadius=<span class="attribute-value">"100"<span class="tag">/&gt;&nbsp; </span></span></span></li>
+<li class="alt"><span class="tag">&lt;/<span class="tag-name">shape<span class="tag">&gt;&nbsp; </span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape xmlns:android="http://schemas.android.com/apk/res/android" &gt;
+    &lt;gradient 
+        android:type="radial"
+        android:startColor="#ff0000"
+        android:centerColor="#00ff00"
+        android:endColor="#0000ff"
+        android:gradientRadius="100"/&gt;
+&lt;/shape&gt;</pre>
+<p><strong>扫描式渐变：</strong></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;?<span class="tag-name">xml <span class="attribute">version=<span class="attribute-value">"1.0" <span class="attribute">encoding=<span class="attribute-value">"utf-8"<span class="tag">?&gt;&nbsp; </span></span></span></span></span></span></span></li>
+<li><span class="tag">&lt;<span class="tag-name">shape <span class="attribute">xmlns:android=<span class="attribute-value">"http://schemas.android.com/apk/res/android" <span class="tag">&gt;&nbsp; </span></span></span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="tag">&lt;<span class="tag-name">gradient&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:type=<span class="attribute-value">"sweep"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:startColor=<span class="attribute-value">"#ff0000"&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:centerColor=<span class="attribute-value">"#00ff00"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:endColor=<span class="attribute-value">"#0000ff"<span class="tag">/&gt;&nbsp; </span></span></span></li>
+<li><span class="tag">&lt;/<span class="tag-name">shape<span class="tag">&gt;&nbsp; </span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape xmlns:android="http://schemas.android.com/apk/res/android" &gt;
+    &lt;gradient 
+        android:type="sweep"
+        android:startColor="#ff0000"
+        android:centerColor="#00ff00"
+        android:endColor="#0000ff"/&gt;
+&lt;/shape&gt;</pre>
+<p>可见放射性渐变，只是比其它两个多了个android:gradientRadius属性</p>
+<h4><a name="t8" target="_blank"></a><span style="color: #660000;">（2）、android:angle属性（仅对线性渐变有效）</span></h4>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="attribute">android:angle=<span class="attribute-value">"integer"&nbsp;&nbsp;&nbsp;&nbsp; //渐变角度，必须为45的倍数，0为从左到右，90为从上到下&nbsp;&nbsp;&nbsp; </span></span></li>
+</ol></div>
+<pre name="code" class="html">android:angle="integer"     //渐变角度，必须为45的倍数，0为从左到右，90为从上到下  </pre>
+<p>我们在上面的三种渐变上都加上angle属性，看看效果如何：</p>
+<p><img src="./Android中shape属性详解 - 佛爷 - 博客园_files/20141211162239078" alt=""></p>
+<p>能过跟上一个图对比可以发现，angle属性确实只对线性渐变有效，其它两种渐变方式都没有任何动静，下面是此时的线性渐变shape代码：</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;?<span class="tag-name">xml <span class="attribute">version=<span class="attribute-value">"1.0" <span class="attribute">encoding=<span class="attribute-value">"utf-8"<span class="tag">?&gt;&nbsp; </span></span></span></span></span></span></span></li>
+<li><span class="tag">&lt;<span class="tag-name">shape <span class="attribute">xmlns:android=<span class="attribute-value">"http://schemas.android.com/apk/res/android" <span class="tag">&gt;&nbsp; </span></span></span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="tag">&lt;<span class="tag-name">gradient&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:type=<span class="attribute-value">"linear"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:startColor=<span class="attribute-value">"#ff0000"&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:centerColor=<span class="attribute-value">"#00ff00"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:endColor=<span class="attribute-value">"#0000ff"&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:angle=<span class="attribute-value">"45"<span class="tag">/&gt;&nbsp; </span></span></span></li>
+<li class="alt"><span class="tag">&lt;/<span class="tag-name">shape<span class="tag">&gt;&nbsp; </span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape xmlns:android="http://schemas.android.com/apk/res/android" &gt;
+    &lt;gradient 
+        android:type="linear"
+        android:startColor="#ff0000"
+        android:centerColor="#00ff00"
+        android:endColor="#0000ff"
+        android:angle="45"/&gt;
+&lt;/shape&gt;</pre>
+<h4><a name="t9" target="_blank"></a>（3）、android:centerX与android:centerY</h4>
+<p>centerX、centerY两个属性用于设置渐变的中心点位置，仅当渐变类型为放射渐变时有效，类型为分数或小数，不接受Dimension。默认值是0.5，有效值是0.0~1.0，超出该范围后会看不出渐变效果。centerX、centerY的取值其实是宽和高的百分比；不难理解，下面看代码：</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;?<span class="tag-name">xml <span class="attribute">version=<span class="attribute-value">"1.0" <span class="attribute">encoding=<span class="attribute-value">"utf-8"<span class="tag">?&gt;&nbsp; </span></span></span></span></span></span></span></li>
+<li><span class="tag">&lt;<span class="tag-name">shape <span class="attribute">xmlns:android=<span class="attribute-value">"http://schemas.android.com/apk/res/android" <span class="tag">&gt;&nbsp; </span></span></span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="tag">&lt;<span class="tag-name">gradient&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:type=<span class="attribute-value">"sweep"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:startColor=<span class="attribute-value">"#ff0000"&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:centerColor=<span class="attribute-value">"#00ff00"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:endColor=<span class="attribute-value">"#0000ff"&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:centerX=<span class="attribute-value">"0.2"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:centerY=<span class="attribute-value">"0.8"<span class="tag">/&gt;&nbsp; </span></span></span></li>
+<li><span class="tag">&lt;/<span class="tag-name">shape<span class="tag">&gt;&nbsp; </span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape xmlns:android="http://schemas.android.com/apk/res/android" &gt;
+    &lt;gradient 
+        android:type="sweep"
+        android:startColor="#ff0000"
+        android:centerColor="#00ff00"
+        android:endColor="#0000ff"
+        android:centerX="0.2"
+        android:centerY="0.8"/&gt;
+&lt;/shape&gt;</pre>
+<p>取宽度的20%和高度的80%的位置，作为新的渐变原点，效果是这样的：</p>
+<p>&nbsp;</p>
+<p><img src="./Android中shape属性详解 - 佛爷 - 博客园_files/20141211164203121" alt=""></p>
+<h4><a name="t10" target="_blank"></a><span style="color: #660000;">（4）android:useLevel</span></h4>
+<p>useLevel属性通常不使用。该属性用于指定是否将该shape当成一个LevelListDrawable来使用，默认值为false。</p>
+<h3><a name="t11" target="_blank"></a><span style="color: #660000;">4、stroke</span></h3>
+<p>这是描边属性，可以定义描边的宽度，颜色，虚实线等</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;<span class="tag-name">stroke&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:width=<span class="attribute-value">"dimension"&nbsp;&nbsp; //描边的宽度&nbsp;&nbsp;&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="attribute">android:color=<span class="attribute-value">"color"&nbsp;&nbsp; //描边的颜色&nbsp;&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp; // 以下两个属性设置虚线&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="attribute">android:dashWidth=<span class="attribute-value">"dimension"&nbsp;&nbsp; //虚线的宽度，值为0时是实线&nbsp;&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:dashGap=<span class="attribute-value">"dimension" <span class="tag">/&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //虚线的间隔&nbsp;&nbsp; </span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;stroke       
+    android:width="dimension"   //描边的宽度  
+    android:color="color"   //描边的颜色  
+    // 以下两个属性设置虚线  
+    android:dashWidth="dimension"   //虚线的宽度，值为0时是实线  
+    android:dashGap="dimension" /&gt;      //虚线的间隔 </pre>
+<p>&nbsp;</p>
+<p>上面各个属性的意义如下：</p>
+<p><img src="./Android中shape属性详解 - 佛爷 - 博客园_files/20141211171605242" alt=""></p>
+<p>我们使用绿色虚线描边，虚线高度是20dp，虚线宽度为10dp虚线间距为1dp:</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;?<span class="tag-name">xml <span class="attribute">version=<span class="attribute-value">"1.0" <span class="attribute">encoding=<span class="attribute-value">"utf-8"<span class="tag">?&gt;&nbsp; </span></span></span></span></span></span></span></li>
+<li><span class="tag">&lt;<span class="tag-name">shape <span class="attribute">xmlns:android=<span class="attribute-value">"http://schemas.android.com/apk/res/android" <span class="tag">&gt;&nbsp; </span></span></span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="tag">&lt;<span class="tag-name">stroke&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:width=<span class="attribute-value">"20dp"&nbsp;&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:color=<span class="attribute-value">"#00ff00"&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:dashWidth=<span class="attribute-value">"10dp"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:dashGap=<span class="attribute-value">"1dp" <span class="tag">/&gt;&nbsp; </span></span></span></li>
+<li><span class="tag">&lt;/<span class="tag-name">shape<span class="tag">&gt;&nbsp; </span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape xmlns:android="http://schemas.android.com/apk/res/android" &gt;
+    &lt;stroke 
+        android:width="20dp" 
+        android:color="#00ff00"
+        android:dashWidth="10dp"
+        android:dashGap="1dp" /&gt;
+&lt;/shape&gt;</pre>
+<p>从效果图中，我们也能清晰的看出这三个参数（width、dashwidth、dashGap）之间的区别： <img src="./Android中shape属性详解 - 佛爷 - 博客园_files/20141211172319594" alt=""></p>
+<p>&nbsp;</p>
+<h3><a name="t12" target="_blank"></a><span style="color: #660000;">5、size和padding </span></h3>
+<p>这两个基本上不怎么用，因为他们所具有的功能，控件本身也能实现。 size:是用来定义图形的大小的。</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;<span class="tag-name">size&nbsp;&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:width=<span class="attribute-value">"dimension"&nbsp;&nbsp;&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="attribute">android:height=<span class="attribute-value">"dimension" <span class="tag">/&gt;&nbsp; </span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;size  
+    android:width="dimension"  
+    android:height="dimension" /&gt;</pre>
+<p>padding：用来定义内部边距</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;<span class="tag-name">padding&nbsp;&nbsp;&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:left=<span class="attribute-value">"dimension"&nbsp;&nbsp;&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="attribute">android:top=<span class="attribute-value">"dimension"&nbsp;&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:right=<span class="attribute-value">"dimension"&nbsp;&nbsp;&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="attribute">android:bottom=<span class="attribute-value">"dimension" <span class="tag">/&gt;&nbsp; </span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;padding   
+    android:left="dimension"  
+    android:top="dimension"  
+    android:right="dimension"  
+    android:bottom="dimension" /&gt;</pre>
+<h2><a name="t13" target="_blank"></a><span style="color: #006600;">三、Shape的属性（rectangle、oval、line、ring）</span></h2>
+<p>上面我们讲了Shape的子标签的的作用，但Shape本身还没讲，Shape自已是可以定义当前Shape的形状的，比如上面的矩形，还有椭圆形，线形和环形；这些都是通过Shape标签的 shape属性来定义的，Shape标签总共有下面几个属性，我们一个个讲：</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="attribute">android:shape=["rectangle" | "oval" | "line" | "ring"]&nbsp;&nbsp;&nbsp; </span></li>
+<li>shape的形状，默认为矩形，可以设置为矩形（rectangle）、椭圆形(oval)、线性形状(line)、环形(ring)&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">下面的属性只有在<span class="attribute">android:shape="ring时可用：&nbsp;&nbsp;&nbsp; </span></li>
+<li>android:innerRadius&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 尺寸，内环的半径。&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">android:innerRadiusRatio&nbsp;&nbsp;&nbsp; 浮点型，以环的宽度比率来表示内环的半径，&nbsp;&nbsp;&nbsp;</li>
+<li>android:thickness&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 尺寸，环的厚度&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">android:thicknessRatio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 浮点型，以环的宽度比率来表示环的厚度，例如，如果<span class="attribute">android:thicknessRatio=<span class="attribute-value">"2"，&nbsp;&nbsp;&nbsp; </span></span></li>
+<li>android:useLevel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; boolean值，如果当做是LevelListDrawable使用时值为true，否则为false.&nbsp;&nbsp;</li>
+</ol></div>
+<pre name="code" class="html">android:shape=["rectangle" | "oval" | "line" | "ring"]  
+shape的形状，默认为矩形，可以设置为矩形（rectangle）、椭圆形(oval)、线性形状(line)、环形(ring)  
+下面的属性只有在android:shape="ring时可用：  
+android:innerRadius         尺寸，内环的半径。  
+android:innerRadiusRatio    浮点型，以环的宽度比率来表示内环的半径，  
+android:thickness           尺寸，环的厚度  
+android:thicknessRatio      浮点型，以环的宽度比率来表示环的厚度，例如，如果android:thicknessRatio="2"，  
+android:useLevel            boolean值，如果当做是LevelListDrawable使用时值为true，否则为false. </pre>
+<p>可见，只有第一个shape是可用的，其它五个都是shape等于ring时所特有的。</p>
+<p>&nbsp;</p>
+<p>注意，无论这里shape取什么形状，他的子标签都是可用的，但有时并不会有效果，比如在shape为椭圆时，那corners标签就不会有效果，很显然的道理。下面一个个看看各个形状都是怎么样的；</p>
+<h3><a name="t14" target="_blank"></a><span style="color: #660000;">1、rectangle (矩形)</span></h3>
+<p>这就是上一节我们使用的形状，当我们不指定shape属性时，默认就是矩形的。</p>
+<p><strong>控件代码：</strong></p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;<span class="tag-name">LinearLayout <span class="attribute">xmlns:android=<span class="attribute-value">"http://schemas.android.com/apk/res/android"&nbsp; </span></span></span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:layout_width=<span class="attribute-value">"match_parent"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="attribute">android:layout_height=<span class="attribute-value">"match_parent"&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:orientation=<span class="attribute-value">"horizontal" <span class="tag">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="tag">&lt;<span class="tag-name">TextView&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:layout_width=<span class="attribute-value">"300dp"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:layout_height=<span class="attribute-value">"100dp"&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:layout_margin=<span class="attribute-value">"10dp"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:textColor=<span class="attribute-value">"#ffffff"&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:textSize=<span class="attribute-value">"18sp"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:textStyle=<span class="attribute-value">"bold"&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:background=<span class="attribute-value">"@drawable/try_shape_3"<span class="tag">/&gt;&nbsp; </span></span></span></li>
+<li class="alt"><span class="tag">&lt;/<span class="tag-name">LinearLayout<span class="tag">&gt;&nbsp; </span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" &gt;    
+    &lt;TextView
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:background="@drawable/try_shape_3"/&gt;
+ &lt;/LinearLayout&gt;</pre>
+<p>&nbsp;</p>
+<p><strong>shape代码：</strong></p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;?<span class="tag-name">xml <span class="attribute">version=<span class="attribute-value">"1.0" <span class="attribute">encoding=<span class="attribute-value">"utf-8"<span class="tag">?&gt;&nbsp; </span></span></span></span></span></span></span></li>
+<li><span class="tag">&lt;<span class="tag-name">shape <span class="attribute">xmlns:android=<span class="attribute-value">"http://schemas.android.com/apk/res/android"&nbsp;&nbsp; </span></span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="attribute">android:shape=<span class="attribute-value">"rectangle"<span class="tag">&gt;&nbsp; </span></span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="tag">&lt;<span class="tag-name">solid <span class="attribute">android:color=<span class="attribute-value">"#ff00ff"<span class="tag">/&gt;&nbsp; </span></span></span></span></span></li>
+<li class="alt"><span class="tag">&lt;/<span class="tag-name">shape<span class="tag">&gt;&nbsp; </span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:shape="rectangle"&gt;
+    &lt;solid android:color="#ff00ff"/&gt;
+&lt;/shape&gt;</pre>
+<p><strong>对应图形：</strong> <img src="./Android中shape属性详解 - 佛爷 - 博客园_files/20141211202359796" alt=""></p>
+<p>&nbsp;</p>
+<h3><a name="t15" target="_blank"></a><span style="color: #660000;">2、oval（椭圆）</span></h3>
+<p>控件代码不变，下面是shape代码：</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;?<span class="tag-name">xml <span class="attribute">version=<span class="attribute-value">"1.0" <span class="attribute">encoding=<span class="attribute-value">"utf-8"<span class="tag">?&gt;&nbsp; </span></span></span></span></span></span></span></li>
+<li><span class="tag">&lt;<span class="tag-name">shape <span class="attribute">xmlns:android=<span class="attribute-value">"http://schemas.android.com/apk/res/android"&nbsp;&nbsp; </span></span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="attribute">android:shape=<span class="attribute-value">"oval"<span class="tag">&gt;&nbsp; </span></span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="tag">&lt;<span class="tag-name">solid <span class="attribute">android:color=<span class="attribute-value">"#ff00ff"<span class="tag">/&gt;&nbsp; </span></span></span></span></span></li>
+<li class="alt"><span class="tag">&lt;/<span class="tag-name">shape<span class="tag">&gt;&nbsp; </span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:shape="oval"&gt;
+    &lt;solid android:color="#ff00ff"/&gt;
+&lt;/shape&gt;</pre>
+<p><strong>对应图形：（控件大小的矩形所对应的椭圆）</strong></p>
+<p>&nbsp;</p>
+<p><img src="./Android中shape属性详解 - 佛爷 - 博客园_files/20141211202832367" alt=""></p>
+<h3><a name="t16" target="_blank"></a><span style="color: #660000;">3、line(线形)</span></h3>
+<p>&nbsp;</p>
+<p>没觉得这个能有什么用……，也不讲了，没什么意思</p>
+<h3><a name="t17" target="_blank"></a><span style="color: #660000;">4、ring（环形）</span></h3>
+<p>还记得他所特有的几个属性么：</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt">android:innerRadius&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 尺寸，内环的半径。&nbsp;&nbsp;&nbsp;</li>
+<li>android:thickness&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 尺寸，环的厚度&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">android:innerRadiusRatio&nbsp;&nbsp;&nbsp; 浮点型，以环的宽度比率来表示内环的半径，&nbsp;&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 例如，如果android:innerRadiusRatio，表示内环半径等于环的宽度除以5，这个值是可以被覆盖的，默认为9.&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">android:thicknessRatio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 浮点型，以环的宽度比率来表示环的厚度，例如，如果<span class="attribute">android:thicknessRatio=<span class="attribute-value">"2"，&nbsp;&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 那么环的厚度就等于环的宽度除以2。这个值是可以被android:thickness覆盖的，默认值是3.&nbsp;&nbsp;&nbsp;</li>
+<li class="alt">android:useLevel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; boolean值，如果当做是LevelListDrawable使用时值为true，否则为false.&nbsp;</li>
+</ol></div>
+<pre name="code" class="html">android:innerRadius         尺寸，内环的半径。  
+android:thickness           尺寸，环的厚度  
+android:innerRadiusRatio    浮点型，以环的宽度比率来表示内环的半径，  
+      例如，如果android:innerRadiusRatio，表示内环半径等于环的宽度除以5，这个值是可以被覆盖的，默认为9.  
+android:thicknessRatio      浮点型，以环的宽度比率来表示环的厚度，例如，如果android:thicknessRatio="2"，  
+      那么环的厚度就等于环的宽度除以2。这个值是可以被android:thickness覆盖的，默认值是3.  
+android:useLevel            boolean值，如果当做是LevelListDrawable使用时值为true，否则为false.</pre>
+<p>这么几个属性无外乎就是定义环形的内环尺寸和环的宽度。</p>
+<p>&nbsp;</p>
+<p>举个例子：</p>
+<p><strong>控件定义：</strong></p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;<span class="tag-name">LinearLayout <span class="attribute">xmlns:android=<span class="attribute-value">"http://schemas.android.com/apk/res/android"&nbsp; </span></span></span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:layout_width=<span class="attribute-value">"match_parent"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="attribute">android:layout_height=<span class="attribute-value">"match_parent"&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:orientation=<span class="attribute-value">"horizontal" <span class="tag">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="tag">&lt;<span class="tag-name">TextView&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:layout_width=<span class="attribute-value">"300dp"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:layout_height=<span class="attribute-value">"100dp"&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:layout_margin=<span class="attribute-value">"10dp"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:textColor=<span class="attribute-value">"#ffffff"&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:textSize=<span class="attribute-value">"18sp"&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:textStyle=<span class="attribute-value">"bold"&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="attribute">android:background=<span class="attribute-value">"@drawable/try_shape_2"<span class="tag">/&gt;&nbsp; </span></span></span></li>
+<li class="alt"><span class="tag">&lt;/<span class="tag-name">LinearLayout<span class="tag">&gt;&nbsp; </span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" &gt;    
+    &lt;TextView
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:background="@drawable/try_shape_2"/&gt;
+ &lt;/LinearLayout&gt;</pre>
+<p><strong>shape定义：（这里一定要要加上useLevel属性并定义为false，不然没有效果）</strong></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter bg_html">
+<div class="bar">
+<div class="tools"><strong>[html]</strong> <a class="ViewSource" title="view plain" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">view plain</span></a><a class="CopyToClipboard" title="copy" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">copy</span></a><a class="PrintSource" title="print" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">print</span></a><a class="About" title="?" href="http://blog.csdn.net/harvic880925/article/details/41850723#" target="_blank"><span style="color: #336699;">?</span></a><a style="text-indent: 0px;" title="在CODE上查看代码片" href="https://code.csdn.net/snippets/548378" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 1px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/CODE_ico.png" alt="在CODE上查看代码片" width="12" height="12"></span></a><a style="text-indent: 0px;" title="派生到我的代码片" href="https://code.csdn.net/snippets/548378/fork" target="_blank"><span style="color: #336699;"><img style="left: 2px; top: 2px; position: relative;" src="./Android中shape属性详解 - 佛爷 - 博客园_files/ico_fork.svg" alt="派生到我的代码片" width="12" height="12"></span></a></div>
+</div>
+<ol class="dp-xml">
+<li class="alt"><span class="tag">&lt;?<span class="tag-name">xml <span class="attribute">version=<span class="attribute-value">"1.0" <span class="attribute">encoding=<span class="attribute-value">"utf-8"<span class="tag">?&gt;&nbsp; </span></span></span></span></span></span></span></li>
+<li><span class="tag">&lt;<span class="tag-name">shape <span class="attribute">xmlns:android=<span class="attribute-value">"http://schemas.android.com/apk/res/android"&nbsp;&nbsp; </span></span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="attribute">android:shape=<span class="attribute-value">"ring"&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:innerRadius=<span class="attribute-value">"20dp"&nbsp;&nbsp; </span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp; <span class="attribute">android:thickness=<span class="attribute-value">"50dp"&nbsp;&nbsp;&nbsp; </span></span></li>
+<li>&nbsp;&nbsp;&nbsp; <span class="attribute">android:useLevel=<span class="attribute-value">"false"<span class="tag">&gt;&nbsp; </span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li>&nbsp;&nbsp;&nbsp; <span class="tag">&lt;<span class="tag-name">solid <span class="attribute">android:color=<span class="attribute-value">"#ff00ff"<span class="tag">/&gt;&nbsp; </span></span></span></span></span></li>
+<li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+<li><span class="tag">&lt;/<span class="tag-name">shape<span class="tag">&gt;&nbsp; </span></span></span></li>
+</ol></div>
+<pre name="code" class="html">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:shape="ring" 
+    android:innerRadius="20dp" 
+    android:thickness="50dp"  
+    android:useLevel="false"&gt;
+    
+    &lt;solid android:color="#ff00ff"/&gt;
+    
+&lt;/shape&gt;</pre>
+<p><strong>效果图：</strong></p>
+<p>&nbsp;</p>
+<p><img src="./Android中shape属性详解 - 佛爷 - 博客园_files/20141211204434765" alt=""><br>好啦，这部分就到这了，有关Shape的使用最多的还是第二部分，即当shape为矩形时，结合那几个子标签共同使用时，对于其它的三个Shape平时用到的可能性不大，我这里讲的也不太细致，下面给大家第一部分的源码，直接运行，就能出来一个Shape效果。</p>
+<p>&nbsp;</p>
+<p>参考文章：</p>
+<p>1、<a href="http://blog.csdn.net/ekeuy/article/details/12349853" target="_blank"><span style="color: #336699;">《Android中shape的使用》</span></a></p>
+<p>2、<a href="http://kofi1122.blog.51cto.com/2815761/521605" target="_blank"><span style="color: #336699;">《Android中shape的使用》</span></a>（与第一个标题一样而已）</p>
+<p>3、<a href="http://www.jianshu.com/p/ed10085f0210" target="_blank"><span style="color: #336699;">《shape 详解》</span></a></p>
+<p>4、<a href="http://blog.csdn.net/u012910985/article/details/21553591" target="_blank"><span style="color: #336699;">《Android中shape的用法详解》</span></a></p>
+<p>5、<a href="http://www.linuxidc.com/Linux/2014-11/109467.htm" target="_blank"><span style="color: #336699;">《Android shape文件属性详解》</span></a></p>
+<p><strong><span style="color: #660000; font-size: 18px;">源码地址：<a href="http://download.csdn.net/detail/harvic880925/8249629" target="_blank"><span style="color: #336699;">http://download.csdn.net/detail/harvic880925/8249629</span></a><br></span></strong></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/MianActivity/tag/android/">android</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5867776,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;6f864e8e-f973-e611-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Android中shape属性详解 - 佛爷 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Android中shape属性详解 - 佛爷 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/MianActivity/" target="_blank"><img src="./Android中shape属性详解 - 佛爷 - 博客园_files/20161121105954.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/MianActivity/">佛爷</a><br>
+            <a href="http://home.cnblogs.com/u/MianActivity/followees">关注 - 2</a><br>
+            <a href="http://home.cnblogs.com/u/MianActivity/followers">粉丝 - 0</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;6f864e8e-f973-e611-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5867776,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">3</span>
+    </div>
+    <div class="buryit" onclick="votePost(5867776,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-09-13 11:23</span> <a href="http://www.cnblogs.com/MianActivity/">佛爷</a> 阅读(<span id="post_view_count">16244</span>) 评论(<span id="post_comment_count">2</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5867776" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/MianActivity/p/5867776.html#" onclick="AddToWz(5867776);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=303902,cb_entryId=5867776,cb_blogApp=currentBlogApp,cb_blogUserGuid='6f864e8e-f973-e611-9fc1-ac853d9f53cc',cb_entryCreatedDate='2016/9/13 11:23:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<br>
+<div class="feedback_area_title">评论</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/MianActivity/p/5867776.html#3597200" class="layer">#1楼</a><a name="3597200" id="comment_anchor_3597200"></a> <span class="comment_date">2017-01-05 17:54</span> | <a id="a_comment_author_3597200" href="http://www.cnblogs.com/guanyunmountain/" target="_blank">恰似一头猪</a> <a href="http://msg.cnblogs.com/send/%E6%81%B0%E4%BC%BC%E4%B8%80%E5%A4%B4%E7%8C%AA" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3597200" class="blog_comment_body">这写的没得说了，好！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3597200,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3597200,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/MianActivity/p/5867776.html#3613683" class="layer">#2楼</a><a name="3613683" id="comment_anchor_3613683"></a><span id="comment-maxId" style="display:none;">3613683</span><span id="comment-maxDate" style="display:none;">2017/2/7 17:43:46</span> <span class="comment_date">2017-02-07 17:43</span> | <a id="a_comment_author_3613683" href="http://www.cnblogs.com/wanxuedong/" target="_blank">万学冬</a> <a href="http://msg.cnblogs.com/send/%E4%B8%87%E5%AD%A6%E5%86%AC" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3613683" class="blog_comment_body">吊</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3613683,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3613683,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3613683_avatar" style="display:none;">http://pic.cnblogs.com/face/1068890/20161220203903.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/MianActivity/p/5867776.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/MianActivity/p/5867776.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://www.jiguang.cn/devservice?bky" target="_blank">【推荐】极光开发者服务平台，五大功能一站集齐</a><br><a href="http://click.aliyun.com/m/18488/" target="_blank">【推荐】阿里云“全民云计算”优惠升级</a><br><a href="https://cloud.tencent.com/developer/labs?fromSource=gwzcw.330910.330910.330910" target="_blank">【推荐】一小时搭建人工智能应用，让技术更容易入门</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="http://click.aliyun.com/m/26126/" target="_blank"><img width="300" height="250" src="./Android中shape属性详解 - 佛爷 - 博客园_files/24442-20170718132533661-166801094.jpg" alt="阿里云0718"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/575773/" target="_blank">自媒体为锤子炮轰阿里|阿里回应：臆测虚构 索赔百万</a><br> ·  <a href="http://news.cnblogs.com/n/575775/" target="_blank">苹果回应反垄断举报：大部分中国App得到及时通过</a><br> ·  <a href="http://news.cnblogs.com/n/575770/" target="_blank">特斯拉工人向管理层施压：先满足工会要求再考虑提高产量</a><br> ·  <a href="http://news.cnblogs.com/n/575769/" target="_blank">网络招聘app研究报告</a><br> ·  <a href="http://news.cnblogs.com/n/575774/" target="_blank">中国联通微信号更名 “任性”送1GB流量</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice?source=bky&amp;hmsr=%E5%8D%9A%E5%AE%A2%E5%9B%AD&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank"><img width="468" height="60" src="./Android中shape属性详解 - 佛爷 - 博客园_files/24442-20170727100914671-839522651.gif" alt="极光0801"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/569057/" target="_blank">架构腐化之谜</a><br> ·  <a href="http://kb.cnblogs.com/page/572854/" target="_blank">学会思考，而不只是编程</a><br> ·  <a href="http://kb.cnblogs.com/page/574767/" target="_blank">编写Shell脚本的最佳实践</a><br> ·  <a href="http://kb.cnblogs.com/page/571915/" target="_blank">为什么你该开始学习编程了？</a><br> ·  <a href="http://kb.cnblogs.com/page/570194/" target="_blank">小printf的故事：什么是真正的程序员？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/MianActivity/">佛爷</a><br>园龄：<a href="http://home.cnblogs.com/u/MianActivity/" title="入园时间：2016-09-06">11个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/MianActivity/followers/">0</a><br>关注：<a href="http://home.cnblogs.com/u/MianActivity/followees/">2</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;6f864e8e-f973-e611-9fc1-ac853d9f53cc&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/07/01&#39;);return false;">&lt;</a></td><td align="center">2017年8月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/09/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td class="CalWeekendDay" align="center">5</td></tr><tr><td class="CalWeekendDay" align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td class="CalTodayDay" align="center">10</td><td align="center">11</td><td class="CalWeekendDay" align="center">12</td></tr><tr><td class="CalWeekendDay" align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td class="CalWeekendDay" align="center">19</td></tr><tr><td class="CalWeekendDay" align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td class="CalWeekendDay" align="center">26</td></tr><tr><td class="CalWeekendDay" align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td></tr><tr><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/MianActivity/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/MianActivity/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/MianActivity/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/MianActivity/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/MianActivity/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="http://www.cnblogs.com/MianActivity/p/5867776.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/MianActivity/tag/android/">android</a>(1)</li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/MianActivity/archive/2016/09.html">2016年9月 (2)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/MianActivity/p/5867776.html#3613683">1. Re:Android中shape属性详解</a></li>
+        <li class="recent_comment_body">吊</li>
+        <li class="recent_comment_author">--万学冬</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/MianActivity/p/5867776.html#3597200">2. Re:Android中shape属性详解</a></li>
+        <li class="recent_comment_body">这写的没得说了，好！</li>
+        <li class="recent_comment_author">--恰似一头猪</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/MianActivity/p/5867776.html">1. Android中shape属性详解(16244)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/MianActivity/p/5867776.html">1. Android中shape属性详解(2)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/MianActivity/p/5867776.html">1. Android中shape属性详解(3)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 佛爷
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

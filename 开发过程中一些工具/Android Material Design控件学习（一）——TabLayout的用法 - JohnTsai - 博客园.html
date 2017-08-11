@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://www.cnblogs.com/JohnTsai/p/4715454.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/blog-common.css">
+<link type="text/css" rel="stylesheet" href="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/189441.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/bundle-LessIsMore-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/JohnTsai/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/JohnTsai/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/JohnTsai/wlwmanifest.xml">
+<script async="" src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/analytics.js.下载"></script><script src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'JohnTsai', cb_enable_mathjax=true;var isLogined=false;</script>
+<script src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+<script type="text/x-mathjax-config;executed=true">MathJax.Hub.Config({
+  tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] },
+  TeX: { equationNumbers: { autoNumber: ['AMS'], useLabelIds: true }, extensions: ['extpfeil.js'] },
+  'HTML-CSS': { linebreaks: { automatic: true } },
+  SVG: { linebreaks: { automatic: true } }});</script><script type="text/javascript" src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/MathJax.js.下载"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<style type="text/css">
+    .Abstract
+    {
+        padding: 15px;
+        border: dotted 2px #999;
+        color: #999;
+        font-family: 'Microsoft Yahei';
+        border-radius: 4px;
+    }
+
+        
+    .First
+    {
+        margin: 10px 0;
+        font-family: 'Microsoft Yahei';
+        text-align: left;
+        padding: 6px 20px;
+        color: #fff;
+        background: #55895B;
+        font-size: 20px;
+        border-radius: 4px;
+        clear: both;
+    }
+        
+        
+    .Second
+    {
+        margin: 10px 0;
+        font-family: 'Microsoft Yahei';
+        padding: 6px 20px;
+        background: #93C8A2;
+        color: #fff;
+        font-size: 18px;
+        border-radius: 4px;
+        clear: both;
+    }
+        
+        
+    .Third
+    {
+        margin: 10px 0;
+        padding: 6px 20px;
+        font-family: 'Microsoft Yahei';
+        margin: 15px 0;
+        font-size: 16px;
+        color: fff;
+        background: #C6EFD2;
+        color: #999;
+        border-radius: 4px;
+        clear: both;
+    }
+    .note
+    {
+        margin: 10px 0;
+        padding: 15px 20px 15px 60px;
+        background: #FCFAA9 url('http://images.cnblogs.com/cnblogs_com/libaoheng/305804/o_yellow-pin.png') no-repeat 20px 0;
+        font-size: 15px;
+        font-family: 'Microsoft Yahei';
+        box-shadow: 0 0 8px #aaa;
+        clear: both;
+    }
+        
+    .demo
+    {
+        text-align: left;
+        padding: 6px 20px;
+        overflow: auto;
+        border-radius: 4px;
+        background: orange;
+        color: #fff;
+        font-size: 16px;
+        clear: both;
+    }
+        
+    .cnblogs_Highlighter
+    {
+        border: solid 1px #ccc;
+        clear: both;
+    }
+        
+    .cnblogs_code
+    {
+        background: #EFFFF4;
+        border: solid 0px #939393;
+        font-size: 14px;
+        clear: both;
+        padding: 10px 20px;
+    }
+    .cnblogs_code pre
+    {
+        font-size: 14px;
+    }
+    .cnblogs_code span
+    {
+        font-family: Courier New;
+        font-size: 14px;
+    }
+</style>
+<!--PageBeginHtml Block End-->
+
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+		
+<!--done-->
+<div class="title"><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/JohnTsai/">JohnTsai (新博客地址:http://www.johntsai.work)</a></div>
+<div class="subtitle">Android开发 iOS开发  
+邮箱:JohnTsai.Work#gmail.com
+
+慕课网手记地址:http://www.imooc.com/u/1026761/articles</div>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li id="nav_sitehome"><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li id="nav_myhome"><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/JohnTsai/">首页</a></li>
+<li id="nav_newpost"><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li id="nav_contact"><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/JohnTsai">联系</a></li>
+<li id="nav_rss"><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/JohnTsai/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/JohnTsai/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li id="nav_admin"><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+随笔-107&nbsp;
+文章-0&nbsp;
+评论-193&nbsp;
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/JohnTsai/p/4715454.html">Android Material Design控件学习（一）——TabLayout的用法</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="cnblogs-markdown"><p>作者：<a target="_blank" href="https://johntsai.xyz/">@JohnTsai</a><br>本文为作者原创，转载请注明出处：<a class="uri" href="http://www.cnblogs.com/JohnTsai/p/4715454.html">http://www.cnblogs.com/JohnTsai/p/4715454.html</a></p><hr><h2 id="前言">前言</h2>
+<p>Google官方在14年Google I/O上推出了全新的设计语言——Material Design。一并推出了一系列实现Material Design效果的控件库——Android Design Support Library。其中，有TabLayout, NavigationView,Floating labels for editing text,Floating Action Button,Snackbar, CoordinatorLayout, CollapsingToolbarLayout等等控件。在今后的学习中，我将一一介绍它们的特点和用法。</p>
+<p>在移动应用中切换不同场景/功能，iOS中以底部三按钮、四按钮来实现的，而在Android中，则是抽屉式菜单或左右滑动式设计的。如何实现类似Google Play应用商店式的左右滑动，这就得靠TabLayout来实现了。</p>
+<p><iframe id="iframe_0.509104567909809" src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/saved_resource.html" style="border: none; width: 690px; height: 1227px;" frameborder="0" scrolling="no"></iframe></p>
+<h3 id="正文">正文</h3>
+<p>1.获得Android Design Support Library库：</p>
+<p>在Gradle文件中的dependency中添加'compile 'com.android.support:design:22.2.1'依赖。</p>
+<p>2.定义布局文件：<br>
+通过使用可知，上面那些标签时通过TabLayout实现，而下面内容的变化则是ViewPager+Fragment实现的。<br>
+因此在MainActivity中：</p>
+<pre><code class="hljs django"><span class="xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">LinearLayout</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span>
+    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"match_parent"</span>
+    <span class="hljs-attr">xmlns:app</span>=<span class="hljs-string">"http://schemas.android.com/apk/res-auto"</span>
+    <span class="hljs-attr">android:orientation</span>=<span class="hljs-string">"vertical"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">android.support.design.widget.TabLayout</span>
+        <span class="hljs-attr">android:id</span>=<span class="hljs-string">"@+id/tabLayout"</span>
+        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span>
+        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"wrap_content"</span>
+        <span class="hljs-attr">app:tabMode</span>=<span class="hljs-string">"scrollable"</span>
+        /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">android.support.v4.view.ViewPager</span>
+        <span class="hljs-attr">android:id</span>=<span class="hljs-string">"@+id/viewPager"</span>
+        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span>
+        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"0dp"</span>
+        <span class="hljs-attr">android:layout_weight</span>=<span class="hljs-string">"1"</span>
+        <span class="hljs-attr">android:background</span>=<span class="hljs-string">"#ffffff"</span>
+        /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">LinearLayout</span>&gt;</span></span></code></pre>
+<p>Fragment：<br>
+切换ViewPager，显示不同的Fragment，在这里用一个布局相同的Fragment示例。</p>
+<pre><code class="hljs django"><span class="xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">LinearLayout</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span>
+    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"match_parent"</span>
+    <span class="hljs-attr">android:orientation</span>=<span class="hljs-string">"vertical"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">TextView</span>
+        <span class="hljs-attr">android:id</span>=<span class="hljs-string">"@+id/textView"</span>
+        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span>
+        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"match_parent"</span>
+        <span class="hljs-attr">android:gravity</span>=<span class="hljs-string">"center"</span>
+        /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">LinearLayout</span>&gt;</span></span></code></pre>
+<p>3.具体实现代码：<br>
+1）创建Fragment</p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PageFragment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Fragment</span> </span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String ARGS_PAGE = <span class="hljs-string">"args_page"</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> mPage;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> PageFragment <span class="hljs-title">newInstance</span><span class="hljs-params">(<span class="hljs-keyword">int</span> page)</span> </span>{
+        Bundle args = <span class="hljs-keyword">new</span> Bundle();
+
+        args.putInt(ARGS_PAGE, page);
+        PageFragment fragment = <span class="hljs-keyword">new</span> PageFragment();
+        fragment.setArguments(args);
+        <span class="hljs-keyword">return</span> fragment;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        mPage = getArguments().getInt(ARGS_PAGE);
+    }
+
+    <span class="hljs-meta">@Nullable</span>
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> View <span class="hljs-title">onCreateView</span><span class="hljs-params">(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)</span> </span>{
+        View view = inflater.inflate(R.layout.fragment_page,container,<span class="hljs-keyword">false</span>);
+        TextView textView = (TextView) view.findViewById(R.id.textView);
+        textView.setText(<span class="hljs-string">"第"</span>+mPage+<span class="hljs-string">"页"</span>);
+        <span class="hljs-keyword">return</span> view;
+    }
+}</code></pre>
+<p>2)适配器类</p>
+<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyFragmentPagerAdapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentPagerAdapter</span> </span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> COUNT = <span class="hljs-number">5</span>;
+    <span class="hljs-keyword">private</span> String[] titles = <span class="hljs-keyword">new</span> String[]{<span class="hljs-string">"Tab1"</span>, <span class="hljs-string">"Tab2"</span>, <span class="hljs-string">"Tab3"</span>, <span class="hljs-string">"Tab4"</span>, <span class="hljs-string">"Tab5"</span>};
+    <span class="hljs-keyword">private</span> Context context;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyFragmentPagerAdapter</span><span class="hljs-params">(FragmentManager fm, Context context)</span> </span>{
+        <span class="hljs-keyword">super</span>(fm);
+        <span class="hljs-keyword">this</span>.context = context;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Fragment <span class="hljs-title">getItem</span><span class="hljs-params">(<span class="hljs-keyword">int</span> position)</span> </span>{
+        <span class="hljs-keyword">return</span> PageFragment.newInstance(position + <span class="hljs-number">1</span>);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getCount</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> COUNT;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> CharSequence <span class="hljs-title">getPageTitle</span><span class="hljs-params">(<span class="hljs-keyword">int</span> position)</span> </span>{
+        <span class="hljs-keyword">return</span> titles[position];
+    }
+}</code></pre>
+<p>相信Fragment+ViewPager+FragmentPagerAdapter的组合，大家已经用得很熟悉了，在这里我就不介绍了。</p>
+<p>3）TabLayout的使用：<br>
+根据官方文档说明，TabLayout的使用有以下两种方式：</p>
+<ol>
+<li>通过TabLayout的addTab()方法添加新构建的Tab实例到TabLayout中：</li>
+</ol>
+<pre><code class="hljs r">    TabLayout tabLayout = <span class="hljs-keyword">...</span>;
+    tabLayout.addTab(tabLayout.newTab().setText(<span class="hljs-string">"Tab 1"</span>));
+    tabLayout.addTab(tabLayout.newTab().setText(<span class="hljs-string">"Tab 2"</span>));
+    tabLayout.addTab(tabLayout.newTab().setText(<span class="hljs-string">"Tab 3"</span>));
+ </code></pre>
+<p>2.第二种则是使用ViewPager和TabLayout一站式管理Tab，也就是说不需要像第一种方式那样手动添加Tab：</p>
+<pre><code class="hljs r">    ViewPager viewPager = <span class="hljs-keyword">...</span>;
+    TabLayout tabLayout = <span class="hljs-keyword">...</span>;
+    viewPager.addOnPageChangeListener(new TabLayoutOnPageChangeListener(tabLayout));</code></pre>
+<p>而我们TabLayout的Demo就是用得第二种方式：</p>
+<pre><code class="hljs cpp">        <span class="hljs-comment">//Fragment+ViewPager+FragmentViewPager组合的使用</span>
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        MyFragmentPagerAdapter adapter = <span class="hljs-keyword">new</span> MyFragmentPagerAdapter(getSupportFragmentManager(),
+                <span class="hljs-keyword">this</span>);
+        viewPager.setAdapter(adapter);
+
+        <span class="hljs-comment">//TabLayout</span>
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        tabLayout.setupWithViewPager(viewPager);</code></pre>
+<p>运行效果：<br>
+<iframe id="iframe_0.25232324724494903" src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/saved_resource(1).html" style="border: none; width: 432px; height: 670px;" frameborder="0" scrolling="no"></iframe></p>
+<p>效果不错，但是TabLayout中的Tab似乎没有占满屏幕的宽度。如何解决呢？<br>
+有代码和XML两种方式：<br>
+1).代码</p>
+<pre><code class="hljs css">    <span class="hljs-selector-tag">tabLayout</span><span class="hljs-selector-class">.setTabGravity</span>(<span class="hljs-selector-tag">TabLayout</span><span class="hljs-selector-class">.GRAVITY_FILL</span>);
+    <span class="hljs-selector-tag">tabLayout</span><span class="hljs-selector-class">.setTabMode</span>(<span class="hljs-selector-tag">TabLayout</span><span class="hljs-selector-class">.MODE_FIXED</span>);</code></pre>
+<p>2).XML布局文件</p>
+<pre><code class="hljs django"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">android.support.design.widget.TabLayout</span>
+        <span class="hljs-attr">android:id</span>=<span class="hljs-string">"@+id/tabLayout"</span>
+        <span class="hljs-attr">app:tabGravity</span>=<span class="hljs-string">"fill"</span>
+        <span class="hljs-attr">app:tabMode</span>=<span class="hljs-string">"fixed"</span>
+        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span>
+        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"wrap_content"</span>
+        /&gt;</span></span></code></pre>
+<p><iframe id="iframe_0.22266608927151776" src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/saved_resource(2).html" style="border: none; width: 389px; height: 667px;" frameborder="0" scrolling="no"></iframe></p>
+<p>下面就来解释一下TabGravity和TabMode，</p>
+<p>TabGravity:放置Tab的Gravity,有GRAVITY_CENTER 和 GRAVITY_FILL两种效果。顾名思义，一个是居中，另一个是尽可能的填充（<strong>注意，GRAVITY_FILL需要和MODE_FIXED一起使用才有效果</strong>）</p>
+<p>TabMode:布局中Tab的行为模式（behavior mode），有两种值：MODE_FIXED 和 MODE_SCROLLABLE。</p>
+<p>MODE_FIXED:固定tabs，并同时显示所有的tabs。</p>
+<p>MODE_SCROLLABLE：可滚动tabs，显示一部分tabs，在这个模式下能包含长标签和大量的tabs，最好用于用户不需要直接比较tabs。</p>
+<p>下面用代码来比较这两种模式的不同：</p>
+<pre><code class="hljs scala"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyFragmentPagerAdapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentPagerAdapter</span> </span>{
+    <span class="hljs-comment">//tabs的数据集</span>
+    public <span class="hljs-keyword">final</span> int <span class="hljs-type">COUNT</span> = <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">String</span>[] titles = <span class="hljs-keyword">new</span> <span class="hljs-type">String</span>[]{<span class="hljs-string">"Tab2221"</span>, <span class="hljs-string">"T2"</span>, <span class="hljs-string">"Tb3"</span>, <span class="hljs-string">"Tab4"</span>, <span class="hljs-string">"Tab5555555555"</span>,<span class="hljs-string">"Tab2221"</span>, <span class="hljs-string">"T2"</span>, <span class="hljs-string">"Tb3"</span>, <span class="hljs-string">"Tab4"</span>, <span class="hljs-string">"Tab5555555555"</span>};
+...
+}
+
+
+        <span class="hljs-comment">//1.MODE_SCROLLABLE模式</span>
+       tabLayout.setTabMode(<span class="hljs-type">TabLayout</span>.<span class="hljs-type">MODE_SCROLLABLE</span>);
+
+        <span class="hljs-comment">//2.MODE_FIXED模式</span>
+        tabLayout.setTabMode(<span class="hljs-type">TabLayout</span>.<span class="hljs-type">MODE_FIXED</span>);
+</code></pre>
+<p>1.MODE_SCROLLABLE模式<br>
+<iframe id="iframe_0.11396791547809437" src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/saved_resource(3).html" style="border: none; width: 389px; height: 667px;" frameborder="0" scrolling="no"></iframe></p>
+<p>2.MODE_FIXED模式<br>
+<iframe id="iframe_0.5001500119549409" src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/saved_resource(4).html" style="border: none; width: 389px; height: 667px;" frameborder="0" scrolling="no"></iframe></p>
+</div><div id="MySignature" style="display: block;"><!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_tqq"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+
+<!-- JiaThis Button END --></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/JohnTsai/tag/Android/">Android</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(4715454,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;e846cd39-58de-e311-8d02-90b11c0b17d6&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/JohnTsai/" target="_blank"><img src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/20160311155212.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/JohnTsai/">JohnTsai</a><br>
+            <a href="http://home.cnblogs.com/u/JohnTsai/followees">关注 - 59</a><br>
+            <a href="http://home.cnblogs.com/u/JohnTsai/followers">粉丝 - 149</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;e846cd39-58de-e311-8d02-90b11c0b17d6&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(4715454,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">6</span>
+    </div>
+    <div class="buryit" onclick="votePost(4715454,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/JohnTsai/p/4659400.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/JohnTsai/p/4659400.html" title="发布于2015-07-22 23:13">Java编程思想学习笔记——接口</a><br><a href="http://www.cnblogs.com/JohnTsai/p/4796328.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/JohnTsai/p/4796328.html" title="发布于2015-09-19 10:18">Java编程思想学习笔记——字符串</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2015-08-15 09:40</span> <a href="http://www.cnblogs.com/JohnTsai/">JohnTsai</a> 阅读(<span id="post_view_count">49914</span>) 评论(<span id="post_comment_count">8</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=4715454" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/JohnTsai/p/4715454.html#" onclick="AddToWz(4715454);return false;">收藏</a></div>
+	</div>
+	<script src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/highlight.min.js.下载"></script><script>markdown_highlight();</script><script type="text/javascript">var allowComments=true,cb_blogId=189441,cb_entryId=4715454,cb_blogApp=currentBlogApp,cb_blogUserGuid='e846cd39-58de-e311-8d02-90b11c0b17d6',cb_entryCreatedDate='2015/8/15 9:40:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/JohnTsai/p/4715454.html#3255099" class="layer">#1楼</a><a name="3255099" id="comment_anchor_3255099"></a>  <span class="comment_date">2015-08-27 09:22</span> <a id="a_comment_author_3255099" href="http://www.cnblogs.com/halbertsun/" target="_blank">HaiSun1016</a> <a href="http://msg.cnblogs.com/send/HaiSun1016" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3255099" class="blog_comment_body">大神啊！！！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3255099,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3255099,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/JohnTsai/p/4715454.html#3263069" class="layer">#2楼</a><a name="3263069" id="comment_anchor_3263069"></a>  <span class="comment_date">2015-09-09 11:04</span> <a id="a_comment_author_3263069" href="http://www.cnblogs.com/halbertsun/" target="_blank">HaiSun1016</a> <a href="http://msg.cnblogs.com/send/HaiSun1016" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3263069" class="blog_comment_body">你的截图怎么这么帅？还有动态的</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3263069,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3263069,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/JohnTsai/p/4715454.html#3263638" class="layer">#3楼</a><a name="3263638" id="comment_anchor_3263638"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2015-09-09 22:29</span> <a id="a_comment_author_3263638" href="http://www.cnblogs.com/JohnTsai/" target="_blank">JohnTsai</a> <a href="http://msg.cnblogs.com/send/JohnTsai" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3263638" class="blog_comment_body"><a href="http://www.cnblogs.com/JohnTsai/p/4715454.html#3263069" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3263069);">@</a>
+HaiSun1016<br>LiceCap</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3263638,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3263638,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3263638_avatar" style="display:none;">http://pic.cnblogs.com/face/634832/20160311155212.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/JohnTsai/p/4715454.html#3271601" class="layer">#4楼</a><a name="3271601" id="comment_anchor_3271601"></a>  <span class="comment_date">2015-09-22 11:30</span> <a id="a_comment_author_3271601" href="http://www.cnblogs.com/halbertsun/" target="_blank">HaiSun1016</a> <a href="http://msg.cnblogs.com/send/HaiSun1016" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3271601" class="blog_comment_body">这个的源码还在吗？传到鸡特哈勃上去啊</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3271601,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3271601,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/JohnTsai/p/4715454.html#3526226" class="layer">#5楼</a><a name="3526226" id="comment_anchor_3526226"></a>  <span class="comment_date">2016-10-09 10:45</span> <a id="a_comment_author_3526226" href="http://www.cnblogs.com/cnlmgsoft/" target="_blank">民工也Coding</a> <a href="http://msg.cnblogs.com/send/%E6%B0%91%E5%B7%A5%E4%B9%9FCoding" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3526226" class="blog_comment_body">好啊！！！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3526226,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3526226,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/JohnTsai/p/4715454.html#3604435" class="layer">#6楼</a><a name="3604435" id="comment_anchor_3604435"></a>  <span class="comment_date">2017-01-16 15:37</span> <a id="a_comment_author_3604435" href="http://home.cnblogs.com/u/629771/" target="_blank">joychine</a> <a href="http://msg.cnblogs.com/send/joychine" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3604435" class="blog_comment_body">我希望 tab个数少的时候，比如3个就三个等份大小铺满屏幕宽度。就是每个tab的weight值为1。。。怎么搞</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3604435,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3604435,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/JohnTsai/p/4715454.html#3642637" class="layer">#7楼</a><a name="3642637" id="comment_anchor_3642637"></a>  <span class="comment_date">2017-03-16 16:51</span> <a id="a_comment_author_3642637" href="http://home.cnblogs.com/u/891314/" target="_blank">AchillesLy</a> <a href="http://msg.cnblogs.com/send/AchillesLy" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3642637" class="blog_comment_body">谢谢大神</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3642637,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3642637,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/JohnTsai/p/4715454.html#3668691" class="layer">#8楼</a><a name="3668691" id="comment_anchor_3668691"></a><span id="comment-maxId" style="display:none;">3668691</span><span id="comment-maxDate" style="display:none;">2017/4/15 14:49:28</span>  <span class="comment_date">2017-04-15 14:49</span> <a id="a_comment_author_3668691" href="http://www.cnblogs.com/leelugen/" target="_blank">一个人去地老天荒吧</a> <a href="http://msg.cnblogs.com/send/%E4%B8%80%E4%B8%AA%E4%BA%BA%E5%8E%BB%E5%9C%B0%E8%80%81%E5%A4%A9%E8%8D%92%E5%90%A7" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3668691" class="blog_comment_body">简洁明了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3668691,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3668691,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3668691_avatar" style="display:none;">http://pic.cnblogs.com/face/1132844/20170409181500.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/JohnTsai/p/4715454.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/JohnTsai/p/4715454.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://www.jiguang.cn/devservice?bky" target="_blank">【推荐】极光开发者服务平台，五大功能一站集齐</a><br><a href="http://click.aliyun.com/m/18488/" target="_blank">【推荐】阿里云“全民云计算”优惠升级</a><br><a href="https://cloud.tencent.com/developer/labs?fromSource=gwzcw.330910.330910.330910" target="_blank">【推荐】一小时搭建人工智能应用，让技术更容易入门</a><br></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"><a href="https://cn.udacity.com/dlnd/?utm_source=CNblogs&amp;utm_medium=cpc&amp;utm_campaign=DLND04&amp;utm_content=SVcertificated" target="_blank"><img width="300" height="250" src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/24442-20170807180046846-1950239834.jpg" alt="Udacity_0807"></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/575504/" target="_blank">Fedora 24于今天停止支持 推荐升至Fedora 25/26</a><br> ·  <a href="http://news.cnblogs.com/n/575503/" target="_blank">谷歌工程师反多样化“宣言”获大量内部职工支持</a><br> ·  <a href="http://news.cnblogs.com/n/575502/" target="_blank">托管在WordPress.com下的网站现也可安装第三方主题和插件了</a><br> ·  <a href="http://news.cnblogs.com/n/575492/" target="_blank">30.72TB！东芝全球首发64层3D闪存企业级SSD</a><br> ·  <a href="http://news.cnblogs.com/n/575500/" target="_blank">由于通信故障 Rocket Lab的第一个测试火箭未能抵达预定轨道</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice?source=bky&amp;hmsr=%E5%8D%9A%E5%AE%A2%E5%9B%AD&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank"><img width="468" height="60" src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/24442-20170727100914671-839522651.gif" alt="极光0801"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/574767/" target="_blank">编写Shell脚本的最佳实践</a><br> ·  <a href="http://kb.cnblogs.com/page/571915/" target="_blank">为什么你该开始学习编程了？</a><br> ·  <a href="http://kb.cnblogs.com/page/570194/" target="_blank">小printf的故事：什么是真正的程序员？</a><br> ·  <a href="http://kb.cnblogs.com/page/569992/" target="_blank">程序员的工作、学习与绩效</a><br> ·  <a href="http://kb.cnblogs.com/page/569056/" target="_blank">软件开发为什么很难</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><a href="https://github.com/JohnTsaiAndroid"><img style="position: absolute; top: 0; left: 0; border: 0;" src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png"></a>
+<h4>我的邮箱:<a href="mailto://JohnTsai.Work@gmail.com">JohnTsai.Work@gmail.com</a></h4><a href="mailto://JohnTsai.Work@gmail.com">
+
+
+
+</a><h4><a href="mailto://JohnTsai.Work@gmail.com"></a><a href="https://github.com/JohnTsaiAndroid">我的Github:https://github.com/JohnTsaiAndroid</a></h4><a href="https://github.com/JohnTsaiAndroid">
+
+
+
+</a><h4><a href="https://github.com/JohnTsaiAndroid"></a><a href="http://www.johntsai.work/">我的博客:http://www.johntsai.work</a></h4><a href="http://www.johntsai.work/">
+
+
+</a><h4><a href="http://www.johntsai.work/"></a><a href="http://www.jianshu.com/users/07ba99ac6962/latest_articles">我的简书:http://www.jianshu.com/users/07ba99ac6962/latest_articles</a></h4><div id="profile_block"><a href="http://www.jianshu.com/users/07ba99ac6962/latest_articles">昵称：</a><a href="http://home.cnblogs.com/u/JohnTsai/">JohnTsai</a><br>园龄：<a href="http://home.cnblogs.com/u/JohnTsai/" title="入园时间：2014-05-18">3年2个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/JohnTsai/followers/">149</a><br>关注：<a href="http://home.cnblogs.com/u/JohnTsai/followees/">59</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;e846cd39-58de-e311-8d02-90b11c0b17d6&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="日历">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/07/01&#39;);return false;">&lt;</a></td><td align="center">2017年8月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/09/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td class="CalWeekendDay" align="center">5</td></tr><tr><td class="CalWeekendDay" align="center">6</td><td align="center">7</td><td class="CalTodayDay" align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td class="CalWeekendDay" align="center">12</td></tr><tr><td class="CalWeekendDay" align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td class="CalWeekendDay" align="center">19</td></tr><tr><td class="CalWeekendDay" align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td class="CalWeekendDay" align="center">26</td></tr><tr><td class="CalWeekendDay" align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td></tr><tr><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block"></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/JohnTsai/tag/Android/">Android</a>(59)</li><li><a href="http://www.cnblogs.com/JohnTsai/tag/Java/">Java</a>(26)</li><li><a href="http://www.cnblogs.com/JohnTsai/tag/HTTP/">HTTP</a>(9)</li><li><a href="http://www.cnblogs.com/JohnTsai/tag/%E6%8A%80%E6%9C%AF/">技术</a>(8)</li><li><a href="http://www.cnblogs.com/JohnTsai/tag/%E3%80%8AHTTP%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E3%80%8B/">《HTTP权威指南》</a>(7)</li><li><a href="http://www.cnblogs.com/JohnTsai/tag/Git/">Git</a>(6)</li><li><a href="http://www.cnblogs.com/JohnTsai/tag/GitHub/">GitHub</a>(5)</li><li><a href="http://www.cnblogs.com/JohnTsai/tag/Python/">Python</a>(4)</li><li><a href="http://www.cnblogs.com/JohnTsai/tag/RxJava/">RxJava</a>(4)</li><li><a href="http://www.cnblogs.com/JohnTsai/tag/MarkDown/">MarkDown</a>(3)</li><li><a href="http://www.cnblogs.com/JohnTsai/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(107)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/JohnTsai/archive/2016/08.html">2016年8月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/JohnTsai/archive/2016/07.html">2016年7月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/JohnTsai/archive/2016/06.html">2016年6月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/JohnTsai/archive/2016/04.html">2016年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/JohnTsai/archive/2016/03.html">2016年3月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/JohnTsai/archive/2016/02.html">2016年2月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/JohnTsai/archive/2016/01.html">2016年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/JohnTsai/archive/2015/11.html">2015年11月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/JohnTsai/archive/2015/10.html">2015年10月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/JohnTsai/archive/2015/09.html">2015年9月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/JohnTsai/archive/2015/08.html">2015年8月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/JohnTsai/archive/2015/07.html">2015年7月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/JohnTsai/archive/2015/06.html">2015年6月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/JohnTsai/archive/2015/05.html">2015年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/JohnTsai/archive/2015/03.html">2015年3月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/JohnTsai/archive/2015/02.html">2015年2月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/JohnTsai/archive/2015/01.html">2015年1月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/JohnTsai/archive/2014/12.html">2014年12月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/JohnTsai/archive/2014/11.html">2014年11月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/JohnTsai/archive/2014/10.html">2014年10月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/JohnTsai/archive/2014/09.html">2014年9月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/JohnTsai/archive/2014/08.html">2014年8月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/JohnTsai/archive/2014/07.html">2014年7月 (2)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	124976
+	</li>
+	<li class="liRank">
+		排名 -	1999
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/JohnTsai/p/4027229.html#3741063">1. Re:MarkDown技巧：两种方式实现页内跳转</a></li>
+        <li class="recent_comment_body">真的麻烦，你这篇博客也让人看的迷糊。</li>
+        <li class="recent_comment_author">--前进道路几多坎</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/JohnTsai/p/5172056.html#3718242">2. Re:Android Material Design控件学习（二）——NavigationView的学习和使用</a></li>
+        <li class="recent_comment_body">请问一下，应用管理后面的3个更新如何实现</li>
+        <li class="recent_comment_author">--WBryan</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/JohnTsai/p/5172056.html#3685683">3. Re:Android Material Design控件学习（二）——NavigationView的学习和使用</a></li>
+        <li class="recent_comment_body">请问一下，博主做个这个demo需要的图片在哪里找的？</li>
+        <li class="recent_comment_author">--回眸一笑Fall</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/JohnTsai/p/4715454.html#3668691">4. Re:Android Material Design控件学习（一）——TabLayout的用法</a></li>
+        <li class="recent_comment_body">简洁明了</li>
+        <li class="recent_comment_author">--一个人去地老天荒吧</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/JohnTsai/p/4715454.html#3642637">5. Re:Android Material Design控件学习（一）——TabLayout的用法</a></li>
+        <li class="recent_comment_body">谢谢大神</li>
+        <li class="recent_comment_author">--AchillesLy</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/JohnTsai/p/4715454.html">1. Android Material Design控件学习（一）——TabLayout的用法(49913)</a></li><li><a href="http://www.cnblogs.com/JohnTsai/p/4027229.html">2. MarkDown技巧：两种方式实现页内跳转(15154)</a></li><li><a href="http://www.cnblogs.com/JohnTsai/p/5259869.html">3. Android进阶——深入浅出Handler（一）(14438)</a></li><li><a href="http://www.cnblogs.com/JohnTsai/p/4564782.html">4. Genymotion模拟器无法开启的解决方法——Unable to start the virtual device,The virtual device got no IP address(11832)</a></li><li><a href="http://www.cnblogs.com/JohnTsai/p/5584905.html">5. 30分钟入门Java8之lambda表达式(11392)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/JohnTsai/p/4152859.html">1. Android开发工具——Android studio1.0正式版使用技巧(18)</a></li><li><a href="http://www.cnblogs.com/JohnTsai/p/4140741.html">2. Android技巧分享——Android开发超好用工具吐血推荐(16)</a></li><li><a href="http://www.cnblogs.com/JohnTsai/p/4095274.html">3. Android 开源库——侧滑菜单栏（SlidingMenu）的导入和使用(16)</a></li><li><a href="http://www.cnblogs.com/JohnTsai/p/5256295.html">4. Android开发——避免内存泄露(14)</a></li><li><a href="http://www.cnblogs.com/JohnTsai/p/4103051.html">5. 《Thinking in Java》习题——吸血鬼数字(10)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/JohnTsai/p/4152859.html">1. Android开发工具——Android studio1.0正式版使用技巧(10)</a></li><li><a href="http://www.cnblogs.com/JohnTsai/p/4150475.html">2. Android学习之——ListView下拉刷新(8)</a></li><li><a href="http://www.cnblogs.com/JohnTsai/p/4224128.html">3. Android Studio小技巧(7)</a></li><li><a href="http://www.cnblogs.com/JohnTsai/p/4140741.html">4. Android技巧分享——Android开发超好用工具吐血推荐(7)</a></li><li><a href="http://www.cnblogs.com/JohnTsai/p/4715454.html">5. Android Material Design控件学习（一）——TabLayout的用法(6)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2017 JohnTsai
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253314898'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1253314898%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script><span id="cnzz_stat_icon_1253314898"><a href="http://www.cnzz.com/stat/website.php?web_id=1253314898" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/pic.gif"></a></span><script src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/z_stat.php" type="text/javascript"></script><script src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/core.php" charset="utf-8" type="text/javascript"></script>
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=10075466; 
+var sc_invisible=0; 
+var sc_security="729577ec"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script><script type="text/javascript" src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/counter.js.下载"></script><span class="statcounter"><a class="statcounter" href="http://www.statcounter.com/" target="_blank"><img src="./Android Material Design控件学习（一）——TabLayout的用法 - JohnTsai - 博客园_files/t.php" alt="StatCounter - Free Web Tracker and Counter" border="0"></a></span>
+
+<noscript>&lt;div class="statcounter"&gt;&lt;a title="web counter"
+href="http://statcounter.com/" target="_blank"&gt;&lt;img
+class="statcounter"
+src="http://c.statcounter.com/10075466/0/729577ec/0/"
+alt="web counter"&gt;&lt;/a&gt;&lt;/div&gt;</noscript>
+<!-- End of StatCounter Code for Default Guide -->
+<div id="rocket-to-top">
+    <div class="onhover"></div>
+    <div class="anim"></div>
+</div>
+<script type="text/javascript">  
+    var setMyBlog = {
+        setCopyright: function() {
+            //设置版权信息，转载出处自动根据页面url生成
+            var info_str = '<p>作者：<a target="_blank">@JohnTsai</a><br>'+
+                '本文为作者原创，转载请注明出处：<a class="uri"></a></p><hr></hr>', 
+                info = $(info_str),
+                info_a = info.find("a"),
+                url = window.location.href;
+            $(info_a[0]).attr("href","https://johntsai.xyz");
+            $(info_a[1]).attr("href",url).text(url);
+            $("#cnblogs_post_body").prepend(info);
+        },
+        setCodeRow: function(){
+            // 代码行号显示
+            var pre = $("pre.sourceCode"); //选中需要更改的部分
+            if(pre && pre.length){
+                pre.each(function() {
+                    var item = $(this);
+                    var lang = item.attr("class").split(" ")[1]; //判断高亮的语言
+                    item.html(item.html().replace(/<[^>]+>/g,"")); //将<pre>标签中的html标签去掉
+                    item.removeClass().addClass("brush: " + lang +";"); //根据语言添加笔刷
+                    SyntaxHighlighter.all();
+                })
+            }
+        },
+        setAtarget: function() {
+            // 博客内的链接在新窗口打开
+            $("#cnblogs_post_body a").each(function(){
+                this.target = "_blank";
+            }) 
+        },
+        setContent: function() {
+            // 根据h2、h3标签自动生成目录
+            var captions_ori = $("#cnblogs_post_body h2"),
+                captions = $("#cnblogs_post_body h2,#cnblogs_post_body h3").clone(),
+                content = $("<blockquote><h4>目录</h4></blockquote>");
+            $("#cnblogs_post_body").prepend(content.append(captions));
+            var index = -1;
+            captions.replaceWith(function(){
+                var self = this;
+                if(self.tagName == "H3" || self.tagName == "h3"){
+                    // 设置点击目录跳转
+                    index += 1;
+                    $('<a name="' + '_caption_' + index + '"></a>').insertBefore(captions_ori[index]); 
+                    return '<a href="#_caption_' + index + '"><strong>' + self.innerHTML + '</strong></a><br>';
+                } else {
+                    return self.innerHTML + "<br>";
+                }
+            });
+        },
+        runAll: function() {
+            /* 运行所有方法
+             * setAtarget() 博客园内标签新窗口打开
+             * setContent() 设置目录
+             * setCopyright() 设置版权信息
+             * setCodeRow() 代码行号显示
+             */ 
+            this.setAtarget(); 
+           // this.setContent();
+            this.setCopyright();
+            this.setCodeRow();
+        }
+    }
+    setMyBlog.runAll();
+</script>
+<!--PageEndHtml Block End-->
+
+
+</body></html>
